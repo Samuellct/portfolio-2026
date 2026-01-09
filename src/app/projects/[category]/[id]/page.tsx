@@ -33,7 +33,7 @@ export default function ProjectDetailPage() {
   if (!project) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-white/50">Loading...</div>
+        <div className="text-white/50">{content.common.loading}</div>
       </div>
     )
   }
@@ -140,7 +140,7 @@ export default function ProjectDetailPage() {
                       className="inline-flex items-center gap-3 px-6 py-3 bg-[#238636] text-white text-sm font-medium tracking-wide transition-colors hover:bg-[#2ea043]"
                     >
                       <FaGithub size={18} />
-                      View on GitHub
+                      {content.projects.viewOnGitHub}
                       <ExternalLink size={14} />
                     </a>
                   </div>
@@ -182,7 +182,7 @@ export default function ProjectDetailPage() {
               
               {project.imageCredit && (
                 <p className="mt-2 text-xs text-white/30">
-                  Image: {' '}
+                  {content.projects.imageCredit}: {' '}
                   {project.imageCreditUrl ? (
                     <a
                       href={project.imageCreditUrl}

@@ -2,6 +2,7 @@
 
 import { useRef, useEffect, useState, useCallback } from 'react'
 import { RefreshCw } from 'lucide-react'
+import content from '@/lib/content.json'
 
 interface Track {
   id: number
@@ -250,7 +251,7 @@ export default function ParticleCollision({ isVisible, className = '' }: Particl
             ? 'border-white/20 text-white/40 hover:border-accent-cyan/50 hover:text-accent-cyan cursor-pointer'
             : 'border-white/5 text-white/10 cursor-not-allowed'
         }`}
-        title="New collision"
+        title={content.contact.collision.newCollision}
       >
         <RefreshCw 
           size={14} 

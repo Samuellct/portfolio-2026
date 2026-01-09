@@ -109,8 +109,9 @@
       "inProgress": "In Progress"
     },
     "viewProject": "View project",
+    "viewOnGitHub": "View on GitHub",
     "technologies": "Technologies",
-    "relatedProjects": "Related Projects"
+    "imageCredit": "Image"
   },
   "blog": {
     "sectionLabel": "003 — Blog",
@@ -119,10 +120,7 @@
       "title": "Blog Coming Soon",
       "description": "A dedicated blog website is currently under development. Stay tuned for articles about physics, technology, and personal adventures.",
       "cta": "Visit Blog"
-    },
-    "latestArticle": "Latest Article",
-    "readMore": "Read more",
-    "viewAll": "Read all articles"
+    }
   },
   "contact": {
     "sectionLabel": "004 — Contact",
@@ -130,6 +128,9 @@
     "preview": {
       "text": "Interested in my work? Want to discuss a potential opportunity?",
       "cta": "Get in touch"
+    },
+    "collision": {
+      "newCollision": "New collision"
     },
     "page": {
       "title": "Contact Me",
@@ -166,6 +167,12 @@
     "error": "An error occurred",
     "back": "Back",
     "learnMore": "Learn more",
-    "viewAll": "View all"
+    "viewAll": "View all",
+    "notFound": {
+      "code": "404",
+      "title": "Page Not Found",
+      "description": "The page you're looking for doesn't exist or has been moved.",
+      "backHome": "Back to Home"
+    }
   }
 }
