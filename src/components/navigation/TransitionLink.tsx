@@ -5,19 +5,6 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { useTransition } from '@/context/TransitionContext'
 
-/**
- * TransitionLink V4.6.1
- * 
- * Remplace next/link pour les liens internes.
- * Intercepte le clic et déclenche une transition animée
- * AVANT que la navigation ne se produise.
- * 
- * Utilise next/link en fallback pour :
- * - Les liens externes
- * - Les clics avec modificateur (Ctrl+clic, etc.)
- * - Quand on est déjà sur la même page
- */
-
 interface TransitionLinkProps {
   href: string
   children: ReactNode
@@ -37,13 +24,9 @@ export default function TransitionLink({
   const { startTransition, phase } = useTransition()
   
   const handleClick = (e: MouseEvent<HTMLAnchorElement>) => {
-    // Appeler le onClick personnalisé s'il existe
     onClick?.(e)
-    
-    // Si déjà traité, ne rien faire
     if (e.defaultPrevented) return
     
-    // Ne pas intercepter si :
     const isExternal = href.startsWith('http') || href.startsWith('//')
     const isSamePage = pathname === href
     const isTransitioning = phase !== 'idle'
@@ -51,10 +34,9 @@ export default function TransitionLink({
     const isAnchor = href.startsWith('#')
     
     if (isExternal || isSamePage || isTransitioning || hasModifier || isAnchor) {
-      return // Laisser le comportement par défaut de next/link
+      return
     }
     
-    // Intercepter la navigation
     e.preventDefault()
     startTransition(href)
   }

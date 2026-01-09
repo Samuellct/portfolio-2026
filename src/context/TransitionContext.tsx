@@ -3,19 +3,7 @@
 import { createContext, useContext, useState, useCallback, useEffect, useRef, ReactNode } from 'react'
 import { useRouter, usePathname } from 'next/navigation'
 
-/**
- * TransitionContext V4.6.1
- * 
- * Architecture robuste pour les transitions de page :
- * 1. Intercepte la navigation via TransitionLink
- * 2. Affiche l'overlay (phase 'covering')
- * 3. Attend que l'overlay couvre l'écran
- * 4. Navigue avec router.push()
- * 5. Détecte le changement de pathname (navigation terminée)
- * 6. Cache l'overlay (phase 'revealing')
- */
-
-const COVER_DURATION = 500 // ms - durée pour couvrir l'écran
+const COVER_DURATION = 500
 
 type TransitionPhase = 'idle' | 'covering' | 'covered' | 'revealing'
 
@@ -35,33 +23,26 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
   const previousPathname = useRef(pathname)
   const isNavigating = useRef(false)
   
-  // Détecter quand la navigation est terminée (pathname a changé)
+  // Détecte quand la navigation est terminée
   useEffect(() => {
     if (pathname !== previousPathname.current) {
       previousPathname.current = pathname
       
-      // Si on était en train de naviguer, passer à la phase 'revealing'
       if (isNavigating.current) {
         isNavigating.current = false
         pendingHref.current = null
-        
-        // Petit délai pour laisser le contenu se rendre
-        requestAnimationFrame(() => {
-          setPhase('revealing')
-        })
+        requestAnimationFrame(() => setPhase('revealing'))
       }
     }
   }, [pathname])
   
   const startTransition = useCallback((href: string) => {
-    // Ne pas démarrer si déjà en transition ou même page
     if (phase !== 'idle' || href === pathname) return
     
     pendingHref.current = href
     isNavigating.current = true
     setPhase('covering')
     
-    // Après que l'overlay ait couvert l'écran, naviguer
     setTimeout(() => {
       if (pendingHref.current) {
         window.scrollTo(0, 0)
@@ -71,7 +52,6 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
     }, COVER_DURATION)
   }, [phase, pathname, router])
   
-  // Callback pour quand l'animation de sortie est terminée
   const handleRevealComplete = useCallback(() => {
     setPhase('idle')
   }, [])
@@ -84,7 +64,6 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
   )
 }
 
-// Overlay interne au provider pour accéder directement au state
 function TransitionOverlayInternal({ 
   phase, 
   onRevealComplete 
@@ -93,20 +72,6 @@ function TransitionOverlayInternal({
   onRevealComplete: () => void 
 }) {
   const isVisible = phase === 'covering' || phase === 'covered' || phase === 'revealing'
-  
-  // Calculer l'état de l'animation
-  const getClipPath = () => {
-    switch (phase) {
-      case 'covering':
-        return 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' // Animate to full
-      case 'covered':
-        return 'polygon(0 0, 100% 0, 100% 100%, 0 100%)' // Stay full
-      case 'revealing':
-        return 'polygon(100% 0, 100% 0, 100% 100%, 100% 100%)' // Exit right
-      default:
-        return 'polygon(0 0, 0 0, 0 100%, 0 100%)' // Hidden left
-    }
-  }
   
   if (!isVisible) return null
   
@@ -123,9 +88,7 @@ function TransitionOverlayInternal({
           : undefined,
       }}
       onAnimationEnd={() => {
-        if (phase === 'revealing') {
-          onRevealComplete()
-        }
+        if (phase === 'revealing') onRevealComplete()
       }}
     />
   )

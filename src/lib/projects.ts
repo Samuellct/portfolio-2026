@@ -1,13 +1,12 @@
-// Images utilisent des chemins statiques pour Next.js Image optimization
 export interface ProjectData {
   id: string
   title: string
   description: string
   subtitle?: string
   detailedDescription: string
-  technologies: string[]  // Vraies technos : Python, ROOT, Docker, etc.
-  domains: string[]       // Domaines : Astrophysics, Particle physics, etc.
-  keywords: string[]      // SEO uniquement (non affiché)
+  technologies: string[]
+  domains: string[]
+  keywords: string[]
   category: 'personal' | 'academic' | 'internship'
   status: 'completed' | 'in-progress' | 'planned'
   period: string
@@ -15,9 +14,8 @@ export interface ProjectData {
   image: string
   imageCredit?: string
   imageCreditUrl?: string
-  gitlabUrl?: string
+  gitHubUrl?: string
   featured?: boolean
-  difficulty: 'beginner' | 'intermediate' | 'advanced'
   dateCreated: string
 }
 
@@ -29,7 +27,6 @@ export interface CategoryData {
   accentColor: string
 }
 
-// Categories configuration
 export const projectCategories: CategoryData[] = [
   {
     id: 'personal',
@@ -54,14 +51,12 @@ export const projectCategories: CategoryData[] = [
   },
 ]
 
-// Centralized projects data - images as static paths
 export const projectsData: Record<string, Record<string, ProjectData>> = {
   personal: {
     'home-server': {
       id: 'home-server',
       title: 'Proxmox Home Server',
-      description:
-        'Configuration of a Proxmox server with a TrueNAS VM to create a secure family cloud. Storage management and remote access.',
+      description: 'Configuration of a Proxmox server with a TrueNAS VM to create a secure family cloud. Storage management and remote access.',
       subtitle: 'Building a Private and Scalable Family Cloud',
       detailedDescription: `
 ## Building a Private and Scalable Family Cloud
@@ -86,9 +81,8 @@ The system currently supports three main objectives:
       image: '/images/proxmox.png',
       imageCredit: 'Lawrence Systems',
       imageCreditUrl: 'https://commons.wikimedia.org/wiki/File:Client_Project_Hashcat_Testing_With_an_AMD_Epyc_Supermicro_Nvidia_GPU_Server_Using_Proxmox_%28Lawrence_Systems%29_02.png',
-      gitlabUrl: 'https://gitlab.com/samuel.lecomte37/proxmox-homeserver',
+      gitHubUrl: 'https://gitlab.com/samuel.lecomte37/proxmox-homeserver',
       featured: true,
-      difficulty: 'advanced',
       dateCreated: '2025-07-15',
     },
     'portfolio-website': {
@@ -105,7 +99,6 @@ The system currently supports three main objectives:
       period: '2025',
       location: 'Personal project',
       image: 'https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=1200',
-      difficulty: 'intermediate',
       dateCreated: '2025-02-15',
     },
   },
@@ -124,8 +117,7 @@ The system currently supports three main objectives:
       period: 'L3 - 2022',
       location: 'Université Clermont Auvergne',
       image: '/images/data_analysis.jpg',
-      gitlabUrl: 'https://github.com/Samuellct/ATLAS-basic-particle-search-workflow',
-      difficulty: 'intermediate',
+      gitHubUrl: 'https://github.com/Samuellct/ATLAS-basic-particle-search-workflow',
       dateCreated: '2022-03-01',
     },
     'ising-model': {
@@ -144,8 +136,7 @@ The system currently supports three main objectives:
       image: '/images/ising.jpg',
       imageCredit: 'Damian Owls',
       imageCreditUrl: 'https://commons.wikimedia.org/wiki/File:Ising_Criticality2.gif',
-      gitlabUrl: 'https://gitlab.com/samuel.lecomte37/ising-model',
-      difficulty: 'intermediate',
+      gitHubUrl: 'https://gitlab.com/samuel.lecomte37/ising-model',
       dateCreated: '2024-03-01',
     },
     'quantum-algorithms': {
@@ -163,15 +154,14 @@ The system currently supports three main objectives:
       location: 'Université Clermont Auvergne',
       image: '/images/quantum_cpu.jpg',
       imageCredit: 'Google',
-      gitlabUrl: 'https://github.com/Samuellct/Cirq-Quantum-Cryptography-Demo',
+      gitHubUrl: 'https://github.com/Samuellct/Cirq-Quantum-Cryptography-Demo',
       featured: true,
-      difficulty: 'advanced',
       dateCreated: '2023-11-29',
     },
-    'arduino-weather': {
-      id: 'arduino-weather',
+    'weather-station': {
+      id: 'weather-station',
       title: 'Arduino Weather Station',
-      description: 'Creation of a weather station composed of multiple sensors and a display to visualize data.',
+      description: 'Design and implementation of a weather station using Arduino with sensor data visualization.',
       subtitle: 'Building a DIY Environmental Monitoring System',
       detailedDescription: 'A complete weather station built with Arduino, featuring multiple environmental sensors and a display for real-time data visualization.',
       technologies: ['Arduino', 'C++'],
@@ -182,8 +172,7 @@ The system currently supports three main objectives:
       period: 'M1 - 2024',
       location: 'Université Clermont Auvergne',
       image: '/images/arduino_M1.jpg',
-      gitlabUrl: 'https://gitlab.com/samuel.lecomte37/arduino-weather-station',
-      difficulty: 'beginner',
+      gitHubUrl: 'https://gitlab.com/samuel.lecomte37/arduino-weather-station',
       dateCreated: '2025-01-22',
     },
     'labview': {
@@ -202,8 +191,7 @@ The system currently supports three main objectives:
       image: '/images/LabVIEW.png',
       imageCredit: 'Aldhair.gsnt',
       imageCreditUrl: 'https://commons.wikimedia.org/wiki/File:Labview_code_example.png',
-      gitlabUrl: 'https://gitlab.com/samuel.lecomte37/labview-muon-detector',
-      difficulty: 'intermediate',
+      gitHubUrl: 'https://gitlab.com/samuel.lecomte37/labview-muon-detector',
       dateCreated: '2024-01-15',
     },
     'muon-lifetime': {
@@ -222,8 +210,7 @@ The system currently supports three main objectives:
       image: '/images/muon_lifetime.png',
       imageCredit: 'Mrmw',
       imageCreditUrl: 'https://commons.wikimedia.org/wiki/File:Muon_Decay.svg',
-      gitlabUrl: 'https://gitlab.com/samuel.lecomte37/muon-lifetime-analysis',
-      difficulty: 'advanced',
+      gitHubUrl: 'https://gitlab.com/samuel.lecomte37/muon-lifetime-analysis',
       dateCreated: '2024-02-15',
     },
     'saturn-rings': {
@@ -242,7 +229,6 @@ The system currently supports three main objectives:
       image: '/images/saturn.jpg',
       imageCredit: 'NASA, ESA, A. Simon, and M.H. Wong',
       imageCreditUrl: 'https://esahubble.org/images/heic1917a/',
-      difficulty: 'intermediate',
       dateCreated: '2023-04-15',
     },
     'arduino-anemometer': {
@@ -259,7 +245,6 @@ The system currently supports three main objectives:
       period: 'M1 - 2024',
       location: 'Université Clermont Auvergne',
       image: '/images/arduino_M2.jpg',
-      difficulty: 'beginner',
       dateCreated: '2024-03-10',
     },
   },
@@ -279,7 +264,6 @@ The system currently supports three main objectives:
       location: 'LPC Clermont-Ferrand',
       image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800',
       featured: true,
-      difficulty: 'advanced',
       dateCreated: '2024-04-01',
     },
     'internship-m2': {
@@ -297,13 +281,11 @@ The system currently supports three main objectives:
       location: 'LPC Clermont-Ferrand',
       image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800',
       featured: true,
-      difficulty: 'advanced',
       dateCreated: '2025-02-01',
     },
   },
 }
 
-// Helper functions
 export const getProjectById = (categoryId: string, projectId: string): ProjectData | null => {
   return projectsData[categoryId]?.[projectId] || null
 }
@@ -331,7 +313,6 @@ export const getCategoryById = (categoryId: string): CategoryData | undefined =>
   return projectCategories.find((cat) => cat.id === categoryId)
 }
 
-// For Next.js static generation
 export const getAllProjectParams = () => {
   const params: { category: string; id: string }[] = []
   Object.keys(projectsData).forEach((categoryId) => {

@@ -10,17 +10,6 @@ import EasterEggManager from '@/components/easter-egg/EasterEggManager'
 import Landing from '@/components/landing/Landing'
 import MainLayout from '@/components/layout/MainLayout'
 
-/**
- * Providers V4.6.1
- * 
- * Architecture des responsabilités :
- * - EasterEggProvider : Gère l'easter egg
- * - SiteProvider : Gère l'état global (landing passé ou non)
- * - SmoothScrollProvider : Gère le smooth scroll
- * - TransitionProvider : Gère les transitions de navigation + overlay intégré
- * - MainLayout : Structure de la page (NavBar, Footer)
- */
-
 export function Providers({ children }: { children: ReactNode }) {
   const [hasEnteredSite, setHasEnteredSite] = useState(false)
   const [isLandingTransitioning, setIsLandingTransitioning] = useState(false)
@@ -39,9 +28,7 @@ export function Providers({ children }: { children: ReactNode }) {
     setIsLandingTransitioning(false)
   }
   
-  if (!mounted) {
-    return null
-  }
+  if (!mounted) return null
   
   return (
     <EasterEggProvider>
@@ -62,8 +49,6 @@ export function Providers({ children }: { children: ReactNode }) {
                 </MainLayout>
               )}
             </AnimatePresence>
-            
-            {/* Easter Egg overlays */}
             <EasterEggManager />
           </TransitionProvider>
         </SmoothScrollProvider>
