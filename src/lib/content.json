@@ -1,0 +1,171 @@
+{
+  "landing": {
+    "title": "Samuel's Portfolio",
+    "subtitle": "Particle Physics & Data Science",
+    "enter": "Enter"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "menu": {
+    "sections": "Sections",
+    "external": "External",
+    "blog": "Blog",
+    "github": "GitHub",
+    "linkedin": "LinkedIn"
+  },
+  "hero": {
+    "greeting": "Hi, I'm Samuel",
+    "title": "M.S. in Physics",
+    "titleAlt": "& Data Science",
+    "description": "Recent graduate specialized in high-energy physics and data science. Currently seeking opportunities in research or data engineering.",
+    "cta": "Discover my background",
+    "scrollHint": "Scroll"
+  },
+  "about": {
+    "sectionLabel": "001 — About",
+    "title": "Between physics and data science",
+    "preview": {
+      "intro": "I'm a particle physicist with a strong foundation in data analysis, statistical methods, and scientific computing. My academic journey has led me through both the theoretical foundations of physics and hands-on research with major international collaborations.",
+      "highlight": "From CERN experiments to personal tech projects, I enjoy solving complex problems and building tools that make data accessible.",
+      "cta": "Full profile & CV"
+    },
+    "full": {
+      "intro": "I'm Samuel, a recent graduate in Fundamental Physics from Université Clermont Auvergne. My specialization in particle physics has given me extensive experience with large-scale data analysis, statistical modeling, and scientific software development.",
+      "experience": "During my master's program, I had the opportunity to work with both the LHCb and ATLAS collaborations at CERN. These experiences taught me to handle terabytes of data, implement complex analysis pipelines, and collaborate within international research teams.",
+      "passion": "Beyond physics, I'm passionate about building systems and tools. I maintain a home server infrastructure, experiment with automation, and continuously explore new technologies. This website itself is a personal project where I apply modern web development practices.",
+      "goals": "I'm currently looking for opportunities either in experimental physics research (PhD) or in data engineering roles where I can apply my analytical skills to real-world challenges.",
+      "goalsTitle": "Professional Goals"
+    },
+    "stats": {
+      "experiments": "CERN Collaboration internships",
+      "experimentsHover": "within ATLAS & LHCb LPCA research groups",
+      "languages": "Programming Languages",
+      "languagesHover": "Python, C++, R, TypeScript, ...",
+      "reports": "LaTeX Documents",
+      "reportsHover": "Master's theses, project reports, and Beamer presentations"
+    },
+    "skills": {
+      "title": "Technical Skills",
+      "programming": "Programming",
+      "analysis": "Data Analysis",
+      "tools": "Tools & Systems"
+    },
+    "stack": {
+      "sectionLabel": "002 — Technical Stack",
+      "title": "Core Skills",
+      "description": "Programming languages ranked by usage across my projects.",
+      "extendedToolkit": "Extended Toolkit"
+    },
+    "education": {
+      "sectionLabel": "003 — Education",
+      "title": "Education",
+      "subtitle": "Academic Path",
+      "master2": {
+        "degree": "M.Sc. Fundamental Physics",
+        "track": "Universe & Particles",
+        "school": "Université Clermont Auvergne",
+        "period": "2023 — 2025"
+      },
+      "datascience": {
+        "degree": "University Diploma in Data Science",
+        "school": "Université Clermont Auvergne",
+        "period": "2024 — 2025"
+      },
+      "bachelor": {
+        "degree": "B.Sc. Physics",
+        "school": "Université Clermont Auvergne",
+        "period": "2019 — 2023"
+      }
+    },
+    "interests": {
+      "sectionLabel": "004 — Interests",
+      "title": "Interests",
+      "subtitle": "Personal Sandbox",
+      "running": "Trail Running",
+      "tech": "Home Lab & Self-Hosting",
+      "science": "Science Communication"
+    },
+    "downloadCV": "Download CV"
+  },
+  "projects": {
+    "sectionLabel": "002 — Projects",
+    "title": "Latest Work",
+    "preview": {
+      "description": "A selection of academic research, personal experiments, and professional work.",
+      "cta": "View all projects"
+    },
+    "categories": {
+      "all": "All",
+      "academic": "Academic",
+      "personal": "Personal",
+      "internship": "Research"
+    },
+    "status": {
+      "completed": "Completed",
+      "inProgress": "In Progress"
+    },
+    "viewProject": "View project",
+    "technologies": "Technologies",
+    "relatedProjects": "Related Projects"
+  },
+  "blog": {
+    "sectionLabel": "003 — Blog",
+    "title": "Journal",
+    "comingSoon": {
+      "title": "Blog Coming Soon",
+      "description": "A dedicated blog website is currently under development. Stay tuned for articles about physics, technology, and personal adventures.",
+      "cta": "Visit Blog"
+    },
+    "latestArticle": "Latest Article",
+    "readMore": "Read more",
+    "viewAll": "Read all articles"
+  },
+  "contact": {
+    "sectionLabel": "004 — Contact",
+    "title": "Let's Connect",
+    "preview": {
+      "text": "Interested in my work? Want to discuss a potential opportunity?",
+      "cta": "Get in touch"
+    },
+    "page": {
+      "title": "Contact Me",
+      "description": "Whether you have a question, a project idea, or just want to say hello, feel free to reach out. I'll get back to you as soon as possible.",
+      "form": {
+        "name": "Name",
+        "namePlaceholder": "Your name",
+        "email": "Email",
+        "emailPlaceholder": "your.email@example.com",
+        "subject": "Subject",
+        "subjectPlaceholder": "What's this about?",
+        "message": "Message",
+        "messagePlaceholder": "Your message...",
+        "send": "Send Message",
+        "sending": "Sending...",
+        "success": "Message sent successfully",
+        "successDescription": "Thank you for reaching out. I'll get back to you soon.",
+        "error": "Something went wrong",
+        "errorDescription": "Please try again or contact me directly via email.",
+        "retry": "Try again"
+      },
+      "directContact": {
+        "title": "Or reach me directly",
+        "email": "contact@samuel-lecomte.fr"
+      }
+    }
+  },
+  "footer": {
+    "copyright": "© 2025 Samuel Lecomte",
+    "blog": "Blog"
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "back": "Back",
+    "learnMore": "Learn more",
+    "viewAll": "View all"
+  }
+}

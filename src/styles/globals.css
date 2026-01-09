@@ -1,0 +1,298 @@
+@import 'katex/dist/katex.min.css';
+
+@keyframes coverScreen {
+  from {
+    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
+  }
+  to {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+}
+
+@keyframes revealScreen {
+  from {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+  }
+  to {
+    clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
+  }
+}
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===================================
+   BASE STYLES
+=================================== */
+:root {
+  --color-primary: #030308;
+  --color-primary-light: #080812;
+  --color-accent-cyan: #00f0ff;
+  --color-accent-purple: #a855f7;
+  --color-accent-pink: #f472b6;
+  
+  /* Dynamic background color for scroll transitions */
+  --bg-color: #030308;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Lenis smooth scroll styles */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-smooth iframe {
+  pointer-events: none;
+}
+
+body {
+  background-color: var(--bg-color);
+  color: #ffffff;
+  overflow-x: hidden;
+  transition: background-color 1.2s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+/* Text justify for paragraphs */
+.text-justify {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+/* ===================================
+   SELECTION
+=================================== */
+::selection {
+  background: var(--color-accent-cyan);
+  color: #000;
+}
+
+/* ===================================
+   SCROLLBAR
+=================================== */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+/* ===================================
+   UTILITY CLASSES
+=================================== */
+.gradient-text {
+  background: linear-gradient(135deg, #fff, var(--color-accent-cyan));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-outline {
+  -webkit-text-stroke: 1px rgba(255, 255, 255, 0.3);
+  color: transparent;
+}
+
+/* Glassmorphism */
+.glass {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Glow effects */
+.glow-cyan {
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.3);
+}
+
+.glow-purple {
+  box-shadow: 0 0 30px rgba(168, 85, 247, 0.3);
+}
+
+/* ===================================
+   ANIMATION UTILITIES
+=================================== */
+.reveal-up {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s cubic-bezier(0.23, 1, 0.32, 1),
+              transform 0.8s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.reveal-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Staggered reveal for children */
+.stagger-reveal > * {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+.stagger-reveal.visible > * {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stagger-reveal.visible > *:nth-child(1) { transition-delay: 0.1s; }
+.stagger-reveal.visible > *:nth-child(2) { transition-delay: 0.2s; }
+.stagger-reveal.visible > *:nth-child(3) { transition-delay: 0.3s; }
+.stagger-reveal.visible > *:nth-child(4) { transition-delay: 0.4s; }
+.stagger-reveal.visible > *:nth-child(5) { transition-delay: 0.5s; }
+
+/* ===================================
+   SECTION STYLES
+=================================== */
+.section {
+  min-height: 100vh;
+  position: relative;
+  overflow: hidden;
+}
+
+.section-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.section-label::before {
+  content: '';
+  width: 30px;
+  height: 1px;
+  background: currentColor;
+}
+
+/* ===================================
+   CURSOR STYLES
+=================================== */
+@media (hover: hover) {
+  a, button {
+    cursor: pointer;
+  }
+}
+
+/* ===================================
+   FOCUS STYLES
+=================================== */
+:focus-visible {
+  outline: 2px solid var(--color-accent-cyan);
+  outline-offset: 2px;
+}
+
+/* ===================================
+   REDUCED MOTION
+=================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ===================================
+   KATEX / MATH STYLES
+=================================== */
+.katex {
+  font-size: 1.1em;
+}
+
+.katex-display {
+  margin: 1.5em 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 0.5em 0;
+}
+
+.katex-display > .katex {
+  white-space: normal;
+}
+
+/* ===================================
+   PROSE / MARKDOWN CUSTOMIZATION
+=================================== */
+.prose a {
+  color: var(--color-accent-cyan);
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s ease;
+}
+
+.prose a:hover {
+  border-bottom-color: var(--color-accent-cyan);
+}
+
+.prose code:not(pre code) {
+  background-color: rgba(255, 255, 255, 0.05);
+  padding: 0.2em 0.4em;
+  border-radius: 0.25em;
+  font-size: 0.9em;
+}
+
+.prose pre {
+  background-color: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.prose blockquote {
+  border-left-color: var(--color-accent-purple);
+  background-color: rgba(168, 85, 247, 0.05);
+  padding: 1em 1.5em;
+}
+
+.prose h2 {
+  font-family: var(--font-bebas), sans-serif;
+  letter-spacing: 0.05em;
+}
+
+.prose h3 {
+  font-family: var(--font-bebas), sans-serif;
+  letter-spacing: 0.03em;
+}
+
+.prose strong {
+  color: #ffffff;
+}
+
+.prose ul > li::marker {
+  color: var(--color-accent-cyan);
+}
+
+.prose ol > li::marker {
+  color: var(--color-accent-purple);
+}
