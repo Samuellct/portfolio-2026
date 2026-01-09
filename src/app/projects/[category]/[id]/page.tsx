@@ -132,7 +132,7 @@ export default function ProjectDetailPage() {
                 
                 {/* GitHub CTA */}
                 {project.gitHubUrl && (
-                  <div className="flex justify-center lg:justify-center">
+                  <div className="flex justify-center">
                     <a
                       href={project.gitHubUrl}
                       target="_blank"
