@@ -42,7 +42,8 @@ export default function Terminal() {
     }
   }, [canType])
   
-  // Type effect
+  // Type effect (reserved for future animated system messages)
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const typeText = useCallback((text: string, onComplete?: () => void) => {
     setIsTyping(true)
     setDisplayedText('')

@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Mouse, ChevronDown } from 'lucide-react'
+import { ChevronDown } from 'lucide-react'
 
 interface ScrollIndicatorProps {
   hideAfterPx?: number

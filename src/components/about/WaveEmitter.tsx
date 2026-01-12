@@ -1,7 +1,5 @@
 'use client'
 
-import { useMemo } from 'react'
-
 interface WaveEmitterProps {
   progress: number // 0 to 1
   className?: string

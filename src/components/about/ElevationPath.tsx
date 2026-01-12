@@ -38,9 +38,8 @@ function generateSmoothPath(points: number[][]): string {
   for (let i = 1; i < points.length; i++) {
     const prev = points[i - 1]
     const curr = points[i]
-    const next = points[i + 1] || curr
     
-    // Points de contrôle pour courbe de Bézier
+    // Control points for Bézier curve
     const cpX1 = prev[0] + (curr[0] - prev[0]) * 0.5
     const cpY1 = prev[1]
     const cpX2 = prev[0] + (curr[0] - prev[0]) * 0.5

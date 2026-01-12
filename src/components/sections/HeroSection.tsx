@@ -7,6 +7,8 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowRight } from 'lucide-react'
 import dynamic from 'next/dynamic'
+// Easter egg component (reserved for future activation)
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import HiddenIcon from '@/components/easter-egg/HiddenIcon'
 import content from '@/lib/content.json'
 

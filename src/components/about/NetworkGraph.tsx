@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef } from 'react'
 import { SiDocker, SiNextcloud, SiProxmox, SiJellyfin } from 'react-icons/si'
 import { TbServer } from 'react-icons/tb'
 

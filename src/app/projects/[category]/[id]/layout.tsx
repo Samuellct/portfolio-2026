@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { getProjectById, getCategoryById, getAllProjectParams } from '@/lib/projects'
+import { getProjectById, getAllProjectParams } from '@/lib/projects'
 
 type Props = {
   params: Promise<{ category: string; id: string }>
@@ -14,7 +14,6 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category, id } = await params
   const project = getProjectById(category, id)
-  const categoryData = getCategoryById(category)
   
   if (!project) {
     return {
