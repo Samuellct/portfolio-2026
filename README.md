@@ -1,126 +1,79 @@
-# Samuel Lecomte Portfolio V4
+# Samuel Lecomte — Portfolio
 
-A modern portfolio website built with **Next.js 15**, featuring smooth animations, particle effects, and a hidden Easter egg.
+A modern portfolio website showcasing research projects in particle physics and data engineering.
 
-## 🚀 Tech Stack
-
-- **Framework:** Next.js 15.1 (App Router)
-- **Language:** TypeScript 5.7
-- **Styling:** Tailwind CSS 3.4
-- **Animations:** Framer Motion 11, GSAP 3.12
-- **3D Effects:** Three.js 0.170
-- **Smooth Scroll:** Lenis
-
-## 📁 Project Structure
-
-```
-src/
-├── app/                    # Next.js App Router pages
-│   ├── about/             # About page
-│   ├── contact/           # Contact page
-│   ├── projects/          # Projects list & detail pages
-│   │   └── [category]/
-│   │       └── [id]/      # Dynamic project pages
-│   ├── layout.tsx         # Root layout with metadata
-│   ├── page.tsx           # Home page
-│   ├── providers.tsx      # Context providers
-│   └── not-found.tsx      # 404 page
-├── components/
-│   ├── sections/          # Page sections (Hero, About, etc.)
-│   ├── effects/           # Visual effects (WaveBackground, ParticleCollision)
-│   ├── navigation/        # NavBar
-│   ├── layout/            # MainLayout, Footer
-│   ├── landing/           # Landing page with Starfield
-│   └── easter-egg/        # Hidden Easter egg components
-├── context/               # React contexts
-├── lib/                   # Data and utilities
-└── styles/                # Global CSS
-```
-
-## 🎮 Features
-
-### SEO Optimized
-- Dynamic metadata generation for all pages
-- Static generation (SSG) for project pages
-- Complete sitemap.xml
-- Open Graph & Twitter cards
-
-### Animations
-- **Landing:** Starfield with hyperspace effect
-- **Hero:** Wave particle background (Three.js)
-- **Contact:** Particle collision animation
-- **Navigation:** Smooth page transitions
-
-### Easter Egg 🥚
-Find 3 hidden ✧ icons across the site to unlock a secret terminal experience!
-
-## 🛠️ Installation
-
-```bash
-# Install dependencies
-npm install
-
-# Run development server
-npm run dev
-
-# Build for production
-npm run build
-
-# Start production server
-npm start
-```
-
-## 🔧 Environment
-
-No environment variables required for basic functionality.
-
-For the contact form (Formspree):
-- The form is pre-configured with the endpoint
-
-## 📦 Deployment
-
-### Vercel (Recommended)
-
-```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Deploy
-vercel
-```
-
-### Manual Build
-
-```bash
-npm run build
-# Output in .next/
-```
-
-## 🎨 Customization
-
-### Colors
-Edit `tailwind.config.ts`:
-```typescript
-colors: {
-  primary: { DEFAULT: '#030308' },
-  accent: {
-    cyan: '#00f0ff',
-    purple: '#a855f7',
-    pink: '#f472b6',
-  },
-}
-```
-
-### Content
-Edit `src/lib/content.json` for all text content.
-
-### Projects
-Edit `src/lib/projects.ts` to add/modify projects.
-
-## 📝 License
-
-MIT License - Feel free to use this as a template for your own portfolio!
+![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=next.js) ![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?logo=typescript&logoColor=white) ![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-06B6D4?logo=tailwindcss&logoColor=white) ![Framer Motion](https://img.shields.io/badge/Framer_Motion-11-0055FF?logo=framer&logoColor=white) ![Three.js](https://img.shields.io/badge/Three.js-0.170-black?logo=three.js)
 
 ---
 
-Built with ❤️ by Samuel Lecomte
+## Overview
+
+This portfolio presents my academic journey through particle physics and my technical projects. Built with Next.js 15 and modern web technologies, it features smooth scroll-driven animations, WebGL particle effects, and a responsive design optimized for all devices.
+
+## Features
+
+**Performance**
+- Server Components for static content with selective client-side hydration
+- Dynamic sitemap generation for SEO
+- Image optimization with Next.js Image component
+
+**Animations**
+- Three.js particle wave background with mobile optimization
+- GSAP scroll-triggered animations
+- Page transitions with clip-path effects
+- Starfield with hyperspace effect on landing
+
+**Accessibility**
+- Reduced motion support
+- Keyboard navigation
+- Semantic HTML structure
+
+## Installation
+
+```bash
+git clone https://github.com/Samuellct/portfolio.git
+cd portfolio
+npm install
+npm run dev
+```
+
+## Project Structure
+
+```
+src/
+├── app/           # Next.js App Router pages
+├── components/    # React components
+├── context/       # React Context providers
+├── lib/           # Data and utilities
+└── styles/        # Global CSS
+```
+
+See [DOCUMENTATION.md](./DOCUMENTATION.md) for detailed architecture documentation.
+
+## Configuration
+
+**Environment Variables** (optional)
+```env
+NEXT_PUBLIC_SITE_URL=https://www.samuel-lecomte.fr
+```
+
+**Customization**
+- Edit `src/lib/content.json` for text content
+- Edit `src/lib/projects.ts` to add projects
+- Edit `tailwind.config.ts` for color scheme
+
+## Deployment
+
+```bash
+npm run build
+```
+
+Deploy the `.next` folder to Vercel, Netlify, or any Node.js hosting platform.
+
+## License
+
+MIT License — See [LICENSE](./LICENSE) for details.
+
+---
+
+Built by Samuel Lecomte

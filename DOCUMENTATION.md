@@ -1,280 +1,230 @@
-# 📁 Documentation Portfolio V4.5
+# Technical Documentation — Portfolio V4.8
 
-## Table des matières
+## Table of Contents
 
-1. [Arborescence des fichiers](#arborescence-des-fichiers)
-2. [Description des fichiers](#description-des-fichiers)
-3. [Guide : Ajouter ou modifier un projet](#guide--ajouter-ou-modifier-un-projet)
-4. [Guide : Ajouter une nouvelle page](#guide--ajouter-une-nouvelle-page)
+1. [Project Architecture](#project-architecture)
+2. [File Structure](#file-structure)
+3. [Adding a New Project](#adding-a-new-project)
+4. [Adding a New Page](#adding-a-new-page)
+5. [Content Management](#content-management)
+6. [Technologies](#technologies)
 
 ---
 
-## Arborescence des fichiers
+## Project Architecture
+
+This portfolio follows Next.js 15 App Router conventions with a hybrid rendering approach:
+
+- **Server Components**: Static pages and layouts for optimal SEO and performance
+- **Client Components**: Interactive sections with animations (GSAP, Framer Motion, Three.js)
+
+### Key Architectural Decisions
+
+| Pattern | Implementation |
+|---------|----------------|
+| Rendering | Hybrid SSR/CSR with Server Components as default |
+| State Management | React Context API (no external state library) |
+| Animations | GSAP for scroll-driven, Framer Motion for component transitions |
+| Styling | Tailwind CSS with custom design tokens |
+| Content | Centralized JSON for i18n-ready text management |
+
+---
+
+## File Structure
 
 ```
 portfolio-v4/
-├── 📄 Configuration
-│   ├── package.json              # Dépendances npm et scripts
-│   ├── tsconfig.json             # Configuration TypeScript
-│   ├── tailwind.config.ts        # Configuration Tailwind CSS (couleurs, fonts)
-│   ├── next.config.ts            # Configuration Next.js
-│   ├── postcss.config.mjs        # Configuration PostCSS
-│   ├── eslint.config.mjs         # Configuration ESLint
-│   └── README.md                 # Documentation du projet
+├── public/
+│   ├── favicon.png
+│   ├── Resume.pdf
+│   ├── robots.txt
+│   └── images/
+│       └── [project-images].jpg
 │
-├── 📁 public/                    # Fichiers statiques (servis directement)
-│   ├── favicon.png               # Icône du site
-│   ├── Resume.pdf                # CV téléchargeable
-│   ├── robots.txt                # Instructions pour les crawlers
-│   ├── sitemap.xml               # Plan du site pour SEO
-│   └── images/                   # Images des projets
-│       ├── proxmox.png
-│       ├── quantum_cpu.jpg
-│       ├── muon_lifetime.png
-│       └── ...
+├── src/
+│   ├── app/
+│   │   ├── layout.tsx              # Root layout (fonts, metadata, providers)
+│   │   ├── page.tsx                # Homepage (Server Component)
+│   │   ├── sitemap.ts              # Dynamic sitemap generation
+│   │   ├── loading.tsx             # Global loading state
+│   │   ├── not-found.tsx           # 404 page
+│   │   ├── providers.tsx           # Client-side context providers
+│   │   │
+│   │   ├── about/
+│   │   │   ├── layout.tsx
+│   │   │   └── page.tsx            # About page with scroll animations
+│   │   │
+│   │   ├── contact/
+│   │   │   ├── layout.tsx
+│   │   │   └── page.tsx            # Contact form
+│   │   │
+│   │   └── projects/
+│   │       ├── layout.tsx
+│   │       ├── page.tsx            # Projects grid with filters
+│   │       └── [category]/
+│   │           └── [id]/
+│   │               ├── layout.tsx
+│   │               └── page.tsx    # Project detail page
+│   │
+│   ├── components/
+│   │   ├── home/
+│   │   │   └── HomePageClient.tsx  # Homepage client wrapper
+│   │   │
+│   │   ├── sections/
+│   │   │   ├── HeroSection.tsx
+│   │   │   ├── AboutSection.tsx
+│   │   │   ├── ProjectsSection.tsx
+│   │   │   ├── BlogSection.tsx
+│   │   │   └── ContactSection.tsx
+│   │   │
+│   │   ├── effects/
+│   │   │   ├── WaveBackground.tsx      # Three.js particle background
+│   │   │   └── ParticleCollision.tsx   # Canvas collision animation
+│   │   │
+│   │   ├── navigation/
+│   │   │   ├── NavBar.tsx
+│   │   │   └── TransitionLink.tsx
+│   │   │
+│   │   ├── layout/
+│   │   │   ├── MainLayout.tsx
+│   │   │   └── Footer.tsx
+│   │   │
+│   │   ├── landing/
+│   │   │   ├── Landing.tsx
+│   │   │   └── Starfield.tsx
+│   │   │
+│   │   ├── about/
+│   │   │   ├── ElevationPath.tsx
+│   │   │   ├── NetworkGraph.tsx
+│   │   │   ├── WaveEmitter.tsx
+│   │   │   └── ScrollIndicator.tsx
+│   │   │
+│   │   ├── ui/
+│   │   │   └── MarkdownRenderer.tsx
+│   │   │
+│   │   └── easter-egg/
+│   │       ├── EasterEggManager.tsx
+│   │       ├── HiddenIcon.tsx
+│   │       ├── Terminal.tsx
+│   │       ├── GlitchShutdown.tsx
+│   │       ├── Fireworks.tsx
+│   │       └── RestoredOverlay.tsx
+│   │
+│   ├── context/
+│   │   ├── SiteContext.tsx
+│   │   ├── SmoothScrollContext.tsx
+│   │   ├── TransitionContext.tsx
+│   │   └── EasterEggContext.tsx
+│   │
+│   ├── lib/
+│   │   ├── content.json        # All UI text (i18n-ready)
+│   │   ├── projects.ts         # Project data and types
+│   │   └── techStats.ts        # Technology statistics extraction
+│   │
+│   └── styles/
+│       └── globals.css         # Global styles and CSS variables
 │
-└── 📁 src/                       # Code source
-    │
-    ├── 📁 app/                   # Pages (App Router Next.js 15)
-    │   ├── layout.tsx            # Layout racine (HTML, fonts, metadata)
-    │   ├── page.tsx              # Page d'accueil (/)
-    │   ├── loading.tsx           # Écran de chargement global
-    │   ├── not-found.tsx         # Page 404
-    │   ├── providers.tsx         # Providers React (contextes)
-    │   │
-    │   ├── 📁 about/             # Route /about
-    │   │   ├── layout.tsx        # Layout spécifique About
-    │   │   └── page.tsx          # Page About (V4.4 - scroll animations)
-    │   │
-    │   ├── 📁 contact/           # Route /contact
-    │   │   ├── layout.tsx        # Layout spécifique Contact
-    │   │   └── page.tsx          # Formulaire de contact
-    │   │
-    │   └── 📁 projects/          # Route /projects
-    │       ├── layout.tsx        # Layout spécifique Projects
-    │       ├── page.tsx          # Liste des projets
-    │       └── 📁 [category]/    # Route dynamique /projects/:category
-    │           └── 📁 [id]/      # Route dynamique /projects/:category/:id
-    │               ├── layout.tsx
-    │               └── page.tsx  # Page détail d'un projet
-    │
-    ├── 📁 components/            # Composants React réutilisables
-    │   │
-    │   ├── 📁 about/             # Composants spécifiques à la page About
-    │   │   ├── ElevationPath.tsx # SVG animé profil d'élévation (trail running)
-    │   │   ├── NetworkGraph.tsx  # SVG animé réseau homelab
-    │   │   ├── ScrollIndicator.tsx # Indicateur de scroll (souris + chevron)
-    │   │   └── WaveEmitter.tsx   # SVG animé ondes (science communication)
-    │   │
-    │   ├── 📁 easter-egg/        # Composants de l'easter egg
-    │   │   ├── EasterEggManager.tsx # Gestionnaire principal
-    │   │   ├── HiddenIcon.tsx    # Icône cachée déclencheur
-    │   │   ├── Terminal.tsx      # Terminal interactif
-    │   │   ├── GlitchShutdown.tsx # Animation glitch
-    │   │   ├── Fireworks.tsx     # Animation feu d'artifice
-    │   │   └── RestoredOverlay.tsx # Overlay de restauration
-    │   │
-    │   ├── 📁 effects/           # Effets visuels
-    │   │   ├── ParticleCollision.tsx # Animation collision de particules
-    │   │   ├── WaveBackground.tsx    # Fond ondulé animé
-    │   │   └── PageTransition.tsx    # Transition clipPath entre les pages
-    │   │
-    │   ├── 📁 landing/           # Page d'entrée (splash screen)
-    │   │   ├── Landing.tsx       # Composant principal landing
-    │   │   └── Starfield.tsx     # Champ d'étoiles animé
-    │   │
-    │   ├── 📁 layout/            # Composants de mise en page
-    │   │   ├── MainLayout.tsx    # Layout principal avec NavBar + Footer
-    │   │   └── Footer.tsx        # Pied de page
-    │   │
-    │   ├── 📁 navigation/        # Navigation
-    │   │   └── NavBar.tsx        # Barre de navigation + menu hamburger
-    │   │
-    │   └── 📁 sections/          # Sections de la page d'accueil
-    │       ├── HeroSection.tsx   # Section héro (présentation)
-    │       ├── AboutSection.tsx  # Aperçu About
-    │       ├── ProjectsSection.tsx # Aperçu Projects
-    │       ├── BlogSection.tsx   # Section Blog (coming soon)
-    │       └── ContactSection.tsx # Aperçu Contact
-    │
-    ├── 📁 context/               # Contextes React (état global)
-    │   ├── SiteContext.tsx       # État général du site
-    │   ├── SmoothScrollContext.tsx # Gestion du smooth scroll
-    │   └── EasterEggContext.tsx  # État de l'easter egg
-    │
-    ├── 📁 lib/                   # Utilitaires et données
-    │   ├── content.json          # Tous les textes du site (i18n ready)
-    │   ├── projects.ts           # Données des projets + catégories
-    │   └── techStats.ts          # Extraction et stats des technologies
-    │
-    └── 📁 styles/                # Styles globaux
-        └── globals.css           # CSS global + variables Tailwind
+├── package.json
+├── tailwind.config.ts
+├── tsconfig.json
+├── next.config.ts
+└── vercel.json
 ```
 
 ---
 
-## Description des fichiers
+## Adding a New Project
 
-### 📄 Configuration (racine)
+### Step 1: Add Project Image
 
-| Fichier | Rôle |
-|---------|------|
-| `package.json` | Dépendances npm, scripts (`dev`, `build`, `start`) |
-| `tsconfig.json` | Configuration TypeScript (paths aliases `@/`) |
-| `tailwind.config.ts` | Couleurs custom (`accent-cyan`, `accent-purple`), fonts |
-| `next.config.ts` | Configuration Next.js (images, redirects) |
-| `postcss.config.mjs` | Configuration PostCSS pour Tailwind |
-| `eslint.config.mjs` | Règles de linting |
+Place the image in `/public/images/` with a descriptive filename:
+```
+/public/images/my-project.jpg
+```
 
-### 📁 src/app/ (Pages)
+### Step 2: Add Project Data
 
-| Fichier | Route | Rôle |
-|---------|-------|------|
-| `layout.tsx` | Global | Layout racine : `<html>`, fonts, metadata SEO |
-| `page.tsx` | `/` | Page d'accueil avec sections (Hero, About, Projects, Blog, Contact) |
-| `loading.tsx` | Global | Spinner de chargement pendant les transitions |
-| `not-found.tsx` | `/404` | Page d'erreur 404 |
-| `providers.tsx` | Global | Wrapper des contextes React |
-| `about/page.tsx` | `/about` | Page About complète avec animations GSAP scroll-driven |
-| `contact/page.tsx` | `/contact` | Formulaire de contact |
-| `projects/page.tsx` | `/projects` | Grille de tous les projets avec filtres par catégorie |
-| `projects/[category]/[id]/page.tsx` | `/projects/:cat/:id` | Page détail d'un projet |
-
-### 📁 src/components/
-
-| Dossier | Composants | Rôle |
-|---------|------------|------|
-| `about/` | `ElevationPath`, `NetworkGraph`, `WaveEmitter`, `ScrollIndicator` | SVG animés et indicateurs pour la page About |
-| `easter-egg/` | `Terminal`, `GlitchShutdown`, `Fireworks`, etc. | Easter egg caché (terminal interactif) |
-| `effects/` | `ParticleCollision`, `WaveBackground`, `PageTransition` | Effets visuels de fond et transitions de page |
-| `landing/` | `Landing`, `Starfield` | Splash screen d'entrée |
-| `layout/` | `MainLayout`, `Footer` | Structure de page |
-| `navigation/` | `NavBar` | Navigation principale + menu hamburger |
-| `sections/` | `HeroSection`, `AboutSection`, etc. | Sections de la page d'accueil |
-
-### 📁 src/lib/ (Données)
-
-| Fichier | Rôle |
-|---------|------|
-| `content.json` | **Tous les textes du site** (labels, titres, descriptions). Modifier ici pour changer un texte. |
-| `projects.ts` | **Données des projets** : titre, description, technologies, images. C'est ici qu'on ajoute des projets. |
-| `techStats.ts` | Extraction automatique des technologies depuis les projets, calcul des stats pour la section Stack. |
-
-### 📁 src/context/ (État global)
-
-| Fichier | Rôle |
-|---------|------|
-| `SiteContext.tsx` | État général (landing visible, section active) |
-| `SmoothScrollContext.tsx` | Gestion du smooth scroll avec Lenis |
-| `EasterEggContext.tsx` | État de l'easter egg (activé, étape courante) |
-
----
-
-## Guide : Ajouter ou modifier un projet
-
-### Étape 1 : Ajouter l'image
-
-Placer l'image dans `/public/images/` avec un nom descriptif (ex: `mon-projet.jpg`).
-
-### Étape 2 : Ajouter les données du projet
-
-Ouvrir `/src/lib/projects.ts` et ajouter une entrée dans `projectsData` sous la bonne catégorie :
+Edit `/src/lib/projects.ts` and add an entry under the appropriate category:
 
 ```typescript
-// Dans projectsData -> 'personal' | 'academic' | 'internship'
-'mon-nouveau-projet': {
-  id: 'mon-nouveau-projet',                    // Identifiant unique (URL slug)
-  title: 'Mon Nouveau Projet',                 // Titre affiché
-  description: 'Description courte pour la carte.',  // ~100 caractères
-  subtitle: 'Sous-titre optionnel',            // Affiché sur la page détail
+'my-project-id': {
+  id: 'my-project-id',
+  title: 'Project Title',
+  description: 'Brief description for cards (~100 chars)',
+  subtitle: 'Extended subtitle for detail page',
   detailedDescription: `
-## Section 1
-Texte détaillé en **Markdown**.
+## Overview
+Markdown content for the full project description.
 
-## Section 2
-- Point 1
-- Point 2
+## Key Features
+- Feature 1
+- Feature 2
 `,
-  technologies: ['Python', 'Docker', 'React'], // Technologies RÉELLES utilisées
-  domains: ['Machine Learning', 'Data Science'], // Domaines (non techniques)
-  keywords: ['keyword1', 'keyword2'],          // SEO uniquement (non affiché)
-  category: 'personal',                        // 'personal' | 'academic' | 'internship'
-  status: 'completed',                         // 'completed' | 'in-progress' | 'planned'
-  period: '2024 - 2025',                       // Période du projet
-  location: 'Personal project',                // Lieu/contexte
-  image: '/images/mon-projet.jpg',             // Chemin de l'image
-  imageCredit: 'Auteur de l\'image',           // Crédit image (optionnel)
-  imageCreditUrl: 'https://...',               // Lien vers la source (optionnel)
-  gitlabUrl: 'https://gitlab.com/...',         // Lien GitLab/GitHub (optionnel)
-  featured: true,                              // Mettre en avant sur l'accueil
-  difficulty: 'intermediate',                  // 'beginner' | 'intermediate' | 'advanced'
-  dateCreated: '2024-06-15',                   // Date de création (format YYYY-MM-DD)
+  technologies: ['Python', 'Docker', 'React'],
+  domains: ['Machine Learning', 'Web Development'],
+  keywords: ['seo', 'keyword', 'list'],
+  category: 'personal',  // 'personal' | 'academic' | 'internship'
+  status: 'completed',   // 'completed' | 'in-progress' | 'planned'
+  period: '2024 - 2025',
+  location: 'Personal project',
+  image: '/images/my-project.jpg',
+  imageAlt: 'Descriptive alt text for accessibility',
+  imageCredit: 'Credit Author',           // Optional
+  imageCreditUrl: 'https://source.url',   // Optional
+  gitHubUrl: 'https://github.com/...',    // Optional
+  featured: true,                          // Optional: show on homepage
+  dateCreated: '2024-06-15',
 },
 ```
 
-### Étape 3 : Vérifier les technologies
+### Step 3: Add Technology Colors (if new)
 
-Les technologies listées dans `technologies` seront automatiquement :
-- Comptées dans les stats de la page About (section Stack)
-- Affichées sur la page du projet avec leurs couleurs
-
-Pour ajouter une nouvelle technologie avec sa couleur, modifier `/src/lib/techStats.ts` :
+If using new technologies, add their colors in `/src/lib/techStats.ts`:
 
 ```typescript
 export const techColors: Record<string, string> = {
-  // Ajouter ici
-  'NouveauFramework': '#ff5500',
+  'NewFramework': '#ff5500',
+  // ...
 }
 ```
 
-### Étape 4 : Vérifier le rendu
+### Step 4: Verify
 
 ```bash
 npm run dev
 ```
 
-Visiter :
-- `/projects` → Le projet devrait apparaître dans la grille
-- `/projects/{category}/{id}` → Page détail du projet
-
-### Structure des catégories
-
-| Catégorie | ID | Couleur accent |
-|-----------|-----|----------------|
-| Personal | `personal` | Cyan `#00f0ff` |
-| Academic | `academic` | Violet `#a855f7` |
-| Research | `internship` | Vert `#10b981` |
+Visit:
+- `/projects` — Project should appear in grid
+- `/projects/{category}/{id}` — Detail page
 
 ---
 
-## Guide : Ajouter une nouvelle page
+## Adding a New Page
 
-### Étape 1 : Créer le dossier de route
-
-Dans `/src/app/`, créer un dossier avec le nom de la route :
+### Step 1: Create Route Directory
 
 ```
-src/app/
-└── nouvelle-page/
-    ├── layout.tsx    # Optionnel : layout spécifique
-    └── page.tsx      # Obligatoire : contenu de la page
+src/app/new-page/
+├── layout.tsx    # Optional: page-specific layout
+└── page.tsx      # Required: page content
 ```
 
-### Étape 2 : Créer le fichier `page.tsx`
+### Step 2: Create Page Component
 
 ```tsx
-// src/app/nouvelle-page/page.tsx
+// src/app/new-page/page.tsx
 import content from '@/lib/content.json'
 
-export default function NouvellePage() {
+export default function NewPage() {
   return (
     <main className="min-h-screen px-6 md:px-12 lg:px-16 py-24">
       <div className="max-w-4xl mx-auto">
         <h1 className="font-display text-4xl mb-8">
-          Ma Nouvelle Page
+          Page Title
         </h1>
         <p className="text-white/70">
-          Contenu de la page...
+          Page content...
         </p>
       </div>
     </main>
@@ -282,72 +232,79 @@ export default function NouvellePage() {
 }
 ```
 
-### Étape 3 : Optionnel - Layout spécifique
+### Step 3: Add Content Strings
 
-Si la page nécessite un layout différent (sans NavBar, etc.) :
-
-```tsx
-// src/app/nouvelle-page/layout.tsx
-export default function NouvellePageLayout({
-  children,
-}: {
-  children: React.ReactNode
-}) {
-  return (
-    <div className="bg-primary min-h-screen">
-      {children}
-    </div>
-  )
-}
-```
-
-### Étape 4 : Ajouter les textes dans `content.json`
+Add text to `/src/lib/content.json`:
 
 ```json
 {
-  "nouvellePage": {
-    "sectionLabel": "005 — Nouvelle Page",
-    "title": "Titre de la page",
+  "newPage": {
+    "sectionLabel": "005 — New Page",
+    "title": "Page Title",
     "description": "Description..."
   }
 }
 ```
 
-### Étape 5 : Ajouter le lien dans la navigation
+### Step 4: Add Navigation Link (Optional)
 
-Modifier `/src/components/navigation/NavBar.tsx` pour ajouter le lien.
+Edit `/src/components/navigation/NavBar.tsx` to include the new route.
 
 ---
 
-## Commandes utiles
+## Content Management
 
-```bash
-# Développement
-npm run dev          # Serveur de développement (localhost:3000)
+All user-facing text is centralized in `/src/lib/content.json` for easy editing and future i18n support.
 
-# Production
-npm run build        # Build de production
-npm run start        # Serveur de production
+### Structure
 
-# Qualité
-npm run lint         # Vérification ESLint
+```json
+{
+  "nav": { ... },        // Navigation labels
+  "hero": { ... },       // Homepage hero section
+  "about": { ... },      // About page content
+  "projects": { ... },   // Projects section labels
+  "blog": { ... },       // Blog section
+  "contact": { ... },    // Contact section and form
+  "footer": { ... },     // Footer text
+  "common": { ... }      // Shared strings (loading, errors, etc.)
+}
+```
+
+### Usage in Components
+
+```tsx
+import content from '@/lib/content.json'
+
+function MyComponent() {
+  return <h1>{content.hero.title}</h1>
+}
 ```
 
 ---
 
-## Technologies utilisées
+## Technologies
 
-| Technologie | Version | Rôle |
-|-------------|---------|------|
-| Next.js | 15.5.9 | Framework React (App Router) |
-| React | 19.0.3 | Bibliothèque UI |
-| TypeScript | 5.x | Typage statique |
-| Tailwind CSS | 4.x | Styles utilitaires |
-| Framer Motion | 12.x | Animations React |
-| GSAP | 3.x | Animations scroll-driven |
-| Lucide React | 0.513.x | Icônes |
-| React Icons | 5.5.x | Icônes supplémentaires |
+| Technology | Version | Purpose |
+|------------|---------|---------|
+| Next.js | 15.x | React framework with App Router |
+| React | 19.x | UI library |
+| TypeScript | 5.x | Type safety |
+| Tailwind CSS | 3.x | Utility-first styling |
+| Framer Motion | 11.x | Component animations |
+| GSAP | 3.x | Scroll-driven animations |
+| Three.js | 0.170.x | 3D particle effects |
+| Lenis | 1.x | Smooth scrolling |
+
+### Development Commands
+
+```bash
+npm run dev      # Start development server
+npm run build    # Production build
+npm run start    # Start production server
+npm run lint     # ESLint check
+```
 
 ---
 
-*Documentation générée pour Portfolio V4.5 — Janvier 2025*
+*Documentation for Portfolio V4.8 — January 2025*
