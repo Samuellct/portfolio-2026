@@ -165,7 +165,7 @@ export default function ProjectDetailPage() {
                 {project.image.startsWith('/') ? (
                   <Image
                     src={project.image}
-                    alt={project.title}
+                    alt={project.imageAlt}
                     fill
                     className="object-cover"
                     priority
@@ -174,7 +174,7 @@ export default function ProjectDetailPage() {
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
                     src={project.image}
-                    alt={project.title}
+                    alt={project.imageAlt}
                     className="w-full h-full object-cover"
                   />
                 )}

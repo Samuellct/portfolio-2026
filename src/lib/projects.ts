@@ -12,6 +12,7 @@ export interface ProjectData {
   period: string
   location: string
   image: string
+  imageAlt: string
   imageCredit?: string
   imageCreditUrl?: string
   gitHubUrl?: string
@@ -79,6 +80,7 @@ The system currently supports three main objectives:
       period: '2025 - Present',
       location: 'Personal project',
       image: '/images/proxmox.png',
+      imageAlt: 'Proxmox VE dashboard showing virtual machines and containers management interface',
       imageCredit: 'Lawrence Systems',
       imageCreditUrl: 'https://commons.wikimedia.org/wiki/File:Client_Project_Hashcat_Testing_With_an_AMD_Epyc_Supermicro_Nvidia_GPU_Server_Using_Proxmox_%28Lawrence_Systems%29_02.png',
       gitHubUrl: 'https://gitlab.com/samuel.lecomte37/proxmox-homeserver',
@@ -99,6 +101,7 @@ The system currently supports three main objectives:
       period: '2025',
       location: 'Personal project',
       image: 'https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=1200',
+      imageAlt: 'Person coding on a laptop with colorful code on screen representing web development',
       dateCreated: '2025-02-15',
     },
   },
@@ -117,6 +120,7 @@ The system currently supports three main objectives:
       period: 'L3 - 2022',
       location: 'Université Clermont Auvergne',
       image: '/images/data_analysis.jpg',
+      imageAlt: 'Histogram showing particle mass distribution with signal and background separation',
       gitHubUrl: 'https://github.com/Samuellct/ATLAS-basic-particle-search-workflow',
       dateCreated: '2022-03-01',
     },
@@ -134,6 +138,7 @@ The system currently supports three main objectives:
       period: 'M1 - 2024',
       location: 'Université Clermont Auvergne',
       image: '/images/ising.jpg',
+      imageAlt: 'Animated visualization of Ising model spin lattice showing magnetic domain formation near critical temperature',
       imageCredit: 'Damian Owls',
       imageCreditUrl: 'https://commons.wikimedia.org/wiki/File:Ising_Criticality2.gif',
       gitHubUrl: 'https://gitlab.com/samuel.lecomte37/ising-model',
@@ -153,6 +158,7 @@ The system currently supports three main objectives:
       period: 'M1 - 2024',
       location: 'Université Clermont Auvergne',
       image: '/images/quantum_cpu.jpg',
+      imageAlt: 'Close-up of a quantum processor chip with superconducting qubits',
       imageCredit: 'Google',
       gitHubUrl: 'https://github.com/Samuellct/Cirq-Quantum-Cryptography-Demo',
       featured: true,
@@ -172,6 +178,7 @@ The system currently supports three main objectives:
       period: 'M1 - 2024',
       location: 'Université Clermont Auvergne',
       image: '/images/arduino_M1.jpg',
+      imageAlt: 'Arduino weather station setup with temperature and humidity sensors on breadboard',
       gitHubUrl: 'https://gitlab.com/samuel.lecomte37/arduino-weather-station',
       dateCreated: '2025-01-22',
     },
@@ -189,6 +196,7 @@ The system currently supports three main objectives:
       period: 'M1 - 2024',
       location: 'Université Clermont Auvergne',
       image: '/images/LabVIEW.png',
+      imageAlt: 'LabVIEW block diagram showing data acquisition and signal processing workflow',
       imageCredit: 'Aldhair.gsnt',
       imageCreditUrl: 'https://commons.wikimedia.org/wiki/File:Labview_code_example.png',
       gitHubUrl: 'https://gitlab.com/samuel.lecomte37/labview-muon-detector',
@@ -208,6 +216,7 @@ The system currently supports three main objectives:
       period: 'M1 - 2024',
       location: 'Université Clermont Auvergne',
       image: '/images/muon_lifetime.png',
+      imageAlt: 'Feynman diagram illustrating muon decay into electron and neutrinos',
       imageCredit: 'Mrmw',
       imageCreditUrl: 'https://commons.wikimedia.org/wiki/File:Muon_Decay.svg',
       gitHubUrl: 'https://gitlab.com/samuel.lecomte37/muon-lifetime-analysis',
@@ -227,6 +236,7 @@ The system currently supports three main objectives:
       period: 'L3 - 2023',
       location: 'Université Clermont Auvergne',
       image: '/images/saturn.jpg',
+      imageAlt: 'Hubble Space Telescope image of Saturn showing its distinctive ring system',
       imageCredit: 'NASA, ESA, A. Simon, and M.H. Wong',
       imageCreditUrl: 'https://esahubble.org/images/heic1917a/',
       dateCreated: '2023-04-15',
@@ -245,6 +255,7 @@ The system currently supports three main objectives:
       period: 'M1 - 2024',
       location: 'Université Clermont Auvergne',
       image: '/images/arduino_M2.jpg',
+      imageAlt: 'Arduino-based anemometer circuit with wind speed sensor and LCD display',
       dateCreated: '2024-03-10',
     },
   },
@@ -263,6 +274,7 @@ The system currently supports three main objectives:
       period: 'April - June 2024',
       location: 'LPC Clermont-Ferrand',
       image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800',
+      imageAlt: 'Abstract visualization of particle physics data analysis with glowing particle tracks',
       featured: true,
       dateCreated: '2024-04-01',
     },
@@ -280,6 +292,7 @@ The system currently supports three main objectives:
       period: 'February - July 2025',
       location: 'LPC Clermont-Ferrand',
       image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800',
+      imageAlt: 'Earth from space at night showing city lights representing global scientific collaboration',
       featured: true,
       dateCreated: '2025-02-01',
     },

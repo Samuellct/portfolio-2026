@@ -1,6 +1,7 @@
 'use client'
 
 import TransitionLink from '@/components/navigation/TransitionLink'
+import content from '@/lib/content.json'
 
 export default function Footer() {
   const currentYear = new Date().getFullYear()
@@ -19,19 +20,19 @@ export default function Footer() {
             href="/about"
             className="hover:text-white transition-colors"
           >
-            About
+            {content.nav.about}
           </TransitionLink>
           <TransitionLink 
             href="/projects"
             className="hover:text-white transition-colors"
           >
-            Projects
+            {content.nav.projects}
           </TransitionLink>
           <TransitionLink 
             href="/contact"
             className="hover:text-white transition-colors"
           >
-            Contact
+            {content.nav.contact}
           </TransitionLink>
           <a 
             href="/Resume.pdf"
@@ -39,7 +40,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="hover:text-white transition-colors"
           >
-            Resume
+            {content.footer.resume}
           </a>
         </nav>
       </div>

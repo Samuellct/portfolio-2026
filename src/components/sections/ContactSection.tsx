@@ -192,7 +192,7 @@ export default function ContactSection() {
             
             {/* Labels */}
             <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 text-[0.6rem] tracking-[0.2em] uppercase text-white/20">
-              Event Display
+              {content.contact.collision.eventDisplay}
             </div>
           </div>
           

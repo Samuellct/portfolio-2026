@@ -1,26 +1,5 @@
 'use client'
 
-/**
- * About Page - V4.5
- * 
- * Corrections appliquées:
- * 1. Section Interests: mb-24 → mb-16 pour fit viewport
- * 2. Couleurs d'arrière-plan plus distinctes
- * 3. Suppression du spacer final
- * 4. Mapping content.json complet (plus de textes hardcodés)
- * 5. Opacité texte de fond: 0.015 → 0.025
- * 6. Parallaxe: ref sur conteneur parent (pas sur span qui change)
- * 7. Header: bouton Back décalé pour éviter conflit avec NavBar
- * 8. Z-index et pointer-events corrigés
- * 
- * V4.4:
- * 9. Parallaxe: calcul de la hauteur totale scrollable (incluant pinning)
- * 10. Alternance des transitions: mots pairs ← gauche, impairs → droite
- * 
- * V4.5:
- * 11. Restauration de la transition clipPath entre les pages (#1a0a2e)
- */
-
 import { useEffect, useRef, useLayoutEffect, useMemo, useState } from 'react'
 import TransitionLink from '@/components/navigation/TransitionLink'
 import { motion, AnimatePresence } from 'framer-motion'
@@ -85,18 +64,18 @@ const education = [
 const interests = [
   { 
     id: 'running',
-    label: content.about.interests.running, 
-    description: 'Trail running and ultra-marathons across mountain ranges. From 10K races to 100+ km ultra-trails, exploring the limits of endurance.',
+    label: content.about.interests.running.title, 
+    description: content.about.interests.running.description,
   },
   { 
     id: 'homelab',
-    label: content.about.interests.tech, 
-    description: 'Building private cloud infrastructure with Proxmox, TrueNAS, and containerized services. Self-hosting for privacy and learning.',
+    label: content.about.interests.tech.title, 
+    description: content.about.interests.tech.description,
   },
   { 
     id: 'science',
-    label: content.about.interests.science, 
-    description: 'Communicating complex scientific concepts through visualization and storytelling. Making physics accessible to everyone.',
+    label: content.about.interests.science.title, 
+    description: content.about.interests.science.description,
   },
 ]
 

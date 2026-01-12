@@ -85,9 +85,18 @@
       "sectionLabel": "004 — Interests",
       "title": "Interests",
       "subtitle": "Personal Sandbox",
-      "running": "Trail Running",
-      "tech": "Home Lab & Self-Hosting",
-      "science": "Science Communication"
+      "running": {
+        "title": "Trail Running",
+        "description": "Trail running and ultra-marathons across mountain ranges. From 10K races to 100+ km ultra-trails, exploring the limits of endurance."
+      },
+      "tech": {
+        "title": "Home Lab & Self-Hosting",
+        "description": "Building private cloud infrastructure with Proxmox, TrueNAS, and containerized services. Self-hosting for privacy and learning."
+      },
+      "science": {
+        "title": "Science Communication",
+        "description": "Communicating complex scientific concepts through visualization and storytelling. Making physics accessible to everyone."
+      }
     },
     "downloadCV": "Download CV"
   },
@@ -117,6 +126,7 @@
     "sectionLabel": "003 — Blog",
     "title": "Journal",
     "comingSoon": {
+      "badge": "Coming Soon",
       "title": "Blog Coming Soon",
       "description": "A dedicated blog website is currently under development. Stay tuned for articles about physics, technology, and personal adventures.",
       "cta": "Visit Blog"
@@ -130,7 +140,8 @@
       "cta": "Get in touch"
     },
     "collision": {
-      "newCollision": "New collision"
+      "newCollision": "New collision",
+      "eventDisplay": "Event Display"
     },
     "page": {
       "title": "Contact Me",
@@ -160,7 +171,7 @@
   },
   "footer": {
     "copyright": "© 2025 Samuel Lecomte",
-    "blog": "Blog"
+    "resume": "Resume"
   },
   "common": {
     "loading": "Loading...",

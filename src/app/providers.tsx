@@ -23,12 +23,12 @@ export function Providers({ children }: { children: ReactNode }) {
   useEffect(() => {
     setMounted(true)
     
-    // Vérifier si l'utilisateur a déjà vu la landing cette session
+    // Check if user has already seen the landing page this session
     const hasSeenLanding = sessionStorage.getItem(SESSION_KEY) === 'true'
     
-    // Déterminer si on doit montrer la landing:
-    // - Ne pas montrer si déjà vue cette session
-    // - Ne pas montrer si l'utilisateur accède directement à une page interne
+    // Determine if we should show the landing page:
+    // - Don't show if already seen this session
+    // - Don't show if user accesses an internal page directly
     const isHomePage = pathname === '/'
     const skipLanding = hasSeenLanding || !isHomePage
     
@@ -45,13 +45,13 @@ export function Providers({ children }: { children: ReactNode }) {
   const handleTransitionComplete = () => {
     setHasEnteredSite(true)
     setIsLandingTransitioning(false)
-    // Sauvegarder que l'utilisateur a vu la landing
+    // Save that user has seen the landing page
     sessionStorage.setItem(SESSION_KEY, 'true')
   }
   
   if (!mounted) return null
   
-  // Déterminer si on montre la landing
+  // Determine if we should show the landing page
   const showLanding = shouldShowLanding && !hasEnteredSite
   
   return (

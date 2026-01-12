@@ -283,7 +283,7 @@ export default function ProjectsSection() {
                 >
                   <img
                     src={activeProject.image}
-                    alt={activeProject.title}
+                    alt={activeProject.imageAlt}
                     className="w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 border border-white/10" />

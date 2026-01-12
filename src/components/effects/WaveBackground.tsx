@@ -87,6 +87,15 @@ export default function WaveBackground({ className = '' }: WaveBackgroundProps) 
     const width = container.clientWidth
     const height = container.clientHeight
     
+    // Detect mobile for performance optimization
+    const isMobile = window.matchMedia('(max-width: 768px)').matches
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+    
+    // Skip rendering entirely if user prefers reduced motion
+    if (prefersReducedMotion) {
+      return
+    }
+    
     // Scene
     const scene = new THREE.Scene()
     sceneRef.current = scene
@@ -107,8 +116,8 @@ export default function WaveBackground({ className = '' }: WaveBackgroundProps) 
     container.appendChild(renderer.domElement)
     rendererRef.current = renderer
     
-    // Particles geometry - reduced count
-    const particlesCount = 2500
+    // Particles geometry - reduced count on mobile for performance
+    const particlesCount = isMobile ? 1000 : 2500
     const positions = new Float32Array(particlesCount * 3)
     const scales = new Float32Array(particlesCount)
     const randomness = new Float32Array(particlesCount * 3)
