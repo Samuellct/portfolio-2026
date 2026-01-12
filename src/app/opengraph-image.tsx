@@ -2,7 +2,7 @@ import { ImageResponse } from 'next/og'
 
 export const runtime = 'edge'
 
-export const alt = 'Samuel Lecomte — Particle Physicist & Data Engineer'
+export const alt = 'Samuel Lecomte - Graduate in Physics and Data Science'
 export const size = {
   width: 1200,
   height: 630,
@@ -118,7 +118,7 @@ export default async function Image() {
               marginBottom: 12,
             }}
           >
-            Particle Physicist
+            Particle Physics
           </div>
           
           <div
@@ -128,7 +128,7 @@ export default async function Image() {
               letterSpacing: '0.05em',
             }}
           >
-            & Data Engineer
+            & Data Science
           </div>
         </div>
 
