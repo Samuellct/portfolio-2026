@@ -1,4 +1,4 @@
-# Samuel Lecomte Portfolio website
+# Portfolio website
 
 ![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=next.js) ![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?logo=typescript&logoColor=white) ![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-06B6D4?logo=tailwindcss&logoColor=white) ![Framer Motion](https://img.shields.io/badge/Framer_Motion-11-0055FF?logo=framer&logoColor=white) ![Three.js](https://img.shields.io/badge/Three.js-0.170-black?logo=three.js)
 
