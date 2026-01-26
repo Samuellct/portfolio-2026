@@ -10,7 +10,7 @@ A modern portfolio presenting my academic journey through particle physics and m
 
 This project is inspired by [lohitkolluri's Portfolio template](https://github.com/lohitkolluri/Portfolio).
 
--> **Live site:** https://www.samuel-lecomte.fr/
+> **Live website:** https://www.samuel-lecomte.fr/
 
 ## Features
 
