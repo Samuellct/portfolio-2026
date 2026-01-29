@@ -71,7 +71,7 @@ I started by installing **Proxmox VE** as the main OS.
 - **Network** : I implemented **Nginx Proxy Manager** to manage reverse proxy logic and connect my services (Nextcloud, Jellyfin) to subdomains of my personal domain so that I can access them from anywhere.
 
 However, I'm starting to hit some limits. Running Proxmox as a base layer might be too heavy for my old PC once several users start streaming or using VMs. I'm currently considering switching to a bare-metal TrueNAS install and building a dedicated machine for virtualization later on. I also plan to add an Arc A380 GPU soon, which will allow Jellyfin to transcode video files on the fly without crushing the CPU.`,
-      technologies: ['Proxmox', 'TrueNAS', 'Nextcloud', 'Jellyfin', 'ZFS', 'Nginx Proxy Manager'],
+      technologies: ['Proxmox', 'TrueNAS', 'Nextcloud', 'Jellyfin', 'Nginx Proxy Manager'],
       domains: ['Virtualization', 'Networking', 'Self-hosting'],
       keywords: ['virtualization', 'storage', 'cloud', 'server', 'truenas', 'NAS'],
       category: 'personal',
@@ -118,7 +118,7 @@ Finally, all site text is managed through a centralized JSON file, except for pr
       description: "Presentation of raw data filtering process applied to HL-LHC simulated data to estimate the presence of an 'X boson'.",
       subtitle: 'Searching for New Particles in Simulated LHC Data',
       detailedDescription: 'This project introduces fundamental concepts of data analysis in particle physics, applying filtering techniques to simulated HL-LHC data to search for hypothetical new particles.',
-      technologies: ['Python', 'NumPy', 'Matplotlib'],
+      technologies: ['Python', 'NumPy', 'Matplotlib', "Pandas", "Scipy"],
       domains: ['Particle Physics', 'Data Analysis', 'Simulation'],
       keywords: ['physics', 'statistics', 'python', 'simulation'],
       category: 'academic',
@@ -137,7 +137,7 @@ Finally, all site text is managed through a centralized JSON file, except for pr
       description: 'Study of the Ising model with a Python simulation of the two-dimensional case.',
       subtitle: 'Simulating Phase Transitions in Magnetic Systems',
       detailedDescription: 'This project explores the Ising model, a fundamental model in statistical mechanics for understanding phase transitions in magnetic systems. The simulation uses Monte Carlo methods to study the behavior of a 2D spin lattice.',
-      technologies: ['Python', 'NumPy', 'Matplotlib'],
+      technologies: ['Python', 'NumPy', 'Matplotlib', "Scipy"],
       domains: ['Statistical Physics', 'Monte Carlo Simulation'],
       keywords: ['ising', 'monte carlo', 'phase transition'],
       category: 'academic',

@@ -8,37 +8,36 @@ export const programmingLanguages = [
 // Couleurs des technologies (basées sur les logos officiels)
 export const techColors: Record<string, string> = {
   // Langages
-  'Python': '#3776ab',
+  'Python': '#ffdd54',
   'C++': '#00599c',
-  'TypeScript': '#3178c6',
+  'TypeScript': '#007accde',
   'JavaScript': '#f7df1e',
   'Bash': '#4eaa25',
-  'SQL': '#e38c00',
-  
+
   // Frameworks & Libraries
   'React': '#61dafb',
   'Next.js': '#ffffff',
-  'Tailwind CSS': '#06b6d4',
+  'Tailwind CSS': '#38b2ac',
   'Framer Motion': '#bb4b96',
   'Three.js': '#000000',
-  'GSAP': '#88ce02',
+  'GSAP': '#0ae348',
   
   // Data & Analysis
-  'ROOT': '#2c3e50',
+  'ROOT': '#6bc0dc',
   'NumPy': '#013243',
   'Pandas': '#150458',
-  'Matplotlib': '#11557c',
-  'Scikit-learn': '#f89939',
-  'TensorFlow': '#ff6f00',
-  'Cirq': '#ffd700',
+  'Matplotlib': '#e5e5e6',
+  'Scikit-learn': '#f7931e',
+  'pytorch': '#ee4c2c',
+  'Cirq': '#ff8209',
   
   // Physics Tools
-  'MadGraph': '#8b0000',
-  'Pythia': '#4a0080',
+  'MadGraph': '#eeaa89',
+  'Pythia': '#eba047',
   
   // Tools & Platforms
-  'Git': '#f05032',
-  'Docker': '#2496ed',
+  'Git': '#f05033',
+  'Docker': '#0db7ed',
   'Linux': '#fcc624',
   'LaTeX': '#008080',
   'Jupyter': '#f37626',
@@ -59,7 +58,7 @@ export const techFamilies: Record<string, { label: string; color: string; techs:
   languages: {
     label: 'Languages',
     color: '#3178c6',
-    techs: ['Python', 'C++', 'TypeScript', 'JavaScript', 'Bash', 'SQL'],
+    techs: ['Python', 'C++', 'TypeScript', 'JavaScript', 'Bash', 'Arduino'],
   },
   frameworks: {
     label: 'Frameworks & Libraries',
@@ -74,7 +73,7 @@ export const techFamilies: Record<string, { label: string; color: string; techs:
   tools: {
     label: 'Tools & Systems',
     color: '#f05032',
-    techs: ['Git', 'Docker', 'Linux', 'LaTeX', 'Jupyter', 'VS Code', 'LabVIEW', 'Proxmox', 'TrueNAS', 'Arduino'],
+    techs: ['Git', 'Docker', 'Linux', 'LaTeX', 'Jupyter', 'VS Code', 'LabVIEW', 'Proxmox', 'TrueNAS'],
   },
 }
 
