@@ -31,6 +31,8 @@ dist-ssr
 .env.production.local
 .vercel
 
+UpdatedCollision.md
+
 # Dependencies
 .pnp
 .pnp.js

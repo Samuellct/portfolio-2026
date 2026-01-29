@@ -17,6 +17,7 @@ export interface ProjectData {
   imageCreditUrl?: string
   gitHubUrl?: string
   featured?: boolean
+  visible?: boolean // Set to false to hide project from listings (default: true)
   dateCreated: string
 }
 
@@ -308,20 +309,26 @@ export const getProjectById = (categoryId: string, projectId: string): ProjectDa
 
 export const getProjectsByCategory = (categoryId: string): ProjectData[] => {
   const categoryProjects = projectsData[categoryId]
-  return categoryProjects ? Object.values(categoryProjects) : []
+  if (!categoryProjects) return []
+  // Only include projects that are visible (visible is undefined or true)
+  return Object.values(categoryProjects).filter((project) => project.visible !== false)
 }
 
 export const getAllProjects = (): ProjectData[] => {
   const allProjects: ProjectData[] = []
   Object.keys(projectsData).forEach((categoryId) => {
     Object.values(projectsData[categoryId]).forEach((project) => {
-      allProjects.push(project)
+      // Only include projects that are visible (visible is undefined or true)
+      if (project.visible !== false) {
+        allProjects.push(project)
+      }
     })
   })
   return allProjects
 }
 
 export const getFeaturedProjects = (): ProjectData[] => {
+  // getAllProjects already filters out non-visible projects
   return getAllProjects().filter((project) => project.featured)
 }
 
@@ -333,7 +340,11 @@ export const getAllProjectParams = () => {
   const params: { category: string; id: string }[] = []
   Object.keys(projectsData).forEach((categoryId) => {
     Object.keys(projectsData[categoryId]).forEach((projectId) => {
-      params.push({ category: categoryId, id: projectId })
+      const project = projectsData[categoryId][projectId]
+      // Only include projects that are visible (visible is undefined or true)
+      if (project.visible !== false) {
+        params.push({ category: categoryId, id: projectId })
+      }
     })
   })
   return params
