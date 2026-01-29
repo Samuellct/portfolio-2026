@@ -119,8 +119,10 @@ export function extractTechStats(): {
   secondaryTechs: TechStats[]
   secondaryByFamily: TechFamilyStats[]
   allTechs: TechStats[]
+  totalProjects: number
 } {
   const projects = getAllProjects()
+  const totalProjects = projects.length
   const techCount: Record<string, number> = {}
   
   // Compter les occurrences de chaque technologie (uniquement le champ technologies, pas domains)
@@ -145,10 +147,9 @@ export function extractTechStats(): {
     .filter(t => programmingLanguages.includes(t.name))
     .slice(0, 4)
   
-  // Calculer les pourcentages pour le top (relatif au max du top)
-  const maxTopCount = topTechs[0]?.count || 1
+  // Calculer les pourcentages pour le top (relatif au nb total de projets)
   topTechs.forEach(tech => {
-    tech.percentage = Math.round((tech.count / maxTopCount) * 100)
+    tech.percentage = Math.round((tech.count / totalProjects) * 100)
   })
   
   // Les noms du top 4 pour exclusion
@@ -184,7 +185,8 @@ export function extractTechStats(): {
     topTechs,
     secondaryTechs,
     secondaryByFamily,
-    allTechs: sortedTechs
+    allTechs: sortedTechs,
+    totalProjects
   }
 }
 
