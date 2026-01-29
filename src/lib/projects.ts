@@ -204,7 +204,7 @@ The algorithm worked well for small numbers, but we quickly hit memory limitatio
 
 **Physical basis**
 
-Atmospheric muons originate from cosmic ray interactions at an altitude of around 15 km, arriving at ground level with a flux of roughly 1 muon per $\text{cm}^{2}$ per minute. These particles have a rest-frame lifetime of 2.2 microseconds and decay via the weak interaction: $\mu^+ \rightarrow e^+ + \nu_e + \bar{\nu}_\mu$. The key property we exploit is spin polarization. Due to parity violation in weak interactions, the decay antielectron is preferentially emitted along the muon's spin direction at the moment of decay.
+Atmospheric muons originate from cosmic ray interactions at an altitude of around 15 km, arriving at ground level with a flux of roughly 1 muon per $\\text{cm}^{2}$ per minute. These particles have a rest-frame lifetime of 2.2 microseconds and decay via the weak interaction: $\mu^+ \rightarrow e^+ + \nu_e + \bar{\nu}_\mu$. The key property we exploit is spin polarization. Due to parity violation in weak interactions, the decay antielectron is preferentially emitted along the muon's spin direction at the moment of decay.
 
 When placed in a magnetic field $\vec{B}$, the muon spin precesses at the Larmor frequency $\omega_L = g(e/2m_\mu)B$, where $g$ is the Landé factor we aim to measure. This precession modulates the decay time distribution, creating an oscillatory pattern superimposed on the exponential decay.
 
@@ -317,14 +317,14 @@ Our computational work focused on modeling the rings as an N-body problem using 
       id: 'internship-m1',
       title: 'Master 1 Internship - LHCb Team',
       description: 'Study of a rare B meson decay mode. Development of data analysis scripts with ROOT for LHCb Run I.',
-      subtitle: 'Data analysis of the rare B meson decay $B^+ \to K_1^+ \gamma$',
-      detailedDescription: `During my first year of master's degree, I spent two months at the Clermont Physics Laboratory as part of the LHCb team, working on a rare decay mode of the B meson. I studied $B^{+} \to K_{1}^{+}\gamma$, which is a process that could reveal physics beyond the Standard Model through the polarization of the emitted photon.
+      subtitle: 'Data analysis of the rare B meson decay $B^+ \\to K_1^+ \\gamma$',
+      detailedDescription: `During my first year of master's degree, I spent two months at the Clermont Physics Laboratory as part of the LHCb team, working on a rare decay mode of the B meson. I studied $B^{+} \\to K_{1}^{+}\\gamma$, which is a process that could reveal physics beyond the Standard Model through the polarization of the emitted photon.
 
 This internship was my first experience working with large-scale experimental data from LHC Run 1. I worked primarily with ROOT and C++ to filter through the collected events. Starting from samples containing several hundred thousand candidates, the challenge was to reduce this to a manageable dataset while preserving potential signal events.
 
 Most of my time went into building a preselection strategy using simulated data. I studied particle identification variables to distinguish signal from background. For charged particles, the RICH detectors of LHCb produce probability outputs like ProbNNk, which indicates how likely a track is to be a kaon rather than a pion or proton. For photons, I used gammaCL to assess the quality of electromagnetic showers in the calorimeters and reject background noise. I also reconstructed the helicity angle, which relates to the photon's polarization and would eventually help probe for new physics.
 
-When I applied this preselection to real Run 1 data, I reduced the dataset by a factor of 300, from about 100,000 candidates down to roughly 2,600 events, while maintaining 57% efficiency on simulated signal. I could clearly identify the $\omega$ meson peak in the data at 783 MeV, validating the reconstruction approach. However, the $K_{1}^{+}$ signal remained elusive, which wasn't surprising given the rarity of this decay and limited Run 1 statistics. The work establishes a foundation for fuller analysis with Run 2 and Run 3 data.`,
+When I applied this preselection to real Run 1 data, I reduced the dataset by a factor of 300, from about 100,000 candidates down to roughly 2,600 events, while maintaining 57% efficiency on simulated signal. I could clearly identify the $\\omega$ meson peak in the data at 783 MeV, validating the reconstruction approach. However, the $K_{1}^{+}$ signal remained elusive, which wasn't surprising given the rarity of this decay and limited Run 1 statistics. The work establishes a foundation for fuller analysis with Run 2 and Run 3 data.`,
       technologies: ['ROOT', 'C++'],
       domains: ['Particle Physics', 'Data Analysis'],
       keywords: ['lhcb', 'particle physics', 'root', 'data analysis', 'B meson', 'rare decay'],
