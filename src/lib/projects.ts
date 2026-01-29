@@ -197,16 +197,16 @@ The algorithm worked well for small numbers, but we quickly hit memory limitatio
     },
     'labview': {
       id: 'labview',
-      title: 'Measurement of the Muon Landé g-Factor',
+      title: 'LabVIEW Muon System Update',
       description: 'LabVIEW interface for muon detector control and TAC calibration routines.',
       subtitle: 'Real-Time Particle Detection and Analysis',
       detailedDescription: `During a week-long project in March 2024, I worked with a team of two other students to develop additional LabVIEW functionality for an existing muon Landé g-factor measurement system. This project was primarily a practical introduction to instrument control and data acquisition programming, with the physics experiment serving as a context for learning LabVIEW development.
 
 **Physical basis**
 
-Atmospheric muons originate from cosmic ray interactions at an altitude of around 15 km, arriving at ground level with a flux of roughly 1 muon per $\\text{cm}^{2}$ per minute. These particles have a rest-frame lifetime of 2.2 microseconds and decay via the weak interaction: $\mu^+ \rightarrow e^+ + \nu_e + \bar{\nu}_\mu$. The key property we exploit is spin polarization. Due to parity violation in weak interactions, the decay antielectron is preferentially emitted along the muon's spin direction at the moment of decay.
+Atmospheric muons originate from cosmic ray interactions at an altitude of around 15 km, arriving at ground level with a flux of roughly 1 muon per $\\text{cm}^{2}$ per minute. These particles have a rest-frame lifetime of 2.2 microseconds and decay via the weak interaction: $\\mu^+ \\rightarrow e^+ + \\nu_e + \\bar{\\nu}_\\mu$. The key property we exploit is spin polarization. Due to parity violation in weak interactions, the decay antielectron is preferentially emitted along the muon's spin direction at the moment of decay.
 
-When placed in a magnetic field $\vec{B}$, the muon spin precesses at the Larmor frequency $\omega_L = g(e/2m_\mu)B$, where $g$ is the Landé factor we aim to measure. This precession modulates the decay time distribution, creating an oscillatory pattern superimposed on the exponential decay.
+When placed in a magnetic field $\\vec{B}$, the muon spin precesses at the Larmor frequency $\\omega_L = g(e/2m_\\mu)B$, where $g$ is the Landé factor we aim to measure. This precession modulates the decay time distribution, creating an oscillatory pattern superimposed on the exponential decay.
 
 **Experimental Setup**
 
@@ -230,7 +230,7 @@ By day four, we streamlined the interface to essential controls: ON/OFF for the 
 
 We successfully added the requested functionality to the existing LabVIEW system. The TAC calibration module now operates automatically, and the magnetic field control interface works stably.
 
-Previous acquisitions by earlier student groups had demonstrated the system's capability, collecting datasets of $\sim 80,000$ events that yielded muon lifetime of $\tau_{\mu^+} = (2.19 \pm 0.03)~\mu\text{s}$ and clear Larmor precession signals at 4 mT.
+Previous acquisitions by earlier student groups had demonstrated the system's capability, collecting datasets of $\\sim 80,000$ events that yielded muon lifetime of $\\tau_{\\mu^+} = (2.19 \\pm 0.03)~\\mu\\text{s}$ and clear Larmor precession signals at 4 mT.
 
 This project taught us that experimental physics is as much about debugging electronics as it is about measurements. We delivered a working tool that future students could use to extract the Landé factor with minimal setup time.
 
@@ -317,7 +317,7 @@ Our computational work focused on modeling the rings as an N-body problem using 
       id: 'internship-m1',
       title: 'Master 1 Internship - LHCb Team',
       description: 'Study of a rare B meson decay mode. Development of data analysis scripts with ROOT for LHCb Run I.',
-      subtitle: 'Data analysis of the rare B meson decay $B^+ \\to K_1^+ \\gamma$',
+      subtitle: 'Data analysis of the rare B meson decay into Kaon and photon',
       detailedDescription: `During my first year of master's degree, I spent two months at the Clermont Physics Laboratory as part of the LHCb team, working on a rare decay mode of the B meson. I studied $B^{+} \\to K_{1}^{+}\\gamma$, which is a process that could reveal physics beyond the Standard Model through the polarization of the emitted photon.
 
 This internship was my first experience working with large-scale experimental data from LHC Run 1. I worked primarily with ROOT and C++ to filter through the collected events. Starting from samples containing several hundred thousand candidates, the challenge was to reduce this to a manageable dataset while preserving potential signal events.
