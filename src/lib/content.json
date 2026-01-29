@@ -87,7 +87,7 @@
       "subtitle": "Personal Sandbox",
       "running": {
         "title": "Trail Running",
-        "description": "Trail running and ultra-marathons across mountain ranges. From 10K races to 100+ km ultra-trails, exploring the limits of endurance."
+        "description": "Training for various distances, from 5km to 100km+ mountain trails. I enjoy the prep, and the long days in the wild."
       },
       "tech": {
         "title": "Home Lab & Self-Hosting",
@@ -95,7 +95,7 @@
       },
       "science": {
         "title": "Science Communication",
-        "description": "Communicating complex scientific concepts through visualization and storytelling. Making physics accessible to everyone."
+        "description": "Writing about physics and building Python or web simulations to figure out how things work and share what I learn."
       }
     },
     "downloadCV": "Download CV"
