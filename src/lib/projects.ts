@@ -81,6 +81,7 @@ However, I'm starting to hit some limits. Running Proxmox as a base layer might 
       image: '/images/Dashboard_Truenas.webp',
       imageAlt: 'Truenas dashboard showing virtual machines and server interface',
       featured: true,
+      textColor :"black",
       dateCreated: '2025-07-15',
     },
     'portfolio-website': {
@@ -107,7 +108,6 @@ Finally, all site text is managed through a centralized JSON file, except for pr
       image: '/images/portfolioWebsite.png',
       imageAlt: 'Front page of my website',
       gitHubUrl: "https://github.com/Samuellct/portfolio-2026",
-      textColor: 'black',
       dateCreated: '2025-02-15',
     },
   },
