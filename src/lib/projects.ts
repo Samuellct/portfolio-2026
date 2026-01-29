@@ -84,7 +84,6 @@ The system currently supports three main objectives:
       imageAlt: 'Proxmox VE dashboard showing virtual machines and containers management interface',
       imageCredit: 'Lawrence Systems',
       imageCreditUrl: 'https://commons.wikimedia.org/wiki/File:Client_Project_Hashcat_Testing_With_an_AMD_Epyc_Supermicro_Nvidia_GPU_Server_Using_Proxmox_%28Lawrence_Systems%29_02.png',
-      gitHubUrl: 'https://gitlab.com/samuel.lecomte37/proxmox-homeserver',
       featured: true,
       dateCreated: '2025-07-15',
     },
@@ -103,6 +102,7 @@ The system currently supports three main objectives:
       location: 'Personal project',
       image: 'https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&w=1200',
       imageAlt: 'Person coding on a laptop with colorful code on screen representing web development',
+      gitHubUrl: "https://github.com/Samuellct/portfolio-2026",
       dateCreated: '2025-02-15',
     },
   },
@@ -142,7 +142,7 @@ The system currently supports three main objectives:
       imageAlt: 'Animated visualization of Ising model spin lattice showing magnetic domain formation near critical temperature',
       imageCredit: 'Damian Owls',
       imageCreditUrl: 'https://commons.wikimedia.org/wiki/File:Ising_Criticality2.gif',
-      gitHubUrl: 'https://gitlab.com/samuel.lecomte37/ising-model',
+      gitHubUrl: 'https://github.com/Samuellct/2D-3D-python-Ising-model',
       dateCreated: '2024-03-01',
     },
     'quantum-algorithms': {
@@ -201,7 +201,6 @@ The system currently supports three main objectives:
       imageAlt: 'LabVIEW block diagram showing data acquisition and signal processing workflow',
       imageCredit: 'Aldhair.gsnt',
       imageCreditUrl: 'https://commons.wikimedia.org/wiki/File:Labview_code_example.png',
-      gitHubUrl: 'https://gitlab.com/samuel.lecomte37/labview-muon-detector',
       dateCreated: '2024-01-15',
     },
     'muon-lifetime': {
@@ -242,6 +241,7 @@ The system currently supports three main objectives:
       imageAlt: 'Hubble Space Telescope image of Saturn showing its distinctive ring system',
       imageCredit: 'NASA, ESA, A. Simon, and M.H. Wong',
       imageCreditUrl: 'https://esahubble.org/images/heic1917a/',
+      gitHubUrl: "https://github.com/Samuellct/Stability-of-Saturns-rings",
       dateCreated: '2023-04-15',
     },
     'arduino-anemometer': {
@@ -280,6 +280,7 @@ The system currently supports three main objectives:
       image: 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?w=800',
       imageAlt: 'Abstract visualization of particle physics data analysis with glowing particle tracks',
       featured: true,
+      gitHubUrl: "https://github.com/Samuellct/Internship-M1-B-meson-decay",
       dateCreated: '2024-04-01',
     },
     'internship-m2': {
