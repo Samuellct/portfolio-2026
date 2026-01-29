@@ -157,7 +157,7 @@ export default async function Image() {
               textTransform: 'uppercase',
             }}
           >
-            Portfolio 2025
+            Portfolio 2026
           </div>
           <div
             style={{

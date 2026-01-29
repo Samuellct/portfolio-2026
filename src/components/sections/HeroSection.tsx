@@ -167,7 +167,7 @@ export default function HeroSection() {
       {/* DECORATIVE CORNER */}
       <div className="absolute top-8 right-8 md:top-12 md:right-12 flex flex-col items-end gap-1 text-white/20 z-10">
         <span className="text-[0.6rem] tracking-[0.2em] uppercase">Portfolio</span>
-        <span className="text-[0.6rem] tracking-[0.2em]">2025</span>
+        <span className="text-[0.6rem] tracking-[0.2em]">2026</span>
       </div>
     </section>
   )
