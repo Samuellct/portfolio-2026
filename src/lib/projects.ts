@@ -17,7 +17,8 @@ export interface ProjectData {
   imageCreditUrl?: string
   gitHubUrl?: string
   featured?: boolean
-  visible?: boolean // Set to false to hide project from listings (default: true)
+  visible?: boolean // default: true
+  textColor?: 'white' | 'black' // default: white
   dateCreated: string
 }
 
@@ -69,7 +70,7 @@ I started by installing **Proxmox VE** as the main OS.
 - **Cloud & Media:** : I installed **Nextcloud** and **Jellyfin** on Truenas, one app is dedicated to file sharing (like Google Drive) and the other to streaming movies.
 - **Network** : I implemented **Nginx Proxy Manager** to manage reverse proxy logic and connect my services (Nextcloud, Jellyfin) to subdomains of my personal domain so that I can access them from anywhere.
 
-However, I’m starting to hit some limits. Running Proxmox as a base layer might be too heavy for my old PC once several users start streaming or using VMs. I’m currently considering switching to a bare-metal TrueNAS install and building a dedicated machine for virtualization later on. I also plan to add an Arc A380 GPU soon, which will allow Jellyfin to transcode video files on the fly without crushing the CPU.`,
+However, I'm starting to hit some limits. Running Proxmox as a base layer might be too heavy for my old PC once several users start streaming or using VMs. I'm currently considering switching to a bare-metal TrueNAS install and building a dedicated machine for virtualization later on. I also plan to add an Arc A380 GPU soon, which will allow Jellyfin to transcode video files on the fly without crushing the CPU.`,
       technologies: ['Proxmox', 'TrueNAS', 'Nextcloud', 'Jellyfin', 'ZFS', 'Nginx Proxy Manager'],
       domains: ['Virtualization', 'Networking', 'Self-hosting'],
       keywords: ['virtualization', 'storage', 'cloud', 'server', 'truenas', 'NAS'],
@@ -106,6 +107,7 @@ Finally, all site text is managed through a centralized JSON file, except for pr
       image: '/images/portfolioWebsite.png',
       imageAlt: 'Front page of my website',
       gitHubUrl: "https://github.com/Samuellct/portfolio-2026",
+      textColor: 'black',
       dateCreated: '2025-02-15',
     },
   },
@@ -246,6 +248,7 @@ However, several improvements remain for future groups like an automated field r
       imageAlt: 'LabVIEW block diagram showing data acquisition and signal processing workflow',
       imageCredit: 'Aldhair.gsnt',
       imageCreditUrl: 'https://commons.wikimedia.org/wiki/File:Labview_code_example.png',
+      textColor: 'black',
       dateCreated: '2024-04-15',
     },
     'muon-lifetime': {
@@ -336,6 +339,7 @@ When I applied this preselection to real Run 1 data, I reduced the dataset by a 
       imageAlt: 'Attempt to Fit the B Meson mass',
       featured: true,
       gitHubUrl: "https://github.com/Samuellct/Internship-M1-B-meson-decay",
+      textColor: 'black',
       dateCreated: '2024-07-05',
     },
     'internship-m2': {
@@ -366,7 +370,6 @@ export const getProjectById = (categoryId: string, projectId: string): ProjectDa
 export const getProjectsByCategory = (categoryId: string): ProjectData[] => {
   const categoryProjects = projectsData[categoryId]
   if (!categoryProjects) return []
-  // Only include projects that are visible (visible is undefined or true)
   return Object.values(categoryProjects).filter((project) => project.visible !== false)
 }
 
@@ -397,7 +400,7 @@ export const getAllProjectParams = () => {
   Object.keys(projectsData).forEach((categoryId) => {
     Object.keys(projectsData[categoryId]).forEach((projectId) => {
       const project = projectsData[categoryId][projectId]
-      // Only include projects that are visible (visible is undefined or true)
+      // Only include projects that are visible
       if (project.visible !== false) {
         params.push({ category: categoryId, id: projectId })
       }

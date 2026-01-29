@@ -298,6 +298,7 @@ export default function ProjectsSection() {
           <div className="relative py-8 flex flex-col items-center">
             {displayProjects.map((project, index) => {
               const isActive = activeProject?.id === project.id
+              const activeTextColor = activeProject?.textColor === 'black' ? '#000000' : '#ffffff'
               
               return (
                 <motion.div
@@ -323,7 +324,7 @@ export default function ProjectsSection() {
                         opacity: isHovering 
                           ? (isActive ? 1 : 0.15)  // Active: full, Others: very dim
                           : 0.8,                    // Default state
-                        color: isHovering && isActive ? '#ffffff' : undefined
+                        color: isHovering && isActive ? activeTextColor : undefined
                       }}
                       transition={{ duration: 0.3, ease: 'easeOut' }}
                     >
