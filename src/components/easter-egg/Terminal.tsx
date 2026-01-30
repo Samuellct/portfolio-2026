@@ -41,7 +41,7 @@ export default function Terminal() {
       inputRef.current.focus()
     }
   }, [canType])
-  )
+  
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const typeText = useCallback((text: string, onComplete?: () => void) => {
     setIsTyping(true)
