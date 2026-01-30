@@ -9,7 +9,7 @@ interface NetworkGraphProps {
   className?: string
 }
 
-// Configuration des nœuds du réseau
+// Configuration des nodes du réseau
 const nodes = [
   { id: 'docker', Icon: SiDocker, color: '#2496ed', angle: 0, label: 'Docker' },
   { id: 'nextcloud', Icon: SiNextcloud, color: '#0082c9', angle: 72, label: 'Nextcloud' },
@@ -21,13 +21,13 @@ const nodes = [
 export default function NetworkGraph({ progress, className = '' }: NetworkGraphProps) {
   const containerRef = useRef<HTMLDivElement>(null)
   
-  // Calculer les positions des nœuds sur un cercle
-  const radius = 70 // Rayon du cercle
+  // Calculer les positions des noeuds sur un cercle
+  const radius = 70
   const centerX = 100
   const centerY = 100
   
   const getNodePosition = (angle: number) => {
-    const rad = (angle - 90) * (Math.PI / 180) // -90 pour commencer en haut
+    const rad = (angle - 90) * (Math.PI / 180)
     return {
       x: centerX + radius * Math.cos(rad),
       y: centerY + radius * Math.sin(rad)
@@ -53,7 +53,7 @@ export default function NetworkGraph({ progress, className = '' }: NetworkGraphP
         </defs>
         <rect width="100%" height="100%" fill="url(#networkGrid)" />
         
-        {/* Lignes vers les nœuds */}
+        {/* Lignes vers les noeuds */}
         {nodes.map((node, index) => {
           const pos = getNodePosition(node.angle)
           const nodeLineProgress = Math.max(0, Math.min(1, (lineProgress - index * 0.15) / 0.4))
@@ -73,7 +73,7 @@ export default function NetworkGraph({ progress, className = '' }: NetworkGraphP
           )
         })}
         
-        {/* Cercle central (serveur) */}
+        {/* Cercle central */}
         <g style={{ opacity: centerOpacity, transition: 'opacity 0.3s ease-out' }}>
           {/* Glow */}
           <circle
@@ -91,7 +91,7 @@ export default function NetworkGraph({ progress, className = '' }: NetworkGraphP
             stroke="#e57000"
             strokeWidth="1.5"
           />
-          {/* Icône serveur au centre */}
+          {/* Icône serveur au centre (marche pas)*/}
           <text
             x={centerX}
             y={centerY + 1}
@@ -132,11 +132,10 @@ export default function NetworkGraph({ progress, className = '' }: NetworkGraphP
         
         if (nodeLineProgress < 1) return null
         
-        // Convertir les coordonnées SVG en pourcentages
         const left = (pos.x / 200) * 100
         const top = (pos.y / 200) * 100
         
-        // Décalage pour positionner l'icône à l'extérieur du cercle
+        // Décalage pour mettre l'icône à l'extérieur du cercle
         const angle = node.angle - 90
         const offsetX = Math.cos(angle * Math.PI / 180) * 20
         const offsetY = Math.sin(angle * Math.PI / 180) * 20

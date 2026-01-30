@@ -75,7 +75,7 @@ export default function ProjectDetailPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
-                {/* Category & Status */}
+                {/* Category */}
                 <div className="flex flex-wrap items-center gap-3 mb-4">
                   <span 
                     className="text-xs tracking-[0.2em] uppercase"
@@ -130,7 +130,7 @@ export default function ProjectDetailPage() {
                   </div>
                 </div>
                 
-                {/* GitHub CTA */}
+                {/* gitHub CTA */}
                 {project.gitHubUrl && (
                   <div className="flex justify-center">
                     <a
@@ -150,7 +150,7 @@ export default function ProjectDetailPage() {
           </div>
           
           {/* ============================================ */}
-          {/* RIGHT COLUMN - Scrollable content (8/12) */}
+          {/* RIGHT COLUMN - Scrollable txt (8/12) */}
           {/* ============================================ */}
           <div className="lg:col-span-8 mt-12 lg:mt-0">
             

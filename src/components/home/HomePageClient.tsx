@@ -22,7 +22,7 @@ const sectionColors: Record<string, string> = {
 }
 
 export default function HomePageClient() {
-  // Setup background color transitions based on scroll position
+  // Setup bkg color transition
   useEffect(() => {
     const sections = document.querySelectorAll('.section')
     

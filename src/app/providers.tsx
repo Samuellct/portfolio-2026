@@ -28,7 +28,7 @@ export function Providers({ children }: { children: ReactNode }) {
     
     // Determine if we should show the landing page:
     // - Don't show if already seen this session
-    // - Don't show if user accesses an internal page directly
+    // - Don't show if user accesses an internal page directly (ex : une page projet ouverte dans un new onglet)
     const isHomePage = pathname === '/'
     const skipLanding = hasSeenLanding || !isHomePage
     
@@ -45,7 +45,7 @@ export function Providers({ children }: { children: ReactNode }) {
   const handleTransitionComplete = () => {
     setHasEnteredSite(true)
     setIsLandingTransitioning(false)
-    // Save that user has seen the landing page
+    // Save user has seen the landing page
     sessionStorage.setItem(SESSION_KEY, 'true')
   }
   

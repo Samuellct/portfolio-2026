@@ -7,7 +7,7 @@ interface StarfieldProps {
   onHyperspaceComplete: () => void
 }
 
-// Star class for 3D starfield
+// class pour def le champ 3D
 class Star {
   x: number
   y: number
@@ -40,7 +40,7 @@ class Star {
   }
   
   reset() {
-    // Random position in 3D space
+    // Random position in 3D
     this.x = (Math.random() - 0.5) * this.width * 2
     this.y = (Math.random() - 0.5) * this.height * 2
     this.z = Math.random() * this.maxDepth
@@ -54,10 +54,10 @@ class Star {
     this.brightness = Math.random() * 0.5 + 0.5
     
     const colors = [
-      '255, 255, 255',  // White
-      '200, 220, 255',  // Blue-white
-      '255, 240, 220',  // Warm white
-      '180, 200, 255',  // Cool blue
+      '255, 255, 255',
+      '200, 220, 255',
+      '255, 240, 220',
+      '180, 200, 255',
     ]
     this.color = colors[Math.floor(Math.random() * colors.length)]
   }
@@ -101,7 +101,6 @@ class Star {
     // Size based on depth
     const size = Math.max(0.5, (1 - this.z / maxDepth) * 2.5)
     
-    // Opacity based on depth
     const opacity = Math.min(1, (1 - this.z / maxDepth) * 2) * this.brightness
     
     if (isHyperspace && hyperspaceProgress > 0.1) {
@@ -132,7 +131,7 @@ class Star {
       ctx.fillStyle = `rgba(${this.color}, ${opacity})`
       ctx.fill()
       
-      // Glow effect for bright stars
+      // Glow for bright stars
       if (opacity > 0.6) {
         ctx.beginPath()
         ctx.arc(x2d, y2d, size * 2.5, 0, Math.PI * 2)
@@ -150,7 +149,7 @@ export default function Starfield({ isHyperspace, onHyperspaceComplete }: Starfi
   const hyperspaceProgressRef = useRef(0)
   const transitionTriggeredRef = useRef(false)
   
-  // Configuration - reduced speed for cruise mode
+  // config
   const STAR_COUNT = 600
   const STAR_SPEED_NORMAL = 0.3
   const STAR_SPEED_HYPERSPACE = 40
@@ -178,7 +177,7 @@ export default function Starfield({ isHyperspace, onHyperspaceComplete }: Starfi
     const centerX = width / 2
     const centerY = height / 2
     
-    // Clear with fade effect
+    // Clear with fade
     if (isHyperspace) {
       ctx.fillStyle = `rgba(0, 0, 0, ${0.08 + (1 - hyperspaceProgressRef.current) * 0.15})`
     } else {
@@ -186,16 +185,14 @@ export default function Starfield({ isHyperspace, onHyperspaceComplete }: Starfi
     }
     ctx.fillRect(0, 0, width, height)
     
-    // Calculate speed
+    // speed calc
     let speed = STAR_SPEED_NORMAL
     if (isHyperspace) {
-      // Smooth exponential acceleration
       speed = STAR_SPEED_NORMAL + 
         (STAR_SPEED_HYPERSPACE - STAR_SPEED_NORMAL) * 
         Math.pow(hyperspaceProgressRef.current, 1.5)
     }
     
-    // Update and draw stars
     for (const star of starsRef.current) {
       star.update(speed, MAX_DEPTH)
       star.draw(
@@ -243,7 +240,7 @@ export default function Starfield({ isHyperspace, onHyperspaceComplete }: Starfi
     resize()
     window.addEventListener('resize', resize)
     
-    // Initial clear
+    // first clear
     const ctx = canvas.getContext('2d')
     if (ctx) {
       ctx.fillStyle = '#000'

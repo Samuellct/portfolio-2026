@@ -32,7 +32,7 @@
   --color-accent-purple: #a855f7;
   --color-accent-pink: #f472b6;
   
-  /* Dynamic background color for scroll transitions */
+  /* Dynamic background color */
   --bg-color: #030308;
 }
 
@@ -42,7 +42,7 @@
   box-sizing: border-box;
 }
 
-/* Lenis smooth scroll styles */
+/* Lenis smooth scroll */
 html.lenis,
 html.lenis body {
   height: auto;
@@ -226,7 +226,7 @@ body {
 }
 
 /* ===================================
-   KATEX / MATH STYLES
+   KATEX STYLES
 =================================== */
 .katex {
   font-size: 1.1em;
@@ -244,7 +244,7 @@ body {
 }
 
 /* ===================================
-   PROSE / MARKDOWN CUSTOMIZATION
+   MARKDOWN
 =================================== */
 .prose a {
   color: var(--color-accent-cyan);

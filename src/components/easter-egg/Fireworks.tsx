@@ -14,22 +14,22 @@ export default function FireworksOverlay() {
   useEffect(() => {
     if (easterEggPhase !== 'fireworks') return
     
-    // Start fireworks
+    // Start
     if (fireworksRef.current) {
       fireworksRef.current.start()
     }
     
-    // After 4 seconds, start fade out
+    // fade out after 4s
     const fadeTimer = setTimeout(() => {
       setIsFadingOut(true)
       
-      // Stop fireworks during fade
+      // Stop fireworks
       if (fireworksRef.current) {
         fireworksRef.current.stop()
       }
     }, 4000)
     
-    // After fade completes (1s), reset and go back to site
+    // After fade completes reset and go back to site
     const resetTimer = setTimeout(() => {
       resetEasterEgg()
     }, 5000)

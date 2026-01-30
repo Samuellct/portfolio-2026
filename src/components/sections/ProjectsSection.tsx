@@ -64,7 +64,7 @@ function getOrderedProjects(allProjects: ProjectData[]): ProjectData[] {
 }
 
 /* ============================================ */
-/* MAIN COMPONENT                               */
+/* MAIN                                         */
 /* ============================================ */
 
 export default function ProjectsSection() {
@@ -75,11 +75,11 @@ export default function ProjectsSection() {
   const [isHovering, setIsHovering] = useState(false)
   const [backgroundText, setBackgroundText] = useState('PROJECTS')
   
-  // Mouse Y tracking - PERSISTENT (never unmounted)
+  // Mouse Y tracking - PERSISTENT
   const mouseY = useMotionValue(0)
   const smoothY = useSpring(mouseY, { stiffness: 140, damping: 30, restDelta: 0.001 })
   
-  // Background color transition
+  // bkg color transition
   const [bgColor, setBgColor] = useState('transparent')
   const [isFirstHover, setIsFirstHover] = useState(true)
   
@@ -88,12 +88,11 @@ export default function ProjectsSection() {
   
   // Mouse move handler - updates Y position continuously
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
-  // On envoie directement la position Y de la souris (en pixels)
     mouseY.set(e.clientY)
   }, [mouseY])
 
   
-  // Project hover enter
+  // Project hover
   const handleProjectEnter = useCallback((project: ProjectData) => {
     setActiveProject(project)
     setIsHovering(true)
@@ -102,19 +101,18 @@ export default function ProjectsSection() {
     if (isFirstHover) setIsFirstHover(false)
   }, [isFirstHover])
   
-  // Container leave - fade out without position reset
+  // Container leave
   const handleContainerLeave = useCallback(() => {
     setIsHovering(false)
     setBgColor('transparent')
     setBackgroundText('PROJECTS')
-    setIsFirstHover(true)
-    // Note: activeProject is NOT reset immediately to allow fade-out
+    setIsFirstHover(true) // activeProject pas reset tout de suite sinon casse l'effet de fade-out
     setTimeout(() => {
       setActiveProject(null)
     }, 500)
   }, [])
   
-  // GSAP parallax for decorative text
+  // GSAP parallax
   useEffect(() => {
     if (!sectionRef.current) return
     
@@ -163,7 +161,7 @@ export default function ProjectsSection() {
       />
       
       {/* ============================================ */}
-      {/* DECORATIVE BACKGROUND TEXT                  */}
+      {/* BKG TEXT */}
       {/* ============================================ */}
       <div className="decor-text-container absolute top-1/2 -translate-y-1/2 left-0 pointer-events-none select-none z-0">
         <div className="flex overflow-hidden">
@@ -244,7 +242,7 @@ export default function ProjectsSection() {
         </div>
         
         {/* ============================================ */}
-        {/* PROJECTS LIST WITH SANDWICH EFFECT          */}
+        {/* PROJECTS LIST AVEC SANDWICH EFFECT          */}
         {/* ============================================ */}
         <div 
           ref={containerRef}
@@ -254,7 +252,6 @@ export default function ProjectsSection() {
         >
           {/* ============================================ */}
           {/* FLOATING IMAGE - MIDDLE LAYER (z-20)        */}
-          {/* Container is ALWAYS mounted for continuity  */}
           {/* ============================================ */}
           <motion.div 
             className="fixed pointer-events-none"
@@ -309,7 +306,7 @@ export default function ProjectsSection() {
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   className="relative"
                   style={{ 
-                    // SANDWICH: Active title (z-30) > Image (z-20) > Other titles (z-10)
+                    // build du sandwich: active title (z-30) > image (z-20) > other titles (z-10)
                     zIndex: isActive ? 30 : 10 
                   }}
                 >
@@ -323,7 +320,7 @@ export default function ProjectsSection() {
                       animate={{ 
                         opacity: isHovering 
                           ? (isActive ? 1 : 0.15)  // Active: full, Others: very dim
-                          : 0.8,                    // Default state
+                          : 0.8,                    // Default
                         color: isHovering && isActive ? activeTextColor : undefined
                       }}
                       transition={{ duration: 0.3, ease: 'easeOut' }}

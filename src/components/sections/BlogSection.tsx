@@ -22,7 +22,7 @@ export default function BlogSection() {
     const ctx = gsap.context(() => {
       
       // ============================================
-      // PARALLAX - Decorative text
+      // PARALLAX txt
       // ============================================
       if (decorativeRef.current) {
         gsap.fromTo(decorativeRef.current,
@@ -41,7 +41,7 @@ export default function BlogSection() {
       }
       
       // ============================================
-      // PARALLAX - Gradient orb
+      // PARALLAX orb (bof ???)
       // ============================================
       if (orbRef.current) {
         gsap.to(orbRef.current, {
@@ -58,7 +58,7 @@ export default function BlogSection() {
       }
       
       // ============================================
-      // TITLE - Split reveal
+      // TITLE
       // ============================================
       if (titleRef.current) {
         gsap.fromTo(titleRef.current,
@@ -81,7 +81,7 @@ export default function BlogSection() {
       }
       
       // ============================================
-      // CARD - 3D tilt on scroll
+      // CARD - mouvmt avec le scroll
       // ============================================
       if (cardRef.current) {
         gsap.fromTo(cardRef.current,
@@ -117,7 +117,7 @@ export default function BlogSection() {
       className="section min-h-[80vh] py-32 md:py-40 relative overflow-hidden flex items-center"
     >
       {/* ============================================ */}
-      {/* PARALLAX - Decorative text */}
+      {/* PARALLAX txt */}
       {/* ============================================ */}
       <div 
         ref={decorativeRef}
@@ -129,7 +129,7 @@ export default function BlogSection() {
       </div>
       
       {/* ============================================ */}
-      {/* PARALLAX - Gradient orb - Harmonized with Contact */}
+      {/* PARALLAX orb */}
       {/* ============================================ */}
       <div 
         ref={orbRef}
@@ -137,10 +137,10 @@ export default function BlogSection() {
       />
       
       {/* ============================================ */}
-      {/* MAIN CONTENT */}
+      {/* MAIN */}
       {/* ============================================ */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-16 w-full">
-        {/* Section label - Left aligned */}
+        {/* Section label */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -151,7 +151,7 @@ export default function BlogSection() {
           {content.blog.sectionLabel}
         </motion.div>
         
-        {/* Title - Left aligned */}
+        {/* Title */}
         <h2 
           ref={titleRef}
           className="font-display text-[clamp(3rem,10vw,7rem)] leading-[0.9] tracking-wide mb-12"
@@ -159,25 +159,24 @@ export default function BlogSection() {
           {content.blog.title}
         </h2>
         
-        {/* Coming Soon Card - Centered */}
+        {/* tuile */}
         <div className="flex justify-center">
           <div 
             ref={cardRef}
             className="relative p-8 md:p-12 bg-white/[0.02] border border-white/5 overflow-hidden group hover:border-accent-pink/20 transition-all duration-500 max-w-xl w-full text-center"
             style={{ perspective: '1000px' }}
           >
-            {/* Decorative sparkles */}
+            {/* decoration */}
             <div className="absolute top-4 right-4 text-accent-pink/40 group-hover:text-accent-pink/70 transition-colors">
               <Sparkles size={24} />
             </div>
             
-            {/* Decorative corner lines */}
             <div className="absolute top-0 left-0 w-12 h-px bg-gradient-to-r from-accent-pink/50 to-transparent" />
             <div className="absolute top-0 left-0 w-px h-12 bg-gradient-to-b from-accent-pink/50 to-transparent" />
             <div className="absolute bottom-0 right-0 w-12 h-px bg-gradient-to-l from-accent-pink/50 to-transparent" />
             <div className="absolute bottom-0 right-0 w-px h-12 bg-gradient-to-t from-accent-pink/50 to-transparent" />
             
-            {/* Coming soon badge */}
+            {/* Coming soon a modif /!\ */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-accent-pink/10 border border-accent-pink/20 rounded-full mb-8">
               <span className="w-2 h-2 bg-accent-pink rounded-full animate-pulse" />
               <span className="text-[0.65rem] tracking-[0.2em] uppercase text-accent-pink font-medium">
@@ -203,7 +202,7 @@ export default function BlogSection() {
               <ExternalLink size={14} className="transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
             </a>
             
-            {/* Hover gradient */}
+            {/* Hover */}
             <div className="absolute inset-0 bg-gradient-to-br from-accent-pink/5 via-transparent to-accent-purple/5 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
           </div>
         </div>

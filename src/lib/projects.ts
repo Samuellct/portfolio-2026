@@ -377,7 +377,7 @@ export const getAllProjects = (): ProjectData[] => {
   const allProjects: ProjectData[] = []
   Object.keys(projectsData).forEach((categoryId) => {
     Object.values(projectsData[categoryId]).forEach((project) => {
-      // Only include projects that are visible (visible is undefined or true)
+      // Only include projects that are visible
       if (project.visible !== false) {
         allProjects.push(project)
       }
@@ -387,7 +387,6 @@ export const getAllProjects = (): ProjectData[] => {
 }
 
 export const getFeaturedProjects = (): ProjectData[] => {
-  // getAllProjects already filters out non-visible projects
   return getAllProjects().filter((project) => project.featured)
 }
 
@@ -400,7 +399,6 @@ export const getAllProjectParams = () => {
   Object.keys(projectsData).forEach((categoryId) => {
     Object.keys(projectsData[categoryId]).forEach((projectId) => {
       const project = projectsData[categoryId][projectId]
-      // Only include projects that are visible
       if (project.visible !== false) {
         params.push({ category: categoryId, id: projectId })
       }

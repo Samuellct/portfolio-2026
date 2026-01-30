@@ -12,11 +12,11 @@ import content from '@/lib/content.json'
 
 gsap.registerPlugin(ScrollTrigger)
 
-// Background color for projects page (matches projects section)
+// Background color for projects page
 const PROJECTS_BG_COLOR = '#0a0a12'
 
 // ============================================
-// Project card with Stock Dutch hover effect
+// Project card
 // ============================================
 function ProjectCard({ project, index }: { project: ProjectData; index: number }) {
   const cardRef = useRef<HTMLDivElement>(null)
@@ -105,7 +105,7 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
             </div>
           )}
           
-          {/* Decorative frame on hover */}
+          {/* hover */}
           <motion.div
             className="absolute inset-3 border border-white/20 pointer-events-none"
             initial={{ opacity: 0, scale: 0.95 }}
@@ -172,7 +172,7 @@ export default function ProjectsPage() {
     window.scrollTo(0, 0)
   }, [])
   
-  // GSAP animations
+  // GSAP
   useEffect(() => {
     if (!pageRef.current) return
     
@@ -192,7 +192,7 @@ export default function ProjectsPage() {
         )
       }
       
-      // Parallax decorative text
+      // Parallax txt
       const decorText = pageRef.current?.querySelector('.decor-text')
       if (decorText) {
         gsap.fromTo(decorText,
@@ -216,7 +216,7 @@ export default function ProjectsPage() {
   
   return (
     <div ref={pageRef} className="min-h-screen relative" style={{ backgroundColor: PROJECTS_BG_COLOR }}>
-      {/* Decorative text - parallax */}
+      {/* parallax */}
       <div className="decor-text fixed top-1/2 -translate-y-1/2 left-0 pointer-events-none select-none z-0">
         <span className="font-display text-[20vw] text-white/[0.015] leading-none whitespace-nowrap">
           PROJECTS
@@ -260,7 +260,7 @@ export default function ProjectsPage() {
           </p>
         </div>
         
-        {/* Filters with hidden icon */}
+        {/* Filters */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -292,7 +292,7 @@ export default function ProjectsPage() {
             </button>
           ))}
           
-          {/* Hidden easter egg icon */}
+          {/* easter egg */}
           <HiddenIcon id="projects-icon" className="ml-2" />
         </motion.div>
         

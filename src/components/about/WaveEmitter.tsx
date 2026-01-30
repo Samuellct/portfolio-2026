@@ -22,7 +22,7 @@ export default function WaveEmitter({ progress, className = '' }: WaveEmitterPro
   const centerY = 100
   const maxRadius = 90
   
-  // Nombre d'ondes concentriques
+  // Nombre d'ondes
   const waveCount = 4
   
   // Phase de l'animation
@@ -31,16 +31,16 @@ export default function WaveEmitter({ progress, className = '' }: WaveEmitterPro
   const centerOpacity = Math.min(1, progress * 3.3) // 0-0.3 -> 0-1
   const waveProgress = Math.max(0, (progress - 0.3) / 0.7) // 0.3-1 -> 0-1
   
-  // Calculer la distance d'un point au centre
+  // calc la distance d'un point au centre
   const getDistance = (x: number, y: number) => {
     return Math.sqrt(Math.pow(x - centerX, 2) + Math.pow(y - centerY, 2))
   }
   
-  // Vérifier si un point est "illuminé" par les ondes
+  // Vérifier si un point est croise avec les ondes
   const isPointIlluminated = (x: number, y: number, delay: number) => {
     const distance = getDistance(x, y)
     const normalizedDistance = distance / maxRadius
-    // Le point s'illumine quand l'onde l'atteint (avec délai)
+    // Le point s'illumine quand l'onde l'atteint
     const effectiveProgress = Math.max(0, waveProgress - delay * 0.5)
     return effectiveProgress > normalizedDistance
   }
@@ -48,7 +48,7 @@ export default function WaveEmitter({ progress, className = '' }: WaveEmitterPro
   return (
     <div className={`relative ${className}`}>
       <svg viewBox="0 0 200 200" className="w-full h-full">
-        {/* Fond avec grille subtile */}
+        {/* Fond avec grille */}
         <defs>
           <pattern id="waveGrid" width="10" height="10" patternUnits="userSpaceOnUse">
             <circle cx="5" cy="5" r="0.3" fill="rgba(255,255,255,0.03)" />
@@ -62,7 +62,7 @@ export default function WaveEmitter({ progress, className = '' }: WaveEmitterPro
         </defs>
         <rect width="100%" height="100%" fill="url(#waveGrid)" />
         
-        {/* Ondes concentriques */}
+        {/* Ondes */}
         {Array.from({ length: waveCount }).map((_, index) => {
           const waveDelay = index * 0.2
           const effectiveProgress = Math.max(0, waveProgress - waveDelay)
@@ -86,7 +86,7 @@ export default function WaveEmitter({ progress, className = '' }: WaveEmitterPro
           )
         })}
         
-        {/* Zone d'effet (remplissage subtil) */}
+        {/* Zone d'effet */}
         <circle
           cx={centerX}
           cy={centerY}
@@ -114,7 +114,7 @@ export default function WaveEmitter({ progress, className = '' }: WaveEmitterPro
             stroke="#a855f7"
             strokeWidth="2"
           />
-          {/* Icône centrale (onde) */}
+          {/* Icône centrale */}
           <text
             x={centerX}
             y={centerY + 1}
@@ -127,7 +127,7 @@ export default function WaveEmitter({ progress, className = '' }: WaveEmitterPro
           </text>
         </g>
         
-        {/* Points représentant les "personnes" */}
+        {/* Points représentant les personnes */}
         {peoplePositions.map((person, index) => {
           const illuminated = isPointIlluminated(person.x, person.y, person.delay)
           

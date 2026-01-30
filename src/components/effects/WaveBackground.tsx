@@ -3,7 +3,7 @@
 import { useRef, useEffect } from 'react'
 import * as THREE from 'three'
 
-// Vertex Shader - transforme les positions des particules
+// Vertex Shader (= transforme les positions des particules)
 const vertexShader = `
   uniform float uTime;
   uniform float uSize;
@@ -50,7 +50,7 @@ const vertexShader = `
   }
 `
 
-// Fragment Shader - dessine chaque particule
+// Fragment Shader (dessine chaque particule)
 const fragmentShader = `
   varying vec3 vColor;
   
@@ -116,7 +116,7 @@ export default function WaveBackground({ className = '' }: WaveBackgroundProps) 
     container.appendChild(renderer.domElement)
     rendererRef.current = renderer
     
-    // Particles geometry - reduced count on mobile for performance
+    // Particles geometry
     const particlesCount = isMobile ? 1000 : 2500
     const positions = new Float32Array(particlesCount * 3)
     const scales = new Float32Array(particlesCount)
@@ -142,7 +142,7 @@ export default function WaveBackground({ className = '' }: WaveBackgroundProps) 
     geometry.setAttribute('aScale', new THREE.BufferAttribute(scales, 1))
     geometry.setAttribute('aRandomness', new THREE.BufferAttribute(randomness, 3))
     
-    // Material with shaders
+    // add shaders
     const material = new THREE.ShaderMaterial({
       vertexShader,
       fragmentShader,

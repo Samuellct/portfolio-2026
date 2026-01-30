@@ -10,26 +10,25 @@ interface ElevationPathProps {
   progress: number // 0 to 1
   className?: string
 }
-
-// Profil d'élévation inspiré d'un trail de montagne (style MaxiRace)
-// Points: [x, y] où y est l'altitude relative (inversé pour SVG)
+// prevu d'upgrader ca en echantillonant un vrai fichier gpx
+// Points: [x, y] où y est l'altitude relative
 const elevationPoints = [
-  [0, 80],     // Départ (vallée)
-  [15, 75],    // Petite montée
-  [30, 45],    // Premier col
-  [45, 65],    // Descente partielle
-  [60, 25],    // Deuxième col (plus haut)
-  [75, 55],    // Descente
-  [90, 35],    // Troisième col
-  [105, 60],   // Descente
-  [120, 20],   // Point culminant
-  [140, 50],   // Grande descente
-  [160, 40],   // Remontée
-  [180, 70],   // Descente vers arrivée
-  [200, 75],   // Arrivée
+  [0, 80],
+  [15, 75],
+  [30, 45],
+  [45, 65],
+  [60, 25],
+  [75, 55],
+  [90, 35],
+  [105, 60],
+  [120, 20],
+  [140, 50],
+  [160, 40],
+  [180, 70],
+  [200, 75],
 ]
 
-// Générer un path SVG smooth à partir des points
+// Générer un path SVG à partir des pts
 function generateSmoothPath(points: number[][]): string {
   if (points.length < 2) return ''
   
@@ -95,7 +94,7 @@ export default function ElevationPath({ progress, className = '' }: ElevationPat
         className="w-full h-full"
         preserveAspectRatio="none"
       >
-        {/* Grille de fond subtile */}
+        {/* Grille de fond */}
         <defs>
           <pattern id="grid" width="20" height="20" patternUnits="userSpaceOnUse">
             <path 
@@ -108,7 +107,7 @@ export default function ElevationPath({ progress, className = '' }: ElevationPat
         </defs>
         <rect width="100%" height="100%" fill="url(#grid)" />
         
-        {/* Ligne de base (niveau mer) */}
+        {/* Ligne de base */}
         <line 
           x1="0" y1="85" x2="200" y2="85" 
           stroke="rgba(255,255,255,0.1)" 
@@ -116,7 +115,7 @@ export default function ElevationPath({ progress, className = '' }: ElevationPat
           strokeDasharray="2 2"
         />
         
-        {/* Path d'arrière-plan (trace complète en gris) */}
+        {/* Path d'arrière-plan en gris */}
         <path
           d={pathD}
           fill="none"

@@ -41,7 +41,7 @@ export default function ParticleCollision({ isVisible, className = '' }: Particl
     const ctx = canvas.getContext('2d')
     if (!ctx) return
     
-    // Set canvas size
+    // canvas size
     const updateSize = () => {
       const rect = canvas.getBoundingClientRect()
       const dpr = window.devicePixelRatio || 1
@@ -57,7 +57,7 @@ export default function ParticleCollision({ isVisible, className = '' }: Particl
     const centerY = height / 2
     const maxR = Math.min(width, height) / 2 * 0.9
     
-    // Detector layers (radii as fraction of maxR)
+    // Detector layers
     const detectorLayers = [
       { radius: 0.15, label: 'Pixel', color: 'rgba(0, 240, 255, 0.15)' },
       { radius: 0.25, label: 'SCT', color: 'rgba(0, 240, 255, 0.10)' },
@@ -67,7 +67,7 @@ export default function ParticleCollision({ isVisible, className = '' }: Particl
       { radius: 0.95, label: 'Muon', color: 'rgba(255, 255, 255, 0.04)' },
     ]
     
-    // Generate tracks - physics-based
+    // Generate tracks
     const generateTracks = (): Track[] => {
       const tracks: Track[] = []
       const numTracks = 12 + Math.floor(Math.random() * 6)
@@ -222,7 +222,7 @@ export default function ParticleCollision({ isVisible, className = '' }: Particl
         animationRef.current = requestAnimationFrame(animate)
       } else {
         setIsAnimating(false)
-        // Allow shuffle after animation completes + small buffer
+        // allow new shuffle with small buffer
         setTimeout(() => setCanShuffle(true), 300)
       }
     }

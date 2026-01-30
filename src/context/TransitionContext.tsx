@@ -23,7 +23,7 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
   const previousPathname = useRef(pathname)
   const isNavigating = useRef(false)
   
-  // Detect when navigation is complete
+  // Detect when navigation is complete (???)
   useEffect(() => {
     if (pathname !== previousPathname.current) {
       previousPathname.current = pathname

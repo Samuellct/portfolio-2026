@@ -88,7 +88,7 @@ export default function Landing({ onEnter, isTransitioning, onTransitionComplete
         </motion.button>
       </motion.div>
       
-      {/* Transition overlay - circular reveal effect */}
+      {/* Transition overlay */}
       <motion.div
         className="fixed inset-0 pointer-events-none z-40"
         initial={{ opacity: 0 }}
@@ -97,7 +97,7 @@ export default function Landing({ onEnter, isTransitioning, onTransitionComplete
         }}
         transition={{ duration: 0.5, delay: isTransitioning ? 1.5 : 0 }}
       >
-        {/* Radial gradient that creates tunnel effect */}
+        {/* Radial gradient for tunnel look */}
         <div 
           className="absolute inset-0"
           style={{
@@ -106,7 +106,7 @@ export default function Landing({ onEnter, isTransitioning, onTransitionComplete
         />
       </motion.div>
       
-      {/* Final white flash - softer */}
+      {/* white flash */}
       <motion.div
         className="fixed inset-0 bg-white pointer-events-none z-50"
         initial={{ opacity: 0 }}

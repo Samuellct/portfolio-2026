@@ -26,7 +26,7 @@ export default function Terminal() {
   
   const inputRef = useRef<HTMLInputElement>(null)
   const terminalRef = useRef<HTMLDivElement>(null)
-  const typingSpeed = 25 // ms per character (fast)
+  const typingSpeed = 25 // ms par lettre
   
   // Auto-scroll to bottom
   useEffect(() => {
@@ -41,8 +41,7 @@ export default function Terminal() {
       inputRef.current.focus()
     }
   }, [canType])
-  
-  // Type effect (reserved for future animated system messages)
+  )
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const typeText = useCallback((text: string, onComplete?: () => void) => {
     setIsTyping(true)
@@ -155,13 +154,13 @@ export default function Terminal() {
     return cmd.toLowerCase().trim().replace(/\s+/g, ' ')
   }
   
-  // Check if command matches
+  // command matches ?
   const commandMatches = (input: string, patterns: string[]): boolean => {
     const normalized = normalizeCommand(input)
     return patterns.some(p => normalized === normalizeCommand(p) || normalized.includes(normalizeCommand(p)))
   }
   
-  // Handle user input
+  // user input
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     if (!canType || isTyping || !userInput.trim()) return
@@ -175,7 +174,6 @@ export default function Terminal() {
     addLine({ type: 'user', text: `> ${input}` })
     setCanType(false)
     
-    // Process command based on game phase
     setTimeout(() => processCommand(input), 300)
   }
   
@@ -198,7 +196,7 @@ export default function Terminal() {
     const normalized = normalizeCommand(input)
     
     if (normalized === 'yes' || normalized === 'y') {
-      // Yes path - show progress then error
+      // Yes path
       setGamePhase('hotfix-yes')
       
       const yesSequence: TerminalLine[] = [
@@ -270,7 +268,7 @@ export default function Terminal() {
       return
     }
     
-    // Secret exit command - sudo exit
+    // Secret exit command
     if (commandMatches(input, ['sudo exit', 'sudoexit'])) {
       setGamePhase('fireworks')
       addLine({ type: 'system', text: '[SYSTEM] : Administrator override accepted.' })
@@ -282,7 +280,7 @@ export default function Terminal() {
       return
     }
     
-    // Main solution - sudo run shield.exe
+    // Main solution
     if (commandMatches(input, [
       'sudo run shield.exe',
       'sudo run shield',
@@ -316,7 +314,7 @@ export default function Terminal() {
       return
     }
     
-    // Just "run shield.exe" without sudo
+    // Alternatives
     if (commandMatches(input, ['run shield.exe', 'run shield', 'shield.exe', 'shield', './shield.exe'])) {
       addLine({ type: 'error', text: '[ERROR] : Permission denied. Administrator privileges required.' })
       addLine({ type: 'hint', text: "(Hint: Use 'sudo' for elevated permissions)" })
@@ -324,21 +322,21 @@ export default function Terminal() {
       return
     }
     
-    // Just "sudo" without command
+    // .
     if (normalized === 'sudo') {
       addLine({ type: 'error', text: '[ERROR] : Missing command. Usage: sudo [command]' })
       setCanType(true)
       return
     }
     
-    // Just "run" without file
+    // .
     if (normalized === 'run') {
       addLine({ type: 'error', text: '[ERROR] : Missing file. Usage: run [filename]' })
       setCanType(true)
       return
     }
     
-    // Generic error for unknown commands
+    // .
     addLine({ type: 'error', text: `[ERROR] : Command not recognized: '${input}'` })
     setCanType(true)
   }

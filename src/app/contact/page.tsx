@@ -10,7 +10,7 @@ import content from '@/lib/content.json'
 
 gsap.registerPlugin(ScrollTrigger)
 
-// Background color for contact page
+// Background color
 const CONTACT_BG_COLOR = '#080510'
 
 type FormStatus = 'idle' | 'submitting' | 'success' | 'error'
@@ -30,7 +30,7 @@ export default function ContactPage() {
     window.scrollTo(0, 0)
   }, [])
   
-  // GSAP parallax
+  // GSAP
   useEffect(() => {
     if (!pageRef.current) return
     
@@ -94,7 +94,7 @@ export default function ContactPage() {
   
   return (
     <div ref={pageRef} className="min-h-screen relative" style={{ backgroundColor: CONTACT_BG_COLOR }}>
-      {/* Decorative text - parallax */}
+      {/* parallax */}
       <div className="decor-text fixed top-1/2 -translate-y-1/2 left-0 pointer-events-none select-none z-0">
         <span className="font-display text-[20vw] text-white/[0.015] leading-none whitespace-nowrap">
           CONTACT
@@ -183,7 +183,7 @@ export default function ContactPage() {
             onSubmit={handleSubmit}
             className="space-y-6"
           >
-            {/* Name & Email row */}
+            {/* Name + Email */}
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="name" className="block text-xs tracking-[0.15em] uppercase text-white/40 mb-2">
@@ -252,7 +252,7 @@ export default function ContactPage() {
               />
             </div>
             
-            {/* Submit button */}
+            {/* Submit bttn */}
             <button
               type="submit"
               disabled={status === 'submitting'}

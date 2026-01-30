@@ -11,7 +11,6 @@ import content from '@/lib/content.json'
 
 gsap.registerPlugin(ScrollTrigger)
 
-// Stats data with hover text
 const stats = [
   { 
     value: '2', 
@@ -42,7 +41,7 @@ export default function AboutSection() {
     
     const ctx = gsap.context(() => {
       
-      // PARALLAX LAYER - Decorative text
+      // PARALLAX txt
       if (decorativeTextRef.current) {
         gsap.fromTo(decorativeTextRef.current,
           { xPercent: 10 },
@@ -59,7 +58,7 @@ export default function AboutSection() {
         )
       }
       
-      // TITLE - Clip-path reveal from bottom
+      // TITLE
       if (titleRef.current) {
         const words = titleRef.current.querySelectorAll('.title-word')
         gsap.fromTo(words,
@@ -82,7 +81,7 @@ export default function AboutSection() {
         )
       }
       
-      // TEXT BLOCK - Staggered reveal
+      // TEXT (Staggered reveal)
       if (textBlockRef.current) {
         const paragraphs = textBlockRef.current.querySelectorAll('p')
         gsap.fromTo(paragraphs,
@@ -105,7 +104,7 @@ export default function AboutSection() {
         )
       }
       
-      // STATS - Counter animation + reveal
+      // STATS
       if (statsRef.current) {
         const statCards = statsRef.current.querySelectorAll('.stat-card')
         
@@ -174,7 +173,7 @@ export default function AboutSection() {
       id="about"
       className="section min-h-screen py-32 md:py-40 relative overflow-hidden"
     >
-      {/* PARALLAX LAYER - Decorative text */}
+      {/* PARALLAX txt */}
       <div 
         ref={decorativeTextRef}
         className="absolute top-1/2 -translate-y-1/2 -left-1/4 pointer-events-none select-none"
@@ -184,14 +183,14 @@ export default function AboutSection() {
         </span>
       </div>
       
-      {/* Gradient orbs */}
+      {/* test orbs (maybe dlt) */}
       <div className="absolute top-0 right-0 w-[40vw] h-[40vw] bg-accent-purple/5 rounded-full blur-[150px] pointer-events-none" />
       <div className="absolute bottom-1/4 left-1/4 w-[30vw] h-[30vw] bg-accent-cyan/5 rounded-full blur-[120px] pointer-events-none" />
       
-      {/* MAIN CONTENT */}
+      {/* MAIN */}
       <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-12 lg:px-16">
         
-        {/* Section header */}
+        {/* header */}
         <div className="mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -218,9 +217,9 @@ export default function AboutSection() {
         {/* Two-column layout */}
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-20 items-start">
           
-          {/* Left column - Text content */}
+          {/* Left column */}
           <div>
-            {/* Text block */}
+            {/* txt */}
             <div ref={textBlockRef} className="space-y-6 mb-12">
               <p className="text-lg md:text-xl text-white/70 leading-relaxed text-justify">
                 {content.about.preview.intro}
@@ -231,7 +230,7 @@ export default function AboutSection() {
               </p>
             </div>
             
-            {/* CTA Link */}
+            {/* CTA (page perso) */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -248,9 +247,9 @@ export default function AboutSection() {
             </motion.div>
           </div>
           
-          {/* Right column - Stats */}
+          {/* Right column */}
           <div>
-            {/* Stats grid - Featured */}
+            {/* Stats grid */}
             <div ref={statsRef} className="grid gap-6" style={{ perspective: '1000px' }}>
               {stats.map((stat) => (
                 <div
@@ -258,12 +257,12 @@ export default function AboutSection() {
                   className="stat-card relative p-8 bg-white/[0.02] border border-white/5 group hover:border-accent-purple/30 transition-all duration-500"
                 >
                   <div className="flex items-center justify-between">
-                    {/* Left - Number */}
+                    {/* nb */}
                     <div className="stat-value font-display text-[clamp(3rem,8vw,5rem)] leading-none gradient-text">
                       {stat.value}
                     </div>
                     
-                    {/* Right - Label & hover text */}
+                    {/* label + hover */}
                     <div className="text-right">
                       <div className="text-sm tracking-[0.1em] uppercase text-white/60 mb-1">
                         {stat.label}

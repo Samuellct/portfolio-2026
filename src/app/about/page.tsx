@@ -16,7 +16,7 @@ import content from '@/lib/content.json'
 gsap.registerPlugin(ScrollTrigger)
 
 // ============================================
-// SECTION COLORS (plus distinctes)
+// SECTION COLORS
 // ============================================
 const sectionColors = {
   intro: '#080510',
@@ -31,7 +31,7 @@ const sectionColors = {
 const bgTexts = ['ABOUT', 'STACK', 'EDUCATION', 'INTERESTS']
 
 // ============================================
-// EDUCATION DATA (sans description)
+// EDUCATION DATA
 // ============================================
 const education = [
   {
@@ -112,7 +112,7 @@ export default function AboutPage() {
   // Page container ref
   const pageRef = useRef<HTMLDivElement>(null)
   
-  // Background text CONTAINER ref (pour le parallaxe)
+  // Background text CONTAINER ref (pour le parallax)
   const bgContainerRef = useRef<HTMLDivElement>(null)
   
   // Section refs
@@ -121,7 +121,7 @@ export default function AboutPage() {
   const educationSectionRef = useRef<HTMLElement>(null)
   const interestsSectionRef = useRef<HTMLElement>(null)
   
-  // Refs pour stocker la progression MAXIMALE atteinte (one-way)
+  // Refs pour stocker la progression MAXIMALE atteinte
   const introMaxProgressRef = useRef(0)
   const stackMaxProgressRef = useRef(0)
   const educationMaxProgressRef = useRef(0)
@@ -133,7 +133,6 @@ export default function AboutPage() {
   const [educationProgress, setEducationProgress] = useState(0)
   const [interestsProgress, setInterestsProgress] = useState(0)
   
-  // Background text state (for crossfade)
   const [currentBgText, setCurrentBgText] = useState(0)
   
   // Get tech stats
@@ -146,7 +145,7 @@ export default function AboutPage() {
   }, [])
   
   // ============================================
-  // GSAP ANIMATIONS
+  // GSAP
   // ============================================
   useEffect(() => {
     if (!pageRef.current) return
@@ -154,9 +153,7 @@ export default function AboutPage() {
     const ctx = gsap.context(() => {
       
       // ========================================
-      // 1. PARALLAX BACKGROUND TEXT (GLOBAL)
-      // Animation sur le CONTENEUR (pas sur le span qui change)
-      // On lie la fin du mouvement à la hauteur totale scrollable
+      // 1. PARALLAX BACKGROUND txt
       // ========================================
       if (bgContainerRef.current) {
         gsap.fromTo(bgContainerRef.current,
@@ -178,7 +175,7 @@ export default function AboutPage() {
       // 2. SECTION TRIGGERS AVEC NAVIGATION INTÉGRÉE
       // ========================================
       
-      // Section 001 — Intro
+      // Section 001 - Intro
       ScrollTrigger.create({
         trigger: introSectionRef.current,
         start: 'top top',
@@ -201,7 +198,7 @@ export default function AboutPage() {
         },
       })
       
-      // Section 002 — Stack
+      // Section 002 - Stack
       ScrollTrigger.create({
         trigger: stackSectionRef.current,
         start: 'top top',
@@ -224,7 +221,7 @@ export default function AboutPage() {
         },
       })
       
-      // Section 003 — Education
+      // Section 003 - Education
       ScrollTrigger.create({
         trigger: educationSectionRef.current,
         start: 'top top',
@@ -247,7 +244,7 @@ export default function AboutPage() {
         },
       })
       
-      // Section 004 — Interests
+      // Section 004 - Interests
       ScrollTrigger.create({
         trigger: interestsSectionRef.current,
         start: 'top top',
@@ -308,15 +305,15 @@ export default function AboutPage() {
   return (
     <>
       {/* ============================================ */}
-      {/* HEADER - Décalé pour éviter conflit avec NavBar */}
-      {/* z-index: 100 pour être au-dessus des sections pinnées */}
+      {/* HEADER */}
+      {/* z-index = 100 pour être au-dessus des sections pinnées */}
       {/* ============================================ */}
       <header className="fixed top-0 left-0 right-0 z-[100] pt-6 pb-4 px-6 md:px-12 lg:px-16 pointer-events-none">
         <div className="flex justify-between items-center">
           {/* Espace pour le logo SL de la NavBar (à gauche) */}
           <div className="w-20" />
           
-          {/* Bouton Back (centré ou légèrement à droite du logo) */}
+          {/* Bouton Back */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             animate={{ opacity: 1, x: 0 }}
@@ -341,9 +338,9 @@ export default function AboutPage() {
       
       {/* ============================================ */}
       {/* PARALLAX BACKGROUND TEXT */}
-      {/* pointer-events: none pour ne pas bloquer les clics */}
+      {/* pointer-events: none pour pas bloquer les clics */}
       {/* ref sur le conteneur, pas sur le span qui change */}
-      {/* Alternance: mots pairs arrivent de gauche, impairs de droite */}
+      {/* besoin de corriger cet effet, marche pas comme attendu */}
       {/* ============================================ */}
       <div 
         className="fixed inset-0 overflow-hidden pointer-events-none z-0 flex items-center justify-center"
@@ -376,7 +373,7 @@ export default function AboutPage() {
       <div ref={pageRef}>
         
         {/* ============================================ */}
-        {/* SECTION 001 — ABOUT */}
+        {/* SECTION 001 - ABOUT */}
         {/* ============================================ */}
         <section 
           ref={introSectionRef}
@@ -422,7 +419,7 @@ export default function AboutPage() {
               </p>
             </div>
             
-            {/* Buttons - Centered */}
+            {/* Buttons */}
             <div 
               className="flex flex-wrap justify-center gap-4"
               style={{ 
@@ -464,7 +461,7 @@ export default function AboutPage() {
         </section>
         
         {/* ============================================ */}
-        {/* SECTION 002 — TECHNICAL STACK */}
+        {/* SECTION 002 - TECHNICAL STACK */}
         {/* ============================================ */}
         <section 
           ref={stackSectionRef}
@@ -494,7 +491,7 @@ export default function AboutPage() {
               </p>
             </div>
             
-            {/* Progress Bars */}
+            {/* Progress Bar */}
             <div 
               className="grid md:grid-cols-2 gap-x-12 gap-y-6 mb-20"
               style={{ opacity: barContainerOpacity }}
@@ -562,7 +559,7 @@ export default function AboutPage() {
         </section>
         
         {/* ============================================ */}
-        {/* SECTION 003 — EDUCATION */}
+        {/* SECTION 003 - EDUCATION */}
         {/* ============================================ */}
         <section 
           ref={educationSectionRef}
@@ -638,7 +635,7 @@ export default function AboutPage() {
                       </div>
                     </div>
                     
-                    {/* Center dot */}
+                    {/* Center point */}
                     <div 
                       className="hidden md:block absolute left-1/2 -translate-x-1/2 w-3 h-3 rounded-full border-2 bg-primary z-10"
                       style={{ 
@@ -654,8 +651,7 @@ export default function AboutPage() {
         </section>
         
         {/* ============================================ */}
-        {/* SECTION 004 — INTERESTS */}
-        {/* mb-24 → mb-16 pour fit viewport */}
+        {/* SECTION 004 - INTERESTS */}
         {/* ============================================ */}
         <section 
           ref={interestsSectionRef}
@@ -675,7 +671,7 @@ export default function AboutPage() {
               </p>
             </div>
             
-            {/* Interest 1 - Trail Running (Left) - mb-16 */}
+            {/* Interest 1 - Trail Running (Left) */}
             <div 
               className="flex flex-col md:flex-row items-center gap-8 mb-16"
               style={{ 
@@ -696,7 +692,7 @@ export default function AboutPage() {
               </div>
             </div>
             
-            {/* Interest 2 - Home Lab (Right) - mb-16 */}
+            {/* Interest 2 - Home Lab (Right) */}
             <div 
               className="flex flex-col md:flex-row-reverse items-center gap-8 mb-16"
               style={{ 
@@ -739,8 +735,6 @@ export default function AboutPage() {
             </div>
           </div>
         </section>
-        
-        {/* Spacer supprimé */}
         
       </div>
     </>

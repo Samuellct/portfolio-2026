@@ -24,9 +24,8 @@ export function EasterEggProvider({ children }: { children: ReactNode }) {
       const newSet = new Set(prev)
       newSet.add(iconId)
       
-      // Si 3 icônes collectées, déclencher l'easter egg
+      // Si 3 icônes trouvees, easter egg activé
       if (newSet.size === 3) {
-        // Petit délai pour l'animation de disparition de la dernière icône
         setTimeout(() => {
           setEasterEggPhase('glitch')
         }, 400)

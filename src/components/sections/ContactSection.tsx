@@ -27,7 +27,7 @@ export default function ContactSection() {
     const ctx = gsap.context(() => {
       
       // ============================================
-      // PARALLAX - Decorative text (vertical)
+      // PARALLAX txt
       // ============================================
       if (decorativeRef.current) {
         gsap.fromTo(decorativeRef.current,
@@ -46,7 +46,7 @@ export default function ContactSection() {
       }
       
       // ============================================
-      // TRIGGER - Collision animation
+      // trigger pour l'animation de collision
       // ============================================
       if (collisionRef.current) {
         ScrollTrigger.create({
@@ -57,7 +57,7 @@ export default function ContactSection() {
       }
       
       // ============================================
-      // TITLE - Character reveal
+      // TITLE
       // ============================================
       if (titleRef.current) {
         const chars = titleRef.current.querySelectorAll('.contact-char')
@@ -84,7 +84,7 @@ export default function ContactSection() {
       }
       
       // ============================================
-      // CTA - Slide up
+      // CTA (page perso)
       // ============================================
       if (ctaRef.current) {
         gsap.fromTo(ctaRef.current,
@@ -108,7 +108,6 @@ export default function ContactSection() {
     return () => ctx.revert()
   }, [])
   
-  // Split title into characters
   const titleText = content.contact.title
   const titleChars = titleText.split('').map((char, i) => (
     <span 
@@ -127,7 +126,7 @@ export default function ContactSection() {
       className="section min-h-[90vh] py-32 md:py-40 relative overflow-hidden flex items-center"
     >
       {/* ============================================ */}
-      {/* PARALLAX - Decorative text */}
+      {/* PARALLAX txt */}
       {/* ============================================ */}
       <div 
         ref={decorativeRef}
@@ -139,26 +138,26 @@ export default function ContactSection() {
       </div>
       
       {/* ============================================ */}
-      {/* GRADIENT ORBS - Subtle, matching Blog section */}
+      {/* GRADIENT ORBS */}
       {/* ============================================ */}
       <div className="absolute inset-0 pointer-events-none">
-        {/* Use similar colors to Blog section for smooth transition */}
+        {/* phase de transition avec la section bolg */}
         <div className="absolute bottom-1/4 left-1/4 w-[35vw] h-[35vw] bg-accent-pink/5 rounded-full blur-[150px]" />
         <div className="absolute top-1/3 right-1/3 w-[25vw] h-[25vw] bg-accent-cyan/5 rounded-full blur-[120px]" />
       </div>
       
       {/* ============================================ */}
-      {/* MAIN CONTENT */}
+      {/* MAIN */}
       {/* ============================================ */}
       <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 lg:px-16 w-full">
         <div className="grid lg:grid-cols-2 gap-16 lg:gap-24 items-center">
           
-          {/* Left side - Particle Collision Animation */}
+          {/* Left : Particle Collision */}
           <div 
             ref={collisionRef}
             className="hidden lg:block relative aspect-square"
           >
-            {/* Collision canvas with shuffle button */}
+            {/* canvas + bouton */}
             <div className="absolute inset-4 rounded-full overflow-visible">
               <ParticleCollision 
                 isVisible={isCollisionVisible}
@@ -166,16 +165,12 @@ export default function ContactSection() {
               />
             </div>
             
-            {/* Decorative frame around collision */}
             <div className="absolute inset-0 pointer-events-none">
-              {/* Outer circle */}
               <div className="absolute inset-0 border border-white/5 rounded-full" />
               
-              {/* Inner circles */}
               <div className="absolute inset-8 border border-white/[0.03] rounded-full" />
               <div className="absolute inset-16 border border-white/[0.02] rounded-full" />
               
-              {/* Corner decorations */}
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
                 <div className="w-px h-8 bg-gradient-to-b from-accent-cyan/40 to-transparent" />
               </div>
@@ -190,13 +185,12 @@ export default function ContactSection() {
               </div>
             </div>
             
-            {/* Labels */}
             <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 text-[0.6rem] tracking-[0.2em] uppercase text-white/20">
               {content.contact.collision.eventDisplay}
             </div>
           </div>
           
-          {/* Right side - Content */}
+          {/* Right side : txt */}
           <div>
             {/* Section label */}
             <motion.div
@@ -209,7 +203,7 @@ export default function ContactSection() {
               {content.contact.sectionLabel}
             </motion.div>
             
-            {/* Title with character animation */}
+            {/* Title */}
             <h2 
               ref={titleRef}
               className="font-display text-[clamp(3rem,10vw,6rem)] leading-[0.9] tracking-wide mb-8"
@@ -229,7 +223,7 @@ export default function ContactSection() {
               {content.contact.preview.text}
             </motion.p>
             
-            {/* CTA Button - Reduced glow */}
+            {/* CTA */}
             <div ref={ctaRef}>
               <TransitionLink
                 href="/contact"
@@ -238,12 +232,11 @@ export default function ContactSection() {
                 <span className="relative z-10">{content.contact.preview.cta}</span>
                 <ArrowRight size={18} className="relative z-10 transition-transform group-hover:translate-x-1" />
                 
-                {/* Shine effect */}
                 <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
               </TransitionLink>
             </div>
             
-            {/* Decorative text with hidden icon */}
+            {/* Deco */}
             <div className="mt-16 flex items-center gap-4 text-white/20">
               <span className="w-12 h-px bg-white/10" />
               <span className="text-xs tracking-[0.3em] uppercase flex items-center gap-2">

@@ -7,12 +7,10 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowRight } from 'lucide-react'
 import dynamic from 'next/dynamic'
-// Easter egg component (reserved for future activation)
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import HiddenIcon from '@/components/easter-egg/HiddenIcon'
 import content from '@/lib/content.json'
 
-// Dynamic import for WebGL component (client-side only)
+// Dynamic import for WebGL (client-side only)
 const WaveBackground = dynamic(
   () => import('@/components/effects/WaveBackground'),
   { ssr: false }
@@ -29,7 +27,7 @@ export default function HeroSection() {
     if (!sectionRef.current) return
     
     const ctx = gsap.context(() => {
-      // Content fade out on scroll
+      // Content fade avec scroll
       if (contentRef.current) {
         gsap.to(contentRef.current, {
           opacity: 0,
@@ -44,7 +42,6 @@ export default function HeroSection() {
         })
       }
       
-      // Greeting text animation on load
       if (greetingRef.current) {
         const chars = greetingRef.current.querySelectorAll('.greeting-char')
         gsap.fromTo(chars,
@@ -70,7 +67,7 @@ export default function HeroSection() {
     return () => ctx.revert()
   }, [])
   
-  // Split greeting into characters for animation
+  // txt aniation
   const greetingText = content.hero.greeting
   const greetingChars = greetingText.split('').map((char, i) => (
     <span 
@@ -88,19 +85,18 @@ export default function HeroSection() {
       id="hero"
       className="section min-h-screen flex items-center relative overflow-hidden"
     >
-      {/* WAVE PARTICLE BACKGROUND */}
+      {/* PARTICLE BKG */}
       <WaveBackground className="opacity-50" />
       
-      {/* SUBTLE GRADIENT OVERLAY */}
       <div className="absolute inset-0 bg-gradient-to-b from-primary/50 via-transparent to-primary pointer-events-none z-[1]" />
       
-      {/* MAIN CONTENT */}
+      {/* MAIN */}
       <div 
         ref={contentRef}
         className="relative z-10 w-full max-w-7xl mx-auto px-6 md:px-12 lg:px-16"
       >
         <div className="max-w-full">
-          {/* Main greeting - LARGE, single line */}
+          {/* main txt */}
           <h1 
             ref={greetingRef}
             className="font-display text-[clamp(2.5rem,10vw,9rem)] leading-[0.9] tracking-wide mb-6 overflow-hidden whitespace-nowrap"
@@ -109,7 +105,7 @@ export default function HeroSection() {
             {greetingChars}
           </h1>
           
-          {/* Subtitle with role */}
+          {/* Subtitle */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -134,7 +130,7 @@ export default function HeroSection() {
             {content.hero.description}
           </motion.p>
           
-          {/* CTA Button */}
+          {/* CTA */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -164,7 +160,6 @@ export default function HeroSection() {
         </div>
       </motion.div>
       
-      {/* DECORATIVE CORNER */}
       <div className="absolute top-8 right-8 md:top-12 md:right-12 flex flex-col items-end gap-1 text-white/20 z-10">
         <span className="text-[0.6rem] tracking-[0.2em] uppercase">Portfolio</span>
         <span className="text-[0.6rem] tracking-[0.2em]">2026</span>

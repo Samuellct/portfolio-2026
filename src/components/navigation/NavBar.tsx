@@ -39,7 +39,7 @@ export default function NavBar() {
     setIsMenuOpen(false)
   }, [pathname])
   
-  // Prevent body scroll when menu is open
+  // Prevent body scroll if navmenu is open
   useEffect(() => {
     if (isMenuOpen) {
       document.body.style.overflow = 'hidden'
@@ -85,7 +85,7 @@ export default function NavBar() {
             SL
           </TransitionLink>
           
-          {/* Desktop Navigation - visible when not scrolled */}
+          {/* Desktop nav */}
           <motion.div
             className="hidden md:flex items-center gap-10"
             animate={{ opacity: isScrolled ? 0 : 1 }}
@@ -105,7 +105,7 @@ export default function NavBar() {
             ))}
           </motion.div>
           
-          {/* Hamburger Button */}
+          {/* Hamburger bttn */}
           <motion.button
             className="relative z-50 p-3 min-w-[44px] min-h-[44px] flex items-center justify-center"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
@@ -155,7 +155,7 @@ export default function NavBar() {
             transition={{ duration: 0.4 }}
             className="fixed inset-0 z-30 bg-primary"
           >
-            {/* Background pattern */}
+            {/* bkg */}
             <div className="absolute inset-0 opacity-5">
               <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent-cyan rounded-full blur-[150px]" />
               <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-purple rounded-full blur-[150px]" />
@@ -194,7 +194,7 @@ export default function NavBar() {
                 </nav>
               </div>
               
-              {/* Right side - External Links */}
+              {/* Right side - External Links (ajouter lien blog) */}
               <div className="hidden md:flex flex-col justify-center px-16 lg:px-24 border-l border-white/5">
                 <motion.p
                   initial={{ opacity: 0, x: 20 }}

@@ -24,7 +24,7 @@ export default async function Image() {
           backgroundImage: 'radial-gradient(circle at 25% 25%, #0a0a1a 0%, transparent 50%), radial-gradient(circle at 75% 75%, #1a0a2e 0%, transparent 50%)',
         }}
       >
-        {/* Decorative particles */}
+        {/* test nouvelle deco */}
         <div
           style={{
             position: 'absolute',
@@ -74,7 +74,7 @@ export default async function Image() {
           }}
         />
 
-        {/* Main content */}
+        {/* Main */}
         <div
           style={{
             display: 'flex',
@@ -98,7 +98,7 @@ export default async function Image() {
             Samuel Lecomte
           </div>
 
-          {/* Divider line */}
+          {/* line */}
           <div
             style={{
               width: 120,
@@ -132,7 +132,7 @@ export default async function Image() {
           </div>
         </div>
 
-        {/* Bottom decoration */}
+        {/* Bottom deco */}
         <div
           style={{
             position: 'absolute',

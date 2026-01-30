@@ -47,7 +47,7 @@ export default function RestoredOverlay() {
         </div>
       )}
       
-      {/* Success message */}
+      {/* Success msg */}
       {showContent && (
         <motion.div
           className="text-center"

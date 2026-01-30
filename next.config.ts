@@ -17,12 +17,12 @@ const nextConfig: NextConfig = {
     ],
   },
   
-  // Optimisations expérimentales
+  // test autres optimisations
   experimental: {
     optimizePackageImports: ['lucide-react', 'framer-motion'],
   },
   
-  // Headers de sécurité
+  // Headers de secu
   async headers() {
     return [
       {

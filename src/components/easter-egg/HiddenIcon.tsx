@@ -14,7 +14,7 @@ export default function HiddenIcon({ id, className = '' }: HiddenIconProps) {
   const [isVisible, setIsVisible] = useState(true)
   const [isMobile, setIsMobile] = useState(true) // Start as true to hide initially
   
-  // Check for mobile on mount
+  // normalement pas dispo sur mobile
   useEffect(() => {
     const checkMobile = () => {
       setIsMobile(window.innerWidth < 1024)
