@@ -345,8 +345,8 @@ When I applied this preselection to real Run 1 data, I reduced the dataset by a 
     'internship-m2': {
       id: 'internship-m2',
       title: 'Master 2 Internship - ATLAS Team',
-      description: 'Generation and analysis of simulated events to evaluate the feasibility of searches for long-lived particles (LLPs) at the HL-LHC.',
-      subtitle: 'Pioneering Searches for Long-Lived Particles',
+      description: 'Generation and analysis of simulated events to evaluate the feasibility of searches for LLPs at the HL-LHC.',
+      subtitle: 'Feasibility study of long-lived particle (LLPs) detection at the HL-LHC',
       detailedDescription: `During my final master's degree year, I spent five months with the ATLAS collaboration at the Clermont Physics Laboratory. I worked on simulating Long-Lived Particles, a class of particles predicted by several extensions of the Standard Model. Unlike ordinary particles that decay almost instantly near the collision point, LLPs can travel centimeters or even meters through the detector before breaking apart into observable products.
 
 The challenge is that ATLAS wasn't originally designed to catch these delayed signatures. Standard reconstruction algorithms expect particles to decay close to the interaction point, so LLP events often get missed or classified as background noise.
@@ -366,7 +366,7 @@ The analysis focused on identifying kinematic patterns in the resulting jets (i.
       imageAlt: 'Types of LLPs signatures in LHC detectors',
       imageCredit: 'H. Russell',
       imageCreditUrl: 'https://indico.cern.ch/event/607314/contributions/2542309/attachments/1447873/2231444/20170424_LLPs.pdf',
-      visible: true,
+      textColor: 'black',
       dateCreated: '2025-09-17',
     },
   },
