@@ -347,18 +347,27 @@ When I applied this preselection to real Run 1 data, I reduced the dataset by a 
       title: 'Master 2 Internship - ATLAS Team',
       description: 'Generation and analysis of simulated events to evaluate the feasibility of searches for long-lived particles (LLPs) at the HL-LHC.',
       subtitle: 'Pioneering Searches for Long-Lived Particles',
-      detailedDescription: 'A research internship at LPC Clermont-Ferrand within the ATLAS collaboration, focused on feasibility studies for long-lived particle searches at the High-Luminosity LHC.',
-      technologies: ['MadGraph', 'Pythia', 'Docker', 'C++', 'Git'],
+      detailedDescription: `During my final master's degree year, I spent five months with the ATLAS collaboration at the Clermont Physics Laboratory. I worked on simulating Long-Lived Particles, a class of particles predicted by several extensions of the Standard Model. Unlike ordinary particles that decay almost instantly near the collision point, LLPs can travel centimeters or even meters through the detector before breaking apart into observable products.
+
+The challenge is that ATLAS wasn't originally designed to catch these delayed signatures. Standard reconstruction algorithms expect particles to decay close to the interaction point, so LLP events often get missed or classified as background noise.
+
+I used Monte Carlo event generators to simulate thousands of proton-proton collisions at 13.6 TeV. The simulations covered two production mechanisms: *gluon fusion*, which has the highest rate, and *associated production with W or Z bosons*, which provides cleaner experimental signatures. I tested three different LLP masses (10, 30, and 55 GeV) to understand how the kinematics change across this range.
+
+The analysis focused on identifying kinematic patterns in the resulting jets (i.e. narrow showers of particles produced in collisions). I found that a transverse momentum cut at 60 GeV retains 61% of the signal while reducing QCD background to just 7%. The work also had a forward-looking component. ATLAS is being upgraded for the High-Luminosity LHC era with new tracking detectors that will extend coverage into regions currently inaccessible. The simulations showed that this upgrade will capture an additional 16% of signal events that would otherwise be lost.`,
+      technologies: ['MadGraph', 'Rivet', 'Docker', 'C++', 'Bash'],
       domains: ['Particle Physics', 'Simulation'],
-      keywords: ['atlas', 'long-lived particles', 'hl-lhc', 'simulation'],
+      keywords: ['atlas', 'long-lived particles', 'hl-lhc', 'simulation', 'bsm physics'],
       category: 'internship',
       status: 'completed',
       period: 'February - July 2025',
-      location: 'LPC Clermont-Ferrand',
-      image: 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=800',
-      imageAlt: 'Earth from space at night showing city lights representing global scientific collaboration',
-      visible: false,
-      dateCreated: '2025-02-01',
+      location: 'LPCA',
+      gitHubUrl: "https://github.com/Samuellct/Internship-M2-LLP-in-ATLAS",
+      image: '/images/m2Internship.png',
+      imageAlt: 'Types of LLPs signatures in LHC detectors',
+      imageCredit: 'H. Russell',
+      imageCreditUrl: 'https://indico.cern.ch/event/607314/contributions/2542309/attachments/1447873/2231444/20170424_LLPs.pdf',
+      visible: true,
+      dateCreated: '2025-09-17',
     },
   },
 }
