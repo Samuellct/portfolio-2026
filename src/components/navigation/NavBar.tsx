@@ -17,7 +17,7 @@ const navLinks = [
 const externalLinks = [
   { href: 'https://samuel-lecomte.fr', label: content.menu.blog, icon: ExternalLink, hoverColor: 'hover:text-accent-cyan' },
   { href: 'https://github.com/Samuellct', label: content.menu.github, icon: Github, hoverColor: 'hover:text-[#fafbfc]' },
-  { href: 'https://linkedin.com/in/samuel-lecomte-11ab82318/', label: content.menu.linkedin, icon: Linkedin, hoverColor: 'hover:text-[#0e76a8]' },
+  { href: 'www.linkedin.com/in/samuel-lecomte37', label: content.menu.linkedin, icon: Linkedin, hoverColor: 'hover:text-[#0e76a8]' },
 ]
 
 export default function NavBar() {
