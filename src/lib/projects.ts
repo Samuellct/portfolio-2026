@@ -115,21 +115,28 @@ Finally, all site text is managed through a centralized JSON file, except for pr
     'data-analysis': {
       id: 'data-analysis',
       title: 'Introduction to Data Analysis in Physics',
-      description: "Presentation of raw data filtering process applied to HL-LHC simulated data to estimate the presence of an 'X boson'.",
+      description: "Presentation of data filtering process applied to HL-LHC simulated data to estimate the presence of an 'X boson'.",
       subtitle: 'Searching for New Particles in Simulated LHC Data',
-      detailedDescription: 'This project introduces fundamental concepts of data analysis in particle physics, applying filtering techniques to simulated HL-LHC data to search for hypothetical new particles.',
+      detailedDescription: `During my third year of bachelor's degree, I worked on a particle physics analysis that simulated the search for a hypothetical *X boson* decaying into two photons.
+
+While I was familiar with Python and libraries like Pandas or SciPy, applying them to physics analysis required a different approach. We needed to optimize selection cuts on variables like photon isolation and transverse momentum to separate the signal from Standard Model background noise. The cuts had to be precise: too strict and we'd lose signal events, too loose and the background would dominate. Through this trial-and-error process, we managed to reduce background by a factor of 40 while retaining most signal events.
+
+After establishing the selection criteria on simulated samples, we moved to statistical analysis. We fitted the invariant mass spectrum background with an exponential function to see if a local excess appeared, which would indicate a new particle. Our dataset of observed data showed no evidence of the X boson, with a significance of only $0.5\\sigma$, consistent with statistical fluctuation.
+
+Following the CLs method, we determined that we could exclude signals of strength above $0.3736\\mu$, corresponding to an effective cross-section ($\\sigma$) of approximately $2.017~\\text{pb}$. This upper limit means that if a signal does exist, it will necessarily be smaller than $2.017~\\text{pb}$.`,
       technologies: ['Python', 'NumPy', 'Matplotlib', "Pandas", "Scipy"],
       domains: ['Particle Physics', 'Data Analysis', 'Simulation'],
       keywords: ['physics', 'statistics', 'python', 'simulation'],
       category: 'academic',
       status: 'completed',
-      period: 'L3 - 2022',
+      period: 'L3 - 2023',
       location: 'Université Clermont Auvergne',
       image: '/images/data_analysis.jpg',
-      imageAlt: 'Histogram showing particle mass distribution with signal and background separation',
+      imageAlt: 'The Compact Muon Solenoid (CMS) experiment in the Large Hadron Collider (LHC) at CERN.',
+      imageCredit: 'SimonWaldherr',
+      imageCreditUrl: 'https://commons.wikimedia.org/wiki/File:CERN_LHC_CMS_08.jpg',
       gitHubUrl: 'https://github.com/Samuellct/ATLAS-basic-particle-search-workflow',
-      visible: false,
-      dateCreated: '2022-03-01',
+      dateCreated: '2024-09-17',
     },
     'ising-model': {
       id: 'ising-model',
