@@ -107,7 +107,7 @@ const jsonLd = {
       ],
       sameAs: [
         'https://github.com/Samuellct',
-        'https://www.linkedin.com/in/samuel-lecomte-11ab82318/',
+        'https://www.linkedin.com/in/samuel-lecomte37/',
       ],
     },
     {

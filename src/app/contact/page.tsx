@@ -304,7 +304,7 @@ export default function ContactPage() {
             </a>
             
             <a
-              href="www.linkedin.com/in/samuel-lecomte37"
+              href="https://www.linkedin.com/in/samuel-lecomte37/"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 border border-white/10 transition-all hover:border-[#0e76a8]/30 hover:text-[#0e76a8]"

@@ -448,7 +448,7 @@ export default function AboutPage() {
               </a>
               
               <a
-                href="https://linkedin.com/in/samuel-lecomte-11ab82318/"
+                href="https://www.linkedin.com/in/samuel-lecomte37/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group flex items-center justify-center gap-3 px-6 py-3 rounded-full bg-white/[0.03] border border-white/10 hover:border-[#0077b5]/50 hover:bg-[#0077b5]/10 transition-all duration-300"
