@@ -28,9 +28,6 @@ A modern portfolio presenting my academic journey through physics and my technic
 - Detailed project pages with Markdown support
 - Categorized projects by type (academic, personal, professional)
 
-> [!NOTE]
-> This project's code is open source (MIT License). If you use it, please link back to this repository. Content and design elements remain copyrighted (see [Licence](##License).
-
 ## Installation
 
 Clone the repository:
