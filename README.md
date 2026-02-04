@@ -54,7 +54,7 @@ npm run dev
 
 The project runs on standard Next.js development workflow. The `wrangler.jsonc` file is used only for Cloudflare Pages deployment configuration and is not required for local development.
 
-## Project Structure
+## Project structure
 
 ```
 src/
@@ -75,7 +75,7 @@ src/
 
 This project is deployed on Cloudflare Pages using the `@cloudflare/next-on-pages` adapter, which converts Next.js App Router applications to run on Cloudflare Workers.
 
-### Quick Deploy via Git Integration
+### Quick deploy via git integration
 
 1. Connect your GitHub repository to Cloudflare Pages
 2. Configure build settings:
@@ -85,9 +85,9 @@ This project is deployed on Cloudflare Pages using the `@cloudflare/next-on-page
 3. Deploy on push to main branch
 
 <details>
-<summary><b>Detailed Deployment Configuration</b></summary>
+<summary><b>Detailed deployment configuration</b></summary>
 
-### Build Configuration
+### Build configuration
 
 The `wrangler.jsonc` file contains the necessary configuration for Cloudflare Pages:
 
@@ -105,7 +105,7 @@ The `wrangler.jsonc` file contains the necessary configuration for Cloudflare Pa
 - `compatibility_date`: Determines which version of the Workers runtime to use
 - `pages_build_output_dir`: Specifies the build output directory for Cloudflare Pages
 
-### Manual Deployment via Wrangler CLI
+### Manual deployment via Wrangler CLI
 
 ```bash
 # Build the project
@@ -115,7 +115,7 @@ npm run build
 npx wrangler pages deploy .vercel/output/static
 ```
 
-### Technical Requirements
+### Technical requirements
 
 The `wrangler.jsonc` configuration file with `pages_build_output_dir` is required for Cloudflare Pages to properly read the configuration. Without this key, the file is considered invalid for Pages deployments, and compatibility flags will not be applied at runtime.
 
