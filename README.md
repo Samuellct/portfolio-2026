@@ -8,8 +8,6 @@
 
 A modern portfolio presenting my academic journey through physics and my technical projects. Built with Next.js 15 and modern web technologies, featuring scroll-driven animations, WebGL particle effects, and a responsive design optimized for all devices.
 
-This project is inspired by [lohitkolluri's Portfolio template](https://github.com/lohitkolluri/Portfolio).
-
 > **Live website:** https://www.samuel-lecomte.fr/
 
 ## Features
@@ -29,6 +27,9 @@ This project is inspired by [lohitkolluri's Portfolio template](https://github.c
 **Content**
 - Detailed project pages with Markdown support
 - Categorized projects by type (academic, personal, professional)
+
+> [!NOTE]
+> This project's code is open source (MIT License). If you use it, please link back to this repository. Content and design elements remain copyrighted (see [Licence](##License).
 
 ## Installation
 
@@ -127,4 +128,5 @@ For more information, refer to the [Cloudflare Pages Next.js documentation](http
 
 ## License
 
-MIT License - See [LICENSE](./LICENSE) for details.
+- **Code** : Distributed under the [MIT License](./LICENSE).
+- **Content & Design** : All rights reserved. This includes text, images, and branding elements. No reproduction or use of these assets is permitted without explicit authorization.
