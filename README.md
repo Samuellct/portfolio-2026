@@ -1,12 +1,12 @@
 # Portfolio website
 
-![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=next.js) ![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?logo=typescript&logoColor=white) ![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-06B6D4?logo=tailwindcss&logoColor=white) ![Cloudflare Pages](https://img.shields.io/badge/Cloudflare-Pages-F38020?logo=cloudflare&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=next.js) ![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?logo=typescript&logoColor=white) ![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-3.4-%2338B2AC?logo=tailwindcss&logoColor=white) ![React](https://img.shields.io/badge/react-19-61DAFB?logo=react) ![Cloudflare Pages](https://img.shields.io/badge/Cloudflare-Pages-F38020?logo=cloudflarepages&logoColor=white)
 
 ---
 
 ## Overview
 
-A modern portfolio presenting my academic journey through physics and my technical projects. Built with Next.js 15 and modern web technologies, featuring scroll-driven animations, WebGL particle effects, and a responsive design optimized for all devices.
+A personnal portfolio presenting my academic journey through physics and my technical projects. Built with Next.js 15 and modern web technologies, featuring scroll-driven animations, WebGL particle effects, and a responsive design optimized for all devices.
 
 > **Live website:** https://www.samuel-lecomte.fr/
 
