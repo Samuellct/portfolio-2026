@@ -342,7 +342,8 @@ export default function AboutPage() {
       {/* ref sur le conteneur, pas sur le span qui change */}
       {/* besoin de corriger cet effet, marche pas comme attendu */}
       {/* ============================================ */}
-      <div 
+      <div
+        aria-hidden="true"
         className="fixed inset-0 overflow-hidden pointer-events-none z-0 flex items-center justify-center"
       >
         <div ref={bgContainerRef} className="relative">

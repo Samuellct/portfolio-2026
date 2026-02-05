@@ -174,8 +174,9 @@ export default function AboutSection() {
       className="section min-h-screen py-32 md:py-40 relative overflow-hidden"
     >
       {/* PARALLAX txt */}
-      <div 
+      <div
         ref={decorativeTextRef}
+        aria-hidden="true"
         className="absolute top-1/2 -translate-y-1/2 -left-1/4 pointer-events-none select-none"
       >
         <span className="font-display text-[35vw] text-white/[0.015] leading-none whitespace-nowrap">

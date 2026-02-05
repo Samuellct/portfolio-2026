@@ -128,8 +128,9 @@ export default function ContactSection() {
       {/* ============================================ */}
       {/* PARALLAX txt */}
       {/* ============================================ */}
-      <div 
+      <div
         ref={decorativeRef}
+        aria-hidden="true"
         className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
       >
         <span className="font-display text-[35vw] text-white/[0.015] leading-none">

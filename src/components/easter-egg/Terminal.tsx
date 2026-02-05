@@ -42,30 +42,6 @@ export default function Terminal() {
     }
   }, [canType])
   
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const typeText = useCallback((text: string, onComplete?: () => void) => {
-    setIsTyping(true)
-    setDisplayedText('')
-    setCurrentLine(text)
-    
-    let index = 0
-    const interval = setInterval(() => {
-      if (index < text.length) {
-        setDisplayedText(prev => prev + text[index])
-        index++
-      } else {
-        clearInterval(interval)
-        setIsTyping(false)
-        setLines(prev => [...prev, { type: 'system', text }])
-        setCurrentLine('')
-        setDisplayedText('')
-        onComplete?.()
-      }
-    }, typingSpeed)
-    
-    return () => clearInterval(interval)
-  }, [])
-  
   // Add line instantly
   const addLine = useCallback((line: TerminalLine) => {
     setLines(prev => [...prev, line])

@@ -95,7 +95,7 @@ export default function ContactPage() {
   return (
     <div ref={pageRef} className="min-h-screen relative" style={{ backgroundColor: CONTACT_BG_COLOR }}>
       {/* parallax */}
-      <div className="decor-text fixed top-1/2 -translate-y-1/2 left-0 pointer-events-none select-none z-0">
+      <div aria-hidden="true" className="decor-text fixed top-1/2 -translate-y-1/2 left-0 pointer-events-none select-none z-0">
         <span className="font-display text-[20vw] text-white/[0.015] leading-none whitespace-nowrap">
           CONTACT
         </span>

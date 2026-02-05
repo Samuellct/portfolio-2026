@@ -166,7 +166,7 @@ export default function ProjectsSection() {
       {/* ============================================ */}
       {/* BKG TEXT */}
       {/* ============================================ */}
-      <div className="decor-text-container absolute top-1/2 -translate-y-1/2 left-0 pointer-events-none select-none z-0">
+      <div aria-hidden="true" className="decor-text-container absolute top-1/2 -translate-y-1/2 left-0 pointer-events-none select-none z-0">
         <div className="flex overflow-hidden">
           <AnimatePresence mode="popLayout">
             <motion.div

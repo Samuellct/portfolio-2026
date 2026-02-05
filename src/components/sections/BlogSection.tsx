@@ -119,8 +119,9 @@ export default function BlogSection() {
       {/* ============================================ */}
       {/* PARALLAX txt */}
       {/* ============================================ */}
-      <div 
+      <div
         ref={decorativeRef}
+        aria-hidden="true"
         className="absolute top-1/2 -translate-y-1/2 left-0 pointer-events-none select-none"
       >
         <span className="font-display text-[40vw] text-white/[0.015] leading-none whitespace-nowrap">

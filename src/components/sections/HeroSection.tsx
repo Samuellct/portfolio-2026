@@ -7,7 +7,6 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowRight } from 'lucide-react'
 import dynamic from 'next/dynamic'
-import HiddenIcon from '@/components/easter-egg/HiddenIcon'
 import content from '@/lib/content.json'
 
 // Dynamic import for WebGL (client-side only)
