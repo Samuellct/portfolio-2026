@@ -84,8 +84,10 @@ export default function ProjectsSection() {
   const [bgColor, setBgColor] = useState('transparent')
   const [isFirstHover, setIsFirstHover] = useState(true)
   
-  const allProjects = getAllProjects()
-  const displayProjects = useMemo(() => getOrderedProjects(allProjects), [allProjects])
+  const displayProjects = useMemo(() => {
+    const allProjects = getAllProjects()
+    return getOrderedProjects(allProjects) // fonctionnement a verif, normalement supprime les 10000 calls de const displayProjects = useMemo(() => getOrderedProjects
+  }, [])
   
   // Mouse move handler - updates Y position continuously
   const handleMouseMove = useCallback((e: React.MouseEvent) => {
