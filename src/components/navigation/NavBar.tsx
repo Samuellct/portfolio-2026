@@ -25,13 +25,24 @@ export default function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const pathname = usePathname()
   
+  const [isMobile, setIsMobile] = useState(false)
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 100)
     }
-    
+
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768)
+    }
+
+    checkMobile()
     window.addEventListener('scroll', handleScroll, { passive: true })
-    return () => window.removeEventListener('scroll', handleScroll)
+    window.addEventListener('resize', checkMobile)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+      window.removeEventListener('resize', checkMobile)
+    }
   }, [])
   
   // Close menu on route change
@@ -106,12 +117,13 @@ export default function NavBar() {
           </motion.div>
           
           {/* Hamburger bttn */}
+          {/* // test afficher menu nav always sur mobile, fix le pb de devoir commencer le scroll pour l'afficher */}
           <motion.button
             className="relative z-50 p-3 min-w-[44px] min-h-[44px] flex items-center justify-center"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            animate={{ opacity: isScrolled || isMenuOpen ? 1 : 0 }}
+            animate={{ opacity: isScrolled || isMenuOpen || isMobile ? 1 : 0 }}
             transition={{ duration: 0.3 }}
-            style={{ pointerEvents: isScrolled || isMenuOpen ? 'auto' : 'none' }}
+            style={{ pointerEvents: isScrolled || isMenuOpen || isMobile ? 'auto' : 'none' }}
             aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
             aria-expanded={isMenuOpen}
             aria-controls="main-menu"
