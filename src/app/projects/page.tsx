@@ -6,6 +6,7 @@ import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
+import Image from 'next/image'
 import { getAllProjects, projectCategories, ProjectData } from '@/lib/projects'
 import HiddenIcon from '@/components/easter-egg/HiddenIcon'
 import content from '@/lib/content.json'
@@ -68,21 +69,27 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
           style={{ x, y }}
         >
           {/* Container flexible avec hauteur min/max */}
-          <div className="relative min-h-[200px] max-h-[280px] flex items-center justify-center overflow-hidden">
-            <motion.img
-              src={project.image}
-              alt={project.title}
-              className={`w-full h-auto max-h-[280px] object-contain transition-opacity duration-300 ${
+          <div className="relative min-h-[200px] max-h-[280px] overflow-hidden">
+            <motion.div
+              className={`relative w-full h-full min-h-[200px] transition-opacity duration-300 ${
                 imageLoaded ? 'opacity-100' : 'opacity-0'
               }`}
-              onLoad={() => setImageLoaded(true)}
-              animate={{ 
+              animate={{
                 scale: isHovered ? 1.05 : 1,
                 filter: isHovered ? 'grayscale(0%)' : 'grayscale(100%)'
               }}
               transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
-            />
-            
+            >
+              <Image
+                src={project.image}
+                alt={project.title}
+                fill
+                className="object-contain"
+                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                onLoad={() => setImageLoaded(true)}
+              />
+            </motion.div>
+
             {/* Loading placeholder */}
             {!imageLoaded && (
               <div className="absolute inset-0 flex items-center justify-center">
