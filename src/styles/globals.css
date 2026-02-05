@@ -1,5 +1,3 @@
-@import 'katex/dist/katex.min.css';
-
 @keyframes coverScreen {
   from {
     clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
