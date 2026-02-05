@@ -6,6 +6,7 @@ import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motio
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowRight } from 'lucide-react'
+import Image from 'next/image'
 import { getAllProjects, ProjectData } from '@/lib/projects'
 import content from '@/lib/content.json'
 
@@ -278,10 +279,12 @@ export default function ProjectsSection() {
                   transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
                   className="absolute inset-0 overflow-hidden"
                 >
-                  <img
+                  <Image
                     src={activeProject.image}
                     alt={activeProject.imageAlt}
-                    className="w-full h-full object-cover"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 40vw"
                   />
                   <div className="absolute inset-0 border border-white/10" />
                 </motion.div>
