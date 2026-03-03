@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 
+export const runtime = 'edge'
+
 export const metadata: Metadata = {
   title: 'About',
   description: 'Learn about Samuel Lecomte - Graduate in Physics and Data Science from Université Clermont Auvergne, with experience in CERN collaborations including ATLAS and LHCb experiments.',

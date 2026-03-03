@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 
+export const runtime = 'edge'
+
 export const metadata: Metadata = {
   title: 'Projects',
   description: 'Explore my portfolio of particle physics research, data analysis projects, and technical work from CERN collaborations.',

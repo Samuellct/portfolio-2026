@@ -1,5 +1,7 @@
 import type { Metadata } from 'next'
 
+export const runtime = 'edge'
+
 export const metadata: Metadata = {
   title: 'Contact',
   description: 'Get in touch with Samuel Lecomte for collaborations, research opportunities, or general inquiries.',
