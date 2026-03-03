@@ -5,6 +5,16 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.9.4] - 2026-03-03
+
+### Ajouté
+- Composant `LanguageSwitcher` pour basculer entre FR et EN
+- Sélecteur de langue dans la barre de navigation (visible en permanence)
+- Sélecteur de langue dans le menu hamburger
+- Clé `menu.switchLang` dans `messages/en.json` et `messages/fr.json`
+
+---
+
 ## [4.9.3] - 2026-03-03
 
 ### Modifié

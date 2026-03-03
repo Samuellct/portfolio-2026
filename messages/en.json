@@ -15,7 +15,8 @@
     "external": "External",
     "blog": "Blog",
     "github": "GitHub",
-    "linkedin": "LinkedIn"
+    "linkedin": "LinkedIn",
+    "switchLang": "Français"
   },
   "hero": {
     "greeting": "Hi, I'm Samuel",

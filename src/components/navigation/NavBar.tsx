@@ -5,6 +5,7 @@ import { usePathname } from '@/i18n/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Github, Linkedin, ExternalLink } from 'lucide-react'
 import TransitionLink from '@/components/navigation/TransitionLink'
+import LanguageSwitcher from '@/components/ui/LanguageSwitcher'
 import { useTranslations } from 'next-intl'
 
 export default function NavBar() {
@@ -118,9 +119,12 @@ export default function NavBar() {
             ))}
           </motion.div>
           
-          {/* Hamburger bttn */}
-          {/* // test afficher menu nav always sur mobile, fix le pb de devoir commencer le scroll pour l'afficher */}
-          <motion.button
+          {/* Language switcher + Hamburger */}
+          <div className="flex items-center gap-4">
+            <LanguageSwitcher className="text-xs font-medium tracking-[0.2em] uppercase text-white/50 hover:text-white transition-colors" />
+
+            {/* Hamburger bttn */}
+            <motion.button
             className="relative z-50 p-3 min-w-[44px] min-h-[44px] flex items-center justify-center"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             animate={{ opacity: isScrolled || isMenuOpen || isMobile ? 1 : 0 }}
@@ -154,6 +158,7 @@ export default function NavBar() {
               )}
             </AnimatePresence>
           </motion.button>
+          </div>
         </div>
       </motion.nav>
       
@@ -237,6 +242,19 @@ export default function NavBar() {
                     </motion.a>
                   ))}
                 </div>
+
+                {/* Language switcher */}
+                <motion.div
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.25 + externalLinks.length * 0.08 }}
+                  className="mt-8 pt-6 border-t border-white/5"
+                >
+                  <LanguageSwitcher
+                    label={tMenu('switchLang')}
+                    className="flex items-center gap-3 text-white/50 hover:text-accent-cyan transition-colors text-lg"
+                  />
+                </motion.div>
               </div>
             </div>
           </motion.div>
