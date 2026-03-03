@@ -1,5 +1,5 @@
-import HomePageClient from '@/components/home/HomePageClient'
+import { redirect } from 'next/navigation'
 
-export default function HomePage() {
-  return <HomePageClient />
+export default function RootPage() {
+  redirect('/en')
 }

@@ -1,8 +1,7 @@
 'use client'
 
 import { ReactNode, MouseEvent } from 'react'
-import Link from 'next/link'
-import { usePathname } from 'next/navigation'
+import { Link, usePathname } from '@/i18n/navigation'
 import { useTransition } from '@/context/TransitionContext'
 
 interface TransitionLinkProps {

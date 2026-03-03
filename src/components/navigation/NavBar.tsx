@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { usePathname } from 'next/navigation'
+import { usePathname } from '@/i18n/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Github, Linkedin, ExternalLink } from 'lucide-react'
 import TransitionLink from '@/components/navigation/TransitionLink'

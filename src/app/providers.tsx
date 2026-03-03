@@ -1,7 +1,7 @@
 'use client'
 
 import { ReactNode, useState, useEffect } from 'react'
-import { usePathname } from 'next/navigation'
+import { usePathname } from '@/i18n/navigation'
 import { AnimatePresence } from 'framer-motion'
 import { EasterEggProvider } from '@/context/EasterEggContext'
 import { SiteProvider } from '@/context/SiteContext'

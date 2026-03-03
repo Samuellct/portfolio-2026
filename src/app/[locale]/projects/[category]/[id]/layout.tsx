@@ -1,26 +1,35 @@
 import type { Metadata } from 'next'
+import { setRequestLocale } from 'next-intl/server'
 import { getProjectById, getAllProjectParams } from '@/lib/projects'
+import { routing } from '@/i18n/routing'
 
 type Props = {
-  params: Promise<{ category: string; id: string }>
+  params: Promise<{ locale: string; category: string; id: string }>
 }
 
-// Generate static params for all projects (SSG)
+// Generate static params for all projects × all locales (SSG)
 export async function generateStaticParams() {
-  return getAllProjectParams()
+  const projectParams = getAllProjectParams()
+  return routing.locales.flatMap((locale) =>
+    projectParams.map((p) => ({
+      locale,
+      category: p.category,
+      id: p.id,
+    }))
+  )
 }
 
 // Generate dynamic metadata for SEO
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { category, id } = await params
   const project = getProjectById(category, id)
-  
+
   if (!project) {
     return {
       title: 'Project Not Found',
     }
   }
-  
+
   return {
     title: project.title,
     description: project.description,
@@ -29,7 +38,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `${project.title} | Samuel Lecomte`,
       description: project.description,
       type: 'article',
-      images: project.image.startsWith('/') 
+      images: project.image.startsWith('/')
         ? [`https://www.samuel-lecomte.fr${project.image}`]
         : [project.image],
     },
@@ -41,10 +50,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   }
 }
 
-export default function ProjectLayout({
+export default async function ProjectLayout({
   children,
+  params,
 }: {
   children: React.ReactNode
+  params: Promise<{ locale: string }>
 }) {
+  const { locale } = await params
+  setRequestLocale(locale)
   return children
 }

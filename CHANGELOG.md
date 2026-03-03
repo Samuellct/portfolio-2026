@@ -5,6 +5,20 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.9.2] - 2026-03-03
+
+### Modifié
+- pages déplacées ds `src/app/[locale]/`
+- Root layout simplifié en pass-through, locale layout avec `<html lang={locale}>`
+- `NextIntlClientProvider` intégré dans le locale layout
+- `generateStaticParams` ajouté pour les locales `['en', 'fr']`
+- `locales × projets` pour les routes dynamiques `[category]/[id]`
+- Hooks `usePathname`, `useRouter`, `Link` migrés de `next/navigation` vers `@/i18n/navigation` dans 5 fichiers
+- Redirection racine `/` → `/en` via `redirect()` Next.js
+- Page 404 racine (hors `[locale]`) avec styles inline
+
+---
+
 ## [4.9.1] - 2026-03-03
 
 ### Ajouté
