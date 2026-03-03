@@ -9,7 +9,7 @@ import { ArrowLeft, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import { getAllProjects, projectCategories, ProjectData } from '@/lib/projects'
 import HiddenIcon from '@/components/easter-egg/HiddenIcon'
-import content from '@/lib/content.json'
+import { useTranslations } from 'next-intl'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -20,6 +20,7 @@ const PROJECTS_BG_COLOR = '#0a0a12'
 // Project card
 // ============================================
 function ProjectCard({ project, index }: { project: ProjectData; index: number }) {
+  const t = useTranslations('projects')
   const cardRef = useRef<HTMLDivElement>(null)
   const [isHovered, setIsHovered] = useState(false)
   const [imageLoaded, setImageLoaded] = useState(false)
@@ -108,7 +109,7 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
           {/* Status badge */}
           {project.status === 'in-progress' && (
             <div className="absolute top-3 right-3 px-2.5 py-1 bg-accent-cyan/20 backdrop-blur-sm border border-accent-cyan/30 text-[0.6rem] tracking-[0.15em] uppercase text-accent-cyan">
-              {content.projects.status.inProgress}
+              {t('status.inProgress')}
             </div>
           )}
           
@@ -128,7 +129,7 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
         <div className="space-y-2">
           <div className="flex items-center gap-3 text-[0.6rem] tracking-[0.2em] uppercase text-white/40">
             <span style={{ color: project.category === 'internship' ? '#10b981' : project.category === 'academic' ? '#a855f7' : '#00f0ff' }}>
-              {project.category === 'internship' ? content.projects.categories.internship : project.category}
+              {project.category === 'internship' ? t('categories.internship') : project.category}
             </span>
             <span>•</span>
             <span>{project.period}</span>
@@ -152,7 +153,7 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
             }}
             transition={{ duration: 0.3 }}
           >
-            <span className="text-xs tracking-[0.15em] uppercase">{content.projects.viewProject}</span>
+            <span className="text-xs tracking-[0.15em] uppercase">{t('viewProject')}</span>
             <ArrowRight size={12} />
           </motion.div>
         </div>
@@ -165,6 +166,8 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
 // Main Projects Page
 // ============================================
 export default function ProjectsPage() {
+  const t = useTranslations('projects')
+  const tCommon = useTranslations('common')
   const [activeFilter, setActiveFilter] = useState<string>('all')
   const allProjects = getAllProjects()
   const pageRef = useRef<HTMLDivElement>(null)
@@ -243,7 +246,7 @@ export default function ProjectsPage() {
             className="inline-flex items-center gap-2 text-white/50 hover:text-white transition-colors group"
           >
             <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1" />
-            <span className="text-sm tracking-[0.1em] uppercase">{content.common.back}</span>
+            <span className="text-sm tracking-[0.1em] uppercase">{tCommon('back')}</span>
           </TransitionLink>
         </motion.div>
         
@@ -255,15 +258,15 @@ export default function ProjectsPage() {
             transition={{ duration: 0.6 }}
             className="section-label text-accent-cyan mb-4"
           >
-            {content.projects.sectionLabel}
+            {t('sectionLabel')}
           </motion.div>
           
           <h1 className="font-display text-[clamp(3rem,10vw,8rem)] leading-[0.85] tracking-wide mb-6">
-            {content.projects.title}
+            {t('title')}
           </h1>
           
           <p className="text-lg text-white/50 max-w-2xl">
-            {content.projects.preview.description}
+            {t('preview.description')}
           </p>
         </div>
         
@@ -282,7 +285,7 @@ export default function ProjectsPage() {
                 : 'bg-transparent text-white/60 border-white/20 hover:border-white/50 hover:text-white'
             }`}
           >
-            {content.projects.categories.all}
+            {t('categories.all')}
           </button>
           
           {projectCategories.map((category) => (
@@ -295,7 +298,7 @@ export default function ProjectsPage() {
                   : 'bg-transparent text-white/60 border-white/20 hover:border-white/50 hover:text-white'
               }`}
             >
-              {category.id === 'internship' ? content.projects.categories.internship : category.title}
+              {category.id === 'internship' ? t('categories.internship') : category.title}
             </button>
           ))}
           
@@ -326,7 +329,7 @@ export default function ProjectsPage() {
             animate={{ opacity: 1 }}
             className="text-center py-20 text-white/40"
           >
-            {content.projects.emptyState}
+            {t('emptyState')}
           </motion.div>
         )}
       </div>

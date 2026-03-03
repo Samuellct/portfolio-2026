@@ -7,29 +7,30 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowRight } from 'lucide-react'
 import HiddenIcon from '@/components/easter-egg/HiddenIcon'
-import content from '@/lib/content.json'
+import { useTranslations } from 'next-intl'
 
 gsap.registerPlugin(ScrollTrigger)
 
-const stats = [
-  { 
-    value: '2', 
-    label: content.about.stats.experiments,
-    hoverText: content.about.stats.experimentsHover
-  },
-  { 
-    value: '6+', 
-    label: content.about.stats.languages,
-    hoverText: content.about.stats.languagesHover
-  },
-  { 
-    value: '20+', 
-    label: content.about.stats.reports,
-    hoverText: content.about.stats.reportsHover
-  },
-]
-
 export default function AboutSection() {
+  const t = useTranslations('about')
+
+  const stats = [
+    {
+      value: '2',
+      label: t('stats.experiments'),
+      hoverText: t('stats.experimentsHover')
+    },
+    {
+      value: '6+',
+      label: t('stats.languages'),
+      hoverText: t('stats.languagesHover')
+    },
+    {
+      value: '20+',
+      label: t('stats.reports'),
+      hoverText: t('stats.reportsHover')
+    },
+  ]
   const sectionRef = useRef<HTMLElement>(null)
   const decorativeTextRef = useRef<HTMLDivElement>(null)
   const statsRef = useRef<HTMLDivElement>(null)
@@ -200,14 +201,14 @@ export default function AboutSection() {
             transition={{ duration: 0.6 }}
             className="section-label text-accent-purple mb-4"
           >
-            {content.about.sectionLabel}
+            {t('sectionLabel')}
           </motion.div>
           
           <h2 
             ref={titleRef}
             className="font-display text-[clamp(3rem,10vw,7rem)] leading-[0.9] tracking-wide overflow-hidden"
           >
-            {content.about.title.split(' ').map((word, i) => (
+            {t('title').split(' ').map((word: string, i: number) => (
               <span key={i} className="title-word inline-block mr-[0.25em]">
                 {word}
               </span>
@@ -223,11 +224,11 @@ export default function AboutSection() {
             {/* txt */}
             <div ref={textBlockRef} className="space-y-6 mb-12">
               <p className="text-lg md:text-xl text-white/70 leading-relaxed text-justify">
-                {content.about.preview.intro}
+                {t('preview.intro')}
               </p>
               
               <p className="text-white/50 leading-relaxed text-justify">
-                {content.about.preview.highlight} <HiddenIcon id="about-icon" className="inline-block align-middle" />
+                {t('preview.highlight')} <HiddenIcon id="about-icon" className="inline-block align-middle" />
               </p>
             </div>
             
@@ -242,7 +243,7 @@ export default function AboutSection() {
                 href="/about"
                 className="inline-flex items-center gap-3 text-accent-purple hover:text-white transition-colors group"
               >
-                <span className="text-sm tracking-[0.15em] uppercase">{content.about.preview.cta}</span>
+                <span className="text-sm tracking-[0.15em] uppercase">{t('preview.cta')}</span>
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
               </TransitionLink>
             </motion.div>

@@ -3,13 +3,14 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
-import content from '@/lib/content.json'
+import { useTranslations } from 'next-intl'
 
 interface ScrollIndicatorProps {
   hideAfterPx?: number
 }
 
 export default function ScrollIndicator({ hideAfterPx = 100 }: ScrollIndicatorProps) {
+  const t = useTranslations('hero')
   const [isVisible, setIsVisible] = useState(true)
   
   useEffect(() => {
@@ -64,7 +65,7 @@ export default function ScrollIndicator({ hideAfterPx = 100 }: ScrollIndicatorPr
           
           {/* Label */}
           <span className="text-[10px] tracking-[0.2em] uppercase text-white/30">
-            {content.hero.scrollHint}
+            {t('scrollHint')}
           </span>
         </motion.div>
       )}

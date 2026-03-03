@@ -5,11 +5,12 @@ import { motion } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ExternalLink, Sparkles } from 'lucide-react'
-import content from '@/lib/content.json'
+import { useTranslations } from 'next-intl'
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default function BlogSection() {
+  const t = useTranslations('blog')
   const sectionRef = useRef<HTMLElement>(null)
   const decorativeRef = useRef<HTMLDivElement>(null)
   const cardRef = useRef<HTMLDivElement>(null)
@@ -149,7 +150,7 @@ export default function BlogSection() {
           transition={{ duration: 0.6 }}
           className="section-label text-accent-pink mb-4"
         >
-          {content.blog.sectionLabel}
+          {t('sectionLabel')}
         </motion.div>
         
         {/* Title */}
@@ -157,7 +158,7 @@ export default function BlogSection() {
           ref={titleRef}
           className="font-display text-[clamp(3rem,10vw,7rem)] leading-[0.9] tracking-wide mb-12"
         >
-          {content.blog.title}
+          {t('title')}
         </h2>
         
         {/* tuile */}
@@ -181,16 +182,16 @@ export default function BlogSection() {
             <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-accent-pink/10 border border-accent-pink/20 rounded-full mb-8">
               <span className="w-2 h-2 bg-accent-pink rounded-full animate-pulse" />
               <span className="text-[0.65rem] tracking-[0.2em] uppercase text-accent-pink font-medium">
-                {content.blog.comingSoon.badge}
+                {t('comingSoon.badge')}
               </span>
             </div>
             
             <h3 className="font-display text-2xl md:text-3xl mb-4">
-              {content.blog.comingSoon.title}
+              {t('comingSoon.title')}
             </h3>
             
             <p className="text-white/50 leading-relaxed mb-10 max-w-lg mx-auto">
-              {content.blog.comingSoon.description}
+              {t('comingSoon.description')}
             </p>
             
             <a
@@ -199,7 +200,7 @@ export default function BlogSection() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 border border-white/10 text-sm tracking-[0.15em] uppercase transition-all duration-300 hover:bg-accent-pink/10 hover:border-accent-pink/30 group/btn"
             >
-              {content.blog.comingSoon.cta}
+              {t('comingSoon.cta')}
               <ExternalLink size={14} className="transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
             </a>
             

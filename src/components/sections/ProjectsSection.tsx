@@ -8,7 +8,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import { getAllProjects, ProjectData } from '@/lib/projects'
-import content from '@/lib/content.json'
+import { useTranslations } from 'next-intl'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -69,6 +69,7 @@ function getOrderedProjects(allProjects: ProjectData[]): ProjectData[] {
 /* ============================================ */
 
 export default function ProjectsSection() {
+  const t = useTranslations('projects')
   const sectionRef = useRef<HTMLElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   
@@ -214,7 +215,7 @@ export default function ProjectsSection() {
               transition={{ duration: 0.6 }}
               className="section-label text-accent-cyan mb-4"
             >
-              {content.projects.sectionLabel}
+              {t('sectionLabel')}
             </motion.div>
             
             <motion.h2
@@ -224,7 +225,7 @@ export default function ProjectsSection() {
               transition={{ duration: 0.8 }}
               className="font-display text-[clamp(3rem,10vw,7rem)] leading-[0.9] tracking-wide"
             >
-              {content.projects.title}
+              {t('title')}
             </motion.h2>
           </div>
           
@@ -238,7 +239,7 @@ export default function ProjectsSection() {
               href="/projects"
               className="inline-flex items-center gap-3 text-white/50 hover:text-white transition-colors group"
             >
-              <span className="text-sm tracking-[0.15em] uppercase">{content.projects.preview.cta}</span>
+              <span className="text-sm tracking-[0.15em] uppercase">{t('preview.cta')}</span>
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </TransitionLink>
           </motion.div>

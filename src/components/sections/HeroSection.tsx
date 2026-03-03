@@ -7,7 +7,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowRight } from 'lucide-react'
 import dynamic from 'next/dynamic'
-import content from '@/lib/content.json'
+import { useTranslations } from 'next-intl'
 
 // Dynamic import for WebGL (client-side only)
 const WaveBackground = dynamic(
@@ -18,6 +18,7 @@ const WaveBackground = dynamic(
 gsap.registerPlugin(ScrollTrigger)
 
 export default function HeroSection() {
+  const t = useTranslations('hero')
   const sectionRef = useRef<HTMLElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
   const greetingRef = useRef<HTMLHeadingElement>(null)
@@ -67,7 +68,7 @@ export default function HeroSection() {
   }, [])
   
   // txt aniation
-  const greetingText = content.hero.greeting
+  const greetingText = t('greeting')
   const greetingChars = greetingText.split('').map((char, i) => (
     <span 
       key={i} 
@@ -114,7 +115,7 @@ export default function HeroSection() {
             <div className="flex items-center gap-4 mb-4">
               <span className="w-12 h-px bg-gradient-to-r from-accent-cyan to-transparent" />
               <span className="font-display text-[clamp(1.2rem,3vw,2rem)] leading-[1.1] tracking-wide text-accent-cyan">
-                {content.hero.title} {content.hero.titleAlt}
+                {t('title')} {t('titleAlt')}
               </span>
             </div>
           </motion.div>
@@ -126,7 +127,7 @@ export default function HeroSection() {
             transition={{ delay: 1, duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
             className="text-lg md:text-xl text-white/50 leading-relaxed max-w-xl mb-12 text-justify"
           >
-            {content.hero.description}
+            {t('description')}
           </motion.p>
           
           {/* CTA */}
@@ -139,7 +140,7 @@ export default function HeroSection() {
               href="/about"
               className="inline-flex items-center gap-3 px-8 py-4 bg-white/5 border border-white/20 text-sm font-medium tracking-[0.15em] uppercase transition-all duration-300 hover:bg-accent-cyan hover:text-black hover:border-accent-cyan hover:shadow-[0_0_25px_rgba(0,240,255,0.2)] group relative overflow-hidden"
             >
-              <span className="relative z-10">{content.hero.cta}</span>
+              <span className="relative z-10">{t('cta')}</span>
               <ArrowRight size={16} className="relative z-10 transition-transform group-hover:translate-x-1" />
             </TransitionLink>
           </motion.div>
@@ -153,7 +154,7 @@ export default function HeroSection() {
         transition={{ delay: 1.5, duration: 0.8 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 text-white/40 z-10"
       >
-        <span className="text-[0.65rem] tracking-[0.25em] uppercase">{content.hero.scrollHint}</span>
+        <span className="text-[0.65rem] tracking-[0.25em] uppercase">{t('scrollHint')}</span>
         <div className="w-px h-16 relative overflow-hidden">
           <span className="absolute inset-0 w-full bg-gradient-to-b from-accent-cyan via-accent-cyan to-transparent animate-scroll-line" />
         </div>

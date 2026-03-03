@@ -10,9 +10,11 @@ import { ArrowLeft, ExternalLink, Calendar, MapPin } from 'lucide-react'
 import { FaGithub } from 'react-icons/fa'
 import { getProjectById, getCategoryById } from '@/lib/projects'
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer'
-import content from '@/lib/content.json'
+import { useTranslations } from 'next-intl'
 
 export default function ProjectDetailPage() {
+  const t = useTranslations('projects')
+  const tCommon = useTranslations('common')
   const params = useParams()
   const router = useRouter()
   const categoryId = params.category as string
@@ -34,7 +36,7 @@ export default function ProjectDetailPage() {
   if (!project) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="text-white/50">{content.common.loading}</div>
+        <div className="text-white/50">{tCommon('loading')}</div>
       </div>
     )
   }
@@ -66,7 +68,7 @@ export default function ProjectDetailPage() {
                   className="inline-flex items-center gap-2 text-white/50 hover:text-white transition-colors"
                 >
                   <ArrowLeft size={16} />
-                  <span className="text-sm tracking-[0.1em] uppercase">{content.common.back}</span>
+                  <span className="text-sm tracking-[0.1em] uppercase">{tCommon('back')}</span>
                 </TransitionLink>
               </motion.div>
               
@@ -87,7 +89,7 @@ export default function ProjectDetailPage() {
                   
                   {project.status === 'in-progress' && (
                     <span className="px-2 py-1 bg-accent-cyan/10 border border-accent-cyan/20 text-[0.6rem] tracking-wider uppercase text-accent-cyan">
-                      {content.projects.status.inProgress}
+                      {t('status.inProgress')}
                     </span>
                   )}
                 </div>
@@ -117,7 +119,7 @@ export default function ProjectDetailPage() {
                 {/* Technologies */}
                 <div className="mb-8">
                   <h2 className="text-xs tracking-[0.2em] uppercase text-white/40 mb-4">
-                    {content.projects.technologies}
+                    {t('technologies')}
                   </h2>
                   <div className="flex flex-wrap gap-2">
                     {project.technologies.map((tech) => (
@@ -141,7 +143,7 @@ export default function ProjectDetailPage() {
                       className="inline-flex items-center gap-3 px-6 py-3 bg-[#238636] text-white text-sm font-medium tracking-wide transition-colors hover:bg-[#2ea043]"
                     >
                       <FaGithub size={18} />
-                      {content.projects.viewOnGitHub}
+                      {t('viewOnGitHub')}
                       <ExternalLink size={14} />
                     </a>
                   </div>
@@ -183,7 +185,7 @@ export default function ProjectDetailPage() {
               
               {project.imageCredit && (
                 <p className="mt-2 text-xs text-white/30">
-                  {content.projects.imageCredit}: {' '}
+                  {t('imageCredit')}: {' '}
                   {project.imageCreditUrl ? (
                     <a
                       href={project.imageCreditUrl}

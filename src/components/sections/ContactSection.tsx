@@ -8,11 +8,12 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowRight } from 'lucide-react'
 import ParticleCollision from '@/components/effects/ParticleCollision'
 import HiddenIcon from '@/components/easter-egg/HiddenIcon'
-import content from '@/lib/content.json'
+import { useTranslations } from 'next-intl'
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default function ContactSection() {
+  const t = useTranslations('contact')
   const sectionRef = useRef<HTMLElement>(null)
   const decorativeRef = useRef<HTMLDivElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
@@ -108,7 +109,7 @@ export default function ContactSection() {
     return () => ctx.revert()
   }, [])
   
-  const titleText = content.contact.title
+  const titleText = t('title')
   const titleChars = titleText.split('').map((char, i) => (
     <span 
       key={i} 
@@ -187,7 +188,7 @@ export default function ContactSection() {
             </div>
             
             <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 text-[0.6rem] tracking-[0.2em] uppercase text-white/20">
-              {content.contact.collision.eventDisplay}
+              {t('collision.eventDisplay')}
             </div>
           </div>
           
@@ -201,7 +202,7 @@ export default function ContactSection() {
               transition={{ duration: 0.6 }}
               className="section-label text-accent-cyan mb-4"
             >
-              {content.contact.sectionLabel}
+              {t('sectionLabel')}
             </motion.div>
             
             {/* Title */}
@@ -221,7 +222,7 @@ export default function ContactSection() {
               transition={{ delay: 0.3, duration: 0.6 }}
               className="text-xl md:text-2xl text-white/60 leading-relaxed mb-12 max-w-lg"
             >
-              {content.contact.preview.text}
+              {t('preview.text')}
             </motion.p>
             
             {/* CTA */}
@@ -230,7 +231,7 @@ export default function ContactSection() {
                 href="/contact"
                 className="inline-flex items-center gap-4 px-10 py-5 bg-accent-cyan text-black text-sm font-medium tracking-[0.2em] uppercase transition-all duration-300 hover:bg-white hover:shadow-[0_0_30px_rgba(0,240,255,0.25)] group relative overflow-hidden"
               >
-                <span className="relative z-10">{content.contact.preview.cta}</span>
+                <span className="relative z-10">{t('preview.cta')}</span>
                 <ArrowRight size={18} className="relative z-10 transition-transform group-hover:translate-x-1" />
                 
                 <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />

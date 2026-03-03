@@ -11,7 +11,7 @@ import ElevationPath from '@/components/about/ElevationPath'
 import NetworkGraph from '@/components/about/NetworkGraph'
 import WaveEmitter from '@/components/about/WaveEmitter'
 import ScrollIndicator from '@/components/about/ScrollIndicator'
-import content from '@/lib/content.json'
+import { useTranslations } from 'next-intl'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -29,55 +29,6 @@ const sectionColors = {
 // BACKGROUND TEXTS
 // ============================================
 const bgTexts = ['ABOUT', 'STACK', 'EDUCATION', 'INTERESTS']
-
-// ============================================
-// EDUCATION DATA
-// ============================================
-const education = [
-  {
-    id: 'master2',
-    period: content.about.education.master2.period,
-    degree: content.about.education.master2.degree,
-    track: content.about.education.master2.track,
-    school: content.about.education.master2.school,
-    color: '#00f0ff',
-  },
-  {
-    id: 'datascience',
-    period: content.about.education.datascience.period,
-    degree: content.about.education.datascience.degree,
-    school: content.about.education.datascience.school,
-    color: '#a855f7',
-  },
-  {
-    id: 'bachelor',
-    period: content.about.education.bachelor.period,
-    degree: content.about.education.bachelor.degree,
-    school: content.about.education.bachelor.school,
-    color: '#10b981',
-  },
-]
-
-// ============================================
-// INTERESTS DATA
-// ============================================
-const interests = [
-  { 
-    id: 'running',
-    label: content.about.interests.running.title, 
-    description: content.about.interests.running.description,
-  },
-  { 
-    id: 'homelab',
-    label: content.about.interests.tech.title, 
-    description: content.about.interests.tech.description,
-  },
-  { 
-    id: 'science',
-    label: content.about.interests.science.title, 
-    description: content.about.interests.science.description,
-  },
-]
 
 // ============================================
 // GHOST TAG COMPONENT
@@ -109,6 +60,53 @@ function GhostTag({ tech }: { tech: TechStats }) {
 // MAIN COMPONENT
 // ============================================
 export default function AboutPage() {
+  const tAbout = useTranslations('about')
+  const tCommon = useTranslations('common')
+  const tMenu = useTranslations('menu')
+
+  const education = [
+    {
+      id: 'master2',
+      period: tAbout('education.master2.period'),
+      degree: tAbout('education.master2.degree'),
+      track: tAbout('education.master2.track'),
+      school: tAbout('education.master2.school'),
+      color: '#00f0ff',
+    },
+    {
+      id: 'datascience',
+      period: tAbout('education.datascience.period'),
+      degree: tAbout('education.datascience.degree'),
+      school: tAbout('education.datascience.school'),
+      color: '#a855f7',
+    },
+    {
+      id: 'bachelor',
+      period: tAbout('education.bachelor.period'),
+      degree: tAbout('education.bachelor.degree'),
+      school: tAbout('education.bachelor.school'),
+      color: '#10b981',
+    },
+  ]
+
+  const interests = [
+    {
+      id: 'running',
+      label: tAbout('interests.running.title'),
+      description: tAbout('interests.running.description'),
+    },
+    {
+      id: 'homelab',
+      label: tAbout('interests.tech.title'),
+      description: tAbout('interests.tech.description'),
+    },
+    {
+      id: 'science',
+      label: tAbout('interests.science.title'),
+      description: tAbout('interests.science.description'),
+    },
+  ]
+
   // Page container ref
   const pageRef = useRef<HTMLDivElement>(null)
   
@@ -325,7 +323,7 @@ export default function AboutPage() {
               className="inline-flex items-center gap-2 text-white/50 hover:text-white transition-colors group"
             >
               <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1" />
-              <span className="text-sm tracking-[0.1em] uppercase">{content.common.back}</span>
+              <span className="text-sm tracking-[0.1em] uppercase">{tCommon('back')}</span>
             </TransitionLink>
           </motion.div>
         </div>
@@ -384,10 +382,10 @@ export default function AboutPage() {
             {/* Title */}
             <div style={{ opacity: introTitleOpacity }}>
               <div className="section-label text-accent-cyan mb-4">
-                {content.about.sectionLabel}
+                {tAbout('sectionLabel')}
               </div>
               <h1 className="font-display text-[clamp(2.5rem,7vw,5rem)] leading-[0.95] tracking-wide mb-12">
-                {content.about.title}
+                {tAbout('title')}
               </h1>
             </div>
             
@@ -400,7 +398,7 @@ export default function AboutPage() {
               }}
             >
               <p className="text-lg md:text-xl text-white/70 leading-relaxed">
-                {content.about.full.intro}
+                {tAbout('full.intro')}
               </p>
             </div>
             
@@ -413,10 +411,10 @@ export default function AboutPage() {
               }}
             >
               <h2 className="text-xs tracking-[0.2em] uppercase text-accent-purple mb-4">
-                {content.about.full.goalsTitle}
+                {tAbout('full.goalsTitle')}
               </h2>
               <p className="text-white/50 leading-relaxed">
-                {content.about.full.goals}
+                {tAbout('full.goals')}
               </p>
             </div>
             
@@ -435,7 +433,7 @@ export default function AboutPage() {
                 className="group flex items-center justify-center gap-3 px-6 py-3 rounded-full bg-white/[0.03] border border-white/10 hover:border-accent-cyan/50 hover:bg-accent-cyan/10 transition-all duration-300"
               >
                 <Download size={18} className="text-accent-cyan" />
-                <span className="text-sm">{content.about.downloadCV}</span>
+                <span className="text-sm">{tAbout('downloadCV')}</span>
               </a>
               
               <a
@@ -445,7 +443,7 @@ export default function AboutPage() {
                 className="group flex items-center justify-center gap-3 px-6 py-3 rounded-full bg-white/[0.03] border border-white/10 hover:border-white/30 hover:bg-white/10 transition-all duration-300"
               >
                 <Github size={18} />
-                <span className="text-sm">{content.menu.github}</span>
+                <span className="text-sm">{tMenu('github')}</span>
               </a>
               
               <a
@@ -455,7 +453,7 @@ export default function AboutPage() {
                 className="group flex items-center justify-center gap-3 px-6 py-3 rounded-full bg-white/[0.03] border border-white/10 hover:border-[#0077b5]/50 hover:bg-[#0077b5]/10 transition-all duration-300"
               >
                 <Linkedin size={18} className="text-[#0077b5]" />
-                <span className="text-sm">{content.menu.linkedin}</span>
+                <span className="text-sm">{tMenu('linkedin')}</span>
               </a>
             </div>
           </div>
@@ -475,7 +473,7 @@ export default function AboutPage() {
               style={{ opacity: stackTitleOpacity }}
             >
               <div className="section-label text-accent-purple mb-4">
-                {content.about.stack.sectionLabel}
+                {tAbout('stack.sectionLabel')}
               </div>
             </div>
             
@@ -485,10 +483,10 @@ export default function AboutPage() {
               style={{ opacity: stackSubtitleOpacity }}
             >
               <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] leading-[0.95] tracking-wide mb-4">
-                {content.about.stack.title}
+                {tAbout('stack.title')}
               </h2>
               <p className="text-white/40 max-w-xl">
-                {content.about.stack.description}
+                {tAbout('stack.description')}
               </p>
             </div>
             
@@ -535,7 +533,7 @@ export default function AboutPage() {
               }}
             >
               <h3 className="text-xs tracking-[0.2em] uppercase text-white/30 mb-8">
-                {content.about.stack.extendedToolkit}
+                {tAbout('stack.extendedToolkit')}
               </h3>
               
               <div className="space-y-8">
@@ -573,10 +571,10 @@ export default function AboutPage() {
               style={{ opacity: eduTitleOpacity }}
             >
               <div className="section-label text-emerald-400 justify-center mb-4">
-                {content.about.education.sectionLabel}
+                {tAbout('education.sectionLabel')}
               </div>
               <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] leading-[0.95] tracking-wide">
-                {content.about.education.subtitle}
+                {tAbout('education.subtitle')}
               </h2>
             </div>
             
@@ -665,10 +663,10 @@ export default function AboutPage() {
               style={{ opacity: interestsTitleOpacity }}
             >
               <div className="section-label text-pink-400 mb-4">
-                {content.about.interests.sectionLabel}
+                {tAbout('interests.sectionLabel')}
               </div>
               <p className="text-white/40">
-                {content.about.interests.subtitle}
+                {tAbout('interests.subtitle')}
               </p>
             </div>
             

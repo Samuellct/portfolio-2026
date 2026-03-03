@@ -1,9 +1,11 @@
 'use client'
 
 import TransitionLink from '@/components/navigation/TransitionLink'
-import content from '@/lib/content.json'
+import { useTranslations } from 'next-intl'
 
 export default function Footer() {
+  const tNav = useTranslations('nav')
+  const tFooter = useTranslations('footer')
   const currentYear = new Date().getFullYear()
   
   return (
@@ -20,19 +22,19 @@ export default function Footer() {
             href="/about"
             className="hover:text-white transition-colors"
           >
-            {content.nav.about}
+            {tNav('about')}
           </TransitionLink>
           <TransitionLink 
             href="/projects"
             className="hover:text-white transition-colors"
           >
-            {content.nav.projects}
+            {tNav('projects')}
           </TransitionLink>
           <TransitionLink 
             href="/contact"
             className="hover:text-white transition-colors"
           >
-            {content.nav.contact}
+            {tNav('contact')}
           </TransitionLink>
           <a 
             href="/Resume.pdf"
@@ -40,7 +42,7 @@ export default function Footer() {
             rel="noopener noreferrer"
             className="hover:text-white transition-colors"
           >
-            {content.footer.resume}
+            {tFooter('resume')}
           </a>
         </nav>
       </div>

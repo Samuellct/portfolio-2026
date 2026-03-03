@@ -6,7 +6,7 @@ import { motion } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowLeft, Send, CheckCircle, AlertCircle, Mail, Github, Linkedin } from 'lucide-react'
-import content from '@/lib/content.json'
+import { useTranslations } from 'next-intl'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -16,6 +16,8 @@ const CONTACT_BG_COLOR = '#080510'
 type FormStatus = 'idle' | 'submitting' | 'success' | 'error'
 
 export default function ContactPage() {
+  const tContact = useTranslations('contact')
+  const tCommon = useTranslations('common')
   const pageRef = useRef<HTMLDivElement>(null)
   const [formData, setFormData] = useState({
     name: '',
@@ -114,7 +116,7 @@ export default function ContactPage() {
             className="inline-flex items-center gap-2 text-white/50 hover:text-white transition-colors"
           >
             <ArrowLeft size={16} />
-            <span className="text-sm tracking-[0.1em] uppercase">{content.common.back}</span>
+            <span className="text-sm tracking-[0.1em] uppercase">{tCommon('back')}</span>
           </TransitionLink>
         </motion.div>
         
@@ -126,13 +128,13 @@ export default function ContactPage() {
           className="mb-12"
         >
           <div className="section-label text-accent-cyan mb-4">
-            {content.contact.sectionLabel}
+            {tContact('sectionLabel')}
           </div>
           <h1 className="font-display text-[clamp(3rem,10vw,6rem)] leading-[0.9] tracking-wide mb-6">
-            {content.contact.page.title}
+            {tContact('page.title')}
           </h1>
           <p className="text-lg text-white/50 text-justify">
-            {content.contact.page.description}
+            {tContact('page.description')}
           </p>
         </motion.header>
         
@@ -144,13 +146,13 @@ export default function ContactPage() {
             className="p-8 bg-green-500/10 border border-green-500/30 text-center"
           >
             <CheckCircle size={48} className="mx-auto mb-4 text-green-400" />
-            <h2 className="font-display text-2xl mb-2">{content.contact.page.form.success}</h2>
-            <p className="text-white/60 mb-6">{content.contact.page.form.successDescription}</p>
+            <h2 className="font-display text-2xl mb-2">{tContact('page.form.success')}</h2>
+            <p className="text-white/60 mb-6">{tContact('page.form.successDescription')}</p>
             <button
               onClick={resetForm}
               className="px-6 py-2 text-sm tracking-[0.1em] uppercase border border-white/20 hover:border-white/40 transition-colors"
             >
-              {content.contact.page.form.sendAnother}
+              {tContact('page.form.sendAnother')}
             </button>
           </motion.div>
         )}
@@ -163,13 +165,13 @@ export default function ContactPage() {
             className="p-8 bg-red-500/10 border border-red-500/30 text-center mb-8"
           >
             <AlertCircle size={48} className="mx-auto mb-4 text-red-400" />
-            <h2 className="font-display text-2xl mb-2">{content.contact.page.form.error}</h2>
-            <p className="text-white/60 mb-6">{content.contact.page.form.errorDescription}</p>
+            <h2 className="font-display text-2xl mb-2">{tContact('page.form.error')}</h2>
+            <p className="text-white/60 mb-6">{tContact('page.form.errorDescription')}</p>
             <button
               onClick={resetForm}
               className="px-6 py-2 text-sm tracking-[0.1em] uppercase border border-white/20 hover:border-white/40 transition-colors"
             >
-              {content.contact.page.form.retry}
+              {tContact('page.form.retry')}
             </button>
           </motion.div>
         )}
@@ -187,7 +189,7 @@ export default function ContactPage() {
             <div className="grid md:grid-cols-2 gap-6">
               <div>
                 <label htmlFor="name" className="block text-xs tracking-[0.15em] uppercase text-white/40 mb-2">
-                  {content.contact.page.form.name}
+                  {tContact('page.form.name')}
                 </label>
                 <input
                   type="text"
@@ -196,14 +198,14 @@ export default function ContactPage() {
                   value={formData.name}
                   onChange={handleChange}
                   required
-                  placeholder={content.contact.page.form.namePlaceholder}
+                  placeholder={tContact('page.form.namePlaceholder')}
                   className="w-full px-4 py-3 bg-white/[0.03] border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:border-accent-cyan transition-colors"
                 />
               </div>
               
               <div>
                 <label htmlFor="email" className="block text-xs tracking-[0.15em] uppercase text-white/40 mb-2">
-                  {content.contact.page.form.email}
+                  {tContact('page.form.email')}
                 </label>
                 <input
                   type="email"
@@ -212,7 +214,7 @@ export default function ContactPage() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  placeholder={content.contact.page.form.emailPlaceholder}
+                  placeholder={tContact('page.form.emailPlaceholder')}
                   className="w-full px-4 py-3 bg-white/[0.03] border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:border-accent-cyan transition-colors"
                 />
               </div>
@@ -221,7 +223,7 @@ export default function ContactPage() {
             {/* Subject */}
             <div>
               <label htmlFor="subject" className="block text-xs tracking-[0.15em] uppercase text-white/40 mb-2">
-                {content.contact.page.form.subject}
+                {tContact('page.form.subject')}
               </label>
               <input
                 type="text"
@@ -230,7 +232,7 @@ export default function ContactPage() {
                 value={formData.subject}
                 onChange={handleChange}
                 required
-                placeholder={content.contact.page.form.subjectPlaceholder}
+                placeholder={tContact('page.form.subjectPlaceholder')}
                 className="w-full px-4 py-3 bg-white/[0.03] border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:border-accent-cyan transition-colors"
               />
             </div>
@@ -238,7 +240,7 @@ export default function ContactPage() {
             {/* Message */}
             <div>
               <label htmlFor="message" className="block text-xs tracking-[0.15em] uppercase text-white/40 mb-2">
-                {content.contact.page.form.message}
+                {tContact('page.form.message')}
               </label>
               <textarea
                 id="message"
@@ -247,7 +249,7 @@ export default function ContactPage() {
                 onChange={handleChange}
                 required
                 rows={6}
-                placeholder={content.contact.page.form.messagePlaceholder}
+                placeholder={tContact('page.form.messagePlaceholder')}
                 className="w-full px-4 py-3 bg-white/[0.03] border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:border-accent-cyan transition-colors resize-none"
               />
             </div>
@@ -261,11 +263,11 @@ export default function ContactPage() {
               {status === 'submitting' ? (
                 <>
                   <span className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
-                  {content.contact.page.form.sending}
+                  {tContact('page.form.sending')}
                 </>
               ) : (
                 <>
-                  {content.contact.page.form.send}
+                  {tContact('page.form.send')}
                   <Send size={16} />
                 </>
               )}
@@ -281,16 +283,16 @@ export default function ContactPage() {
           className="mt-16 pt-16 border-t border-white/5"
         >
           <h2 className="text-xs tracking-[0.2em] uppercase text-white/40 mb-6">
-            {content.contact.page.directContact.title}
+            {tContact('page.directContact.title')}
           </h2>
           
           <div className="flex flex-wrap gap-4">
             <a
-              href={`mailto:${content.contact.page.directContact.email}`}
+              href={`mailto:${tContact('page.directContact.email')}`}
               className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 border border-white/10 transition-all hover:border-accent-cyan/30 hover:text-accent-cyan group"
             >
               <Mail size={16} className="text-accent-cyan" />
-              <span>{content.contact.page.directContact.emailLabel}</span>
+              <span>{tContact('page.directContact.emailLabel')}</span>
             </a>
             
             <a
@@ -300,7 +302,7 @@ export default function ContactPage() {
               className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 border border-white/10 transition-all hover:border-[#fafbfc]/30 hover:text-[#fafbfc]"
             >
               <Github size={16} />
-              <span>{content.contact.page.directContact.githubLabel}</span>
+              <span>{tContact('page.directContact.githubLabel')}</span>
             </a>
             
             <a
@@ -310,7 +312,7 @@ export default function ContactPage() {
               className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 border border-white/10 transition-all hover:border-[#0e76a8]/30 hover:text-[#0e76a8]"
             >
               <Linkedin size={16} />
-              <span>{content.contact.page.directContact.linkedinLabel}</span>
+              <span>{tContact('page.directContact.linkedinLabel')}</span>
             </a>
           </div>
         </motion.section>

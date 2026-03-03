@@ -5,6 +5,18 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.9.3] - 2026-03-03
+
+### Modifié
+- Migration de 17 composants de `content.json` vers `useTranslations`
+- Constantes module-level (`stats`, `navLinks`, `externalLinks`, `education`, `interests`) déplacées dans les composants
+- `loading.tsx` et `not-found.tsx` convertis en Client Components (`'use client'`)
+
+### Supprimé
+- `src/lib/content.json` remplacé par `messages/en.json` et `messages/fr.json`
+
+---
+
 ## [4.9.2] - 2026-03-03
 
 ### Modifié

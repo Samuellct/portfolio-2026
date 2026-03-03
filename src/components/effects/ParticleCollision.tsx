@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useState, useCallback } from 'react'
 import { RefreshCw } from 'lucide-react'
-import content from '@/lib/content.json'
+import { useTranslations } from 'next-intl'
 
 interface Track {
   id: number
@@ -21,6 +21,7 @@ interface ParticleCollisionProps {
 }
 
 export default function ParticleCollision({ isVisible, className = '' }: ParticleCollisionProps) {
+  const t = useTranslations('contact')
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const animationRef = useRef<number>(0)
   const [isAnimating, setIsAnimating] = useState(false)
@@ -251,7 +252,7 @@ export default function ParticleCollision({ isVisible, className = '' }: Particl
             ? 'border-white/20 text-white/40 hover:border-accent-cyan/50 hover:text-accent-cyan cursor-pointer'
             : 'border-white/5 text-white/10 cursor-not-allowed'
         }`}
-        title={content.contact.collision.newCollision}
+        title={t('collision.newCollision')}
       >
         <RefreshCw 
           size={14} 

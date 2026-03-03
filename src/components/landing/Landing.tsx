@@ -3,7 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import Starfield from './Starfield'
-import content from '@/lib/content.json'
+import { useTranslations } from 'next-intl'
 
 interface LandingProps {
   onEnter: () => void
@@ -12,6 +12,7 @@ interface LandingProps {
 }
 
 export default function Landing({ onEnter, isTransitioning, onTransitionComplete }: LandingProps) {
+  const t = useTranslations('landing')
   const [showContent, setShowContent] = useState(true)
   
   const handleEnterClick = () => {
@@ -52,7 +53,7 @@ export default function Landing({ onEnter, isTransitioning, onTransitionComplete
             WebkitTextFillColor: 'transparent',
           }}
         >
-          {content.landing.title.split(' ').map((word, i) => (
+          {t('title').split(' ').map((word: string, i: number) => (
             <span key={i} className="block">{word}</span>
           ))}
         </motion.h1>
@@ -63,7 +64,7 @@ export default function Landing({ onEnter, isTransitioning, onTransitionComplete
           animate={{ opacity: 1 }}
           transition={{ delay: 0.6, duration: 0.8 }}
         >
-          {content.landing.subtitle}
+          {t('subtitle')}
         </motion.p>
         
         <motion.button
@@ -77,7 +78,7 @@ export default function Landing({ onEnter, isTransitioning, onTransitionComplete
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
         >
-          <span className="relative z-10">{content.landing.enter}</span>
+          <span className="relative z-10">{t('enter')}</span>
           <motion.div
             className="absolute inset-0 bg-gradient-radial from-accent-cyan/20 to-transparent"
             initial={{ scale: 0, opacity: 0 }}

@@ -5,22 +5,24 @@ import { usePathname } from '@/i18n/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Github, Linkedin, ExternalLink } from 'lucide-react'
 import TransitionLink from '@/components/navigation/TransitionLink'
-import content from '@/lib/content.json'
-
-const navLinks = [
-  { href: '/', label: content.nav.home, sectionId: 'hero' },
-  { href: '/about', label: content.nav.about, sectionId: 'about' },
-  { href: '/projects', label: content.nav.projects, sectionId: 'projects' },
-  { href: '/contact', label: content.nav.contact, sectionId: 'contact' },
-]
-
-const externalLinks = [
-  { href: 'https://samuel-lecomte.fr', label: content.menu.blog, icon: ExternalLink, hoverColor: 'hover:text-accent-cyan' },
-  { href: 'https://github.com/Samuellct', label: content.menu.github, icon: Github, hoverColor: 'hover:text-[#fafbfc]' },
-  { href: 'https://www.linkedin.com/in/samuel-lecomte37/', label: content.menu.linkedin, icon: Linkedin, hoverColor: 'hover:text-[#0e76a8]' },
-]
+import { useTranslations } from 'next-intl'
 
 export default function NavBar() {
+  const tNav = useTranslations('nav')
+  const tMenu = useTranslations('menu')
+
+  const navLinks = [
+    { href: '/', label: tNav('home'), sectionId: 'hero' },
+    { href: '/about', label: tNav('about'), sectionId: 'about' },
+    { href: '/projects', label: tNav('projects'), sectionId: 'projects' },
+    { href: '/contact', label: tNav('contact'), sectionId: 'contact' },
+  ]
+
+  const externalLinks = [
+    { href: 'https://samuel-lecomte.fr', label: tMenu('blog'), icon: ExternalLink, hoverColor: 'hover:text-accent-cyan' },
+    { href: 'https://github.com/Samuellct', label: tMenu('github'), icon: Github, hoverColor: 'hover:text-[#fafbfc]' },
+    { href: 'https://www.linkedin.com/in/samuel-lecomte37/', label: tMenu('linkedin'), icon: Linkedin, hoverColor: 'hover:text-[#0e76a8]' },
+  ]
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const pathname = usePathname()
@@ -182,7 +184,7 @@ export default function NavBar() {
                   transition={{ delay: 0.1 }}
                   className="text-xs tracking-[0.3em] uppercase text-white/40 mb-8"
                 >
-                  {content.menu.sections}
+                  {tMenu('sections')}
                 </motion.p>
                 
                 <nav className="space-y-2">
@@ -214,7 +216,7 @@ export default function NavBar() {
                   transition={{ delay: 0.2 }}
                   className="text-xs tracking-[0.3em] uppercase text-white/40 mb-8"
                 >
-                  {content.menu.external}
+                  {tMenu('external')}
                 </motion.p>
                 
                 <div className="space-y-6">
