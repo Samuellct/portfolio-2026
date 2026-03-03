@@ -5,6 +5,17 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.9.0] - 2026-03-03
+
+### Modifié
+- Centralisation des textes préparation du support FR/EN
+  - `loading.tsx` : utilise désormais `content.common.loading`
+  - `contact/page.tsx` : "Send another message", "E-mail", "GitHub", "LinkedIn" centralisés
+  - `projects/page.tsx` : message d'état vide centralisé
+  - `ScrollIndicator.tsx` : utilise désormais `content.hero.scrollHint`
+
+---
+
 ## [4.8.3] - 2026-03-02
 
 ### Ajouté

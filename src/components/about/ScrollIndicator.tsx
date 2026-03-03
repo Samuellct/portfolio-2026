@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
+import content from '@/lib/content.json'
 
 interface ScrollIndicatorProps {
   hideAfterPx?: number
@@ -63,7 +64,7 @@ export default function ScrollIndicator({ hideAfterPx = 100 }: ScrollIndicatorPr
           
           {/* Label */}
           <span className="text-[10px] tracking-[0.2em] uppercase text-white/30">
-            Scroll
+            {content.hero.scrollHint}
           </span>
         </motion.div>
       )}

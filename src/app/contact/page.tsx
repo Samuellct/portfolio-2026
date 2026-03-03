@@ -150,7 +150,7 @@ export default function ContactPage() {
               onClick={resetForm}
               className="px-6 py-2 text-sm tracking-[0.1em] uppercase border border-white/20 hover:border-white/40 transition-colors"
             >
-              Send another message
+              {content.contact.page.form.sendAnother}
             </button>
           </motion.div>
         )}
@@ -290,7 +290,7 @@ export default function ContactPage() {
               className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 border border-white/10 transition-all hover:border-accent-cyan/30 hover:text-accent-cyan group"
             >
               <Mail size={16} className="text-accent-cyan" />
-              <span>E-mail</span>
+              <span>{content.contact.page.directContact.emailLabel}</span>
             </a>
             
             <a
@@ -300,7 +300,7 @@ export default function ContactPage() {
               className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 border border-white/10 transition-all hover:border-[#fafbfc]/30 hover:text-[#fafbfc]"
             >
               <Github size={16} />
-              <span>GitHub</span>
+              <span>{content.contact.page.directContact.githubLabel}</span>
             </a>
             
             <a
@@ -310,7 +310,7 @@ export default function ContactPage() {
               className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 border border-white/10 transition-all hover:border-[#0e76a8]/30 hover:text-[#0e76a8]"
             >
               <Linkedin size={16} />
-              <span>LinkedIn</span>
+              <span>{content.contact.page.directContact.linkedinLabel}</span>
             </a>
           </div>
         </motion.section>

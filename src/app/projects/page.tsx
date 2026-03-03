@@ -326,7 +326,7 @@ export default function ProjectsPage() {
             animate={{ opacity: 1 }}
             className="text-center py-20 text-white/40"
           >
-            No projects found in this category.
+            {content.projects.emptyState}
           </motion.div>
         )}
       </div>

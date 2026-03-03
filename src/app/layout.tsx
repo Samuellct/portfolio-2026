@@ -25,7 +25,7 @@ export const metadata: Metadata = {
     template: '%s | Samuel Lecomte',
   },
   description: 'Portfolio of Samuel Lecomte - Graduate in Physics and Data Science. Showcasing research projects, data analysis work, and technical skills from CERN collaborations.',
-  keywords: ['Samuel Lecomte', 'Particle Physics', 'Data Engineer', 'CERN', 'ATLAS', 'LHCb', 'Portfolio', 'Physics', 'Data Science'],
+  keywords: ['Samuel Lecomte', 'Particle Physics', 'Data Engineer', 'CERN', 'DevOps', 'Data Analysis', 'Portfolio', 'Physics', 'Data Science'],
   authors: [{ name: 'Samuel Lecomte' }],
   creator: 'Samuel Lecomte',
   publisher: 'Samuel Lecomte',

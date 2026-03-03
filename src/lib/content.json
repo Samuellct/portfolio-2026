@@ -117,6 +117,7 @@
       "completed": "Completed",
       "inProgress": "In Progress"
     },
+    "emptyState": "No projects found in this category.",
     "viewProject": "View project",
     "viewOnGitHub": "View on GitHub",
     "technologies": "Technologies",
@@ -161,11 +162,15 @@
         "successDescription": "Thank you for reaching out. I'll get back to you soon.",
         "error": "Something went wrong",
         "errorDescription": "Please try again or contact me directly via email.",
-        "retry": "Try again"
+        "retry": "Try again",
+        "sendAnother": "Send another message"
       },
       "directContact": {
         "title": "Or reach me directly",
-        "email": "contact@samuel-lecomte.fr"
+        "email": "contact@samuel-lecomte.fr",
+        "emailLabel": "E-mail",
+        "githubLabel": "GitHub",
+        "linkedinLabel": "LinkedIn"
       }
     }
   },
