@@ -5,6 +5,17 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.9.1] - 2026-03-03
+
+### Ajouté
+- Installation et configuration de `next-intl`
+  - i18n : `src/i18n/routing.ts`, `src/i18n/request.ts`, `src/i18n/navigation.ts`
+  - Fichiers de messages : `messages/en.json` et `messages/fr.json`
+  - Plugin `createNextIntlPlugin` intégré dans `next.config.ts`
+  - Redirection racine `/` → `/en` via `public/_redirects` (pr Cloudflare Pages)
+
+---
+
 ## [4.9.0] - 2026-03-03
 
 ### Modifié
