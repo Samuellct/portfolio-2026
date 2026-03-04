@@ -1,45 +1,49 @@
 import { MetadataRoute } from 'next'
 import { getAllProjectParams } from '@/lib/projects'
+import { routing } from '@/i18n/routing'
 
 const BASE_URL = 'https://www.samuel-lecomte.fr'
 
+function buildAlternates(path: string) {
+  return {
+    languages: Object.fromEntries([
+      ...routing.locales.map((loc) => [loc, `${BASE_URL}/${loc}${path}`]),
+      ['x-default', `${BASE_URL}/${routing.defaultLocale}${path}`],
+    ]),
+  }
+}
+
 export default function sitemap(): MetadataRoute.Sitemap {
-  // Static pages
-  const staticPages: MetadataRoute.Sitemap = [
-    {
-      url: BASE_URL,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 1,
-    },
-    {
-      url: `${BASE_URL}/about`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.8,
-    },
-    {
-      url: `${BASE_URL}/projects`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.9,
-    },
-    {
-      url: `${BASE_URL}/contact`,
-      lastModified: new Date(),
-      changeFrequency: 'yearly',
-      priority: 0.7,
-    },
+  const staticPaths = [
+    { path: '', changeFrequency: 'monthly' as const, priority: 1 },
+    { path: '/about', changeFrequency: 'monthly' as const, priority: 0.8 },
+    { path: '/projects', changeFrequency: 'weekly' as const, priority: 0.9 },
+    { path: '/contact', changeFrequency: 'yearly' as const, priority: 0.7 },
   ]
-  
-  // Dynamic project pages
+
+  const staticPages: MetadataRoute.Sitemap = routing.locales.flatMap((locale) =>
+    staticPaths.map(({ path, changeFrequency, priority }) => ({
+      url: `${BASE_URL}/${locale}${path}`,
+      lastModified: new Date(),
+      changeFrequency,
+      priority,
+      alternates: buildAlternates(path),
+    }))
+  )
+
   const projectParams = getAllProjectParams()
-  const projectPages: MetadataRoute.Sitemap = projectParams.map((params) => ({
-    url: `${BASE_URL}/projects/${params.category}/${params.id}`,
-    lastModified: new Date(),
-    changeFrequency: 'monthly' as const,
-    priority: 0.6,
-  }))
-  
+  const projectPages: MetadataRoute.Sitemap = routing.locales.flatMap((locale) =>
+    projectParams.map((params) => {
+      const path = `/projects/${params.category}/${params.id}`
+      return {
+        url: `${BASE_URL}/${locale}${path}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly' as const,
+        priority: 0.6,
+        alternates: buildAlternates(path),
+      }
+    })
+  )
+
   return [...staticPages, ...projectPages]
 }

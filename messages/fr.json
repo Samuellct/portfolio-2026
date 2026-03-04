@@ -179,6 +179,40 @@
     "copyright": "© 2026 Samuel Lecomte",
     "resume": "CV"
   },
+  "metadata": {
+    "home": {
+      "titleDefault": "Samuel Lecomte | Physique expérimentale & Data Science",
+      "titleTemplate": "%s | Samuel Lecomte",
+      "description": "Portfolio de Samuel Lecomte - Diplômé en physique et data science. Projets de recherche, analyse de données et compétences techniques issues de stages en physique expérimentale.",
+      "ogDescription": "Portfolio présentant projets de recherche, travaux d'analyse de données et compétences techniques.",
+      "twitterTitle": "Samuel Lecomte | Portfolio",
+      "twitterDescription": "Physique expérimentale & Data Science"
+    },
+    "about": {
+      "title": "À propos",
+      "description": "Découvrez le parcours de Samuel Lecomte - Diplômé en physique et data science de l'Université Clermont Auvergne, avec une expérience au sein des collaborations ATLAS et LHCb.",
+      "ogTitle": "À propos | Samuel Lecomte",
+      "ogDescription": "Diplômé en physique et data science, spécialisé en physique des particules."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Contactez Samuel Lecomte pour des collaborations, opportunités d'emploi ou toute question.",
+      "ogTitle": "Contact | Samuel Lecomte",
+      "ogDescription": "Pour collaborations, opportunités d'emploi ou questions."
+    },
+    "projects": {
+      "title": "Projets",
+      "description": "Découvrez mes projets en physique expérimentale, analyse de données et travaux techniques.",
+      "ogTitle": "Projets | Samuel Lecomte",
+      "ogDescription": "Projets de recherche, travaux académiques et expérimentations personnelles en physique et ingénierie des données."
+    },
+    "jsonLd": {
+      "siteDescription": "Portfolio de Samuel Lecomte - Diplômé en physique et data science",
+      "jobTitle": "Diplômé en physique et data science",
+      "personDescription": "Jeune diplômé spécialisé en physique expérimentale et data science. Expérience au sein des collaborations ATLAS et LHCb du CERN.",
+      "webpageDescription": "Portfolio présentant projets de recherche, travaux d'analyse de données et compétences techniques."
+    }
+  },
   "common": {
     "loading": "Chargement...",
     "error": "Une erreur est survenue",

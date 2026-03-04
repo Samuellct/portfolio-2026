@@ -179,6 +179,40 @@
     "copyright": "© 2026 Samuel Lecomte",
     "resume": "Resume"
   },
+  "metadata": {
+    "home": {
+      "titleDefault": "Samuel Lecomte | Experimental Physics & Data Science",
+      "titleTemplate": "%s | Samuel Lecomte",
+      "description": "Portfolio of Samuel Lecomte - Graduate in Physics and Data Science. Showcasing research projects, data analysis work, and technical skills.",
+      "ogDescription": "Portfolio showcasing research projects, data analysis work, and technical skills.",
+      "twitterTitle": "Samuel Lecomte | Portfolio",
+      "twitterDescription": "Experimental Physics & Data Science"
+    },
+    "about": {
+      "title": "About",
+      "description": "Learn about Samuel Lecomte - Graduate in Physics and Data Science from Université Clermont Auvergne, with experience in CERN related teams including ATLAS and LHCb experiments.",
+      "ogTitle": "About | Samuel Lecomte",
+      "ogDescription": "Graduate in Physics and Data Science, specializing in high-energy physics experiments."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Get in touch with Samuel Lecomte for collaborations, research opportunities, or general inquiries.",
+      "ogTitle": "Contact | Samuel Lecomte",
+      "ogDescription": "Reach out for collaborations, research opportunities, or questions."
+    },
+    "projects": {
+      "title": "Projects",
+      "description": "Explore my portfolio of experimental physics, data analysis projects, and technical work.",
+      "ogTitle": "Projects | Samuel Lecomte",
+      "ogDescription": "Research projects, academic work, and personal experiments in physics and data engineering."
+    },
+    "jsonLd": {
+      "siteDescription": "Portfolio of Samuel Lecomte - Graduate in Physics and Data Science",
+      "jobTitle": "Graduate in Physics and Data Science",
+      "personDescription": "Recent graduate specialized in experimental physics and data science. Experience with CERN collaborations (ATLAS, LHCb).",
+      "webpageDescription": "Portfolio showcasing research projects, data analysis work, and technical skills."
+    }
+  },
   "common": {
     "loading": "Loading...",
     "error": "An error occurred",

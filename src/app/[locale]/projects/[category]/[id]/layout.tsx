@@ -3,6 +3,8 @@ import { setRequestLocale } from 'next-intl/server'
 import { getProjectById, getLocalizedField, getAllProjectParams, Locale } from '@/lib/projects'
 import { routing } from '@/i18n/routing'
 
+const BASE_URL = 'https://www.samuel-lecomte.fr'
+
 type Props = {
   params: Promise<{ locale: string; category: string; id: string }>
 }
@@ -24,6 +26,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, category, id } = await params
   const project = getProjectById(category, id)
   const loc = (locale || 'en') as Locale
+  const projectPath = `/projects/${category}/${id}`
 
   if (!project) {
     return {
@@ -42,14 +45,23 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `${title} | Samuel Lecomte`,
       description,
       type: 'article',
+      locale: locale === 'fr' ? 'fr_FR' : 'en_US',
       images: project.image.startsWith('/')
-        ? [`https://www.samuel-lecomte.fr${project.image}`]
+        ? [`${BASE_URL}${project.image}`]
         : [project.image],
     },
     twitter: {
       card: 'summary_large_image',
       title,
       description,
+    },
+    alternates: {
+      canonical: `${BASE_URL}/${locale}${projectPath}`,
+      languages: {
+        en: `${BASE_URL}/en${projectPath}`,
+        fr: `${BASE_URL}/fr${projectPath}`,
+        'x-default': `${BASE_URL}/en${projectPath}`,
+      },
     },
   }
 }

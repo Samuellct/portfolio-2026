@@ -1,12 +1,14 @@
 import type { Metadata, Viewport } from 'next'
 import { Inter, Bebas_Neue } from 'next/font/google'
 import { hasLocale } from 'next-intl'
-import { setRequestLocale } from 'next-intl/server'
+import { setRequestLocale, getTranslations } from 'next-intl/server'
 import { NextIntlClientProvider } from 'next-intl'
 import { notFound } from 'next/navigation'
 import { routing } from '@/i18n/routing'
 import { Providers } from '../providers'
 import '@/styles/globals.css'
+
+const BASE_URL = 'https://www.samuel-lecomte.fr'
 
 // Fonts optimized by Next.js
 const inter = Inter({
@@ -22,116 +24,125 @@ const bebasNeue = Bebas_Neue({
   variable: '--font-bebas',
 })
 
-// Global metadata (SEO) — stays static English for now (step 07 makes it locale-aware)
-export const metadata: Metadata = {
-  metadataBase: new URL('https://www.samuel-lecomte.fr'),
-  title: {
-    default: 'Samuel Lecomte | Particle Physics & Data Science',
-    template: '%s | Samuel Lecomte',
-  },
-  description: 'Portfolio of Samuel Lecomte - Graduate in Physics and Data Science. Showcasing research projects, data analysis work, and technical skills from CERN collaborations.',
-  keywords: ['Samuel Lecomte', 'Particle Physics', 'Data Engineer', 'CERN', 'DevOps', 'Data Analysis', 'Portfolio', 'Physics', 'Data Science'],
-  authors: [{ name: 'Samuel Lecomte' }],
-  creator: 'Samuel Lecomte',
-  publisher: 'Samuel Lecomte',
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1,
-    },
-  },
-  openGraph: {
-    type: 'website',
-    locale: 'en_US',
-    url: 'https://www.samuel-lecomte.fr',
-    siteName: 'Samuel Lecomte Portfolio',
-    title: 'Samuel Lecomte | Particle Physics & Data Science',
-    description: 'Portfolio showcasing research projects, data analysis work, and technical skills.',
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'Samuel Lecomte | Portfolio',
-    description: 'Particle Physics & Data Science',
-  },
-  verification: {
-    // google: 'your-verification-code',
-  },
-  alternates: {
-    canonical: 'https://www.samuel-lecomte.fr',
-  },
-}
-
 export const viewport: Viewport = {
   themeColor: '#030308',
   width: 'device-width',
   initialScale: 1,
 }
 
-// JSON-LD Structured Data
-const jsonLd = {
-  '@context': 'https://schema.org',
-  '@graph': [
-    {
-      '@type': 'WebSite',
-      '@id': 'https://www.samuel-lecomte.fr/#website',
-      url: 'https://www.samuel-lecomte.fr',
-      name: 'Samuel Lecomte Portfolio',
-      description: 'Portfolio of Samuel Lecomte - Graduate in Physics and Data Science',
-      publisher: {
-        '@id': 'https://www.samuel-lecomte.fr/#person',
-      },
-      inLanguage: 'en-US',
-    },
-    {
-      '@type': 'Person',
-      '@id': 'https://www.samuel-lecomte.fr/#person',
-      name: 'Samuel Lecomte',
-      url: 'https://www.samuel-lecomte.fr',
-      jobTitle: 'Graduate in Physics and Data Science',
-      description: 'Recent graduate specialized in high-energy physics and data science. Experience with CERN collaborations (ATLAS, LHCb).',
-      alumniOf: {
-        '@type': 'CollegeOrUniversity',
-        name: 'Université Clermont Auvergne',
-        url: 'https://www.uca.fr',
-      },
-      knowsAbout: [
-        'Particle Physics',
-        'Data Science',
-        'Python',
-        'ROOT',
-        'Machine Learning',
-        'Data Analysis',
-        'Scientific Computing',
-      ],
-      sameAs: [
-        'https://github.com/Samuellct',
-        'https://www.linkedin.com/in/samuel-lecomte37/',
-      ],
-    },
-    {
-      '@type': 'WebPage',
-      '@id': 'https://www.samuel-lecomte.fr/#webpage',
-      url: 'https://www.samuel-lecomte.fr',
-      name: 'Samuel Lecomte | Particle Physics & Data Science',
-      isPartOf: {
-        '@id': 'https://www.samuel-lecomte.fr/#website',
-      },
-      about: {
-        '@id': 'https://www.samuel-lecomte.fr/#person',
-      },
-      description: 'Portfolio showcasing research projects, data analysis work, and technical skills from CERN collaborations.',
-      inLanguage: 'en-US',
-    },
-  ],
-}
-
 export function generateStaticParams() {
   return routing.locales.map((locale) => ({ locale }))
+}
+
+type Props = {
+  params: Promise<{ locale: string }>
+}
+
+const ogLocaleMap: Record<string, string> = { en: 'en_US', fr: 'fr_FR' }
+const langTagMap: Record<string, string> = { en: 'en-US', fr: 'fr-FR' }
+
+function buildJsonLd(locale: string, t: (key: string) => string) {
+  const inLanguage = langTagMap[locale] || 'en-US'
+  return {
+    '@context': 'https://schema.org',
+    '@graph': [
+      {
+        '@type': 'WebSite',
+        '@id': `${BASE_URL}/#website`,
+        url: BASE_URL,
+        name: 'Samuel Lecomte Portfolio',
+        description: t('jsonLd.siteDescription'),
+        publisher: { '@id': `${BASE_URL}/#person` },
+        inLanguage,
+      },
+      {
+        '@type': 'Person',
+        '@id': `${BASE_URL}/#person`,
+        name: 'Samuel Lecomte',
+        url: BASE_URL,
+        jobTitle: t('jsonLd.jobTitle'),
+        description: t('jsonLd.personDescription'),
+        alumniOf: {
+          '@type': 'CollegeOrUniversity',
+          name: 'Université Clermont Auvergne',
+          url: 'https://www.uca.fr',
+        },
+        knowsAbout: [
+          'Particle Physics',
+          'Data Science',
+          'Python',
+          'ROOT',
+          'Machine Learning',
+          'Data Analysis',
+          'Scientific Computing',
+        ],
+        sameAs: [
+          'https://github.com/Samuellct',
+          'https://www.linkedin.com/in/samuel-lecomte37/',
+        ],
+      },
+      {
+        '@type': 'WebPage',
+        '@id': `${BASE_URL}/#webpage`,
+        url: BASE_URL,
+        name: t('home.titleDefault'),
+        isPartOf: { '@id': `${BASE_URL}/#website` },
+        about: { '@id': `${BASE_URL}/#person` },
+        description: t('jsonLd.webpageDescription'),
+        inLanguage,
+      },
+    ],
+  }
+}
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  const { locale } = await params
+  const t = await getTranslations({ locale, namespace: 'metadata' })
+
+  return {
+    metadataBase: new URL(BASE_URL),
+    title: {
+      default: t('home.titleDefault'),
+      template: t('home.titleTemplate'),
+    },
+    description: t('home.description'),
+    keywords: ['Samuel Lecomte', 'Particle Physics', 'Data Engineer', 'CERN', 'DevOps', 'Data Analysis', 'Portfolio', 'Physics', 'Data Science'],
+    authors: [{ name: 'Samuel Lecomte' }],
+    creator: 'Samuel Lecomte',
+    publisher: 'Samuel Lecomte',
+    robots: {
+      index: true,
+      follow: true,
+      googleBot: {
+        index: true,
+        follow: true,
+        'max-video-preview': -1,
+        'max-image-preview': 'large',
+        'max-snippet': -1,
+      },
+    },
+    openGraph: {
+      type: 'website',
+      locale: ogLocaleMap[locale] || 'en_US',
+      url: `${BASE_URL}/${locale}`,
+      siteName: 'Samuel Lecomte Portfolio',
+      title: t('home.titleDefault'),
+      description: t('home.ogDescription'),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: t('home.twitterTitle'),
+      description: t('home.twitterDescription'),
+    },
+    alternates: {
+      canonical: `${BASE_URL}/${locale}`,
+      languages: {
+        en: `${BASE_URL}/en`,
+        fr: `${BASE_URL}/fr`,
+        'x-default': `${BASE_URL}/en`,
+      },
+    },
+  }
 }
 
 export default async function LocaleLayout({
@@ -153,6 +164,10 @@ export default async function LocaleLayout({
 
   // Load messages for next-intl
   const messages = (await import(`../../../messages/${locale}.json`)).default
+
+  // Build locale-aware JSON-LD
+  const t = await getTranslations({ locale, namespace: 'metadata' })
+  const jsonLd = buildJsonLd(locale, t)
 
   return (
     <html lang={locale} className={`${inter.variable} ${bebasNeue.variable}`}>
