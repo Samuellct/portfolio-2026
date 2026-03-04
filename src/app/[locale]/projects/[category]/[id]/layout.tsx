@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
-import { getProjectById, getAllProjectParams } from '@/lib/projects'
+import { getProjectById, getLocalizedField, getAllProjectParams, Locale } from '@/lib/projects'
 import { routing } from '@/i18n/routing'
 
 type Props = {
@@ -21,8 +21,9 @@ export async function generateStaticParams() {
 
 // Generate dynamic metadata for SEO
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { category, id } = await params
+  const { locale, category, id } = await params
   const project = getProjectById(category, id)
+  const loc = (locale || 'en') as Locale
 
   if (!project) {
     return {
@@ -30,13 +31,16 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
   }
 
+  const title = getLocalizedField(project.title, loc)
+  const description = getLocalizedField(project.description, loc)
+
   return {
-    title: project.title,
-    description: project.description,
+    title,
+    description,
     keywords: [...project.keywords, project.category, ...project.technologies],
     openGraph: {
-      title: `${project.title} | Samuel Lecomte`,
-      description: project.description,
+      title: `${title} | Samuel Lecomte`,
+      description,
       type: 'article',
       images: project.image.startsWith('/')
         ? [`https://www.samuel-lecomte.fr${project.image}`]
@@ -44,8 +48,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     twitter: {
       card: 'summary_large_image',
-      title: project.title,
-      description: project.description,
+      title,
+      description,
     },
   }
 }

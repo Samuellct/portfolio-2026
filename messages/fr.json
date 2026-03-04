@@ -1,126 +1,126 @@
 {
   "landing": {
-    "title": "Samuel's Portfolio",
-    "subtitle": "Particle Physics & Data Science",
-    "enter": "Enter"
+    "title": "Portfolio de Samuel",
+    "subtitle": "Physique expérimentale & Data science",
+    "enter": "Entrer"
   },
   "nav": {
-    "home": "Home",
-    "about": "About",
-    "projects": "Projects",
+    "home": "Accueil",
+    "about": "À propos",
+    "projects": "Projets",
     "contact": "Contact"
   },
   "menu": {
     "sections": "Sections",
-    "external": "External",
+    "external": "Liens externes",
     "blog": "Blog",
     "github": "GitHub",
     "linkedin": "LinkedIn",
     "switchLang": "English"
   },
   "hero": {
-    "greeting": "Hi, I'm Samuel",
-    "title": "M.S. in Physics",
-    "titleAlt": "& Data Science",
-    "description": "Recent graduate specialized in high-energy physics and data science. Currently seeking opportunities in research or data engineering.",
-    "cta": "Discover my background",
-    "scrollHint": "Scroll"
+    "greeting": "Bonjour, c'est Samuel",
+    "title": "Master en Physique",
+    "titleAlt": "& DU Data Scientist",
+    "description": "Physicien de formation, spécialisé en physique expérimentale et data science. Actuellement en recherche d'opportunités dans la recherche ou l'analyse de données.",
+    "cta": "Découvrir mon parcours",
+    "scrollHint": "Défiler"
   },
   "about": {
-    "sectionLabel": "001 — About",
-    "title": "Between physics and data science",
+    "sectionLabel": "001 — À propos",
+    "title": "Entre physique et data science",
     "preview": {
-      "intro": "I'm a recent physics graduate with a strong foundation in data analysis, statistical methods, and scientific computing. My academic journey has led me through both the theoretical foundations of physics and hands-on research with major international collaborations.",
-      "highlight": "From CERN experiments to personal tech projects, I enjoy solving complex problems and building tools that make data accessible.",
-      "cta": "Full profile & CV"
+      "intro": "Mon parcours en physique expérimentale m'a appris à traiter la donnée depuis le signal brut jusqu'au modèle final. Qu'il s'agisse d'analyser des collisions du LHC ou de développer des outils en Python et C++, je privilégie une approche itérative pour identifier les biais avant le traitement.",
+      "highlight": "J'allie donc rigueur scientifique et développement logiciel pour concevoir des pipelines d'analyse robustes, adaptés aux contraintes réelles.",
+      "cta": "Profil complet & CV"
     },
     "full": {
-      "intro": "I'm Samuel, a recent graduate in Fundamental Physics from Université Clermont Auvergne. My specialization in particle physics has given me extensive experience with large-scale data analysis, statistical modeling, and scientific software development.",
-      "experience": "During my master's program, I had the opportunity to work with both the LHCb and ATLAS collaborations at CERN. These experiences taught me to handle terabytes of data, implement complex analysis pipelines, and collaborate within international research teams.",
-      "passion": "Beyond physics, I'm passionate about building systems and tools. I maintain a home server infrastructure, experiment with automation, and continuously explore new technologies. This website itself is a personal project where I apply modern web development practices.",
-      "goals": "I'm currently looking for opportunities either in experimental physics research (PhD) or in data engineering roles where I can apply my analytical skills to real-world challenges.",
-      "goalsTitle": "Professional Goals"
+      "intro": "Diplômé d'un Master en Physique Fondamentale et d'un DU en Data Science, je me positionne à l'interface entre recherche et ingénierie logicielle. Mon expérience en physique expérimentale (LHCb, ATLAS) m'a formé à la conception de pipelines reproductibles et structurés et à l'analyse de grands ensembles de données en C++ et Python.",
+      "experience": "Au cours de mon Master, j'ai eu l'opportunité de travailler au sein des collaborations LHCb et ATLAS au CERN. Ces expériences m'ont appris à manipuler des téraoctets de données, à implémenter des chaînes d'analyse complexes et à collaborer au sein d'équipes de recherche internationales.",
+      "passion": "Au-delà de la physique, je suis passionné par la construction de systèmes et d'outils. J'administre une infrastructure serveur personnelle, j'expérimente l'automatisation et j'explore continuellement de nouvelles technologies. Ce site web est lui-même un projet personnel où j'applique les pratiques modernes du développement web.",
+      "goals": "Je suis actuellement à la recherche d'une thèse en physique expérimentale ou d'un poste en ingénierie (R&D, Data Engineering, DevOps). L'objectif est d'appliquer mes compétences en analyse scientifique et conception logicielle à des problèmes concrets.",
+      "goalsTitle": "Objectifs professionnels"
     },
     "stats": {
-      "experiments": "CERN Collaboration internships",
-      "experimentsHover": "within ATLAS & LHCb LPCA research groups",
-      "languages": "Programming Languages",
+      "experiments": "Stages physique expérimentale",
+      "experimentsHover": "au sein des groupes de recherche ATLAS & LHCb du LPCA",
+      "languages": "Langages de programmation",
       "languagesHover": "Python, C++, R, TypeScript, ...",
-      "reports": "LaTeX Documents",
-      "reportsHover": "Master's theses, project reports, and Beamer presentations"
+      "reports": "Documents LaTeX",
+      "reportsHover": "Mémoires de Master, rapports de projets et présentations Beamer"
     },
     "skills": {
-      "title": "Technical Skills",
-      "programming": "Programming",
-      "analysis": "Data Analysis",
-      "tools": "Tools & Systems"
+      "title": "Compétences techniques",
+      "programming": "Programmation",
+      "analysis": "Analyse de données",
+      "tools": "Outils & Systèmes"
     },
     "stack": {
-      "sectionLabel": "002 — Technical Stack",
-      "title": "Core Skills",
-      "description": "Programming languages ranked by usage across my projects.",
-      "extendedToolkit": "Extended Toolkit"
+      "sectionLabel": "002 — Stack technique",
+      "title": "Compétences clés",
+      "description": "Langages de programmation classés par utilisation dans mes projets.",
+      "extendedToolkit": "Outils complémentaires"
     },
     "education": {
-      "sectionLabel": "003 — Education",
-      "title": "Education",
-      "subtitle": "Academic Path",
+      "sectionLabel": "003 — Formation",
+      "title": "Formation",
+      "subtitle": "Parcours universitaire",
       "master2": {
-        "degree": "M.Sc. Fundamental Physics",
-        "track": "Universe & Particles",
+        "degree": "Master Physique Fondamentale et Applications",
+        "track": "Spécialisation Univers & Particules",
         "school": "Université Clermont Auvergne",
-        "period": "2023 — 2025"
+        "period": "2023 - 2025"
       },
       "datascience": {
-        "degree": "University Diploma in Data Science",
+        "degree": "Diplôme Universitaire Data Science",
         "school": "Université Clermont Auvergne",
-        "period": "2024 — 2025"
+        "period": "2024 - 2025"
       },
       "bachelor": {
-        "degree": "B.Sc. Physics",
+        "degree": "Licence de Physique",
         "school": "Université Clermont Auvergne",
-        "period": "2019 — 2023"
+        "period": "2019 - 2023"
       }
     },
     "interests": {
-      "sectionLabel": "004 — Interests",
-      "title": "Interests",
-      "subtitle": "Personal Sandbox",
+      "sectionLabel": "004 — Centres d'intérêt",
+      "title": "Centres d'intérêt",
+      "subtitle": "Bac à sable personnel",
       "running": {
         "title": "Trail Running",
-        "description": "Training for various distances, from 5km to 100km+ mountain trails. I enjoy the prep, and the long days in the wild."
+        "description": "Entraînement sur des distances variées, du 5 km aux trails en montagne de plus de 100 km. J'apprécie la préparation technique et les longues journées en pleine nature."
       },
       "tech": {
-        "title": "Home Lab & Self-Hosting",
-        "description": "Building private cloud infrastructure with Proxmox, TrueNAS, and containerized services. Self-hosting for privacy and learning."
+        "title": "Home Lab & Auto-hébergement",
+        "description": "Construction d'une infrastructure cloud privée avec Proxmox, TrueNAS et des services conteneurisés. Auto-hébergement pour la confidentialité et sécurisation via reverse proxy."
       },
       "science": {
-        "title": "Science Communication",
-        "description": "Writing about physics and building Python or web simulations to figure out how things work and share what I learn."
+        "title": "Communication scientifique",
+        "description": "Rédaction de rapports et création de simulations Python ou web pour comprendre le fonctionnement des choses et partager ce que j'apprends."
       }
     },
-    "downloadCV": "Download CV"
+    "downloadCV": "Télécharger le CV"
   },
   "projects": {
-    "sectionLabel": "002 — Projects",
-    "title": "Latest Work",
+    "sectionLabel": "002 — Projets",
+    "title": "Travaux récents",
     "preview": {
-      "description": "A selection of academic research, personal experiments, and professional work.",
-      "cta": "View all projects"
+      "description": "Une sélection de projets académiques, personnels et de travaux professionnels.",
+      "cta": "Voir tous les projets"
     },
     "categories": {
-      "all": "All",
-      "academic": "Academic",
-      "personal": "Personal",
-      "internship": "Research"
+      "all": "Tous",
+      "academic": "Académique",
+      "personal": "Personnel",
+      "internship": "Recherche"
     },
     "status": {
-      "completed": "Completed",
-      "inProgress": "In Progress"
+      "completed": "Terminé",
+      "inProgress": "En cours"
     },
-    "emptyState": "No projects found in this category.",
-    "viewProject": "View project",
-    "viewOnGitHub": "View on GitHub",
+    "emptyState": "Aucun projet trouvé dans cette catégorie.",
+    "viewProject": "Voir le projet",
+    "viewOnGitHub": "Voir sur GitHub",
     "technologies": "Technologies",
     "imageCredit": "Image"
   },
@@ -128,46 +128,46 @@
     "sectionLabel": "003 — Blog",
     "title": "Journal",
     "comingSoon": {
-      "badge": "Coming Soon",
-      "title": "Blog Coming Soon",
-      "description": "A dedicated blog website is currently under development. Stay tuned for articles about physics, technology, and personal adventures.",
-      "cta": "Visit Blog"
+      "badge": "Bientôt disponible",
+      "title": "Blog à venir",
+      "description": "Un site de blog dédié est actuellement en cours de développement. Vous pourrez y trouver des articles sur la physique, la technologie et mes aventures personnelles.",
+      "cta": "Visiter le blog"
     }
   },
   "contact": {
     "sectionLabel": "004 — Contact",
-    "title": "Let's Connect",
+    "title": "Échangeons",
     "preview": {
-      "text": "Interested in my work? Want to discuss a potential opportunity?",
-      "cta": "Get in touch"
+      "text": "Intéressé par mon travail ? Envie de discuter d'une opportunité ?",
+      "cta": "Me contacter"
     },
     "collision": {
-      "newCollision": "New collision",
+      "newCollision": "Nouvelle collision",
       "eventDisplay": "Event Display"
     },
     "page": {
-      "title": "Contact Me",
-      "description": "Whether you have a question, a project idea, or just want to say hello, feel free to reach out. I'll get back to you as soon as possible.",
+      "title": "Me contacter",
+      "description": "Une question technique sur mes projets, une opportunité de poste  ou l'envie d'échanger sur mon parcours ? Écrivez-moi directement. Je vous répondrai rapidement.",
       "form": {
-        "name": "Name",
-        "namePlaceholder": "Your name",
-        "email": "Email",
-        "emailPlaceholder": "your.email@example.com",
-        "subject": "Subject",
-        "subjectPlaceholder": "What's this about?",
+        "name": "Nom",
+        "namePlaceholder": "Votre nom",
+        "email": "E-mail",
+        "emailPlaceholder": "email@exemple.com",
+        "subject": "Objet",
+        "subjectPlaceholder": "De quoi s'agit-il ?",
         "message": "Message",
-        "messagePlaceholder": "Your message...",
-        "send": "Send Message",
-        "sending": "Sending...",
-        "success": "Message sent successfully",
-        "successDescription": "Thank you for reaching out. I'll get back to you soon.",
-        "error": "Something went wrong",
-        "errorDescription": "Please try again or contact me directly via email.",
-        "retry": "Try again",
-        "sendAnother": "Send another message"
+        "messagePlaceholder": "Votre message...",
+        "send": "Envoyer le message",
+        "sending": "Envoi en cours...",
+        "success": "Message envoyé avec succès",
+        "successDescription": "Merci pour votre message. Je vous répondrai dans les meilleurs délais.",
+        "error": "Une erreur est survenue",
+        "errorDescription": "Veuillez réessayer ou me contacter directement par e-mail.",
+        "retry": "Réessayer",
+        "sendAnother": "Envoyer un autre message"
       },
       "directContact": {
-        "title": "Or reach me directly",
+        "title": "Me joindre directement",
         "email": "contact@samuel-lecomte.fr",
         "emailLabel": "E-mail",
         "githubLabel": "GitHub",
@@ -177,20 +177,20 @@
   },
   "footer": {
     "copyright": "© 2026 Samuel Lecomte",
-    "resume": "Resume"
+    "resume": "CV"
   },
   "common": {
-    "loading": "Loading...",
-    "error": "An error occurred",
-    "back": "Back",
-    "skipToContent": "Skip to content",
-    "learnMore": "Learn more",
-    "viewAll": "View all",
+    "loading": "Chargement...",
+    "error": "Une erreur est survenue",
+    "back": "Retour",
+    "skipToContent": "Aller au contenu",
+    "learnMore": "En savoir plus",
+    "viewAll": "Voir tout",
     "notFound": {
       "code": "404",
-      "title": "Page Not Found",
-      "description": "The page you're looking for doesn't exist or has been moved.",
-      "backHome": "Back to Home"
+      "title": "Page introuvable",
+      "description": "La page recherchée n'existe pas ou a été déplacée.",
+      "backHome": "Retour à l'accueil"
     }
   }
 }

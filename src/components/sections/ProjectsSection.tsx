@@ -7,8 +7,8 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
-import { getAllProjects, ProjectData } from '@/lib/projects'
-import { useTranslations } from 'next-intl'
+import { getAllProjects, getLocalizedField, Locale, ProjectData } from '@/lib/projects'
+import { useTranslations, useLocale } from 'next-intl'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -42,8 +42,10 @@ function getCategoryLabel(category: string): string {
 
 function getOrderedProjects(allProjects: ProjectData[]): ProjectData[] {
   const sortByDate = (a: ProjectData, b: ProjectData) => {
-    const dateA = a.period.split(' — ')[1] || a.period
-    const dateB = b.period.split(' — ')[1] || b.period
+    const periodA = getLocalizedField(a.period, 'en')
+    const periodB = getLocalizedField(b.period, 'en')
+    const dateA = periodA.split(' — ')[1] || periodA
+    const dateB = periodB.split(' — ')[1] || periodB
     return dateB.localeCompare(dateA)
   }
   
@@ -70,6 +72,7 @@ function getOrderedProjects(allProjects: ProjectData[]): ProjectData[] {
 
 export default function ProjectsSection() {
   const t = useTranslations('projects')
+  const locale = useLocale() as Locale
   const sectionRef = useRef<HTMLElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   
@@ -284,7 +287,7 @@ export default function ProjectsSection() {
                 >
                   <Image
                     src={activeProject.image}
-                    alt={activeProject.imageAlt}
+                    alt={getLocalizedField(activeProject.imageAlt, locale)}
                     fill
                     className="object-cover"
                     sizes="(max-width: 768px) 100vw, 40vw"
@@ -331,7 +334,7 @@ export default function ProjectsSection() {
                       }}
                       transition={{ duration: 0.3, ease: 'easeOut' }}
                     >
-                      {project.title}
+                      {getLocalizedField(project.title, locale)}
                     </motion.h3>
                   </TransitionLink>
                 </motion.div>

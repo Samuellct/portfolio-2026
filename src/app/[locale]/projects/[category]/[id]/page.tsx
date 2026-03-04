@@ -8,13 +8,14 @@ import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { ArrowLeft, ExternalLink, Calendar, MapPin } from 'lucide-react'
 import { FaGithub } from 'react-icons/fa'
-import { getProjectById, getCategoryById } from '@/lib/projects'
+import { getProjectById, getCategoryById, getLocalizedField, Locale } from '@/lib/projects'
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 
 export default function ProjectDetailPage() {
   const t = useTranslations('projects')
   const tCommon = useTranslations('common')
+  const locale = useLocale() as Locale
   const params = useParams()
   const router = useRouter()
   const categoryId = params.category as string
@@ -84,7 +85,7 @@ export default function ProjectDetailPage() {
                     className="text-xs tracking-[0.2em] uppercase"
                     style={{ color: category?.accentColor }}
                   >
-                    {category?.title}
+                    {t(`categories.${categoryId}`)}
                   </span>
                   
                   {project.status === 'in-progress' && (
@@ -96,23 +97,23 @@ export default function ProjectDetailPage() {
                 
                 {/* Title */}
                 <h1 className="font-display text-[clamp(2rem,5vw,3.5rem)] leading-[0.95] tracking-wide mb-4">
-                  {project.title}
+                  {getLocalizedField(project.title, locale)}
                 </h1>
-                
+
                 {/* Subtitle */}
                 {project.subtitle && (
-                  <p className="text-lg text-white/60 mb-6">{project.subtitle}</p>
+                  <p className="text-lg text-white/60 mb-6">{getLocalizedField(project.subtitle, locale)}</p>
                 )}
                 
                 {/* Meta info */}
                 <div className="flex flex-col gap-3 text-sm text-white/40 mb-8">
                   <div className="flex items-center gap-2">
                     <Calendar size={14} />
-                    <span>{project.period}</span>
+                    <span>{getLocalizedField(project.period, locale)}</span>
                   </div>
                   <div className="flex items-center gap-2">
                     <MapPin size={14} />
-                    <span>{project.location}</span>
+                    <span>{getLocalizedField(project.location, locale)}</span>
                   </div>
                 </div>
                 
@@ -168,7 +169,7 @@ export default function ProjectDetailPage() {
                 {project.image.startsWith('/') ? (
                   <Image
                     src={project.image}
-                    alt={project.imageAlt}
+                    alt={getLocalizedField(project.imageAlt, locale)}
                     fill
                     className="object-cover"
                     priority
@@ -177,7 +178,7 @@ export default function ProjectDetailPage() {
                   // eslint-disable-next-line @next/next/no-img-element
                   <img
                     src={project.image}
-                    alt={project.imageAlt}
+                    alt={getLocalizedField(project.imageAlt, locale)}
                     className="w-full h-full object-cover"
                   />
                 )}
@@ -208,8 +209,8 @@ export default function ProjectDetailPage() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
-              <MarkdownRenderer 
-                content={project.detailedDescription}
+              <MarkdownRenderer
+                content={getLocalizedField(project.detailedDescription, locale)}
                 className="prose prose-lg max-w-none"
               />
             </motion.section>

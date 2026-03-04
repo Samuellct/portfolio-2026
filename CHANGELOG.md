@@ -5,6 +5,23 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.9.5] - 2026-03-04
+
+### Ajouté
+- Type `BilingualText` et helper `getLocalizedField()` dans `projects.ts`
+- Traduction fr des 8 projets
+- Traduction fr de `messages/fr.json`
+
+### Modifié
+- Interface `ProjectData` : champs textuels acceptent `BilingualText | string`
+- Interface `CategoryData` : suppression de `title` et `description` (gérés par `messages/*.json`)
+- `ProjectsSection.tsx` : ajout `useLocale()` + `getLocalizedField()` pour titres et images
+- `projects/page.tsx` : localisation des titres, descriptions, périodes et labels de catégories
+- `projects/[category]/[id]/page.tsx` : localisation de tous les champs textuels du détail projet
+- `projects/[category]/[id]/layout.tsx` : metadata SEO localisées via `getLocalizedField()`
+
+---
+
 ## [4.9.4] - 2026-03-03
 
 ### Ajouté

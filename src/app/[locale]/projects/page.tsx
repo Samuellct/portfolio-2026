@@ -7,9 +7,9 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
-import { getAllProjects, projectCategories, ProjectData } from '@/lib/projects'
+import { getAllProjects, getLocalizedField, Locale, projectCategories, ProjectData } from '@/lib/projects'
 import HiddenIcon from '@/components/easter-egg/HiddenIcon'
-import { useTranslations } from 'next-intl'
+import { useTranslations, useLocale } from 'next-intl'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -21,6 +21,7 @@ const PROJECTS_BG_COLOR = '#0a0a12'
 // ============================================
 function ProjectCard({ project, index }: { project: ProjectData; index: number }) {
   const t = useTranslations('projects')
+  const locale = useLocale() as Locale
   const cardRef = useRef<HTMLDivElement>(null)
   const [isHovered, setIsHovered] = useState(false)
   const [imageLoaded, setImageLoaded] = useState(false)
@@ -83,7 +84,7 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
             >
               <Image
                 src={project.image}
-                alt={project.title}
+                alt={getLocalizedField(project.imageAlt, locale)}
                 fill
                 className="object-contain"
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -129,18 +130,18 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
         <div className="space-y-2">
           <div className="flex items-center gap-3 text-[0.6rem] tracking-[0.2em] uppercase text-white/40">
             <span style={{ color: project.category === 'internship' ? '#10b981' : project.category === 'academic' ? '#a855f7' : '#00f0ff' }}>
-              {project.category === 'internship' ? t('categories.internship') : project.category}
+              {t(`categories.${project.category}`)}
             </span>
             <span>•</span>
-            <span>{project.period}</span>
+            <span>{getLocalizedField(project.period, locale)}</span>
           </div>
           
           <h3 className="font-display text-xl md:text-2xl tracking-wide group-hover:text-accent-cyan transition-colors duration-300">
-            {project.title}
+            {getLocalizedField(project.title, locale)}
           </h3>
-          
+
           <p className="text-sm text-white/50 leading-relaxed line-clamp-2 text-justify">
-            {project.description}
+            {getLocalizedField(project.description, locale)}
           </p>
           
           {/* View link */}
@@ -298,7 +299,7 @@ export default function ProjectsPage() {
                   : 'bg-transparent text-white/60 border-white/20 hover:border-white/50 hover:text-white'
               }`}
             >
-              {category.id === 'internship' ? t('categories.internship') : category.title}
+              {t(`categories.${category.id}`)}
             </button>
           ))}
           
