@@ -1,17 +1,7 @@
 import { MetadataRoute } from 'next'
 import { getAllProjectParams } from '@/lib/projects'
 import { routing } from '@/i18n/routing'
-
-const BASE_URL = 'https://www.samuel-lecomte.fr'
-
-function buildAlternates(path: string) {
-  return {
-    languages: Object.fromEntries([
-      ...routing.locales.map((loc) => [loc, `${BASE_URL}/${loc}${path}`]),
-      ['x-default', `${BASE_URL}/${routing.defaultLocale}${path}`],
-    ]),
-  }
-}
+import { BASE_URL, buildAlternates } from '@/lib/constants'
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPaths = [

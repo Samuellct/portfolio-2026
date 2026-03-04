@@ -40,10 +40,10 @@ function getCategoryLabel(category: string): string {
 /* ORDERED PROJECTS LOGIC                       */
 /* ============================================ */
 
-function getOrderedProjects(allProjects: ProjectData[]): ProjectData[] {
+function getOrderedProjects(allProjects: ProjectData[], locale: Locale): ProjectData[] {
   const sortByDate = (a: ProjectData, b: ProjectData) => {
-    const periodA = getLocalizedField(a.period, 'en')
-    const periodB = getLocalizedField(b.period, 'en')
+    const periodA = getLocalizedField(a.period, locale)
+    const periodB = getLocalizedField(b.period, locale)
     const dateA = periodA.split(' — ')[1] || periodA
     const dateB = periodB.split(' — ')[1] || periodB
     return dateB.localeCompare(dateA)
@@ -90,8 +90,8 @@ export default function ProjectsSection() {
   
   const displayProjects = useMemo(() => {
     const allProjects = getAllProjects()
-    return getOrderedProjects(allProjects) // fonctionnement a verif, normalement supprime les 10000 calls de const displayProjects = useMemo(() => getOrderedProjects
-  }, [])
+    return getOrderedProjects(allProjects, locale)
+  }, [locale])
   
   // Mouse move handler - updates Y position continuously
   const handleMouseMove = useCallback((e: React.MouseEvent) => {

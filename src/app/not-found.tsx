@@ -1,8 +1,9 @@
 import Link from 'next/link'
+import { routing } from '@/i18n/routing'
 
 export default function RootNotFound() {
   return (
-    <html lang="en">
+    <html lang={routing.defaultLocale}>
       <body style={{ backgroundColor: '#030308', color: '#fff', margin: 0, fontFamily: 'system-ui, sans-serif' }}>
         <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ textAlign: 'center', padding: '1.5rem' }}>
@@ -12,7 +13,7 @@ export default function RootNotFound() {
               The page you&apos;re looking for doesn&apos;t exist or has been moved.
             </p>
             <Link
-              href="/en"
+              href={`/${routing.defaultLocale}`}
               style={{
                 display: 'inline-block',
                 padding: '1rem 2rem',

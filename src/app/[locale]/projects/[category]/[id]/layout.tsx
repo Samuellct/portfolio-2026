@@ -2,12 +2,13 @@ import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
 import { getProjectById, getLocalizedField, getAllProjectParams, Locale } from '@/lib/projects'
 import { routing } from '@/i18n/routing'
-
-const BASE_URL = 'https://www.samuel-lecomte.fr'
+import { BASE_URL, buildAlternates } from '@/lib/constants'
 
 type Props = {
   params: Promise<{ locale: string; category: string; id: string }>
 }
+
+const ogLocaleMap: Record<string, string> = { en: 'en_US', fr: 'fr_FR' }
 
 // Generate static params for all projects × all locales (SSG)
 export async function generateStaticParams() {
@@ -25,7 +26,7 @@ export async function generateStaticParams() {
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale, category, id } = await params
   const project = getProjectById(category, id)
-  const loc = (locale || 'en') as Locale
+  const loc = locale as Locale
   const projectPath = `/projects/${category}/${id}`
 
   if (!project) {
@@ -45,7 +46,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `${title} | Samuel Lecomte`,
       description,
       type: 'article',
-      locale: locale === 'fr' ? 'fr_FR' : 'en_US',
+      locale: ogLocaleMap[locale] || 'en_US',
       images: project.image.startsWith('/')
         ? [`${BASE_URL}${project.image}`]
         : [project.image],
@@ -57,11 +58,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     alternates: {
       canonical: `${BASE_URL}/${locale}${projectPath}`,
-      languages: {
-        en: `${BASE_URL}/en${projectPath}`,
-        fr: `${BASE_URL}/fr${projectPath}`,
-        'x-default': `${BASE_URL}/en${projectPath}`,
-      },
+      ...buildAlternates(projectPath),
     },
   }
 }

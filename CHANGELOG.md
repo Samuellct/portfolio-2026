@@ -5,10 +5,27 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.9.7] - 2026-03-04
+
+### Ajouté
+- `src/lib/constants.ts` - `BASE_URL` et `buildAlternates()` centralisés, importés par les 5 layouts et le sitemap
+
+### Modifié
+- Langue par défaut changée de `en` à `fr` (`src/i18n/routing.ts`, `public/_redirects`)
+- `src/app/page.tsx` : `redirect('/en')` > `redirect('/${routing.defaultLocale}')` (dynamique)
+- `src/app/not-found.tsx` : `href="/en"` et `lang="en"` > dynamiques via `routing.defaultLocale`
+- 5 layouts (`[locale]/layout.tsx`, `about`, `contact`, `projects`, `projects/[category]/[id]`) : alternates hreflang hardcodés > `buildAlternates()` partagé
+- `ProjectsSection.tsx` : tri par date utilise la locale courante au lieu de `en` hardcodé
+
+### Supprimé
+- `(locale || 'en') as Locale` redondant dans le layout projet détail
+
+---
+
 ## [4.9.6] - 2026-03-04
 
 ### Ajouté
-- Namespace `metadata` dans `messages/en.json` et `messages/fr.json` (~20 clés SEO)
+- Namespace `metadata` dans `messages/en.json` et `messages/fr.json`
 - `generateMetadata()` dynamique dans `[locale]/layout.tsx` avec titres, descriptions et OG traduits
 - `buildJsonLd()` locale-aware : `inLanguage`, `jobTitle`, `description` dynamiques
 - Alternates hreflang (`en`, `fr`, `x-default`) sur toutes les pages (layout racine + 3 sous-pages + projet détail)
@@ -136,10 +153,10 @@ et ce projet respecte les règles du [Semantic Versioning](https://semver.org/sp
 - MàJ du lien LinkedIn
 
 ### Corrigé
-- Menu hamburger non visible sur mobile — [#3](https://github.com/Samuellct/portfolio-2026/issues/3)
-- Import KaTeX retiré du CSS global — [#4](https://github.com/Samuellct/portfolio-2026/issues/4)
-- `useMemo` cassé — [#5](https://github.com/Samuellct/portfolio-2026/issues/5)
-- Suppression de code hérité, ajout de `aria-hidden="true"` — [#8](https://github.com/Samuellct/portfolio-2026/issues/8)
+- Menu hamburger non visible sur mobile - [#3](https://github.com/Samuellct/portfolio-2026/issues/3)
+- Import KaTeX retiré du CSS global - [#4](https://github.com/Samuellct/portfolio-2026/issues/4)
+- `useMemo` cassé - [#5](https://github.com/Samuellct/portfolio-2026/issues/5)
+- Suppression de code hérité, ajout de `aria-hidden="true"` - [#8](https://github.com/Samuellct/portfolio-2026/issues/8)
 - Année incorrecte dans le pied de page
 - Corrections typo
 - bug fix configuration du déploiement Cloudflare

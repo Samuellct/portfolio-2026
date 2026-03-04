@@ -5,10 +5,9 @@ import { setRequestLocale, getTranslations } from 'next-intl/server'
 import { NextIntlClientProvider } from 'next-intl'
 import { notFound } from 'next/navigation'
 import { routing } from '@/i18n/routing'
+import { BASE_URL, buildAlternates } from '@/lib/constants'
 import { Providers } from '../providers'
 import '@/styles/globals.css'
-
-const BASE_URL = 'https://www.samuel-lecomte.fr'
 
 // Fonts optimized by Next.js
 const inter = Inter({
@@ -136,11 +135,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     alternates: {
       canonical: `${BASE_URL}/${locale}`,
-      languages: {
-        en: `${BASE_URL}/en`,
-        fr: `${BASE_URL}/fr`,
-        'x-default': `${BASE_URL}/en`,
-      },
+      ...buildAlternates(''),
     },
   }
 }

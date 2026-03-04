@@ -1,13 +1,14 @@
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
+import { BASE_URL, buildAlternates } from '@/lib/constants'
 
 export const runtime = 'edge'
-
-const BASE_URL = 'https://www.samuel-lecomte.fr'
 
 type Props = {
   params: Promise<{ locale: string }>
 }
+
+const ogLocaleMap: Record<string, string> = { en: 'en_US', fr: 'fr_FR' }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { locale } = await params
@@ -19,15 +20,11 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     openGraph: {
       title: t('projects.ogTitle'),
       description: t('projects.ogDescription'),
-      locale: locale === 'fr' ? 'fr_FR' : 'en_US',
+      locale: ogLocaleMap[locale] || 'en_US',
     },
     alternates: {
       canonical: `${BASE_URL}/${locale}/projects`,
-      languages: {
-        en: `${BASE_URL}/en/projects`,
-        fr: `${BASE_URL}/fr/projects`,
-        'x-default': `${BASE_URL}/en/projects`,
-      },
+      ...buildAlternates('/projects'),
     },
   }
 }
