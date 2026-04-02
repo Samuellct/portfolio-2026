@@ -152,6 +152,177 @@ Enfin, tout le texte du site est géré via un fichier JSON centralisé, à l'ex
       gitHubUrl: "https://github.com/Samuellct/portfolio-2026",
       dateCreated: '2025-02-15',
     },
+    'alpine-route': {
+      id: 'alpine-route',
+      title: { en: 'AlpineRoute', fr: 'AlpineRoute' },
+      description: {
+        en: 'Route optimizer for off-trail mountaineering in the Alps, using high-resolution Lidar data and a multi-criteria cost function.',
+        fr: 'Optimiseur d\'itinéraires pour l\'alpinisme hors-piste dans les Alpes, utilisant des données Lidar HD et une fonction de coût multi-critères.',
+      },
+      subtitle: {
+        en: 'Optimal Route Planning for hiking and mountaineering',
+        fr: 'Planification d\'itinéraires optimaux en montagne',
+      },
+      detailedDescription: {
+        en: `Most apps for mountain route planning follow established trails or ignore terrain complexity entirely. I built AlpineRoute to compute realistic off-trail itineraries in the Alps, treating the mountain as a continuous cost surface rather than a network of paths.
+
+The system downloads IGN Lidar HD elevation tiles (50 cm resolution) on demand via the Géoplateforme API, covering only the bounding box of the planned route. For areas outside France, it falls back to the Copernicus GLO-30 DEM (30 m resolution). From the elevation data, the pipeline derives slope, aspect, roughness, and solar radiation for each grid cell.
+
+These raster layers are combined with vector data: glacier outlines from RGI 7.0, land cover from ESA WorldCover, and trails and barriers from OpenStreetMap. The resulting cost function penalizes steep slopes, glacier zones, dense vegetation and restricted areas, while favoring established trails and safer aspects.
+
+Two routing strategies handle different terrain types: Valhalla for OSM sections, and Dijkstra pathfinding on the cost raster for off-trail itineraries. The API is asynchronous with Server-Sent Events for live progress updates, since route computations typically take 10 to 90 seconds.
+
+The project is functional on tested itineraries in the French Alps, including approaches in the Chamonix and Écrins areas. Current work focuses on calibrating the cost weights from real GPS traces and improving the connection logic between OSM trails and off-trail segments.`,
+        fr: `La plupart des applications de planification en montagne suivent des sentiers balisés ou ignorent la complexité du terrain. J'ai décidé de développer AlpineRoute pour calculer des itinéraires hors-sentier dans les Alpes, en modélisant la montagne comme une surface de coût continue plutôt que comme un réseau de chemins incomplet.
+
+Le système télécharge à la demande des tuiles IGN Lidar MNT (résolution 50 cm, sous-échantillonné ensuite) via l'API Géoplateforme, en se limitant à l'emprise de l'itinéraire planifié. Pour les zones hors de France, un fallback vers le MNT Copernicus GLO-30 (30 m) est prévu. À partir des données d'élévation, le pipeline dérive la pente, l'orientation, la rugosité et l'exposition solaire pour chaque cellule de la grille.
+
+Ces couches raster sont combinées avec des données vectorielles : contours glaciaires RGI 7.0, occupation du sol ESA WorldCover 10 m, et sentiers/barrières OSM. La fonction de coût pénalise les fortes pentes, les zones glaciaires crevassées, la végétation dense et les zones interdites, tout en favorisant les sentiers établis et les expositions sûres.
+
+Deux stratégies de calcul d'itinéraire sont utilisées en fonction du type de terrain : Valhalla pour les sections de suivi des chemins OSM, et l'algorithme de Dijkstra sur la grille de coûts pour les itinéraires hors-piste. L'API est asynchrone et utilise les Server-Sent Events pour fournir des mises à jour en temps réel sur l'avancement, car le calcul des itinéraires prend généralement entre 10 et 90 secondes.
+
+Le projet est fonctionnel sur les itinéraires testés dans les Alpes françaises, notamment dans les secteurs de Chamonix et des Écrins. Le travail en cours porte sur la calibration des poids de la fonction de coût à partir de traces GPS vérifiées et l'amélioration de la connexion entre sentiers OSM et segments hors-sentier.`,
+      },
+      technologies: ['Python', 'FastAPI', 'networkx', 'Rasterio', 'GDAL', 'GeoPandas', 'scikit-image', 'React', 'Valhalla', 'Docker'],
+      domains: ['Geospatial Analysis', 'Shortest path problem', 'Web Development'],
+      keywords: ['mountaineering', 'route planning', 'lidar', 'pathfinding', 'geospatial', 'alps', 'dem', 'fastapi'],
+      category: 'personal',
+      status: 'in-progress',
+      period: { en: '2025 - Present', fr: '2025 - Présent' },
+      location: { en: 'Personal project', fr: 'Projet personnel' },
+      textColor: "black",
+      image: '/images/alpineRoute.webp',
+      imageAlt: {
+        en: 'Topographic map showing a computed mountaineering route',
+        fr: 'Carte topographique montrant un itinéraire alpiniste calculé',
+      },
+      gitHubUrl: 'https://github.com/Samuellct/AlpineRoute',
+      dateCreated: '2025-12-09',
+    },
+    'hep-gui': {
+      id: 'hep-gui',
+      title: { en: 'HEP-GUI', fr: 'HEP-GUI' },
+      description: {
+        en: 'Desktop GUI for managing Monte Carlo event generation pipelines in particle physics with MG5, Pythia8 and Rivet.',
+        fr: 'Interface graphique desktop pour gérer les pipelines de génération d\'événements Monte Carlo en physique des particules avec MG5, Pythia8 et Rivet.',
+      },
+      subtitle: {
+        en: 'Graphical Interface for Monte Carlo Event Generation',
+        fr: 'Interface graphique pour la génération d\'événements Monte Carlo',
+      },
+      detailedDescription: {
+        en: `During my M2 internship at the Clermont Physics Laboratory (LPCA), I regularly ran Monte Carlo event generation pipelines from the command line, chaining MadGraph5, Pythia8 and Rivet with manual configuration files at each step. I built HEP-GUI to replace that workflow with a desktop interface, so the same simulation run can be configured, launched and monitored without manual terminal interaction.
+
+The app runs on Windows and drives all HEP tools inside a Docker container, with the local data directory mounted as a shared volume. The three-stage pipeline follows the standard HEP workflow: MadGraph5 generates parton-level events from UFO physics models, Pythia8 applies parton showering and hadronization, and Rivet produces YODA histogram files for analysis. The current version is built around the MC_JETS routine and the custom Rivet analyses used during my internship, which serve as the reference workflow.
+
+To keep the interface responsive during long computations (event generation runs can take hours), execution is handled by QThread workers that stream container logs line by line via Qt signals. PyQtGraph renders the output histograms directly in the interface.`,
+        fr: `Lors de mon stage de M2 au Laboratoire de physique de Clermont (LPCA), je lançais régulièrement des pipelines de génération d'événements Monte Carlo depuis un terminal bash, en enchaînant MadGraph5, Pythia8 et Rivet avec des fichiers de configuration manuels à chaque étape. J'ai développé HEP-GUI pour remplacer ce flux de travail par une interface desktop permettant de configurer, lancer et surveiller ces simulations sans interaction manuelle avec le terminal.
+
+L'application fonctionne sous Windows et pilote tous les outils HEP dans un container Docker, avec le répertoire de données local monté comme volume partagé. Le pipeline en trois étapes suit le workflow HEP standard : MadGraph5 génère des événements au niveau des partons à partir de modèles de physique UFO, Pythia8 simule les cascades partoniques et l'hadronisation, et Rivet produit des fichiers d'histogrammes YODA pour l'analyse. La version actuelle est construite autour de la routine MC_JETS et des analyses Rivet personnalisées utilisées pendant mon stage, qui servent de workflow de référence.
+
+Pour maintenir la réactivité de l'interface lors des calculs longs (la génération d'événements peut prendre plusieurs heures), l'exécution est gérée par des workers QThread qui transmet les logs du container ligne par ligne via des signaux Qt. PyQtGraph affiche les histogrammes de sortie directement dans l'interface.`,
+      },
+      technologies: ['Python', 'PySide6', 'Docker', 'MadGraph5', 'Pythia8', 'Rivet'],
+      domains: ['Particle Physics', 'Desktop Application', 'Monte Carlo Simulation'],
+      keywords: ['particle physics', 'monte carlo', 'madgraph', 'hep', 'gui', 'simulation', 'docker'],
+      category: 'personal',
+      status: 'in-progress',
+      period: { en: '2026 - Present', fr: '2026 - Présent' },
+      location: { en: 'Personal project', fr: 'Projet personnel' },
+      textColor: "black",
+      image: '/images/hepGUI.webp',
+      imageAlt: {
+        en: 'HEP-GUI desktop interface showing Monte Carlo simulation controls and histogram visualization',
+        fr: 'Interface desktop HEP-GUI affichant les contrôles de simulation Monte Carlo et la visualisation des histogrammes',
+      },
+      gitHubUrl: 'https://github.com/Samuellct/HEP-GUI',
+      dateCreated: '2026-02-22',
+    },
+    'accred': {
+      id: 'accred',
+      title: { en: 'Accred', fr: 'Accred' },
+      description: {
+        en: 'Mobile-first PWA companion for film festival attendees: schedule screenings, take quick notes between sessions, and archive participations over time.',
+        fr: 'PWA mobile-first pour les festivaliers de cinéma : planifier ses séances, prendre des notes rapides entre deux films et archiver ses participations.',
+      },
+      subtitle: {
+        en: 'Personal Companion App for Film Festival Goers',
+        fr: 'Application compagnon pour les festivals de cinéma',
+      },
+      detailedDescription: {
+        en: `I built Accred as a personal companion app for film festival attendees: plan a selection before the festival starts, take quick notes on a phone between screenings, and build an archive of participations over time. The name is a reference to festival accreditation. The project started when I applied for a cinephile accreditation for Cannes 2026 and wanted a dedicated tool rather than adapting a generic agenda app.
+
+The app is a mobile-first PWA built with Next.js 15 and SQLite. The programme view displays the full festival schedule in a grid, color-coded by venue and conflict status. The selection module manages the personal lineup and flags scheduling conflicts between chosen screenings. The journal module is designed to let you quickly open a new note between two sessions and jot down a few thoughts, before having time at the end of the day to write the full review.
+
+Film metadata is fetched from the TMDb API and cached locally so the app works offline once data is loaded. Festival programmes can be imported from CSV or JSON files, and selections can be exported to Letterboxd CSV or iCalendar format. The app is self-hosted via Docker Compose behind Nginx Proxy Manager.
+
+The project has not yet been tested in real festival conditions. I plan to use it at Cannes 2026 if the accreditation comes through.`,
+        fr: `J'ai développé Accred comme application compagnon pour les festivals de cinéma : planifier une sélection avant le début du festival, prendre des notes rapides sur téléphone entre deux séances, et construire une archive de ses participations au fil du temps. Le nom fait référence aux accréditations de festival. Le projet a démarré lorsque j'ai fait une demande d'accréditation cinéphile pour Cannes 2026 et que je voulais un outil dédié plutôt qu'utiliser plusieurs outils séparés.
+
+L'application est une PWA mobile-first développée avec Next.js 15 et SQLite. La vue programme affiche le planning complet du festival sous forme de grille, colorée par salle et par statut de conflit. Le module sélection gère la programmation personnelle et signale les conflits d'horaire entre les séances choisies. Le module journal est conçu pour permettre d'ouvrir rapidement une nouvelle note entre deux sessions et de noter quelques idées, avant de prendre le temps, en fin de journée, de rédiger la critique complète.
+
+Les métadonnées des films sont récupérées depuis l'API TMDb et mises en cache localement pour que l'application fonctionne hors ligne une fois les données chargées. Les programmes peuvent être importés depuis des fichiers CSV ou JSON, et les sélections exportées au format CSV Letterboxd ou iCalendar. L'application est self-hosted via Docker Compose derrière Nginx Proxy Manager.
+
+Le projet n'a pas encore été testé en conditions réelles de festival. Je prévois de l'utiliser à Cannes 2026 si mon accréditation est acceptée.`,
+      },
+      technologies: ['Next.js', 'TypeScript','SQLite', 'Docker'],
+      domains: ['Web Development', 'Mobile', 'PWA'],
+      keywords: ['pwa', 'film festival', 'mobile', 'self-hosted', 'nextjs', 'scheduler'],
+      category: 'personal',
+      status: 'in-progress',
+      period: { en: '2026 - Present', fr: '2026 - Présent' },
+      location: { en: 'Personal project', fr: 'Projet personnel' },
+      textColor: "black",
+      image: '/images/accred.webp',
+      imageAlt: {
+        en: 'Accred app interface showing a film festival programme grid with selected screenings',
+        fr: 'Interface de l\'application Accred montrant une grille de programme de festival avec des séances sélectionnées',
+      },
+      gitHubUrl: 'https://github.com/Samuellct/Accred',
+      dateCreated: '2026-03-10',
+    },
+    'time-predict': {
+      id: 'time-predict',
+      title: { en: 'TimePredict', fr: 'TimePredict' },
+      description: {
+        en: 'Weather and topo analysis tool for trail running: generates meteorological forecasts along a GPX route using a three-tier data pipeline adapted to the forecast horizon.',
+        fr: 'Outil d\'analyse météorologique et terrain pour le trail running : génère des prévisions météo le long d\'un parcours GPX grâce à un pipeline à trois étages adapté à l\'horizon temporel.',
+      },
+      subtitle: {
+        en: 'Weather Forecast and topo Analysis for Trail Running',
+        fr: 'Analyse météorologique et topo pour le trail running',
+      },
+      detailedDescription: {
+        en: `I built TimePredict to analyze weather conditions along a trail running route from a GPX file and a target race date. The project currently covers the meteorological and topographic analysis modules; pace prediction from terrain profile is planned but not yet implemented.
+
+The core module uses a three-tier system to select the most reliable data source depending on the forecast horizon. For races more than 15 days out, Module 1 uses Meteostat historical climatology. For the 6 to 15 day window, Module 2 queries Open-Meteo extended forecasts. Within 5 days of the race, Module 3 retrieves high-resolution data from OpenWeatherMap and computes thermal indices at each waypoint. API responses are cached locally to avoid redundant calls across multiple analyses of the same route.
+
+Beyond standard temperature and precipitation, the module computes the UTCI (Universal Thermal Climate Index), a physiological equivalent temperature that accounts for wind chill, solar radiation and humidity. Solar position is calculated using the NREL SPA algorithm (via pvlib, precision ±0.0003°) to estimate radiation exposure based on slope aspect and time of day. The altitude lapse rate correction distinguishes between dry and saturated adiabatic conditions.
+
+I tested the module on the Maxirace 2025, a one-day circumnavigation race around the lake. The module runs in a Jupyter notebook: the user sets a GPX file path and race date, and the output includes per-waypoint forecasts, UTCI values, cumulative VPD as an atmospheric dryness indicator, and an elevation profile with weather overlays.`,
+        fr: `J'ai développé TimePredict pour analyser les conditions météorologiques le long d'un parcours de trail à partir d'un fichier GPX et d'une date de course cible. Le projet couvre actuellement les modules d'analyse météorologique et topographique ; la prédiction de temps de passage à partir du profil de terrain est prévue mais pas encore implémentée.
+
+Le module central utilise un système à trois étages pour sélectionner la source de données la plus fiable selon l'horizon temporel. Pour les courses à plus de 15 jours, le Module 1 utilise la climatologie historique Meteostat. Pour la fenêtre J+6 à J+15, le Module 2 interroge les prévisions étendues d'Open-Meteo. Dans les 5 jours précédant la course, le Module 3 récupère des données haute résolution depuis OpenWeatherMap et calcule des indices thermiques en chaque point de passage. Les réponses API sont mises en cache localement pour éviter les appels redondants lors d'analyses répétées du même parcours.
+
+Au-delà des variables météo standards, le module calcule l'UTCI (Universal Thermal Climate Index), une température physiologique équivalente prenant en compte le refroidissement éolien, le rayonnement solaire et l'humidité. La position solaire est calculée via l'algorithme NREL SPA (via pvlib, précision ±0,0003°) pour estimer l'exposition au rayonnement selon l'orientation de la pente et l'heure de la journée. La correction du gradient altitudinal distingue les conditions adiabatiques sèches et saturées.
+
+J'ai testé le module sur la Maxirace 2025, une course de contournement du lac en une journée. Il fonctionne dans un notebook Jupyter : l'utilisateur renseigne le chemin du fichier GPX et la date de course, et les résultats incluent les prévisions par point de passage, les valeurs UTCI, le VPD cumulé et un profil altimétrique avec données météo superposées.`,
+      },
+      technologies: ['Python', 'Jupyter', 'NumPy', 'Pandas', 'pvlib', 'gpxpy', 'Meteostat', 'Open-Meteo', 'OpenWeatherMap'],
+      domains: ['Data Science', 'Meteorology', 'Sports Analytics'],
+      keywords: ['trail running', 'weather', 'gpx', 'utci', 'python', 'forecast', 'thermal analysis'],
+      category: 'personal',
+      status: 'in-progress',
+      period: { en: '2025 - Present', fr: '2025 - Présent' },
+      location: { en: 'Personal project', fr: 'Projet personnel' },
+      image: '/images/timepredict.webp',
+      imageAlt: {
+        en: 'Elevation profile of a trail route with weather data overlay showing temperature and wind conditions',
+        fr: 'Profil altimétrique d\'un parcours de trail avec données météo superposées montrant température et conditions de vent',
+      },
+      visible: false,
+      dateCreated: '2025-11-27',
+    },
   },
   academic: {
     'data-analysis': {
