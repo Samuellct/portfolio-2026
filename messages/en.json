@@ -31,7 +31,7 @@
   },
   "about": {
     "sectionLabel": "001 — About",
-    "title": "Between physics and data science",
+    "title": "From physicist to ... developer",
     "preview": {
       "intro": "Two research internships in experimental physics, within groups affiliated to the LHCb and ATLAS collaborations, taught me to build full analysis pipelines: data acquisition, cleaning, statistical modelling, reporting. Python and C++ are my main tools. ROOT, NumPy, Pandas, and scikit-learn are part of my daily workflow.",
       "highlight": "This portfolio gathers personal and academic projects: a geospatial simulation in Python, a Python/Qt desktop tool for physicists, and this Next.js website.",
