@@ -22,7 +22,9 @@ const config: Config = {
       },
       fontFamily: {
         display: ['var(--font-bebas)', 'sans-serif'],
-        body: ['var(--font-inter)', 'sans-serif'],
+        body: ['var(--font-syne)', 'sans-serif'],
+        'display-accent': ['var(--font-unbounded)', 'sans-serif'],
+        mono: ['var(--font-mono)', 'monospace'],
       },
       animation: {
         'scroll-line': 'scrollLine 1.5s ease-in-out infinite',

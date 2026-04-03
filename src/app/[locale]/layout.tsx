@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Inter, Bebas_Neue } from 'next/font/google'
+import { Syne, Bebas_Neue, Unbounded, Space_Mono } from 'next/font/google'
 import { hasLocale } from 'next-intl'
 import { setRequestLocale, getTranslations } from 'next-intl/server'
 import { NextIntlClientProvider } from 'next-intl'
@@ -10,10 +10,10 @@ import { Providers } from '../providers'
 import '@/styles/globals.css'
 
 // Fonts optimized by Next.js
-const inter = Inter({
+const syne = Syne({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-inter',
+  variable: '--font-syne',
 })
 
 const bebasNeue = Bebas_Neue({
@@ -21,6 +21,19 @@ const bebasNeue = Bebas_Neue({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-bebas',
+})
+
+const unbounded = Unbounded({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-unbounded',
+})
+
+const spaceMono = Space_Mono({
+  weight: ['400', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-mono',
 })
 
 export const viewport: Viewport = {
@@ -165,7 +178,7 @@ export default async function LocaleLayout({
   const jsonLd = buildJsonLd(locale, t)
 
   return (
-    <html lang={locale} className={`${inter.variable} ${bebasNeue.variable}`}>
+    <html lang={locale} className={`${syne.variable} ${bebasNeue.variable} ${unbounded.variable} ${spaceMono.variable}`}>
       <head>
         <link rel="icon" type="image/png" href="/favicon.png" />
         <script

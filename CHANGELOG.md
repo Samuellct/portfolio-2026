@@ -5,7 +5,16 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [4.9.8] - 2026-04-03
+## [4.9.9]
+
+### Modifié
+
+- `layout.tsx` : remplacement de la police de corps par `Syne` (`--font-syne`), ajout de `Unbounded` comme police display accent (`--font-unbounded`), ajout de `Space_Mono` (weights 400/700) comme police monospace (`--font-mono`)
+- `tailwind.config.ts` : `font-body` pointe désormais sur `var(--font-syne)`, ajout de `font-display-accent` (`var(--font-unbounded)`) pour HeroSection, ajout de `font-mono` (`var(--font-mono)`)
+
+---
+
+## [4.9.8]
 
 ### Modifié
 - Ajustement de plusieurs textes i18n
@@ -17,7 +26,7 @@ et ce projet respecte les règles du [Semantic Versioning](https://semver.org/sp
 
 ---
 
-## [4.9.7] - 2026-03-04
+## [4.9.7]
 
 ### Ajouté
 - `src/lib/constants.ts` - `BASE_URL` et `buildAlternates()` centralisés, importés par les 5 layouts et le sitemap
@@ -34,7 +43,7 @@ et ce projet respecte les règles du [Semantic Versioning](https://semver.org/sp
 
 ---
 
-## [4.9.6] - 2026-03-04
+## [4.9.6]
 
 ### Ajouté
 - Namespace `metadata` dans `messages/en.json` et `messages/fr.json`
@@ -52,7 +61,7 @@ et ce projet respecte les règles du [Semantic Versioning](https://semver.org/sp
 
 ---
 
-## [4.9.5] - 2026-03-04
+## [4.9.5]
 
 ### Ajouté
 - Type `BilingualText` et helper `getLocalizedField()` dans `projects.ts`
@@ -69,7 +78,7 @@ et ce projet respecte les règles du [Semantic Versioning](https://semver.org/sp
 
 ---
 
-## [4.9.4] - 2026-03-03
+## [4.9.4]
 
 ### Ajouté
 - Composant `LanguageSwitcher` pour basculer entre FR et EN
@@ -79,7 +88,7 @@ et ce projet respecte les règles du [Semantic Versioning](https://semver.org/sp
 
 ---
 
-## [4.9.3] - 2026-03-03
+## [4.9.3]
 
 ### Modifié
 - Migration de 17 composants de `content.json` vers `useTranslations`
@@ -91,7 +100,7 @@ et ce projet respecte les règles du [Semantic Versioning](https://semver.org/sp
 
 ---
 
-## [4.9.2] - 2026-03-03
+## [4.9.2]
 
 ### Modifié
 - pages déplacées ds `src/app/[locale]/`
@@ -105,7 +114,7 @@ et ce projet respecte les règles du [Semantic Versioning](https://semver.org/sp
 
 ---
 
-## [4.9.1] - 2026-03-03
+## [4.9.1]
 
 ### Ajouté
 - Installation et configuration de `next-intl`
@@ -127,7 +136,7 @@ et ce projet respecte les règles du [Semantic Versioning](https://semver.org/sp
 
 ---
 
-## [4.8.3] - 2026-03-02
+## [4.8.3]
 
 ### Ajouté
 - Pipeline CI/CD avec GitHub Actions (TypeScript, ESLint, audit sécurité, build)
@@ -149,7 +158,7 @@ et ce projet respecte les règles du [Semantic Versioning](https://semver.org/sp
 
 ---
 
-## [4.8.1] - 2026-02-05
+## [4.8.1]
 
 ### Ajouté
 - Nouveau projet : analyse de données L3
@@ -199,21 +208,21 @@ et ce projet respecte les règles du [Semantic Versioning](https://semver.org/sp
 
 ---
 
-## [4.7.3] - 2026-01-26
+## [4.7.3]
 
 ### Ajouté
 - Documentation README initiale
 
 ---
 
-## [4.7.2] - 2026-01-13
+## [4.7.2]
 
 ### Corrigé
 - Correction de fichiers publics cassés (assets introuvables au chargement)
 
 ---
 
-## [4.7.1] - 2026-01-12
+## [4.7.1]
 
 ### Ajouté
 - Intégration du formulaire de contact via Formspree
