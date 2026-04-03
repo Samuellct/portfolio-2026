@@ -20,10 +20,13 @@
   },
   "hero": {
     "greeting": "Hi, I'm Samuel",
+    "greetingMobile": "Hi, I'm Samuel",
     "title": "Physics. Python. Data.",
     "titleAlt": "",
     "description": "Physics graduate, trained in data analysis within CERN-affiliated research groups. Looking for a technical position or PhD.",
     "cta": "My projects",
+    "ctaSecondary": "Download my CV",
+    "available": "Open to work",
     "scrollHint": "Scroll"
   },
   "about": {

@@ -20,10 +20,13 @@
   },
   "hero": {
     "greeting": "Samuel Lecomte",
+    "greetingMobile": "Samuel",
     "title": "Physique. Python. Data.",
     "titleAlt": "",
     "description": "Physicien de formation, formé à l'analyse de données dans des équipes de recherche affiliées au CERN. A la recherche d'un poste technique ou d'une thèse.",
     "cta": "Mes projets",
+    "ctaSecondary": "Télécharger mon CV",
+    "available": "Disponible",
     "scrollHint": "Défiler"
   },
   "about": {

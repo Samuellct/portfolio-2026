@@ -5,6 +5,32 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.9.10]
+
+### Modifié
+
+- `HeroSection.tsx` : greeting `h1` - Unbounded weight 900 (`font-black`), uppercase, `letter-spacing: -0.03em`, `font-size: clamp(1.5rem, 9vw, 8rem)`, `line-height: 0.92` - cohérent avec le mockup Hero-C
+- `HeroSection.tsx` : layout left-aligned - `max-w-7xl mx-auto` retiré, padding `px-6 md:px-12 lg:px-20`
+- `HeroSection.tsx` : gradient WaveBackground `from-primary/50` -> `from-primary/25`
+- `HeroSection.tsx` : description `text-white/50` -> `text-white/60`, suppression `text-justify`
+- `HeroSection.tsx` : suppression de `{t('titleAlt')}` dans le subtitle
+- `HeroSection.tsx` : CTA principal `href="/about"` -> `href="/projects"`
+- `HeroSection.tsx` : boutons CTA responsive (`px-6 py-3` mobile, `px-8 py-4` md+, `text-xs` mobile)
+- `HeroSection.tsx` : CTAs empilés et centrés sur mobile (`flex-col items-center`), côte à côte sur desktop (`md:flex-row`)
+- `HeroSection.tsx` : greeting FR mobile (`< md`) - affiche `greetingMobile` ("Samuel") au lieu de "Samuel Lecomte" pour éviter le débordement ; génération de chars factorisée via `makeChars()`
+
+### Ajouté
+
+- `HeroSection.tsx` : indicateur "Disponible / Open to work" intégré dans le flux du contenu, juste au-dessus du greeting (badge avec point vert `animate-pulse-slow` + bordure verte)
+- `HeroSection.tsx` : CTA secondaire "Télécharger mon CV" / "Download my CV" -> `/Resume.pdf`
+- `messages/fr.json` + `messages/en.json` : clés `hero.ctaSecondary`, `hero.available`, `hero.greetingMobile`
+
+### Supprimé
+
+- `HeroSection.tsx` : texte "Portfolio 2026"
+
+---
+
 ## [4.9.9]
 
 ### Modifié
@@ -19,7 +45,7 @@ et ce projet respecte les règles du [Semantic Versioning](https://semver.org/sp
 ### Modifié
 - Ajustement de plusieurs textes i18n
 - `HomePageClient.tsx` : suppression de `BlogSection` (import + rendu JSX), suppression entrée `blog` dans `sectionColors`, couleur de fond ContactSection `#05050f` > `#050f08`
-- `Landing.tsx` : suppression du bouton "Entrer" et du gestionnaire `handleEnterClick`, suppression du `state showContent` et du `<motion.p>` subtitle, ajout transition automatique — `useEffect` déclenche `onEnter()` après 1,5 s d'exposition
+- `Landing.tsx` : suppression du bouton "Entrer" et du gestionnaire `handleEnterClick`, suppression du `state showContent` et du `<motion.p>` subtitle, ajout transition automatique - `useEffect` déclenche `onEnter()` après 1,5 s d'exposition
 
 ### Supprimé
 - Rendu de `BlogSection` sur la homepage (composant conservé dans `src/components/sections/`)
