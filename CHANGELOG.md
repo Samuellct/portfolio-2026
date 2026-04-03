@@ -5,10 +5,21 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.9.11]
+
+### Modifié
+- modification clé i18n `about.title`
+- `AboutSection.tsx` : mots-clés "physicien"/"développeur" (+ version en) rendus en Fraunces italic (`fraunces-display-italic text-accent-cyan`) ; détection par normalisation unicode nfd pour gérer les accents
+- `AboutSection.tsx` : `leading-[0.9]` -> `leading-[1.05]` sur le `h2` pour dégager le jambage inférieur du 'y' de Fraunces italic en fin de ligne 1 de l'ascendant 'l' en début de ligne 2
+- `src/app/[locale]/layout.tsx` : chargement de `Fraunces` via `next/font/google` (`axes: ['opsz']`, `style: ['italic']`, variable CSS `--font-fraunces`)
+- `tailwind.config.ts` : ajout de `fraunces: ['var(--font-fraunces)', 'serif']` dans `fontFamily`
+- `src/styles/globals.css` : ajout de la classe `.fraunces-display-italic` (`font-family`, `font-style: italic`, `font-weight: 400`, `font-variation-settings: 'opsz' 144`)
+
+---
+
 ## [4.9.10]
 
 ### Modifié
-
 - `HeroSection.tsx` : greeting `h1` - Unbounded weight 900 (`font-black`), uppercase, `letter-spacing: -0.03em`, `font-size: clamp(1.5rem, 9vw, 8rem)`, `line-height: 0.92` - cohérent avec le mockup Hero-C
 - `HeroSection.tsx` : layout left-aligned - `max-w-7xl mx-auto` retiré, padding `px-6 md:px-12 lg:px-20`
 - `HeroSection.tsx` : gradient WaveBackground `from-primary/50` -> `from-primary/25`
@@ -20,13 +31,11 @@ et ce projet respecte les règles du [Semantic Versioning](https://semver.org/sp
 - `HeroSection.tsx` : greeting FR mobile (`< md`) - affiche `greetingMobile` ("Samuel") au lieu de "Samuel Lecomte" pour éviter le débordement ; génération de chars factorisée via `makeChars()`
 
 ### Ajouté
-
 - `HeroSection.tsx` : indicateur "Disponible / Open to work" intégré dans le flux du contenu, juste au-dessus du greeting (badge avec point vert `animate-pulse-slow` + bordure verte)
 - `HeroSection.tsx` : CTA secondaire "Télécharger mon CV" / "Download my CV" -> `/Resume.pdf`
 - `messages/fr.json` + `messages/en.json` : clés `hero.ctaSecondary`, `hero.available`, `hero.greetingMobile`
 
 ### Supprimé
-
 - `HeroSection.tsx` : texte "Portfolio 2026"
 
 ---
@@ -34,7 +43,6 @@ et ce projet respecte les règles du [Semantic Versioning](https://semver.org/sp
 ## [4.9.9]
 
 ### Modifié
-
 - `layout.tsx` : remplacement de la police de corps par `Syne` (`--font-syne`), ajout de `Unbounded` comme police display accent (`--font-unbounded`), ajout de `Space_Mono` (weights 400/700) comme police monospace (`--font-mono`)
 - `tailwind.config.ts` : `font-body` pointe désormais sur `var(--font-syne)`, ajout de `font-display-accent` (`var(--font-unbounded)`) pour HeroSection, ajout de `font-mono` (`var(--font-mono)`)
 

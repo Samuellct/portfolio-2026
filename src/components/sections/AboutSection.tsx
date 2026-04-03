@@ -204,15 +204,26 @@ export default function AboutSection() {
             {t('sectionLabel')}
           </motion.div>
           
-          <h2 
+          <h2
             ref={titleRef}
-            className="font-display text-[clamp(3rem,10vw,7rem)] leading-[0.9] tracking-wide overflow-hidden"
+            className="text-[clamp(3rem,10vw,7rem)] leading-[1.05] overflow-hidden"
           >
-            {t('title').split(' ').map((word: string, i: number) => (
-              <span key={i} className="title-word inline-block mr-[0.25em]">
-                {word}
-              </span>
-            ))}
+            {t('title').split(' ').map((word: string, i: number) => {
+              const clean = word.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+              const isAccent = ['physicien', 'developpeur', 'physicist', 'developer'].includes(clean)
+              return (
+                <span
+                  key={i}
+                  className={`title-word inline-block mr-[0.2em] ${
+                    isAccent
+                      ? 'fraunces-display-italic text-accent-cyan'
+                      : 'font-display tracking-wide'
+                  }`}
+                >
+                  {word}
+                </span>
+              )
+            })}
           </h2>
         </div>
         

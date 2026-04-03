@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Syne, Bebas_Neue, Unbounded, Space_Mono } from 'next/font/google'
+import { Syne, Bebas_Neue, Unbounded, Space_Mono, Fraunces } from 'next/font/google'
 import { hasLocale } from 'next-intl'
 import { setRequestLocale, getTranslations } from 'next-intl/server'
 import { NextIntlClientProvider } from 'next-intl'
@@ -34,6 +34,14 @@ const spaceMono = Space_Mono({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-mono',
+})
+
+const fraunces = Fraunces({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-fraunces',
+  axes: ['opsz'],
+  style: ['italic'],
 })
 
 export const viewport: Viewport = {
@@ -178,7 +186,7 @@ export default async function LocaleLayout({
   const jsonLd = buildJsonLd(locale, t)
 
   return (
-    <html lang={locale} className={`${syne.variable} ${bebasNeue.variable} ${unbounded.variable} ${spaceMono.variable}`}>
+    <html lang={locale} className={`${syne.variable} ${bebasNeue.variable} ${unbounded.variable} ${spaceMono.variable} ${fraunces.variable}`}>
       <head>
         <link rel="icon" type="image/png" href="/favicon.png" />
         <script

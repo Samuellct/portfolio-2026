@@ -25,6 +25,7 @@ const config: Config = {
         body: ['var(--font-syne)', 'sans-serif'],
         'display-accent': ['var(--font-unbounded)', 'sans-serif'],
         mono: ['var(--font-mono)', 'monospace'],
+        fraunces: ['var(--font-fraunces)', 'serif'],
       },
       animation: {
         'scroll-line': 'scrollLine 1.5s ease-in-out infinite',
