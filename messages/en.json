@@ -1,7 +1,7 @@
 {
   "landing": {
     "title": "Samuel's Portfolio",
-    "subtitle": "Particle Physics & Data Science",
+    "subtitle": "",
     "enter": "Enter"
   },
   "nav": {
@@ -20,18 +20,18 @@
   },
   "hero": {
     "greeting": "Hi, I'm Samuel",
-    "title": "M.S. in Physics",
-    "titleAlt": "& Data Science",
-    "description": "Recent graduate specialized in high-energy physics and data science. Currently seeking opportunities in research or data engineering.",
-    "cta": "Discover my background",
+    "title": "Physics. Python. Data.",
+    "titleAlt": "",
+    "description": "Physics graduate, trained in data analysis within CERN-affiliated research groups. Looking for a technical position or PhD.",
+    "cta": "My projects",
     "scrollHint": "Scroll"
   },
   "about": {
     "sectionLabel": "001 — About",
     "title": "Between physics and data science",
     "preview": {
-      "intro": "I'm a recent physics graduate with a strong foundation in data analysis, statistical methods, and scientific computing. My academic journey has led me through both the theoretical foundations of physics and hands-on research with major international collaborations.",
-      "highlight": "From CERN experiments to personal tech projects, I enjoy solving complex problems and building tools that make data accessible.",
+      "intro": "Two research internships in experimental physics, within groups affiliated to the LHCb and ATLAS collaborations, taught me to build full analysis pipelines: data acquisition, cleaning, statistical modelling, reporting. Python and C++ are my main tools. ROOT, NumPy, Pandas, and scikit-learn are part of my daily workflow.",
+      "highlight": "This portfolio gathers personal and academic projects: a geospatial simulation in Python, a Python/Qt desktop tool for physicists, and this Next.js website.",
       "cta": "Full profile & CV"
     },
     "full": {
@@ -42,7 +42,7 @@
       "goalsTitle": "Professional Goals"
     },
     "stats": {
-      "experiments": "CERN Collaboration internships",
+      "experiments": "Research internships",
       "experimentsHover": "within ATLAS & LHCb LPCA research groups",
       "languages": "Programming Languages",
       "languagesHover": "Python, C++, R, TypeScript, ...",
@@ -181,16 +181,16 @@
   },
   "metadata": {
     "home": {
-      "titleDefault": "Samuel Lecomte | Experimental Physics & Data Science",
+      "titleDefault": "Samuel Lecomte | Particle Physics & Data Science",
       "titleTemplate": "%s | Samuel Lecomte",
-      "description": "Portfolio of Samuel Lecomte - Graduate in Physics and Data Science. Showcasing research projects, data analysis work, and technical skills.",
+      "description": "Portfolio of Samuel Lecomte - Graduate in Physics and Data Science. Showcasing research projects, data analysis work, and technical skills from CERN collaborations.",
       "ogDescription": "Portfolio showcasing research projects, data analysis work, and technical skills.",
       "twitterTitle": "Samuel Lecomte | Portfolio",
-      "twitterDescription": "Experimental Physics & Data Science"
+      "twitterDescription": "Particle Physics & Data Science"
     },
     "about": {
       "title": "About",
-      "description": "Learn about Samuel Lecomte - Graduate in Physics and Data Science from Université Clermont Auvergne, with experience in CERN related teams including ATLAS and LHCb experiments.",
+      "description": "Learn about Samuel Lecomte - Graduate in Physics and Data Science from Université Clermont Auvergne, with experience in CERN collaborations including ATLAS and LHCb experiments.",
       "ogTitle": "About | Samuel Lecomte",
       "ogDescription": "Graduate in Physics and Data Science, specializing in high-energy physics experiments."
     },
@@ -202,15 +202,15 @@
     },
     "projects": {
       "title": "Projects",
-      "description": "Explore my portfolio of experimental physics, data analysis projects, and technical work.",
+      "description": "Explore my portfolio of particle physics research, data analysis projects, and technical work from CERN collaborations.",
       "ogTitle": "Projects | Samuel Lecomte",
       "ogDescription": "Research projects, academic work, and personal experiments in physics and data engineering."
     },
     "jsonLd": {
       "siteDescription": "Portfolio of Samuel Lecomte - Graduate in Physics and Data Science",
       "jobTitle": "Graduate in Physics and Data Science",
-      "personDescription": "Recent graduate specialized in experimental physics and data science. Experience with CERN collaborations (ATLAS, LHCb).",
-      "webpageDescription": "Portfolio showcasing research projects, data analysis work, and technical skills."
+      "personDescription": "Recent graduate specialized in high-energy physics and data science. Experience with CERN collaborations (ATLAS, LHCb).",
+      "webpageDescription": "Portfolio showcasing research projects, data analysis work, and technical skills from CERN collaborations."
     }
   },
   "common": {

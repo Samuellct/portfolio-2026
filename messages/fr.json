@@ -1,7 +1,7 @@
 {
   "landing": {
     "title": "Portfolio de Samuel",
-    "subtitle": "Physique expérimentale & Data science",
+    "subtitle": "",
     "enter": "Entrer"
   },
   "nav": {
@@ -19,19 +19,19 @@
     "switchLang": "English"
   },
   "hero": {
-    "greeting": "Bonjour, c'est Samuel",
-    "title": "Master en Physique",
-    "titleAlt": "& DU Data Scientist",
-    "description": "Physicien de formation, spécialisé en physique expérimentale et data science. Actuellement en recherche d'opportunités dans la recherche ou l'analyse de données.",
-    "cta": "Découvrir mon parcours",
+    "greeting": "Samuel Lecomte",
+    "title": "Physique. Python. Data.",
+    "titleAlt": "",
+    "description": "Physicien de formation, formé à l'analyse de données dans des équipes de recherche affiliées au CERN. A la recherche d'un poste technique ou d'une thèse.",
+    "cta": "Mes projets",
     "scrollHint": "Défiler"
   },
   "about": {
     "sectionLabel": "001 — À propos",
     "title": "Entre physique et data science",
     "preview": {
-      "intro": "Mon parcours en physique expérimentale m'a appris à traiter la donnée depuis le signal brut jusqu'au modèle final. Qu'il s'agisse d'analyser des collisions du LHC ou de développer des outils en Python et C++, je privilégie une approche itérative pour identifier les biais avant le traitement.",
-      "highlight": "J'allie donc rigueur scientifique et développement logiciel pour concevoir des pipelines d'analyse robustes, adaptés aux contraintes réelles.",
+      "intro": "Deux stages de recherche en physique fondamentale, au sein d'équipes membres des collaborations LHCb et ATLAS, m'ont formé à construire des pipelines d'analyse complets : acquisition, nettoyage, modélisation statistique, présentation. Python et C++ sont mes outils principaux. ROOT, NumPy, Pandas et scikit-learn font partie de ma stack quotidienne.",
+      "highlight": "Ce portfolio rassemble mes projets personnels et académiques : simulation géospatiale en Python, interface desktop Python/Qt pour physiciens, et ce site web Next.js.",
       "cta": "Profil complet & CV"
     },
     "full": {
@@ -42,8 +42,8 @@
       "goalsTitle": "Objectifs professionnels"
     },
     "stats": {
-      "experiments": "Stages physique expérimentale",
-      "experimentsHover": "au sein des groupes de recherche ATLAS & LHCb du LPCA",
+      "experiments": "Stages de recherche",
+      "experimentsHover": "au sein des équipes ATLAS & LHCb du LPCA",
       "languages": "Langages de programmation",
       "languagesHover": "Python, C++, R, TypeScript, ...",
       "reports": "Documents LaTeX",
@@ -181,36 +181,36 @@
   },
   "metadata": {
     "home": {
-      "titleDefault": "Samuel Lecomte | Physique expérimentale & Data Science",
+      "titleDefault": "Samuel Lecomte | Physique des particules & Data Science",
       "titleTemplate": "%s | Samuel Lecomte",
-      "description": "Portfolio de Samuel Lecomte - Diplômé en physique et data science. Projets de recherche, analyse de données et compétences techniques issues de stages en physique expérimentale.",
+      "description": "Portfolio de Samuel Lecomte — Diplômé en physique et data science. Projets de recherche, analyse de données et compétences techniques issues de collaborations au CERN.",
       "ogDescription": "Portfolio présentant projets de recherche, travaux d'analyse de données et compétences techniques.",
       "twitterTitle": "Samuel Lecomte | Portfolio",
-      "twitterDescription": "Physique expérimentale & Data Science"
+      "twitterDescription": "Physique des particules & Data Science"
     },
     "about": {
       "title": "À propos",
-      "description": "Découvrez le parcours de Samuel Lecomte - Diplômé en physique et data science de l'Université Clermont Auvergne, avec une expérience au sein des collaborations ATLAS et LHCb.",
+      "description": "Découvrez le parcours de Samuel Lecomte — Diplômé en physique et data science de l'Université Clermont Auvergne, avec une expérience au sein des collaborations ATLAS et LHCb du CERN.",
       "ogTitle": "À propos | Samuel Lecomte",
-      "ogDescription": "Diplômé en physique et data science, spécialisé en physique des particules."
+      "ogDescription": "Diplômé en physique et data science, spécialisé en physique des hautes énergies."
     },
     "contact": {
       "title": "Contact",
-      "description": "Contactez Samuel Lecomte pour des collaborations, opportunités d'emploi ou toute question.",
+      "description": "Contactez Samuel Lecomte pour des collaborations, opportunités de recherche ou toute question.",
       "ogTitle": "Contact | Samuel Lecomte",
-      "ogDescription": "Pour collaborations, opportunités d'emploi ou questions."
+      "ogDescription": "Pour collaborations, opportunités de recherche ou questions."
     },
     "projects": {
       "title": "Projets",
-      "description": "Découvrez mes projets en physique expérimentale, analyse de données et travaux techniques.",
+      "description": "Découvrez mes projets en physique des particules, analyse de données et travaux techniques issus de collaborations au CERN.",
       "ogTitle": "Projets | Samuel Lecomte",
       "ogDescription": "Projets de recherche, travaux académiques et expérimentations personnelles en physique et ingénierie des données."
     },
     "jsonLd": {
-      "siteDescription": "Portfolio de Samuel Lecomte - Diplômé en physique et data science",
+      "siteDescription": "Portfolio de Samuel Lecomte — Diplômé en physique et data science",
       "jobTitle": "Diplômé en physique et data science",
-      "personDescription": "Jeune diplômé spécialisé en physique expérimentale et data science. Expérience au sein des collaborations ATLAS et LHCb du CERN.",
-      "webpageDescription": "Portfolio présentant projets de recherche, travaux d'analyse de données et compétences techniques."
+      "personDescription": "Jeune diplômé spécialisé en physique des hautes énergies et data science. Expérience au sein des collaborations ATLAS et LHCb du CERN.",
+      "webpageDescription": "Portfolio présentant projets de recherche, travaux d'analyse de données et compétences techniques issues de collaborations au CERN."
     }
   },
   "common": {

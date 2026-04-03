@@ -7,7 +7,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import HeroSection from '@/components/sections/HeroSection'
 import AboutSection from '@/components/sections/AboutSection'
 import ProjectsSection from '@/components/sections/ProjectsSection'
-import BlogSection from '@/components/sections/BlogSection'
 import ContactSection from '@/components/sections/ContactSection'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -17,8 +16,7 @@ const sectionColors: Record<string, string> = {
   hero: '#030308',
   about: '#08051a',
   projects: '#0f0805',
-  blog: '#050f08',
-  contact: '#05050f',
+  contact: '#050f08'
 }
 
 export default function HomePageClient() {
@@ -61,7 +59,6 @@ export default function HomePageClient() {
       <HeroSection />
       <AboutSection />
       <ProjectsSection />
-      <BlogSection />
       <ContactSection />
     </>
   )

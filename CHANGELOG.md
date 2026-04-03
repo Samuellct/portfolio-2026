@@ -5,6 +5,18 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.9.8] - 2026-04-03
+
+### Modifié
+- Ajustement de plusieurs textes i18n
+- `HomePageClient.tsx` : suppression de `BlogSection` (import + rendu JSX), suppression entrée `blog` dans `sectionColors`, couleur de fond ContactSection `#05050f` > `#050f08`
+- `Landing.tsx` : suppression du bouton "Entrer" et du gestionnaire `handleEnterClick`, suppression du `state showContent` et du `<motion.p>` subtitle, ajout transition automatique — `useEffect` déclenche `onEnter()` après 1,5 s d'exposition
+
+### Supprimé
+- Rendu de `BlogSection` sur la homepage (composant conservé dans `src/components/sections/`)
+
+---
+
 ## [4.9.7] - 2026-03-04
 
 ### Ajouté
