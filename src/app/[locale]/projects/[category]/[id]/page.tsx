@@ -12,6 +12,8 @@ import { getProjectById, getCategoryById, getLocalizedField, Locale } from '@/li
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer'
 import { useTranslations, useLocale } from 'next-intl'
 
+const PROJECT_DETAIL_BG_COLOR = '#080810'
+
 export default function ProjectDetailPage() {
   const t = useTranslations('projects')
   const tCommon = useTranslations('common')
@@ -43,7 +45,7 @@ export default function ProjectDetailPage() {
   }
   
   return (
-    <div className="min-h-screen pt-24 pb-20">
+    <div className="min-h-screen pt-24 pb-20" style={{ backgroundColor: PROJECT_DETAIL_BG_COLOR }}>
       <div className="max-w-7xl mx-auto px-6 md:px-12">
         
         {/* ============================================ */}

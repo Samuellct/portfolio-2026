@@ -5,6 +5,19 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.9.13] - 2026-04-07
+
+### Modifié
+Ajustement de plusieurs couleurs sur tout le site :
+- Homepage (`HomePageClient.tsx`) : Hero `#06060e`, About `#081828`, Projects `#1c1008`, Contact `#081c10`
+- About page (`about/page.tsx`) : Intro `#050e20`, Stack `#051525`, Education `#0e200e`, Interests `#200a0a`
+- Contact page (`contact/page.tsx`) : `#050e20`
+- Projects listing (`projects/page.tsx`) : `#0c0c1e`
+- Project detail (`projects/[category]/[id]/page.tsx`) : `#080810`
+- Globaux (`globals.css`, `tailwind.config.ts`) : `--color-primary` et `primary.DEFAULT` passent de `#030308` à `#06060e`, `--color-primary-light` et `primary.light` de `#080812` à `#0a0a18`, `--bg-color` de `#030308` à `#06060e`
+
+---
+
 ## [4.9.12]
 
 ### Modifié

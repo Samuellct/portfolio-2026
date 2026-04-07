@@ -13,7 +13,7 @@ import { useTranslations, useLocale } from 'next-intl'
 gsap.registerPlugin(ScrollTrigger)
 
 // Background color for projects page
-const PROJECTS_BG_COLOR = '#0a0a12'
+const PROJECTS_BG_COLOR = '#0c0c1e'
 
 // ============================================
 // Project card

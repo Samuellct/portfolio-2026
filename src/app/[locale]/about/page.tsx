@@ -19,10 +19,10 @@ gsap.registerPlugin(ScrollTrigger)
 // SECTION COLORS
 // ============================================
 const sectionColors = {
-  intro: '#080510',
-  stack: '#050c1a',
-  education: '#09120a',
-  interests: '#120505',
+  intro: '#050e20',
+  stack: '#051525',
+  education: '#0e200e',
+  interests: '#200a0a',
 }
 
 // ============================================

@@ -24,14 +24,14 @@
    BASE STYLES
 =================================== */
 :root {
-  --color-primary: #030308;
-  --color-primary-light: #080812;
+  --color-primary: #06060e;
+  --color-primary-light: #0a0a18;
   --color-accent-cyan: #00f0ff;
   --color-accent-purple: #a855f7;
   --color-accent-pink: #f472b6;
   
   /* Dynamic background color */
-  --bg-color: #030308;
+  --bg-color: #06060e;
 }
 
 * {

@@ -13,10 +13,10 @@ gsap.registerPlugin(ScrollTrigger)
 
 // Background colors for each section
 const sectionColors: Record<string, string> = {
-  hero: '#030308',
-  about: '#08051a',
-  projects: '#0f0805',
-  contact: '#050f08'
+  hero: '#06060e',
+  about: '#081828',
+  projects: '#1c1008',
+  contact: '#081c10'
 }
 
 export default function HomePageClient() {

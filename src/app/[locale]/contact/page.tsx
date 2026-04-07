@@ -11,7 +11,7 @@ import { useTranslations } from 'next-intl'
 gsap.registerPlugin(ScrollTrigger)
 
 // Background color
-const CONTACT_BG_COLOR = '#080510'
+const CONTACT_BG_COLOR = '#050e20'
 
 type FormStatus = 'idle' | 'submitting' | 'success' | 'error'
 
