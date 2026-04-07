@@ -6,7 +6,6 @@ import { motion } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowRight } from 'lucide-react'
-import HiddenIcon from '@/components/easter-egg/HiddenIcon'
 import { useTranslations } from 'next-intl'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -239,7 +238,7 @@ export default function AboutSection() {
               </p>
               
               <p className="text-white/50 leading-relaxed text-justify">
-                {t('preview.highlight')} <HiddenIcon id="about-icon" className="inline-block align-middle" />
+                {t('preview.highlight')}
               </p>
             </div>
             

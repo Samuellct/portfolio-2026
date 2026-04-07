@@ -5,6 +5,17 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.9.12]
+
+### Modifié
+- Suppression des 3 composants `<HiddenIcon>` dans `AboutSection.tsx`, `ContactSection.tsx` et `projects/page.tsx`.
+- Suppression du violet (`#a855f7`) dans le `linearGradient` de `ElevationPath.tsx`. La teinte du milieu passe de `#a855f7` à `#00c8ff` (cyan-bleu).
+
+### Corrigé
+- `min-h-[90vh]` remplacé par `min-h-screen` dans `ContactSection.tsx`. Devrait reduire le gap vertical incohérent entre les sections Projects et Contact sur la homepage.
+
+---
+
 ## [4.9.11]
 
 ### Modifié

@@ -7,7 +7,6 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowRight } from 'lucide-react'
 import ParticleCollision from '@/components/effects/ParticleCollision'
-import HiddenIcon from '@/components/easter-egg/HiddenIcon'
 import { useTranslations } from 'next-intl'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -124,7 +123,7 @@ export default function ContactSection() {
     <section
       ref={sectionRef}
       id="contact"
-      className="section min-h-[90vh] py-32 md:py-40 relative overflow-hidden flex items-center"
+      className="section min-h-screen py-32 md:py-40 relative overflow-hidden flex items-center"
     >
       {/* ============================================ */}
       {/* PARALLAX txt */}
@@ -242,7 +241,7 @@ export default function ContactSection() {
             <div className="mt-16 flex items-center gap-4 text-white/20">
               <span className="w-12 h-px bg-white/10" />
               <span className="text-xs tracking-[0.3em] uppercase flex items-center gap-2">
-                Samuel <HiddenIcon id="contact-icon" /> Lecomte
+                Samuel Lecomte
               </span>
             </div>
           </div>

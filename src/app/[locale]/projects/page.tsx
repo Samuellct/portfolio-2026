@@ -8,7 +8,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import { getAllProjects, getLocalizedField, Locale, projectCategories, ProjectData } from '@/lib/projects'
-import HiddenIcon from '@/components/easter-egg/HiddenIcon'
 import { useTranslations, useLocale } from 'next-intl'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -303,8 +302,6 @@ export default function ProjectsPage() {
             </button>
           ))}
           
-          {/* easter egg */}
-          <HiddenIcon id="projects-icon" className="ml-2" />
         </motion.div>
         
         {/* Projects Grid */}

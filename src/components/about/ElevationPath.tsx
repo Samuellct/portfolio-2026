@@ -143,7 +143,7 @@ export default function ElevationPath({ progress, className = '' }: ElevationPat
         <defs>
           <linearGradient id="elevationGradient" x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="#00f0ff" />
-            <stop offset="50%" stopColor="#a855f7" />
+            <stop offset="50%" stopColor="#00c8ff" />
             <stop offset="100%" stopColor="#10b981" />
           </linearGradient>
         </defs>
