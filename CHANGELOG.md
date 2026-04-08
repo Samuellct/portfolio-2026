@@ -5,7 +5,24 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [4.9.13] - 2026-04-07
+## [4.9.14]
+
+### Ajouté
+- Nouveau composant SVG (`src/components/about/CinemaSpotlight.tsx`) pour l'intérêt "Cinéma". Remplace `WaveEmitter.tsx`.
+- Nouveau composant SVG (`src/components/about/MountainProfile.tsx`) pour l'intérêt "Sports de montagne". Remplace `ElevationPath.tsx`.
+
+### Modifié
+- Refonte du bloc statistiques (`AboutSection.tsx`) : remplacement du grid de cartes par 3 tags flottants, animation GSAP simplifiée (fade-in + stagger au lieu de rotateX + counter).
+- Harmonisation des couleurs : Sports de montagne (cyan `#00f0ff`), Home Lab (orange `#e57000`), Cinéma (corail `#e5737d`).
+- Mise à jour des titres et descriptions dans les dictionnaires JSON.
+
+### Supprimé
+- `WaveEmitter.tsx` — Remplacé par CinemaSpotlight
+- `ElevationPath.tsx` — Remplacé par MountainProfile
+
+---
+
+## [4.9.13]
 
 ### Modifié
 Ajustement de plusieurs couleurs sur tout le site :

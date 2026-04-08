@@ -7,9 +7,9 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowLeft, Download, Github, Linkedin } from 'lucide-react'
 import { extractTechStats, TechStats, isLightColor } from '@/lib/techStats'
-import ElevationPath from '@/components/about/ElevationPath'
+import MountainProfile from '@/components/about/MountainProfile'
 import NetworkGraph from '@/components/about/NetworkGraph'
-import WaveEmitter from '@/components/about/WaveEmitter'
+import CinemaSpotlight from '@/components/about/CinemaSpotlight'
 import ScrollIndicator from '@/components/about/ScrollIndicator'
 import { useTranslations } from 'next-intl'
 
@@ -686,8 +686,8 @@ export default function AboutPage() {
                   {interests[0].description}
                 </p>
               </div>
-              <div className="md:w-1/2 h-32 md:h-40">
-                <ElevationPath progress={interest1Progress} className="w-full h-full" />
+              <div className="md:w-1/2 h-48 md:h-52">
+                <MountainProfile progress={interest1Progress} className="w-full h-full" />
               </div>
             </div>
             
@@ -721,7 +721,7 @@ export default function AboutPage() {
               }}
             >
               <div className="md:w-1/2">
-                <h3 className="font-display text-2xl md:text-3xl tracking-wide mb-3 text-accent-purple">
+                <h3 className="font-display text-2xl md:text-3xl tracking-wide mb-3 text-[#e5737d]">
                   {interests[2].label}
                 </h3>
                 <p className="text-white/50 leading-relaxed">
@@ -729,7 +729,7 @@ export default function AboutPage() {
                 </p>
               </div>
               <div className="md:w-1/2 h-48 md:h-52">
-                <WaveEmitter progress={interest3Progress} className="w-full h-full" />
+                <CinemaSpotlight progress={interest3Progress} className="w-full h-full" />
               </div>
             </div>
           </div>

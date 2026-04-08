@@ -90,16 +90,16 @@
       "title": "Centres d'intérêt",
       "subtitle": "Bac à sable personnel",
       "running": {
-        "title": "Trail Running",
-        "description": "Entraînement sur des distances variées, du 5 km aux trails en montagne de plus de 100 km. J'apprécie la préparation technique et les longues journées en pleine nature."
+        "title": "Sports de montagne",
+        "description": "J'aime particulièrement les activités qui demandent de l'endurance et une bonne gestion du risque. Je fais notamment du trail running, j'ai déjà participé à un ultra-trail (100 km) et de l'alpinisme, avec l'ascension de plusieurs sommets alpins comme l'Aiguille du Midi et le Grand Paradis."
       },
       "tech": {
         "title": "Home Lab & Auto-hébergement",
         "description": "Construction d'une infrastructure cloud privée avec Proxmox, TrueNAS et des services conteneurisés. Auto-hébergement pour la confidentialité et sécurisation via reverse proxy."
       },
       "science": {
-        "title": "Communication scientifique",
-        "description": "Rédaction de rapports et création de simulations Python ou web pour comprendre le fonctionnement des choses et partager ce que j'apprends."
+        "title": "Cinéma",
+        "description": "Passionné de cinéma et habitué des festivals (Cannes, Clermont-Ferrand), j'aime prendre le temps de rédiger des critiques sur les (nombreux) films que je vois et partager cette passion avec mon entourage."
       }
     },
     "downloadCV": "Télécharger le CV"

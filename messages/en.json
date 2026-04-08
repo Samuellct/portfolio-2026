@@ -90,16 +90,16 @@
       "title": "Interests",
       "subtitle": "Personal Sandbox",
       "running": {
-        "title": "Trail Running",
-        "description": "Training for various distances, from 5km to 100km+ mountain trails. I enjoy the prep, and the long days in the wild."
+        "title": "Mountain Sports",
+        "description": "I particularly enjoy activities that require endurance and risk management. I mainly do trail running, I even took part in a 100 km ultra-trail, and alpinism, with the ascent of several alpine peaks like the Aiguille du Midi and Gran Paradiso."
       },
       "tech": {
         "title": "Home Lab & Self-Hosting",
         "description": "Building private cloud infrastructure with Proxmox, TrueNAS, and containerized services. Self-hosting for privacy and learning."
       },
       "science": {
-        "title": "Science Communication",
-        "description": "Writing about physics and building Python or web simulations to figure out how things work and share what I learn."
+        "title": "Cinema",
+        "description": "Passionate about cinema and a regular at festivals (Cannes, Clermont-Ferrand, Deauville), I like to take the time to write reviews for the (many) films I watch, and I enjoy sharing this passion with the people around me."
       }
     },
     "downloadCV": "Download CV"

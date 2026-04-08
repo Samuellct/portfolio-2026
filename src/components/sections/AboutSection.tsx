@@ -104,62 +104,24 @@ export default function AboutSection() {
         )
       }
       
-      // STATS
+      // STATS — Floating Tags fade-in
       if (statsRef.current) {
-        const statCards = statsRef.current.querySelectorAll('.stat-card')
-        
-        statCards.forEach((card, index) => {
-          gsap.fromTo(card,
-            { 
-              y: 60,
-              opacity: 0,
-              rotateX: -15
+        const floatStats = statsRef.current.querySelectorAll('.float-stat')
+        gsap.fromTo(floatStats,
+          { y: 30, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            stagger: 0.2,
+            duration: 0.8,
+            ease: 'power3.out',
+            scrollTrigger: {
+              trigger: statsRef.current,
+              start: 'top 80%',
+              toggleActions: 'play none none reverse',
             },
-            {
-              y: 0,
-              opacity: 1,
-              rotateX: 0,
-              duration: 0.8,
-              delay: index * 0.15,
-              ease: 'power3.out',
-              scrollTrigger: {
-                trigger: statsRef.current,
-                start: 'top 80%',
-                toggleActions: 'play none none reverse',
-              },
-            }
-          )
-          
-          const valueEl = card.querySelector('.stat-value')
-          if (valueEl) {
-            const finalValue = valueEl.textContent || '0'
-            const numericValue = parseInt(finalValue.replace(/\D/g, ''), 10)
-            const suffix = finalValue.replace(/[0-9]/g, '')
-            
-            if (!isNaN(numericValue)) {
-              gsap.fromTo(valueEl,
-                { textContent: '0' + suffix },
-                {
-                  textContent: numericValue,
-                  duration: 1.5,
-                  delay: 0.3 + index * 0.15,
-                  ease: 'power2.out',
-                  snap: { textContent: 1 },
-                  scrollTrigger: {
-                    trigger: statsRef.current,
-                    start: 'top 80%',
-                    toggleActions: 'play none none reverse',
-                  },
-                  onUpdate: function() {
-                    if (valueEl.textContent) {
-                      valueEl.textContent = Math.round(parseFloat(valueEl.textContent)) + suffix
-                    }
-                  }
-                }
-              )
-            }
           }
-        })
+        )
       }
       
     }, sectionRef)
@@ -261,34 +223,32 @@ export default function AboutSection() {
           
           {/* Right column */}
           <div>
-            {/* Stats grid */}
-            <div ref={statsRef} className="grid gap-6" style={{ perspective: '1000px' }}>
-              {stats.map((stat) => (
-                <div
-                  key={stat.label}
-                  className="stat-card relative p-8 bg-white/[0.02] border border-white/5 group hover:border-accent-purple/30 transition-all duration-500"
-                >
-                  <div className="flex items-center justify-between">
-                    {/* nb */}
-                    <div className="stat-value font-display text-[clamp(3rem,8vw,5rem)] leading-none gradient-text">
+            {/* Stats — Floating Tags */}
+            <div ref={statsRef} className="relative h-[350px] md:h-[400px]">
+              {stats.map((stat, index) => {
+                const positions = [
+                  { top: '10%', left: '8%' },
+                  { top: '42%', left: '45%' },
+                  { top: '72%', left: '14%' },
+                ]
+                return (
+                  <div
+                    key={stat.label}
+                    className="float-stat absolute cursor-default transition-transform duration-[400ms] ease-[cubic-bezier(0.4,0,0.2,1)] hover:-translate-y-1.5 group"
+                    style={{ top: positions[index].top, left: positions[index].left }}
+                  >
+                    <div className="fraunces-display-italic text-[54px] font-light leading-none mb-1.5 gradient-text">
                       {stat.value}
                     </div>
-                    
-                    {/* label + hover */}
-                    <div className="text-right">
-                      <div className="text-sm tracking-[0.1em] uppercase text-white/60 mb-1">
-                        {stat.label}
-                      </div>
-                      <div className="text-xs text-white/30 max-w-[200px] opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                        {stat.hoverText}
-                      </div>
+                    <div className="text-[11px] text-white/50 uppercase tracking-[0.15em] font-medium">
+                      {stat.label}
+                    </div>
+                    <div className="text-xs text-white/30 italic mt-1.5 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                      {stat.hoverText}
                     </div>
                   </div>
-                  
-                  {/* Hover effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-accent-purple/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                </div>
-              ))}
+                )
+              })}
             </div>
           </div>
         </div>
