@@ -60,6 +60,67 @@ export const projectCategories: CategoryData[] = [
 
 export const projectsData: Record<string, Record<string, ProjectData>> = {
   personal: {
+    'landing-page': {
+      id: 'landing-page',
+      title: { en: 'Personal Links Page', fr: 'Page de liens personnelle' },
+      description: {
+        en: 'Self-hosted alternative to Linktree-like platforms, featuring advanced customization, centralized link management, and privacy-friendly analytics.',
+        fr: 'Alternative auto-hébergée aux plateformes de type Linktree, offrant une personnalisation avancée, une gestion centralisée des liens et des statistiques respectueuses de la vie privée.',
+      },
+      subtitle: {
+        en: 'Build my own landing page',
+        fr: 'Créer sa propre page d\'accueil',
+      },
+      detailedDescription: {
+        en: `
+Link aggregation platforms such as Linktree solve a simple problem: gathering multiple links behind a single URL. However, many useful features are often locked behind paid subscriptions while customization options remain limited. I decided to build my own solution to gain full control over the platform, its appearance, its features, and the data it collects. The goal is to provide a modern and self-hosted experience for managing and sharing my online presence.
+
+### Goals
+
+The project aims to provide:
+
+* a single page gathering all important links
+* a responsive experience for desktop and mobile devices
+* an administration dashboard for dynamic content management
+* privacy-friendly analytics
+
+### Technical choices
+
+This project is also an opportunity to explore new technologies. The stack relies on Astro for the frontend, combined with Cloudflare services for hosting and backend features.`,
+        fr: `
+Les plateformes de type Linktree répondent à un besoin simple : regrouper plusieurs liens derrière une seule URL. Cependant, de nombreuses fonctionnalités intéressantes sont souvent limitées par des abonnements payants, tandis que les possibilités de personnalisation restent relativement encadrées. J'ai décidé de développer ma propre solution afin de disposer d'une plateforme entièrement maîtrisée, auto-hébergée et adaptée à mes besoins. L'objectif est de proposer une expérience moderne permettant de centraliser mes différents espaces en ligne tout en conservant un contrôle total sur l'apparence, les fonctionnalités et les données collectées.
+
+### Objectifs
+
+Le projet prévoit de fournir :
+
+* une page unique regroupant l'ensemble de mes liens importants
+* un rendu responsive adaptée au desktop et au mobile
+* un espace d'administration permettant la gestion du contenu
+* des statistiques simples et respectueuses de la vie privée
+* une personnalisation graphique libre
+
+### Choix techniques
+
+Ce projet est également l'occasion d'explorer de nouvelles technologies. La stack repose sur Astro pour la partie interface, associés à l'écosystème Cloudflare pour l'hébergement et les services backend.`,
+      },
+      technologies: ['Astro', 'Framer Motion', 'Cloudflare Pages', 'Cloudflare D1', 'Umami'],
+      domains: ['Web Development', 'UX/UI', 'Privacy'],
+      keywords: ['personal landing page', 'cloudflare', 'web application', 'privacy friendly analytics'],
+      category: 'personal',
+      status: 'in-progress',
+      period: { en: '2026 - Present', fr: '2026 - Présent' },
+      location: { en: 'Personal project', fr: 'Projet personnel' },
+      image: '/images/landing_page.webp',
+      imageAlt: {
+        en: 'Screenshot of the personal link page showcasing multiple platforms.',
+        fr: 'Capture d\'écran de la page de liens personnelle présentant plusieurs plateformes.',
+      },
+      gitHubUrl: 'https://github.com/Samuellct/linktree',
+      featured: true,
+      textColor: "black",
+      dateCreated: '2026-06-18',
+    },
     'home-server': {
       id: 'home-server',
       title: { en: 'Proxmox Home Server', fr: 'Serveur domestique Proxmox' },

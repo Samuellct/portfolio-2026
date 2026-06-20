@@ -5,6 +5,18 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.9.15]
+
+### Ajouté
+
+- Ajout du projet de landing page + image associée.
+
+### Modifié
+
+- Correction du titre d'onglet du site
+
+---
+
 ## [4.9.14]
 
 ### Ajouté
