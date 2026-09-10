@@ -8,7 +8,8 @@
     "home": "Home",
     "about": "About",
     "projects": "Projects",
-    "contact": "Contact"
+    "contact": "Contact",
+    "mainLabel": "Main navigation"
   },
   "menu": {
     "sections": "Sections",
@@ -16,7 +17,11 @@
     "blog": "Blog",
     "github": "GitHub",
     "linkedin": "LinkedIn",
-    "switchLang": "Français"
+    "switchLang": "Français",
+    "open": "Open menu",
+    "close": "Close menu",
+    "dialogLabel": "Site menu",
+    "switchLangAria": "Switch to French"
   },
   "hero": {
     "greeting": "Hi, I'm Samuel",
@@ -127,7 +132,9 @@
     "viewProject": "View project",
     "viewOnGitHub": "View on GitHub",
     "technologies": "Technologies",
-    "imageCredit": "Image"
+    "imageCredit": "Image",
+    "filterGroupLabel": "Filter projects by category",
+    "resultsCount": "{count, plural, =0 {No projects} one {# project} other {# projects}}"
   },
   "blog": {
     "sectionLabel": "03 · Blog",
@@ -182,7 +189,8 @@
   },
   "footer": {
     "copyright": "© 2026 Samuel Lecomte",
-    "resume": "Resume"
+    "resume": "Resume",
+    "navLabel": "Footer navigation"
   },
   "metadata": {
     "home": {
@@ -230,6 +238,7 @@
       "title": "Page Not Found",
       "description": "The page you're looking for doesn't exist or has been moved.",
       "backHome": "Back to Home"
-    }
+    },
+    "newTab": "opens in a new tab"
   }
 }

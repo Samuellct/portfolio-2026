@@ -504,7 +504,7 @@ export default function AboutPage() {
               <h2 className="font-display text-display-page leading-display-snug tracking-wide mb-4">
                 {tAbout('stack.title')}
               </h2>
-              <p className="text-white/40 max-w-xl">
+              <p className="text-muted max-w-xl">
                 {tAbout('stack.description')}
               </p>
             </div>
@@ -525,7 +525,7 @@ export default function AboutPage() {
                       <span className="text-sm font-medium tracking-wide text-white/90">
                         {tech.name}
                       </span>
-                      <span className="text-xs text-white/40 tabular-nums">
+                      <span className="text-xs text-muted tabular-nums">
                         {tAbout('stack.projectCount', { count: tech.count })}
                       </span>
                     </div>
@@ -551,7 +551,7 @@ export default function AboutPage() {
                 transform: `translateY(${toolkitY}px)`,
               }}
             >
-              <h3 className="text-xs tracking-caps-wide uppercase text-white/30 mb-8">
+              <h3 className="text-xs tracking-caps-wide uppercase text-muted mb-8">
                 {tAbout('stack.extendedToolkit')}
               </h3>
               
@@ -649,7 +649,7 @@ export default function AboutPage() {
                           <p className="text-xs text-white/60 mb-1">{item.track}</p>
                         )}
                         
-                        <p className="text-xs text-white/40">{item.school}</p>
+                        <p className="text-xs text-muted">{item.school}</p>
                       </div>
                     </div>
                     
@@ -684,7 +684,7 @@ export default function AboutPage() {
               <div className="section-label text-pink-400 mb-4">
                 {tAbout('interests.sectionLabel')}
               </div>
-              <p className="text-white/40">
+              <p className="text-muted">
                 {tAbout('interests.subtitle')}
               </p>
             </div>

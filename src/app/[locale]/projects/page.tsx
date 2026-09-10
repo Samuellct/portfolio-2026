@@ -155,7 +155,7 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
         
         {/* Content */}
         <div className="space-y-2">
-          <div className="flex items-center gap-3 text-micro-xs tracking-caps-wide uppercase text-white/40">
+          <div className="flex items-center gap-3 text-micro-xs tracking-caps-wide uppercase text-muted">
             <span style={{ color: project.category === 'internship' ? '#10b981' : project.category === 'academic' ? '#a855f7' : '#00f0ff' }}>
               {t(`categories.${project.category}`)}
             </span>
@@ -356,7 +356,7 @@ export default function ProjectsPage() {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="text-center py-20 text-white/40"
+            className="text-center py-20 text-muted"
           >
             {t('emptyState')}
           </motion.div>

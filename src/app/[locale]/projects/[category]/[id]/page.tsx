@@ -116,7 +116,7 @@ export default function ProjectDetailPage() {
                 )}
                 
                 {/* Meta info */}
-                <div className="flex flex-col gap-3 text-sm text-white/40 mb-8">
+                <div className="flex flex-col gap-3 text-sm text-muted mb-8">
                   <div className="flex items-center gap-2">
                     <Calendar size={14} />
                     <span>{getLocalizedField(project.period, locale)}</span>
@@ -129,7 +129,7 @@ export default function ProjectDetailPage() {
                 
                 {/* Technologies */}
                 <div className="mb-8">
-                  <h2 className="text-xs tracking-caps-wide uppercase text-white/40 mb-4">
+                  <h2 className="text-xs tracking-caps-wide uppercase text-muted mb-4">
                     {t('technologies')}
                   </h2>
                   <div className="flex flex-wrap gap-2">

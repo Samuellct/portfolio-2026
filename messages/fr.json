@@ -8,7 +8,8 @@
     "home": "Accueil",
     "about": "À propos",
     "projects": "Projets",
-    "contact": "Contact"
+    "contact": "Contact",
+    "mainLabel": "Navigation principale"
   },
   "menu": {
     "sections": "Sections",
@@ -16,7 +17,11 @@
     "blog": "Blog",
     "github": "GitHub",
     "linkedin": "LinkedIn",
-    "switchLang": "English"
+    "switchLang": "English",
+    "open": "Ouvrir le menu",
+    "close": "Fermer le menu",
+    "dialogLabel": "Menu du site",
+    "switchLangAria": "Passer en anglais"
   },
   "hero": {
     "greeting": "Samuel",
@@ -127,7 +132,9 @@
     "viewProject": "Voir le projet",
     "viewOnGitHub": "Voir sur GitHub",
     "technologies": "Technologies",
-    "imageCredit": "Image"
+    "imageCredit": "Image",
+    "filterGroupLabel": "Filtrer les projets par catégorie",
+    "resultsCount": "{count, plural, =0 {Aucun projet} one {# projet} other {# projets}}"
   },
   "blog": {
     "sectionLabel": "03 · Blog",
@@ -182,7 +189,8 @@
   },
   "footer": {
     "copyright": "© 2026 Samuel Lecomte",
-    "resume": "CV"
+    "resume": "CV",
+    "navLabel": "Navigation du pied de page"
   },
   "metadata": {
     "home": {
@@ -230,6 +238,7 @@
       "title": "Page introuvable",
       "description": "La page recherchée n'existe pas ou a été déplacée.",
       "backHome": "Retour à l'accueil"
-    }
+    },
+    "newTab": "ouvre dans un nouvel onglet"
   }
 }

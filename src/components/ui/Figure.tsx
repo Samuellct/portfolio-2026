@@ -46,7 +46,7 @@ export function Figure({
       {caption && <p className="mt-2 text-xs text-white/50">{caption}</p>}
 
       {credit && (
-        <p className="mt-2 text-xs text-white/30">
+        <p className="mt-2 text-xs text-muted">
           {creditLabel ? `${creditLabel}: ` : ''}
           {credit.url ? (
             <a

@@ -187,7 +187,7 @@ export default function NavBar() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.1 }}
-                  className="text-xs tracking-menu-label uppercase text-white/40 mb-8"
+                  className="text-xs tracking-menu-label uppercase text-muted mb-8"
                 >
                   {tMenu('sections')}
                 </motion.p>
@@ -219,7 +219,7 @@ export default function NavBar() {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.2 }}
-                  className="text-xs tracking-menu-label uppercase text-white/40 mb-8"
+                  className="text-xs tracking-menu-label uppercase text-muted mb-8"
                 >
                   {tMenu('external')}
                 </motion.p>

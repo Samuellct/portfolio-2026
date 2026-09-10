@@ -191,7 +191,7 @@ export default function ContactPage() {
             {/* Name + Email */}
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="name" className="block text-xs tracking-caps uppercase text-white/40 mb-2">
+                <label htmlFor="name" className="block text-xs tracking-caps uppercase text-muted mb-2">
                   {tContact('page.form.name')}
                 </label>
                 <input
@@ -207,7 +207,7 @@ export default function ContactPage() {
               </div>
               
               <div>
-                <label htmlFor="email" className="block text-xs tracking-caps uppercase text-white/40 mb-2">
+                <label htmlFor="email" className="block text-xs tracking-caps uppercase text-muted mb-2">
                   {tContact('page.form.email')}
                 </label>
                 <input
@@ -225,7 +225,7 @@ export default function ContactPage() {
             
             {/* Subject */}
             <div>
-              <label htmlFor="subject" className="block text-xs tracking-caps uppercase text-white/40 mb-2">
+              <label htmlFor="subject" className="block text-xs tracking-caps uppercase text-muted mb-2">
                 {tContact('page.form.subject')}
               </label>
               <input
@@ -242,7 +242,7 @@ export default function ContactPage() {
             
             {/* Message */}
             <div>
-              <label htmlFor="message" className="block text-xs tracking-caps uppercase text-white/40 mb-2">
+              <label htmlFor="message" className="block text-xs tracking-caps uppercase text-muted mb-2">
                 {tContact('page.form.message')}
               </label>
               <textarea
@@ -285,7 +285,7 @@ export default function ContactPage() {
           transition={{ delay: 0.3, duration: 0.6 }}
           className="mt-16 pt-16 border-t border-white/5"
         >
-          <h2 className="text-xs tracking-caps-wide uppercase text-white/40 mb-6">
+          <h2 className="text-xs tracking-caps-wide uppercase text-muted mb-6">
             {tContact('page.directContact.title')}
           </h2>
           
