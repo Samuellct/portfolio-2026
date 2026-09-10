@@ -99,14 +99,14 @@ Les plateformes de type Linktree répondent à un besoin simple : regrouper plus
 Le projet prévoit de fournir :
 
 * une page unique regroupant l'ensemble de mes liens importants
-* un rendu responsive adaptée au desktop et au mobile
+* un rendu responsive adapté au desktop et au mobile
 * un espace d'administration permettant la gestion du contenu
 * des statistiques simples et respectueuses de la vie privée
 * une personnalisation graphique libre
 
 ### Choix techniques
 
-Ce projet est également l'occasion d'explorer de nouvelles technologies. La stack repose sur Astro pour la partie interface, associés à l'écosystème Cloudflare pour l'hébergement et les services backend.`,
+Ce projet est également l'occasion d'explorer de nouvelles technologies. La stack repose sur Astro pour la partie interface, associé à l'écosystème Cloudflare pour l'hébergement et les services backend.`,
       },
       technologies: ['Astro', 'Framer Motion', 'Cloudflare Pages', 'Cloudflare D1', 'Umami'],
       domains: ['Web Development', 'UX/UI', 'Privacy'],
@@ -198,7 +198,7 @@ Finally, all site text is managed through a centralized JSON file, except for pr
 
 La première version utilisait WordPress, mais j'ai rapidement trouvé cette plateforme trop restrictive et trop lourde pour mes besoins. Entre fin 2024 et début 2025, j'ai tout reconstruit avec Eleventy (V2), qui m'a permis de travailler directement avec HTML et CSS dans une structure que je comprenais bien. Quelques mois plus tard, je suis passé à React avec Vite (V3) pour apprendre l'architecture basée sur les composants et le rendu côté client, qui ont établi les bases des applications web modernes, même si je pouvais voir les limites du CSR pur.
 
-A partir d'octobre 2025, j'ai décidé de migrer vers Next.js 15. Ma principale motivation était de résoudre les problèmes de performances que j'avais remarqués dans la V3, notamment grâce au rendu côté serveur et à des optimisations intégrées telles que le chargement différé des images. La transition vers l'architecture App Router a nécessité beaucoup de travail et de tests pour comprendre comment passer de Vite à ce nouveau framework.
+À partir d'octobre 2025, j'ai décidé de migrer vers Next.js 15. Ma principale motivation était de résoudre les problèmes de performances que j'avais remarqués dans la V3, notamment grâce au rendu côté serveur et à des optimisations intégrées telles que le chargement différé des images. La transition vers l'architecture App Router a nécessité beaucoup de travail et de tests pour comprendre comment passer de Vite à ce nouveau framework.
 
 La conception visuelle est centrée sur les effets de particules Three.js. Pour obtenir des performances acceptables sur les appareils mobiles, il a fallu réduire le nombre de particules et mettre en place un nettoyage approprié afin d'éviter les fuites de mémoire. La page d'accueil comprend un champ d'étoiles en mouvement avec un effet d'hyperspace animé qui s'affiche lors de la première visite.
 
@@ -286,7 +286,7 @@ HEP-GUI was a proof of concept scoped to that one workflow, and I'm not planning
 
 L'application fonctionne sous Windows et pilote tous les outils HEP dans un container Docker, avec le répertoire de données local monté comme volume partagé. Le pipeline en trois étapes suit le workflow HEP standard : MadGraph5 génère des événements au niveau des partons à partir de modèles de physique UFO, Pythia8 simule les cascades partoniques et l'hadronisation, et Rivet produit des fichiers d'histogrammes YODA pour l'analyse. La version actuelle est construite autour de la routine MC_JETS et des analyses Rivet personnalisées utilisées pendant mon stage, qui servent de workflow de référence.
 
-Pour maintenir la réactivité de l'interface lors des calculs longs (la génération d'événements peut prendre plusieurs heures), l'exécution est gérée par des workers QThread qui transmet les logs du container ligne par ligne via des signaux Qt. PyQtGraph affiche les histogrammes de sortie directement dans l'interface.
+Pour maintenir la réactivité de l'interface lors des calculs longs (la génération d'événements peut prendre plusieurs heures), l'exécution est gérée par des workers QThread qui transmettent les logs du container ligne par ligne via des signaux Qt. PyQtGraph affiche les histogrammes de sortie directement dans l'interface.
 
 HEP-GUI était une preuve de concept limitée à ce workflow précis, et je ne prévois pas de le développer davantage.`,
       },
@@ -506,7 +506,7 @@ After establishing the selection criteria on simulated samples, we moved to stat
 Following the CLs method, we determined that we could exclude signals of strength above $0.3736~\\mu$, corresponding to an effective cross-section ($\\sigma$) of approximately $2.017~\\text{pb}$. This upper limit means that if a signal does exist, it will necessarily be smaller than $2.017~\\text{pb}$.`,
         fr: `Au cours de ma troisième année de licence, j'ai travaillé sur une analyse de physique des particules qui simulait la recherche d'un *boson X* hypothétique se désintégrant en deux photons.
 
-Bien que je connaisse bien Python et des bibliothèques telles que Pandas ou SciPy, leur application à l'analyse de données était nouveau pour moi. Nous devions optimiser les critères de sélection sur des variables telles que la *photon isolation* (variable permettant de séparer les vrais photons de ceux étant des produits de désintégration) et *l'impulsion transverse* afin de séparer le signal du bruit de fond du modèle standard. Les critères devaient être précis : trop stricts, nous perdions des événements de signal, trop laxistes, le bruit de fond dominait. Grâce à ce processus d'essais et d'erreurs, nous avons réussi à réduire le bruit de fond d'un facteur 40 tout en conservant la plupart des événements de signal.
+Bien que je connaisse bien Python et des bibliothèques telles que Pandas ou SciPy, leur application à l'analyse de données était nouvelle pour moi. Nous devions optimiser les critères de sélection sur des variables telles que la *photon isolation* (variable permettant de séparer les vrais photons de ceux étant des produits de désintégration) et *l'impulsion transverse* afin de séparer le signal du bruit de fond du modèle standard. Les critères devaient être précis : trop stricts, nous perdions des événements de signal, trop laxistes, le bruit de fond dominait. Grâce à ce processus d'essais et d'erreurs, nous avons réussi à réduire le bruit de fond d'un facteur 40 tout en conservant la plupart des événements de signal.
 
 Après avoir établi les critères de sélection sur des échantillons simulés, nous sommes passés à l'analyse statistique. Le fond du spectre de masse invariante a été ajusté par une fonction exponentielle afin de détecter un éventuel excès local, ce qui indiquerait une nouvelle particule. Notre ensemble de données observées n'a montré aucune preuve de l'existence du boson X, avec une signification de seulement $0.5~\\sigma$, ce qui correspond à une fluctuation statistique.
 
@@ -686,7 +686,7 @@ Le troisième jour a été consacré à l'étalonnage du TAC et à la qualité d
 
 À l'aide de Python pour le prototypage rapide, nous avons développé des critères de filtrage avant de les implémenter dans l'environnement graphique de LabVIEW. En parallèle, nous avons travaillé sur l'interface de contrôle de l'alimentation électrique. Les premières tentatives ont produit de fortes oscillations de courant, nécessitant un réglage systématique des rapports tension/courant. Nous avons également découvert que l'alimentation électrique avait besoin d'environ 15 minutes de stabilisation thermique et que le teslamètre nécessitait un étalonnage minutieux du zéro avant chaque session de mesure.
 
-Au quatrième jour, nous avons simplifiée l'interface pour ne conserver que les commandes essentielles : ON/OFF pour le champ magnétique, START pour l'acquisition des données et affichage en temps réel de l'intensité du champ. Nous avons mis en place des structures de gestion des erreurs afin d'éviter les plantages qui avaient entravé les premières phases de développement.
+Au quatrième jour, nous avons simplifié l'interface pour ne conserver que les commandes essentielles : ON/OFF pour le champ magnétique, START pour l'acquisition des données et affichage en temps réel de l'intensité du champ. Nous avons mis en place des structures de gestion des erreurs afin d'éviter les plantages qui avaient entravé les premières phases de développement.
 
 **Résultats**
 
