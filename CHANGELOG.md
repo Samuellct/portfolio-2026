@@ -5,6 +5,29 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.10.0] - 2026-09-10
+
+Phase 2 de la feuille de route V5 : assainissement de la base technique.
+
+### Ajouté
+
+- **Garde `prefers-reduced-motion` global** - nouveau hook `useReducedMotion` (`src/hooks/use-reduced-motion.ts`), source unique lue au démarrage. Sous ce réglage : Lenis n'est pas instancié (défilement natif), Framer Motion passe en `MotionConfig reducedMotion="user"`, l'écran d'entrée et son canvas sont sautés, les canvas `WaveBackground` et `ParticleCollision` ne sont pas montés, et les `ScrollTrigger` GSAP à `pin` ou `scrub` laissent place à un affichage immédiat du contenu (les sections épinglées de la page À propos se révèlent d'emblée, défilement natif).
+
+### Corrigé
+
+- **Intégration Lenis et GSAP ScrollTrigger** (`AUDIT-045`) - `SmoothScrollContext` synchronise `ScrollTrigger.update` sur le défilement Lenis et pilote Lenis depuis `gsap.ticker` ; la boucle `requestAnimationFrame` qui fuyait au démontage est supprimée ; l'instance Lenis est exposée par le contexte.
+- **Redirections des URL sans locale** (`AUDIT-063`) - `/about`, `/projects`, `/contact` et `/projects/*` renvoient une 301 vers leur équivalent préfixé `/fr`.
+- **Cliquet des sections épinglées** (`AUDIT-079`, préservé) et **`ParticleCollision`** (`AUDIT-086`, préservé, avec le seul ajout du garde reduced-motion).
+
+### Supprimé
+
+- **Easter egg injoignable** (`AUDIT-041`) - le dossier `src/components/easter-egg/` (842 lignes), le contexte associé, et la dépendance `@fireworks-js/react`. Le composant qui déclenchait la collecte d'icônes n'était monté nulle part.
+- **Utilitaires CSS morts** (`AUDIT-043`) - `.glass`, `.glow-cyan`, `.glow-purple`, `.text-outline`, `.reveal-up`, `.stagger-reveal` et l'animation Tailwind `float`, tous sans aucune utilisation. La palette (dont `accent-amber`) et les polices sont inchangées.
+- **Sitemap statique obsolète** (`AUDIT-062`) - `public/sitemap.xml` (URL sans préfixe de locale, `lastmod` figé) qui masquait le sitemap généré et localisé de `src/app/sitemap.ts`.
+- **Commentaires de dette** (`AUDIT-075`) - « ajouter lien blog » dans `NavBar` et « marche pas comme attendu » sur le parallaxe de la page À propos, dont l'intervalle est désormais stabilisé par `invalidateOnRefresh`.
+
+---
+
 ## [4.9.29] - 2026-09-10
 
 ### Corrigé
