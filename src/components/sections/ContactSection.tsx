@@ -8,11 +8,13 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowRight } from 'lucide-react'
 import ParticleCollision from '@/components/effects/ParticleCollision'
 import { useTranslations } from 'next-intl'
+import { useReducedMotion } from '@/hooks/use-reduced-motion'
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default function ContactSection() {
   const t = useTranslations('contact')
+  const prefersReducedMotion = useReducedMotion()
   const sectionRef = useRef<HTMLElement>(null)
   const decorativeRef = useRef<HTMLDivElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
@@ -23,9 +25,17 @@ export default function ContactSection() {
   
   useEffect(() => {
     if (!sectionRef.current) return
-    
+
+    // Reduced motion: no parallax, no scroll-triggered reveals, no collision
+    // canvas; show the section fully.
+    if (prefersReducedMotion) {
+      if (titleRef.current) gsap.set(titleRef.current.querySelectorAll('.contact-char'), { y: 0, opacity: 1, rotateY: 0 })
+      if (ctaRef.current) gsap.set(ctaRef.current, { y: 0, opacity: 1 })
+      return
+    }
+
     const ctx = gsap.context(() => {
-      
+
       // ============================================
       // PARALLAX txt
       // ============================================
@@ -104,10 +114,10 @@ export default function ContactSection() {
       }
       
     }, sectionRef)
-    
+
     return () => ctx.revert()
-  }, [])
-  
+  }, [prefersReducedMotion])
+
   const titleText = t('title')
   const titleChars = titleText.split('').map((char, i) => (
     <span 

@@ -9,6 +9,7 @@ import { ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import { getAllProjects, getCategoryById, getLocalizedField, Locale, ProjectData } from '@/lib/projects'
 import { useTranslations, useLocale } from 'next-intl'
+import { useReducedMotion } from '@/hooks/use-reduced-motion'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -67,6 +68,7 @@ function getOrderedProjects(allProjects: ProjectData[], locale: Locale): Project
 export default function ProjectsSection() {
   const t = useTranslations('projects')
   const locale = useLocale() as Locale
+  const prefersReducedMotion = useReducedMotion()
   const sectionRef = useRef<HTMLElement>(null)
   const containerRef = useRef<HTMLDivElement>(null)
   
@@ -115,8 +117,8 @@ export default function ProjectsSection() {
   
   // GSAP parallax
   useEffect(() => {
-    if (!sectionRef.current) return
-    
+    if (!sectionRef.current || prefersReducedMotion) return
+
     const ctx = gsap.context(() => {
       const decorText = sectionRef.current?.querySelector('.decor-text-container')
       if (decorText) {
@@ -135,10 +137,10 @@ export default function ProjectsSection() {
         )
       }
     }, sectionRef)
-    
+
     return () => ctx.revert()
-  }, [])
-  
+  }, [prefersReducedMotion])
+
   return (
     <section
       ref={sectionRef}

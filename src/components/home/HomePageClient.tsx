@@ -9,6 +9,7 @@ import AboutSection from '@/components/sections/AboutSection'
 import ProjectsSection from '@/components/sections/ProjectsSection'
 import ContactSection from '@/components/sections/ContactSection'
 import { useSite } from '@/context/SiteContext'
+import { useReducedMotion } from '@/hooks/use-reduced-motion'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -22,6 +23,7 @@ const sectionColors: Record<string, string> = {
 
 export default function HomePageClient() {
   const { hasEnteredSite } = useSite()
+  const prefersReducedMotion = useReducedMotion()
 
   // Setup bkg color transition. Deferred until the entrance is over so the
   // triggers are measured against a settled layout (no landing overlay, scroll
@@ -32,6 +34,13 @@ export default function HomePageClient() {
 
     const sections = [...document.querySelectorAll<HTMLElement>('.section')]
     const colorFor = (id: string) => sectionColors[id] || sectionColors.hero
+
+    // Under reduced motion, keep a single static background (no scroll-driven
+    // colour shifts).
+    if (prefersReducedMotion) {
+      gsap.set(document.body, { backgroundColor: sectionColors.hero })
+      return
+    }
 
     const triggers = sections.map((section) =>
       ScrollTrigger.create({
@@ -67,7 +76,7 @@ export default function HomePageClient() {
       cancelAnimationFrame(raf)
       triggers.forEach((trigger) => trigger.kill())
     }
-  }, [hasEnteredSite])
+  }, [hasEnteredSite, prefersReducedMotion])
   
   return (
     <>

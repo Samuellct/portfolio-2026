@@ -9,6 +9,7 @@ import { ArrowLeft, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
 import { getAllProjects, getLocalizedField, Locale, projectCategories, ProjectData } from '@/lib/projects'
 import { useTranslations, useLocale } from 'next-intl'
+import { useReducedMotion } from '@/hooks/use-reduced-motion'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -192,6 +193,7 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
 export default function ProjectsPage() {
   const t = useTranslations('projects')
   const tCommon = useTranslations('common')
+  const prefersReducedMotion = useReducedMotion()
   const [activeFilter, setActiveFilter] = useState<string>('all')
   const allProjects = getAllProjects()
   const pageRef = useRef<HTMLDivElement>(null)
@@ -209,7 +211,13 @@ export default function ProjectsPage() {
   // GSAP
   useEffect(() => {
     if (!pageRef.current) return
-    
+
+    if (prefersReducedMotion) {
+      const title = headerRef.current?.querySelector('h1')
+      if (title) gsap.set(title, { y: 0, opacity: 1 })
+      return
+    }
+
     const ctx = gsap.context(() => {
       // Title reveal
       const title = headerRef.current?.querySelector('h1')
@@ -244,10 +252,10 @@ export default function ProjectsPage() {
         )
       }
     }, pageRef)
-    
+
     return () => ctx.revert()
-  }, [])
-  
+  }, [prefersReducedMotion])
+
   return (
     <div ref={pageRef} className="min-h-screen relative" style={{ backgroundColor: PROJECTS_BG_COLOR }}>
       {/* parallax */}

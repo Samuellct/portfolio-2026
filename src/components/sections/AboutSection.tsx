@@ -7,11 +7,13 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
+import { useReducedMotion } from '@/hooks/use-reduced-motion'
 
 gsap.registerPlugin(ScrollTrigger)
 
 export default function AboutSection() {
   const t = useTranslations('about')
+  const prefersReducedMotion = useReducedMotion()
 
   const stats = [
     {
@@ -38,9 +40,17 @@ export default function AboutSection() {
   
   useEffect(() => {
     if (!sectionRef.current) return
-    
+
+    // Reduced motion: no parallax, no scroll-triggered reveals; show everything.
+    if (prefersReducedMotion) {
+      if (titleRef.current) gsap.set(titleRef.current.querySelectorAll('.title-word'), { yPercent: 0, opacity: 1 })
+      if (textBlockRef.current) gsap.set(textBlockRef.current.querySelectorAll('p'), { y: 0, opacity: 1 })
+      if (statsRef.current) gsap.set(statsRef.current.querySelectorAll('.float-stat'), { y: 0, opacity: 1 })
+      return
+    }
+
     const ctx = gsap.context(() => {
-      
+
       // PARALLAX txt
       if (decorativeTextRef.current) {
         gsap.fromTo(decorativeTextRef.current,
@@ -125,9 +135,9 @@ export default function AboutSection() {
       }
       
     }, sectionRef)
-    
+
     return () => ctx.revert()
-  }, [])
+  }, [prefersReducedMotion])
   
   return (
     <section

@@ -2,6 +2,7 @@
 
 import { useRef, useEffect } from 'react'
 import * as THREE from 'three'
+import { useReducedMotion } from '@/hooks/use-reduced-motion'
 
 // Vertex Shader (= transforme les positions des particules)
 const vertexShader = `
@@ -71,6 +72,7 @@ interface WaveBackgroundProps {
 }
 
 export default function WaveBackground({ className = '' }: WaveBackgroundProps) {
+  const prefersReducedMotion = useReducedMotion()
   const containerRef = useRef<HTMLDivElement>(null)
   const rendererRef = useRef<THREE.WebGLRenderer | null>(null)
   const sceneRef = useRef<THREE.Scene | null>(null)
@@ -82,20 +84,17 @@ export default function WaveBackground({ className = '' }: WaveBackgroundProps) 
   
   useEffect(() => {
     if (!containerRef.current) return
-    
+
+    // Skip rendering entirely if the user prefers reduced motion.
+    if (prefersReducedMotion) return
+
     const container = containerRef.current
     const width = container.clientWidth
     const height = container.clientHeight
-    
+
     // Detect mobile for performance optimization
     const isMobile = window.matchMedia('(max-width: 768px)').matches
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    
-    // Skip rendering entirely if user prefers reduced motion
-    if (prefersReducedMotion) {
-      return
-    }
-    
+
     // Scene
     const scene = new THREE.Scene()
     sceneRef.current = scene
@@ -226,7 +225,7 @@ export default function WaveBackground({ className = '' }: WaveBackgroundProps) 
         container.removeChild(renderer.domElement)
       }
     }
-  }, [])
+  }, [prefersReducedMotion])
   
   return (
     <div 

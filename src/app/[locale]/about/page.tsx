@@ -12,6 +12,7 @@ import NetworkGraph from '@/components/about/NetworkGraph'
 import CinemaSpotlight from '@/components/about/CinemaSpotlight'
 import ScrollIndicator from '@/components/about/ScrollIndicator'
 import { useTranslations } from 'next-intl'
+import { useReducedMotion } from '@/hooks/use-reduced-motion'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -63,6 +64,7 @@ export default function AboutPage() {
   const tAbout = useTranslations('about')
   const tCommon = useTranslations('common')
   const tMenu = useTranslations('menu')
+  const prefersReducedMotion = useReducedMotion()
 
   const education = [
     {
@@ -147,9 +149,23 @@ export default function AboutPage() {
   // ============================================
   useEffect(() => {
     if (!pageRef.current) return
-    
+
+    // Reduced motion: no pins, no scrub, no parallax. Reveal every pinned
+    // section at full progress so all content is visible, page scrolls natively.
+    if (prefersReducedMotion) {
+      introMaxProgressRef.current = 1
+      stackMaxProgressRef.current = 1
+      educationMaxProgressRef.current = 1
+      interestsMaxProgressRef.current = 1
+      setIntroProgress(1)
+      setStackProgress(1)
+      setEducationProgress(1)
+      setInterestsProgress(1)
+      return
+    }
+
     const ctx = gsap.context(() => {
-      
+
       // ========================================
       // 1. PARALLAX BACKGROUND txt
       // ========================================
@@ -258,10 +274,10 @@ export default function AboutPage() {
       })
       
     }, pageRef)
-    
+
     return () => ctx.revert()
-  }, [])
-  
+  }, [prefersReducedMotion])
+
   // ============================================
   // INTRO SECTION CALCULATIONS
   // ============================================

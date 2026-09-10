@@ -3,6 +3,7 @@
 import { useRef, useEffect, useState, useCallback } from 'react'
 import { RefreshCw } from 'lucide-react'
 import { useTranslations } from 'next-intl'
+import { useReducedMotion } from '@/hooks/use-reduced-motion'
 
 interface Track {
   id: number
@@ -22,6 +23,7 @@ interface ParticleCollisionProps {
 
 export default function ParticleCollision({ isVisible, className = '' }: ParticleCollisionProps) {
   const t = useTranslations('contact')
+  const prefersReducedMotion = useReducedMotion()
   const canvasRef = useRef<HTMLCanvasElement>(null)
   const animationRef = useRef<number>(0)
   const [isAnimating, setIsAnimating] = useState(false)
@@ -36,8 +38,8 @@ export default function ParticleCollision({ isVisible, className = '' }: Particl
   }, [canShuffle, isAnimating])
   
   useEffect(() => {
-    if (!canvasRef.current || !isVisible) return
-    
+    if (!canvasRef.current || !isVisible || prefersReducedMotion) return
+
     const canvas = canvasRef.current
     const ctx = canvas.getContext('2d')
     if (!ctx) return
@@ -234,7 +236,7 @@ export default function ParticleCollision({ isVisible, className = '' }: Particl
     return () => {
       cancelAnimationFrame(animationRef.current)
     }
-  }, [isVisible, animationKey])
+  }, [isVisible, animationKey, prefersReducedMotion])
   
   return (
     <div className={`relative w-full h-full ${className}`}>

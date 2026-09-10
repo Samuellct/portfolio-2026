@@ -7,6 +7,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowLeft, Send, CheckCircle, AlertCircle, Mail, Github, Linkedin } from 'lucide-react'
 import { useTranslations } from 'next-intl'
+import { useReducedMotion } from '@/hooks/use-reduced-motion'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -18,6 +19,7 @@ type FormStatus = 'idle' | 'submitting' | 'success' | 'error'
 export default function ContactPage() {
   const tContact = useTranslations('contact')
   const tCommon = useTranslations('common')
+  const prefersReducedMotion = useReducedMotion()
   const pageRef = useRef<HTMLDivElement>(null)
   const [formData, setFormData] = useState({
     name: '',
@@ -34,8 +36,8 @@ export default function ContactPage() {
   
   // GSAP
   useEffect(() => {
-    if (!pageRef.current) return
-    
+    if (!pageRef.current || prefersReducedMotion) return
+
     const ctx = gsap.context(() => {
       const decorText = pageRef.current?.querySelector('.decor-text')
       if (decorText) {
@@ -54,10 +56,10 @@ export default function ContactPage() {
         )
       }
     }, pageRef)
-    
+
     return () => ctx.revert()
-  }, [])
-  
+  }, [prefersReducedMotion])
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
     setFormData((prev) => ({ ...prev, [name]: value }))
