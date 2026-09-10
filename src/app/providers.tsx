@@ -13,8 +13,8 @@ import MainLayout from '@/components/layout/MainLayout'
 
 const SESSION_KEY = 'portfolio-landing-seen'
 
-// Runs before paint on the client, falls back to useEffect on the server so the
-// landing decision lands before the first painted frame (no flash of content).
+// Runs before paint on the client, no-op fallback on the server so the landing
+// decision lands before the first painted frame (no flash of content).
 const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect
 
 export function Providers({ children }: { children: ReactNode }) {
@@ -31,11 +31,12 @@ export function Providers({ children }: { children: ReactNode }) {
     }
   }, [])
 
-  // The page content is server-rendered: `showLanding` is false on the server and
-  // on the first client render, so `MainLayout` (and its children) are in the HTML
-  // for crawlers and no-JS visitors. On the home route, first visit of the session,
-  // the landing overlay then takes over and `AnimatePresence` animates the reveal
-  // back to the content.
+  // MainLayout and the page content always render (on the server too), mounted
+  // once and never swapped out: their scroll-driven setup (GSAP ScrollTriggers,
+  // section background colours) runs a single time, behind the landing overlay.
+  // On the home route, first visit of the session, the landing overlay is laid
+  // on top; `hasEnteredSite` gates the content entrance animations so they play
+  // when the overlay lifts rather than behind it.
   useIsomorphicLayoutEffect(() => {
     let seen = false
     try {
@@ -82,16 +83,15 @@ export function Providers({ children }: { children: ReactNode }) {
       <SiteProvider value={{ hasEnteredSite, setHasEnteredSite }}>
         <SmoothScrollProvider>
           <TransitionProvider>
-            <AnimatePresence mode="wait">
-              {showLanding ? (
+            <MainLayout>{children}</MainLayout>
+            <AnimatePresence>
+              {showLanding && (
                 <Landing
                   key="landing"
                   onEnter={handleEnter}
                   isTransitioning={isLandingTransitioning}
                   onTransitionComplete={handleTransitionComplete}
                 />
-              ) : (
-                <MainLayout key="main">{children}</MainLayout>
               )}
             </AnimatePresence>
             <EasterEggManager />

@@ -8,6 +8,7 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowRight, Download } from 'lucide-react'
 import dynamic from 'next/dynamic'
 import { useTranslations } from 'next-intl'
+import { useSite } from '@/context/SiteContext'
 
 // Dynamic import for WebGL (client-side only)
 const WaveBackground = dynamic(
@@ -19,6 +20,7 @@ gsap.registerPlugin(ScrollTrigger)
 
 export default function HeroSection() {
   const t = useTranslations('hero')
+  const { hasEnteredSite } = useSite()
   const sectionRef = useRef<HTMLElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
   const greetingRef = useRef<HTMLHeadingElement>(null)
@@ -41,31 +43,38 @@ export default function HeroSection() {
           },
         })
       }
-
-      if (greetingRef.current) {
-        const chars = greetingRef.current.querySelectorAll('.greeting-char')
-        gsap.fromTo(chars,
-          {
-            y: 100,
-            opacity: 0,
-            rotateX: -90
-          },
-          {
-            y: 0,
-            opacity: 1,
-            rotateX: 0,
-            stagger: 0.03,
-            duration: 1,
-            ease: 'power4.out',
-            delay: 0.3
-          }
-        )
-      }
-
     }, sectionRef)
 
     return () => ctx.revert()
   }, [])
+
+  // Greeting reveal: plays once the entrance is over (landing overlay gone, or
+  // immediately on a direct visit), never behind the overlay.
+  useEffect(() => {
+    if (!hasEnteredSite || !greetingRef.current) return
+
+    const chars = greetingRef.current.querySelectorAll('.greeting-char')
+    const tween = gsap.fromTo(chars,
+      {
+        y: 100,
+        opacity: 0,
+        rotateX: -90
+      },
+      {
+        y: 0,
+        opacity: 1,
+        rotateX: 0,
+        stagger: 0.03,
+        duration: 1,
+        ease: 'power4.out',
+        delay: 0.3
+      }
+    )
+
+    return () => {
+      tween.kill()
+    }
+  }, [hasEnteredSite])
 
   // Text animation
   const makeChars = (text: string) =>
