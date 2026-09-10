@@ -213,7 +213,7 @@ export default function NavBar() {
                 </nav>
               </div>
               
-              {/* Right side - External Links (ajouter lien blog) */}
+              {/* Right side - External Links */}
               <div className="hidden md:flex flex-col justify-center px-16 lg:px-24 border-l border-white/5">
                 <motion.p
                   initial={{ opacity: 0, x: 20 }}

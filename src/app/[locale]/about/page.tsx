@@ -178,7 +178,10 @@ export default function AboutPage() {
             scrollTrigger: {
               trigger: pageRef.current,
               start: 'top top',
+              // recompute the range on refresh, once the pinned sections have
+              // added their scroll length
               end: () => `+=${document.scrollingElement?.scrollHeight || document.body.scrollHeight}`,
+              invalidateOnRefresh: true,
               scrub: 1,
             }
           }
@@ -354,7 +357,6 @@ export default function AboutPage() {
       {/* PARALLAX BACKGROUND TEXT */}
       {/* pointer-events: none pour pas bloquer les clics */}
       {/* ref sur le conteneur, pas sur le span qui change */}
-      {/* besoin de corriger cet effet, marche pas comme attendu */}
       {/* ============================================ */}
       <div
         aria-hidden="true"
