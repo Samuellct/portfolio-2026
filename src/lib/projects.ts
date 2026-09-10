@@ -400,8 +400,8 @@ Ce qui manque encore, c'est ce qui relie ces briques validées en un seul systè
       location: { en: 'Personal project', fr: 'Projet personnel' },
       image: '/images/timepredict.webp',
       imageAlt: {
-        en: 'Elevation profile of a trail route with weather data overlay showing temperature and wind conditions',
-        fr: 'Profil altimétrique d\'un parcours de trail avec données météo superposées montrant température et conditions de vent',
+        en: 'Chart of the measured cost-of-transport factor against slope, fitted on real GPS data with 95% confidence intervals, compared to the Minetti model and the old lookup table',
+        fr: 'Graphique du facteur de coût mesuré en fonction de la pente, ajusté sur des données GPS réelles avec intervalles de confiance à 95 %, comparé au modèle de Minetti et à l\'ancienne table',
       },
       gitHubUrl: 'https://github.com/Samuellct/TimePredict',
       visible: true,
