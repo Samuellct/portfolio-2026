@@ -70,7 +70,8 @@ export default function NavBar() {
 
   // Modal behaviour for the fullscreen menu (AUDIT-053): trap focus inside the
   // panel, close on Escape, make the rest of the page inert, and return focus
-  // to the hamburger on close.
+  // to the hamburger on close (falling back to the logo when the hamburger is
+  // hidden, e.g. desktop at the top of the page).
   useEffect(() => {
     if (!isMenuOpen) return
     const panel = panelRef.current
@@ -117,7 +118,22 @@ export default function NavBar() {
     return () => {
       document.removeEventListener('keydown', onKeyDown)
       inertTargets.forEach((el) => el.removeAttribute('inert'))
-      ;(hamburger ?? previousActive)?.focus()
+      // Defer past React's re-render so the hamburger's `inert` state is settled
+      // before we decide where focus lands.
+      requestAnimationFrame(() => {
+        const canFocus = (el: HTMLElement | null): el is HTMLElement =>
+          !!el &&
+          el !== document.body &&
+          document.contains(el) &&
+          !el.closest('[inert]') &&
+          el.tabIndex > -1
+        const target = canFocus(hamburger)
+          ? hamburger
+          : canFocus(previousActive)
+            ? previousActive
+            : document.querySelector<HTMLElement>('#site-nav a')
+        target?.focus()
+      })
     }
   }, [isMenuOpen])
   
@@ -137,6 +153,7 @@ export default function NavBar() {
     <>
       {/* Navigation Bar */}
       <motion.nav
+        id="site-nav"
         aria-label={tNav('mainLabel')}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
@@ -147,7 +164,7 @@ export default function NavBar() {
       >
         <div className="flex items-center justify-between px-6 md:px-12 py-4">
           {/* Logo */}
-          <TransitionLink 
+          <TransitionLink
             href="/"
             className="font-display text-2xl tracking-widest hover:text-accent-cyan transition-colors"
           >
