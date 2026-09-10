@@ -5,6 +5,29 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.12.0] - 2026-09-11
+
+Phase 4 de la feuille de route V5 : design system et accessibilité transverse.
+
+### Ajouté
+
+- **Source unique des tokens de couleur** (`AUDIT-047`) - nouveau module `src/lib/theme.ts` : les quatre quasi-noirs, les dix fonds de section et les quatre accents en un seul endroit, lu par `tailwind.config.ts` comme par le code applicatif. La palette n'était jusque-là définie qu'en trois exemplaires partiellement divergents.
+- **Primitives de design system** (`AUDIT-047`) - `src/components/ui/Button.tsx`, `Tag.tsx`, `Badge.tsx`, `Figure.tsx` et le joint de classes `src/lib/cn.ts`. Les cas nets sont migrés (filtres du listing, tags de technologies, badges de statut, image de fiche) ; les cas singuliers sont adaptés par les phases suivantes.
+- **Échelles de tokens nommées** (`AUDIT-047`) - gris textuels (`text-muted`, `text-subtle`, `text-faint`), tailles, interlettrage, interlignage et rayon de bordure. Chaque token conserve la valeur calculée qu'il remplace ; environ quatre-vingt-dix valeurs typographiques ad hoc sont supprimées.
+- **Annonce des résultats de filtrage** (`AUDIT-054`) - le listing des projets expose l'état actif de chaque filtre (`aria-pressed`, `role="group"`) et annonce le nombre de projets affichés dans une région `aria-live`, avec pluralisation FR et EN.
+
+### Modifié
+
+- **Bebas Neue restreint aux titres d'affichage courts** (`AUDIT-056`) - les titres de cartes du listing, les titres de projets de l'accueil, le titre principal des fiches et les sous-titres du Markdown passent à Syne en semi-gras, casse normale, mieux lisibles en français accentué. Bebas reste sur les libellés et titres de section, les filigranes, le logo et le menu ; le titre du hero garde Unbounded.
+- **Contraste du texte relevé au niveau WCAG AA** (`AUDIT-029`) - le pied de page, les libellés de formulaire, les métadonnées de cartes, le crédit d'image et plusieurs textes de la page À propos passent d'un gris sous le seuil à un gris conforme (au moins 4,5:1). Les liens géants du menu plein écran restent volontairement discrets au repos.
+
+### Corrigé
+
+- **Menu plein écran accessible** (`AUDIT-053`) - le calque devient un vrai dialogue modal : rôle `dialog`, piège de focus au clavier, fermeture par Échap, reste de la page rendu inerte, focus restitué à la fermeture. Le motif ARIA `menu` / `menuitem`, inadapté et sans modèle clavier, est retiré ; la classe morte `hover:text-shadow-glow` est supprimée ; les libellés ARIA de la navigation et du bouton menu sont traduits.
+- **Cibles tactiles portées à 44 px** (`AUDIT-052`) - le sélecteur de langue, les boutons de filtre, les liens du pied de page et les liens « Retour » reçoivent une zone cliquable d'au moins 44 px de haut sans changement de rendu. Le sélecteur de langue reçoit aussi un libellé accessible explicite.
+
+---
+
 ## [4.11.0] - 2026-09-11
 
 Phase 3 de la feuille de route V5 : fondations des données projets.
