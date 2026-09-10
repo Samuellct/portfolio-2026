@@ -19,4 +19,5 @@
 !/LICENSE
 
 # Re-exclusions a l'interieur des dossiers suivis
+/public/sitemap.xml
 .DS_Store
