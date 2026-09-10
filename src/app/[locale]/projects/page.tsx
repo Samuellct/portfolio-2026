@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef, useLayoutEffect } from 'react'
+import { useState, useEffect, useRef, useLayoutEffect, useMemo } from 'react'
 import TransitionLink from '@/components/navigation/TransitionLink'
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import gsap from 'gsap'
@@ -200,7 +200,10 @@ export default function ProjectsPage() {
   const [activeFilter, setActiveFilter] = useState<string>('all')
   // Chronological order (newest first), deliberately distinct from the
   // featured-first order of the homepage preview (AUDIT-009).
-  const allProjects = [...getAllProjects()].sort((a, b) => b.dateCreated.localeCompare(a.dateCreated))
+  const allProjects = useMemo(
+    () => [...getAllProjects()].sort((a, b) => b.dateCreated.localeCompare(a.dateCreated)),
+    [],
+  )
   const pageRef = useRef<HTMLDivElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
   
@@ -312,12 +315,15 @@ export default function ProjectsPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
+          role="group"
+          aria-label={t('filterGroupLabel')}
           className="flex flex-wrap items-center gap-3 mb-16"
         >
           <Button
             variant="filter"
             className="tap-target"
             active={activeFilter === 'all'}
+            aria-pressed={activeFilter === 'all'}
             onClick={() => setActiveFilter('all')}
           >
             {t('categories.all')}
@@ -329,13 +335,19 @@ export default function ProjectsPage() {
               variant="filter"
               className="tap-target"
               active={activeFilter === category.id}
+              aria-pressed={activeFilter === category.id}
               onClick={() => setActiveFilter(category.id)}
             >
               {t(`categories.${category.id}`)}
             </Button>
           ))}
-          
+
         </motion.div>
+
+        {/* Result count, announced to assistive tech on filter change */}
+        <p aria-live="polite" className="sr-only">
+          {t('resultsCount', { count: filteredProjects.length })}
+        </p>
         
         {/* Projects Grid */}
         <motion.div
