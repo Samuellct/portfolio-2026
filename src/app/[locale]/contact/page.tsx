@@ -116,7 +116,7 @@ export default function ContactPage() {
         >
           <TransitionLink
             href="/"
-            className="inline-flex items-center gap-2 text-white/50 hover:text-white transition-colors"
+            className="tap-target inline-flex items-center gap-2 text-white/50 hover:text-white transition-colors"
           >
             <ArrowLeft size={16} />
             <span className="text-sm tracking-label uppercase">{tCommon('back')}</span>

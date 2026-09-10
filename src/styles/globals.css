@@ -143,6 +143,27 @@ body {
 }
 
 /* ===================================
+   TOUCH TARGETS (AUDIT-052)
+   Extends the clickable area to a 44px minimum height without changing the
+   element's visual box. Apply to small inline controls (language switcher,
+   filter buttons, footer and back links).
+=================================== */
+.tap-target {
+  position: relative;
+}
+
+.tap-target::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  min-height: 44px;
+  height: 100%;
+}
+
+/* ===================================
    CURSOR STYLES
 =================================== */
 @media (hover: hover) {

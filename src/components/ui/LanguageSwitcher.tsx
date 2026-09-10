@@ -1,7 +1,8 @@
 'use client'
 
-import { useLocale } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { Link, usePathname } from '@/i18n/navigation'
+import { cn } from '@/lib/cn'
 
 interface LanguageSwitcherProps {
   className?: string
@@ -10,6 +11,7 @@ interface LanguageSwitcherProps {
 
 export default function LanguageSwitcher({ className, label }: LanguageSwitcherProps) {
   const locale = useLocale()
+  const t = useTranslations('menu')
   const pathname = usePathname()
   const otherLocale = locale === 'en' ? 'fr' : 'en'
 
@@ -17,7 +19,9 @@ export default function LanguageSwitcher({ className, label }: LanguageSwitcherP
     <Link
       href={pathname}
       locale={otherLocale}
-      className={className}
+      hrefLang={otherLocale}
+      aria-label={t('switchLangAria')}
+      className={cn('tap-target', className)}
     >
       {label || otherLocale.toUpperCase()}
     </Link>

@@ -340,7 +340,7 @@ export default function AboutPage() {
           >
             <TransitionLink
               href="/"
-              className="inline-flex items-center gap-2 text-white/50 hover:text-white transition-colors group"
+              className="tap-target inline-flex items-center gap-2 text-white/50 hover:text-white transition-colors group"
             >
               <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1" />
               <span className="text-sm tracking-label uppercase">{tCommon('back')}</span>

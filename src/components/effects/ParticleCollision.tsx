@@ -256,6 +256,7 @@ export default function ParticleCollision({ isVisible, className = '' }: Particl
             : 'border-white/5 text-white/10 cursor-not-allowed'
         }`}
         title={t('collision.newCollision')}
+        aria-label={t('collision.newCollision')}
       >
         <RefreshCw 
           size={14} 

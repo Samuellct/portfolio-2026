@@ -21,19 +21,19 @@ export default function Footer() {
         <nav aria-label={tFooter('navLabel')} className="flex items-center gap-6 text-xs text-muted">
           <TransitionLink 
             href="/about"
-            className="hover:text-white transition-colors"
+            className="tap-target hover:text-white transition-colors"
           >
             {tNav('about')}
           </TransitionLink>
           <TransitionLink 
             href="/projects"
-            className="hover:text-white transition-colors"
+            className="tap-target hover:text-white transition-colors"
           >
             {tNav('projects')}
           </TransitionLink>
           <TransitionLink 
             href="/contact"
-            className="hover:text-white transition-colors"
+            className="tap-target hover:text-white transition-colors"
           >
             {tNav('contact')}
           </TransitionLink>
@@ -42,7 +42,7 @@ export default function Footer() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`${tFooter('resume')} (${tCommon('newTab')})`}
-            className="hover:text-white transition-colors"
+            className="tap-target hover:text-white transition-colors"
           >
             {tFooter('resume')}
           </a>
