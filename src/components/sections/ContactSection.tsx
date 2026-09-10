@@ -170,10 +170,12 @@ export default function ContactSection() {
           >
             {/* canvas + bouton */}
             <div className="absolute inset-4 rounded-full overflow-visible">
-              <ParticleCollision 
-                isVisible={isCollisionVisible}
-                className="opacity-80"
-              />
+              {!prefersReducedMotion && (
+                <ParticleCollision
+                  isVisible={isCollisionVisible}
+                  className="opacity-80"
+                />
+              )}
             </div>
             
             <div className="absolute inset-0 pointer-events-none">
