@@ -35,30 +35,11 @@ function getCategoryLabel(category: string): string {
 /* ORDERED PROJECTS LOGIC                       */
 /* ============================================ */
 
-function getOrderedProjects(allProjects: ProjectData[], locale: Locale): ProjectData[] {
-  const sortByDate = (a: ProjectData, b: ProjectData) => {
-    const periodA = getLocalizedField(a.period, locale)
-    const periodB = getLocalizedField(b.period, locale)
-    const dateA = periodA.split(' — ')[1] || periodA
-    const dateB = periodB.split(' — ')[1] || periodB
-    return dateB.localeCompare(dateA)
-  }
-  
-  const research = allProjects.filter(p => p.category === 'internship').sort(sortByDate)
-  const personal = allProjects.filter(p => p.category === 'personal').sort(sortByDate)
-  const academic = allProjects.filter(p => p.category === 'academic').sort(sortByDate)
-  
-  const ordered: ProjectData[] = []
-  
-  if (research[0]) ordered.push(research[0])
-  if (personal[0]) ordered.push(personal[0])
-  if (academic[0]) ordered.push(academic[0])
-  
-  if (research[1]) ordered.push(research[1])
-  else if (personal[1]) ordered.push(personal[1])
-  else if (academic[1]) ordered.push(academic[1])
-  
-  return ordered.slice(0, 4)
+function getOrderedProjects(allProjects: ProjectData[]): ProjectData[] {
+  return [...allProjects]
+    .filter((p) => p.featured)
+    .sort((a, b) => b.dateCreated.localeCompare(a.dateCreated))
+    .slice(0, 4)
 }
 
 /* ============================================ */
@@ -84,10 +65,7 @@ export default function ProjectsSection() {
   const [bgColor, setBgColor] = useState('transparent')
   const [isFirstHover, setIsFirstHover] = useState(true)
   
-  const displayProjects = useMemo(() => {
-    const allProjects = getAllProjects()
-    return getOrderedProjects(allProjects, locale)
-  }, [locale])
+  const displayProjects = useMemo(() => getOrderedProjects(getAllProjects()), [])
   
   // Mouse move handler - updates Y position continuously
   const handleMouseMove = useCallback((e: React.MouseEvent) => {

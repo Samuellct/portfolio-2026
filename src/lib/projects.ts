@@ -140,7 +140,6 @@ Ce projet est également l'occasion d'explorer de nouvelles technologies. La sta
         fr: 'Capture d\'écran de la page de liens personnelle présentant plusieurs plateformes.',
       },
       gitHubUrl: 'https://github.com/Samuellct/linktree',
-      featured: true,
       dateCreated: '2026-06-18',
     },
     'home-server': {
@@ -188,7 +187,6 @@ Cependant, je commence à atteindre certaines limites. L'exécution de Proxmox e
         en: 'Truenas dashboard showing virtual machines and server interface',
         fr: 'Tableau de bord TrueNAS affichant les machines virtuelles et l\'interface serveur',
       },
-      featured: true,
       textColor: "black",
       dateCreated: '2025-07-15',
     },
@@ -280,6 +278,7 @@ Le projet fonctionne bien sur les itinéraires testés dans les Alpes française
         fr: 'Carte topographique montrant un itinéraire alpiniste calculé',
       },
       gitHubUrl: 'https://github.com/Samuellct/AlpineRoute',
+      featured: true,
       dateCreated: '2025-12-09',
     },
     'hep-gui': {
@@ -405,6 +404,7 @@ Ce qui manque encore, c'est ce qui relie ces briques validées en un seul systè
       },
       gitHubUrl: 'https://github.com/Samuellct/TimePredict',
       visible: true,
+      featured: true,
       dateCreated: '2025-11-27',
     },
     'jellyux': {
@@ -459,6 +459,7 @@ Le plus récent des trois, encore en mouvement rapide (six versions en deux jour
         fr: 'Capture d\'écran du moteur de widgets JellyUX Homepage sur une page d\'accueil Jellyfin',
       },
       gitHubUrl: 'https://github.com/JellyUX',
+      featured: true,
       dateCreated: '2026-06-27',
     },
     'delivr': {
@@ -613,7 +614,6 @@ L'algorithme a bien fonctionné pour les petits nombres, mais nous avons rapidem
       },
       imageCredit: 'Google',
       gitHubUrl: 'https://github.com/Samuellct/Cirq-Quantum-Cryptography-Demo',
-      featured: true,
       dateCreated: '2023-11-29',
     },
     'weather-station': {
@@ -856,7 +856,6 @@ Lorsque j'ai appliqué cette présélection aux données réelles du Run 1, j'ai
         en: 'Attempt to Fit the B Meson mass',
         fr: 'Tentative d\'ajustement de la masse du méson B',
       },
-      featured: true,
       gitHubUrl: "https://github.com/Samuellct/Internship-M1-B-meson-decay",
       textColor: 'black',
       dateCreated: '2024-07-05',
@@ -907,6 +906,7 @@ L'analyse s'est concentrée sur l'identification de la cinématique dans les jet
       imageCredit: 'H. Russell',
       imageCreditUrl: 'https://indico.cern.ch/event/607314/contributions/2542309/attachments/1447873/2231444/20170424_LLPs.pdf',
       textColor: 'black',
+      featured: true,
       dateCreated: '2025-09-17',
     },
   },
