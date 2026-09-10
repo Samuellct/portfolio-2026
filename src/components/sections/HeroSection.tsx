@@ -110,12 +110,12 @@ export default function HeroSection() {
 
       <div className="absolute inset-0 bg-gradient-to-b from-primary/25 via-transparent to-primary pointer-events-none z-[1]" />
 
-      {/* MAIN — left-aligned, no mx-auto */}
+      {/* MAIN - left-aligned, no mx-auto */}
       <div
         ref={contentRef}
         className="relative z-10 w-full px-6 md:px-12 lg:px-20"
       >
-        {/* Availability indicator — inline, above greeting */}
+        {/* Availability indicator - inline, above greeting */}
         <motion.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}

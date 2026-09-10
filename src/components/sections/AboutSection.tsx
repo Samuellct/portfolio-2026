@@ -114,7 +114,7 @@ export default function AboutSection() {
         )
       }
       
-      // STATS — Floating Tags fade-in
+      // STATS - Floating Tags fade-in
       if (statsRef.current) {
         const floatStats = statsRef.current.querySelectorAll('.float-stat')
         gsap.fromTo(floatStats,
@@ -233,7 +233,7 @@ export default function AboutSection() {
           
           {/* Right column */}
           <div>
-            {/* Stats — Floating Tags */}
+            {/* Stats - Floating Tags */}
             <div ref={statsRef} className="relative h-[350px] md:h-[400px]">
               {stats.map((stat, index) => {
                 const positions = [
