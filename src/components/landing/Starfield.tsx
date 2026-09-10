@@ -148,13 +148,16 @@ export default function Starfield({ isHyperspace, onHyperspaceComplete }: Starfi
   const animationRef = useRef<number>(0)
   const hyperspaceProgressRef = useRef(0)
   const transitionTriggeredRef = useRef(false)
-  
+  const lastFrameRef = useRef<number | null>(null)
+  const completeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
   // config
   const STAR_COUNT = 600
   const STAR_SPEED_NORMAL = 0.3
   const STAR_SPEED_HYPERSPACE = 40
   const MAX_DEPTH = 1000
   const FOCAL_LENGTH = 300
+  const HYPERSPACE_DURATION_MS = 1400
   
   // Initialize stars
   const initStars = useCallback((width: number, height: number) => {
@@ -165,18 +168,28 @@ export default function Starfield({ isHyperspace, onHyperspaceComplete }: Starfi
   }, [])
   
   // Animation loop
-  const animate = useCallback(() => {
+  const animate = useCallback((now: number) => {
     const canvas = canvasRef.current
     if (!canvas) return
-    
+
     const ctx = canvas.getContext('2d')
     if (!ctx) return
-    
+
+    // Time elapsed since the previous frame, in milliseconds. The hyperspace
+    // progression is advanced by this delta rather than by a fixed per-frame
+    // step, so it runs at the same wall-clock speed on any display and cannot
+    // stall in a background tab: rAF pauses there, so the first resumed frame
+    // carries a large delta that finishes the transition at once.
+    const last = lastFrameRef.current
+    lastFrameRef.current = now
+    const dt = last === null ? 0 : now - last
+    const dtScale = Math.min(dt / (1000 / 60), 3)
+
     const width = canvas.width
     const height = canvas.height
     const centerX = width / 2
     const centerY = height / 2
-    
+
     // Clear with fade
     if (isHyperspace) {
       ctx.fillStyle = `rgba(0, 0, 0, ${0.08 + (1 - hyperspaceProgressRef.current) * 0.15})`
@@ -184,17 +197,17 @@ export default function Starfield({ isHyperspace, onHyperspaceComplete }: Starfi
       ctx.fillStyle = 'rgba(0, 0, 0, 0.15)'
     }
     ctx.fillRect(0, 0, width, height)
-    
+
     // speed calc
     let speed = STAR_SPEED_NORMAL
     if (isHyperspace) {
-      speed = STAR_SPEED_NORMAL + 
-        (STAR_SPEED_HYPERSPACE - STAR_SPEED_NORMAL) * 
+      speed = STAR_SPEED_NORMAL +
+        (STAR_SPEED_HYPERSPACE - STAR_SPEED_NORMAL) *
         Math.pow(hyperspaceProgressRef.current, 1.5)
     }
-    
+
     for (const star of starsRef.current) {
-      star.update(speed, MAX_DEPTH)
+      star.update(speed * dtScale, MAX_DEPTH)
       star.draw(
         ctx,
         centerX,
@@ -205,20 +218,23 @@ export default function Starfield({ isHyperspace, onHyperspaceComplete }: Starfi
         MAX_DEPTH
       )
     }
-    
+
     // Update hyperspace progress
     if (isHyperspace && hyperspaceProgressRef.current < 1) {
-      hyperspaceProgressRef.current += 0.012
-      
+      hyperspaceProgressRef.current = Math.min(
+        1,
+        hyperspaceProgressRef.current + dt / HYPERSPACE_DURATION_MS
+      )
+
       // Trigger transition near the end
       if (hyperspaceProgressRef.current >= 0.9 && !transitionTriggeredRef.current) {
         transitionTriggeredRef.current = true
-        setTimeout(() => {
+        completeTimeoutRef.current = setTimeout(() => {
           onHyperspaceComplete()
         }, 150)
       }
     }
-    
+
     animationRef.current = requestAnimationFrame(animate)
   }, [isHyperspace, onHyperspaceComplete])
   
@@ -253,14 +269,16 @@ export default function Starfield({ isHyperspace, onHyperspaceComplete }: Starfi
     return () => {
       window.removeEventListener('resize', resize)
       cancelAnimationFrame(animationRef.current)
+      if (completeTimeoutRef.current) clearTimeout(completeTimeoutRef.current)
     }
   }, [initStars, animate])
-  
+
   // Reset hyperspace state when transitioning
   useEffect(() => {
     if (isHyperspace) {
       hyperspaceProgressRef.current = 0
       transitionTriggeredRef.current = false
+      lastFrameRef.current = null
     }
   }, [isHyperspace])
   

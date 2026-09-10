@@ -14,12 +14,24 @@ interface LandingProps {
 export default function Landing({ onEnter, isTransitioning, onTransitionComplete }: LandingProps) {
   const t = useTranslations('landing')
 
+  // TODO (AUDIT-028, Phase 2): under prefers-reduced-motion, skip the hyperspace
+  // animation entirely and hand off immediately.
   useEffect(() => {
     const timer = setTimeout(() => {
       onEnter()
     }, 1500)
     return () => clearTimeout(timer)
   }, [onEnter])
+
+  // Failsafe: the hyperspace animation must never hold the visitor. If it has
+  // not handed off within 2s of the transition starting, force completion.
+  useEffect(() => {
+    if (!isTransitioning) return
+    const failsafe = setTimeout(() => {
+      onTransitionComplete()
+    }, 2000)
+    return () => clearTimeout(failsafe)
+  }, [isTransitioning, onTransitionComplete])
 
   return (
     <motion.div
