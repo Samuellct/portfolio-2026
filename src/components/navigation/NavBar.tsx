@@ -111,7 +111,7 @@ export default function NavBar() {
                 key={link.href}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.sectionId)}
-                className="text-xs font-medium tracking-[0.2em] uppercase text-white/50 hover:text-white relative transition-colors group"
+                className="text-xs font-medium tracking-caps-wide uppercase text-white/50 hover:text-white relative transition-colors group"
               >
                 {link.label}
                 <span className="absolute -bottom-1 left-0 w-0 h-px bg-accent-cyan transition-all duration-300 group-hover:w-full" />
@@ -121,7 +121,7 @@ export default function NavBar() {
           
           {/* Language switcher + Hamburger */}
           <div className="flex items-center gap-4">
-            <LanguageSwitcher className="text-xs font-medium tracking-[0.2em] uppercase text-white/50 hover:text-white transition-colors" />
+            <LanguageSwitcher className="text-xs font-medium tracking-caps-wide uppercase text-white/50 hover:text-white transition-colors" />
 
             {/* Hamburger bttn */}
             <motion.button
@@ -187,7 +187,7 @@ export default function NavBar() {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.1 }}
-                  className="text-xs tracking-[0.3em] uppercase text-white/40 mb-8"
+                  className="text-xs tracking-menu-label uppercase text-white/40 mb-8"
                 >
                   {tMenu('sections')}
                 </motion.p>
@@ -204,7 +204,7 @@ export default function NavBar() {
                         href={link.href}
                         role="menuitem"
                         onClick={(e) => handleNavClick(e, link.sectionId)}
-                        className="block font-display text-[clamp(2.5rem,8vw,6rem)] leading-none tracking-wide text-white/20 hover:text-white transition-all duration-300 hover:translate-x-4 hover:text-shadow-glow"
+                        className="block font-display text-display-menu leading-none tracking-wide text-faint hover:text-white transition-all duration-300 hover:translate-x-4 hover:text-shadow-glow"
                       >
                         {link.label}
                       </TransitionLink>
@@ -219,7 +219,7 @@ export default function NavBar() {
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.2 }}
-                  className="text-xs tracking-[0.3em] uppercase text-white/40 mb-8"
+                  className="text-xs tracking-menu-label uppercase text-white/40 mb-8"
                 >
                   {tMenu('external')}
                 </motion.p>

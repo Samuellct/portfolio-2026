@@ -71,7 +71,7 @@ const components: Components = {
     const isInline = !className
     if (isInline) {
       return (
-        <code className="bg-white/5 px-1.5 py-0.5 rounded text-accent-cyan text-sm font-mono" {...props}>
+        <code className="bg-white/5 px-1.5 py-0.5 rounded-code text-accent-cyan text-sm font-mono" {...props}>
           {children}
         </code>
       )

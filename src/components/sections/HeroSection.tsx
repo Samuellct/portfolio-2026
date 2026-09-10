@@ -126,7 +126,7 @@ export default function HeroSection() {
             className="w-1.5 h-1.5 rounded-full bg-green-400 shrink-0 animate-pulse-slow"
             style={{ boxShadow: '0 0 6px rgba(34,197,94,0.8)' }}
           />
-          <span className="font-mono text-[0.58rem] tracking-[0.22em] uppercase text-white/50">
+          <span className="font-mono text-micro-2xs tracking-hero-caps uppercase text-white/50">
             {t('available')}
           </span>
         </motion.div>
@@ -134,11 +134,8 @@ export default function HeroSection() {
         {/* Greeting */}
         <h1
           ref={greetingRef}
-          className="font-display-accent font-black uppercase mb-6 whitespace-nowrap"
+          className="font-display-accent font-black uppercase mb-6 whitespace-nowrap text-display-hero leading-hero tracking-hero-tight"
           style={{
-            fontSize: 'clamp(1.5rem, 9vw, 8rem)',
-            lineHeight: '0.92',
-            letterSpacing: '-0.03em',
             perspective: '1000px',
           }}
         >
@@ -157,7 +154,7 @@ export default function HeroSection() {
         >
           <div className="flex items-center gap-4 mb-4">
             <span className="w-12 h-px bg-gradient-to-r from-accent-cyan to-transparent shrink-0" />
-            <span className="font-display text-[clamp(1.1rem,2.5vw,1.8rem)] leading-[1.1] tracking-wide text-accent-cyan">
+            <span className="font-display text-lead leading-heading tracking-wide text-accent-cyan">
               {t('title')}
             </span>
           </div>
@@ -182,7 +179,7 @@ export default function HeroSection() {
         >
           <TransitionLink
             href="/projects"
-            className="inline-flex items-center gap-3 px-6 md:px-8 py-3 md:py-4 bg-white/5 border border-white/20 text-xs md:text-sm font-medium tracking-[0.15em] uppercase transition-all duration-300 hover:bg-accent-cyan hover:text-black hover:border-accent-cyan hover:shadow-[0_0_25px_rgba(0,240,255,0.2)] group relative overflow-hidden"
+            className="inline-flex items-center gap-3 px-6 md:px-8 py-3 md:py-4 bg-white/5 border border-white/20 text-xs md:text-sm font-medium tracking-caps uppercase transition-all duration-300 hover:bg-accent-cyan hover:text-black hover:border-accent-cyan hover:shadow-[0_0_25px_rgba(0,240,255,0.2)] group relative overflow-hidden"
           >
             <span className="relative z-10">{t('cta')}</span>
             <ArrowRight size={14} className="relative z-10 transition-transform group-hover:translate-x-1" />
@@ -192,7 +189,7 @@ export default function HeroSection() {
             href="/Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-6 md:px-8 py-3 md:py-4 border border-white/10 text-xs md:text-sm font-medium tracking-[0.15em] uppercase text-white/60 transition-all duration-300 hover:border-white/30 hover:text-white/90"
+            className="inline-flex items-center gap-3 px-6 md:px-8 py-3 md:py-4 border border-white/10 text-xs md:text-sm font-medium tracking-caps uppercase text-white/60 transition-all duration-300 hover:border-white/30 hover:text-white/90"
           >
             <span>{t('ctaSecondary')}</span>
             <Download size={14} />
@@ -207,7 +204,7 @@ export default function HeroSection() {
         transition={{ delay: 1.5, duration: 0.8 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 text-white/40 z-10"
       >
-        <span className="text-[0.65rem] tracking-[0.25em] uppercase">{t('scrollHint')}</span>
+        <span className="text-micro-sm tracking-hint uppercase">{t('scrollHint')}</span>
         <div className="w-px h-16 relative overflow-hidden">
           <span className="absolute inset-0 w-full bg-gradient-to-b from-accent-cyan via-accent-cyan to-transparent animate-scroll-line" />
         </div>

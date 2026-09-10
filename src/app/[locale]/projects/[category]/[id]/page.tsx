@@ -72,7 +72,7 @@ export default function ProjectDetailPage() {
                   className="inline-flex items-center gap-2 text-white/50 hover:text-white transition-colors"
                 >
                   <ArrowLeft size={16} />
-                  <span className="text-sm tracking-[0.1em] uppercase">{tCommon('back')}</span>
+                  <span className="text-sm tracking-label uppercase">{tCommon('back')}</span>
                 </TransitionLink>
               </motion.div>
               
@@ -85,26 +85,26 @@ export default function ProjectDetailPage() {
                 {/* Category */}
                 <div className="flex flex-wrap items-center gap-3 mb-4">
                   <span 
-                    className="text-xs tracking-[0.2em] uppercase"
+                    className="text-xs tracking-caps-wide uppercase"
                     style={{ color: category?.accentColor }}
                   >
                     {t(`categories.${categoryId}`)}
                   </span>
                   
                   {project.status === 'in-progress' && (
-                    <span className="px-2 py-1 bg-accent-cyan/10 border border-accent-cyan/20 text-[0.6rem] tracking-wider uppercase text-accent-cyan">
+                    <span className="px-2 py-1 bg-accent-cyan/10 border border-accent-cyan/20 text-micro-xs tracking-wider uppercase text-accent-cyan">
                       {t('status.inProgress')}
                     </span>
                   )}
                   {project.status === 'paused' && (
-                    <span className="px-2 py-1 bg-white/10 border border-white/20 text-[0.6rem] tracking-wider uppercase text-white/60">
+                    <span className="px-2 py-1 bg-white/10 border border-white/20 text-micro-xs tracking-wider uppercase text-white/60">
                       {t('status.paused')}
                     </span>
                   )}
                 </div>
                 
                 {/* Title */}
-                <h1 className="font-display text-[clamp(2rem,5vw,3.5rem)] leading-[0.95] tracking-wide mb-4">
+                <h1 className="font-display text-display-page leading-display-snug tracking-wide mb-4">
                   {getLocalizedField(project.title, locale)}
                 </h1>
 
@@ -127,7 +127,7 @@ export default function ProjectDetailPage() {
                 
                 {/* Technologies */}
                 <div className="mb-8">
-                  <h2 className="text-xs tracking-[0.2em] uppercase text-white/40 mb-4">
+                  <h2 className="text-xs tracking-caps-wide uppercase text-white/40 mb-4">
                     {t('technologies')}
                   </h2>
                   <div className="flex flex-wrap gap-2">

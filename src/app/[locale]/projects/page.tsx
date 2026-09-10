@@ -129,12 +129,12 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
           
           {/* Status badge */}
           {project.status === 'in-progress' && (
-            <div className="absolute top-3 right-3 px-2.5 py-1 bg-accent-cyan/20 backdrop-blur-sm border border-accent-cyan/30 text-[0.6rem] tracking-[0.15em] uppercase text-accent-cyan">
+            <div className="absolute top-3 right-3 px-2.5 py-1 bg-accent-cyan/20 backdrop-blur-sm border border-accent-cyan/30 text-micro-xs tracking-caps uppercase text-accent-cyan">
               {t('status.inProgress')}
             </div>
           )}
           {project.status === 'paused' && (
-            <div className="absolute top-3 right-3 px-2.5 py-1 bg-white/10 backdrop-blur-sm border border-white/20 text-[0.6rem] tracking-[0.15em] uppercase text-white/60">
+            <div className="absolute top-3 right-3 px-2.5 py-1 bg-white/10 backdrop-blur-sm border border-white/20 text-micro-xs tracking-caps uppercase text-white/60">
               {t('status.paused')}
             </div>
           )}
@@ -153,7 +153,7 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
         
         {/* Content */}
         <div className="space-y-2">
-          <div className="flex items-center gap-3 text-[0.6rem] tracking-[0.2em] uppercase text-white/40">
+          <div className="flex items-center gap-3 text-micro-xs tracking-caps-wide uppercase text-white/40">
             <span style={{ color: project.category === 'internship' ? '#10b981' : project.category === 'academic' ? '#a855f7' : '#00f0ff' }}>
               {t(`categories.${project.category}`)}
             </span>
@@ -179,7 +179,7 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
             }}
             transition={{ duration: 0.3 }}
           >
-            <span className="text-xs tracking-[0.15em] uppercase">{t('viewProject')}</span>
+            <span className="text-xs tracking-caps uppercase">{t('viewProject')}</span>
             <ArrowRight size={12} />
           </motion.div>
         </div>
@@ -263,7 +263,7 @@ export default function ProjectsPage() {
     <div ref={pageRef} className="min-h-screen relative" style={{ backgroundColor: PROJECTS_BG_COLOR }}>
       {/* parallax */}
       <div aria-hidden="true" className="decor-text fixed top-1/2 -translate-y-1/2 left-0 pointer-events-none select-none z-0">
-        <span className="font-display text-[20vw] text-white/[0.015] leading-none whitespace-nowrap">
+        <span className="font-display text-ghost-20 text-white/[0.015] leading-none whitespace-nowrap">
           PROJECTS
         </span>
       </div>
@@ -281,7 +281,7 @@ export default function ProjectsPage() {
             className="inline-flex items-center gap-2 text-white/50 hover:text-white transition-colors group"
           >
             <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1" />
-            <span className="text-sm tracking-[0.1em] uppercase">{tCommon('back')}</span>
+            <span className="text-sm tracking-label uppercase">{tCommon('back')}</span>
           </TransitionLink>
         </motion.div>
         
@@ -296,7 +296,7 @@ export default function ProjectsPage() {
             {t('sectionLabel')}
           </motion.div>
           
-          <h1 className="font-display text-[clamp(3rem,10vw,8rem)] leading-[0.85] tracking-wide mb-6">
+          <h1 className="font-display text-display-listing leading-display-tight tracking-wide mb-6">
             {t('title')}
           </h1>
           
@@ -314,7 +314,7 @@ export default function ProjectsPage() {
         >
           <button
             onClick={() => setActiveFilter('all')}
-            className={`px-6 py-2.5 text-xs tracking-[0.2em] uppercase border transition-all duration-300 ${
+            className={`px-6 py-2.5 text-xs tracking-caps-wide uppercase border transition-all duration-300 ${
               activeFilter === 'all'
                 ? 'bg-white text-black border-white'
                 : 'bg-transparent text-white/60 border-white/20 hover:border-white/50 hover:text-white'
@@ -327,7 +327,7 @@ export default function ProjectsPage() {
             <button
               key={category.id}
               onClick={() => setActiveFilter(category.id)}
-              className={`px-6 py-2.5 text-xs tracking-[0.2em] uppercase border transition-all duration-300 ${
+              className={`px-6 py-2.5 text-xs tracking-caps-wide uppercase border transition-all duration-300 ${
                 activeFilter === category.id
                   ? 'bg-white text-black border-white'
                   : 'bg-transparent text-white/60 border-white/20 hover:border-white/50 hover:text-white'

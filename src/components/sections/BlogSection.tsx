@@ -125,7 +125,7 @@ export default function BlogSection() {
         aria-hidden="true"
         className="absolute top-1/2 -translate-y-1/2 left-0 pointer-events-none select-none"
       >
-        <span className="font-display text-[40vw] text-white/[0.015] leading-none whitespace-nowrap">
+        <span className="font-display text-ghost-40 text-white/[0.015] leading-none whitespace-nowrap">
           BLOG
         </span>
       </div>
@@ -156,7 +156,7 @@ export default function BlogSection() {
         {/* Title */}
         <h2 
           ref={titleRef}
-          className="font-display text-[clamp(3rem,10vw,7rem)] leading-[0.9] tracking-wide mb-12"
+          className="font-display text-display-section leading-display tracking-wide mb-12"
         >
           {t('title')}
         </h2>
@@ -181,7 +181,7 @@ export default function BlogSection() {
             {/* Coming soon a modif /!\ */}
             <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-accent-pink/10 border border-accent-pink/20 rounded-full mb-8">
               <span className="w-2 h-2 bg-accent-pink rounded-full animate-pulse" />
-              <span className="text-[0.65rem] tracking-[0.2em] uppercase text-accent-pink font-medium">
+              <span className="text-micro-sm tracking-caps-wide uppercase text-accent-pink font-medium">
                 {t('comingSoon.badge')}
               </span>
             </div>
@@ -198,7 +198,7 @@ export default function BlogSection() {
               href="https://samuel-lecomte.fr"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 border border-white/10 text-sm tracking-[0.15em] uppercase transition-all duration-300 hover:bg-accent-pink/10 hover:border-accent-pink/30 group/btn"
+              className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 border border-white/10 text-sm tracking-caps uppercase transition-all duration-300 hover:bg-accent-pink/10 hover:border-accent-pink/30 group/btn"
             >
               {t('comingSoon.cta')}
               <ExternalLink size={14} className="transition-transform group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />

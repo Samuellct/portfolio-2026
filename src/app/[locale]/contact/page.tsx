@@ -101,7 +101,7 @@ export default function ContactPage() {
     <div ref={pageRef} className="min-h-screen relative" style={{ backgroundColor: CONTACT_BG_COLOR }}>
       {/* parallax */}
       <div aria-hidden="true" className="decor-text fixed top-1/2 -translate-y-1/2 left-0 pointer-events-none select-none z-0">
-        <span className="font-display text-[20vw] text-white/[0.015] leading-none whitespace-nowrap">
+        <span className="font-display text-ghost-20 text-white/[0.015] leading-none whitespace-nowrap">
           CONTACT
         </span>
       </div>
@@ -119,7 +119,7 @@ export default function ContactPage() {
             className="inline-flex items-center gap-2 text-white/50 hover:text-white transition-colors"
           >
             <ArrowLeft size={16} />
-            <span className="text-sm tracking-[0.1em] uppercase">{tCommon('back')}</span>
+            <span className="text-sm tracking-label uppercase">{tCommon('back')}</span>
           </TransitionLink>
         </motion.div>
         
@@ -133,7 +133,7 @@ export default function ContactPage() {
           <div className="section-label text-accent-cyan mb-4">
             {tContact('sectionLabel')}
           </div>
-          <h1 className="font-display text-[clamp(3rem,10vw,6rem)] leading-[0.9] tracking-wide mb-6">
+          <h1 className="font-display text-display-contact leading-display tracking-wide mb-6">
             {tContact('page.title')}
           </h1>
           <p className="text-lg text-white/50 text-justify">
@@ -153,7 +153,7 @@ export default function ContactPage() {
             <p className="text-white/60 mb-6">{tContact('page.form.successDescription')}</p>
             <button
               onClick={resetForm}
-              className="px-6 py-2 text-sm tracking-[0.1em] uppercase border border-white/20 hover:border-white/40 transition-colors"
+              className="px-6 py-2 text-sm tracking-label uppercase border border-white/20 hover:border-white/40 transition-colors"
             >
               {tContact('page.form.sendAnother')}
             </button>
@@ -172,7 +172,7 @@ export default function ContactPage() {
             <p className="text-white/60 mb-6">{tContact('page.form.errorDescription')}</p>
             <button
               onClick={resetForm}
-              className="px-6 py-2 text-sm tracking-[0.1em] uppercase border border-white/20 hover:border-white/40 transition-colors"
+              className="px-6 py-2 text-sm tracking-label uppercase border border-white/20 hover:border-white/40 transition-colors"
             >
               {tContact('page.form.retry')}
             </button>
@@ -191,7 +191,7 @@ export default function ContactPage() {
             {/* Name + Email */}
             <div className="grid md:grid-cols-2 gap-6">
               <div>
-                <label htmlFor="name" className="block text-xs tracking-[0.15em] uppercase text-white/40 mb-2">
+                <label htmlFor="name" className="block text-xs tracking-caps uppercase text-white/40 mb-2">
                   {tContact('page.form.name')}
                 </label>
                 <input
@@ -207,7 +207,7 @@ export default function ContactPage() {
               </div>
               
               <div>
-                <label htmlFor="email" className="block text-xs tracking-[0.15em] uppercase text-white/40 mb-2">
+                <label htmlFor="email" className="block text-xs tracking-caps uppercase text-white/40 mb-2">
                   {tContact('page.form.email')}
                 </label>
                 <input
@@ -225,7 +225,7 @@ export default function ContactPage() {
             
             {/* Subject */}
             <div>
-              <label htmlFor="subject" className="block text-xs tracking-[0.15em] uppercase text-white/40 mb-2">
+              <label htmlFor="subject" className="block text-xs tracking-caps uppercase text-white/40 mb-2">
                 {tContact('page.form.subject')}
               </label>
               <input
@@ -242,7 +242,7 @@ export default function ContactPage() {
             
             {/* Message */}
             <div>
-              <label htmlFor="message" className="block text-xs tracking-[0.15em] uppercase text-white/40 mb-2">
+              <label htmlFor="message" className="block text-xs tracking-caps uppercase text-white/40 mb-2">
                 {tContact('page.form.message')}
               </label>
               <textarea
@@ -261,7 +261,7 @@ export default function ContactPage() {
             <button
               type="submit"
               disabled={status === 'submitting'}
-              className="inline-flex items-center gap-3 px-8 py-4 bg-accent-cyan text-black text-sm font-medium tracking-[0.15em] uppercase transition-all hover:bg-white hover:shadow-[0_0_25px_rgba(0,240,255,0.2)] disabled:opacity-50 disabled:cursor-not-allowed"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-accent-cyan text-black text-sm font-medium tracking-caps uppercase transition-all hover:bg-white hover:shadow-[0_0_25px_rgba(0,240,255,0.2)] disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {status === 'submitting' ? (
                 <>
@@ -285,7 +285,7 @@ export default function ContactPage() {
           transition={{ delay: 0.3, duration: 0.6 }}
           className="mt-16 pt-16 border-t border-white/5"
         >
-          <h2 className="text-xs tracking-[0.2em] uppercase text-white/40 mb-6">
+          <h2 className="text-xs tracking-caps-wide uppercase text-white/40 mb-6">
             {tContact('page.directContact.title')}
           </h2>
           

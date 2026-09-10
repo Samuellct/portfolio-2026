@@ -343,7 +343,7 @@ export default function AboutPage() {
               className="inline-flex items-center gap-2 text-white/50 hover:text-white transition-colors group"
             >
               <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1" />
-              <span className="text-sm tracking-[0.1em] uppercase">{tCommon('back')}</span>
+              <span className="text-sm tracking-label uppercase">{tCommon('back')}</span>
             </TransitionLink>
           </motion.div>
         </div>
@@ -377,7 +377,7 @@ export default function AboutPage() {
                 x: currentBgText % 2 === 0 ? 30 : -30 
               }}
               transition={{ duration: 0.8, ease: 'easeOut' }}
-              className="font-display text-[20vw] md:text-[15vw] leading-none tracking-widest text-white whitespace-nowrap"
+              className="font-display text-ghost-20 md:text-ghost-15 leading-none tracking-widest text-white whitespace-nowrap"
             >
               {bgTexts[currentBgText]}
             </motion.span>
@@ -403,7 +403,7 @@ export default function AboutPage() {
               <div className="section-label text-accent-cyan mb-4">
                 {tAbout('sectionLabel')}
               </div>
-              <h1 className="font-display text-[clamp(2.5rem,7vw,5rem)] leading-[0.95] tracking-wide mb-12">
+              <h1 className="font-display text-display-about-heading leading-display-snug tracking-wide mb-12">
                 {tAbout('title')}
               </h1>
             </div>
@@ -429,7 +429,7 @@ export default function AboutPage() {
                 transform: `translateY(${goalsY}px)`,
               }}
             >
-              <h2 className="text-xs tracking-[0.2em] uppercase text-accent-purple mb-4">
+              <h2 className="text-xs tracking-caps-wide uppercase text-accent-purple mb-4">
                 {tAbout('full.goalsTitle')}
               </h2>
               <p className="text-white/50 leading-relaxed">
@@ -501,7 +501,7 @@ export default function AboutPage() {
               className="mb-16"
               style={{ opacity: stackSubtitleOpacity }}
             >
-              <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] leading-[0.95] tracking-wide mb-4">
+              <h2 className="font-display text-display-page leading-display-snug tracking-wide mb-4">
                 {tAbout('stack.title')}
               </h2>
               <p className="text-white/40 max-w-xl">
@@ -551,7 +551,7 @@ export default function AboutPage() {
                 transform: `translateY(${toolkitY}px)`,
               }}
             >
-              <h3 className="text-xs tracking-[0.2em] uppercase text-white/30 mb-8">
+              <h3 className="text-xs tracking-caps-wide uppercase text-white/30 mb-8">
                 {tAbout('stack.extendedToolkit')}
               </h3>
               
@@ -592,7 +592,7 @@ export default function AboutPage() {
               <div className="section-label text-emerald-400 justify-center mb-4">
                 {tAbout('education.sectionLabel')}
               </div>
-              <h2 className="font-display text-[clamp(2rem,5vw,3.5rem)] leading-[0.95] tracking-wide">
+              <h2 className="font-display text-display-page leading-display-snug tracking-wide">
                 {tAbout('education.subtitle')}
               </h2>
             </div>
@@ -635,7 +635,7 @@ export default function AboutPage() {
                         }}
                       >
                         <span 
-                          className="inline-block px-2 py-0.5 text-[0.6rem] tracking-wider uppercase mb-2"
+                          className="inline-block px-2 py-0.5 text-micro-xs tracking-wider uppercase mb-2"
                           style={{ backgroundColor: `${item.color}15`, color: item.color }}
                         >
                           {item.period}

@@ -167,7 +167,7 @@ export default function ProjectsSection() {
                     ease: [0.215, 0.61, 0.355, 1],
                     delay: i * 0.04
                   }}
-                  className="font-display text-[25vw] text-white/[0.05] leading-none whitespace-pre"
+                  className="font-display text-ghost-25 text-white/[0.05] leading-none whitespace-pre"
                 >
                   {char}
                 </motion.span>
@@ -200,7 +200,7 @@ export default function ProjectsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="font-display text-[clamp(3rem,10vw,7rem)] leading-[0.9] tracking-wide"
+              className="font-display text-display-section leading-display tracking-wide"
             >
               {t('title')}
             </motion.h2>
@@ -216,7 +216,7 @@ export default function ProjectsSection() {
               href="/projects"
               className="inline-flex items-center gap-3 text-white/50 hover:text-white transition-colors group"
             >
-              <span className="text-sm tracking-[0.15em] uppercase">{t('preview.cta')}</span>
+              <span className="text-sm tracking-caps uppercase">{t('preview.cta')}</span>
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
             </TransitionLink>
           </motion.div>
@@ -299,7 +299,7 @@ export default function ProjectsSection() {
                     onMouseEnter={() => handleProjectEnter(project)}
                   >
                     <motion.h3
-                      className="font-display text-[clamp(1.8rem,6vw,5rem)] leading-[1] tracking-wide"
+                      className="font-display text-display-project leading-none tracking-wide"
                       animate={{ 
                         opacity: isHovering 
                           ? (isActive ? 1 : 0.15)  // Active: full, Others: very dim

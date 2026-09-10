@@ -143,7 +143,7 @@ export default function ContactSection() {
         aria-hidden="true"
         className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
       >
-        <span className="font-display text-[35vw] text-white/[0.015] leading-none">
+        <span className="font-display text-ghost-35 text-white/[0.015] leading-none">
           CONTACT
         </span>
       </div>
@@ -198,7 +198,7 @@ export default function ContactSection() {
               </div>
             </div>
             
-            <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 text-[0.6rem] tracking-[0.2em] uppercase text-white/20">
+            <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 text-micro-xs tracking-caps-wide uppercase text-faint">
               {t('collision.eventDisplay')}
             </div>
           </div>
@@ -219,7 +219,7 @@ export default function ContactSection() {
             {/* Title */}
             <h2 
               ref={titleRef}
-              className="font-display text-[clamp(3rem,10vw,6rem)] leading-[0.9] tracking-wide mb-8"
+              className="font-display text-display-contact leading-display tracking-wide mb-8"
               style={{ perspective: '1000px' }}
             >
               {titleChars}
@@ -240,7 +240,7 @@ export default function ContactSection() {
             <div ref={ctaRef}>
               <TransitionLink
                 href="/contact"
-                className="inline-flex items-center gap-4 px-10 py-5 bg-accent-cyan text-black text-sm font-medium tracking-[0.2em] uppercase transition-all duration-300 hover:bg-white hover:shadow-[0_0_30px_rgba(0,240,255,0.25)] group relative overflow-hidden"
+                className="inline-flex items-center gap-4 px-10 py-5 bg-accent-cyan text-black text-sm font-medium tracking-caps-wide uppercase transition-all duration-300 hover:bg-white hover:shadow-[0_0_30px_rgba(0,240,255,0.25)] group relative overflow-hidden"
               >
                 <span className="relative z-10">{t('preview.cta')}</span>
                 <ArrowRight size={18} className="relative z-10 transition-transform group-hover:translate-x-1" />
@@ -250,9 +250,9 @@ export default function ContactSection() {
             </div>
             
             {/* Deco */}
-            <div className="mt-16 flex items-center gap-4 text-white/20">
+            <div className="mt-16 flex items-center gap-4 text-faint">
               <span className="w-12 h-px bg-white/10" />
-              <span className="text-xs tracking-[0.3em] uppercase flex items-center gap-2">
+              <span className="text-xs tracking-menu-label uppercase flex items-center gap-2">
                 Samuel Lecomte
               </span>
             </div>
