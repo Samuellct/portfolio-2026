@@ -5,6 +5,27 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.9.28] - 2026-09-10
+
+Phase 1 de la nouvelle feuille de route V5 (`TODO_V5.md`) : correctifs P0. Voir aussi le commit `ci:` rattaché à la Phase 0, qui rend l'étape `npm audit` de la CI non bloquante.
+
+### Corrigé
+
+- **Rendu serveur du contenu** (`AUDIT-001`) - `Providers` ne bloque plus l'arbre derrière `mounted` : `MainLayout` et le contenu des pages sont rendus au serveur. Le HTML servi de `/fr`, `/en`, `/fr/projects`, `/fr/about` et des fiches projets contient désormais le texte visible (hero, sections, pied de page) au lieu d'un corps vide. L'écran d'entrée devient un overlay client, décidé à partir d'un indicateur `sessionStorage` et affiché uniquement sur `/`.
+- **Écran d'entrée non bloquant** (`AUDIT-002`) - la progression de l'hyperespace est pilotée par le temps écoulé et non par le nombre d'images, et un secours à 2 s force la sortie si l'animation n'a pas rendu la main. Un onglet mis en arrière-plan ne peut plus figer l'entrée.
+- **Garde-fou d'image** (`AUDIT-004`) - une image de fiche qui échoue au chargement affiche un bloc de repli (couleur de catégorie et titre) au lieu d'un spinner sans fin. L'image `timepredict.webp`, absente, sera fournie avant la Phase 3.
+- **Métadonnées SEO** (`AUDIT-006`) - les six champs de description (`metadata.home`, `metadata.about`, `metadata.projects`, avec leurs `ogDescription`) parlent désormais d'analyse « sur des données des expériences ATLAS et LHCb du CERN » plutôt que de « stages de recherche au CERN ».
+- **Objectif professionnel** (`AUDIT-007`) - retrait de toute mention de thèse dans `hero.description` et `about.full.goals` (FR et EN), au profit d'une formulation d'objectif sans énumération de métiers. Formulation posée comme base, à affiner lors du repositionnement du hero (`AUDIT-037`).
+- **Prénom du hero** (`AUDIT-003`) - `hero.greeting` FR ramené à « Samuel », alignant les deux langues sur une chaîne courte et supprimant le débordement du `<h1>` en français.
+- **Fautes de français** (`AUDIT-031`) - six accords et accents corrigés dans les descriptions de projets ; le compteur « N projets » de la page À propos passe par une clé i18n avec pluriel ICU au lieu d'une chaîne anglaise codée en dur.
+- **Tirets cadratins** (`AUDIT-049`, `AUDIT-076`) - les périodes de formation de `messages/en.json` et les titres FR des deux stages n'utilisent plus que le trait d'union.
+
+### Performance
+
+- **Retrait du runtime edge** (`AUDIT-020`) - `export const runtime = 'edge'` supprimé des layouts `about`, `contact` et `projects` : ces pages plus la route `projects/[category]/[id]` repassent en prérendu statique (`●`) à la construction.
+
+---
+
 ## [4.9.27] - 2026-09-06
 
 ### Vérifié
