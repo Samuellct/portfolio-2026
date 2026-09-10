@@ -799,7 +799,7 @@ Le travail numérique s'est concentré sur la modélisation des anneaux en tant 
       id: 'internship-m1',
       title: {
         en: 'Master 1 Internship - LHCb Team',
-        fr: 'Stage de Master 1 — Équipe LHCb',
+        fr: 'Stage de Master 1 - Équipe LHCb',
       },
       description: {
         en: 'Study of a rare B meson decay mode. Development of data analysis scripts with ROOT for LHCb Run I.',
@@ -846,7 +846,7 @@ Lorsque j'ai appliqué cette présélection aux données réelles du Run 1, j'ai
       id: 'internship-m2',
       title: {
         en: 'Master 2 Internship - ATLAS Team',
-        fr: 'Stage de Master 2 — Équipe ATLAS',
+        fr: 'Stage de Master 2 - Équipe ATLAS',
       },
       description: {
         en: 'Generation and analysis of simulated events to evaluate the feasibility of searches for LLPs at the HL-LHC.',
