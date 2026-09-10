@@ -14,8 +14,8 @@ interface LandingProps {
 export default function Landing({ onEnter, isTransitioning, onTransitionComplete }: LandingProps) {
   const t = useTranslations('landing')
 
-  // TODO (AUDIT-028, Phase 2): under prefers-reduced-motion, skip the hyperspace
-  // animation entirely and hand off immediately.
+  // Under prefers-reduced-motion this component is never mounted (the landing is
+  // skipped in Providers), so no reduced-motion branch is needed here.
   useEffect(() => {
     const timer = setTimeout(() => {
       onEnter()

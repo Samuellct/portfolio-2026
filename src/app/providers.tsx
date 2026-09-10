@@ -2,12 +2,13 @@
 
 import { ReactNode, useState, useEffect, useLayoutEffect, useCallback } from 'react'
 import { usePathname } from '@/i18n/navigation'
-import { AnimatePresence } from 'framer-motion'
+import { AnimatePresence, MotionConfig } from 'framer-motion'
 import { SiteProvider } from '@/context/SiteContext'
 import { SmoothScrollProvider } from '@/context/SmoothScrollContext'
 import { TransitionProvider } from '@/context/TransitionContext'
 import Landing from '@/components/landing/Landing'
 import MainLayout from '@/components/layout/MainLayout'
+import { useReducedMotion } from '@/hooks/use-reduced-motion'
 
 const SESSION_KEY = 'portfolio-landing-seen'
 
@@ -17,6 +18,7 @@ const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffec
 
 export function Providers({ children }: { children: ReactNode }) {
   const pathname = usePathname()
+  const prefersReducedMotion = useReducedMotion()
   const [hasEnteredSite, setHasEnteredSite] = useState(false)
   const [isLandingTransitioning, setIsLandingTransitioning] = useState(false)
   const [showLanding, setShowLanding] = useState(false)
@@ -42,12 +44,13 @@ export function Providers({ children }: { children: ReactNode }) {
     } catch {
       seen = false
     }
-    if (pathname === '/' && !seen) {
+    if (pathname === '/' && !seen && !prefersReducedMotion) {
       setShowLanding(true)
     } else {
       setHasEnteredSite(true)
+      if (pathname === '/') markLandingSeen()
     }
-  }, [pathname])
+  }, [pathname, prefersReducedMotion, markLandingSeen])
 
   // Persist the flag as soon as the overlay appears, so navigating away mid
   // animation does not replay it on the next in-session visit.
@@ -77,22 +80,24 @@ export function Providers({ children }: { children: ReactNode }) {
   }, [markLandingSeen])
 
   return (
-    <SiteProvider value={{ hasEnteredSite, setHasEnteredSite }}>
-      <SmoothScrollProvider>
-        <TransitionProvider>
-          <MainLayout>{children}</MainLayout>
-          <AnimatePresence>
-            {showLanding && (
-              <Landing
-                key="landing"
-                onEnter={handleEnter}
-                isTransitioning={isLandingTransitioning}
-                onTransitionComplete={handleTransitionComplete}
-              />
-            )}
-          </AnimatePresence>
-        </TransitionProvider>
-      </SmoothScrollProvider>
-    </SiteProvider>
+    <MotionConfig reducedMotion="user">
+      <SiteProvider value={{ hasEnteredSite, setHasEnteredSite }}>
+        <SmoothScrollProvider>
+          <TransitionProvider>
+            <MainLayout>{children}</MainLayout>
+            <AnimatePresence>
+              {showLanding && (
+                <Landing
+                  key="landing"
+                  onEnter={handleEnter}
+                  isTransitioning={isLandingTransitioning}
+                  onTransitionComplete={handleTransitionComplete}
+                />
+              )}
+            </AnimatePresence>
+          </TransitionProvider>
+        </SmoothScrollProvider>
+      </SiteProvider>
+    </MotionConfig>
   )
 }
