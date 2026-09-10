@@ -1,0 +1,234 @@
+{
+  "landing": {
+    "title": "Samuel/ Portfolio",
+    "subtitle": "",
+    "enter": "Entrer"
+  },
+  "nav": {
+    "home": "Accueil",
+    "about": "À propos",
+    "projects": "Projets",
+    "contact": "Contact"
+  },
+  "menu": {
+    "sections": "Sections",
+    "external": "Liens externes",
+    "blog": "Blog",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "switchLang": "English"
+  },
+  "hero": {
+    "greeting": "Samuel Lecomte",
+    "greetingMobile": "Samuel",
+    "title": "Physique. Python. Data.",
+    "titleAlt": "",
+    "description": "Physicien de formation, formé à l'analyse de données dans des équipes de recherche affiliées au CERN. A la recherche d'un poste technique ou d'une thèse.",
+    "cta": "Mes projets",
+    "ctaSecondary": "Télécharger mon CV",
+    "available": "Disponible",
+    "scrollHint": "Défiler"
+  },
+  "about": {
+    "sectionLabel": "01 · À propos",
+    "title": "De physicien à ... développeur",
+    "preview": {
+      "intro": "Deux stages de recherche en physique fondamentale, au sein d'équipes membres des collaborations LHCb et ATLAS, m'ont formé à construire des pipelines d'analyse complets : acquisition, nettoyage, modélisation statistique, présentation. Python et C++ sont mes outils principaux. ROOT, NumPy, Pandas et scikit-learn font partie de ma stack quotidienne.",
+      "highlight": "Ce portfolio rassemble mes projets personnels et académiques : simulation géospatiale en Python, interface desktop Python/Qt pour physiciens, et ce site web Next.js.",
+      "cta": "Profil complet & CV"
+    },
+    "full": {
+      "intro": "Diplômé d'un Master en Physique Fondamentale et d'un DU en Data Science, je me positionne à l'interface entre recherche et ingénierie logicielle. Mon expérience en physique expérimentale (LHCb, ATLAS) m'a formé à la conception de pipelines reproductibles et structurés et à l'analyse de grands ensembles de données en C++ et Python.",
+      "experience": "Pendant mon Master, j'ai travaillé au sein des collaborations LHCb et ATLAS au CERN, sur des jeux de données de plusieurs téraoctets. C'est là que j'ai appris à construire de vraies chaînes d'analyse et à travailler aux côtés de physiciens venus du monde entier.",
+      "passion": "Au-delà de la physique, je suis passionné par la construction de systèmes et d'outils. J'administre une infrastructure serveur personnelle, j'expérimente l'automatisation et j'explore continuellement de nouvelles technologies. Ce site web est lui-même un projet personnel où j'applique les pratiques modernes du développement web.",
+      "goals": "Je suis actuellement à la recherche d'une thèse en physique expérimentale ou d'un poste en ingénierie (R&D, Data Engineering, DevOps). L'objectif est d'appliquer mes compétences en analyse scientifique et conception logicielle à des problèmes concrets.",
+      "goalsTitle": "Objectifs professionnels"
+    },
+    "stats": {
+      "experiments": "Stages de recherche",
+      "experimentsHover": "au sein des équipes ATLAS & LHCb du LPCA",
+      "languages": "Langages de programmation",
+      "languagesHover": "Python, C++, R, TypeScript",
+      "reports": "Documents LaTeX",
+      "reportsHover": "Mémoires de Master, rapports de projets et présentations Beamer"
+    },
+    "skills": {
+      "title": "Compétences techniques",
+      "programming": "Programmation",
+      "analysis": "Analyse de données",
+      "tools": "Outils & Systèmes"
+    },
+    "stack": {
+      "sectionLabel": "02 · Stack technique",
+      "title": "Compétences clés",
+      "description": "Langages de programmation classés par utilisation dans mes projets.",
+      "extendedToolkit": "Outils complémentaires"
+    },
+    "education": {
+      "sectionLabel": "03 · Formation",
+      "title": "Formation",
+      "subtitle": "Parcours universitaire",
+      "master2": {
+        "degree": "Master Physique Fondamentale et Applications",
+        "track": "Spécialisation Univers & Particules",
+        "school": "Université Clermont Auvergne",
+        "period": "2023 - 2025"
+      },
+      "datascience": {
+        "degree": "Diplôme Universitaire Data Science",
+        "school": "Université Clermont Auvergne",
+        "period": "2024 - 2025"
+      },
+      "bachelor": {
+        "degree": "Licence de Physique",
+        "school": "Université Clermont Auvergne",
+        "period": "2019 - 2023"
+      }
+    },
+    "interests": {
+      "sectionLabel": "04 · Centres d'intérêt",
+      "title": "Centres d'intérêt",
+      "subtitle": "Bac à sable personnel",
+      "running": {
+        "title": "Sports de montagne",
+        "description": "J'aime particulièrement les activités qui demandent de l'endurance et une bonne gestion du risque. Je fais notamment du trail running, j'ai déjà participé à un ultra-trail (100 km) et de l'alpinisme, avec l'ascension de plusieurs sommets alpins comme l'Aiguille du Midi et le Grand Paradis."
+      },
+      "tech": {
+        "title": "Home Lab & Auto-hébergement",
+        "description": "Construction d'une infrastructure cloud privée avec Proxmox, TrueNAS et des services conteneurisés. Auto-hébergement pour la confidentialité et sécurisation via reverse proxy."
+      },
+      "science": {
+        "title": "Cinéma",
+        "description": "Passionné de cinéma et habitué des festivals (Cannes, Clermont-Ferrand, Deauville), j'aime prendre le temps de rédiger des critiques sur les (nombreux) films que je vois et partager cette passion avec mon entourage."
+      }
+    },
+    "downloadCV": "Télécharger le CV"
+  },
+  "projects": {
+    "sectionLabel": "02 · Projets",
+    "title": "Travaux récents",
+    "preview": {
+      "description": "Une sélection de projets académiques, personnels et de travaux professionnels.",
+      "cta": "Voir tous les projets"
+    },
+    "categories": {
+      "all": "Tous",
+      "academic": "Académique",
+      "personal": "Personnel",
+      "internship": "Recherche"
+    },
+    "status": {
+      "completed": "Terminé",
+      "inProgress": "En cours",
+      "paused": "En pause"
+    },
+    "emptyState": "Aucun projet trouvé dans cette catégorie.",
+    "viewProject": "Voir le projet",
+    "viewOnGitHub": "Voir sur GitHub",
+    "technologies": "Technologies",
+    "imageCredit": "Image"
+  },
+  "blog": {
+    "sectionLabel": "03 · Blog",
+    "title": "Journal",
+    "comingSoon": {
+      "badge": "Bientôt disponible",
+      "title": "Blog à venir",
+      "description": "Un site de blog dédié est actuellement en cours de développement. Vous pourrez y trouver des articles sur la physique, la technologie et mes aventures personnelles.",
+      "cta": "Visiter le blog"
+    }
+  },
+  "contact": {
+    "sectionLabel": "03 · Contact",
+    "title": "Échangeons",
+    "preview": {
+      "text": "Intéressé par mon travail ? Envie de discuter d'une opportunité ?",
+      "cta": "Me contacter"
+    },
+    "collision": {
+      "newCollision": "Nouvelle collision",
+      "eventDisplay": "Event Display"
+    },
+    "page": {
+      "title": "Me contacter",
+      "description": "Une question technique sur mes projets, une opportunité de poste ou l'envie d'échanger sur mon parcours ? Écrivez-moi directement. Je vous répondrai rapidement.",
+      "form": {
+        "name": "Nom",
+        "namePlaceholder": "Votre nom",
+        "email": "E-mail",
+        "emailPlaceholder": "email@exemple.com",
+        "subject": "Objet",
+        "subjectPlaceholder": "De quoi s'agit-il ?",
+        "message": "Message",
+        "messagePlaceholder": "Votre message...",
+        "send": "Envoyer le message",
+        "sending": "Envoi en cours...",
+        "success": "Message envoyé avec succès",
+        "successDescription": "Merci pour votre message. Je vous répondrai dans les meilleurs délais.",
+        "error": "Une erreur est survenue",
+        "errorDescription": "Veuillez réessayer ou me contacter directement par e-mail.",
+        "retry": "Réessayer",
+        "sendAnother": "Envoyer un autre message"
+      },
+      "directContact": {
+        "title": "Me joindre directement",
+        "email": "contact@samuel-lecomte.fr",
+        "emailLabel": "E-mail",
+        "githubLabel": "GitHub",
+        "linkedinLabel": "LinkedIn"
+      }
+    }
+  },
+  "footer": {
+    "copyright": "© 2026 Samuel Lecomte",
+    "resume": "CV"
+  },
+  "metadata": {
+    "home": {
+      "titleDefault": "SL | Portfolio",
+      "titleTemplate": "%s | Samuel Lecomte",
+      "description": "Samuel Lecomte, physicien reconverti au développement, entre recherche au CERN (ATLAS, LHCb), analyse de données et projets logiciels construits en autonomie.",
+      "ogDescription": "Physicien reconverti au développement, entre recherche au CERN, analyse de données et projets logiciels personnels.",
+      "twitterTitle": "Samuel Lecomte | Portfolio",
+      "twitterDescription": "Physique des particules & Data Science"
+    },
+    "about": {
+      "title": "À propos",
+      "description": "Du Master de Physique Fondamentale à l'Université Clermont Auvergne au développement logiciel, via deux stages de recherche au CERN (ATLAS, LHCb) et un diplôme en Data Science.",
+      "ogTitle": "À propos | Samuel Lecomte",
+      "ogDescription": "De la recherche en physique des particules au CERN au développement logiciel : formation, stages et compétences techniques."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Une question sur un projet, une opportunité professionnelle, ou juste envie d'échanger ? Contactez directement Samuel Lecomte.",
+      "ogTitle": "Contact | Samuel Lecomte",
+      "ogDescription": "Pour des collaborations, opportunités ou questions."
+    },
+    "projects": {
+      "title": "Projets",
+      "description": "Un journal de bord des projets personnels, travaux académiques et stages de recherche au CERN, incluant outils géospatiaux, simulations de physique et ce site.",
+      "ogTitle": "Projets | Samuel Lecomte",
+      "ogDescription": "Projets personnels, travaux académiques et stages au CERN, des outils géospatiaux aux simulations de physique."
+    },
+    "jsonLd": {
+      "siteDescription": "Portfolio personnel de Samuel Lecomte, physicien diplômé et développeur.",
+      "jobTitle": "Diplômé en physique, spécialisé en data science.",
+      "personDescription": "Diplômé en physique spécialisé en physique des hautes énergies et data science, avec une expérience de recherche au sein des collaborations ATLAS et LHCb du CERN.",
+      "webpageDescription": "Page d'accueil du portfolio présentant recherche, analyse de données et projets logiciels de Samuel Lecomte."
+    }
+  },
+  "common": {
+    "loading": "Chargement...",
+    "error": "Une erreur est survenue",
+    "back": "Retour",
+    "skipToContent": "Aller au contenu",
+    "learnMore": "En savoir plus",
+    "viewAll": "Voir tout",
+    "notFound": {
+      "code": "404",
+      "title": "Page introuvable",
+      "description": "La page recherchée n'existe pas ou a été déplacée.",
+      "backHome": "Retour à l'accueil"
+    }
+  }
+}

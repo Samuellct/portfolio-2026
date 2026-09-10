@@ -1,0 +1,234 @@
+{
+  "landing": {
+    "title": "Samuel/ Portfolio",
+    "subtitle": "",
+    "enter": "Enter"
+  },
+  "nav": {
+    "home": "Home",
+    "about": "About",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "menu": {
+    "sections": "Sections",
+    "external": "External",
+    "blog": "Blog",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "switchLang": "Français"
+  },
+  "hero": {
+    "greeting": "Hi, I'm Samuel",
+    "greetingMobile": "Hi, I'm Samuel",
+    "title": "Physics. Python. Data.",
+    "titleAlt": "",
+    "description": "Physics graduate, trained in data analysis within CERN-affiliated research groups. Looking for a technical position or PhD.",
+    "cta": "My projects",
+    "ctaSecondary": "Download my CV",
+    "available": "Open to work",
+    "scrollHint": "Scroll"
+  },
+  "about": {
+    "sectionLabel": "01 · About",
+    "title": "From physicist to ... developer",
+    "preview": {
+      "intro": "Two research internships in experimental physics, within groups affiliated to the LHCb and ATLAS collaborations, taught me to build full analysis pipelines: data acquisition, cleaning, statistical modelling, reporting. Python and C++ are my main tools. ROOT, NumPy, Pandas, and scikit-learn are part of my daily workflow.",
+      "highlight": "This portfolio gathers personal and academic projects: a geospatial simulation in Python, a Python/Qt desktop tool for physicists, and this Next.js website.",
+      "cta": "Full profile & CV"
+    },
+    "full": {
+      "intro": "I'm Samuel. I hold a Master's in Fundamental Physics and a university diploma in Data Science, and I work at the crossing point between research and software engineering. My time with the LHCb and ATLAS collaborations taught me to build reproducible, well-structured pipelines and to make sense of large datasets in C++ and Python.",
+      "experience": "During my Master's, I worked with the LHCb and ATLAS collaborations at CERN, on datasets running into terabytes. It's where I learned to build proper analysis pipelines and to work alongside physicists from all over the world.",
+      "passion": "Beyond physics, I'm passionate about building systems and tools. I maintain a home server infrastructure, experiment with automation, and continuously explore new technologies. This website itself is a personal project where I apply modern web development practices.",
+      "goals": "Right now I'm looking for either a PhD in experimental physics or an engineering role (R&D, data engineering, DevOps) where I can put my analytical and software skills to work on real problems.",
+      "goalsTitle": "Professional Goals"
+    },
+    "stats": {
+      "experiments": "Research internships",
+      "experimentsHover": "within ATLAS & LHCb LPCA research groups",
+      "languages": "Programming Languages",
+      "languagesHover": "Python, C++, R, TypeScript",
+      "reports": "LaTeX Documents",
+      "reportsHover": "Master's theses, project reports, and Beamer presentations"
+    },
+    "skills": {
+      "title": "Technical Skills",
+      "programming": "Programming",
+      "analysis": "Data Analysis",
+      "tools": "Tools & Systems"
+    },
+    "stack": {
+      "sectionLabel": "02 · Technical Stack",
+      "title": "Core Skills",
+      "description": "Programming languages ranked by usage across my projects.",
+      "extendedToolkit": "Extended Toolkit"
+    },
+    "education": {
+      "sectionLabel": "03 · Education",
+      "title": "Education",
+      "subtitle": "Academic Path",
+      "master2": {
+        "degree": "M.Sc. Fundamental Physics and Applications",
+        "track": "Universe & Particles",
+        "school": "Université Clermont Auvergne",
+        "period": "2023 — 2025"
+      },
+      "datascience": {
+        "degree": "University Diploma in Data Science",
+        "school": "Université Clermont Auvergne",
+        "period": "2024 — 2025"
+      },
+      "bachelor": {
+        "degree": "B.Sc. Physics",
+        "school": "Université Clermont Auvergne",
+        "period": "2019 — 2023"
+      }
+    },
+    "interests": {
+      "sectionLabel": "04 · Interests",
+      "title": "Interests",
+      "subtitle": "Personal Sandbox",
+      "running": {
+        "title": "Mountain Sports",
+        "description": "I particularly enjoy activities that require endurance and risk management. I mainly do trail running, I even took part in a 100 km ultra-trail, and alpinism, with the ascent of several alpine peaks like the Aiguille du Midi and Gran Paradiso."
+      },
+      "tech": {
+        "title": "Home Lab & Self-Hosting",
+        "description": "Building private cloud infrastructure with Proxmox, TrueNAS, and containerized services. Self-hosting for privacy and learning."
+      },
+      "science": {
+        "title": "Cinema",
+        "description": "Passionate about cinema and a regular at festivals (Cannes, Clermont-Ferrand, Deauville), I like to take the time to write reviews for the (many) films I watch, and I enjoy sharing this passion with the people around me."
+      }
+    },
+    "downloadCV": "Download CV"
+  },
+  "projects": {
+    "sectionLabel": "02 · Projects",
+    "title": "Latest Work",
+    "preview": {
+      "description": "A selection of academic research, personal experiments, and professional work.",
+      "cta": "View all projects"
+    },
+    "categories": {
+      "all": "All",
+      "academic": "Academic",
+      "personal": "Personal",
+      "internship": "Research"
+    },
+    "status": {
+      "completed": "Completed",
+      "inProgress": "In Progress",
+      "paused": "Paused"
+    },
+    "emptyState": "No projects found in this category.",
+    "viewProject": "View project",
+    "viewOnGitHub": "View on GitHub",
+    "technologies": "Technologies",
+    "imageCredit": "Image"
+  },
+  "blog": {
+    "sectionLabel": "03 · Blog",
+    "title": "Journal",
+    "comingSoon": {
+      "badge": "Coming Soon",
+      "title": "Blog Coming Soon",
+      "description": "A dedicated blog website is currently under development. Stay tuned for articles about physics, technology, and personal adventures.",
+      "cta": "Visit Blog"
+    }
+  },
+  "contact": {
+    "sectionLabel": "03 · Contact",
+    "title": "Let's Connect",
+    "preview": {
+      "text": "Interested in my work? Want to discuss a potential opportunity?",
+      "cta": "Get in touch"
+    },
+    "collision": {
+      "newCollision": "New collision",
+      "eventDisplay": "Event Display"
+    },
+    "page": {
+      "title": "Contact Me",
+      "description": "Whether you have a question, a project idea, or just want to say hello, feel free to reach out. I'll get back to you as soon as possible.",
+      "form": {
+        "name": "Name",
+        "namePlaceholder": "Your name",
+        "email": "Email",
+        "emailPlaceholder": "your.email@example.com",
+        "subject": "Subject",
+        "subjectPlaceholder": "What's this about?",
+        "message": "Message",
+        "messagePlaceholder": "Your message...",
+        "send": "Send Message",
+        "sending": "Sending...",
+        "success": "Message sent successfully",
+        "successDescription": "Thank you for reaching out. I'll get back to you soon.",
+        "error": "Something went wrong",
+        "errorDescription": "Please try again or contact me directly via email.",
+        "retry": "Try again",
+        "sendAnother": "Send another message"
+      },
+      "directContact": {
+        "title": "Or reach me directly",
+        "email": "contact@samuel-lecomte.fr",
+        "emailLabel": "E-mail",
+        "githubLabel": "GitHub",
+        "linkedinLabel": "LinkedIn"
+      }
+    }
+  },
+  "footer": {
+    "copyright": "© 2026 Samuel Lecomte",
+    "resume": "Resume"
+  },
+  "metadata": {
+    "home": {
+      "titleDefault": "SL | Portfolio",
+      "titleTemplate": "%s | Samuel Lecomte",
+      "description": "Samuel Lecomte, physics graduate turned developer, presenting CERN research (ATLAS, LHCb), data analysis, and self-built software projects.",
+      "ogDescription": "Physics graduate turned developer, presenting CERN research, data analysis, and self-built software projects.",
+      "twitterTitle": "Samuel Lecomte | Portfolio",
+      "twitterDescription": "Particle Physics & Data Science"
+    },
+    "about": {
+      "title": "About",
+      "description": "From a Master's in Fundamental Physics at Université Clermont Auvergne to software development, via two CERN research internships (ATLAS, LHCb) and a Data Science diploma.",
+      "ogTitle": "About | Samuel Lecomte",
+      "ogDescription": "From particle physics research at CERN to software development: education, internships, and technical skills."
+    },
+    "contact": {
+      "title": "Contact",
+      "description": "Have a question about a project, a job opportunity, or just want to say hello? Reach Samuel Lecomte directly.",
+      "ogTitle": "Contact | Samuel Lecomte",
+      "ogDescription": "Reach out about collaborations, opportunities, or questions."
+    },
+    "projects": {
+      "title": "Projects",
+      "description": "A working log of personal builds, academic research, and CERN internship work, including geospatial tools, physics simulations, and this website.",
+      "ogTitle": "Projects | Samuel Lecomte",
+      "ogDescription": "Personal builds, academic research, and CERN internship work, from geospatial tools to physics simulations."
+    },
+    "jsonLd": {
+      "siteDescription": "Personal portfolio of Samuel Lecomte, physics graduate and developer.",
+      "jobTitle": "Physics graduate specializing in data science",
+      "personDescription": "Physics graduate specialized in high-energy physics and data science, with research experience in CERN's ATLAS and LHCb collaborations.",
+      "webpageDescription": "Portfolio homepage presenting research, data analysis, and software projects by Samuel Lecomte."
+    }
+  },
+  "common": {
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "back": "Back",
+    "skipToContent": "Skip to content",
+    "learnMore": "Learn more",
+    "viewAll": "View all",
+    "notFound": {
+      "code": "404",
+      "title": "Page Not Found",
+      "description": "The page you're looking for doesn't exist or has been moved.",
+      "backHome": "Back to Home"
+    }
+  }
+}

@@ -1,0 +1,22 @@
+# Exclusion par defaut : tout est ignore, on re-inclut explicitement ce qui doit etre suivi.
+/*
+!/.gitignore
+!/.github/
+!/src/
+!/public/
+!/messages/
+!/package.json
+!/package-lock.json
+!/next.config.ts
+!/next-env.d.ts
+!/tsconfig.json
+!/tailwind.config.ts
+!/postcss.config.mjs
+!/eslint.config.mjs
+!/wrangler.jsonc
+!/README.md
+!/CHANGELOG.md
+!/LICENSE
+
+# Re-exclusions a l'interieur des dossiers suivis
+.DS_Store
