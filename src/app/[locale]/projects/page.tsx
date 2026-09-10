@@ -24,7 +24,11 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
   const cardRef = useRef<HTMLDivElement>(null)
   const [isHovered, setIsHovered] = useState(false)
   const [imageLoaded, setImageLoaded] = useState(false)
-  
+  const [imageFailed, setImageFailed] = useState(false)
+
+  const categoryColor =
+    project.category === 'internship' ? '#10b981' : project.category === 'academic' ? '#a855f7' : '#00f0ff'
+
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
   
@@ -81,20 +85,35 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
               }}
               transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
             >
-              <Image
-                src={project.image}
-                alt={getLocalizedField(project.imageAlt, locale)}
-                fill
-                className="object-contain"
-                sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                onLoad={() => setImageLoaded(true)}
-              />
+              {!imageFailed && (
+                <Image
+                  src={project.image}
+                  alt={getLocalizedField(project.imageAlt, locale)}
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  onLoad={() => setImageLoaded(true)}
+                  onError={() => setImageFailed(true)}
+                />
+              )}
             </motion.div>
 
             {/* Loading placeholder */}
-            {!imageLoaded && (
+            {!imageLoaded && !imageFailed && (
               <div className="absolute inset-0 flex items-center justify-center">
                 <div className="w-8 h-8 border-2 border-white/10 border-t-accent-cyan rounded-full animate-spin" />
+              </div>
+            )}
+
+            {/* Fallback shown when the image cannot be loaded */}
+            {imageFailed && (
+              <div
+                className="absolute inset-0 flex items-center justify-center p-6 text-center"
+                style={{ backgroundColor: `${categoryColor}14` }}
+              >
+                <span className="font-display text-lg tracking-wide text-white/70">
+                  {getLocalizedField(project.title, locale)}
+                </span>
               </div>
             )}
           </div>
