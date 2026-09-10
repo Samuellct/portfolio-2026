@@ -62,6 +62,7 @@
       "sectionLabel": "02 · Technical Stack",
       "title": "Core Skills",
       "description": "Programming languages ranked by usage across my projects.",
+      "projectCount": "{count, plural, one {# project} other {# projects}}",
       "extendedToolkit": "Extended Toolkit"
     },
     "education": {

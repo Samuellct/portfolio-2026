@@ -507,7 +507,7 @@ export default function AboutPage() {
                         {tech.name}
                       </span>
                       <span className="text-xs text-white/40 tabular-nums">
-                        {tech.count} {tech.count === 1 ? 'project' : 'projects'}
+                        {tAbout('stack.projectCount', { count: tech.count })}
                       </span>
                     </div>
                     <div className="relative h-[3px] bg-white/10 overflow-hidden">
