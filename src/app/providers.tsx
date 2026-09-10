@@ -1,6 +1,6 @@
 'use client'
 
-import { ReactNode, useState, useEffect, useCallback } from 'react'
+import { ReactNode, useState, useEffect, useLayoutEffect, useCallback } from 'react'
 import { usePathname } from '@/i18n/navigation'
 import { AnimatePresence } from 'framer-motion'
 import { EasterEggProvider } from '@/context/EasterEggContext'
@@ -12,6 +12,10 @@ import Landing from '@/components/landing/Landing'
 import MainLayout from '@/components/layout/MainLayout'
 
 const SESSION_KEY = 'portfolio-landing-seen'
+
+// Runs before paint on the client, falls back to useEffect on the server so the
+// landing decision lands before the first painted frame (no flash of content).
+const useIsomorphicLayoutEffect = typeof window !== 'undefined' ? useLayoutEffect : useEffect
 
 export function Providers({ children }: { children: ReactNode }) {
   const pathname = usePathname()
@@ -27,19 +31,23 @@ export function Providers({ children }: { children: ReactNode }) {
     }
   }, [])
 
-  // The landing screen is a client-only overlay. The page content below always
-  // renders on the server, so first paint and crawlers get the real content.
-  // Decide on mount whether to lay the overlay on top, from a per-session flag,
-  // and only on the home route.
-  useEffect(() => {
-    if (pathname !== '/') return
+  // The page content is server-rendered: `showLanding` is false on the server and
+  // on the first client render, so `MainLayout` (and its children) are in the HTML
+  // for crawlers and no-JS visitors. On the home route, first visit of the session,
+  // the landing overlay then takes over and `AnimatePresence` animates the reveal
+  // back to the content.
+  useIsomorphicLayoutEffect(() => {
     let seen = false
     try {
       seen = sessionStorage.getItem(SESSION_KEY) === 'true'
     } catch {
       seen = false
     }
-    if (!seen) setShowLanding(true)
+    if (pathname === '/' && !seen) {
+      setShowLanding(true)
+    } else {
+      setHasEnteredSite(true)
+    }
   }, [pathname])
 
   // Persist the flag as soon as the overlay appears, so navigating away mid
@@ -48,7 +56,7 @@ export function Providers({ children }: { children: ReactNode }) {
     if (showLanding) markLandingSeen()
   }, [showLanding, markLandingSeen])
 
-  // Lock body scroll while the overlay covers the page.
+  // Lock body scroll while the landing covers the page.
   useEffect(() => {
     if (!showLanding) return
     const previous = document.body.style.overflow
@@ -74,15 +82,16 @@ export function Providers({ children }: { children: ReactNode }) {
       <SiteProvider value={{ hasEnteredSite, setHasEnteredSite }}>
         <SmoothScrollProvider>
           <TransitionProvider>
-            <MainLayout>{children}</MainLayout>
-            <AnimatePresence>
-              {showLanding && (
+            <AnimatePresence mode="wait">
+              {showLanding ? (
                 <Landing
                   key="landing"
                   onEnter={handleEnter}
                   isTransitioning={isLandingTransitioning}
                   onTransitionComplete={handleTransitionComplete}
                 />
+              ) : (
+                <MainLayout key="main">{children}</MainLayout>
               )}
             </AnimatePresence>
             <EasterEggManager />
