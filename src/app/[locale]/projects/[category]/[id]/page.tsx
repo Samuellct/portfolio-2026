@@ -4,12 +4,14 @@ import { useEffect } from 'react'
 import { useParams } from 'next/navigation'
 import { useRouter } from '@/i18n/navigation'
 import TransitionLink from '@/components/navigation/TransitionLink'
-import Image from 'next/image'
 import { motion } from 'framer-motion'
 import { ArrowLeft, ExternalLink, Calendar, MapPin } from 'lucide-react'
 import { FaGithub } from 'react-icons/fa'
 import { getProjectById, getCategoryById, getLocalizedField, Locale } from '@/lib/projects'
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer'
+import { Badge } from '@/components/ui/Badge'
+import { Tag } from '@/components/ui/Tag'
+import { Figure } from '@/components/ui/Figure'
 import { useTranslations, useLocale } from 'next-intl'
 import { SECTION_BG } from '@/lib/theme'
 
@@ -92,14 +94,14 @@ export default function ProjectDetailPage() {
                   </span>
                   
                   {project.status === 'in-progress' && (
-                    <span className="px-2 py-1 bg-accent-cyan/10 border border-accent-cyan/20 text-micro-xs tracking-wider uppercase text-accent-cyan">
+                    <Badge status="in-progress" tone="inline">
                       {t('status.inProgress')}
-                    </span>
+                    </Badge>
                   )}
                   {project.status === 'paused' && (
-                    <span className="px-2 py-1 bg-white/10 border border-white/20 text-micro-xs tracking-wider uppercase text-white/60">
+                    <Badge status="paused" tone="inline">
                       {t('status.paused')}
-                    </span>
+                    </Badge>
                   )}
                 </div>
                 
@@ -132,12 +134,7 @@ export default function ProjectDetailPage() {
                   </h2>
                   <div className="flex flex-wrap gap-2">
                     {project.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-3 py-1.5 text-xs bg-white/[0.03] border border-white/10"
-                      >
-                        {tech}
-                      </span>
+                      <Tag key={tech}>{tech}</Tag>
                     ))}
                   </div>
                 </div>
@@ -173,42 +170,17 @@ export default function ProjectDetailPage() {
               transition={{ delay: 0.1, duration: 0.6 }}
               className="mb-10"
             >
-              <div className="relative aspect-video overflow-hidden rounded-sm">
-                {project.image.startsWith('/') ? (
-                  <Image
-                    src={project.image}
-                    alt={getLocalizedField(project.imageAlt, locale)}
-                    fill
-                    className="object-cover"
-                    priority
-                  />
-                ) : (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    src={project.image}
-                    alt={getLocalizedField(project.imageAlt, locale)}
-                    className="w-full h-full object-cover"
-                  />
-                )}
-              </div>
-              
-              {project.imageCredit && (
-                <p className="mt-2 text-xs text-white/30">
-                  {t('imageCredit')}: {' '}
-                  {project.imageCreditUrl ? (
-                    <a
-                      href={project.imageCreditUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hover:text-white/50 underline"
-                    >
-                      {project.imageCredit}
-                    </a>
-                  ) : (
-                    project.imageCredit
-                  )}
-                </p>
-              )}
+              <Figure
+                src={project.image}
+                alt={getLocalizedField(project.imageAlt, locale)}
+                priority
+                creditLabel={t('imageCredit')}
+                credit={
+                  project.imageCredit
+                    ? { name: project.imageCredit, url: project.imageCreditUrl }
+                    : undefined
+                }
+              />
             </motion.div>
             
             {/* Description */}

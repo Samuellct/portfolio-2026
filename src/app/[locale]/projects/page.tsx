@@ -11,6 +11,8 @@ import { getAllProjects, getLocalizedField, Locale, projectCategories, ProjectDa
 import { useTranslations, useLocale } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { SECTION_BG } from '@/lib/theme'
+import { Button } from '@/components/ui/Button'
+import { Badge } from '@/components/ui/Badge'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -129,14 +131,14 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
           
           {/* Status badge */}
           {project.status === 'in-progress' && (
-            <div className="absolute top-3 right-3 px-2.5 py-1 bg-accent-cyan/20 backdrop-blur-sm border border-accent-cyan/30 text-micro-xs tracking-caps uppercase text-accent-cyan">
+            <Badge status="in-progress" tone="card" className="absolute top-3 right-3">
               {t('status.inProgress')}
-            </div>
+            </Badge>
           )}
           {project.status === 'paused' && (
-            <div className="absolute top-3 right-3 px-2.5 py-1 bg-white/10 backdrop-blur-sm border border-white/20 text-micro-xs tracking-caps uppercase text-white/60">
+            <Badge status="paused" tone="card" className="absolute top-3 right-3">
               {t('status.paused')}
-            </div>
+            </Badge>
           )}
           
           {/* hover */}
@@ -312,29 +314,23 @@ export default function ProjectsPage() {
           transition={{ delay: 0.2, duration: 0.6 }}
           className="flex flex-wrap items-center gap-3 mb-16"
         >
-          <button
+          <Button
+            variant="filter"
+            active={activeFilter === 'all'}
             onClick={() => setActiveFilter('all')}
-            className={`px-6 py-2.5 text-xs tracking-caps-wide uppercase border transition-all duration-300 ${
-              activeFilter === 'all'
-                ? 'bg-white text-black border-white'
-                : 'bg-transparent text-white/60 border-white/20 hover:border-white/50 hover:text-white'
-            }`}
           >
             {t('categories.all')}
-          </button>
-          
+          </Button>
+
           {projectCategories.map((category) => (
-            <button
+            <Button
               key={category.id}
+              variant="filter"
+              active={activeFilter === category.id}
               onClick={() => setActiveFilter(category.id)}
-              className={`px-6 py-2.5 text-xs tracking-caps-wide uppercase border transition-all duration-300 ${
-                activeFilter === category.id
-                  ? 'bg-white text-black border-white'
-                  : 'bg-transparent text-white/60 border-white/20 hover:border-white/50 hover:text-white'
-              }`}
             >
               {t(`categories.${category.id}`)}
-            </button>
+            </Button>
           ))}
           
         </motion.div>

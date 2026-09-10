@@ -17,7 +17,7 @@ export function Figure({
   caption,
   credit,
   creditLabel,
-  className,
+  wrapper,
   frameClassName,
 }: {
   src: string
@@ -27,12 +27,13 @@ export function Figure({
   credit?: ImageCredit
   /** Localised "Image credit" prefix. */
   creditLabel?: string
-  className?: string
+  /** Optional wrapping element class. When omitted, renders without a wrapper. */
+  wrapper?: string
   frameClassName?: string
 }) {
   const isLocal = src.startsWith('/')
-  return (
-    <div className={className}>
+  const body = (
+    <>
       <div className={cn('relative aspect-video overflow-hidden rounded-sm', frameClassName)}>
         {isLocal ? (
           <Image src={src} alt={alt} fill className="object-cover" priority={priority} />
@@ -61,6 +62,7 @@ export function Figure({
           )}
         </p>
       )}
-    </div>
+    </>
   )
+  return wrapper === undefined ? body : <div className={wrapper}>{body}</div>
 }
