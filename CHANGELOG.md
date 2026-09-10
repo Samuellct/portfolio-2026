@@ -5,6 +5,14 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.9.29] - 2026-09-10
+
+### Corrigé
+
+- **Transition de l'écran d'entrée vers l'accueil** - la refonte du rendu serveur (4.9.28) faisait jouer le fondu d'arrivée de la page et l'apparition lettre par lettre du prénom pendant que l'overlay noir les masquait, et laissait le fond de page bloqué sur la couleur d'une mauvaise section (flash vert) au moment où l'overlay se retirait. L'accueil est maintenant monté une seule fois derrière l'overlay ; l'animation du prénom (`HeroSection`) et la mise en place des changements de couleur de fond au défilement (`HomePageClient`) sont différées à la fin de l'écran d'entrée, quand la mise en page est stable. La transition CSS redondante `transition: background-color` sur `body` est retirée : GSAP pilote seul l'animation de couleur.
+
+---
+
 ## [4.9.28] - 2026-09-10
 
 Phase 1 de la nouvelle feuille de route V5 (`TODO_V5.md`) : correctifs P0. Voir aussi le commit `ci:` rattaché à la Phase 0, qui rend l'étape `npm audit` de la CI non bloquante.
