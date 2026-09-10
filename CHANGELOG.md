@@ -5,6 +5,24 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.11.0] - 2026-09-11
+
+Phase 3 de la feuille de route V5 : fondations des données projets.
+
+### Ajouté
+
+- **Dictionnaire canonique des technologies** (`AUDIT-050`) - nouveau module `src/lib/technologies.ts` : nom d'affichage exact, couleur et famille de chaque techno, source unique. `ProjectData.technologies` est typé sur ses clés, une graphie non canonique devient une erreur de compilation.
+- **Modèle `ProjectData` étendu** (`AUDIT-018`) - six champs optionnels : `kind`, `media[]` (avec `role`, `frame`, `caption`, `credit`), `results[]`, `limits`, `links[]`, `sourceOfSkills`. Aucune des 19 fiches n'est migrée : le remplissage se fait fiche par fiche en Phases 7-8.
+- **Illustration TimePredict** - `public/images/timepredict.webp` : la courbe vitesse-pente mesurée (26 301 segments GPS, IC 95 %) comparée au modèle de Minetti et à l'ancienne table. Choix définitif de traitement en Phase 7.
+
+### Corrigé
+
+- **Sélection et tri de l'accueil** (`AUDIT-005`) - la section « Travaux récents » suit maintenant le drapeau `featured` (JellyUX, AlpineRoute, TimePredict, stage M2) trié par date de création décroissante, au lieu d'un découpage cassé sur un tiret cadratin absent des données.
+- **Tri du listing** (`AUDIT-009`) - `/projects` trie par date de création décroissante ; les deux stages de recherche ne sont plus relégués en fin de liste.
+- **Casse des technologies** - `TailwindCSS` -> `Tailwind CSS`, `rasterio`/`Rasterio` fusionnés, `MadGraph`/`MadGraph5` unifiés, `Scipy` -> `SciPy`, `networkx` -> `NetworkX`, `osmnx` -> `OSMnx`, `Sympy` -> `SymPy`, `MapLibreGL` -> `MapLibre GL JS`, etc. Les agrégations de la page À propos ne comptent plus une techno deux fois.
+
+---
+
 ## [4.10.0] - 2026-09-10
 
 Phase 2 de la feuille de route V5 : assainissement de la base technique.
