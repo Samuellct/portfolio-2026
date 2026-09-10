@@ -295,11 +295,11 @@ export default function ProjectsSection() {
                 >
                   <TransitionLink
                     href={`/projects/${project.category}/${project.id}`}
-                    className="inline-block py-6 md:py-8 group relative"
+                    className="block max-w-full py-6 md:py-8 group relative text-center"
                     onMouseEnter={() => handleProjectEnter(project)}
                   >
                     <motion.h3
-                      className="font-display text-display-project leading-none tracking-wide"
+                      className="font-body font-semibold text-display-project leading-display-loose text-balance"
                       animate={{ 
                         opacity: isHovering 
                           ? (isActive ? 1 : 0.15)  // Active: full, Others: very dim

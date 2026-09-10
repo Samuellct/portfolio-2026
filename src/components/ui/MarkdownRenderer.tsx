@@ -37,10 +37,10 @@ const components: Components = {
     <h1 className="font-display text-4xl text-white mt-10 mb-6 tracking-wide">{children}</h1>
   ),
   h2: ({ children }) => (
-    <h2 className="font-display text-3xl text-white mt-10 mb-4 tracking-wide">{children}</h2>
+    <h2 className="font-body font-semibold text-3xl text-white mt-10 mb-4">{children}</h2>
   ),
   h3: ({ children }) => (
-    <h3 className="font-display text-2xl text-white/90 mt-8 mb-3 tracking-wide">{children}</h3>
+    <h3 className="font-body font-semibold text-2xl text-white/90 mt-8 mb-3">{children}</h3>
   ),
   h4: ({ children }) => (
     <h4 className="font-display text-xl text-white/80 mt-6 mb-2 tracking-wide">{children}</h4>

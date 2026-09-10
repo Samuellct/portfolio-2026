@@ -106,7 +106,7 @@ export default function ProjectDetailPage() {
                 </div>
                 
                 {/* Title */}
-                <h1 className="font-display text-display-page leading-display-snug tracking-wide mb-4">
+                <h1 className="font-body font-semibold text-display-page leading-display-snug mb-4">
                   {getLocalizedField(project.title, locale)}
                 </h1>
 

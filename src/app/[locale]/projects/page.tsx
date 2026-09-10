@@ -115,7 +115,7 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
                 className="absolute inset-0 flex items-center justify-center p-6 text-center"
                 style={{ backgroundColor: `${categoryColor}14` }}
               >
-                <span className="font-display text-lg tracking-wide text-white/70">
+                <span className="font-body font-semibold text-lg text-white/70">
                   {getLocalizedField(project.title, locale)}
                 </span>
               </div>
@@ -163,7 +163,7 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
             <span>{getLocalizedField(project.period, locale)}</span>
           </div>
           
-          <h3 className="font-display text-xl md:text-2xl tracking-wide group-hover:text-accent-cyan transition-colors duration-300">
+          <h3 className="font-body font-semibold text-xl md:text-2xl group-hover:text-accent-cyan transition-colors duration-300">
             {getLocalizedField(project.title, locale)}
           </h3>
 
