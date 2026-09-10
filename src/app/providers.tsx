@@ -3,11 +3,9 @@
 import { ReactNode, useState, useEffect, useLayoutEffect, useCallback } from 'react'
 import { usePathname } from '@/i18n/navigation'
 import { AnimatePresence } from 'framer-motion'
-import { EasterEggProvider } from '@/context/EasterEggContext'
 import { SiteProvider } from '@/context/SiteContext'
 import { SmoothScrollProvider } from '@/context/SmoothScrollContext'
 import { TransitionProvider } from '@/context/TransitionContext'
-import EasterEggManager from '@/components/easter-egg/EasterEggManager'
 import Landing from '@/components/landing/Landing'
 import MainLayout from '@/components/layout/MainLayout'
 
@@ -79,25 +77,22 @@ export function Providers({ children }: { children: ReactNode }) {
   }, [markLandingSeen])
 
   return (
-    <EasterEggProvider>
-      <SiteProvider value={{ hasEnteredSite, setHasEnteredSite }}>
-        <SmoothScrollProvider>
-          <TransitionProvider>
-            <MainLayout>{children}</MainLayout>
-            <AnimatePresence>
-              {showLanding && (
-                <Landing
-                  key="landing"
-                  onEnter={handleEnter}
-                  isTransitioning={isLandingTransitioning}
-                  onTransitionComplete={handleTransitionComplete}
-                />
-              )}
-            </AnimatePresence>
-            <EasterEggManager />
-          </TransitionProvider>
-        </SmoothScrollProvider>
-      </SiteProvider>
-    </EasterEggProvider>
+    <SiteProvider value={{ hasEnteredSite, setHasEnteredSite }}>
+      <SmoothScrollProvider>
+        <TransitionProvider>
+          <MainLayout>{children}</MainLayout>
+          <AnimatePresence>
+            {showLanding && (
+              <Landing
+                key="landing"
+                onEnter={handleEnter}
+                isTransitioning={isLandingTransitioning}
+                onTransitionComplete={handleTransitionComplete}
+              />
+            )}
+          </AnimatePresence>
+        </TransitionProvider>
+      </SmoothScrollProvider>
+    </SiteProvider>
   )
 }
