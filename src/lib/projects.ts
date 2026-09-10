@@ -1,3 +1,5 @@
+import type { TechName } from './technologies'
+
 export type BilingualText = { en: string; fr: string }
 export type Locale = 'en' | 'fr'
 
@@ -16,7 +18,7 @@ export interface ProjectData {
   description: BilingualText | string
   subtitle?: BilingualText | string
   detailedDescription: BilingualText | string
-  technologies: string[]
+  technologies: TechName[]
   domains: string[]
   keywords: string[]
   category: 'personal' | 'academic' | 'internship'
@@ -204,7 +206,7 @@ La conception visuelle est centrée sur les effets de particules Three.js. Pour 
 
 Enfin, tout le texte du site est géré via un fichier JSON centralisé, à l'exception des pages de projet qui utilisent Markdown. Cette structure simplifie l'ajout d'autres langues à l'avenir, puisque l'infrastructure de traduction est déjà en place. Pour le rendu du contenu, j'ai intégré react-markdown avec KaTeX afin de prendre en charge les équations LaTeX dans les descriptions de projet.`,
       },
-      technologies: ['Next.js', 'TypeScript', 'TailwindCSS', 'Framer Motion', 'Three.js', 'GSAP'],
+      technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Three.js', 'GSAP'],
       domains: ['Web Development', 'Frontend'],
       keywords: ['portfolio', 'frontend', 'typescript', 'nextjs', 'threejs', 'webgl'],
       category: 'personal',
@@ -247,7 +249,7 @@ Deux stratégies de calcul d'itinéraire sont utilisées en fonction du type de 
 
 Le projet fonctionne bien sur les itinéraires testés dans les Alpes françaises, notamment autour de Chamonix et des Écrins. Il en est maintenant à sa deuxième itération majeure, mais il ne tourne encore qu'en local : héberger la chaîne de traitement Lidar et de calcul d'itinéraire publiquement à un coût raisonnable reste un problème non résolu, donc le développement est en pause pour le moment.`,
       },
-      technologies: ['Python', 'FastAPI', 'networkx', 'Rasterio', 'GDAL', 'GeoPandas', 'scikit-image', 'React', 'MapLibreGL', 'Leaflet', 'Recharts', 'TerraDraw', 'Valhalla', 'Docker'],
+      technologies: ['Python', 'FastAPI', 'NetworkX', 'Rasterio', 'GDAL', 'GeoPandas', 'scikit-image', 'React', 'MapLibre GL JS', 'Leaflet', 'Recharts', 'Terra Draw', 'Valhalla', 'Docker'],
       domains: ['Geospatial Analysis', 'Shortest path problem', 'Web Development'],
       keywords: ['mountaineering', 'route planning', 'lidar', 'pathfinding', 'geospatial', 'alps', 'dem', 'fastapi'],
       category: 'personal',
@@ -333,7 +335,7 @@ Les métadonnées des films sont récupérées depuis l'API TMDb et mises en cac
 
 J'ai utilisé Accred au Festival de Cannes 2026 en déploiement privé, ce qui a confirmé que le fonctionnement de base tient la route en conditions réelles. L'application n'est pas encore prête pour une mise en ligne publique.`,
       },
-      technologies: ['Next.js', 'TypeScript','SQLite', 'Docker'],
+      technologies: ['Next.js', 'TypeScript', 'SQLite', 'Docker'],
       domains: ['Web Development', 'Mobile', 'PWA'],
       keywords: ['pwa', 'film festival', 'mobile', 'self-hosted', 'nextjs', 'scheduler'],
       category: 'personal',
@@ -372,7 +374,7 @@ Douze des dix-huit étapes prévues sont terminées. La courbe vitesse-pente est
 
 Ce qui manque encore, c'est ce qui relie ces briques validées en un seul système : le moteur de prédiction lui-même, le générateur de rapport, et la petite interface prévue pour l'utiliser. Chaque brique terminée est livrée avec ses propres tests et ses propres limites documentées, pour ne rien déclarer fini simplement parce que ça a l'air de marcher.`,
       },
-      technologies: ['Python', 'uv', 'rasterio', 'osmnx', 'geopandas', 'pvlib', 'thermofeel', 'gpxpy', 'meteostat'],
+      technologies: ['Python', 'uv', 'Rasterio', 'OSMnx', 'GeoPandas', 'pvlib', 'thermofeel', 'gpxpy', 'Meteostat'],
       domains: ['Data Science', 'Meteorology', 'Sports Analytics', 'Geospatial Analysis'],
       keywords: ['trail running', 'weather', 'gpx', 'utci', 'python', 'forecast', 'thermal analysis'],
       category: 'personal',
@@ -465,7 +467,7 @@ Une fois la tournée lancée, l'écran n'affiche qu'une chose : le numéro du co
 
 L'application fonctionne entièrement hors ligne : aucun serveur, aucun cloud, aucun compte. Sous le capot, c'est du Kotlin et Jetpack Compose, Room pour le stockage, et le ML Kit de Google pour la détection de document et la reconnaissance de texte, avec une petite chaîne CI qui exécute les tests et le lint et construit une APK de release signée à chaque montée de version.`,
       },
-      technologies: ['Kotlin', 'Jetpack Compose', 'Room', 'Google ML Kit', 'GitHub Actions'],
+      technologies: ['Kotlin', 'Jetpack Compose', 'Room', 'ML Kit', 'GitHub Actions'],
       domains: ['Mobile Development', 'Android'],
       keywords: ['android', 'kotlin', 'ocr', 'jetpack compose', 'offline-first'],
       category: 'personal',
@@ -512,7 +514,7 @@ Après avoir établi les critères de sélection sur des échantillons simulés,
 
 En suivant la méthode CLs, nous avons déterminé que nous pouvions exclure les signaux d'une intensité supérieure à $0.3736~\\mu$, ce qui correspond à une section efficace ($\\sigma$) d'environ $2.017~\\text{pb}$. Cette limite supérieure signifie que si un signal existe, il sera nécessairement inférieur à $2.017~\\text{pb}$.`,
       },
-      technologies: ['Python', 'NumPy', 'Matplotlib', "Pandas", "Scipy"],
+      technologies: ['Python', 'NumPy', 'Matplotlib', 'Pandas', 'SciPy'],
       domains: ['Particle Physics', 'Data Analysis', 'Simulation'],
       keywords: ['physics', 'statistics', 'python', 'simulation'],
       category: 'academic',
@@ -535,7 +537,7 @@ En suivant la méthode CLs, nous avons déterminé que nous pouvions exclure les
       description: 'Study of the Ising model with a Python simulation of the two-dimensional case.',
       subtitle: 'Simulating Phase Transitions in Magnetic Systems',
       detailedDescription: 'This project explores the Ising model, a fundamental model in statistical mechanics for understanding phase transitions in magnetic systems. The simulation uses Monte Carlo methods to study the behavior of a 2D spin lattice.',
-      technologies: ['Python', 'NumPy', 'Matplotlib', "Scipy"],
+      technologies: ['Python', 'NumPy', 'Matplotlib', 'SciPy'],
       domains: ['Statistical Physics', 'Monte Carlo Simulation'],
       keywords: ['ising', 'monte carlo', 'phase transition'],
       category: 'academic',
@@ -580,7 +582,7 @@ La partie la plus difficile a été la mise en œuvre de l'algorithme de Shor po
 
 L'algorithme a bien fonctionné pour les petits nombres, mais nous avons rapidement atteint les limites de mémoire pour les nombres supérieurs à cinq chiffres. C'est logique, car la simulation de n qubits nécessite de stocker $2^{n}$ nombres complexes en mémoire, ce qui fait exploser les besoins de manière exponentielle. Nous avons également compris pourquoi les chercheurs développent actuellement de nouvelles méthodes de cryptage capables de résister aux attaques quantiques. Ces algorithmes *post-quantiques* s'appuient sur des problèmes mathématiques que même les ordinateurs quantiques auraient du mal à résoudre, comme la recherche de vecteurs courts (SVP) dans des réseaux de grande dimension.`,
       },
-      technologies: ['Python', 'Qiskit', 'Cirq', 'Sympy'],
+      technologies: ['Python', 'Qiskit', 'Cirq', 'SymPy'],
       domains: ['Quantum Computing', 'Cryptography'],
       keywords: ['quantum computing', 'Shor algorithm', 'RSA', 'cryptography'],
       category: 'academic',
@@ -872,7 +874,7 @@ J'ai utilisé des générateurs d'événements Monte Carlo pour simuler des mill
 
 L'analyse s'est concentrée sur l'identification de la cinématique dans les jets résultants (i.e. les gerbes étroites de particules produites lors des collisions). J'ai découvert qu'une coupure de l'impulsion transverse à 60 GeV conservait 61 % du signal tout en réduisant le bruit de fond QCD à seulement 7 %. Ce travail comportait également une dimension prospective. ATLAS est en cours de mise à niveau pour l'ère du LHC à haute luminosité, avec de nouveaux détecteurs de trajectoire qui étendront la couverture à des régions actuellement inaccessibles. Les simulations ont montré que cette mise à niveau permettra de capturer 16 % d'événements supplémentaires qui, autrement, seraient perdus.`,
       },
-      technologies: ['MadGraph', 'Rivet', 'Docker', 'C++', 'Bash'],
+      technologies: ['MadGraph5', 'Rivet', 'Docker', 'C++', 'Bash'],
       domains: ['Particle Physics', 'Simulation'],
       keywords: ['atlas', 'long-lived particles', 'hl-lhc', 'simulation', 'bsm physics'],
       category: 'internship',
