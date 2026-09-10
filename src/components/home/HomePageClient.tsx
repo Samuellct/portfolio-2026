@@ -8,6 +8,7 @@ import HeroSection from '@/components/sections/HeroSection'
 import AboutSection from '@/components/sections/AboutSection'
 import ProjectsSection from '@/components/sections/ProjectsSection'
 import ContactSection from '@/components/sections/ContactSection'
+import { useSite } from '@/context/SiteContext'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -20,39 +21,53 @@ const sectionColors: Record<string, string> = {
 }
 
 export default function HomePageClient() {
-  // Setup bkg color transition
+  const { hasEnteredSite } = useSite()
+
+  // Setup bkg color transition. Deferred until the entrance is over so the
+  // triggers are measured against a settled layout (no landing overlay, scroll
+  // unlocked); creating them earlier leaves the body stuck on a wrong section
+  // colour when the landing lifts.
   useEffect(() => {
-    const sections = document.querySelectorAll('.section')
-    
-    sections.forEach((section) => {
-      const sectionId = section.id
-      const color = sectionColors[sectionId] || sectionColors.hero
-      
+    if (!hasEnteredSite) return
+
+    const sections = [...document.querySelectorAll<HTMLElement>('.section')]
+    const colorFor = (id: string) => sectionColors[id] || sectionColors.hero
+
+    const triggers = sections.map((section) =>
       ScrollTrigger.create({
         trigger: section,
         start: 'top center',
         end: 'bottom center',
-        onEnter: () => {
-          gsap.to(document.body, {
-            backgroundColor: color,
-            duration: 1.2,
-            ease: 'power2.out',
-          })
-        },
-        onEnterBack: () => {
-          gsap.to(document.body, {
-            backgroundColor: color,
-            duration: 1.2,
-            ease: 'power2.out',
-          })
+        onToggle: (self) => {
+          if (self.isActive) {
+            gsap.to(document.body, {
+              backgroundColor: colorFor(section.id),
+              duration: 1.2,
+              ease: 'power2.out',
+              overwrite: 'auto',
+            })
+          }
         },
       })
+    )
+
+    // The layout can still be settling right after the landing lifts. Refresh
+    // once on the next frame and snap the body to whichever section is actually
+    // centred (hero at the top of the page), so it never stays on a stale colour.
+    const raf = requestAnimationFrame(() => {
+      ScrollTrigger.refresh()
+      const active = sections.find((s) => {
+        const r = s.getBoundingClientRect()
+        return r.top <= window.innerHeight / 2 && r.bottom >= window.innerHeight / 2
+      })
+      gsap.set(document.body, { backgroundColor: colorFor(active?.id ?? 'hero') })
     })
-    
+
     return () => {
-      ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
+      cancelAnimationFrame(raf)
+      triggers.forEach((trigger) => trigger.kill())
     }
-  }, [])
+  }, [hasEnteredSite])
   
   return (
     <>
