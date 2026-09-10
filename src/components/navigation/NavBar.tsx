@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { usePathname } from '@/i18n/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Menu, X, Github, Linkedin, ExternalLink } from 'lucide-react'
@@ -27,8 +27,11 @@ export default function NavBar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const pathname = usePathname()
-  
+
   const [isMobile, setIsMobile] = useState(false)
+
+  const panelRef = useRef<HTMLDivElement>(null)
+  const hamburgerRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -64,6 +67,59 @@ export default function NavBar() {
       document.body.style.overflow = ''
     }
   }, [isMenuOpen])
+
+  // Modal behaviour for the fullscreen menu (AUDIT-053): trap focus inside the
+  // panel, close on Escape, make the rest of the page inert, and return focus
+  // to the hamburger on close.
+  useEffect(() => {
+    if (!isMenuOpen) return
+    const panel = panelRef.current
+    if (!panel) return
+
+    const inertTargets = [
+      document.getElementById('main-content'),
+      document.querySelector('footer'),
+    ].filter((el): el is HTMLElement => el !== null)
+    inertTargets.forEach((el) => el.setAttribute('inert', ''))
+
+    const focusable = () =>
+      Array.from(
+        panel.querySelectorAll<HTMLElement>(
+          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
+        ),
+      ).filter((el) => el.getClientRects().length > 0)
+
+    const previousActive = document.activeElement as HTMLElement | null
+    const hamburger = hamburgerRef.current
+    focusable()[0]?.focus()
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        e.preventDefault()
+        setIsMenuOpen(false)
+        return
+      }
+      if (e.key !== 'Tab') return
+      const items = focusable()
+      if (items.length === 0) return
+      const first = items[0]
+      const last = items[items.length - 1]
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault()
+        last.focus()
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault()
+        first.focus()
+      }
+    }
+    document.addEventListener('keydown', onKeyDown)
+
+    return () => {
+      document.removeEventListener('keydown', onKeyDown)
+      inertTargets.forEach((el) => el.removeAttribute('inert'))
+      ;(hamburger ?? previousActive)?.focus()
+    }
+  }, [isMenuOpen])
   
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     // If on home page, scroll to section instead of navigating
@@ -81,8 +137,7 @@ export default function NavBar() {
     <>
       {/* Navigation Bar */}
       <motion.nav
-        role="navigation"
-        aria-label="Main navigation"
+        aria-label={tNav('mainLabel')}
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
@@ -105,6 +160,7 @@ export default function NavBar() {
             animate={{ opacity: isScrolled ? 0 : 1 }}
             transition={{ duration: 0.3 }}
             style={{ pointerEvents: isScrolled ? 'none' : 'auto' }}
+            inert={isScrolled}
           >
             {navLinks.map((link) => (
               <TransitionLink
@@ -125,14 +181,16 @@ export default function NavBar() {
 
             {/* Hamburger bttn */}
             <motion.button
+            ref={hamburgerRef}
             className="relative z-50 p-3 min-w-[44px] min-h-[44px] flex items-center justify-center"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
             animate={{ opacity: isScrolled || isMenuOpen || isMobile ? 1 : 0 }}
             transition={{ duration: 0.3 }}
             style={{ pointerEvents: isScrolled || isMenuOpen || isMobile ? 'auto' : 'none' }}
-            aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
+            inert={!(isScrolled || isMenuOpen || isMobile)}
+            aria-label={isMenuOpen ? tMenu('close') : tMenu('open')}
             aria-expanded={isMenuOpen}
-            aria-controls="main-menu"
+            aria-controls={isMenuOpen ? 'main-menu' : undefined}
           >
             <AnimatePresence mode="wait">
               {isMenuOpen ? (
@@ -166,8 +224,11 @@ export default function NavBar() {
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
+            ref={panelRef}
             id="main-menu"
-            role="menu"
+            role="dialog"
+            aria-modal="true"
+            aria-label={tMenu('dialogLabel')}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -202,9 +263,8 @@ export default function NavBar() {
                     >
                       <TransitionLink
                         href={link.href}
-                        role="menuitem"
                         onClick={(e) => handleNavClick(e, link.sectionId)}
-                        className="block font-display text-display-menu leading-none tracking-wide text-faint hover:text-white transition-all duration-300 hover:translate-x-4 hover:text-shadow-glow"
+                        className="block font-display text-display-menu leading-none tracking-wide text-faint hover:text-white transition-all duration-300 hover:translate-x-4"
                       >
                         {link.label}
                       </TransitionLink>
@@ -231,7 +291,6 @@ export default function NavBar() {
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      role="menuitem"
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.25 + index * 0.08 }}
