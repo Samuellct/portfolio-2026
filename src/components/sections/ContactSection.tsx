@@ -198,7 +198,7 @@ export default function ContactSection() {
               </div>
             </div>
             
-            <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 text-micro-xs tracking-caps-wide uppercase text-faint">
+            <div aria-hidden="true" className="absolute -bottom-4 left-1/2 -translate-x-1/2 text-micro-xs tracking-caps-wide uppercase text-faint">
               {t('collision.eventDisplay')}
             </div>
           </div>
@@ -250,7 +250,7 @@ export default function ContactSection() {
             </div>
             
             {/* Deco */}
-            <div className="mt-16 flex items-center gap-4 text-faint">
+            <div aria-hidden="true" className="mt-16 flex items-center gap-4 text-faint">
               <span className="w-12 h-px bg-white/10" />
               <span className="text-xs tracking-menu-label uppercase flex items-center gap-2">
                 Samuel Lecomte
