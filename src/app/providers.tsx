@@ -1,6 +1,6 @@
 'use client'
 
-import { ReactNode, useState, useEffect } from 'react'
+import { ReactNode, useState, useEffect, useCallback } from 'react'
 import { usePathname } from '@/i18n/navigation'
 import { AnimatePresence } from 'framer-motion'
 import { EasterEggProvider } from '@/context/EasterEggContext'
@@ -17,60 +17,72 @@ export function Providers({ children }: { children: ReactNode }) {
   const pathname = usePathname()
   const [hasEnteredSite, setHasEnteredSite] = useState(false)
   const [isLandingTransitioning, setIsLandingTransitioning] = useState(false)
-  const [mounted, setMounted] = useState(false)
-  const [shouldShowLanding, setShouldShowLanding] = useState(true)
-  
-  useEffect(() => {
-    setMounted(true)
-    
-    // Check if user has already seen the landing page this session
-    const hasSeenLanding = sessionStorage.getItem(SESSION_KEY) === 'true'
-    
-    // Determine if we should show the landing page:
-    // - Don't show if already seen this session
-    // - Don't show if user accesses an internal page directly (ex : une page projet ouverte dans un new onglet)
-    const isHomePage = pathname === '/'
-    const skipLanding = hasSeenLanding || !isHomePage
-    
-    if (skipLanding) {
-      setShouldShowLanding(false)
-      setHasEnteredSite(true)
+  const [showLanding, setShowLanding] = useState(false)
+
+  const markLandingSeen = useCallback(() => {
+    try {
+      sessionStorage.setItem(SESSION_KEY, 'true')
+    } catch {
+      // sessionStorage unavailable (private mode, blocked storage): in-memory only
     }
+  }, [])
+
+  // The landing screen is a client-only overlay. The page content below always
+  // renders on the server, so first paint and crawlers get the real content.
+  // Decide on mount whether to lay the overlay on top, from a per-session flag,
+  // and only on the home route.
+  useEffect(() => {
+    if (pathname !== '/') return
+    let seen = false
+    try {
+      seen = sessionStorage.getItem(SESSION_KEY) === 'true'
+    } catch {
+      seen = false
+    }
+    if (!seen) setShowLanding(true)
   }, [pathname])
-  
-  const handleEnter = () => {
+
+  // Persist the flag as soon as the overlay appears, so navigating away mid
+  // animation does not replay it on the next in-session visit.
+  useEffect(() => {
+    if (showLanding) markLandingSeen()
+  }, [showLanding, markLandingSeen])
+
+  // Lock body scroll while the overlay covers the page.
+  useEffect(() => {
+    if (!showLanding) return
+    const previous = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => {
+      document.body.style.overflow = previous
+    }
+  }, [showLanding])
+
+  const handleEnter = useCallback(() => {
     setIsLandingTransitioning(true)
-  }
-  
-  const handleTransitionComplete = () => {
+  }, [])
+
+  const handleTransitionComplete = useCallback(() => {
     setHasEnteredSite(true)
     setIsLandingTransitioning(false)
-    // Save user has seen the landing page
-    sessionStorage.setItem(SESSION_KEY, 'true')
-  }
-  
-  if (!mounted) return null
-  
-  // Determine if we should show the landing page
-  const showLanding = shouldShowLanding && !hasEnteredSite
-  
+    setShowLanding(false)
+    markLandingSeen()
+  }, [markLandingSeen])
+
   return (
     <EasterEggProvider>
       <SiteProvider value={{ hasEnteredSite, setHasEnteredSite }}>
         <SmoothScrollProvider>
           <TransitionProvider>
-            <AnimatePresence mode="wait">
-              {showLanding ? (
+            <MainLayout>{children}</MainLayout>
+            <AnimatePresence>
+              {showLanding && (
                 <Landing
                   key="landing"
                   onEnter={handleEnter}
                   isTransitioning={isLandingTransitioning}
                   onTransitionComplete={handleTransitionComplete}
                 />
-              ) : (
-                <MainLayout key="main">
-                  {children}
-                </MainLayout>
               )}
             </AnimatePresence>
             <EasterEggManager />
