@@ -13,6 +13,7 @@ import CinemaSpotlight from '@/components/about/CinemaSpotlight'
 import ScrollIndicator from '@/components/about/ScrollIndicator'
 import { useTranslations } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
+import { SECTION_BG } from '@/lib/theme'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -20,10 +21,10 @@ gsap.registerPlugin(ScrollTrigger)
 // SECTION COLORS
 // ============================================
 const sectionColors = {
-  intro: '#050e20',
-  stack: '#051525',
-  education: '#0e200e',
-  interests: '#200a0a',
+  intro: SECTION_BG.aboutIntro,
+  stack: SECTION_BG.aboutStack,
+  education: SECTION_BG.aboutEducation,
+  interests: SECTION_BG.aboutInterests,
 }
 
 // ============================================

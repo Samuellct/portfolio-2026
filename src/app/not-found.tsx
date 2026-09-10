@@ -1,10 +1,11 @@
 import Link from 'next/link'
 import { routing } from '@/i18n/routing'
+import { ACCENT, SURFACE } from '@/lib/theme'
 
 export default function RootNotFound() {
   return (
     <html lang={routing.defaultLocale}>
-      <body style={{ backgroundColor: '#030308', color: '#fff', margin: 0, fontFamily: 'system-ui, sans-serif' }}>
+      <body style={{ backgroundColor: SURFACE.shell, color: '#fff', margin: 0, fontFamily: 'system-ui, sans-serif' }}>
         <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ textAlign: 'center', padding: '1.5rem' }}>
             <h1 style={{ fontSize: '6rem', opacity: 0.1, margin: 0 }}>404</h1>
@@ -17,7 +18,7 @@ export default function RootNotFound() {
               style={{
                 display: 'inline-block',
                 padding: '1rem 2rem',
-                backgroundColor: '#00f0ff',
+                backgroundColor: ACCENT.cyan,
                 color: '#000',
                 textDecoration: 'none',
                 fontSize: '0.875rem',

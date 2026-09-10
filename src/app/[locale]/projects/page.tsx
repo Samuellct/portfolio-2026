@@ -10,11 +10,12 @@ import Image from 'next/image'
 import { getAllProjects, getLocalizedField, Locale, projectCategories, ProjectData } from '@/lib/projects'
 import { useTranslations, useLocale } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
+import { SECTION_BG } from '@/lib/theme'
 
 gsap.registerPlugin(ScrollTrigger)
 
 // Background color for projects page
-const PROJECTS_BG_COLOR = '#0c0c1e'
+const PROJECTS_BG_COLOR = SECTION_BG.listing
 
 // ============================================
 // Project card

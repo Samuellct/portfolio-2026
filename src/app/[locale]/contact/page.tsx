@@ -8,11 +8,12 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowLeft, Send, CheckCircle, AlertCircle, Mail, Github, Linkedin } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
+import { SECTION_BG } from '@/lib/theme'
 
 gsap.registerPlugin(ScrollTrigger)
 
-// Background color
-const CONTACT_BG_COLOR = '#050e20'
+// Background color (shares the About intro token: same value, one source)
+const CONTACT_BG_COLOR = SECTION_BG.aboutIntro
 
 type FormStatus = 'idle' | 'submitting' | 'success' | 'error'
 

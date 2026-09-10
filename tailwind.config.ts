@@ -1,5 +1,6 @@
 import type { Config } from 'tailwindcss'
 import typography from '@tailwindcss/typography'
+import { ACCENT, SECTION_BG, SURFACE } from './src/lib/theme'
 
 const config: Config = {
   content: [
@@ -10,16 +11,17 @@ const config: Config = {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#06060e',
-          light: '#0a0a18',
-          dark: '#010103',
+          DEFAULT: SURFACE.primary,
+          light: SURFACE.primaryLight,
         },
+        shell: SURFACE.shell,
         accent: {
-          cyan: '#00f0ff',
-          purple: '#a855f7',
-          pink: '#f472b6',
-          amber: '#d9713a',
+          cyan: ACCENT.cyan,
+          purple: ACCENT.purple,
+          pink: ACCENT.pink,
+          amber: ACCENT.amber,
         },
+        section: SECTION_BG,
       },
       fontFamily: {
         display: ['var(--font-bebas)', 'sans-serif'],

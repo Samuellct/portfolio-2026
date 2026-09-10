@@ -11,8 +11,9 @@ import { FaGithub } from 'react-icons/fa'
 import { getProjectById, getCategoryById, getLocalizedField, Locale } from '@/lib/projects'
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer'
 import { useTranslations, useLocale } from 'next-intl'
+import { SECTION_BG } from '@/lib/theme'
 
-const PROJECT_DETAIL_BG_COLOR = '#080810'
+const PROJECT_DETAIL_BG_COLOR = SECTION_BG.projectDetail
 
 export default function ProjectDetailPage() {
   const t = useTranslations('projects')

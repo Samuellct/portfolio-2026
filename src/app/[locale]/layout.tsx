@@ -6,6 +6,7 @@ import { NextIntlClientProvider } from 'next-intl'
 import { notFound } from 'next/navigation'
 import { routing } from '@/i18n/routing'
 import { BASE_URL, buildAlternates } from '@/lib/constants'
+import { SURFACE } from '@/lib/theme'
 import { Providers } from '../providers'
 import '@/styles/globals.css'
 
@@ -45,7 +46,7 @@ const fraunces = Fraunces({
 })
 
 export const viewport: Viewport = {
-  themeColor: '#030308',
+  themeColor: SURFACE.shell,
   width: 'device-width',
   initialScale: 1,
 }

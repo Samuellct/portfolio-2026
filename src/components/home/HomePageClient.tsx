@@ -10,15 +10,16 @@ import ProjectsSection from '@/components/sections/ProjectsSection'
 import ContactSection from '@/components/sections/ContactSection'
 import { useSite } from '@/context/SiteContext'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
+import { SECTION_BG } from '@/lib/theme'
 
 gsap.registerPlugin(ScrollTrigger)
 
 // Background colors for each section
 const sectionColors: Record<string, string> = {
-  hero: '#06060e',
-  about: '#081828',
-  projects: '#1c1008',
-  contact: '#081c10'
+  hero: SECTION_BG.hero,
+  about: SECTION_BG.about,
+  projects: SECTION_BG.projects,
+  contact: SECTION_BG.contact,
 }
 
 export default function HomePageClient() {

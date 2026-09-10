@@ -1,4 +1,5 @@
 import { ImageResponse } from 'next/og'
+import { ACCENT, OG_DECOR, SURFACE } from '@/lib/theme'
 
 export const runtime = 'edge'
 
@@ -20,8 +21,8 @@ export default async function Image() {
           flexDirection: 'column',
           alignItems: 'center',
           justifyContent: 'center',
-          backgroundColor: '#030308',
-          backgroundImage: 'radial-gradient(circle at 25% 25%, #0a0a1a 0%, transparent 50%), radial-gradient(circle at 75% 75%, #1a0a2e 0%, transparent 50%)',
+          backgroundColor: SURFACE.shell,
+          backgroundImage: `radial-gradient(circle at 25% 25%, ${OG_DECOR.glowBlue} 0%, transparent 50%), radial-gradient(circle at 75% 75%, ${OG_DECOR.glowPurple} 0%, transparent 50%)`,
         }}
       >
         {/* deco */}
@@ -33,8 +34,8 @@ export default async function Image() {
             width: 8,
             height: 8,
             borderRadius: '50%',
-            backgroundColor: '#00f0ff',
-            boxShadow: '0 0 20px #00f0ff',
+            backgroundColor: ACCENT.cyan,
+            boxShadow: `0 0 20px ${ACCENT.cyan}`,
           }}
         />
         <div
@@ -45,8 +46,8 @@ export default async function Image() {
             width: 6,
             height: 6,
             borderRadius: '50%',
-            backgroundColor: '#a855f7',
-            boxShadow: '0 0 15px #a855f7',
+            backgroundColor: ACCENT.purple,
+            boxShadow: `0 0 15px ${ACCENT.purple}`,
           }}
         />
         <div
@@ -57,8 +58,8 @@ export default async function Image() {
             width: 5,
             height: 5,
             borderRadius: '50%',
-            backgroundColor: '#f472b6',
-            boxShadow: '0 0 12px #f472b6',
+            backgroundColor: ACCENT.pink,
+            boxShadow: `0 0 12px ${ACCENT.pink}`,
           }}
         />
         <div
@@ -69,8 +70,8 @@ export default async function Image() {
             width: 7,
             height: 7,
             borderRadius: '50%',
-            backgroundColor: '#00f0ff',
-            boxShadow: '0 0 18px #00f0ff',
+            backgroundColor: ACCENT.cyan,
+            boxShadow: `0 0 18px ${ACCENT.cyan}`,
           }}
         />
 
@@ -103,7 +104,7 @@ export default async function Image() {
             style={{
               width: 120,
               height: 2,
-              background: 'linear-gradient(90deg, transparent, #00f0ff, transparent)',
+              background: `linear-gradient(90deg, transparent, ${ACCENT.cyan}, transparent)`,
               marginBottom: 24,
             }}
           />
@@ -112,7 +113,7 @@ export default async function Image() {
           <div
             style={{
               fontSize: 32,
-              color: '#00f0ff',
+              color: ACCENT.cyan,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
               marginBottom: 12,
