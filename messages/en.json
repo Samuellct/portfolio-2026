@@ -187,16 +187,16 @@
     "home": {
       "titleDefault": "SL | Portfolio",
       "titleTemplate": "%s | Samuel Lecomte",
-      "description": "Samuel Lecomte, physics graduate turned developer, presenting CERN research (ATLAS, LHCb), data analysis, and self-built software projects.",
-      "ogDescription": "Physics graduate turned developer, presenting CERN research, data analysis, and self-built software projects.",
+      "description": "Samuel Lecomte, physics graduate turned developer, presenting data analysis on the ATLAS and LHCb experiments at CERN, and self-built software projects.",
+      "ogDescription": "Physics graduate turned developer: data analysis on the ATLAS and LHCb experiments at CERN, and self-built software projects.",
       "twitterTitle": "Samuel Lecomte | Portfolio",
       "twitterDescription": "Particle Physics & Data Science"
     },
     "about": {
       "title": "About",
-      "description": "From a Master's in Fundamental Physics at Université Clermont Auvergne to software development, via two CERN research internships (ATLAS, LHCb) and a Data Science diploma.",
+      "description": "From a Master's in Fundamental Physics at Université Clermont Auvergne to software development, via two internships analysing data from the ATLAS and LHCb experiments at CERN and a Data Science diploma.",
       "ogTitle": "About | Samuel Lecomte",
-      "ogDescription": "From particle physics research at CERN to software development: education, internships, and technical skills."
+      "ogDescription": "From analysing ATLAS and LHCb experiment data to software development: education, internships, and technical skills."
     },
     "contact": {
       "title": "Contact",
@@ -206,9 +206,9 @@
     },
     "projects": {
       "title": "Projects",
-      "description": "A working log of personal builds, academic research, and CERN internship work, including geospatial tools, physics simulations, and this website.",
+      "description": "A working log of personal builds, academic research, and internship work on data from the ATLAS and LHCb experiments at CERN, including geospatial tools, physics simulations, and this website.",
       "ogTitle": "Projects | Samuel Lecomte",
-      "ogDescription": "Personal builds, academic research, and CERN internship work, from geospatial tools to physics simulations."
+      "ogDescription": "Personal builds, academic research, and internship work on data from the ATLAS and LHCb experiments at CERN, from geospatial tools to physics simulations."
     },
     "jsonLd": {
       "siteDescription": "Personal portfolio of Samuel Lecomte, physics graduate and developer.",

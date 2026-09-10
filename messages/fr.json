@@ -187,16 +187,16 @@
     "home": {
       "titleDefault": "SL | Portfolio",
       "titleTemplate": "%s | Samuel Lecomte",
-      "description": "Samuel Lecomte, physicien reconverti au développement, entre recherche au CERN (ATLAS, LHCb), analyse de données et projets logiciels construits en autonomie.",
-      "ogDescription": "Physicien reconverti au développement, entre recherche au CERN, analyse de données et projets logiciels personnels.",
+      "description": "Samuel Lecomte, physicien reconverti au développement, entre analyse de données des expériences ATLAS et LHCb du CERN et projets logiciels construits en autonomie.",
+      "ogDescription": "Physicien reconverti au développement, entre analyse de données des expériences ATLAS et LHCb du CERN et projets logiciels personnels.",
       "twitterTitle": "Samuel Lecomte | Portfolio",
       "twitterDescription": "Physique des particules & Data Science"
     },
     "about": {
       "title": "À propos",
-      "description": "Du Master de Physique Fondamentale à l'Université Clermont Auvergne au développement logiciel, via deux stages de recherche au CERN (ATLAS, LHCb) et un diplôme en Data Science.",
+      "description": "Du Master de Physique Fondamentale à l'Université Clermont Auvergne au développement logiciel, via deux stages sur des données des expériences ATLAS et LHCb du CERN et un diplôme en Data Science.",
       "ogTitle": "À propos | Samuel Lecomte",
-      "ogDescription": "De la recherche en physique des particules au CERN au développement logiciel : formation, stages et compétences techniques."
+      "ogDescription": "De l'analyse de données des expériences ATLAS et LHCb du CERN au développement logiciel : formation, stages et compétences techniques."
     },
     "contact": {
       "title": "Contact",
@@ -206,9 +206,9 @@
     },
     "projects": {
       "title": "Projets",
-      "description": "Un journal de bord des projets personnels, travaux académiques et stages de recherche au CERN, incluant outils géospatiaux, simulations de physique et ce site.",
+      "description": "Un journal de bord des projets personnels, travaux académiques et stages sur des données des expériences ATLAS et LHCb du CERN, incluant outils géospatiaux, simulations de physique et ce site.",
       "ogTitle": "Projets | Samuel Lecomte",
-      "ogDescription": "Projets personnels, travaux académiques et stages au CERN, des outils géospatiaux aux simulations de physique."
+      "ogDescription": "Projets personnels, travaux académiques et stages sur des données des expériences ATLAS et LHCb du CERN, des outils géospatiaux aux simulations de physique."
     },
     "jsonLd": {
       "siteDescription": "Portfolio personnel de Samuel Lecomte, physicien diplômé et développeur.",
