@@ -23,7 +23,7 @@
     "greetingMobile": "Samuel",
     "title": "Physique. Python. Data.",
     "titleAlt": "",
-    "description": "Physicien de formation, formé à l'analyse de données dans des équipes de recherche affiliées au CERN. A la recherche d'un poste technique ou d'une thèse.",
+    "description": "Diplômé en physique des particules, formé à l'analyse de données en laboratoire. Je construis des chaînes complètes, de l'acquisition au résultat, en Python, C++ et TypeScript. Actuellement en recherche d'un poste technique.",
     "cta": "Mes projets",
     "ctaSecondary": "Télécharger mon CV",
     "available": "Disponible",
@@ -41,7 +41,7 @@
       "intro": "Diplômé d'un Master en Physique Fondamentale et d'un DU en Data Science, je me positionne à l'interface entre recherche et ingénierie logicielle. Mon expérience en physique expérimentale (LHCb, ATLAS) m'a formé à la conception de pipelines reproductibles et structurés et à l'analyse de grands ensembles de données en C++ et Python.",
       "experience": "Pendant mon Master, j'ai travaillé au sein des collaborations LHCb et ATLAS au CERN, sur des jeux de données de plusieurs téraoctets. C'est là que j'ai appris à construire de vraies chaînes d'analyse et à travailler aux côtés de physiciens venus du monde entier.",
       "passion": "Au-delà de la physique, je suis passionné par la construction de systèmes et d'outils. J'administre une infrastructure serveur personnelle, j'expérimente l'automatisation et j'explore continuellement de nouvelles technologies. Ce site web est lui-même un projet personnel où j'applique les pratiques modernes du développement web.",
-      "goals": "Je suis actuellement à la recherche d'une thèse en physique expérimentale ou d'un poste en ingénierie (R&D, Data Engineering, DevOps). L'objectif est d'appliquer mes compétences en analyse scientifique et conception logicielle à des problèmes concrets.",
+      "goals": "Je cherche un poste où mettre à profit mon analyse scientifique et ma pratique du logiciel sur des problèmes concrets, à l'interface entre recherche et ingénierie.",
       "goalsTitle": "Objectifs professionnels"
     },
     "stats": {

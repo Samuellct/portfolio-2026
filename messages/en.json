@@ -23,7 +23,7 @@
     "greetingMobile": "Hi, I'm Samuel",
     "title": "Physics. Python. Data.",
     "titleAlt": "",
-    "description": "Physics graduate, trained in data analysis within CERN-affiliated research groups. Looking for a technical position or PhD.",
+    "description": "Particle physics graduate, trained in data analysis in a research lab. I build complete pipelines, from acquisition to result, in Python, C++ and TypeScript. Currently looking for a technical role.",
     "cta": "My projects",
     "ctaSecondary": "Download my CV",
     "available": "Open to work",
@@ -41,7 +41,7 @@
       "intro": "I'm Samuel. I hold a Master's in Fundamental Physics and a university diploma in Data Science, and I work at the crossing point between research and software engineering. My time with the LHCb and ATLAS collaborations taught me to build reproducible, well-structured pipelines and to make sense of large datasets in C++ and Python.",
       "experience": "During my Master's, I worked with the LHCb and ATLAS collaborations at CERN, on datasets running into terabytes. It's where I learned to build proper analysis pipelines and to work alongside physicists from all over the world.",
       "passion": "Beyond physics, I'm passionate about building systems and tools. I maintain a home server infrastructure, experiment with automation, and continuously explore new technologies. This website itself is a personal project where I apply modern web development practices.",
-      "goals": "Right now I'm looking for either a PhD in experimental physics or an engineering role (R&D, data engineering, DevOps) where I can put my analytical and software skills to work on real problems.",
+      "goals": "I'm looking for a role where I can apply my scientific analysis and software practice to real problems, at the interface between research and engineering.",
       "goalsTitle": "Professional Goals"
     },
     "stats": {
