@@ -195,7 +195,9 @@ export default function ProjectsPage() {
   const tCommon = useTranslations('common')
   const prefersReducedMotion = useReducedMotion()
   const [activeFilter, setActiveFilter] = useState<string>('all')
-  const allProjects = getAllProjects()
+  // Chronological order (newest first), deliberately distinct from the
+  // featured-first order of the homepage preview (AUDIT-009).
+  const allProjects = [...getAllProjects()].sort((a, b) => b.dateCreated.localeCompare(a.dateCreated))
   const pageRef = useRef<HTMLDivElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
   
