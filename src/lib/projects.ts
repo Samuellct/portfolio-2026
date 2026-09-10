@@ -34,6 +34,23 @@ export interface ProjectData {
   visible?: boolean // default: true
   textColor?: 'white' | 'black' // default: white
   dateCreated: string
+
+  // Structured fiche fields (AUDIT-018). All optional: the 19 entries are
+  // migrated fiche by fiche in Phases 7-8. `image` and `gitHubUrl` above stay
+  // as derived shortcuts during the migration.
+  kind?: 'research' | 'webapp' | 'mobile' | 'desktop' | 'library' | 'infra' | 'analysis'
+  media?: Array<{
+    src: string
+    alt: BilingualText
+    caption?: BilingualText
+    credit?: { name: string; url?: string }
+    frame?: 'phone' | 'browser' | 'figure' | 'raw'
+    role: 'hero' | 'result' | 'interface' | 'architecture' | 'context'
+  }>
+  results?: Array<{ label: BilingualText; value: string; note?: BilingualText }>
+  limits?: BilingualText
+  links?: Array<{ type: 'code' | 'demo' | 'docs' | 'report' | 'release'; url: string; label?: string }>
+  sourceOfSkills?: 'academic' | 'internship' | 'personal'
 }
 
 export interface CategoryData {
