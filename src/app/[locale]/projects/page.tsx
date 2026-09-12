@@ -173,7 +173,7 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
             <span>{getLocalizedField(project.period, locale)}</span>
           </div>
           
-          <h3 className="font-body font-semibold text-xl md:text-2xl group-hover:text-accent-cyan transition-colors duration-300">
+          <h3 className="font-body font-semibold text-xl md:text-2xl min-h-[3.5rem] md:min-h-[4rem] group-hover:text-accent-cyan transition-colors duration-300">
             {getLocalizedField(project.title, locale)}
           </h3>
 
