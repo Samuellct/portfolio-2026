@@ -330,7 +330,7 @@ export default function ProjectsPage() {
           </motion.div>
           
           <h1 className="font-display text-display-listing leading-display-tight tracking-wide mb-6">
-            {t('title')}
+            {t('pageTitle')}
           </h1>
           
           <p className="text-lg text-white/50 max-w-2xl">
