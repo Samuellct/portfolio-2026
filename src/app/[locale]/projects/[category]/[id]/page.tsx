@@ -5,9 +5,17 @@ import { useParams } from 'next/navigation'
 import { useRouter } from '@/i18n/navigation'
 import TransitionLink from '@/components/navigation/TransitionLink'
 import { motion } from 'framer-motion'
-import { ArrowLeft, ExternalLink, Calendar, MapPin } from 'lucide-react'
+import { ArrowLeft, ArrowRight, ExternalLink, Calendar, MapPin } from 'lucide-react'
 import { FaGithub } from 'react-icons/fa'
-import { getProjectById, getCategoryById, getLocalizedField, Locale } from '@/lib/projects'
+import {
+  getProjectById,
+  getCategoryById,
+  getLocalizedField,
+  getProjectsSortedByDate,
+  getRelatedProjects,
+  Locale,
+  ProjectData,
+} from '@/lib/projects'
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer'
 import { Badge } from '@/components/ui/Badge'
 import { Tag } from '@/components/ui/Tag'
@@ -16,6 +24,24 @@ import { useTranslations, useLocale } from 'next-intl'
 import { SECTION_BG } from '@/lib/theme'
 
 const PROJECT_DETAIL_BG_COLOR = SECTION_BG.projectDetail
+
+// ============================================
+// Related project thumbnail
+// ============================================
+function RelatedProjectCard({ project, locale }: { project: ProjectData; locale: Locale }) {
+  return (
+    <TransitionLink href={`/projects/${project.category}/${project.id}`} className="group block">
+      <Figure
+        src={project.image}
+        alt={getLocalizedField(project.imageAlt, locale)}
+        frameClassName="mb-3 transition-opacity duration-300 group-hover:opacity-80"
+      />
+      <h3 className="font-body font-semibold group-hover:text-accent-cyan transition-colors duration-300">
+        {getLocalizedField(project.title, locale)}
+      </h3>
+    </TransitionLink>
+  )
+}
 
 export default function ProjectDetailPage() {
   const t = useTranslations('projects')
@@ -28,7 +54,21 @@ export default function ProjectDetailPage() {
   
   const project = categoryId && projectId ? getProjectById(categoryId, projectId) : null
   const category = categoryId ? getCategoryById(categoryId) : null
-  
+
+  // Previous / next follow the listing's chronological order (AUDIT-009);
+  // navigation loops at both ends so a button is always available.
+  const sortedProjects = getProjectsSortedByDate()
+  const currentIndex = project
+    ? sortedProjects.findIndex((p) => p.category === project.category && p.id === project.id)
+    : -1
+  const previousProject =
+    currentIndex >= 0
+      ? sortedProjects[(currentIndex - 1 + sortedProjects.length) % sortedProjects.length]
+      : null
+  const nextProject =
+    currentIndex >= 0 ? sortedProjects[(currentIndex + 1) % sortedProjects.length] : null
+  const relatedProjects = project ? getRelatedProjects(project, 3) : []
+
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [projectId])
@@ -86,12 +126,13 @@ export default function ProjectDetailPage() {
               >
                 {/* Category */}
                 <div className="flex flex-wrap items-center gap-3 mb-4">
-                  <span 
-                    className="text-xs tracking-caps-wide uppercase"
+                  <TransitionLink
+                    href={`/projects?category=${categoryId}`}
+                    className="tap-target text-xs tracking-caps-wide uppercase hover:underline"
                     style={{ color: category?.accentColor }}
                   >
                     {t(`categories.${categoryId}`)}
-                  </span>
+                  </TransitionLink>
                   
                   {project.status === 'in-progress' && (
                     <Badge status="in-progress" tone="inline">
@@ -196,6 +237,68 @@ export default function ProjectDetailPage() {
             </motion.section>
           </div>
         </div>
+
+        {/* ============================================ */}
+        {/* PREVIOUS / NEXT + RELATED PROJECTS (AUDIT-019) */}
+        {/* ============================================ */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="mt-20 pt-12 border-t border-white/10"
+        >
+          {(previousProject || nextProject) && (
+            <div className="flex flex-col sm:flex-row items-stretch justify-between gap-6 mb-16">
+              {previousProject && (
+                <TransitionLink
+                  href={`/projects/${previousProject.category}/${previousProject.id}`}
+                  className="tap-target group flex items-center gap-3"
+                >
+                  <ArrowLeft size={18} className="shrink-0 transition-transform group-hover:-translate-x-1" />
+                  <div>
+                    <div className="text-xs tracking-caps-wide uppercase text-muted mb-1">
+                      {t('previousProject')}
+                    </div>
+                    <div className="font-body font-semibold group-hover:text-accent-cyan transition-colors">
+                      {getLocalizedField(previousProject.title, locale)}
+                    </div>
+                  </div>
+                </TransitionLink>
+              )}
+
+              {nextProject && (
+                <TransitionLink
+                  href={`/projects/${nextProject.category}/${nextProject.id}`}
+                  className="tap-target group flex items-center gap-3 sm:text-right sm:flex-row-reverse sm:ml-auto"
+                >
+                  <ArrowRight size={18} className="shrink-0 transition-transform group-hover:translate-x-1" />
+                  <div>
+                    <div className="text-xs tracking-caps-wide uppercase text-muted mb-1">
+                      {t('nextProject')}
+                    </div>
+                    <div className="font-body font-semibold group-hover:text-accent-cyan transition-colors">
+                      {getLocalizedField(nextProject.title, locale)}
+                    </div>
+                  </div>
+                </TransitionLink>
+              )}
+            </div>
+          )}
+
+          {relatedProjects.length > 0 && (
+            <div>
+              <h2 className="text-xs tracking-caps-wide uppercase text-muted mb-6">
+                {t('relatedProjects')}
+              </h2>
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                {relatedProjects.map((related) => (
+                  <RelatedProjectCard key={`${related.category}-${related.id}`} project={related} locale={locale} />
+                ))}
+              </div>
+            </div>
+          )}
+        </motion.div>
       </div>
     </div>
   )

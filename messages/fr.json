@@ -134,7 +134,10 @@
     "technologies": "Technologies",
     "imageCredit": "Image",
     "filterGroupLabel": "Filtrer les projets par catégorie",
-    "resultsCount": "{count, plural, =0 {Aucun projet} one {# projet} other {# projets}}"
+    "resultsCount": "{count, plural, =0 {Aucun projet} one {# projet} other {# projets}}",
+    "previousProject": "Projet précédent",
+    "nextProject": "Projet suivant",
+    "relatedProjects": "Projets connexes"
   },
   "blog": {
     "sectionLabel": "03 · Blog",

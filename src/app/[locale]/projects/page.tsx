@@ -1,13 +1,14 @@
 'use client'
 
-import { useState, useEffect, useRef, useLayoutEffect, useMemo } from 'react'
+import { Suspense, useState, useEffect, useRef, useLayoutEffect, useMemo } from 'react'
+import { useSearchParams } from 'next/navigation'
 import TransitionLink from '@/components/navigation/TransitionLink'
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowLeft, ArrowRight } from 'lucide-react'
 import Image from 'next/image'
-import { getAllProjects, getLocalizedField, Locale, projectCategories, ProjectData } from '@/lib/projects'
+import { getProjectsSortedByDate, getLocalizedField, Locale, projectCategories, ProjectData } from '@/lib/projects'
 import { useTranslations, useLocale } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { SECTION_BG } from '@/lib/theme'
@@ -200,6 +201,22 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
 }
 
 // ============================================
+// Category pre-filter from the URL (?category=personal)
+// ============================================
+// Isolated in its own component: useSearchParams() requires a Suspense
+// boundary, and keeping it out of ProjectsPage lets that page stay
+// statically prerendered (AUDIT-019, link from a project's category label).
+function CategoryFromQuery({ onCategory }: { onCategory: (category: string) => void }) {
+  const searchParams = useSearchParams()
+  useEffect(() => {
+    const category = searchParams.get('category')
+    if (category) onCategory(category)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchParams])
+  return null
+}
+
+// ============================================
 // Main Projects Page
 // ============================================
 export default function ProjectsPage() {
@@ -208,11 +225,9 @@ export default function ProjectsPage() {
   const prefersReducedMotion = useReducedMotion()
   const [activeFilter, setActiveFilter] = useState<string>('all')
   // Chronological order (newest first), deliberately distinct from the
-  // featured-first order of the homepage preview (AUDIT-009).
-  const allProjects = useMemo(
-    () => [...getAllProjects()].sort((a, b) => b.dateCreated.localeCompare(a.dateCreated)),
-    [],
-  )
+  // featured-first order of the homepage preview (AUDIT-009). Shared with the
+  // project detail page's previous/next navigation (AUDIT-019).
+  const allProjects = useMemo(() => getProjectsSortedByDate(), [])
   const pageRef = useRef<HTMLDivElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
   
@@ -275,6 +290,10 @@ export default function ProjectsPage() {
 
   return (
     <div ref={pageRef} className="min-h-screen relative" style={{ backgroundColor: PROJECTS_BG_COLOR }}>
+      <Suspense fallback={null}>
+        <CategoryFromQuery onCategory={setActiveFilter} />
+      </Suspense>
+
       {/* parallax */}
       <div aria-hidden="true" className="decor-text fixed top-1/2 -translate-y-1/2 left-0 pointer-events-none select-none z-0">
         <span className="font-display text-ghost-20 text-white/[0.015] leading-none whitespace-nowrap">

@@ -939,6 +939,33 @@ export const getFeaturedProjects = (): ProjectData[] => {
   return getAllProjects().filter((project) => project.featured)
 }
 
+// The listing's chronological order (AUDIT-009), the single source for what
+// "previous / next" means on a project detail page (AUDIT-019).
+export const getProjectsSortedByDate = (): ProjectData[] => {
+  return [...getAllProjects()].sort((a, b) => b.dateCreated.localeCompare(a.dateCreated))
+}
+
+// Up to `max` related projects for the "connexes" block on a project detail
+// page (AUDIT-019): same category first, then most shared technologies,
+// ties broken by most recent. Excludes the project itself.
+export const getRelatedProjects = (project: ProjectData, max: number = 3): ProjectData[] => {
+  return getAllProjects()
+    .filter((p) => !(p.category === project.category && p.id === project.id))
+    .map((p) => ({
+      project: p,
+      sameCategory: p.category === project.category,
+      sharedTechCount: p.technologies.filter((tech) => project.technologies.includes(tech)).length,
+    }))
+    .filter((entry) => entry.sameCategory || entry.sharedTechCount > 0)
+    .sort((a, b) => {
+      if (a.sameCategory !== b.sameCategory) return a.sameCategory ? -1 : 1
+      if (b.sharedTechCount !== a.sharedTechCount) return b.sharedTechCount - a.sharedTechCount
+      return b.project.dateCreated.localeCompare(a.project.dateCreated)
+    })
+    .slice(0, max)
+    .map((entry) => entry.project)
+}
+
 export const getCategoryById = (categoryId: string): CategoryData | undefined => {
   return projectCategories.find((cat) => cat.id === categoryId)
 }
