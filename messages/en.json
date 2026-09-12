@@ -139,8 +139,6 @@
     "previousProject": "Previous project",
     "nextProject": "Next project",
     "relatedProjects": "Related projects",
-    "techFilterLabel": "Filter projects by technology",
-    "allTechnologies": "All technologies",
     "searchLabel": "Search projects",
     "searchPlaceholder": "Search..."
   },

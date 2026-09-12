@@ -9,7 +9,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowLeft, ArrowRight, Search } from 'lucide-react'
 import Image from 'next/image'
 import { getProjectsSortedByDate, getLocalizedField, Locale, projectCategories, ProjectData } from '@/lib/projects'
-import type { TechName } from '@/lib/technologies'
 import { useTranslations, useLocale } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { SECTION_BG } from '@/lib/theme'
@@ -234,7 +233,6 @@ export default function ProjectsPage() {
   const locale = useLocale() as Locale
   const prefersReducedMotion = useReducedMotion()
   const [activeFilter, setActiveFilter] = useState<string>('all')
-  const [activeTech, setActiveTech] = useState<string>('all')
   const [searchQuery, setSearchQuery] = useState('')
   // Chronological order (newest first), deliberately distinct from the
   // featured-first order of the homepage preview (AUDIT-009). Shared with the
@@ -243,19 +241,10 @@ export default function ProjectsPage() {
   const pageRef = useRef<HTMLDivElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
 
-  // Technologies actually used on a visible project, not the full canonical
-  // dictionary (which also holds reserve entries with no project yet).
-  const availableTechnologies = useMemo(() => {
-    const names = new Set<string>()
-    allProjects.forEach((p) => p.technologies.forEach((tech) => names.add(tech)))
-    return Array.from(names).sort((a, b) => a.localeCompare(b))
-  }, [allProjects])
-
   const filteredProjects = useMemo(() => {
     const query = normalizeForSearch(searchQuery.trim())
     return allProjects.filter((p) => {
       if (activeFilter !== 'all' && p.category !== activeFilter) return false
-      if (activeTech !== 'all' && !p.technologies.includes(activeTech as TechName)) return false
       if (!query) return true
       const haystack = normalizeForSearch(
         [
@@ -267,7 +256,7 @@ export default function ProjectsPage() {
       )
       return haystack.includes(query)
     })
-  }, [allProjects, activeFilter, activeTech, searchQuery, locale])
+  }, [allProjects, activeFilter, searchQuery, locale])
 
   // Scroll to top before paint
   useLayoutEffect(() => {
@@ -403,20 +392,6 @@ export default function ProjectsPage() {
               </Button>
             ))}
           </div>
-
-          <select
-            value={activeTech}
-            onChange={(e) => setActiveTech(e.target.value)}
-            aria-label={t('techFilterLabel')}
-            className="tap-target bg-transparent border border-white/20 text-white/60 text-xs tracking-caps-wide uppercase px-4 py-2.5 focus:outline-none focus:border-accent-cyan"
-          >
-            <option value="all">{t('allTechnologies')}</option>
-            {availableTechnologies.map((tech) => (
-              <option key={tech} value={tech}>
-                {tech}
-              </option>
-            ))}
-          </select>
 
           <div className="relative">
             <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-white/30 pointer-events-none" />

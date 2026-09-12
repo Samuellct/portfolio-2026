@@ -139,8 +139,6 @@
     "previousProject": "Projet précédent",
     "nextProject": "Projet suivant",
     "relatedProjects": "Projets connexes",
-    "techFilterLabel": "Filtrer les projets par technologie",
-    "allTechnologies": "Toutes les technologies",
     "searchLabel": "Rechercher des projets",
     "searchPlaceholder": "Rechercher..."
   },
