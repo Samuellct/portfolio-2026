@@ -5,6 +5,12 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.13.1] - 2026-09-12
+
+### Corrigé
+
+- **Filtre par technologie retiré** (`AUDIT-083`) - le menu déroulant listant les quelque 60 technologies s'est révélé inutilisable en usage réel. Retiré au profit de la recherche texte seule, qui couvrait déjà les technologies et donne le même résultat.
+
 ## [4.13.0] - 2026-09-12
 
 Phase 5 de la feuille de route V5 : listing et cartes de projets.
