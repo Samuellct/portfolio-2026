@@ -1,6 +1,7 @@
 # Exclusion par defaut : tout est ignore, on re-inclut explicitement ce qui doit etre suivi.
 /*
 !/.gitignore
+!/.npmrc
 !/.github/
 !/src/
 !/public/
