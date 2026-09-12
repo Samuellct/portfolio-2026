@@ -5,6 +5,25 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.13.0] - 2026-09-12
+
+Phase 5 de la feuille de route V5 : listing et cartes de projets.
+
+### Ajouté
+
+- **Technologies sur les cartes** (`AUDIT-010`) - chaque carte du listing affiche jusqu'à 3 technologies en puces, avec un « +N » discret au-delà. Le recruteur qui balaie la grille à la recherche de mots-clés techniques (Python, Docker, React) n'a plus besoin d'ouvrir chaque fiche pour les voir.
+- **Navigation entre fiches** (`AUDIT-019`) - chaque fiche projet propose désormais un projet précédent et un projet suivant (dans l'ordre chronologique du listing, en boucle), ainsi que jusqu'à 3 projets connexes (même catégorie ou technologies communes). Le libellé de catégorie de la fiche ouvre le listing déjà filtré sur cette catégorie.
+- **Filtre par technologie et recherche** (`AUDIT-083`) - le listing se filtre désormais par technologie (menu déroulant, alimenté par les technologies réellement utilisées) en plus de la catégorie, et se cherche par texte libre (titre, description, technologies, mots-clés), insensible à la casse et aux accents.
+
+### Modifié
+
+- **Titre de la page listing** (`AUDIT-066`) - `/projects` porte désormais son propre titre (« Projets » / « Projects »), distinct du libellé « Travaux récents » de l'aperçu sur l'accueil, qui reste inchangé.
+
+### Corrigé
+
+- **Grille en couleur sur tous les appareils** (`AUDIT-015`) - le filtre en niveaux de gris, auparavant levé au survol seulement, est retiré : la grille du listing s'affiche en couleur par défaut, y compris sur mobile et tablette où le survol n'existe pas.
+- **Alignement des cartes** (`AUDIT-084`) - une hauteur minimale sur le titre absorbe l'écart entre un titre sur une ligne et un titre sur deux, pour que les liens « Voir le projet » d'une même rangée restent alignés.
+
 ## [4.12.0] - 2026-09-11
 
 Phase 4 de la feuille de route V5 : design system et accessibilité transverse.
