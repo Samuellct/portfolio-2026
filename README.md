@@ -65,7 +65,7 @@ src/
 
 ## Customization
 
-- Edit `src/lib/content.json` for text content
+- Edit `messages/en.json` and `messages/fr.json` for text content
 - Edit `src/lib/projects.ts` to add projects
 - Edit `tailwind.config.ts` for color scheme
 
@@ -93,7 +93,7 @@ The `wrangler.jsonc` file contains the necessary configuration for Cloudflare Pa
 {
   "name": "portfolio-2026",
   "compatibility_flags": ["nodejs_compat"],
-  "compatibility_date": "2024-09-23",
+  "compatibility_date": "2026-02-03",
   "pages_build_output_dir": ".vercel/output/static"
 }
 ```
