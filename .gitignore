@@ -15,6 +15,7 @@
 !/postcss.config.mjs
 !/eslint.config.mjs
 !/wrangler.jsonc
+!/open-next.config.ts
 !/README.md
 !/CHANGELOG.md
 !/LICENSE

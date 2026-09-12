@@ -49,3 +49,7 @@ const nextConfig: NextConfig = {
 
 const withNextIntl = createNextIntlPlugin()
 export default withNextIntl(nextConfig)
+
+// Cloudflare bindings during `next dev` (no-op in production/build).
+import { initOpenNextCloudflareForDev } from '@opennextjs/cloudflare'
+initOpenNextCloudflareForDev()

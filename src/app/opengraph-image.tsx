@@ -1,8 +1,8 @@
 import { ImageResponse } from 'next/og'
 import { ACCENT, OG_DECOR, SURFACE } from '@/lib/theme'
 
-export const runtime = 'edge'
-
+// No `runtime = 'edge'`: unsupported by the Cloudflare Workers adapter
+// (@opennextjs/cloudflare); ImageResponse runs fine on the default runtime.
 export const alt = 'Samuel Lecomte - Graduate in Physics and Data Science'
 export const size = {
   width: 1200,
