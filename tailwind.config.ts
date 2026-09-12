@@ -6,6 +6,11 @@ const config: Config = {
   content: [
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
+    // AUDIT-088: TransitionContext.tsx lives here and carries the page
+    // transition overlay's `z-[200]` class, which this content list did not
+    // scan. Tailwind silently dropped the rule, so the overlay rendered with
+    // `z-index: auto` and the "curtain" sat behind the page it should cover.
+    './src/context/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
     extend: {
