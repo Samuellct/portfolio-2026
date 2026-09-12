@@ -6,9 +6,10 @@ import TransitionLink from '@/components/navigation/TransitionLink'
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { ArrowLeft, ArrowRight } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Search } from 'lucide-react'
 import Image from 'next/image'
 import { getProjectsSortedByDate, getLocalizedField, Locale, projectCategories, ProjectData } from '@/lib/projects'
+import type { TechName } from '@/lib/technologies'
 import { useTranslations, useLocale } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { SECTION_BG } from '@/lib/theme'
@@ -17,6 +18,14 @@ import { Badge } from '@/components/ui/Badge'
 import { Tag } from '@/components/ui/Tag'
 
 gsap.registerPlugin(ScrollTrigger)
+
+// Case- and accent-insensitive comparison for the free-text search (AUDIT-083).
+function normalizeForSearch(value: string): string {
+  return value
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .toLowerCase()
+}
 
 // Background color for projects page
 const PROJECTS_BG_COLOR = SECTION_BG.listing
@@ -222,19 +231,44 @@ function CategoryFromQuery({ onCategory }: { onCategory: (category: string) => v
 export default function ProjectsPage() {
   const t = useTranslations('projects')
   const tCommon = useTranslations('common')
+  const locale = useLocale() as Locale
   const prefersReducedMotion = useReducedMotion()
   const [activeFilter, setActiveFilter] = useState<string>('all')
+  const [activeTech, setActiveTech] = useState<string>('all')
+  const [searchQuery, setSearchQuery] = useState('')
   // Chronological order (newest first), deliberately distinct from the
   // featured-first order of the homepage preview (AUDIT-009). Shared with the
   // project detail page's previous/next navigation (AUDIT-019).
   const allProjects = useMemo(() => getProjectsSortedByDate(), [])
   const pageRef = useRef<HTMLDivElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
-  
-  const filteredProjects = activeFilter === 'all'
-    ? allProjects
-    : allProjects.filter((p) => p.category === activeFilter)
-  
+
+  // Technologies actually used on a visible project, not the full canonical
+  // dictionary (which also holds reserve entries with no project yet).
+  const availableTechnologies = useMemo(() => {
+    const names = new Set<string>()
+    allProjects.forEach((p) => p.technologies.forEach((tech) => names.add(tech)))
+    return Array.from(names).sort((a, b) => a.localeCompare(b))
+  }, [allProjects])
+
+  const filteredProjects = useMemo(() => {
+    const query = normalizeForSearch(searchQuery.trim())
+    return allProjects.filter((p) => {
+      if (activeFilter !== 'all' && p.category !== activeFilter) return false
+      if (activeTech !== 'all' && !p.technologies.includes(activeTech as TechName)) return false
+      if (!query) return true
+      const haystack = normalizeForSearch(
+        [
+          getLocalizedField(p.title, locale),
+          getLocalizedField(p.description, locale),
+          ...p.technologies,
+          ...p.keywords,
+        ].join(' '),
+      )
+      return haystack.includes(query)
+    })
+  }, [allProjects, activeFilter, activeTech, searchQuery, locale])
+
   // Scroll to top before paint
   useLayoutEffect(() => {
     window.scrollTo(0, 0)
@@ -343,33 +377,58 @@ export default function ProjectsPage() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
-          role="group"
-          aria-label={t('filterGroupLabel')}
           className="flex flex-wrap items-center gap-3 mb-16"
         >
-          <Button
-            variant="filter"
-            className="tap-target"
-            active={activeFilter === 'all'}
-            aria-pressed={activeFilter === 'all'}
-            onClick={() => setActiveFilter('all')}
-          >
-            {t('categories.all')}
-          </Button>
-
-          {projectCategories.map((category) => (
+          <div role="group" aria-label={t('filterGroupLabel')} className="flex flex-wrap items-center gap-3">
             <Button
-              key={category.id}
               variant="filter"
               className="tap-target"
-              active={activeFilter === category.id}
-              aria-pressed={activeFilter === category.id}
-              onClick={() => setActiveFilter(category.id)}
+              active={activeFilter === 'all'}
+              aria-pressed={activeFilter === 'all'}
+              onClick={() => setActiveFilter('all')}
             >
-              {t(`categories.${category.id}`)}
+              {t('categories.all')}
             </Button>
-          ))}
 
+            {projectCategories.map((category) => (
+              <Button
+                key={category.id}
+                variant="filter"
+                className="tap-target"
+                active={activeFilter === category.id}
+                aria-pressed={activeFilter === category.id}
+                onClick={() => setActiveFilter(category.id)}
+              >
+                {t(`categories.${category.id}`)}
+              </Button>
+            ))}
+          </div>
+
+          <select
+            value={activeTech}
+            onChange={(e) => setActiveTech(e.target.value)}
+            aria-label={t('techFilterLabel')}
+            className="tap-target bg-transparent border border-white/20 text-white/60 text-xs tracking-caps-wide uppercase px-4 py-2.5 focus:outline-none focus:border-accent-cyan"
+          >
+            <option value="all">{t('allTechnologies')}</option>
+            {availableTechnologies.map((tech) => (
+              <option key={tech} value={tech}>
+                {tech}
+              </option>
+            ))}
+          </select>
+
+          <div className="relative">
+            <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-white/30 pointer-events-none" />
+            <input
+              type="search"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              placeholder={t('searchPlaceholder')}
+              aria-label={t('searchLabel')}
+              className="tap-target bg-transparent border border-white/20 text-white text-sm pl-9 pr-4 py-2.5 placeholder:text-white/30 focus:outline-none focus:border-accent-cyan"
+            />
+          </div>
         </motion.div>
 
         {/* Result count, announced to assistive tech on filter change */}

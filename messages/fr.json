@@ -138,7 +138,11 @@
     "resultsCount": "{count, plural, =0 {Aucun projet} one {# projet} other {# projets}}",
     "previousProject": "Projet précédent",
     "nextProject": "Projet suivant",
-    "relatedProjects": "Projets connexes"
+    "relatedProjects": "Projets connexes",
+    "techFilterLabel": "Filtrer les projets par technologie",
+    "allTechnologies": "Toutes les technologies",
+    "searchLabel": "Rechercher des projets",
+    "searchPlaceholder": "Rechercher..."
   },
   "blog": {
     "sectionLabel": "03 · Blog",
