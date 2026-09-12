@@ -13,6 +13,7 @@ import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { SECTION_BG } from '@/lib/theme'
 import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
+import { Tag } from '@/components/ui/Tag'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -166,6 +167,15 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
           <h3 className="font-body font-semibold text-xl md:text-2xl group-hover:text-accent-cyan transition-colors duration-300">
             {getLocalizedField(project.title, locale)}
           </h3>
+
+          <div className="flex flex-wrap gap-2">
+            {project.technologies.slice(0, 3).map((tech) => (
+              <Tag key={tech}>{tech}</Tag>
+            ))}
+            {project.technologies.length > 3 && (
+              <Tag>+{project.technologies.length - 3}</Tag>
+            )}
+          </div>
 
           <p className="text-sm text-white/50 leading-relaxed line-clamp-2 text-justify">
             {getLocalizedField(project.description, locale)}
