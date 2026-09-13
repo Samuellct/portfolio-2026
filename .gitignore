@@ -2,6 +2,7 @@
 /*
 !/.gitignore
 !/.npmrc
+!/.releaserc.json
 !/.github/
 !/src/
 !/public/
