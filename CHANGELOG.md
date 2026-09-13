@@ -5,6 +5,20 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.13.2] - 2026-09-13
+
+Phase 5bis de la feuille de route V5 : assainissement de la chaîne de travail (deux dépôts vers un seul).
+
+### Modifié
+
+- **Dépôt unique** - `Samuellct/portfolio-2026` devient le seul dépôt GitHub (travail et déploiement continu). `Website_testing`, dépôt de travail parallèle jamais réellement déployé, est retiré de la boucle et gardé dormant comme filet de sécurité.
+- **Migration de l'adaptateur de déploiement Cloudflare** (`AUDIT-087`) - `@cloudflare/next-on-pages`, déprécié et bloquant (conflit de peer dependencies avec `wrangler`, incompatible avec le retrait du runtime edge de la Phase 2), est remplacé par `@opennextjs/cloudflare` sur Cloudflare Workers (Workers Builds). Aucun pipeline CI/CD supplémentaire introduit, le dashboard Cloudflare reste seul responsable du build/déploiement sur push.
+- **Bascule de production** - le domaine `samuel-lecomte.fr` et `www.samuel-lecomte.fr` sont rattachés au nouveau Worker `portfolio-2026` ; l'ancien projet Cloudflare Pages du même nom, sans domaine ni trafic, est supprimé.
+
+### Corrigé
+
+- **Rideau de transition de page invisible** (`AUDIT-088`) - `tailwind.config.ts` ne scannait pas `src/context/`, ce qui empêchait la classe `z-index: 200` du rideau de transition d'être générée. Le contenu réapparaissait avant la fin de l'animation.
+
 ## [4.13.1] - 2026-09-12
 
 ### Corrigé
