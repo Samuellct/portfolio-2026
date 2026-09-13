@@ -5,6 +5,17 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.13.3](https://github.com/Samuellct/portfolio-2026/compare/v4.13.2...v4.13.3) (2026-09-13)
+
+### Corrigé
+
+* pin conventional-changelog-conventionalcommits to a version compatible with the installed writer ([514dbb0](https://github.com/Samuellct/portfolio-2026/commit/514dbb0de358cb97c0ede813096e193e783a1f2e))
+
+### Modifié
+
+* add semantic-release and its plugins ([4c07f89](https://github.com/Samuellct/portfolio-2026/commit/4c07f898f8193a52775c02b0df2621f341bedea4))
+* configure semantic-release for the portfolio release flow ([acac242](https://github.com/Samuellct/portfolio-2026/commit/acac242893d676476ec974799304aefbed3b277a))
+
 ## [4.13.2] - 2026-09-13
 
 Phase 5bis de la feuille de route V5 : assainissement de la chaîne de travail (deux dépôts vers un seul).
