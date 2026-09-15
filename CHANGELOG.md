@@ -5,6 +5,12 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.13.5](https://github.com/Samuellct/portfolio-2026/compare/v4.13.4...v4.13.5) (2026-09-15)
+
+### Corrigé
+
+* pass the release commit identity via env vars instead of git config ([4e1b398](https://github.com/Samuellct/portfolio-2026/commit/4e1b398f1cc0e84a8e00fdab151eb2a431ed4c87))
+
 ## [4.13.4](https://github.com/Samuellct/portfolio-2026/compare/v4.13.3...v4.13.4) (2026-09-15)
 
 ### Performance
