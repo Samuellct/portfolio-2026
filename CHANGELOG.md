@@ -5,6 +5,18 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.14.0](https://github.com/Samuellct/portfolio-2026/compare/v4.13.5...v4.14.0) (2026-09-15)
+
+### Ajouté
+
+* populate media, results and links for the three flagship projects ([5d5a343](https://github.com/Samuellct/portfolio-2026/commit/5d5a343dda435a0ef7a9f80f288944251efdaa64))
+* render project pages as named optional sections with a results block ([7335b4f](https://github.com/Samuellct/portfolio-2026/commit/7335b4f40348076a628e4a407fd191e3a56a16b0))
+
+### Corrigé
+
+* crop project card images uniformly instead of letterboxing them ([bbb4930](https://github.com/Samuellct/portfolio-2026/commit/bbb4930d4ebf7333e54049935b580bc53d532504))
+* use locale-neutral decimal separators in project result values ([5e1ff13](https://github.com/Samuellct/portfolio-2026/commit/5e1ff133fad423d16043eb363a0a78620377267f))
+
 ## [4.13.5](https://github.com/Samuellct/portfolio-2026/compare/v4.13.4...v4.13.5) (2026-09-15)
 
 ### Corrigé
