@@ -103,7 +103,7 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
                   src={project.image}
                   alt={getLocalizedField(project.imageAlt, locale)}
                   fill
-                  className="object-contain"
+                  className="object-cover"
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   onLoad={() => setImageLoaded(true)}
                   onError={() => setImageFailed(true)}
