@@ -427,8 +427,8 @@ J'ai utilisé Accred au Festival de Cannes 2026 en déploiement privé, ce qui a
       kind: 'analysis',
       results: [
         { label: { en: 'GPS segments', fr: 'Segments GPS' }, value: '26 301' },
-        { label: { en: 'Model error', fr: 'Erreur modèle' }, value: '25,4 %', note: { en: 'vs 37.0% for a Riegel estimate', fr: 'vs 37,0 % pour une estimation de Riegel' } },
-        { label: { en: 'WBGT accuracy', fr: 'Précision météo WBGT' }, value: '0,00 °C' },
+        { label: { en: 'Model error', fr: 'Erreur modèle' }, value: '25.4 %', note: { en: 'vs 37.0% for a Riegel estimate', fr: 'vs 37,0 % pour une estimation de Riegel' } },
+        { label: { en: 'WBGT accuracy', fr: 'Précision météo WBGT' }, value: '0.00 °C' },
         { label: { en: 'Route coverage', fr: 'Couverture parcours' }, value: '138/138', note: { en: 'vs 0/6 for the old version', fr: 'vs 0/6 pour l\'ancienne version' } },
       ],
       limits: {
