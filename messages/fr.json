@@ -140,7 +140,19 @@
     "nextProject": "Projet suivant",
     "relatedProjects": "Projets connexes",
     "searchLabel": "Rechercher des projets",
-    "searchPlaceholder": "Rechercher..."
+    "searchPlaceholder": "Rechercher...",
+    "sections": {
+      "context": "Contexte",
+      "problem": "Problème",
+      "approach": "Démarche",
+      "whatIBuilt": "Ce que j'ai construit",
+      "results": "Résultats",
+      "limits": "Limites"
+    },
+    "research": {
+      "lab": "Laboratoire",
+      "collaboration": "Collaboration"
+    }
   },
   "blog": {
     "sectionLabel": "03 · Blog",

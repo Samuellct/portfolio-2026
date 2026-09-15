@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 import TransitionLink from '@/components/navigation/TransitionLink'
 import { motion } from 'framer-motion'
-import { ArrowLeft, ArrowRight, ExternalLink, Calendar, MapPin } from 'lucide-react'
+import { ArrowLeft, ArrowRight, ExternalLink, Calendar, MapPin, Building2 } from 'lucide-react'
 import { FaGithub } from 'react-icons/fa'
 import { getLocalizedField, CategoryData, Locale, ProjectData } from '@/lib/projects'
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer'
@@ -136,7 +136,42 @@ export default function ProjectDetailView({
                     <MapPin size={14} />
                     <span>{getLocalizedField(project.location, locale)}</span>
                   </div>
+                  {project.research && (
+                    <div className="flex items-center gap-2">
+                      <Building2 size={14} />
+                      <span>
+                        {getLocalizedField(project.research.lab, locale)}
+                        {project.research.collaboration && ` - ${project.research.collaboration}`}
+                      </span>
+                    </div>
+                  )}
                 </div>
+
+                {/* Results (AUDIT-017, AUDIT-082: sidebar, separate from the prose) */}
+                {project.results && project.results.length > 0 && (
+                  <div className="mb-8">
+                    <h2 className="text-xs tracking-caps-wide uppercase text-muted mb-4">
+                      {t('sections.results')}
+                    </h2>
+                    <dl className="grid grid-cols-2 gap-4">
+                      {project.results.map((result) => (
+                        <div key={getLocalizedField(result.label, locale)}>
+                          <dt className="text-xs text-muted mb-1">
+                            {getLocalizedField(result.label, locale)}
+                          </dt>
+                          <dd className="font-body font-semibold text-white">
+                            {result.value}
+                            {result.note && (
+                              <span className="block text-xs font-normal text-muted mt-0.5">
+                                {getLocalizedField(result.note, locale)}
+                              </span>
+                            )}
+                          </dd>
+                        </div>
+                      ))}
+                    </dl>
+                  </div>
+                )}
 
                 {/* Technologies */}
                 <div className="mb-8">
@@ -149,6 +184,16 @@ export default function ProjectDetailView({
                     ))}
                   </div>
                 </div>
+
+                {/* Limits (AUDIT-017, AUDIT-081: preserved in the sidebar, not dropped) */}
+                {project.limits && (
+                  <div className="mb-8">
+                    <h2 className="text-xs tracking-caps-wide uppercase text-muted mb-4">
+                      {t('sections.limits')}
+                    </h2>
+                    <p className="text-sm text-white/60">{getLocalizedField(project.limits, locale)}</p>
+                  </div>
+                )}
 
                 {/* gitHub CTA */}
                 {project.gitHubUrl && (
@@ -194,17 +239,46 @@ export default function ProjectDetailView({
               />
             </motion.div>
 
-            {/* Description */}
-            <motion.section
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-            >
-              <MarkdownRenderer
-                content={getLocalizedField(project.detailedDescription, locale)}
-                className="prose prose-lg max-w-none"
-              />
-            </motion.section>
+            {/* Description: named sections (AUDIT-017) when present, legacy free-form text otherwise */}
+            {project.sections ? (
+              <div className="space-y-10">
+                {(
+                  [
+                    ['context', project.sections.context],
+                    ['problem', project.sections.problem],
+                    ['approach', project.sections.approach],
+                    ['whatIBuilt', project.sections.whatIBuilt],
+                  ] as const
+                ).map(
+                  ([key, content], index) =>
+                    content && (
+                      <motion.section
+                        key={key}
+                        initial={{ opacity: 0, y: 20 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        transition={{ delay: 0.2 + index * 0.05, duration: 0.6 }}
+                      >
+                        <h2 className="font-body font-semibold text-xl mb-4">{t(`sections.${key}`)}</h2>
+                        <MarkdownRenderer
+                          content={getLocalizedField(content, locale)}
+                          className="prose prose-lg max-w-none"
+                        />
+                      </motion.section>
+                    )
+                )}
+              </div>
+            ) : (
+              <motion.section
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.6 }}
+              >
+                <MarkdownRenderer
+                  content={getLocalizedField(project.detailedDescription, locale)}
+                  className="prose prose-lg max-w-none"
+                />
+              </motion.section>
+            )}
           </div>
         </div>
 

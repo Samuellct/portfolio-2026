@@ -17,7 +17,10 @@ export interface ProjectData {
   title: BilingualText | string
   description: BilingualText | string
   subtitle?: BilingualText | string
-  detailedDescription: BilingualText | string
+  // Legacy free-form narrative, still the source for fiches not yet migrated to
+  // `sections` (AUDIT-017, Phases 7-8). Once a fiche has `sections`, this field
+  // is no longer rendered.
+  detailedDescription?: BilingualText | string
   technologies: TechName[]
   domains: string[]
   keywords: string[]
@@ -51,6 +54,20 @@ export interface ProjectData {
   limits?: BilingualText
   links?: Array<{ type: 'code' | 'demo' | 'docs' | 'report' | 'release'; url: string; label?: string }>
   sourceOfSkills?: 'academic' | 'internship' | 'personal'
+
+  // Named optional narrative sections (AUDIT-017). When present, these replace
+  // `detailedDescription` in the fiche render. "Résultats" and "Limites" (the
+  // last two sections of the template) are sourced from `results[]` and
+  // `limits` above rather than duplicated here.
+  sections?: {
+    context?: BilingualText
+    problem?: BilingualText
+    approach?: BilingualText
+    whatIBuilt?: BilingualText
+  }
+
+  // Structured research metadata (AUDIT-067), for `kind: 'research'` fiches.
+  research?: { lab: BilingualText; collaboration?: string }
 }
 
 export interface CategoryData {
