@@ -185,13 +185,15 @@ export default function ProjectDetailView({
                   </div>
                 </div>
 
-                {/* Limits (AUDIT-017, AUDIT-081: preserved in the sidebar, not dropped) */}
-                {project.limits && (
+                {/* Context (AUDIT-017: an intro reads better in the sidebar than Limits does) */}
+                {project.sections?.context && (
                   <div className="mb-8">
                     <h2 className="text-xs tracking-caps-wide uppercase text-muted mb-4">
-                      {t('sections.limits')}
+                      {t('sections.context')}
                     </h2>
-                    <p className="text-sm text-white/60">{getLocalizedField(project.limits, locale)}</p>
+                    <p className="text-sm text-white/60">
+                      {getLocalizedField(project.sections.context, locale)}
+                    </p>
                   </div>
                 )}
 
@@ -239,15 +241,17 @@ export default function ProjectDetailView({
               />
             </motion.div>
 
-            {/* Description: named sections (AUDIT-017) when present, legacy free-form text otherwise */}
+            {/* Description: named sections (AUDIT-017) when present, legacy free-form text otherwise.
+                Context moved to the sidebar (reads better as an intro there than Limits did);
+                Limits moved here, after What I built, closing the narrative on an honest note. */}
             {project.sections ? (
               <div className="space-y-10">
                 {(
                   [
-                    ['context', project.sections.context],
                     ['problem', project.sections.problem],
                     ['approach', project.sections.approach],
                     ['whatIBuilt', project.sections.whatIBuilt],
+                    ['limits', project.limits],
                   ] as const
                 ).map(
                   ([key, content], index) =>
