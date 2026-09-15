@@ -5,6 +5,14 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.13.4](https://github.com/Samuellct/portfolio-2026/compare/v4.13.3...v4.13.4) (2026-09-15)
+
+### Performance
+
+* convert remaining project images to WebP ([7c419f4](https://github.com/Samuellct/portfolio-2026/commit/7c419f4993f8d0e4e309d182926a83909b56b10f))
+* enable Cloudflare Images via the Workers binding ([031477c](https://github.com/Samuellct/portfolio-2026/commit/031477c2db5b3d851eb8317a919c6237098e959a))
+* resolve project data on the server and pass it as props ([9cd8f55](https://github.com/Samuellct/portfolio-2026/commit/9cd8f5523259af32e864f6cada3bcf337010fcb3))
+
 ## [4.13.3](https://github.com/Samuellct/portfolio-2026/compare/v4.13.2...v4.13.3) (2026-09-13)
 
 ### Corrigé
