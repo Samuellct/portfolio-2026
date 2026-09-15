@@ -453,7 +453,7 @@ Le plus récent des trois, encore en mouvement rapide (six versions en deux jour
       status: 'in-progress',
       period: { en: '2026 - Present', fr: '2026 - Présent' },
       location: { en: 'Personal project', fr: 'Projet personnel' },
-      image: '/images/jellyux.png',
+      image: '/images/jellyux.webp',
       imageAlt: {
         en: 'Screenshot of the JellyUX Homepage widget engine on a Jellyfin home page',
         fr: 'Capture d\'écran du moteur de widgets JellyUX Homepage sur une page d\'accueil Jellyfin',
@@ -492,7 +492,7 @@ L'application fonctionne entièrement hors ligne : aucun serveur, aucun cloud, a
       status: 'completed',
       period: { en: 'August 2026', fr: 'Août 2026' },
       location: { en: 'Personal project', fr: 'Projet personnel' },
-      image: '/images/delivr.png',
+      image: '/images/delivr.webp',
       imageAlt: {
         en: 'Home screen and delivery mode of the Delivr Android app, side by side',
         fr: 'Écran d\'accueil et mode livraison de l\'application Android Delivr, côte à côte',
