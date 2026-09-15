@@ -261,26 +261,34 @@ Enfin, tout le texte du site est géré via un fichier JSON centralisé, à l'ex
         en: 'Optimal Route Planning for hiking and mountaineering',
         fr: 'Planification d\'itinéraires optimaux en montagne',
       },
-      detailedDescription: {
-        en: `Most apps for mountain route planning follow established trails or ignore terrain complexity entirely. I built AlpineRoute to compute realistic off-trail itineraries in the Alps, treating the mountain as a continuous cost surface rather than a network of paths.
+      sections: {
+        context: {
+          en: `Most apps for mountain route planning follow established trails or ignore terrain complexity entirely. I built AlpineRoute to compute realistic off-trail itineraries in the Alps, treating the mountain as a continuous cost surface rather than a network of paths.`,
+          fr: `La plupart des applications de planification en montagne suivent des sentiers balisés ou ignorent la complexité du terrain. J'ai décidé de développer AlpineRoute pour calculer des itinéraires hors-sentier dans les Alpes, en modélisant la montagne comme une surface de coût continue plutôt que comme un réseau de chemins incomplet.`,
+        },
+        approach: {
+          en: `The system downloads IGN Lidar HD elevation tiles (50 cm resolution) on demand via the Géoplateforme API, covering only the bounding box of the planned route. For areas outside France, it falls back to the Copernicus GLO-30 DEM (30 m resolution). From the elevation data, the pipeline derives slope, aspect, roughness, and solar radiation for each grid cell.
 
-The system downloads IGN Lidar HD elevation tiles (50 cm resolution) on demand via the Géoplateforme API, covering only the bounding box of the planned route. For areas outside France, it falls back to the Copernicus GLO-30 DEM (30 m resolution). From the elevation data, the pipeline derives slope, aspect, roughness, and solar radiation for each grid cell.
+These raster layers are combined with vector data: glacier outlines from RGI 7.0, land cover from ESA WorldCover, and trails and barriers from OpenStreetMap. The resulting cost function penalizes steep slopes, glacier zones, dense vegetation and restricted areas, while favoring established trails and safer aspects.`,
+          fr: `Le système télécharge à la demande des tuiles IGN Lidar MNT (résolution 50 cm, sous-échantillonné ensuite) via l'API Géoplateforme, en se limitant à l'emprise de l'itinéraire planifié. Pour les zones hors de France, un fallback vers le MNT Copernicus GLO-30 (30 m) est prévu. À partir des données d'élévation, le pipeline dérive la pente, l'orientation, la rugosité et l'exposition solaire pour chaque cellule de la grille.
 
-These raster layers are combined with vector data: glacier outlines from RGI 7.0, land cover from ESA WorldCover, and trails and barriers from OpenStreetMap. The resulting cost function penalizes steep slopes, glacier zones, dense vegetation and restricted areas, while favoring established trails and safer aspects.
-
-Two routing strategies handle different terrain types: Valhalla for OSM sections, and Dijkstra pathfinding on the cost raster for off-trail itineraries. The API is asynchronous with Server-Sent Events for live progress updates, since route computations typically take 10 to 90 seconds.
-
-The project works well on the itineraries I've tested in the French Alps, including approaches around Chamonix and the Écrins. It's now on its second major iteration, but it still only runs locally: hosting the Lidar processing and routing stack publicly at a reasonable cost remains an open problem, so development is on hold for now.`,
-        fr: `La plupart des applications de planification en montagne suivent des sentiers balisés ou ignorent la complexité du terrain. J'ai décidé de développer AlpineRoute pour calculer des itinéraires hors-sentier dans les Alpes, en modélisant la montagne comme une surface de coût continue plutôt que comme un réseau de chemins incomplet.
-
-Le système télécharge à la demande des tuiles IGN Lidar MNT (résolution 50 cm, sous-échantillonné ensuite) via l'API Géoplateforme, en se limitant à l'emprise de l'itinéraire planifié. Pour les zones hors de France, un fallback vers le MNT Copernicus GLO-30 (30 m) est prévu. À partir des données d'élévation, le pipeline dérive la pente, l'orientation, la rugosité et l'exposition solaire pour chaque cellule de la grille.
-
-Ces couches raster sont combinées avec des données vectorielles : contours glaciaires RGI 7.0, occupation du sol ESA WorldCover 10 m, et sentiers/barrières OSM. La fonction de coût pénalise les fortes pentes, les zones glaciaires crevassées, la végétation dense et les zones interdites, tout en favorisant les sentiers établis et les expositions sûres.
-
-Deux stratégies de calcul d'itinéraire sont utilisées en fonction du type de terrain : Valhalla pour les sections de suivi des chemins OSM, et l'algorithme de Dijkstra sur la grille de coûts pour les itinéraires hors-piste. L'API est asynchrone et utilise les Server-Sent Events pour fournir des mises à jour en temps réel sur l'avancement, car le calcul des itinéraires prend généralement entre 10 et 90 secondes.
-
-Le projet fonctionne bien sur les itinéraires testés dans les Alpes françaises, notamment autour de Chamonix et des Écrins. Il en est maintenant à sa deuxième itération majeure, mais il ne tourne encore qu'en local : héberger la chaîne de traitement Lidar et de calcul d'itinéraire publiquement à un coût raisonnable reste un problème non résolu, donc le développement est en pause pour le moment.`,
+Ces couches raster sont combinées avec des données vectorielles : contours glaciaires RGI 7.0, occupation du sol ESA WorldCover 10 m, et sentiers/barrières OSM. La fonction de coût pénalise les fortes pentes, les zones glaciaires crevassées, la végétation dense et les zones interdites, tout en favorisant les sentiers établis et les expositions sûres.`,
+        },
+        whatIBuilt: {
+          en: `Two routing strategies handle different terrain types: Valhalla, an open-source routing engine built on OpenStreetMap data, for sections that follow existing trails, and Dijkstra pathfinding on the cost raster for off-trail itineraries. Route computations typically take 10 to 90 seconds, so the API streams progress updates live as it works, rather than leaving the user staring at a frozen screen until the final result.`,
+          fr: `Deux stratégies de calcul d'itinéraire sont utilisées en fonction du type de terrain : Valhalla, un moteur de routage open source qui s'appuie sur les données OpenStreetMap, pour les sections de suivi des chemins existants, et l'algorithme de Dijkstra sur la grille de coûts pour les itinéraires hors-piste. Le calcul d'un itinéraire prend généralement entre 10 et 90 secondes ; l'API envoie donc sa progression en direct au fur et à mesure, plutôt que de faire attendre l'utilisateur devant un écran figé jusqu'au résultat final.`,
+        },
       },
+      kind: 'webapp',
+      results: [
+        { label: { en: 'Lidar resolution', fr: 'Résolution Lidar' }, value: '50 cm', note: { en: 'IGN Lidar HD', fr: 'IGN Lidar HD' } },
+        { label: { en: 'Route computation time', fr: 'Temps de calcul' }, value: '10-90 s' },
+      ],
+      limits: {
+        en: `The project works well on the itineraries I've tested in the French Alps, including approaches around Chamonix and the Écrins. It's now on its second major iteration, but it still only runs locally: hosting the Lidar processing and routing stack publicly at a reasonable cost remains an open problem, so development is on hold for now.`,
+        fr: `Le projet fonctionne bien sur les itinéraires testés dans les Alpes françaises, notamment autour de Chamonix et des Écrins. Il en est maintenant à sa deuxième itération majeure, mais il ne tourne encore qu'en local : héberger la chaîne de traitement Lidar et de calcul d'itinéraire publiquement à un coût raisonnable reste un problème non résolu, donc le développement est en pause pour le moment.`,
+      },
+      sourceOfSkills: 'personal',
       technologies: ['Python', 'FastAPI', 'NetworkX', 'Rasterio', 'GDAL', 'GeoPandas', 'scikit-image', 'React', 'MapLibre GL JS', 'Leaflet', 'Recharts', 'Terra Draw', 'Valhalla', 'Docker'],
       domains: ['Geospatial Analysis', 'Shortest path problem', 'Web Development'],
       keywords: ['mountaineering', 'route planning', 'lidar', 'pathfinding', 'geospatial', 'alps', 'dem', 'fastapi'],
@@ -294,6 +302,13 @@ Le projet fonctionne bien sur les itinéraires testés dans les Alpes française
         en: 'Topographic map showing a computed mountaineering route',
         fr: 'Carte topographique montrant un itinéraire alpiniste calculé',
       },
+      media: [
+        {
+          src: '/images/alpineRoute.webp',
+          alt: { en: 'Topographic map showing a computed mountaineering route', fr: 'Carte topographique montrant un itinéraire alpiniste calculé' },
+          role: 'interface',
+        },
+      ],
       gitHubUrl: 'https://github.com/Samuellct/AlpineRoute',
       featured: true,
       dateCreated: '2025-12-09',
@@ -395,18 +410,32 @@ J'ai utilisé Accred au Festival de Cannes 2026 en déploiement privé, ce qui a
         en: 'Race Performance Prediction, Rebuilt on Real Data',
         fr: 'Prédiction de performance en course, reconstruite sur données réelles',
       },
-      detailedDescription: {
-        en: `TimePredict predicts race performance for trail running: it takes a route, the weather expected along it, and an athlete's physiology and nutrition needs, and turns them into a personalized race report. I'm rebuilding it from scratch after running a full adversarial audit on the first version, which turned up real problems: invented indices, a hard-coded pace-per-slope table that was wrong 30 to 50 percent of the time, and a weather module that silently failed on most of a route. The rebuild validates each component against real race data before wiring anything together.
-
-Twelve of the eighteen planned steps are done. The pace-per-slope curve is now fitted on 26,301 real GPS segments instead of typed by hand. The level and uncertainty model reaches a 25.4% average error on nine real races, against 37.0% for a plain Riegel estimate, and its error roughly doubles when tested outside its training conditions rather than quietly staying wrong. Terrain classification and elevation gain are checked against actual races (Trail du Sancy, MaxiRace, UTMB) instead of assumed correct. The weather module, now built around the WBGT heat-stress index, matches an official reference calculation to within 0.00°C and returns a result on all 138 points of a real route, versus zero out of six attempts for the old version.
-
-What's not built yet is the part that turns these validated pieces into one system: the prediction engine itself, the report generator, and the small interface meant to run it. Each finished piece ships with its own tests and its own documented limits, so nothing gets marked done just because it looks like it works.`,
-        fr: `TimePredict prédit la performance en trail running : à partir d'un parcours, de la météo attendue et des besoins physiologiques et nutritionnels d'un coureur, l'outil génère un rapport de course personnalisé. Je le reconstruis intégralement après avoir mené un audit contradictoire complet de la première version, qui a mis au jour de vrais problèmes : indices inventés, une table vitesse-pente codée en dur qui se trompait de 30 à 50 %, et un module météo qui échouait silencieusement sur la majorité d'un parcours. La reconstruction valide chaque composant sur des données de course réelles avant de les assembler.
-
-Douze des dix-huit étapes prévues sont terminées. La courbe vitesse-pente est désormais ajustée sur 26 301 segments GPS réels au lieu d'être saisie à la main. Le modèle de niveau et d'incertitude atteint une erreur moyenne de 25,4 % sur neuf courses réelles, contre 37,0 % pour une estimation Riegel classique, et son erreur double à peu près quand on le teste hors de ses conditions d'entraînement plutôt que de rester silencieusement faux. La classification du terrain et le calcul de dénivelé sont vérifiés sur de vraies courses (Trail du Sancy, MaxiRace, UTMB) plutôt que supposés corrects. Le module météo, reconstruit autour de l'indice de stress thermique WBGT, retrouve à 0,00 °C près une référence officielle et renvoie un résultat sur les 138 points d'un parcours réel, contre zéro sur six tentatives pour l'ancienne version.
-
-Ce qui manque encore, c'est ce qui relie ces briques validées en un seul système : le moteur de prédiction lui-même, le générateur de rapport, et la petite interface prévue pour l'utiliser. Chaque brique terminée est livrée avec ses propres tests et ses propres limites documentées, pour ne rien déclarer fini simplement parce que ça a l'air de marcher.`,
+      sections: {
+        context: {
+          en: `TimePredict predicts race performance for trail running: it takes a route, the weather expected along it, and an athlete's physiology and nutrition needs, and turns them into a personalized race report.`,
+          fr: `TimePredict prédit la performance en trail running : à partir d'un parcours, de la météo attendue et des besoins physiologiques et nutritionnels d'un coureur, l'outil génère un rapport de course personnalisé.`,
+        },
+        problem: {
+          en: `My first approach was to split the project into many small, independent modules, meant to be combined afterward into one global model. That approach quickly proved unworkable: once put together, the modules accumulated invisible errors, invented indices, a hard-coded pace-per-slope table that was wrong 30 to 50 percent of the time, a weather module that silently failed on most of a route. I'm now rebuilding the project from scratch, keeping only the calculation and logic pieces that had proven themselves, but this time validating them together against real race data before wiring anything up.`,
+          fr: `Au départ, j'avais découpé le projet en une multitude de petits modules indépendants, pensant les assembler ensuite dans un modèle global. Cette approche s'est vite révélée intenable : une fois réunis, les modules accumulaient des erreurs invisibles, indices inventés, table vitesse-pente codée en dur qui se trompait de 30 à 50 %, module météo qui échouait silencieusement sur la majorité d'un parcours. Je reconstruis maintenant le projet depuis le début, en ne gardant que les briques de calcul et de logique qui avaient fait leurs preuves, mais en les validant ensemble cette fois, sur des données de course réelles, avant de les assembler.`,
+        },
+        whatIBuilt: {
+          en: `The new version is under active development. The pace-per-slope curve is now fitted on 26,301 real GPS segments instead of typed by hand. The level and uncertainty model reaches a 25.4% average error on nine real races, against 37.0% for a Riegel estimate, the classic empirical formula that predicts a race time from a single reference performance at another distance. Its error roughly doubles when tested outside its training conditions, instead of quietly staying wrong the way the old version did. Terrain classification and elevation gain are checked against actual races (Trail du Sancy, MaxiRace, UTMB) instead of assumed correct. The weather module, now built around the WBGT heat-stress index (a measure combining temperature, humidity and radiation to estimate heatstroke risk), matches an official reference calculation to within 0.00°C, and returns a result on all 138 points of a real tested route, versus zero out of six attempts for the old version.`,
+          fr: `La nouvelle version est en cours de développement. La courbe vitesse-pente est désormais ajustée sur 26 301 segments GPS réels, au lieu d'être saisie à la main. Le modèle de niveau et d'incertitude atteint une erreur moyenne de 25,4 % sur neuf courses réelles, contre 37,0 % pour une estimation de Riegel, la formule empirique classique qui prédit un temps de course à partir d'une seule performance de référence sur une autre distance. Son erreur double à peu près quand on le teste hors de ses conditions d'entraînement, plutôt que de rester silencieusement faux comme le faisait l'ancienne version. La classification du terrain et le calcul de dénivelé sont vérifiés sur de vraies courses (Trail du Sancy, MaxiRace, UTMB) plutôt que supposés corrects. Le module météo, reconstruit autour de l'indice de stress thermique WBGT (un indicateur qui combine température, humidité et rayonnement pour estimer le risque de coup de chaleur), retrouve à 0,00 °C près une référence officielle, et renvoie un résultat sur les 138 points d'un parcours réel testé, contre zéro sur six tentatives pour l'ancienne version.`,
+        },
       },
+      kind: 'analysis',
+      results: [
+        { label: { en: 'GPS segments', fr: 'Segments GPS' }, value: '26 301' },
+        { label: { en: 'Model error', fr: 'Erreur modèle' }, value: '25,4 %', note: { en: 'vs 37.0% for a Riegel estimate', fr: 'vs 37,0 % pour une estimation de Riegel' } },
+        { label: { en: 'WBGT accuracy', fr: 'Précision météo WBGT' }, value: '0,00 °C' },
+        { label: { en: 'Route coverage', fr: 'Couverture parcours' }, value: '138/138', note: { en: 'vs 0/6 for the old version', fr: 'vs 0/6 pour l\'ancienne version' } },
+      ],
+      limits: {
+        en: `I'm now working on the part that ties these validated pieces into one system: the prediction engine itself, a big piece that has to combine terrain, weather and a runner's profile into one coherent estimate, followed by the report generator. For the interface, I'm planning to build a small web app directly, since I was already planning to deploy the project that way, but I don't have a clear idea yet of what it will look like. Each finished piece ships with its own tests and its own documented limits, so nothing gets marked done just because it looks like it works.`,
+        fr: `Je travaille maintenant sur la partie qui relie ces briques validées en un seul système : le moteur de prédiction lui-même, un gros morceau qui doit combiner le terrain, la météo et le profil du coureur en une seule estimation cohérente, puis le générateur de rapport de course. Pour l'interface, je pensais développer directement une petite application web, puisque je comptais de toute façon déployer le projet sous cette forme, mais je n'ai pas encore d'idée précise de ce à quoi elle ressemblera. Chaque brique déjà terminée est livrée avec ses propres tests et ses propres limites documentées, pour ne rien déclarer fini simplement parce que ça a l'air de marcher.`,
+      },
+      sourceOfSkills: 'personal',
       technologies: ['Python', 'uv', 'Rasterio', 'OSMnx', 'GeoPandas', 'pvlib', 'thermofeel', 'gpxpy', 'Meteostat'],
       domains: ['Data Science', 'Meteorology', 'Sports Analytics', 'Geospatial Analysis'],
       keywords: ['trail running', 'weather', 'gpx', 'utci', 'python', 'forecast', 'thermal analysis'],
@@ -419,6 +448,13 @@ Ce qui manque encore, c'est ce qui relie ces briques validées en un seul systè
         en: 'Chart of the measured cost-of-transport factor against slope, fitted on real GPS data with 95% confidence intervals, compared to the Minetti model and the old lookup table',
         fr: 'Graphique du facteur de coût mesuré en fonction de la pente, ajusté sur des données GPS réelles avec intervalles de confiance à 95 %, comparé au modèle de Minetti et à l\'ancienne table',
       },
+      media: [
+        {
+          src: '/images/timepredict.webp',
+          alt: { en: 'Chart of the measured cost-of-transport factor against slope, fitted on real GPS data with 95% confidence intervals, compared to the Minetti model and the old lookup table', fr: 'Graphique du facteur de coût mesuré en fonction de la pente, ajusté sur des données GPS réelles avec intervalles de confiance à 95 %, comparé au modèle de Minetti et à l\'ancienne table' },
+          role: 'result',
+        },
+      ],
       gitHubUrl: 'https://github.com/Samuellct/TimePredict',
       visible: true,
       featured: true,
@@ -891,21 +927,34 @@ Lorsque j'ai appliqué cette présélection aux données réelles du Run 1, j'ai
         en: 'Feasibility study of long-lived particle (LLPs) detection at the HL-LHC',
         fr: 'Étude de faisabilité de la détection de particules à longue durée de vie (LLP) au HL-LHC',
       },
-      detailedDescription: {
-        en: `During my final master's degree year, I spent five months with the ATLAS collaboration at the Clermont Physics Laboratory. I worked on simulating Long-Lived Particles, a class of particles predicted by several extensions of the Standard Model. Unlike ordinary particles that decay almost instantly near the collision point, LLPs can travel centimeters or even meters through the detector before breaking apart into observable products.
-
-The challenge is that ATLAS wasn't originally designed to catch these delayed signatures. Standard reconstruction algorithms expect particles to decay close to the interaction point, so LLP events often get missed or classified as background noise.
-
-I used Monte Carlo event generators to simulate thousands of proton-proton collisions at 13.6 TeV. The simulations covered two production mechanisms: *gluon fusion*, which has the highest rate, and *associated production with W or Z bosons*, which provides cleaner experimental signatures. I tested three different LLP masses (10, 30, and 55 GeV) to understand how the kinematics change across this range.
-
-The analysis focused on identifying kinematic patterns in the resulting jets (i.e. narrow showers of particles produced in collisions). I found that a transverse momentum cut at 60 GeV retains 61% of the signal while reducing QCD background to just 7%. The work also had a forward-looking component. ATLAS is being upgraded for the High-Luminosity LHC era with new tracking detectors that will extend coverage into regions currently inaccessible. The simulations showed that this upgrade will capture an additional 16% of signal events that would otherwise be lost.`,
-        fr: `Au cours de ma dernière année de master, j'ai passé cinq mois au sein de l'équipe ATLAS au Laboratoire de physique de Clermont. J'ai travaillé sur la simulation de particules à longue durée de vie (LLP), une classe de particules prédite par plusieurs extensions du Modèle standard. Contrairement aux particules ordinaires qui se désintègrent presque instantanément près du point de collision, les LLP peuvent parcourir plusieurs centimètres, voire plusieurs mètres, à travers le détecteur avant de se désintégrer en produits observables.
-
-La difficulté réside dans le fait qu'ATLAS n'a pas été conçu à l'origine pour détecter ces signatures retardées. Les algorithmes de reconstruction standard s'attendent à ce que les particules se désintègrent près du point d'interaction, de sorte que les événements LLP sont souvent manqués ou classés comme bruit de fond.
-
-J'ai utilisé des générateurs d'événements Monte Carlo pour simuler des milliers de collisions proton-proton à 13,6 TeV. Les simulations couvraient deux mécanismes de production : la *fusion de gluons*, qui présente le taux le plus élevé de production de boson de Higgs, et la *production associée à des bosons W ou Z*, qui fournit des signatures expérimentales plus nettes. J'ai testé trois masses LLP différentes (10, 30 et 55 GeV) afin de comprendre comment la cinématique évolue dans cette gamme.
-
-L'analyse s'est concentrée sur l'identification de la cinématique dans les jets résultants (i.e. les gerbes étroites de particules produites lors des collisions). J'ai découvert qu'une coupure de l'impulsion transverse à 60 GeV conservait 61 % du signal tout en réduisant le bruit de fond QCD à seulement 7 %. Ce travail comportait également une dimension prospective. ATLAS est en cours de mise à niveau pour l'ère du LHC à haute luminosité, avec de nouveaux détecteurs de trajectoire qui étendront la couverture à des régions actuellement inaccessibles. Les simulations ont montré que cette mise à niveau permettra de capturer 16 % d'événements supplémentaires qui, autrement, seraient perdus.`,
+      sections: {
+        context: {
+          en: `During my final master's degree year, I spent five months with the ATLAS collaboration at the Clermont Physics Laboratory. I worked on simulating Long-Lived Particles, a class of particles predicted by several extensions of the Standard Model. Unlike ordinary particles that decay almost instantly near the collision point, LLPs can travel centimeters or even meters through the detector before breaking apart into observable products.`,
+          fr: `Au cours de ma dernière année de master, j'ai passé cinq mois au sein de l'équipe ATLAS au Laboratoire de physique de Clermont. J'ai travaillé sur la simulation de particules à longue durée de vie (LLP), une classe de particules prédite par plusieurs extensions du Modèle standard. Contrairement aux particules ordinaires qui se désintègrent presque instantanément près du point de collision, les LLP peuvent parcourir plusieurs centimètres, voire plusieurs mètres, à travers le détecteur avant de se désintégrer en produits observables.`,
+        },
+        problem: {
+          en: `The challenge is that ATLAS wasn't originally designed to catch these delayed signatures. Standard reconstruction algorithms expect particles to decay close to the interaction point, so LLP events often get missed or classified as background noise.`,
+          fr: `La difficulté réside dans le fait qu'ATLAS n'a pas été conçu à l'origine pour détecter ces signatures retardées. Les algorithmes de reconstruction standard s'attendent à ce que les particules se désintègrent près du point d'interaction, de sorte que les événements LLP sont souvent manqués ou classés comme bruit de fond.`,
+        },
+        approach: {
+          en: `I used Monte Carlo event generators to simulate thousands of proton-proton collisions at 13.6 TeV. The simulations covered two production mechanisms: *gluon fusion*, which has the highest rate, and *associated production with W or Z bosons*, which provides cleaner experimental signatures. I tested three different LLP masses (10, 30, and 55 GeV) to understand how the kinematics change across this range.`,
+          fr: `J'ai utilisé des générateurs d'événements Monte Carlo pour simuler des milliers de collisions proton-proton à 13,6 TeV. Les simulations couvraient deux mécanismes de production : la *fusion de gluons*, qui présente le taux le plus élevé de production de boson de Higgs, et la *production associée à des bosons W ou Z*, qui fournit des signatures expérimentales plus nettes. J'ai testé trois masses LLP différentes (10, 30 et 55 GeV) afin de comprendre comment la cinématique évolue dans cette gamme.`,
+        },
+        whatIBuilt: {
+          en: `The analysis focused on identifying kinematic patterns in the resulting jets (i.e. narrow showers of particles produced in collisions). I found that a transverse momentum cut at 60 GeV retains 61% of the signal while reducing QCD background to just 7%. The work also had a forward-looking component. ATLAS is being upgraded for the High-Luminosity LHC era with new tracking detectors that will extend coverage into regions currently inaccessible. The simulations showed that this upgrade will capture an additional 16% of signal events that would otherwise be lost.`,
+          fr: `L'analyse s'est concentrée sur l'identification de la cinématique dans les jets résultants (i.e. les gerbes étroites de particules produites lors des collisions). J'ai découvert qu'une coupure de l'impulsion transverse à 60 GeV conservait 61 % du signal tout en réduisant le bruit de fond QCD à seulement 7 %. Ce travail comportait également une dimension prospective. ATLAS est en cours de mise à niveau pour l'ère du LHC à haute luminosité, avec de nouveaux détecteurs de trajectoire qui étendront la couverture à des régions actuellement inaccessibles. Les simulations ont montré que cette mise à niveau permettra de capturer 16 % d'événements supplémentaires qui, autrement, seraient perdus.`,
+        },
+      },
+      kind: 'research',
+      results: [
+        { label: { en: 'Signal efficiency', fr: 'Efficacité du signal' }, value: '61 %', note: { en: 'at a 60 GeV transverse momentum cut', fr: 'à une coupure de 60 GeV en impulsion transverse' } },
+        { label: { en: 'QCD background', fr: 'Bruit de fond QCD' }, value: '7 %' },
+        { label: { en: 'HL-LHC gain', fr: 'Gain HL-LHC' }, value: '+16 %', note: { en: 'additional signal events captured', fr: 'événements de signal supplémentaires captés' } },
+      ],
+      sourceOfSkills: 'internship',
+      research: {
+        lab: { en: 'Clermont Physics Laboratory (LPC)', fr: 'Laboratoire de Physique de Clermont (LPC)' },
+        collaboration: 'ATLAS',
       },
       technologies: ['MadGraph5', 'Rivet', 'Docker', 'C++', 'Bash'],
       domains: ['Particle Physics', 'Simulation'],
@@ -913,13 +962,21 @@ L'analyse s'est concentrée sur l'identification de la cinématique dans les jet
       category: 'internship',
       status: 'completed',
       period: { en: 'February - July 2025', fr: 'Février - Juillet 2025' },
-      location: 'LPCA',
+      location: { en: 'Clermont Physics Laboratory (LPC)', fr: 'Laboratoire de Physique de Clermont (LPC)' },
       gitHubUrl: "https://github.com/Samuellct/Internship-M2-LLP-in-ATLAS",
       image: '/images/m2Internship.webp',
       imageAlt: {
         en: 'Types of LLPs signatures in LHC detectors',
         fr: 'Types de signatures de LLP dans les détecteurs du LHC',
       },
+      media: [
+        {
+          src: '/images/m2Internship.webp',
+          alt: { en: 'Types of LLPs signatures in LHC detectors', fr: 'Types de signatures de LLP dans les détecteurs du LHC' },
+          credit: { name: 'H. Russell', url: 'https://indico.cern.ch/event/607314/contributions/2542309/attachments/1447873/2231444/20170424_LLPs.pdf' },
+          role: 'context',
+        },
+      ],
       imageCredit: 'H. Russell',
       imageCreditUrl: 'https://indico.cern.ch/event/607314/contributions/2542309/attachments/1447873/2231444/20170424_LLPs.pdf',
       textColor: 'black',
