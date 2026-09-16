@@ -5,6 +5,12 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.14.1](https://github.com/Samuellct/portfolio-2026/compare/v4.14.0...v4.14.1) (2026-09-16)
+
+### Corrigé
+
+* move the context section to the sidebar and limits to the end of the narrative ([57c99f3](https://github.com/Samuellct/portfolio-2026/commit/57c99f373c98e9f7ff4fc9f2c78065ba61fa34ac))
+
 ## [4.14.0](https://github.com/Samuellct/portfolio-2026/compare/v4.13.5...v4.14.0) (2026-09-15)
 
 ### Ajouté
