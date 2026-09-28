@@ -5,6 +5,12 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.15.0](https://github.com/Samuellct/portfolio-2026/compare/v4.14.1...v4.15.0) (2026-09-28)
+
+### Ajouté
+
+* disallow AI training crawlers and declare content signals in robots.txt ([a5e998b](https://github.com/Samuellct/portfolio-2026/commit/a5e998b809d98a5b05c19ddc9b4c37fcca9a6940))
+
 ## [4.14.1](https://github.com/Samuellct/portfolio-2026/compare/v4.14.0...v4.14.1) (2026-09-16)
 
 ### Corrigé
