@@ -108,31 +108,31 @@ export const projectsData: Record<string, Record<string, ProjectData>> = {
         fr: 'Construction d\'un serveur domestique pour apprendre la virtualisation, l\'administration NAS et l\'auto-hébergement.',
       },
       subtitle: {
-        en: 'Building a Private and Scalable Family Cloud',
-        fr: 'Construire un cloud familial privé et évolutif',
+        en: 'Proxmox, TrueNAS and Jellyfin on an old PC',
+        fr: 'Proxmox, TrueNAS et Jellyfin sur un ancien PC',
       },
-      detailedDescription: {
-        en: `
-I started this project to learn the basics of server administration and virtualization. Instead of buying a ready-made NAS, I repurposed an old PC (AMD A8-7650K, 32GB DDR3 RAM, 400 GB SSD for system files) to build a "Proof of Concept" system. The goal is to test how different services work together before investing in more expensive hardware.
-
-### My current setup:
-I started by installing **Proxmox VE** as the main OS.
-- **Storage:** I installed **TrueNAS** on a Proxmox VM and connected a single 500GB drive to it. This is mainly to get used to the TrueNAS / ZFS interface. In the future, I plan to install between 15 and 20TB of storage in a RAID-Z1 configuration.
-- **Cloud & Media:** I installed **Nextcloud** and **Jellyfin** on TrueNAS, one app is dedicated to file sharing (like Google Drive) and the other to streaming movies.
-- **Network** : I implemented **Nginx Proxy Manager** to manage reverse proxy logic and connect my services (Nextcloud, Jellyfin) to subdomains of my personal domain so that I can access them from anywhere.
-
-However, I'm starting to hit some limits. Running Proxmox as a base layer might be too heavy for my old PC once several users start streaming or using VMs. I'm currently considering switching to a bare-metal TrueNAS install and building a dedicated machine for virtualization later on. I also plan to add an Arc A380 GPU soon, which will allow Jellyfin to transcode video files on the fly without crushing the CPU.`,
-        fr: `
-J'ai lancé ce projet afin d'apprendre les bases de l'administration de serveurs et de la virtualisation. Au lieu d'acheter un NAS prêt à l'emploi, j'ai réutilisé un ancien PC (AMD A8-7650K, 32 Go de RAM DDR3, SSD de 400 Go pour les fichiers système) afin de construire un système *Proof of Concept*. L'objectif est de tester le fonctionnement conjoint de différents services avant d'investir dans du matériel plus coûteux.
-
-### Ma configuration actuelle :
-J'ai commencé par installer **Proxmox VE** comme OS principal.
-- **Stockage :** j'ai installé **TrueNAS** sur une machine virtuelle Proxmox et j'y ai connecté un seul disque dur de 500 Go. Cela m'a principalement permis de me familiariser avec l'interface TrueNAS / ZFS. À l'avenir, je prévois d'installer entre 15 et 20 To de stockage dans une configuration RAID-Z1.
-- **Cloud et médias :** j'ai installé **Nextcloud** et **Jellyfin** sur TrueNAS, l'une des applications étant dédiée au partage de fichiers (comme Google Drive) et l'autre au streaming de films.
-- **Réseau** : j'ai mis en place **Nginx Proxy Manager** pour gérer la logique de reverse proxy et connecter mes services (Nextcloud, Jellyfin) à des sous-domaines de mon domaine personnel afin de pouvoir y accéder depuis n'importe où.
-
-Cependant, je commence à atteindre certaines limites. L'exécution de Proxmox en tant que couche de base risque d'être trop lourde pour mon ancien PC une fois que plusieurs utilisateurs commenceront à utiliser les services proposés. J'envisage actuellement de passer à une installation TrueNAS *bare-metal* et de construire plus tard une machine dédiée à la virtualisation. Je prévois également d'ajouter prochainement un GPU Arc A380, qui permettra à Jellyfin de transcoder des fichiers vidéo à la volée sans saturer le CPU.`,
+      sections: {
+        context: {
+          en: `I started this project to learn the basics of server administration and virtualization. Instead of buying a ready-made NAS (network-attached storage), I repurposed an old PC (AMD A8-7650K, 32GB DDR3 RAM, 400 GB SSD for system files) to build a "Proof of Concept" system. The goal is to test how different services work together before investing in more expensive hardware.`,
+          fr: `J'ai lancé ce projet afin d'apprendre les bases de l'administration de serveurs et de la virtualisation. Au lieu d'acheter un NAS (serveur de stockage en réseau) prêt à l'emploi, j'ai réutilisé un ancien PC (AMD A8-7650K, 32 Go de RAM DDR3, SSD de 400 Go pour les fichiers système) afin de construire un système "Proof of Concept". L'objectif est de tester le fonctionnement conjoint de différents services avant d'investir dans du matériel plus coûteux.`,
+        },
+        whatIBuilt: {
+          en: `I started by installing **Proxmox VE** as the main OS.
+- **Storage:** I installed **TrueNAS** on a Proxmox VM (virtual machine) and connected a 500GB drive to it, then a second 2TB drive in a separate pool. This is mainly to get used to the TrueNAS / ZFS interface. In the future, I plan to install between 15 and 20TB of storage in a RAID-Z1 configuration (a ZFS layout that survives the loss of one disk).
+- **Cloud & Media:** I installed **Nextcloud** and **Jellyfin** on TrueNAS, one app is dedicated to file sharing (like Google Drive) and the other to streaming movies. The Jellyfin plugins I maintain for it are described on the [JellyUX](/en/projects/personal/jellyux) page.
+- **Network:** I implemented **Nginx Proxy Manager** to manage reverse proxy logic and connect my services (Nextcloud, Jellyfin) to subdomains of my personal domain so that I can access them from anywhere.`,
+          fr: `J'ai commencé par installer **Proxmox VE** comme OS principal.
+- **Stockage :** j'ai installé **TrueNAS** sur une machine virtuelle Proxmox et j'y ai connecté un disque dur de 500 Go, puis un second de 2 To dans un pool séparé. Cela m'a principalement permis de me familiariser avec l'interface TrueNAS / ZFS. À l'avenir, je prévois d'installer entre 15 et 20 To de stockage dans une configuration RAID-Z1 (une organisation ZFS qui survit à la perte d'un disque).
+- **Cloud et médias :** j'ai installé **Nextcloud** et **Jellyfin** sur TrueNAS, l'une des applications étant dédiée au partage de fichiers (comme Google Drive) et l'autre au streaming de films. Les plugins Jellyfin que je maintiens pour ce serveur sont présentés sur la fiche [JellyUX](/fr/projects/personal/jellyux).
+- **Réseau :** j'ai mis en place **Nginx Proxy Manager** pour gérer la logique de reverse proxy et connecter mes services (Nextcloud, Jellyfin) à des sous-domaines de mon domaine personnel afin de pouvoir y accéder depuis n'importe où.`,
+        },
       },
+      limits: {
+        en: `However, I'm starting to hit some limits. Jellyfin now has about ten user accounts, around five of them used regularly. Running Proxmox as a base layer might be too heavy for my old PC once several users rely on the planned services: video streaming (Jellyfin), dedicated photo storage (Immich) and bulk storage (NAS access, Nextcloud). I'm currently considering switching to a bare-metal TrueNAS install and building a dedicated machine for virtualization later on. I also planned to add an Arc A380 GPU, which would allow Jellyfin to transcode video files on the fly without crushing the CPU. With component prices rising sharply, these upgrades are on hold, so this test phase will last longer than planned.`,
+        fr: `Cependant, je commence à atteindre certaines limites. Jellyfin compte maintenant une dizaine de comptes utilisateur, dont environ cinq utilisés régulièrement. L'exécution de Proxmox en tant que couche de base risque d'être trop lourde pour mon ancien PC une fois que plusieurs utilisateurs s'appuieront sur les services prévus : streaming vidéo (Jellyfin), stockage dédié des photos (Immich) et stockage de masse (accès NAS, Nextcloud). J'envisage actuellement de passer à une installation TrueNAS *bare-metal* et de construire plus tard une machine dédiée à la virtualisation. J'avais aussi prévu d'ajouter un GPU Arc A380, qui permettrait à Jellyfin de transcoder des fichiers vidéo à la volée sans saturer le CPU. Avec la flambée des prix des composants, ces améliorations sont en attente, et cette phase de test va durer plus longtemps que prévu.`,
+      },
+      kind: 'infra',
+      sourceOfSkills: 'personal',
       technologies: ['Proxmox', 'TrueNAS', 'Nextcloud', 'Jellyfin', 'Nginx Proxy Manager'],
       domains: ['Virtualization', 'Networking', 'Self-hosting'],
       keywords: ['virtualization', 'storage', 'cloud', 'server', 'truenas', 'NAS'],
@@ -152,33 +152,41 @@ Cependant, je commence à atteindre certaines limites. L'exécution de Proxmox e
       id: 'portfolio-website',
       title: { en: 'Portfolio Website', fr: 'Site portfolio' },
       description: {
-        en: 'A personal website built with Next.js 15, featuring Three.js effects and SSR.',
-        fr: 'Site personnel développé avec Next.js 15, intégrant des effets Three.js et le rendu côté serveur.',
+        en: 'A personal website built with Next.js 15: Three.js effects, server-side rendering, and every page in French and English.',
+        fr: 'Site personnel développé avec Next.js 15 : effets Three.js, rendu côté serveur, et chaque page en français et en anglais.',
       },
       subtitle: {
         en: 'Presenting my profile and projects in physics and computer science',
         fr: 'Présenter mon profil et mes projets en physique et informatique',
       },
-      detailedDescription: {
-        en: `I started this portfolio project in 2024 because I wanted a space to present my profile and projects in a less formal way than a CV allows. Building it myself also gave me an opportunity to learn web development progressively while having a concrete goal.
+      sections: {
+        context: {
+          en: `I started this portfolio project in 2024 because I wanted a space to present my profile and projects in a less formal way than a CV allows. Building it myself also gave me an opportunity to learn web development progressively while having a concrete goal.`,
+          fr: `J'ai commencé ce projet de portfolio en 2024, car je souhaitais disposer d'un espace pour présenter mon profil et mes projets de manière moins formelle qu'un CV. Le créer moi-même m'a également donné l'occasion d'apprendre progressivement le développement web tout en ayant un objectif concret.`,
+        },
+        approach: {
+          en: `The first version used WordPress, but I quickly found the platform too limiting and heavy for what I needed. Between late 2024 and early 2025, I rebuilt everything with Eleventy (V2), which let me work directly with HTML and CSS in a structure I understood well. A few months later, I moved to React with Vite (V3) to learn component-based architecture and client-side rendering (CSR), which established the foundation of modern web apps, even though I could see the limits of pure CSR.
 
-The first version used WordPress, but I quickly found the platform too limiting and heavy for what I needed. In early 2025, I rebuilt everything with Eleventy (V2), which let me work directly with HTML and CSS in a structure I understood well. A few months later, I moved to React with Vite (V3) to learn component-based architecture and client-side rendering, which established the foundation of modern web apps, even though I could see the limits of pure CSR.
+By October 2025, I decided to migrate to Next.js 15. The main motivation was to solve the performance gaps I noticed in V3, specifically through server-side rendering and built-in optimizations like image lazy loading. The transition to the App Router architecture required a lot of work and testing to figure out how to move from Vite to this new framework.`,
+          fr: `La première version utilisait WordPress, mais j'ai rapidement trouvé cette plateforme trop restrictive et trop lourde pour mes besoins. Entre fin 2024 et début 2025, j'ai tout reconstruit avec Eleventy (V2), qui m'a permis de travailler directement avec HTML et CSS dans une structure que je comprenais bien. Quelques mois plus tard, je suis passé à React avec Vite (V3) pour apprendre l'architecture basée sur les composants et le rendu côté client (CSR), qui ont établi les bases des applications web modernes, même si je pouvais voir les limites du CSR pur.
 
-By October 2025, I decided to migrate to Next.js 15. The main motivation was to solve the performance gaps I noticed in V3, specifically through server-side rendering and built-in optimizations like image lazy loading. The transition to the App Router architecture required a lot of work and testing to figure out how to move from Vite to this new framework.
+À partir d'octobre 2025, j'ai décidé de migrer vers Next.js 15. Ma principale motivation était de résoudre les problèmes de performances que j'avais remarqués dans la V3, notamment grâce au rendu côté serveur et à des optimisations intégrées telles que le chargement différé des images. La transition vers l'architecture App Router a nécessité beaucoup de travail et de tests pour comprendre comment passer de Vite à ce nouveau framework.`,
+        },
+        whatIBuilt: {
+          en: `The visual design centers on Three.js particle effects. Getting acceptable performance on mobile devices meant reducing particle counts and implementing proper cleanup to prevent memory leaks. The landing page includes a moving starfield with an animated hyperspace effect that plays on first visit.
 
-The visual design centers on Three.js particle effects. I implemented a wave background using WebGL shaders, which required learning about coordinate transformations and fragment shaders. Getting acceptable performance on mobile devices meant reducing particle counts and implementing proper cleanup to prevent memory leaks. The landing page includes a moving starfield with an animated hyperspace effect that plays on first visit.
+Finally, all site text is managed through two JSON files, one per language, except for project pages which use Markdown. This translation infrastructure is what makes the site bilingual (French and English). For content rendering, I integrated react-markdown with KaTeX to support LaTeX equations in project descriptions.
 
-Finally, all site text is managed through two JSON files, one per language, except for project pages which use Markdown. This translation infrastructure is what makes the site bilingual (French and English). For content rendering, I integrated react-markdown with KaTeX to support LaTeX equations in project descriptions. This was necessary for properly displaying physics notation without converting everything to images.`,
-        fr: `J'ai commencé ce projet de portfolio en 2024, car je souhaitais disposer d'un espace pour présenter mon profil et mes projets de manière moins formelle qu'un CV. Le créer moi-même m'a également donné l'occasion d'apprendre progressivement le développement web tout en ayant un objectif concret.
+The site runs on Cloudflare Workers through OpenNext. Every push to the main branch goes through a CI pipeline (type checking, lint, build), then semantic-release reads the commit messages to set the version number, write the changelog and tag the release.`,
+          fr: `La conception visuelle est centrée sur les effets de particules Three.js. Pour obtenir des performances acceptables sur les appareils mobiles, il a fallu réduire le nombre de particules et mettre en place un nettoyage approprié afin d'éviter les fuites de mémoire. La page d'accueil comprend un champ d'étoiles en mouvement avec un effet d'hyperspace animé qui s'affiche lors de la première visite.
 
-La première version utilisait WordPress, mais j'ai rapidement trouvé cette plateforme trop restrictive et trop lourde pour mes besoins. Entre fin 2024 et début 2025, j'ai tout reconstruit avec Eleventy (V2), qui m'a permis de travailler directement avec HTML et CSS dans une structure que je comprenais bien. Quelques mois plus tard, je suis passé à React avec Vite (V3) pour apprendre l'architecture basée sur les composants et le rendu côté client, qui ont établi les bases des applications web modernes, même si je pouvais voir les limites du CSR pur.
+Enfin, tout le texte du site est géré via deux fichiers JSON, un par langue, à l'exception des pages de projet qui utilisent Markdown. C'est cette infrastructure de traduction qui rend le site bilingue (français et anglais). Pour le rendu du contenu, j'ai intégré react-markdown avec KaTeX afin de prendre en charge les équations LaTeX dans les descriptions de projet.
 
-À partir d'octobre 2025, j'ai décidé de migrer vers Next.js 15. Ma principale motivation était de résoudre les problèmes de performances que j'avais remarqués dans la V3, notamment grâce au rendu côté serveur et à des optimisations intégrées telles que le chargement différé des images. La transition vers l'architecture App Router a nécessité beaucoup de travail et de tests pour comprendre comment passer de Vite à ce nouveau framework.
-
-La conception visuelle est centrée sur les effets de particules Three.js. Pour obtenir des performances acceptables sur les appareils mobiles, il a fallu réduire le nombre de particules et mettre en place un nettoyage approprié afin d'éviter les fuites de mémoire. La page d'accueil comprend un champ d'étoiles en mouvement avec un effet d'hyperspace animé qui s'affiche lors de la première visite.
-
-Enfin, tout le texte du site est géré via deux fichiers JSON, un par langue, à l'exception des pages de projet qui utilisent Markdown. C'est cette infrastructure de traduction qui rend le site bilingue (français et anglais). Pour le rendu du contenu, j'ai intégré react-markdown avec KaTeX afin de prendre en charge les équations LaTeX dans les descriptions de projet.`,
+Le site tourne sur Cloudflare Workers via OpenNext. Chaque push sur la branche principale passe par une chaîne CI (vérification des types, lint, build), puis semantic-release lit les messages de commit pour fixer le numéro de version, écrire le changelog et publier la release.`,
+        },
       },
+      kind: 'webapp',
+      sourceOfSkills: 'personal',
       technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Three.js', 'GSAP'],
       domains: ['Web Development', 'Frontend'],
       keywords: ['portfolio', 'frontend', 'typescript', 'nextjs', 'threejs', 'webgl'],
@@ -258,8 +266,8 @@ Ces couches raster sont combinées avec des données vectorielles : contours gla
       id: 'hep-gui',
       title: { en: 'HEP-GUI', fr: 'HEP-GUI' },
       description: {
-        en: 'Desktop GUI for managing Monte Carlo event generation pipelines in particle physics with MG5, Pythia8 and Rivet.',
-        fr: 'Interface graphique desktop pour gérer les pipelines de génération d\'événements Monte Carlo en physique des particules avec MG5, Pythia8 et Rivet.',
+        en: 'Desktop GUI for managing Monte Carlo event generation pipelines in particle physics with MadGraph5, Pythia8 and Rivet.',
+        fr: 'Interface graphique desktop pour gérer les pipelines de génération d\'événements Monte Carlo en physique des particules avec MadGraph5, Pythia8 et Rivet.',
       },
       subtitle: {
         en: 'Graphical Interface for Monte Carlo Event Generation',
@@ -268,14 +276,14 @@ Ces couches raster sont combinées avec des données vectorielles : contours gla
       detailedDescription: {
         en: `During my M2 internship at the Clermont Physics Laboratory (LPC), I regularly ran Monte Carlo event generation pipelines from the command line, chaining MadGraph5, Pythia8 and Rivet with manual configuration files at each step. I built HEP-GUI to replace that workflow with a desktop interface, so the same simulation run can be configured, launched and monitored without manual terminal interaction.
 
-The app runs on Windows and drives all HEP tools inside a Docker container, with the local data directory mounted as a shared volume. The three-stage pipeline follows the standard HEP workflow: MadGraph5 generates parton-level events from UFO physics models, Pythia8 applies parton showering and hadronization, and Rivet produces YODA histogram files for analysis. The current version is built around the MC_JETS routine and the custom Rivet analyses used during my internship, which serve as the reference workflow.
+The app runs on Windows and drives all HEP (high-energy physics) tools inside a Docker container, with the local data directory mounted as a shared volume. The three-stage pipeline follows the standard HEP workflow: MadGraph5 generates parton-level events from UFO (Universal FeynRules Output, the standard format for model files) physics models, Pythia8 applies parton showering and hadronization, and Rivet produces YODA (Rivet's histogram format) histogram files for analysis. The current version is built around the MC_JETS (a generic Rivet analysis of jet observables) routine and the custom Rivet analyses used during my internship, which serve as the reference workflow.
 
 To keep the interface responsive during long computations (event generation runs can take hours), execution is handled by QThread workers that stream container logs line by line via Qt signals. PyQtGraph renders the output histograms directly in the interface.
 
 HEP-GUI was a proof of concept scoped to that one workflow, and I'm not planning to develop it further.`,
-        fr: `Lors de mon stage de M2 au Laboratoire de Physique de Clermont (LPC), je lançais régulièrement des pipelines de génération d'événements Monte Carlo depuis un terminal bash, en enchaînant MadGraph5, Pythia8 et Rivet avec des fichiers de configuration manuels à chaque étape. J'ai développé HEP-GUI pour remplacer ce flux de travail par une interface desktop permettant de configurer, lancer et surveiller ces simulations sans interaction manuelle avec le terminal.
+        fr: `Lors de mon stage de M2 au Laboratoire de Physique de Clermont (LPC), je lançais régulièrement des pipelines de génération d'événements Monte Carlo depuis la ligne de commande, en enchaînant MadGraph5, Pythia8 et Rivet avec des fichiers de configuration manuels à chaque étape. J'ai développé HEP-GUI pour remplacer ce flux de travail par une interface desktop permettant de configurer, lancer et surveiller ces simulations sans interaction manuelle avec le terminal.
 
-L'application fonctionne sous Windows et pilote tous les outils HEP dans un container Docker, avec le répertoire de données local monté comme volume partagé. Le pipeline en trois étapes suit le workflow HEP standard : MadGraph5 génère des événements au niveau des partons à partir de modèles de physique UFO, Pythia8 simule les cascades partoniques et l'hadronisation, et Rivet produit des fichiers d'histogrammes YODA pour l'analyse. La version actuelle est construite autour de la routine MC_JETS et des analyses Rivet personnalisées utilisées pendant mon stage, qui servent de workflow de référence.
+L'application fonctionne sous Windows et pilote tous les outils HEP (physique des hautes énergies) dans un container Docker, avec le répertoire de données local monté comme volume partagé. Le pipeline en trois étapes suit le workflow HEP standard : MadGraph5 génère des événements au niveau des partons à partir de modèles de physique UFO (Universal FeynRules Output, le format standard des fichiers de modèle), Pythia8 simule les cascades partoniques et l'hadronisation, et Rivet produit des fichiers d'histogrammes YODA (le format d'histogrammes de Rivet) pour l'analyse. La version actuelle est construite autour de la routine MC_JETS (une analyse Rivet générique des observables de jets) et des analyses Rivet personnalisées utilisées pendant mon stage, qui servent de workflow de référence.
 
 Pour maintenir la réactivité de l'interface lors des calculs longs (la génération d'événements peut prendre plusieurs heures), l'exécution est gérée par des workers QThread qui transmettent les logs du container ligne par ligne via des signaux Qt. PyQtGraph affiche les histogrammes de sortie directement dans l'interface.
 
@@ -295,6 +303,8 @@ HEP-GUI était une preuve de concept limitée à ce workflow précis, et je ne p
         fr: 'Interface desktop HEP-GUI affichant les contrôles de simulation Monte Carlo et la visualisation des histogrammes',
       },
       gitHubUrl: 'https://github.com/Samuellct/HEP-GUI',
+      kind: 'desktop',
+      sourceOfSkills: 'personal',
       dateCreated: '2026-02-22',
     },
     'accred': {
