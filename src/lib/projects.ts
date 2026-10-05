@@ -673,31 +673,36 @@ Nous avons également compris pourquoi les chercheurs développent actuellement 
         fr: 'Contrôle système muon sous LabVIEW',
       },
       description: {
-        en: 'LabVIEW interface for muon detector control and TAC calibration routines.',
-        fr: 'Interface LabVIEW pour le contrôle du détecteur de muons et les routines de calibration du TAC.',
+        en: 'LabVIEW interface for muon detector control and TAC (time-to-amplitude converter) calibration routines.',
+        fr: 'Interface LabVIEW pour le contrôle du détecteur de muons et les routines de calibration du TAC (convertisseur temps-amplitude).',
       },
       subtitle: {
         en: 'Real-Time Particle Detection and Analysis',
         fr: 'Détection et analyse de particules en temps réel',
       },
-      detailedDescription: {
-        en: `During a week-long project in March 2024, I worked with a team of two other students to develop additional LabVIEW functionality for an existing muon Landé g-factor measurement system. This project was primarily a practical introduction to instrument control and data acquisition programming, with the physics experiment serving as a context for learning LabVIEW development.
-
-**Physical basis**
-
-Atmospheric muons originate from cosmic ray interactions at an altitude of around 15 km, arriving at ground level with a flux of roughly 1 muon per $\\text{cm}^{2}$ per minute. These particles have a rest-frame lifetime of 2.2 microseconds and decay via the weak interaction: $\\mu^+ \\rightarrow e^+ + \\nu_e + \\bar{\\nu}_\\mu$. The key property we exploit is spin polarization. Due to parity violation in weak interactions, the decay antielectron is preferentially emitted along the muon's spin direction at the moment of decay.
+      sections: {
+        context: {
+          en: `During a week-long project in March 2024, I worked with a team of two other students to develop additional LabVIEW functionality for an existing muon Landé g-factor measurement system. This project was primarily a practical introduction to instrument control and data acquisition programming, with the physics experiment serving as a context for learning LabVIEW development.`,
+          fr: `Au cours d'un projet d'une semaine en mars 2024, j'ai travaillé avec une équipe de deux autres étudiants afin de développer des fonctionnalités LabVIEW supplémentaires pour un système existant de mesure du facteur de Landé des muons. Ce projet consistait principalement en une introduction pratique à la programmation du contrôle des instruments et de l'acquisition de données, l'expérience physique servant de contexte pour l'apprentissage du développement LabVIEW.`,
+        },
+        approach: {
+          en: `Atmospheric muons originate from cosmic ray interactions at an altitude of around 15 km, arriving at ground level with a flux of roughly 1 muon per $\\text{cm}^{2}$ per minute. These particles have a rest-frame lifetime of 2.2 microseconds and decay via the weak interaction: $\\mu^+ \\rightarrow e^+ + \\nu_e + \\bar{\\nu}_\\mu$. The key property we exploit is spin polarization. Due to parity violation in weak interactions, the decay positron is preferentially emitted along the muon's spin direction at the moment of decay.
 
 When placed in a magnetic field $\\vec{B}$, the muon spin precesses at the Larmor frequency $\\omega_L = g(e/2m_\\mu)B$, where $g$ is the Landé factor we aim to measure. This precession modulates the decay time distribution, creating an oscillatory pattern superimposed on the exponential decay.
 
-**Experimental Setup**
-
 The detector consists of four plastic scintillators coupled to photomultiplier tubes (PMT), with 20 mm of copper plates positioned between the upper and lower detector pairs. The copper stops incoming muons while allowing higher-energy decay positrons to escape and reach the lower detectors. Two Helmholtz coils (1 meter diameter, field-to-current ratio of 302 µT/A) generate the uniform magnetic field in the detection volume.
 
-Signals from the PMT pass through constant fraction discriminators that convert the variable-amplitude pulses into standardized logic pulses with fixed timing and duration. Coincidence logic gates implement event selection: valid muon stops require signals in the upper detectors but not in the lower ones, while decay positron detection requires the opposite pattern. A Time-to-Amplitude Converter (TAC) measures the microsecond-scale intervals between these events, outputting an analog voltage proportional to the measured time.
+Discriminators turn the PMT pulses into standard logic pulses, and coincidence logic selects the events: valid muon stops require signals in the upper detectors but not in the lower ones, while decay positron detection requires the opposite pattern. A Time-to-Amplitude Converter (TAC) measures the microsecond-scale intervals between these events, outputting an analog voltage proportional to the measured time.`,
+          fr: `Les muons atmosphériques proviennent des interactions des rayons cosmiques à une altitude d'environ 15 km et atteignent le sol avec un flux d'environ 1 muon par $\\text{cm}^{2}$ par minute. Ces particules ont une durée de vie propre de 2,2 microsecondes et se désintègrent par interaction faible : $\\mu^+ \\rightarrow e^+ + \\nu_e + \\bar{\\nu}_\\mu$. La propriété clé que nous exploitons est la polarisation du spin. En raison de la violation de parité dans les interactions faibles, le positon issu de la désintégration est émis de préférence dans la direction du spin du muon au moment de la désintégration.
 
-**Our development work**
+Lorsqu'il est placé dans un champ magnétique $\\vec{B}$, le spin du muon précesse à la fréquence de Larmor $\\omega_L = g(e/2m_\\mu)B$, où $g$ est le facteur de Landé que nous cherchons à mesurer. Cette précession module la distribution du temps de désintégration, créant un motif oscillatoire superposé à la désintégration exponentielle.
 
-The project builds upon work from previous student groups, with each iteration adding new functionality. Our main objectives were to implement graphical analysis of TAC calibration and to develop an interface for controlling the Helmholtz coil power supply.
+Le détecteur se compose de quatre scintillateurs couplés à des tubes photomultiplicateurs (PMT), avec des plaques de cuivre de 20 mm positionnées entre les paires de détecteurs supérieures et inférieures. Le cuivre arrête les muons entrants tout en permettant aux positons de plus haute énergie de s'échapper et d'atteindre les détecteurs inférieurs. Deux bobines de Helmholtz génèrent un champ magnétique uniforme dans le volume de détection.
+
+Des discriminateurs transforment les impulsions des PMT en impulsions logiques standard, puis une logique de coïncidence sélectionne les événements : les arrêts de muons valides nécessitent des signaux dans les détecteurs supérieurs mais pas dans les détecteurs inférieurs, tandis que la détection des positons de désintégration nécessite le schéma inverse. Un convertisseur temps-amplitude (TAC) mesure les intervalles à l'échelle de la microseconde entre ces événements, produisant une tension analogique proportionnelle au temps mesuré.`,
+        },
+        whatIBuilt: {
+          en: `The project builds upon work from previous student groups, with each iteration adding new functionality. Our main objectives were to implement graphical analysis of TAC calibration and to develop an interface for controlling the Helmholtz coil power supply.
 
 Day one was spent understanding the hardware and the existing LabVIEW code. We launched our first overnight acquisition but encountered timeout errors the next morning. We traced this to communication issues between LabVIEW and the oscilloscope and reduced the timeout parameter from 50 minutes to 4.8 minutes, which resolved the stability problems.
 
@@ -707,28 +712,8 @@ Using Python for rapid prototyping, we developed filtering criteria before imple
 
 By day four, we streamlined the interface to essential controls: ON/OFF for the magnetic field, START for data acquisition, and real-time display of field strength. We implemented error handling structures throughout to prevent the crashes that plagued early development.
 
-**Results**
-
-We successfully added the requested functionality to the existing LabVIEW system. The TAC calibration module now operates automatically, and the magnetic field control interface works stably.
-
-Previous acquisitions by earlier student groups had demonstrated the system's capability, collecting datasets of $\\sim 80,000$ events that yielded muon lifetime of $\\tau_{\\mu^+} = (2.19 \\pm 0.03)~\\mu\\text{s}$ and clear Larmor precession signals at 4 mT.`,
-        fr: `Au cours d'un projet d'une semaine en mars 2024, j'ai travaillé avec une équipe de deux autres étudiants afin de développer des fonctionnalités LabVIEW supplémentaires pour un système existant de mesure du facteur de Landé des muons. Ce projet consistait principalement en une introduction pratique à la programmation du contrôle des instruments et de l'acquisition de données, l'expérience physique servant de contexte pour l'apprentissage du développement LabVIEW.
-
-**Bases physiques**
-
-Les muons atmosphériques proviennent des interactions des rayons cosmiques à une altitude d'environ 15 km et atteignent le sol avec un flux d'environ 1 muon par $\\text{cm}^{2}$ par minute. Ces particules ont une durée de vie de 2,2 microsecondes et se désintègrent par interaction faible : $\\mu^+ \\rightarrow e^+ + \\nu_e + \\bar{\\nu}_\\mu$. La propriété clé que nous exploitons est la polarisation du spin. En raison de la violation de parité dans les interactions faibles, l'anti-électron issu de la désintégration est émis de préférence dans la direction du spin du muon au moment de la désintégration.
-
-Lorsqu'il est placé dans un champ magnétique $\\vec{B}$, le spin du muon précesse à la fréquence de Larmor $\\omega_L = g(e/2m_\\mu)B$, où $g$ est le facteur de Landé que nous cherchons à mesurer. Cette précession module la distribution du temps de désintégration, créant un motif oscillatoire superposé à la désintégration exponentielle.
-
-**Montage expérimental**
-
-Le détecteur se compose de quatre scintillateurs couplés à des tubes photomultiplicateurs (PMT), avec des plaques de cuivre de 20 mm positionnées entre les paires de détecteurs supérieures et inférieures. Le cuivre arrête les muons entrants tout en permettant aux positons de plus haute énergie de s'échapper et d'atteindre les détecteurs inférieurs. Deux bobines de Helmholtz génèrent un champ magnétique uniforme dans le volume de détection.
-
-Les signaux provenant des PMT passent par des discriminateurs à fraction constante qui convertissent les impulsions d'amplitude variable en impulsions logiques standardisées avec une durée et un timing fixes. Des portes logiques mettent en œuvre la sélection des événements : les arrêts de muons valides nécessitent des signaux dans les détecteurs supérieurs mais pas dans les détecteurs inférieurs, tandis que la détection des positons de désintégration nécessite le schéma inverse. Un convertisseur temps-amplitude (TAC) mesure les intervalles à l'échelle de la microseconde entre ces événements, produisant une tension analogique proportionnelle au temps mesuré.
-
-**Notre travail de développement**
-
-Le projet s'appuie sur les travaux réalisés par les groupes d'étudiants précédents, chaque itération ajoutant de nouvelles fonctionnalités. Nos principaux objectifs étaient de mettre en œuvre l'analyse graphique de l'étalonnage TAC et de développer une interface pour contrôler l'alimentation électrique de la bobine de Helmholtz.
+Both features were added to the existing LabVIEW system: the TAC calibration module runs automatically, and the magnetic field control interface is stable.`,
+          fr: `Le projet s'appuie sur les travaux réalisés par les groupes d'étudiants précédents, chaque itération ajoutant de nouvelles fonctionnalités. Nos principaux objectifs étaient de mettre en œuvre l'analyse graphique de l'étalonnage TAC et de développer une interface pour contrôler l'alimentation électrique de la bobine de Helmholtz.
 
 Le premier jour a été consacré à la compréhension du matériel et du code LabVIEW existant. Nous avons lancé notre première acquisition nocturne, mais des erreurs de timeout sont apparues le lendemain matin. Nous avons identifié le problème comme étant lié à des soucis de communication entre LabVIEW et l'oscilloscope et avons réduit le paramètre de timeout de 50 à 4,8 minutes, ce qui a résolu les problèmes de stabilité.
 
@@ -738,12 +723,15 @@ Le troisième jour a été consacré à l'étalonnage du TAC et à la qualité d
 
 Au quatrième jour, nous avons simplifié l'interface pour ne conserver que les commandes essentielles : ON/OFF pour le champ magnétique, START pour l'acquisition des données et affichage en temps réel de l'intensité du champ. Nous avons mis en place des structures de gestion des erreurs afin d'éviter les plantages qui avaient entravé les premières phases de développement.
 
-**Résultats**
-
-Nous avons ajouté avec succès la fonctionnalité demandée au système LabVIEW existant. Le module d'étalonnage TAC fonctionne désormais automatiquement et l'interface de contrôle du champ magnétique fonctionne de manière stable.
-
-Les acquisitions précédentes réalisées par des groupes d'étudiants antérieurs avaient démontré les capacités du système, en collectant des ensembles de données de 80 000 événements qui ont permis d'obtenir une durée de vie du muon de 2,19 ± 0,03 μs et des signaux de précession de Larmor clairs à 4 mT.`,
+Les deux fonctionnalités ont été ajoutées au système LabVIEW existant : le module d'étalonnage du TAC fonctionne automatiquement et l'interface de contrôle du champ magnétique est stable.`,
+        },
       },
+      kind: 'desktop',
+      results: [
+        { label: { en: 'TAC calibration slope', fr: 'Pente d\'étalonnage du TAC' }, value: '0.996 ± 0.001', note: { en: 'intercept 0.085 ± 0.001 µs', fr: 'ordonnée à l\'origine 0.085 ± 0.001 µs' } },
+        { label: { en: 'Acquisition timeout', fr: 'Timeout d\'acquisition' }, value: '50 → 4.8 min', note: { en: 'overnight acquisitions stabilized', fr: 'acquisitions nocturnes stabilisées' } },
+      ],
+      sourceOfSkills: 'academic',
       technologies: ['LabVIEW', 'Python'],
       domains: ['Data Acquisition', 'Instrument Control', 'Particle Physics'],
       keywords: ['labview', 'muons', 'data acquisition', 'instrument control', 'TAC calibration'],
@@ -753,8 +741,8 @@ Les acquisitions précédentes réalisées par des groupes d'étudiants antérie
       location: 'Université Clermont Auvergne',
       image: '/images/LabVIEW.webp',
       imageAlt: {
-        en: 'LabVIEW block diagram showing data acquisition and signal processing workflow',
-        fr: 'Diagramme de blocs LabVIEW illustrant le flux d\'acquisition de données et de traitement du signal',
+        en: 'Example LabVIEW block diagram (illustration, not from this project)',
+        fr: 'Exemple de diagramme de blocs LabVIEW (illustration, hors projet)',
       },
       imageCredit: 'Aldhair.gsnt',
       imageCreditUrl: 'https://commons.wikimedia.org/wiki/File:Labview_code_example.png',
@@ -859,28 +847,45 @@ Les acquisitions précédentes réalisées par des groupes d'étudiants antérie
         fr: 'Stage de Master 1 - Équipe LHCb',
       },
       description: {
-        en: 'Study of a rare B meson decay mode. Development of data analysis scripts with ROOT for LHCb Run I.',
-        fr: 'Étude d\'un mode de désintégration rare du méson B. Développement de scripts d\'analyse de données avec ROOT pour le Run I du LHCb.',
+        en: 'Study of a rare B meson decay mode at LHCb, one of the four large LHC experiments. Development of data analysis scripts with ROOT for Run 1.',
+        fr: 'Étude d\'un mode de désintégration rare du méson B au LHCb, l\'une des quatre grandes expériences du LHC. Développement de scripts d\'analyse de données avec ROOT pour le Run 1.',
       },
       subtitle: {
-        en: 'Data analysis of the rare B meson decay into Kaon and photon',
-        fr: 'Analyse de données de la désintégration rare du méson B en Kaon et photon',
+        en: 'Data analysis of the rare B meson decay into kaon and photon',
+        fr: 'Analyse de données de la désintégration rare du méson B en kaon et photon',
       },
-      detailedDescription: {
-        en: `During my first year of master's degree, I spent two months at the Clermont Physics Laboratory as part of the LHCb team, working on a rare decay mode of the B meson. I studied $B^{+} \\to K_{1}^{+}\\gamma$, which is a process that could reveal physics beyond the Standard Model through the polarization of the emitted photon.
+      sections: {
+        context: {
+          en: `During my first year of master's degree, I spent two months at the Clermont Physics Laboratory as part of the LHCb team, working on a rare decay mode of the B meson. I studied B⁺ → K₁⁺γ, which is a process that could reveal physics beyond the Standard Model through the polarization of the emitted photon.`,
+          fr: `Au cours de ma première année de master, j'ai passé deux mois au Laboratoire de physique de Clermont au sein de l'équipe LHCb, où j'ai travaillé sur un mode de désintégration rare du méson B. J'ai étudié le processus B⁺ → K₁⁺γ, qui pourrait être un signe de physique au-delà du Modèle standard à travers la polarisation du photon émis.`,
+        },
+        approach: {
+          en: `This internship was my first experience working with large-scale experimental data from LHC Run 1. I worked primarily with ROOT (CERN's data analysis framework) and C++ to filter through the collected events. Starting from samples containing several hundred thousand candidates, the challenge was to reduce this to a manageable dataset while preserving potential signal events.
 
-This internship was my first experience working with large-scale experimental data from LHC Run 1. I worked primarily with ROOT and C++ to filter through the collected events. Starting from samples containing several hundred thousand candidates, the challenge was to reduce this to a manageable dataset while preserving potential signal events.
+Most of my time went into building a preselection strategy using simulated data. I studied particle identification variables to distinguish signal from background. For charged particles, the RICH detectors (Cherenkov detectors that identify charged particles) of LHCb produce probability outputs like ProbNNk, which indicates how likely a track is to be a kaon rather than a pion or proton. For photons, I used gammaCL to assess the quality of electromagnetic showers in the calorimeters and reject background noise. I also reconstructed the helicity angle, which relates to the photon's polarization and would eventually help probe for new physics.`,
+          fr: `Ce stage a été ma première expérience de travail avec des données expérimentales à grande échelle issues du Run 1 du LHC. J'ai principalement utilisé ROOT (l'environnement d'analyse de données du CERN) et C++ pour filtrer les événements collectés. À partir d'échantillons contenant plusieurs centaines de milliers de candidats, le défi était de réduire l'ensemble à un jeu de données exploitable tout en préservant les événements de signal potentiels.
 
-Most of my time went into building a preselection strategy using simulated data. I studied particle identification variables to distinguish signal from background. For charged particles, the RICH detectors of LHCb produce probability outputs like ProbNNk, which indicates how likely a track is to be a kaon rather than a pion or proton. For photons, I used gammaCL to assess the quality of electromagnetic showers in the calorimeters and reject background noise. I also reconstructed the helicity angle, which relates to the photon's polarization and would eventually help probe for new physics.
-
-When I applied this preselection to real Run 1 data, I reduced the dataset by a factor of 30, while maintaining 57% efficiency on simulated signal. I could clearly identify the $\\omega$ meson peak in the data at 783 MeV, validating the reconstruction approach. However, the $K_{1}^{+}$ signal remained elusive, which wasn't surprising given the rarity of this decay and limited Run 1 statistics. The work establishes a foundation for fuller analysis with Run 2 and Run 3 data.`,
-        fr: `Au cours de ma première année de master, j'ai passé deux mois au Laboratoire de physique de Clermont au sein de l'équipe LHCb, où j'ai travaillé sur un mode de désintégration rare du méson B. J'ai étudié le processus $B^{+} \\to K_{1}^{+}\\gamma$, qui pourrait être un signe de physique au-delà du Modèle standard à travers la polarisation du photon émis.
-
-Ce stage a été ma première expérience de travail avec des données expérimentales à grande échelle issues du Run 1 du LHC. J'ai principalement utilisé ROOT et C++ pour filtrer les événements collectés. À partir d'échantillons contenant plusieurs centaines de milliers de candidats, le défi était de réduire l'ensemble à un jeu de données exploitable tout en préservant les événements de signal potentiels.
-
-J'ai consacré la majeure partie de mon temps à élaborer une stratégie de présélection à partir de données simulées. J'ai étudié les variables d'identification des particules afin de distinguer le signal du bruit de fond. Pour les particules chargées, les détecteurs RICH du LHCb produisent des sorties probabilistes telles que ProbNNk, qui indiquent la probabilité qu'une trace soit un kaon plutôt qu'un pion ou un proton. Pour les photons, j'ai utilisé gammaCL afin d'évaluer la qualité des gerbes électromagnétiques dans les calorimètres et de rejeter le bruit de fond. J'ai également reconstruit l'angle d'hélicité, qui est lié à la polarisation du photon et qui pourrait à terme aider à explorer la nouvelle physique.
-
-Lorsque j'ai appliqué cette présélection aux données réelles du Run 1, j'ai réduit l'ensemble de données d'un facteur 30, tout en conservant une efficacité de 57 % sur le signal simulé. J'ai pu clairement identifier le pic du méson $\\omega$ dans les données à 783 MeV, validant ainsi l'approche de reconstruction. Cependant, le signal $K_{1}^{+}$ est resté insaisissable, ce qui n'était pas surprenant compte tenu de la rareté de cette désintégration et des statistiques limitées du Run 1. Ce travail jette les bases d'une analyse plus complète avec les données des Run 2 et Run 3.`,
+J'ai consacré la majeure partie de mon temps à élaborer une stratégie de présélection à partir de données simulées. J'ai étudié les variables d'identification des particules afin de distinguer le signal du bruit de fond. Pour les particules chargées, les détecteurs RICH (détecteurs Tcherenkov qui identifient les particules chargées) du LHCb produisent des sorties probabilistes telles que ProbNNk, qui indiquent la probabilité qu'une trace soit un kaon plutôt qu'un pion ou un proton. Pour les photons, j'ai utilisé gammaCL afin d'évaluer la qualité des gerbes électromagnétiques dans les calorimètres et de rejeter le bruit de fond. J'ai également reconstruit l'angle d'hélicité, qui est lié à la polarisation du photon et qui pourrait à terme aider à explorer la nouvelle physique.`,
+        },
+        whatIBuilt: {
+          en: `When I applied this preselection to real Run 1 data, I reduced the dataset by a factor of 30, while maintaining 57% efficiency on simulated signal. I could clearly identify the $\\omega$ meson peak in the data at 783 MeV, validating the reconstruction approach.`,
+          fr: `Lorsque j'ai appliqué cette présélection aux données réelles du Run 1, j'ai réduit l'ensemble de données d'un facteur 30, tout en conservant une efficacité de 57 % sur le signal simulé. J'ai pu clairement identifier le pic du méson $\\omega$ dans les données à 783 MeV, validant ainsi l'approche de reconstruction.`,
+        },
+      },
+      limits: {
+        en: `The $K_{1}^{+}$ signal was not observed, which is not surprising given the rarity of this decay and the limited Run 1 statistics.`,
+        fr: `Le signal $K_{1}^{+}$ n'a pas été observé, ce qui n'est pas surprenant compte tenu de la rareté de cette désintégration et des statistiques limitées du Run 1.`,
+      },
+      kind: 'research',
+      results: [
+        { label: { en: 'Data reduction', fr: 'Réduction des données' }, value: '30×', note: { en: 'on real Run 1 data', fr: 'sur les données réelles du Run 1' } },
+        { label: { en: 'Signal efficiency', fr: 'Efficacité du signal' }, value: '57 %', note: { en: 'on simulated signal', fr: 'sur le signal simulé' } },
+        { label: { en: 'ω meson peak', fr: 'Pic du méson ω' }, value: '783 MeV', note: { en: 'reconstructed in the data', fr: 'reconstruit dans les données' } },
+      ],
+      sourceOfSkills: 'internship',
+      research: {
+        lab: { en: 'Clermont Physics Laboratory (LPC)', fr: 'Laboratoire de Physique de Clermont (LPC)' },
+        collaboration: 'LHCb',
       },
       technologies: ['ROOT', 'C++'],
       domains: ['Particle Physics', 'Data Analysis'],
@@ -922,7 +927,7 @@ Lorsque j'ai appliqué cette présélection aux données réelles du Run 1, j'ai
           fr: `La difficulté réside dans le fait qu'ATLAS n'a pas été conçu à l'origine pour détecter ces signatures retardées. Les algorithmes de reconstruction standard s'attendent à ce que les particules se désintègrent près du point d'interaction, de sorte que les événements LLP sont souvent manqués ou classés comme bruit de fond.`,
         },
         approach: {
-          en: `I used Monte Carlo event generators to simulate thousands of proton-proton collisions at 13.6 TeV. The simulations covered two production mechanisms: *gluon fusion*, which has the highest rate, and *associated production with W or Z bosons*, which provides cleaner experimental signatures. I tested three different LLP masses (10, 30, and 55 GeV) to understand how the kinematics change across this range.`,
+          en: `I used Monte Carlo event generators to simulate thousands of proton-proton collisions at 13.6 TeV. The simulations covered two production mechanisms: *gluon fusion*, which has the highest Higgs boson production rate, and *associated production with W or Z bosons*, which provides cleaner experimental signatures. I tested three different LLP masses (10, 30, and 55 GeV) to understand how the kinematics change across this range.`,
           fr: `J'ai utilisé des générateurs d'événements Monte Carlo pour simuler des milliers de collisions proton-proton à 13,6 TeV. Les simulations couvraient deux mécanismes de production : la *fusion de gluons*, qui présente le taux le plus élevé de production de boson de Higgs, et la *production associée à des bosons W ou Z*, qui fournit des signatures expérimentales plus nettes. J'ai testé trois masses LLP différentes (10, 30 et 55 GeV) afin de comprendre comment la cinématique évolue dans cette gamme.`,
         },
         whatIBuilt: {
