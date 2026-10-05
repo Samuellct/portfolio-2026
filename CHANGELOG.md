@@ -5,6 +5,16 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.15.1](https://github.com/Samuellct/portfolio-2026/compare/v4.15.0...v4.15.1) (2026-10-05)
+
+### Corrigé
+
+* align project statuses, periods and descriptions with reality ([a5e0cbc](https://github.com/Samuellct/portfolio-2026/commit/a5e0cbcedf76b1cbddaa3d1f2c685efca94dd930))
+* correct factual errors and typos in project entries ([d9570a2](https://github.com/Samuellct/portfolio-2026/commit/d9570a21bc152f443f025b0f3d190c4034fd9ddb))
+* correct outdated versions and broken links in project entries ([4ac6700](https://github.com/Samuellct/portfolio-2026/commit/4ac6700813e0dd85d27b8d6aa14264cf93eb26c5))
+* drop the location pin from non-location project metadata ([b6021f3](https://github.com/Samuellct/portfolio-2026/commit/b6021f3e34a741edbfcb60a23710172a70c27f6f))
+* restore the page title template on project pages ([4e591e2](https://github.com/Samuellct/portfolio-2026/commit/4e591e21d920ac78feb9c3539028cb50866d2252))
+
 ## [4.15.0](https://github.com/Samuellct/portfolio-2026/compare/v4.14.1...v4.15.0) (2026-09-28)
 
 ### Ajouté
