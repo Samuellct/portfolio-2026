@@ -113,11 +113,11 @@ export const projectsData: Record<string, Record<string, ProjectData>> = {
       },
       detailedDescription: {
         en: `
-Link aggregation platforms such as Linktree solve a simple problem: gathering multiple links behind a single URL. However, many useful features are often locked behind paid subscriptions while customization options remain limited. I decided to build my own solution to gain full control over the platform, its appearance, its features, and the data it collects. The goal is to provide a modern and self-hosted experience for managing and sharing my online presence.
+Link aggregation platforms such as Linktree solve a simple problem: gathering multiple links behind a single URL. However, many useful features are often locked behind paid subscriptions while customization options remain limited. I decided to build my own solution to gain full control over the platform, its appearance, its features, and the data it collects. The result is a self-hosted page for managing and sharing my online presence, live at [landing.samuel-lecomte.fr](https://landing.samuel-lecomte.fr).
 
-### Goals
+### Features
 
-The project aims to provide:
+The page provides:
 
 * a single page gathering all important links
 * a responsive experience for desktop and mobile devices
@@ -126,13 +126,13 @@ The project aims to provide:
 
 ### Technical choices
 
-This project is also an opportunity to explore new technologies. The stack relies on Astro for the frontend, combined with Cloudflare services for hosting and backend features.`,
+This project was also an opportunity to explore new technologies. The stack relies on Astro for the frontend, combined with Cloudflare services for hosting and backend features.`,
         fr: `
-Les plateformes de type Linktree répondent à un besoin simple : regrouper plusieurs liens derrière une seule URL. Cependant, de nombreuses fonctionnalités intéressantes sont souvent limitées par des abonnements payants, tandis que les possibilités de personnalisation restent relativement encadrées. J'ai décidé de développer ma propre solution afin de disposer d'une plateforme entièrement maîtrisée, auto-hébergée et adaptée à mes besoins. L'objectif est de proposer une expérience moderne permettant de centraliser mes différents espaces en ligne tout en conservant un contrôle total sur l'apparence, les fonctionnalités et les données collectées.
+Les plateformes de type Linktree répondent à un besoin simple : regrouper plusieurs liens derrière une seule URL. Cependant, de nombreuses fonctionnalités intéressantes sont souvent limitées par des abonnements payants, tandis que les possibilités de personnalisation restent relativement encadrées. J'ai décidé de développer ma propre solution afin de disposer d'une plateforme entièrement maîtrisée, auto-hébergée et adaptée à mes besoins. L'objectif était de proposer une expérience moderne permettant de centraliser mes différents espaces en ligne tout en conservant un contrôle total sur l'apparence, les fonctionnalités et les données collectées. La page est en ligne sur [landing.samuel-lecomte.fr](https://landing.samuel-lecomte.fr).
 
-### Objectifs
+### Fonctionnalités
 
-Le projet prévoit de fournir :
+Le projet fournit :
 
 * une page unique regroupant l'ensemble de mes liens importants
 * un rendu responsive adapté au desktop et au mobile
@@ -142,14 +142,14 @@ Le projet prévoit de fournir :
 
 ### Choix techniques
 
-Ce projet est également l'occasion d'explorer de nouvelles technologies. La stack repose sur Astro pour la partie interface, associé à l'écosystème Cloudflare pour l'hébergement et les services backend.`,
+Ce projet a également été l'occasion d'explorer de nouvelles technologies. La stack repose sur Astro pour la partie interface, associé à l'écosystème Cloudflare pour l'hébergement et les services backend.`,
       },
-      technologies: ['Astro', 'Framer Motion', 'Cloudflare Pages', 'Cloudflare D1', 'Umami'],
+      technologies: ['Astro', 'Framer Motion', 'Cloudflare Workers', 'Cloudflare D1', 'Umami'],
       domains: ['Web Development', 'UX/UI', 'Privacy'],
       keywords: ['personal landing page', 'cloudflare', 'web application', 'privacy friendly analytics'],
       category: 'personal',
-      status: 'in-progress',
-      period: { en: '2026 - Present', fr: '2026 - Présent' },
+      status: 'paused',
+      period: { en: 'June 2026', fr: 'Juin 2026' },
       location: { en: 'Personal project', fr: 'Projet personnel' },
       image: '/images/landing_page.webp',
       imageAlt: {
@@ -157,6 +157,7 @@ Ce projet est également l'occasion d'explorer de nouvelles technologies. La sta
         fr: 'Capture d\'écran de la page de liens personnelle présentant plusieurs plateformes.',
       },
       gitHubUrl: 'https://github.com/Samuellct/linktree',
+      links: [{ type: 'demo', url: 'https://landing.samuel-lecomte.fr', label: { en: 'Live site', fr: 'Site en ligne' } }],
       dateCreated: '2026-06-18',
     },
     'home-server': {
@@ -197,7 +198,7 @@ Cependant, je commence à atteindre certaines limites. L'exécution de Proxmox e
       keywords: ['virtualization', 'storage', 'cloud', 'server', 'truenas', 'NAS'],
       category: 'personal',
       status: 'in-progress',
-      period: { en: '2025 - Present', fr: '2025 - Présent' },
+      period: '2025 - 2026',
       location: { en: 'Personal project', fr: 'Projet personnel' },
       image: '/images/Dashboard_Truenas.webp',
       imageAlt: {
@@ -243,7 +244,7 @@ Enfin, tout le texte du site est géré via un fichier JSON centralisé, à l'ex
       keywords: ['portfolio', 'frontend', 'typescript', 'nextjs', 'threejs', 'webgl'],
       category: 'personal',
       status: 'in-progress',
-      period: { en: '2024 - Present', fr: '2024 - Présent' },
+      period: '2024 - 2026',
       location: { en: 'Personal project', fr: 'Projet personnel' },
       image: '/images/portfolioWebsite.webp',
       imageAlt: { en: 'Front page of my website', fr: 'Page d\'accueil de mon site web' },
@@ -294,7 +295,7 @@ Ces couches raster sont combinées avec des données vectorielles : contours gla
       keywords: ['mountaineering', 'route planning', 'lidar', 'pathfinding', 'geospatial', 'alps', 'dem', 'fastapi'],
       category: 'personal',
       status: 'paused',
-      period: { en: '2025 - Present', fr: '2025 - Présent' },
+      period: '2025 - 2026',
       location: { en: 'Personal project', fr: 'Projet personnel' },
       textColor: "black",
       image: '/images/alpineRoute.webp',
@@ -345,7 +346,7 @@ HEP-GUI était une preuve de concept limitée à ce workflow précis, et je ne p
       keywords: ['particle physics', 'monte carlo', 'madgraph', 'hep', 'gui', 'simulation', 'docker'],
       category: 'personal',
       status: 'completed',
-      period: { en: '2026 - Present', fr: '2026 - Présent' },
+      period: { en: 'February 2026', fr: 'Février 2026' },
       location: { en: 'Personal project', fr: 'Projet personnel' },
       textColor: "black",
       image: '/images/hepGUI.webp',
@@ -387,8 +388,8 @@ J'ai utilisé Accred au Festival de Cannes 2026 en déploiement privé, ce qui a
       domains: ['Web Development', 'Mobile', 'PWA'],
       keywords: ['pwa', 'film festival', 'mobile', 'self-hosted', 'nextjs', 'scheduler'],
       category: 'personal',
-      status: 'in-progress',
-      period: { en: '2026 - Present', fr: '2026 - Présent' },
+      status: 'paused',
+      period: { en: 'March - May 2026', fr: 'Mars - Mai 2026' },
       location: { en: 'Personal project', fr: 'Projet personnel' },
       textColor: "black",
       image: '/images/accred.webp',
@@ -441,7 +442,7 @@ J'ai utilisé Accred au Festival de Cannes 2026 en déploiement privé, ce qui a
       keywords: ['trail running', 'weather', 'gpx', 'utci', 'python', 'forecast', 'thermal analysis'],
       category: 'personal',
       status: 'in-progress',
-      period: { en: '2025 - Present', fr: '2025 - Présent' },
+      period: '2025 - 2026',
       location: { en: 'Personal project', fr: 'Projet personnel' },
       image: '/images/timepredict.webp',
       imageAlt: {
@@ -505,7 +506,7 @@ Un service de notifications par email interne à Jellyfin : une newsletter des n
       keywords: ['jellyfin', 'plugin', 'homelab', 'self-hosted', 'csharp', 'dotnet'],
       category: 'personal',
       status: 'in-progress',
-      period: { en: '2026 - Present', fr: '2026 - Présent' },
+      period: { en: 'July - October 2026', fr: 'Juillet - Octobre 2026' },
       location: { en: 'Personal project', fr: 'Projet personnel' },
       image: '/images/jellyux.webp',
       imageAlt: {
@@ -544,7 +545,7 @@ L'application fonctionne entièrement hors ligne : aucun serveur, aucun cloud, a
       keywords: ['android', 'kotlin', 'ocr', 'jetpack compose', 'offline-first'],
       category: 'personal',
       status: 'completed',
-      period: { en: 'August 2026', fr: 'Août 2026' },
+      period: { en: 'July - August 2026', fr: 'Juillet - Août 2026' },
       location: { en: 'Personal project', fr: 'Projet personnel' },
       image: '/images/delivr.webp',
       imageAlt: {
@@ -552,7 +553,7 @@ L'application fonctionne entièrement hors ligne : aucun serveur, aucun cloud, a
         fr: 'Écran d\'accueil et mode livraison de l\'application Android Delivr, côte à côte',
       },
       gitHubUrl: 'https://github.com/Samuellct/Delivr',
-      dateCreated: '2026-08-06',
+      dateCreated: '2026-07-06',
     },
   },
   academic: {
@@ -631,8 +632,8 @@ En suivant la méthode CLs, nous avons déterminé que nous pouvions exclure les
         fr: 'Démonstrations d\'algorithmes quantiques avec Cirq',
       },
       description: {
-        en: "Python simulation of Shor's algorithm using the Cirq library to break RSA encryption.",
-        fr: "Simulation Python de l'algorithme de Shor à l'aide de la bibliothèque Cirq pour casser le chiffrement RSA.",
+        en: "Python simulation of Shor's algorithm using the Cirq library, limited to factoring small numbers, to show how it threatens RSA encryption.",
+        fr: "Simulation Python de l'algorithme de Shor à l'aide de la bibliothèque Cirq, limitée à la factorisation de petits nombres, pour montrer la menace qu'il représente pour le chiffrement RSA.",
       },
       subtitle: {
         en: 'Principles of Quantum Computing and Application to Cryptographic Algorithms',
@@ -646,13 +647,13 @@ We started by building a strong theoretical foundation. We studied superposition
 The most challenging part was implementing Shor's algorithm for integer factorization. We started with IBM's Qiskit framework, but we struggled with how the library handled the modular exponentiation gate and the circuit optimization. After many weeks of troubleshooting, we decided to switch to Google's Cirq library, which gave us more direct control over the gate decomposition. With Cirq, we were finally able to build a working simulation.
 
 The algorithm worked well for small numbers, but we quickly hit memory limitations for numbers larger than five digits. This makes sense because simulating n qubits requires storing $2^{n}$ complex numbers in memory, so the requirements explode exponentially. We also got a taste of why researchers are now developing new encryption methods that could resist quantum attacks. These "post-quantum" algorithms rely on mathematical problems that even quantum computers would struggle with, like finding short vectors in high-dimensional lattices.`,
-        fr: `Ce projet a été réalisé dans le cadre du cours de mécanique quantique pendant ma première année de master. En collaboration avec deux camarades, nous avons étudié les principes de l'informatique quantique et leurs implications pour la cryptographie moderne. Notre objectif était de comprendre le fonctionnement des qubits, des portes quantiques et des circuits quantiques, puis d'appliquer ces connaissances à un problème concret : casser le cryptage RSA à l'aide de l'algorithme de Shor.
+        fr: `Ce projet a été réalisé dans le cadre du cours de mécanique quantique pendant ma première année de master. En collaboration avec deux camarades, nous avons étudié les principes de l'informatique quantique et leurs implications pour la cryptographie moderne. Notre objectif était de comprendre le fonctionnement des qubits, des portes quantiques et des circuits quantiques, puis d'appliquer ces connaissances à un problème concret : casser le chiffrement RSA à l'aide de l'algorithme de Shor.
 
-Nous avons commencé par établir une base théorique solide. Nous avons étudié la superposition, l'intrication et la représentation de la sphère de Bloch, puis nous sommes passés aux portes quantiques telles que Hadamard, Pauli-X et CNOT, ainsi qu'à la transformée de Fourier quantique. Une fois que nous nous sommes familiarisés avec les bases, nous avons implémenté le cryptage RSA en Python en utilisant à la fois une version simple avec SymPy et une version plus robuste avec la bibliothèque *cryptography*. L'objectif était de voir concrètement le fonctionnement du chiffrement asymétrique avant de tenter de le casser.
+Nous avons commencé par établir une base théorique solide. Nous avons étudié la superposition, l'intrication et la représentation de la sphère de Bloch, puis nous sommes passés aux portes quantiques telles que Hadamard, Pauli-X et CNOT, ainsi qu'à la transformée de Fourier quantique. Une fois que nous nous sommes familiarisés avec les bases, nous avons implémenté le chiffrement RSA en Python en utilisant à la fois une version simple avec SymPy et une version plus robuste avec la bibliothèque *cryptography*. L'objectif était de voir concrètement le fonctionnement du chiffrement asymétrique avant de tenter de le casser.
 
 La partie la plus difficile a été la mise en œuvre de l'algorithme de Shor pour la factorisation des nombres entiers. Nous avons commencé avec le framework Qiskit d'IBM, mais nous avons rencontré des difficultés avec la manière dont la bibliothèque gérait les portes quantiques complexes et l'optimisation des circuits. Après plusieurs semaines de débogage, nous avons décidé de passer à la bibliothèque Cirq de Google, qui nous offrait un contrôle plus direct sur la décomposition des portes. Avec Cirq, nous avons enfin pu créer une simulation fonctionnelle.
 
-L'algorithme a bien fonctionné pour les petits nombres, mais nous avons rapidement atteint les limites de mémoire pour les nombres supérieurs à cinq chiffres. C'est logique, car la simulation de n qubits nécessite de stocker $2^{n}$ nombres complexes en mémoire, ce qui fait exploser les besoins de manière exponentielle. Nous avons également compris pourquoi les chercheurs développent actuellement de nouvelles méthodes de cryptage capables de résister aux attaques quantiques. Ces algorithmes *post-quantiques* s'appuient sur des problèmes mathématiques que même les ordinateurs quantiques auraient du mal à résoudre, comme la recherche de vecteurs courts (SVP) dans des réseaux de grande dimension.`,
+L'algorithme a bien fonctionné pour les petits nombres, mais nous avons rapidement atteint les limites de mémoire pour les nombres supérieurs à cinq chiffres. C'est logique, car la simulation de n qubits nécessite de stocker $2^{n}$ nombres complexes en mémoire, ce qui fait exploser les besoins de manière exponentielle. Nous avons également compris pourquoi les chercheurs développent actuellement de nouvelles méthodes de chiffrement capables de résister aux attaques quantiques. Ces algorithmes *post-quantiques* s'appuient sur des problèmes mathématiques que même les ordinateurs quantiques auraient du mal à résoudre, comme la recherche de vecteurs courts (SVP) dans des réseaux de grande dimension.`,
       },
       technologies: ['Python', 'Qiskit', 'Cirq', 'SymPy'],
       domains: ['Quantum Computing', 'Cryptography'],

@@ -94,7 +94,7 @@ export const TECHNOLOGIES = {
   Nextcloud: { color: D, family: null },
   Jellyfin: { color: D, family: null },
   'Nginx Proxy Manager': { color: D, family: null },
-  'Cloudflare Pages': { color: D, family: null },
+  'Cloudflare Workers': { color: D, family: null },
   'Cloudflare D1': { color: D, family: null },
   Umami: { color: D, family: null },
 } as const satisfies Record<string, TechEntry>
