@@ -308,22 +308,26 @@ HEP-GUI était une preuve de concept limitée à ce workflow précis, et je ne p
         en: 'Personal Companion App for Film Festival Goers',
         fr: 'Application compagnon pour les festivals de cinéma',
       },
-      detailedDescription: {
-        en: `I built Accred as a personal companion app for film festival attendees: plan a selection before the festival starts, take quick notes on a phone between screenings, and build an archive of participations over time. The name is a reference to festival accreditation. The project started when I applied for a cinephile accreditation for Cannes 2026 and wanted a dedicated tool rather than adapting a generic agenda app.
+      sections: {
+        context: {
+          en: `I built Accred as a personal companion app for film festival attendees: plan a selection before the festival starts, take quick notes on a phone between screenings, and build an archive of participations over time. The name is a reference to festival accreditation. The project started when I applied for a cinephile accreditation for Cannes 2026 and wanted a dedicated tool rather than adapting a generic agenda app.`,
+          fr: `J'ai développé Accred comme application compagnon pour les festivals de cinéma : planifier une sélection avant le début du festival, prendre des notes rapides sur téléphone entre deux séances, et construire une archive de ses participations au fil du temps. Le nom fait référence aux accréditations de festival. Le projet a démarré lorsque j'ai fait une demande d'accréditation cinéphile pour Cannes 2026 et que je voulais un outil dédié plutôt que d'adapter une application d'agenda générique.`,
+        },
+        whatIBuilt: {
+          en: `The app is a mobile-first PWA (progressive web app: a website you can install on a phone like an app) built with Next.js 15 and SQLite. The programme view displays the full festival schedule in a grid, color-coded by venue and conflict status. The selection module manages the personal lineup and flags scheduling conflicts between chosen screenings. The journal module is designed to let you quickly open a new note between two sessions and jot down a few thoughts, before having time at the end of the day to write the full review.
 
-The app is a mobile-first PWA built with Next.js 15 and SQLite. The programme view displays the full festival schedule in a grid, color-coded by venue and conflict status. The selection module manages the personal lineup and flags scheduling conflicts between chosen screenings. The journal module is designed to let you quickly open a new note between two sessions and jot down a few thoughts, before having time at the end of the day to write the full review.
+Film metadata is fetched from the TMDb API (The Movie Database) and cached locally so the app works offline once data is loaded. Festival programmes can be imported from CSV or JSON files, and selections can be exported to Letterboxd CSV or iCalendar format. The app is self-hosted via Docker Compose behind Nginx Proxy Manager.`,
+          fr: `L'application est une PWA (application web progressive : un site qui s'installe sur le téléphone comme une application) mobile-first développée avec Next.js 15 et SQLite. La vue programme affiche le planning complet du festival sous forme de grille, colorée par salle et par statut de conflit. Le module sélection gère la programmation personnelle et signale les conflits d'horaire entre les séances choisies. Le module journal est conçu pour permettre d'ouvrir rapidement une nouvelle note entre deux sessions et de noter quelques idées, avant de prendre le temps, en fin de journée, de rédiger la critique complète.
 
-Film metadata is fetched from the TMDb API and cached locally so the app works offline once data is loaded. Festival programmes can be imported from CSV or JSON files, and selections can be exported to Letterboxd CSV or iCalendar format. The app is self-hosted via Docker Compose behind Nginx Proxy Manager.
-
-I used Accred at the Cannes 2026 festival in a private deployment, which confirmed the core workflow holds up in practice. It's not yet ready for a full public release.`,
-        fr: `J'ai développé Accred comme application compagnon pour les festivals de cinéma : planifier une sélection avant le début du festival, prendre des notes rapides sur téléphone entre deux séances, et construire une archive de ses participations au fil du temps. Le nom fait référence aux accréditations de festival. Le projet a démarré lorsque j'ai fait une demande d'accréditation cinéphile pour Cannes 2026 et que je voulais un outil dédié plutôt qu'utiliser plusieurs outils séparés.
-
-L'application est une PWA mobile-first développée avec Next.js 15 et SQLite. La vue programme affiche le planning complet du festival sous forme de grille, colorée par salle et par statut de conflit. Le module sélection gère la programmation personnelle et signale les conflits d'horaire entre les séances choisies. Le module journal est conçu pour permettre d'ouvrir rapidement une nouvelle note entre deux sessions et de noter quelques idées, avant de prendre le temps, en fin de journée, de rédiger la critique complète.
-
-Les métadonnées des films sont récupérées depuis l'API TMDb et mises en cache localement pour que l'application fonctionne hors ligne une fois les données chargées. Les programmes peuvent être importés depuis des fichiers CSV ou JSON, et les sélections exportées au format CSV Letterboxd ou iCalendar. L'application est self-hosted via Docker Compose derrière Nginx Proxy Manager.
-
-J'ai utilisé Accred au Festival de Cannes 2026 en déploiement privé, ce qui a confirmé que le fonctionnement de base tient la route en conditions réelles. L'application n'est pas encore prête pour une mise en ligne publique.`,
+Les métadonnées des films sont récupérées depuis l'API TMDb (The Movie Database) et mises en cache localement pour que l'application fonctionne hors ligne une fois les données chargées. Les programmes peuvent être importés depuis des fichiers CSV ou JSON, et les sélections exportées au format CSV Letterboxd ou iCalendar. L'application est auto-hébergée via Docker Compose derrière Nginx Proxy Manager.`,
+        },
       },
+      limits: {
+        en: `I used Accred at the Cannes 2026 festival in a private deployment, which confirmed the core workflow holds up in practice. It's not yet ready for a full public release.`,
+        fr: `J'ai utilisé Accred au Festival de Cannes 2026 en déploiement privé, ce qui a confirmé que le fonctionnement de base tient la route en conditions réelles. L'application n'est pas encore prête pour une mise en ligne publique.`,
+      },
+      kind: 'webapp',
+      sourceOfSkills: 'personal',
       technologies: ['Next.js', 'TypeScript', 'SQLite', 'Docker'],
       domains: ['Web Development', 'Mobile', 'PWA'],
       keywords: ['pwa', 'film festival', 'mobile', 'self-hosted', 'nextjs', 'scheduler'],
@@ -413,34 +417,38 @@ J'ai utilisé Accred au Festival de Cannes 2026 en déploiement privé, ce qui a
         en: 'A Family of Jellyfin Plugins',
         fr: 'Une famille de plugins Jellyfin',
       },
-      detailedDescription: {
-        en: `JellyUX is a small family of open-source plugins I maintain for Jellyfin, the self-hosted media server running on my home lab. Each plugin is self-contained, targets Jellyfin 10.11.x, injects its assets through the File Transformation plugin rather than patching Jellyfin itself, and can be removed without leaving anything behind.
+      sections: {
+        context: {
+          en: `JellyUX is a small family of open-source plugins I maintain for Jellyfin, the self-hosted media server running on my home lab. Each plugin is self-contained, targets Jellyfin 10.11.x, injects its assets through the File Transformation plugin rather than patching Jellyfin itself, and can be removed without leaving anything behind.`,
+          fr: `JellyUX est une petite famille de plugins open source que je maintiens pour Jellyfin, le serveur multimédia auto-hébergé qui tourne sur mon homelab. Chaque plugin est autonome, cible Jellyfin 10.11.x, injecte ses assets via le plugin File Transformation plutôt que de patcher Jellyfin lui-même, et se désinstalle sans rien laisser derrière lui.`,
+        },
+        whatIBuilt: {
+          en: `### Homepage
 
-## Homepage
+The flagship plugin: it replaces Jellyfin's default home page with a fully configurable widget engine, 27 widgets across native, admin-curated, personalized and TMDb-connected categories (TMDb: The Movie Database, a public film database), with drag-and-drop layout from the admin dashboard. It stays out of the way on TV clients, where the native home screen still makes more sense. It has its own documentation site: see it on [GitHub](https://github.com/JellyUX/Homepage) or read the [docs](https://jellyux.github.io/Homepage/).
 
-The flagship plugin: it replaces Jellyfin's default home page with a fully configurable widget engine, 27 widgets across native, admin-curated, personalized and TMDb-connected categories, with drag-and-drop layout from the admin dashboard. It stays out of the way on TV clients, where the native home screen still makes more sense. Now at v2.9.0, with its own documentation site: see it on [GitHub](https://github.com/JellyUX/Homepage) or read the [docs](https://jellyux.github.io/Homepage/).
+### Keep or Remove
 
-## Keep or Remove
+A small, deliberately temporary plugin for when server storage runs low: users vote keep or remove on a title, the admin gets a plain aggregated table, and that's it. It never deletes, moves or modifies anything itself, and removing it leaves a single JSON file to clean up. On [GitHub](https://github.com/JellyUX/Keep_or_Remove).
 
-A small, deliberately temporary plugin for when server storage runs low: users vote keep or remove on a title, the admin gets a plain aggregated table, and that's it. It never deletes, moves or modifies anything itself, and removing it leaves a single JSON file to clean up. Now at v1.0.2, on [GitHub](https://github.com/JellyUX/Keep_or_Remove).
-
-## Easy Notif
+### Easy Notif
 
 An internal email notification service for Jellyfin: a new-media newsletter on a schedule the admin picks (weekly, monthly, every N days or daily), with cover art and links back to each title; a personal weekly recap for each user, with what they watched that week and their running total for the year; and one-off announcements written from the dashboard, in plain text or HTML. Each user picks which categories they receive and sets their own contact address, every email carries a one-click unsubscribe link, and the plugin only reads library and playback data. Mail goes out through Resend. On [GitHub](https://github.com/JellyUX/Easy_Notif).`,
-        fr: `JellyUX est une petite famille de plugins open source que je maintiens pour Jellyfin, le serveur multimédia auto-hébergé qui tourne sur mon homelab. Chaque plugin est autonome, cible Jellyfin 10.11.x, injecte ses assets via le plugin File Transformation plutôt que de patcher Jellyfin lui-même, et se désinstalle sans rien laisser derrière lui.
+          fr: `### Homepage
 
-## Homepage
+Le plugin phare : il remplace la page d'accueil par défaut de Jellyfin par un moteur de widgets entièrement configurable, 27 widgets répartis entre catégories natives, gérées par l'admin, personnalisées et connectées à TMDb (The Movie Database, une base publique de films), avec une disposition en glisser-déposer depuis le tableau de bord admin. Il reste discret sur les clients TV, où l'accueil natif garde plus de sens. Il a son propre site de documentation : disponible sur [GitHub](https://github.com/JellyUX/Homepage) ou dans la [documentation](https://jellyux.github.io/Homepage/).
 
-Le plugin phare : il remplace la page d'accueil par défaut de Jellyfin par un moteur de widgets entièrement configurable, 27 widgets répartis entre catégories natives, gérées par l'admin, personnalisées et connectées à TMDb, avec une disposition en glisser-déposer depuis le tableau de bord admin. Il reste discret sur les clients TV, où l'accueil natif garde plus de sens. À la version 2.9.0 actuellement, avec son propre site de documentation : disponible sur [GitHub](https://github.com/JellyUX/Homepage) ou dans la [documentation](https://jellyux.github.io/Homepage/).
+### Keep or Remove
 
-## Keep or Remove
+Un petit plugin volontairement temporaire pour les moments où le stockage du serveur se fait rare : les utilisateurs votent garder ou retirer sur un titre, l'admin obtient un tableau agrégé simple, et c'est tout. Il ne supprime, ne déplace ni ne modifie jamais rien lui-même, et le désinstaller ne laisse qu'un seul fichier JSON à nettoyer. Sur [GitHub](https://github.com/JellyUX/Keep_or_Remove).
 
-Un petit plugin volontairement temporaire pour les moments où le stockage du serveur se fait rare : les utilisateurs votent garder ou retirer sur un titre, l'admin obtient un tableau agrégé simple, et c'est tout. Il ne supprime, ne déplace ni ne modifie jamais rien lui-même, et le désinstaller ne laisse qu'un seul fichier JSON à nettoyer. À la version 1.0.2, sur [GitHub](https://github.com/JellyUX/Keep_or_Remove).
-
-## Easy Notif
+### Easy Notif
 
 Un service de notifications par email interne à Jellyfin : une newsletter des nouveautés au rythme choisi par l'admin (hebdomadaire, mensuelle, tous les N jours ou quotidienne), avec affiches et liens vers chaque titre ; un récapitulatif hebdomadaire personnel pour chaque utilisateur, avec ce qu'il a regardé dans la semaine et son total de l'année ; et des annonces ponctuelles rédigées depuis le tableau de bord, en texte brut ou en HTML. Chaque utilisateur choisit les catégories qu'il reçoit et sa propre adresse, chaque email porte un lien de désinscription en un clic, et le plugin ne fait que lire les données de bibliothèque et de lecture. L'envoi passe par Resend. Sur [GitHub](https://github.com/JellyUX/Easy_Notif).`,
+        },
       },
+      kind: 'library',
+      sourceOfSkills: 'personal',
       technologies: ['C#', '.NET', 'TypeScript', 'GitHub Actions', 'semantic-release'],
       domains: ['Web Development', 'Open Source'],
       keywords: ['jellyfin', 'plugin', 'homelab', 'self-hosted', 'csharp', 'dotnet'],
@@ -454,6 +462,7 @@ Un service de notifications par email interne à Jellyfin : une newsletter des n
         fr: 'Capture d\'écran du moteur de widgets JellyUX Homepage sur une page d\'accueil Jellyfin',
       },
       gitHubUrl: 'https://github.com/JellyUX',
+      links: [{ type: 'docs', url: 'https://jellyux.github.io/Homepage/', label: { en: 'Homepage docs', fr: 'Documentation Homepage' } }],
       featured: true,
       dateCreated: '2026-06-27',
     },
@@ -469,12 +478,12 @@ Un service de notifications par email interne à Jellyfin : une newsletter des n
         fr: 'Tournées de livraison guidées par OCR',
       },
       detailedDescription: {
-        en: `I built Delivr for a temp job delivering breakfasts at a holiday camp: every morning a paper sheet lists which cottages get a delivery, and copying those cottage numbers by hand before each round was the tedious part. The app scans the sheet, runs offline OCR to pull the cottage numbers out of the right column, sorts them into a logical route, and lets me check the list before starting.
+        en: `I built Delivr for a temp job delivering breakfasts at a holiday camp: every morning a paper sheet lists which cottages get a delivery, and copying those cottage numbers by hand before each round was the tedious part. The app scans the sheet, runs offline OCR (optical character recognition) to pull the cottage numbers out of the right column, sorts them into a logical route, and lets me check the list before starting.
 
 Once a round starts, the screen shows one thing: the current cottage number, in large type, with its position in the round underneath. Delivered or skipped, one tap moves to the next one, and everything saves continuously so closing the app by accident never loses the round in progress.
 
 It runs entirely offline: no server, no cloud, no account. Under the hood it's Kotlin and Jetpack Compose, Room for storage, and Google's ML Kit for document detection and text recognition, with a small CI pipeline that runs tests and lint and builds a signed release APK on every version bump.`,
-        fr: `J'ai développé Delivr pour un job d'intérim de livraison de petits-déjeuners en centre de vacances : chaque matin, une feuille papier liste les cottages à livrer, et recopier ces numéros à la main avant chaque tournée était la partie fastidieuse. L'application scanne la feuille, extrait les numéros de cottages par OCR hors ligne dans la bonne colonne, les trie dans un ordre logique de tournée, et permet de vérifier la liste avant de démarrer.
+        fr: `J'ai développé Delivr pour un job d'intérim de livraison de petits-déjeuners en centre de vacances : chaque matin, une feuille papier liste les cottages à livrer, et recopier ces numéros à la main avant chaque tournée était la partie fastidieuse. L'application scanne la feuille, extrait les numéros de cottages par OCR (reconnaissance optique de caractères) hors ligne dans la bonne colonne, les trie dans un ordre logique de tournée, et permet de vérifier la liste avant de démarrer.
 
 Une fois la tournée lancée, l'écran n'affiche qu'une chose : le numéro du cottage en cours, en grand, avec sa position dans la tournée en dessous. Livré ou passé, un tap suffit pour passer au suivant, et tout se sauvegarde en continu pour qu'une fermeture accidentelle de l'application ne fasse jamais perdre la tournée en cours.
 
@@ -493,6 +502,9 @@ L'application fonctionne entièrement hors ligne : aucun serveur, aucun cloud, a
         fr: 'Écran d\'accueil et mode livraison de l\'application Android Delivr, côte à côte',
       },
       gitHubUrl: 'https://github.com/Samuellct/Delivr',
+      links: [{ type: 'release', url: 'https://github.com/Samuellct/Delivr/releases', label: { en: 'Releases (APK)', fr: 'Versions (APK)' } }],
+      kind: 'mobile',
+      sourceOfSkills: 'personal',
       dateCreated: '2026-07-06',
     },
   },
