@@ -13,7 +13,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const t = await getTranslations({ locale, namespace: 'metadata' })
 
   return {
-    title: t('projects.title'),
+    // A plain string here would reset the root template for the project pages
+    // below (TXT-15): re-declare it so a fiche reads "AlpineRoute | Samuel Lecomte".
+    title: { default: t('projects.title'), template: t('home.titleTemplate') },
     description: t('projects.description'),
     openGraph: {
       title: t('projects.ogTitle'),
