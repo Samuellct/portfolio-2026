@@ -5,6 +5,16 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.16.0](https://github.com/Samuellct/portfolio-2026/compare/v4.15.1...v4.16.0) (2026-10-05)
+
+### Ajouté
+
+* remove the personal links page project ([3c58a52](https://github.com/Samuellct/portfolio-2026/commit/3c58a524936550f0c9108e82c7dc74df6dc61c0d))
+* restructure and illustrate data analysis, quantum and saturn rings ([3800965](https://github.com/Samuellct/portfolio-2026/commit/3800965973fe623e20ff39aa8c482d7f26bc2a38))
+* restructure and illustrate delivr, jellyux and accred ([a81975c](https://github.com/Samuellct/portfolio-2026/commit/a81975cea7df85f9a0295ce3d53040ea98a5e598))
+* restructure and illustrate home server, portfolio and hep-gui ([c499b39](https://github.com/Samuellct/portfolio-2026/commit/c499b396b13c913c494f9d949c24dcfdbf3302d7))
+* restructure and illustrate labview and master 1 internship ([8288270](https://github.com/Samuellct/portfolio-2026/commit/8288270a9d23ac19e176ca25644afc1c1aa0860f))
+
 ## [4.15.1](https://github.com/Samuellct/portfolio-2026/compare/v4.15.0...v4.15.1) (2026-10-05)
 
 ### Corrigé
