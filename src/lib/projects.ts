@@ -526,29 +526,38 @@ L'application fonctionne entièrement hors ligne : aucun serveur, aucun cloud, a
         fr: 'Introduction à l\'analyse de données en physique',
       },
       description: {
-        en: "Presentation of data filtering process applied to HL-LHC simulated data to estimate the presence of an 'X boson'.",
-        fr: "Présentation du processus de filtrage de données appliqué aux données simulées du HL-LHC pour estimer la présence d'un « boson X ».",
+        en: "Presentation of data filtering process applied to HL-LHC (High-Luminosity LHC) simulated data to estimate the presence of an \"X boson\".",
+        fr: "Présentation du processus de filtrage de données appliqué aux données simulées du HL-LHC (LHC à haute luminosité) pour estimer la présence d'un \"boson X\".",
       },
       subtitle: {
         en: 'Searching for New Particles in Simulated LHC Data',
         fr: 'Recherche de nouvelles particules dans les données simulées du LHC',
       },
-      detailedDescription: {
-        en: `During my third year of bachelor's degree, I worked on a particle physics analysis that simulated the search for a hypothetical *X boson* decaying into two photons.
-
-While I was familiar with Python and libraries like Pandas or SciPy, applying them to physics analysis required a different approach. We needed to optimize selection cuts on variables like photon isolation and transverse momentum to separate the signal from Standard Model background noise. The cuts had to be precise: too strict and we'd lose signal events, too loose and the background would dominate. Through this trial-and-error process, we managed to reduce background by a factor of 40 while retaining most signal events.
+      sections: {
+        context: {
+          en: `During my third year of bachelor's degree, I worked on a particle physics analysis that simulated the search for a hypothetical *X boson* decaying into two photons. The simulated samples were provided by the teacher.`,
+          fr: `Au cours de ma troisième année de licence, j'ai travaillé sur une analyse de physique des particules qui simulait la recherche d'un *boson X* hypothétique se désintégrant en deux photons. Les échantillons simulés étaient fournis par l'enseignant.`,
+        },
+        approach: {
+          en: `While I was familiar with Python and libraries like Pandas or SciPy, applying them to physics analysis required a different approach. We needed to optimize selection cuts on variables like photon isolation (a variable that separates genuine photons from those produced in particle decays) and transverse momentum to separate the signal from Standard Model background noise. The cuts had to be precise: too strict and we'd lose signal events, too loose and the background would dominate. Through this trial-and-error process, we managed to reduce background by a factor of 40 while retaining most signal events.
 
 After establishing the selection criteria on simulated samples, we moved to statistical analysis. We fitted the invariant mass spectrum background with an exponential function to see if a local excess appeared, which would indicate a new particle. Our dataset of observed data showed no evidence of the X boson, with a significance of only $0.5~\\sigma$, consistent with statistical fluctuation.
 
-Following the CLs method, we determined that we could exclude signals of strength above $0.3736~\\mu$, corresponding to an effective cross-section ($\\sigma$) of approximately $2.017~\\text{pb}$. This upper limit means that if a signal does exist, it will necessarily be smaller than $2.017~\\text{pb}$.`,
-        fr: `Au cours de ma troisième année de licence, j'ai travaillé sur une analyse de physique des particules qui simulait la recherche d'un *boson X* hypothétique se désintégrant en deux photons.
-
-Bien que je connaisse bien Python et des bibliothèques telles que Pandas ou SciPy, leur application à l'analyse de données était nouvelle pour moi. Nous devions optimiser les critères de sélection sur des variables telles que la *photon isolation* (variable permettant de séparer les vrais photons de ceux étant des produits de désintégration) et *l'impulsion transverse* afin de séparer le signal du bruit de fond du modèle standard. Les critères devaient être précis : trop stricts, nous perdions des événements de signal, trop laxistes, le bruit de fond dominait. Grâce à ce processus d'essais et d'erreurs, nous avons réussi à réduire le bruit de fond d'un facteur 40 tout en conservant la plupart des événements de signal.
+Following the CLs method (a standard statistical method for setting exclusion limits), we determined that we could exclude signals of strength above $0.3736~\\mu$, corresponding to an effective cross-section ($\\sigma$) of approximately $2.017~\\text{pb}$ (picobarns, a unit of cross-section). This upper limit means that if a signal does exist, it will necessarily be smaller than $2.017~\\text{pb}$.`,
+          fr: `Bien que je connaisse bien Python et des bibliothèques telles que Pandas ou SciPy, leur application à l'analyse en physique demandait une autre approche. Nous devions optimiser les critères de sélection sur des variables telles que la *photon isolation* (variable permettant de séparer les vrais photons de ceux étant des produits de désintégration) et *l'impulsion transverse* afin de séparer le signal du bruit de fond du modèle standard. Les critères devaient être précis : trop stricts, nous perdions des événements de signal, trop laxistes, le bruit de fond dominait. Grâce à ce processus d'essais et d'erreurs, nous avons réussi à réduire le bruit de fond d'un facteur 40 tout en conservant la plupart des événements de signal.
 
 Après avoir établi les critères de sélection sur des échantillons simulés, nous sommes passés à l'analyse statistique. Le fond du spectre de masse invariante a été ajusté par une fonction exponentielle afin de détecter un éventuel excès local, ce qui indiquerait une nouvelle particule. Notre ensemble de données observées n'a montré aucune preuve de l'existence du boson X, avec une signification de seulement $0.5~\\sigma$, ce qui correspond à une fluctuation statistique.
 
-En suivant la méthode CLs, nous avons déterminé que nous pouvions exclure les signaux d'une intensité supérieure à $0.3736~\\mu$, ce qui correspond à une section efficace ($\\sigma$) d'environ $2.017~\\text{pb}$. Cette limite supérieure signifie que si un signal existe, il sera nécessairement inférieur à $2.017~\\text{pb}$.`,
+En suivant la méthode CLs (méthode statistique standard pour fixer des limites d'exclusion), nous avons déterminé que nous pouvions exclure les signaux d'une intensité supérieure à $0.3736~\\mu$, ce qui correspond à une section efficace ($\\sigma$) d'environ $2.017~\\text{pb}$ (picobarns, unité de section efficace). Cette limite supérieure signifie que si un signal existe, il sera nécessairement inférieur à $2.017~\\text{pb}$.`,
+        },
       },
+      kind: 'analysis',
+      results: [
+        { label: { en: 'Background reduction', fr: 'Réduction du bruit de fond' }, value: '40×', note: { en: 'most signal events kept', fr: 'la plupart des événements de signal conservés' } },
+        { label: { en: 'Observed significance', fr: 'Significance observée' }, value: '0.5 σ', note: { en: 'no evidence of the X boson', fr: 'aucun signe du boson X' } },
+        { label: { en: 'Cross-section upper limit', fr: 'Limite sur la section efficace' }, value: '2.017 pb', note: { en: 'signal strength above 0.3736 excluded (CLs)', fr: 'intensité de signal au-delà de 0.3736 exclue (CLs)' } },
+      ],
+      sourceOfSkills: 'academic',
       technologies: ['Python', 'NumPy', 'Matplotlib', 'Pandas', 'SciPy'],
       domains: ['Particle Physics', 'Data Analysis', 'Simulation'],
       keywords: ['physics', 'statistics', 'python', 'simulation'],
@@ -556,13 +565,11 @@ En suivant la méthode CLs, nous avons déterminé que nous pouvions exclure les
       status: 'completed',
       period: 'L3 - 2023',
       location: 'Université Clermont Auvergne',
-      image: '/images/data_analysis.webp',
+      image: '/images/data_analysis_fit.webp',
       imageAlt: {
-        en: 'The Compact Muon Solenoid (CMS) experiment in the Large Hadron Collider (LHC) at CERN.',
-        fr: 'L\'expérience Compact Muon Solenoid (CMS) dans le Grand collisionneur de hadrons (LHC) au CERN.',
+        en: 'Exponential fit of the diphoton invariant mass background in the sidebands, with statistical and systematic errors',
+        fr: 'Ajustement exponentiel du bruit de fond de la masse invariante diphoton sur les bandes latérales, avec erreurs statistiques et systématiques',
       },
-      imageCredit: 'SimonWaldherr',
-      imageCreditUrl: 'https://commons.wikimedia.org/wiki/File:CERN_LHC_CMS_08.jpg',
       gitHubUrl: 'https://github.com/Samuellct/ATLAS-basic-particle-search-workflow',
       dateCreated: '2024-09-17',
     },
@@ -601,22 +608,30 @@ En suivant la méthode CLs, nous avons déterminé que nous pouvions exclure les
         en: 'Principles of Quantum Computing and Application to Cryptographic Algorithms',
         fr: 'Principes de l\'informatique quantique et application aux algorithmes cryptographiques',
       },
-      detailedDescription: {
-        en: `This project was carried out as part of my Quantum Mechanics course during my first year of Master's. Working alongside two classmates, we studied the principles of quantum computing and their implications for modern cryptography. Our goal was to understand how qubits, quantum gates, and quantum circuits work, and then apply this knowledge to a real-world problem: breaking RSA encryption using Shor's algorithm.
+      sections: {
+        context: {
+          en: `This project was carried out as part of my Quantum Mechanics course during my first year of Master's. Working alongside two classmates, we studied the principles of quantum computing and their implications for modern cryptography. Our goal was to understand how qubits, quantum gates, and quantum circuits work, and then apply this knowledge to a real-world problem: breaking RSA encryption (a widely used public-key encryption scheme) using Shor's algorithm.`,
+          fr: `Ce projet a été réalisé dans le cadre du cours de mécanique quantique pendant ma première année de master. En collaboration avec deux camarades, nous avons étudié les principes de l'informatique quantique et leurs implications pour la cryptographie moderne. Notre objectif était de comprendre le fonctionnement des qubits, des portes quantiques et des circuits quantiques, puis d'appliquer ces connaissances à un problème concret : casser le chiffrement RSA (un chiffrement à clé publique très répandu) à l'aide de l'algorithme de Shor.`,
+        },
+        approach: {
+          en: `We started with the theory. We studied superposition, entanglement, and the Bloch sphere representation, then moved on to quantum gates like Hadamard, Pauli-X, and CNOT (controlled-NOT), as well as the Quantum Fourier Transform. Once we felt comfortable with the basics, we implemented RSA encryption in Python using both a simple version with SymPy and a standard implementation with the cryptography library. We wanted to see firsthand how asymmetric encryption works before attempting to crack it.`,
+          fr: `Nous avons commencé par la théorie. Nous avons étudié la superposition, l'intrication et la représentation de la sphère de Bloch, puis nous sommes passés aux portes quantiques telles que Hadamard, Pauli-X et CNOT (NON contrôlé), ainsi qu'à la transformée de Fourier quantique. Une fois que nous nous sommes familiarisés avec les bases, nous avons implémenté le chiffrement RSA en Python en utilisant à la fois une version simple avec SymPy et une implémentation standard avec la bibliothèque *cryptography*. L'objectif était de voir concrètement le fonctionnement du chiffrement asymétrique avant de tenter de le casser.`,
+        },
+        whatIBuilt: {
+          en: `The most challenging part was implementing Shor's algorithm for integer factorization. We started with IBM's Qiskit framework, but we struggled with how the library handled the modular exponentiation gate and the circuit optimization. After many weeks of troubleshooting, we decided to switch to Google's Cirq library, which gave us more direct control over the gate decomposition. With Cirq, we were finally able to build a working simulation.
 
-We started by building a strong theoretical foundation. We studied superposition, entanglement, and the Bloch sphere representation, then moved on to quantum gates like Hadamard, Pauli-X, and CNOT, as well as the Quantum Fourier Transform. Once we felt comfortable with the basics, we implemented RSA encryption in Python using both a simple version with SymPy and a more robust one with the cryptography library. We wanted to see firsthand how asymmetric encryption works before attempting to crack it.
+We also got a taste of why researchers are now developing new encryption methods that could resist quantum attacks. These "post-quantum" algorithms rely on mathematical problems that even quantum computers would struggle with, like finding short vectors in high-dimensional lattices (the shortest vector problem, SVP).`,
+          fr: `La partie la plus difficile a été la mise en œuvre de l'algorithme de Shor pour la factorisation des nombres entiers. Nous avons commencé avec le framework Qiskit d'IBM, mais nous avons rencontré des difficultés avec la manière dont la bibliothèque gérait les portes quantiques complexes et l'optimisation des circuits. Après plusieurs semaines de débogage, nous avons décidé de passer à la bibliothèque Cirq de Google, qui nous offrait un contrôle plus direct sur la décomposition des portes. Avec Cirq, nous avons enfin pu créer une simulation fonctionnelle.
 
-The most challenging part was implementing Shor's algorithm for integer factorization. We started with IBM's Qiskit framework, but we struggled with how the library handled the modular exponentiation gate and the circuit optimization. After many weeks of troubleshooting, we decided to switch to Google's Cirq library, which gave us more direct control over the gate decomposition. With Cirq, we were finally able to build a working simulation.
-
-The algorithm worked well for small numbers, but we quickly hit memory limitations for numbers larger than five digits. This makes sense because simulating n qubits requires storing $2^{n}$ complex numbers in memory, so the requirements explode exponentially. We also got a taste of why researchers are now developing new encryption methods that could resist quantum attacks. These "post-quantum" algorithms rely on mathematical problems that even quantum computers would struggle with, like finding short vectors in high-dimensional lattices.`,
-        fr: `Ce projet a été réalisé dans le cadre du cours de mécanique quantique pendant ma première année de master. En collaboration avec deux camarades, nous avons étudié les principes de l'informatique quantique et leurs implications pour la cryptographie moderne. Notre objectif était de comprendre le fonctionnement des qubits, des portes quantiques et des circuits quantiques, puis d'appliquer ces connaissances à un problème concret : casser le chiffrement RSA à l'aide de l'algorithme de Shor.
-
-Nous avons commencé par établir une base théorique solide. Nous avons étudié la superposition, l'intrication et la représentation de la sphère de Bloch, puis nous sommes passés aux portes quantiques telles que Hadamard, Pauli-X et CNOT, ainsi qu'à la transformée de Fourier quantique. Une fois que nous nous sommes familiarisés avec les bases, nous avons implémenté le chiffrement RSA en Python en utilisant à la fois une version simple avec SymPy et une version plus robuste avec la bibliothèque *cryptography*. L'objectif était de voir concrètement le fonctionnement du chiffrement asymétrique avant de tenter de le casser.
-
-La partie la plus difficile a été la mise en œuvre de l'algorithme de Shor pour la factorisation des nombres entiers. Nous avons commencé avec le framework Qiskit d'IBM, mais nous avons rencontré des difficultés avec la manière dont la bibliothèque gérait les portes quantiques complexes et l'optimisation des circuits. Après plusieurs semaines de débogage, nous avons décidé de passer à la bibliothèque Cirq de Google, qui nous offrait un contrôle plus direct sur la décomposition des portes. Avec Cirq, nous avons enfin pu créer une simulation fonctionnelle.
-
-L'algorithme a bien fonctionné pour les petits nombres, mais nous avons rapidement atteint les limites de mémoire pour les nombres supérieurs à cinq chiffres. C'est logique, car la simulation de n qubits nécessite de stocker $2^{n}$ nombres complexes en mémoire, ce qui fait exploser les besoins de manière exponentielle. Nous avons également compris pourquoi les chercheurs développent actuellement de nouvelles méthodes de chiffrement capables de résister aux attaques quantiques. Ces algorithmes *post-quantiques* s'appuient sur des problèmes mathématiques que même les ordinateurs quantiques auraient du mal à résoudre, comme la recherche de vecteurs courts (SVP) dans des réseaux de grande dimension.`,
+Nous avons également compris pourquoi les chercheurs développent actuellement de nouvelles méthodes de chiffrement capables de résister aux attaques quantiques. Ces algorithmes *post-quantiques* s'appuient sur des problèmes mathématiques que même les ordinateurs quantiques auraient du mal à résoudre, comme la recherche de vecteurs courts dans des réseaux de grande dimension (problème du plus court vecteur, SVP).`,
+        },
       },
+      limits: {
+        en: `The algorithm worked well for small numbers, but we quickly hit memory limitations for numbers larger than five digits. This makes sense because simulating n qubits requires storing $2^{n}$ complex numbers in memory, so the requirements explode exponentially.`,
+        fr: `L'algorithme a bien fonctionné pour les petits nombres, mais nous avons rapidement atteint les limites de mémoire pour les nombres supérieurs à cinq chiffres. C'est logique, car la simulation de n qubits nécessite de stocker $2^{n}$ nombres complexes en mémoire, ce qui fait exploser les besoins de manière exponentielle.`,
+      },
+      kind: 'analysis',
+      sourceOfSkills: 'academic',
       technologies: ['Python', 'Qiskit', 'Cirq', 'SymPy'],
       domains: ['Quantum Computing', 'Cryptography'],
       keywords: ['quantum computing', 'Shor algorithm', 'RSA', 'cryptography'],
@@ -780,18 +795,26 @@ Les acquisitions précédentes réalisées par des groupes d'étudiants antérie
         en: 'Studying Orbital Dynamics and Chaos Theory',
         fr: 'Étude de la dynamique orbitale et de la théorie du chaos',
       },
-      detailedDescription: {
-        en: `For a three-month project in the chaos theory course, we explored Saturn's rings as a complex dynamical system. We wanted to understand whether the massive ring systems are actually stable over hundreds of millions of years, or if they could eventually disperse.
-
-We began by reviewing the historical theories on the composition and dynamics of the rings. Cassini thought they were made of colliding rocks, Laplace argued for solid structures, but Maxwell settled it in 1859 by proving mathematically that only systems of independent particles could remain stable. His work also revealed that these systems are inherently sensitive to initial conditions, which is a hint of chaos theory before Poincaré formalized the concept. We also learned about the Roche limit, which explains how tidal forces can tear apart a moon to create rings in the first place.
-
-Our computational work focused on modeling the rings as an N-body problem using Python. We implemented Newton's equations, treating the rings as collections of particles interacting with Saturn and its moons. We ran simulations tracking 20 particles over 10-year periods, visualizing their trajectories in 2D and 3D. The results showed clear chaotic behavior with high sensitivity to initial conditions, just like Poincaré predicted for the three-body problem. We tried calculating Lyapunov exponents to quantify the chaos, but we found this task relatively difficult to implement properly. What we did confirm is that small changes in particle positions lead to dramatically different long-term evolution. The whole project connected classical celestial mechanics with chaos theory, showing that even though Saturn's rings appear stable now, their behavior over geological timescales is fundamentally unpredictable.`,
-        fr: `Dans le cadre d'un projet de trois mois dans le cours de théorie du chaos, nous avons étudié les anneaux de Saturne en tant que système dynamique complexe. L'objectif était de comprendre si ces systèmes d'anneaux sont réellement stables sur des centaines de millions d'années, ou s'ils pourraient finir par se disperser.
-
-Nous avons commencé par passer en revue les théories historiques sur la composition et la dynamique des anneaux. Cassini pensait qu'ils étaient constitués de roches en collision, Laplace défendait l'hypothèse de structures solides, mais Maxwell a tranché en 1859 en prouvant mathématiquement que seuls des systèmes de particules indépendantes pouvaient rester stables. Ses travaux ont également révélé que ces systèmes sont intrinsèquement sensibles aux conditions initiales, ce qui est un indice de la théorie du chaos avant que Poincaré ne formalise le concept. Nous avons également découvert la limite de Roche, qui explique comment les forces de marée peuvent disloquer une lune pour créer des anneaux. 
-
-Le travail numérique s'est concentré sur la modélisation des anneaux en tant que problème à N corps à l'aide de Python. Nous avons mis en œuvre les équations de Newton, en traitant les anneaux comme des collections de particules interagissant avec Saturne et ses lunes. Nous avons effectué des simulations suivant 20 particules sur des périodes de 10 ans, en visualisant leurs trajectoires en 2D et 3D. Les résultats ont montré un comportement chaotique clair avec une grande sensibilité aux conditions initiales, comme Poincaré l'avait prédit pour le problème à trois corps. Nous avons essayé de calculer les exposants de Lyapunov pour quantifier le chaos, mais nous avons trouvé cette tâche relativement difficile à mettre en œuvre correctement. Ce que nous avons confirmé, c'est que de petits changements dans la position des particules entraînent une évolution à long terme radicalement différente. L'ensemble du projet a établi un lien entre la mécanique céleste classique et la théorie du chaos, montrant que même si les anneaux de Saturne semblent stables aujourd'hui, leur comportement à l'échelle géologique est fondamentalement imprévisible.`,
+      sections: {
+        context: {
+          en: `For a three-month project in the chaos theory course, we explored Saturn's rings as a complex dynamical system. We wanted to understand whether the massive ring systems are actually stable over hundreds of millions of years, or if they could eventually disperse.`,
+          fr: `Dans le cadre d'un projet de trois mois dans le cours de théorie du chaos, nous avons étudié les anneaux de Saturne en tant que système dynamique complexe. L'objectif était de comprendre si ces systèmes d'anneaux sont réellement stables sur des centaines de millions d'années, ou s'ils pourraient finir par se disperser.`,
+        },
+        approach: {
+          en: `We began by reviewing the historical theories on the composition and dynamics of the rings. Cassini thought they were made of colliding rocks, Laplace argued for solid structures, but Maxwell settled it in 1859 by proving mathematically that only systems of independent particles could remain stable. His work also revealed that these systems are inherently sensitive to initial conditions, which is a hint of chaos theory before Poincaré formalized the concept. We also learned about the Roche limit, which explains how tidal forces can tear apart a moon to create rings in the first place.`,
+          fr: `Nous avons commencé par passer en revue les théories historiques sur la composition et la dynamique des anneaux. Cassini pensait qu'ils étaient constitués de roches en collision, Laplace défendait l'hypothèse de structures solides, mais Maxwell a tranché en 1859 en prouvant mathématiquement que seuls des systèmes de particules indépendantes pouvaient rester stables. Ses travaux ont également révélé que ces systèmes sont intrinsèquement sensibles aux conditions initiales, ce qui est un indice de la théorie du chaos avant que Poincaré ne formalise le concept. Nous avons également découvert la limite de Roche, qui explique comment les forces de marée peuvent disloquer une lune pour créer des anneaux.`,
+        },
+        whatIBuilt: {
+          en: `Our computational work focused on modeling the rings as an N-body problem using Python. We implemented Newton's equations, treating the rings as collections of particles interacting with Saturn and its moons. We ran simulations tracking 20 particles over 10-year periods, visualizing their trajectories in 2D and 3D. The results showed clear chaotic behavior with high sensitivity to initial conditions, just like Poincaré predicted for the three-body problem. We did confirm that small changes in particle positions lead to dramatically different long-term evolution.`,
+          fr: `Le travail numérique s'est concentré sur la modélisation des anneaux en tant que problème à N corps à l'aide de Python. Nous avons mis en œuvre les équations de Newton, en traitant les anneaux comme des collections de particules interagissant avec Saturne et ses lunes. Nous avons effectué des simulations suivant 20 particules sur des périodes de 10 ans, en visualisant leurs trajectoires en 2D et 3D. Les résultats ont montré un comportement chaotique clair avec une grande sensibilité aux conditions initiales, comme Poincaré l'avait prédit pour le problème à trois corps. Nous avons confirmé que de petits changements dans la position des particules entraînent une évolution à long terme radicalement différente.`,
+        },
       },
+      limits: {
+        en: `We tried calculating Lyapunov exponents to quantify the chaos, but we found this task relatively difficult to implement properly.`,
+        fr: `Nous avons essayé de calculer les exposants de Lyapunov pour quantifier le chaos, mais nous avons trouvé cette tâche relativement difficile à mettre en œuvre correctement.`,
+      },
+      kind: 'analysis',
+      sourceOfSkills: 'academic',
       technologies: ['Python', 'NumPy', 'Matplotlib'],
       domains: ['Chaos Theory', 'Celestial Mechanics', 'Simulation'],
       keywords: ['chaos theory', 'N-body problem', 'simulation', 'Lyapunov'],
