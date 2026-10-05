@@ -51,7 +51,7 @@
     },
     "stats": {
       "experiments": "Stages de recherche",
-      "experimentsHover": "au sein des équipes ATLAS & LHCb du LPCA",
+      "experimentsHover": "au sein des équipes ATLAS & LHCb du LPC",
       "languages": "Langages de programmation",
       "languagesHover": "Python, C++, R, TypeScript",
       "reports": "Documents LaTeX",

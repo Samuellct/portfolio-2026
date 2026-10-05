@@ -173,12 +173,12 @@ Ce projet a également été l'occasion d'explorer de nouvelles technologies. La
       },
       detailedDescription: {
         en: `
-I started this project to learn the basics of server administration and virtualization. Instead of buying a ready-made NAS, I repurposed an old PC (AMD A8-7650K, 32GB DDR3 RAM, 400 Gb SSD for system files) to build a "Proof of Concept" system. The goal is to test how different services work together before investing in more expensive hardware.
+I started this project to learn the basics of server administration and virtualization. Instead of buying a ready-made NAS, I repurposed an old PC (AMD A8-7650K, 32GB DDR3 RAM, 400 GB SSD for system files) to build a "Proof of Concept" system. The goal is to test how different services work together before investing in more expensive hardware.
 
 ### My current setup:
 I started by installing **Proxmox VE** as the main OS.
-- **Storage:** : I installed **TrueNAS** on a Proxmox VM and connected a single 500GB drive to it. This is mainly to get used to the Truenas / ZFS interface. In the future, I plan to install between 15 and 20TB of storage in a RAID-Z1 configuration.
-- **Cloud & Media:** : I installed **Nextcloud** and **Jellyfin** on Truenas, one app is dedicated to file sharing (like Google Drive) and the other to streaming movies.
+- **Storage:** I installed **TrueNAS** on a Proxmox VM and connected a single 500GB drive to it. This is mainly to get used to the TrueNAS / ZFS interface. In the future, I plan to install between 15 and 20TB of storage in a RAID-Z1 configuration.
+- **Cloud & Media:** I installed **Nextcloud** and **Jellyfin** on TrueNAS, one app is dedicated to file sharing (like Google Drive) and the other to streaming movies.
 - **Network** : I implemented **Nginx Proxy Manager** to manage reverse proxy logic and connect my services (Nextcloud, Jellyfin) to subdomains of my personal domain so that I can access them from anywhere.
 
 However, I'm starting to hit some limits. Running Proxmox as a base layer might be too heavy for my old PC once several users start streaming or using VMs. I'm currently considering switching to a bare-metal TrueNAS install and building a dedicated machine for virtualization later on. I also plan to add an Arc A380 GPU soon, which will allow Jellyfin to transcode video files on the fly without crushing the CPU.`,
@@ -187,8 +187,8 @@ J'ai lancé ce projet afin d'apprendre les bases de l'administration de serveurs
 
 ### Ma configuration actuelle :
 J'ai commencé par installer **Proxmox VE** comme OS principal.
-- **Stockage :** j'ai installé **TrueNAS** sur une machine virtuelle Proxmox et j'y ai connecté un seul disque dur de 500 Go. Cela m'a principalement permis de me familiariser avec l'interface Truenas / ZFS. À l'avenir, je prévois d'installer entre 15 et 20 To de stockage dans une configuration RAID-Z1.
-- **Cloud et médias :** j'ai installé **Nextcloud** et **Jellyfin** sur Truenas, l'une des applications étant dédiée au partage de fichiers (comme Google Drive) et l'autre au streaming de films.
+- **Stockage :** j'ai installé **TrueNAS** sur une machine virtuelle Proxmox et j'y ai connecté un seul disque dur de 500 Go. Cela m'a principalement permis de me familiariser avec l'interface TrueNAS / ZFS. À l'avenir, je prévois d'installer entre 15 et 20 To de stockage dans une configuration RAID-Z1.
+- **Cloud et médias :** j'ai installé **Nextcloud** et **Jellyfin** sur TrueNAS, l'une des applications étant dédiée au partage de fichiers (comme Google Drive) et l'autre au streaming de films.
 - **Réseau** : j'ai mis en place **Nginx Proxy Manager** pour gérer la logique de reverse proxy et connecter mes services (Nextcloud, Jellyfin) à des sous-domaines de mon domaine personnel afin de pouvoir y accéder depuis n'importe où.
 
 Cependant, je commence à atteindre certaines limites. L'exécution de Proxmox en tant que couche de base risque d'être trop lourde pour mon ancien PC une fois que plusieurs utilisateurs commenceront à utiliser les services proposés. J'envisage actuellement de passer à une installation TrueNAS *bare-metal* et de construire plus tard une machine dédiée à la virtualisation. Je prévois également d'ajouter prochainement un GPU Arc A380, qui permettra à Jellyfin de transcoder des fichiers vidéo à la volée sans saturer le CPU.`,
@@ -202,7 +202,7 @@ Cependant, je commence à atteindre certaines limites. L'exécution de Proxmox e
       location: { en: 'Personal project', fr: 'Projet personnel' },
       image: '/images/Dashboard_Truenas.webp',
       imageAlt: {
-        en: 'Truenas dashboard showing virtual machines and server interface',
+        en: 'TrueNAS dashboard showing virtual machines and server interface',
         fr: 'Tableau de bord TrueNAS affichant les machines virtuelles et l\'interface serveur',
       },
       textColor: "black",
@@ -228,7 +228,7 @@ By October 2025, I decided to migrate to Next.js 15. The main motivation was to 
 
 The visual design centers on Three.js particle effects. I implemented a wave background using WebGL shaders, which required learning about coordinate transformations and fragment shaders. Getting acceptable performance on mobile devices meant reducing particle counts and implementing proper cleanup to prevent memory leaks. The landing page includes a moving starfield with an animated hyperspace effect that plays on first visit.
 
-Finally, all site text is managed through a centralized JSON file, except for project pages which use Markdown. This structure will simplify adding other languages in the future, since the translation infrastructure is already in place. For content rendering, I integrated react-markdown with KaTeX to support LaTeX equations in project descriptions. This was necessary for properly displaying physics notation without converting everything to images.`,
+Finally, all site text is managed through two JSON files, one per language, except for project pages which use Markdown. This translation infrastructure is what makes the site bilingual (French and English). For content rendering, I integrated react-markdown with KaTeX to support LaTeX equations in project descriptions. This was necessary for properly displaying physics notation without converting everything to images.`,
         fr: `J'ai commencé ce projet de portfolio en 2024, car je souhaitais disposer d'un espace pour présenter mon profil et mes projets de manière moins formelle qu'un CV. Le créer moi-même m'a également donné l'occasion d'apprendre progressivement le développement web tout en ayant un objectif concret.
 
 La première version utilisait WordPress, mais j'ai rapidement trouvé cette plateforme trop restrictive et trop lourde pour mes besoins. Entre fin 2024 et début 2025, j'ai tout reconstruit avec Eleventy (V2), qui m'a permis de travailler directement avec HTML et CSS dans une structure que je comprenais bien. Quelques mois plus tard, je suis passé à React avec Vite (V3) pour apprendre l'architecture basée sur les composants et le rendu côté client, qui ont établi les bases des applications web modernes, même si je pouvais voir les limites du CSR pur.
@@ -237,7 +237,7 @@ La première version utilisait WordPress, mais j'ai rapidement trouvé cette pla
 
 La conception visuelle est centrée sur les effets de particules Three.js. Pour obtenir des performances acceptables sur les appareils mobiles, il a fallu réduire le nombre de particules et mettre en place un nettoyage approprié afin d'éviter les fuites de mémoire. La page d'accueil comprend un champ d'étoiles en mouvement avec un effet d'hyperspace animé qui s'affiche lors de la première visite.
 
-Enfin, tout le texte du site est géré via un fichier JSON centralisé, à l'exception des pages de projet qui utilisent Markdown. Cette structure simplifie l'ajout d'autres langues à l'avenir, puisque l'infrastructure de traduction est déjà en place. Pour le rendu du contenu, j'ai intégré react-markdown avec KaTeX afin de prendre en charge les équations LaTeX dans les descriptions de projet.`,
+Enfin, tout le texte du site est géré via deux fichiers JSON, un par langue, à l'exception des pages de projet qui utilisent Markdown. C'est cette infrastructure de traduction qui rend le site bilingue (français et anglais). Pour le rendu du contenu, j'ai intégré react-markdown avec KaTeX afin de prendre en charge les équations LaTeX dans les descriptions de projet.`,
       },
       technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Three.js', 'GSAP'],
       domains: ['Web Development', 'Frontend'],
@@ -326,14 +326,14 @@ Ces couches raster sont combinées avec des données vectorielles : contours gla
         fr: 'Interface graphique pour la génération d\'événements Monte Carlo',
       },
       detailedDescription: {
-        en: `During my M2 internship at the Clermont Physics Laboratory (LPCA), I regularly ran Monte Carlo event generation pipelines from the command line, chaining MadGraph5, Pythia8 and Rivet with manual configuration files at each step. I built HEP-GUI to replace that workflow with a desktop interface, so the same simulation run can be configured, launched and monitored without manual terminal interaction.
+        en: `During my M2 internship at the Clermont Physics Laboratory (LPC), I regularly ran Monte Carlo event generation pipelines from the command line, chaining MadGraph5, Pythia8 and Rivet with manual configuration files at each step. I built HEP-GUI to replace that workflow with a desktop interface, so the same simulation run can be configured, launched and monitored without manual terminal interaction.
 
 The app runs on Windows and drives all HEP tools inside a Docker container, with the local data directory mounted as a shared volume. The three-stage pipeline follows the standard HEP workflow: MadGraph5 generates parton-level events from UFO physics models, Pythia8 applies parton showering and hadronization, and Rivet produces YODA histogram files for analysis. The current version is built around the MC_JETS routine and the custom Rivet analyses used during my internship, which serve as the reference workflow.
 
 To keep the interface responsive during long computations (event generation runs can take hours), execution is handled by QThread workers that stream container logs line by line via Qt signals. PyQtGraph renders the output histograms directly in the interface.
 
 HEP-GUI was a proof of concept scoped to that one workflow, and I'm not planning to develop it further.`,
-        fr: `Lors de mon stage de M2 au Laboratoire de physique de Clermont (LPCA), je lançais régulièrement des pipelines de génération d'événements Monte Carlo depuis un terminal bash, en enchaînant MadGraph5, Pythia8 et Rivet avec des fichiers de configuration manuels à chaque étape. J'ai développé HEP-GUI pour remplacer ce flux de travail par une interface desktop permettant de configurer, lancer et surveiller ces simulations sans interaction manuelle avec le terminal.
+        fr: `Lors de mon stage de M2 au Laboratoire de Physique de Clermont (LPC), je lançais régulièrement des pipelines de génération d'événements Monte Carlo depuis un terminal bash, en enchaînant MadGraph5, Pythia8 et Rivet avec des fichiers de configuration manuels à chaque étape. J'ai développé HEP-GUI pour remplacer ce flux de travail par une interface desktop permettant de configurer, lancer et surveiller ces simulations sans interaction manuelle avec le terminal.
 
 L'application fonctionne sous Windows et pilote tous les outils HEP dans un container Docker, avec le répertoire de données local monté comme volume partagé. Le pipeline en trois étapes suit le workflow HEP standard : MadGraph5 génère des événements au niveau des partons à partir de modèles de physique UFO, Pythia8 simule les cascades partoniques et l'hadronisation, et Rivet produit des fichiers d'histogrammes YODA pour l'analyse. La version actuelle est construite autour de la routine MC_JETS et des analyses Rivet personnalisées utilisées pendant mon stage, qui servent de workflow de référence.
 
@@ -428,7 +428,7 @@ J'ai utilisé Accred au Festival de Cannes 2026 en déploiement privé, ce qui a
       kind: 'analysis',
       results: [
         { label: { en: 'GPS segments', fr: 'Segments GPS' }, value: '26 301' },
-        { label: { en: 'Model error', fr: 'Erreur modèle' }, value: '25.4 %', note: { en: 'vs 37.0% for a Riegel estimate', fr: 'vs 37,0 % pour une estimation de Riegel' } },
+        { label: { en: 'Model error', fr: 'Erreur modèle' }, value: '25.4 %', note: { en: 'vs 37.0 % for a Riegel estimate', fr: 'vs 37.0 % pour une estimation de Riegel' } },
         { label: { en: 'WBGT accuracy', fr: 'Précision météo WBGT' }, value: '0.00 °C' },
         { label: { en: 'Route coverage', fr: 'Couverture parcours' }, value: '138/138', note: { en: 'vs 0/6 for the old version', fr: 'vs 0/6 pour l\'ancienne version' } },
       ],
@@ -903,7 +903,7 @@ Lorsque j'ai appliqué cette présélection aux données réelles du Run 1, j'ai
       category: 'internship',
       status: 'completed',
       period: { en: 'April - June 2024', fr: 'Avril - Juin 2024' },
-      location: 'LPCA',
+      location: { en: 'Clermont Physics Laboratory (LPC)', fr: 'Laboratoire de Physique de Clermont (LPC)' },
       image: '/images/m1Internship.webp',
       imageAlt: {
         en: 'Attempt to Fit the B Meson mass',
