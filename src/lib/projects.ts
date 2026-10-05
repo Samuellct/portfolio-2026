@@ -52,7 +52,7 @@ export interface ProjectData {
   }>
   results?: Array<{ label: BilingualText; value: string; note?: BilingualText }>
   limits?: BilingualText
-  links?: Array<{ type: 'code' | 'demo' | 'docs' | 'report' | 'release'; url: string; label?: string }>
+  links?: Array<{ type: 'code' | 'demo' | 'docs' | 'report' | 'release'; url: string; label?: BilingualText | string }>
   sourceOfSkills?: 'academic' | 'internship' | 'personal'
 
   // Named optional narrative sections (AUDIT-017). When present, these replace
@@ -420,8 +420,8 @@ J'ai utilisé Accred au Festival de Cannes 2026 en déploiement privé, ce qui a
           fr: `Au départ, j'avais découpé le projet en une multitude de petits modules indépendants, pensant les assembler ensuite dans un modèle global. Cette approche s'est vite révélée intenable : une fois réunis, les modules accumulaient des erreurs invisibles, indices inventés, table vitesse-pente codée en dur qui se trompait de 30 à 50 %, module météo qui échouait silencieusement sur la majorité d'un parcours. Je reconstruis maintenant le projet depuis le début, en ne gardant que les briques de calcul et de logique qui avaient fait leurs preuves, mais en les validant ensemble cette fois, sur des données de course réelles, avant de les assembler.`,
         },
         whatIBuilt: {
-          en: `The new version is under active development. The pace-per-slope curve is now fitted on 26,301 real GPS segments instead of typed by hand. The level and uncertainty model reaches a 25.4% average error on nine real races, against 37.0% for a Riegel estimate, the classic empirical formula that predicts a race time from a single reference performance at another distance. Its error roughly doubles when tested outside its training conditions, instead of quietly staying wrong the way the old version did. Terrain classification and elevation gain are checked against actual races (Trail du Sancy, MaxiRace, UTMB) instead of assumed correct. The weather module, now built around the WBGT heat-stress index (a measure combining temperature, humidity and radiation to estimate heatstroke risk), matches an official reference calculation to within 0.00°C, and returns a result on all 138 points of a real tested route, versus zero out of six attempts for the old version.`,
-          fr: `La nouvelle version est en cours de développement. La courbe vitesse-pente est désormais ajustée sur 26 301 segments GPS réels, au lieu d'être saisie à la main. Le modèle de niveau et d'incertitude atteint une erreur moyenne de 25,4 % sur neuf courses réelles, contre 37,0 % pour une estimation de Riegel, la formule empirique classique qui prédit un temps de course à partir d'une seule performance de référence sur une autre distance. Son erreur double à peu près quand on le teste hors de ses conditions d'entraînement, plutôt que de rester silencieusement faux comme le faisait l'ancienne version. La classification du terrain et le calcul de dénivelé sont vérifiés sur de vraies courses (Trail du Sancy, MaxiRace, UTMB) plutôt que supposés corrects. Le module météo, reconstruit autour de l'indice de stress thermique WBGT (un indicateur qui combine température, humidité et rayonnement pour estimer le risque de coup de chaleur), retrouve à 0,00 °C près une référence officielle, et renvoie un résultat sur les 138 points d'un parcours réel testé, contre zéro sur six tentatives pour l'ancienne version.`,
+          en: `The new version is online in beta and still under active development. The pace-per-slope curve is now fitted on 26,301 real GPS segments instead of typed by hand. The level and uncertainty model reaches a 25.4% average error on nine real races, against 37.0% for a Riegel estimate, the classic empirical formula that predicts a race time from a single reference performance at another distance. Its error roughly doubles when tested outside its training conditions, instead of quietly staying wrong the way the old version did. Terrain classification and elevation gain are checked against actual races (Trail du Sancy, MaxiRace, UTMB) instead of assumed correct. The weather module, now built around the WBGT heat-stress index (a measure combining temperature, humidity and radiation to estimate heatstroke risk), matches an official reference calculation to within 0.00°C, and returns a result on all 138 points of a real tested route, versus zero out of six attempts for the old version.`,
+          fr: `La nouvelle version est en ligne en bêta et toujours en cours de développement. La courbe vitesse-pente est désormais ajustée sur 26 301 segments GPS réels, au lieu d'être saisie à la main. Le modèle de niveau et d'incertitude atteint une erreur moyenne de 25,4 % sur neuf courses réelles, contre 37,0 % pour une estimation de Riegel, la formule empirique classique qui prédit un temps de course à partir d'une seule performance de référence sur une autre distance. Son erreur double à peu près quand on le teste hors de ses conditions d'entraînement, plutôt que de rester silencieusement faux comme le faisait l'ancienne version. La classification du terrain et le calcul de dénivelé sont vérifiés sur de vraies courses (Trail du Sancy, MaxiRace, UTMB) plutôt que supposés corrects. Le module météo, reconstruit autour de l'indice de stress thermique WBGT (un indicateur qui combine température, humidité et rayonnement pour estimer le risque de coup de chaleur), retrouve à 0,00 °C près une référence officielle, et renvoie un résultat sur les 138 points d'un parcours réel testé, contre zéro sur six tentatives pour l'ancienne version.`,
         },
       },
       kind: 'analysis',
@@ -432,8 +432,8 @@ J'ai utilisé Accred au Festival de Cannes 2026 en déploiement privé, ce qui a
         { label: { en: 'Route coverage', fr: 'Couverture parcours' }, value: '138/138', note: { en: 'vs 0/6 for the old version', fr: 'vs 0/6 pour l\'ancienne version' } },
       ],
       limits: {
-        en: `I'm now working on the part that ties these validated pieces into one system: the prediction engine itself, a big piece that has to combine terrain, weather and a runner's profile into one coherent estimate, followed by the report generator. For the interface, I'm planning to build a small web app directly, since I was already planning to deploy the project that way, but I don't have a clear idea yet of what it will look like. Each finished piece ships with its own tests and its own documented limits, so nothing gets marked done just because it looks like it works.`,
-        fr: `Je travaille maintenant sur la partie qui relie ces briques validées en un seul système : le moteur de prédiction lui-même, un gros morceau qui doit combiner le terrain, la météo et le profil du coureur en une seule estimation cohérente, puis le générateur de rapport de course. Pour l'interface, je pensais développer directement une petite application web, puisque je comptais de toute façon déployer le projet sous cette forme, mais je n'ai pas encore d'idée précise de ce à quoi elle ressemblera. Chaque brique déjà terminée est livrée avec ses propres tests et ses propres limites documentées, pour ne rien déclarer fini simplement parce que ça a l'air de marcher.`,
+        en: `These validated pieces now run as one system: the prediction engine combines terrain, weather and a runner's profile into one estimate, the report generator turns it into a race report (HTML, PDF or JSON), and a web app ties it all together. That app is still a beta. Each finished piece ships with its own tests and its own documented limits, so nothing gets marked done just because it looks like it works.`,
+        fr: `Ces briques validées fonctionnent désormais comme un seul système : le moteur de prédiction combine le terrain, la météo et le profil du coureur en une seule estimation, le générateur de rapport en tire un rapport de course (HTML, PDF ou JSON), et une application web réunit le tout. Cette application est encore en bêta. Chaque brique déjà terminée est livrée avec ses propres tests et ses propres limites documentées, pour ne rien déclarer fini simplement parce que ça a l'air de marcher.`,
       },
       sourceOfSkills: 'personal',
       technologies: ['Python', 'uv', 'Rasterio', 'OSMnx', 'GeoPandas', 'pvlib', 'thermofeel', 'gpxpy', 'Meteostat'],
@@ -456,6 +456,7 @@ J'ai utilisé Accred au Festival de Cannes 2026 en déploiement privé, ce qui a
         },
       ],
       gitHubUrl: 'https://github.com/Samuellct/TimePredict',
+      links: [{ type: 'demo', url: 'https://timepredict.samuel-lecomte.fr/', label: { en: 'App (beta)', fr: 'Application (bêta)' } }],
       visible: true,
       featured: true,
       dateCreated: '2025-11-27',
@@ -484,7 +485,7 @@ A small, deliberately temporary plugin for when server storage runs low: users v
 
 ## Easy Notif
 
-The newest of the three, still moving fast (six releases in two days): an internal email notification service with a scheduled new-media newsletter, personalized weekly recaps per user, and manual announcements from the dashboard, sent through Resend. It's rougher around the edges than the other two right now, and its own README undersells what's already shipped, but it's the one I'm actively building on. At v0.5.0, on [GitHub](https://github.com/JellyUX/Easy_Notif).`,
+An internal email notification service for Jellyfin: a new-media newsletter on a schedule the admin picks (weekly, monthly, every N days or daily), with cover art and links back to each title; a personal weekly recap for each user, with what they watched that week and their running total for the year; and one-off announcements written from the dashboard, in plain text or HTML. Each user picks which categories they receive and sets their own contact address, every email carries a one-click unsubscribe link, and the plugin only reads library and playback data. Mail goes out through Resend. On [GitHub](https://github.com/JellyUX/Easy_Notif).`,
         fr: `JellyUX est une petite famille de plugins open source que je maintiens pour Jellyfin, le serveur multimédia auto-hébergé qui tourne sur mon homelab. Chaque plugin est autonome, cible Jellyfin 10.11.x, injecte ses assets via le plugin File Transformation plutôt que de patcher Jellyfin lui-même, et se désinstalle sans rien laisser derrière lui.
 
 ## Homepage
@@ -497,7 +498,7 @@ Un petit plugin volontairement temporaire pour les moments où le stockage du se
 
 ## Easy Notif
 
-Le plus récent des trois, encore en mouvement rapide (six versions en deux jours) : un service de notifications email interne avec une newsletter de nouveautés programmée, un récapitulatif hebdomadaire personnalisé par utilisateur, et des annonces manuelles depuis le tableau de bord, envoyées via Resend. Il est pour l'instant moins abouti que les deux autres, et son propre README sous-estime ce qui est déjà livré, mais c'est celui sur lequel je travaille le plus activement. À la version 0.5.0, sur [GitHub](https://github.com/JellyUX/Easy_Notif).`,
+Un service de notifications par email interne à Jellyfin : une newsletter des nouveautés au rythme choisi par l'admin (hebdomadaire, mensuelle, tous les N jours ou quotidienne), avec affiches et liens vers chaque titre ; un récapitulatif hebdomadaire personnel pour chaque utilisateur, avec ce qu'il a regardé dans la semaine et son total de l'année ; et des annonces ponctuelles rédigées depuis le tableau de bord, en texte brut ou en HTML. Chaque utilisateur choisit les catégories qu'il reçoit et sa propre adresse, chaque email porte un lien de désinscription en un clic, et le plugin ne fait que lire les données de bibliothèque et de lecture. L'envoi passe par Resend. Sur [GitHub](https://github.com/JellyUX/Easy_Notif).`,
       },
       technologies: ['C#', '.NET', 'TypeScript', 'GitHub Actions', 'semantic-release'],
       domains: ['Web Development', 'Open Source'],
@@ -684,7 +685,6 @@ L'algorithme a bien fonctionné pour les petits nombres, mais nous avons rapidem
       location: 'Université Clermont Auvergne',
       image: '/images/arduino_M1.webp',
       imageAlt: 'Arduino weather station setup with temperature and humidity sensors on breadboard',
-      gitHubUrl: 'https://gitlab.com/samuel.lecomte37/arduino-weather-station',
       visible: false,
       dateCreated: '2025-01-22',
     },
@@ -800,7 +800,6 @@ Les acquisitions précédentes réalisées par des groupes d'étudiants antérie
       imageAlt: 'Feynman diagram illustrating muon decay into electron and neutrinos',
       imageCredit: 'Mrmw',
       imageCreditUrl: 'https://commons.wikimedia.org/wiki/File:Muon_Decay.svg',
-      gitHubUrl: 'https://gitlab.com/samuel.lecomte37/muon-lifetime-analysis',
       visible: false,
       dateCreated: '2024-02-15',
     },

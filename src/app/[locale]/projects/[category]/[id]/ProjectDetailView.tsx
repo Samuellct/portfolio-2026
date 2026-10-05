@@ -212,6 +212,23 @@ export default function ProjectDetailView({
                     </a>
                   </div>
                 )}
+
+                {/* Non-code links (live site, beta app); `code` stays on the GitHub CTA above */}
+                {project.links
+                  ?.filter((link) => link.type !== 'code')
+                  .map((link) => (
+                    <div key={link.url} className="flex justify-center mt-3">
+                      <a
+                        href={link.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-3 px-6 py-3 border border-white/20 text-white text-sm font-medium tracking-wide transition-colors hover:border-white/50"
+                      >
+                        {link.label ? getLocalizedField(link.label, locale) : link.url}
+                        <ExternalLink size={14} />
+                      </a>
+                    </div>
+                  ))}
               </motion.div>
             </div>
           </div>
