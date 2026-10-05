@@ -133,7 +133,12 @@ export default function ProjectDetailView({
                     <span>{getLocalizedField(project.period, locale)}</span>
                   </div>
                   <div className="flex items-center gap-2">
-                    <MapPin size={14} />
+                    {/* ICON-01: "Personal project" is not a place, so no pin; the spacer keeps the text aligned */}
+                    {project.category === 'personal' ? (
+                      <span className="w-[14px] shrink-0" aria-hidden="true" />
+                    ) : (
+                      <MapPin size={14} />
+                    )}
                     <span>{getLocalizedField(project.location, locale)}</span>
                   </div>
                   {project.research && (
