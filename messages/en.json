@@ -50,9 +50,8 @@
       "experiments": "Research internships",
       "experimentsHover": "within the ATLAS & LHCb research groups at LPC",
       "languages": "Programming Languages",
-      "languagesHover": "Python, C++, R, TypeScript",
-      "reports": "LaTeX Documents",
-      "reportsHover": "Master's theses, project reports, and Beamer presentations"
+      "repos": "Public code repositories",
+      "reposHover": "on GitHub, linked from the project pages"
     },
     "stack": {
       "sectionLabel": "02 · Technical Stack",

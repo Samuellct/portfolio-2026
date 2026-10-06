@@ -8,8 +8,21 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
+import { getAllProjects } from '@/lib/projects'
+import { programmingLanguages } from '@/lib/techStats'
 
 gsap.registerPlugin(ScrollTrigger)
+
+// Homepage statistics, derived from the visible projects
+const statValues = (() => {
+  const projects = getAllProjects()
+  const usedTechs = new Set<string>(projects.flatMap((p) => p.technologies))
+  return {
+    internships: projects.filter((p) => p.category === 'internship').length,
+    languages: programmingLanguages.filter((lang) => usedTechs.has(lang)),
+    repos: projects.filter((p) => p.gitHubUrl).length,
+  }
+})()
 
 export default function AboutSection() {
   const t = useTranslations('about')
@@ -17,19 +30,19 @@ export default function AboutSection() {
 
   const stats = [
     {
-      value: '2',
+      value: String(statValues.internships),
       label: t('stats.experiments'),
       hoverText: t('stats.experimentsHover')
     },
     {
-      value: '6+',
+      value: String(statValues.languages.length),
       label: t('stats.languages'),
-      hoverText: t('stats.languagesHover')
+      hoverText: statValues.languages.join(', ')
     },
     {
-      value: '20+',
-      label: t('stats.reports'),
-      hoverText: t('stats.reportsHover')
+      value: String(statValues.repos),
+      label: t('stats.repos'),
+      hoverText: t('stats.reposHover')
     },
   ]
   const sectionRef = useRef<HTMLElement>(null)

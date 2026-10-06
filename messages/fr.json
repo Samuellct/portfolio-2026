@@ -50,9 +50,8 @@
       "experiments": "Stages de recherche",
       "experimentsHover": "au sein des équipes ATLAS & LHCb du LPC",
       "languages": "Langages de programmation",
-      "languagesHover": "Python, C++, R, TypeScript",
-      "reports": "Documents LaTeX",
-      "reportsHover": "Mémoires de Master, rapports de projets et présentations Beamer"
+      "repos": "Dépôts de code publics",
+      "reposHover": "sur GitHub, liés depuis les fiches"
     },
     "stack": {
       "sectionLabel": "02 · Stack technique",
