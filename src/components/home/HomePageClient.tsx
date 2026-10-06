@@ -52,7 +52,9 @@ export default function HomePageClient() {
           if (self.isActive) {
             gsap.to(document.body, {
               backgroundColor: colorFor(section.id),
-              duration: 1.2,
+              // Short: night and paper flip the text scheme, so a long blend
+              // leaves ink on night (2.77:1) on screen (13.3c).
+              duration: 0.35,
               ease: 'power2.out',
               overwrite: 'auto',
             })

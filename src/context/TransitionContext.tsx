@@ -2,9 +2,10 @@
 
 import { createContext, useContext, useState, useCallback, useEffect, useRef, ReactNode } from 'react'
 import { useRouter, usePathname } from '@/i18n/navigation'
-import { SURFACE } from '@/lib/theme'
-
-const COVER_DURATION = 500
+// Short paper fade (ANIM-01): the veil covers in 160 ms, the route swaps
+// underneath, then it lifts in 220 ms.
+const COVER_DURATION = 160
+const REVEAL_DURATION = 220
 
 type TransitionPhase = 'idle' | 'covering' | 'covered' | 'revealing'
 
@@ -78,14 +79,13 @@ function TransitionOverlayInternal({
   
   return (
     <div
-      className="scheme-night fixed inset-0 z-[200] pointer-events-none"
+      className="fixed inset-0 z-[200] pointer-events-none bg-surface"
       style={{
-        backgroundColor: SURFACE.curtain,
-        clipPath: phase === 'covering' ? 'polygon(0 0, 0 0, 0 100%, 0 100%)' : undefined,
-        animation: phase === 'covering' 
-          ? `coverScreen ${COVER_DURATION}ms cubic-bezier(0.76, 0, 0.24, 1) forwards`
+        opacity: phase === 'covering' ? 0 : undefined,
+        animation: phase === 'covering'
+          ? `veilIn ${COVER_DURATION}ms ease-out forwards`
           : phase === 'revealing'
-          ? `revealScreen ${COVER_DURATION}ms cubic-bezier(0.76, 0, 0.24, 1) forwards`
+          ? `veilOut ${REVEAL_DURATION}ms ease-in forwards`
           : undefined,
       }}
       onAnimationEnd={() => {

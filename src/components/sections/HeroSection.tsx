@@ -55,49 +55,23 @@ export default function HeroSection() {
   useEffect(() => {
     if (!hasEnteredSite || !greetingRef.current) return
 
-    const chars = greetingRef.current.querySelectorAll('.greeting-char')
+    const title = greetingRef.current
 
     if (prefersReducedMotion) {
-      gsap.set(chars, { y: 0, opacity: 1, rotateX: 0 })
+      gsap.set(title, { y: 0, opacity: 1 })
       return
     }
 
-    const tween = gsap.fromTo(chars,
-      {
-        y: 100,
-        opacity: 0,
-        rotateX: -90
-      },
-      {
-        y: 0,
-        opacity: 1,
-        rotateX: 0,
-        stagger: 0.03,
-        duration: 1,
-        ease: 'power4.out',
-        delay: 0.3
-      }
+    // ANIM-02: the title rises as one block, no per-letter rotation.
+    const tween = gsap.fromTo(title,
+      { y: 24, opacity: 0 },
+      { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 0.3 }
     )
 
     return () => {
       tween.kill()
     }
   }, [hasEnteredSite, prefersReducedMotion])
-
-  // Text animation
-  const makeChars = (text: string) =>
-    text.split('').map((char, i) => (
-      <span
-        key={i}
-        className="greeting-char inline-block"
-        style={{ display: char === ' ' ? 'inline' : 'inline-block' }}
-      >
-        {char === ' ' ? '\u00A0' : char}
-      </span>
-    ))
-
-  const greetingFull = makeChars(t('greeting'))
-  const greetingMobile = makeChars(t('greetingMobile'))
 
   return (
     <section
@@ -134,14 +108,11 @@ export default function HeroSection() {
         <h1
           ref={greetingRef}
           className="font-display font-black uppercase mb-6 whitespace-nowrap text-display leading-hero tracking-hero-tight"
-          style={{
-            perspective: '1000px',
-          }}
         >
           {/* Mobile : greeting court (évite le débordement) */}
-          <span className="md:hidden">{greetingMobile}</span>
+          <span className="md:hidden">{t('greetingMobile')}</span>
           {/* Desktop : greeting complet */}
-          <span className="hidden md:inline">{greetingFull}</span>
+          <span className="hidden md:inline">{t('greeting')}</span>
         </h1>
 
         {/* Subtitle */}

@@ -1,19 +1,11 @@
-@keyframes coverScreen {
-  from {
-    clip-path: polygon(0 0, 0 0, 0 100%, 0 100%);
-  }
-  to {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-  }
+@keyframes veilIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-@keyframes revealScreen {
-  from {
-    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
-  }
-  to {
-    clip-path: polygon(100% 0, 100% 0, 100% 100%, 100% 100%);
-  }
+@keyframes veilOut {
+  from { opacity: 1; }
+  to { opacity: 0; }
 }
 
 @tailwind base;
@@ -196,14 +188,21 @@ body {
 /* ===================================
    REDUCED MOTION
 =================================== */
+/* ANIM-03: targeted reduced motion instead of a global cut. Colour and
+   opacity fades (hover states, the page veil) stay as state feedback;
+   movement goes: looping decoration stops and hover nudges snap instead of
+   sliding. Framer Motion follows the setting through `MotionConfig`, GSAP
+   and Lenis through `useReducedMotion`. */
 @media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
+  .animate-scroll-line,
+  .animate-pulse-slow,
+  .animate-pulse {
+    animation: none;
+  }
+
+  [class*="translate-"],
+  [class*="scale-"] {
+    transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity;
   }
 }
 

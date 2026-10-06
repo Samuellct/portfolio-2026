@@ -37,8 +37,6 @@ export const SURFACE = {
   /** Static shell used by server-rendered surfaces: root not-found, viewport
    *  `themeColor`, and the OG / Twitter image generators. */
   shell: '#030308',
-  /** Page transition curtain. */
-  curtain: RISO.night,
 } as const
 
 /**
