@@ -1,7 +1,6 @@
 {
   "landing": {
     "title": "Samuel/ Portfolio",
-    "subtitle": "",
     "enter": "Enter"
   },
   "nav": {
@@ -27,7 +26,6 @@
     "greeting": "Hi, I'm Samuel",
     "greetingMobile": "Hi, I'm Samuel",
     "title": "Physics. Python. Data.",
-    "titleAlt": "",
     "description": "Particle physics graduate, trained in data analysis in a research lab. I build complete pipelines, from acquisition to result, in Python, C++ and TypeScript. Currently looking for a technical role.",
     "cta": "My projects",
     "ctaSecondary": "Download my CV",
@@ -56,12 +54,6 @@
       "languagesHover": "Python, C++, R, TypeScript",
       "reports": "LaTeX Documents",
       "reportsHover": "Master's theses, project reports, and Beamer presentations"
-    },
-    "skills": {
-      "title": "Technical Skills",
-      "programming": "Programming",
-      "analysis": "Data Analysis",
-      "tools": "Tools & Systems"
     },
     "stack": {
       "sectionLabel": "02 · Technical Stack",
@@ -206,7 +198,6 @@
     }
   },
   "footer": {
-    "copyright": "© 2026 Samuel Lecomte",
     "resume": "Resume",
     "navLabel": "Footer navigation"
   },
@@ -249,8 +240,6 @@
     "error": "An error occurred",
     "back": "Back",
     "skipToContent": "Skip to content",
-    "learnMore": "Learn more",
-    "viewAll": "View all",
     "notFound": {
       "code": "404",
       "title": "Page Not Found",

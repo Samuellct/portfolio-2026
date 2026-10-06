@@ -1,7 +1,6 @@
 {
   "landing": {
     "title": "Samuel/ Portfolio",
-    "subtitle": "",
     "enter": "Entrer"
   },
   "nav": {
@@ -27,7 +26,6 @@
     "greeting": "Samuel",
     "greetingMobile": "Samuel",
     "title": "Physique. Python. Data.",
-    "titleAlt": "",
     "description": "Diplômé en physique des particules, formé à l'analyse de données en laboratoire. Je construis des chaînes complètes, de l'acquisition au résultat, en Python, C++ et TypeScript. Actuellement en recherche d'un poste technique.",
     "cta": "Mes projets",
     "ctaSecondary": "Télécharger mon CV",
@@ -56,12 +54,6 @@
       "languagesHover": "Python, C++, R, TypeScript",
       "reports": "Documents LaTeX",
       "reportsHover": "Mémoires de Master, rapports de projets et présentations Beamer"
-    },
-    "skills": {
-      "title": "Compétences techniques",
-      "programming": "Programmation",
-      "analysis": "Analyse de données",
-      "tools": "Outils & Systèmes"
     },
     "stack": {
       "sectionLabel": "02 · Stack technique",
@@ -206,7 +198,6 @@
     }
   },
   "footer": {
-    "copyright": "© 2026 Samuel Lecomte",
     "resume": "CV",
     "navLabel": "Navigation du pied de page"
   },
@@ -249,8 +240,6 @@
     "error": "Une erreur est survenue",
     "back": "Retour",
     "skipToContent": "Aller au contenu",
-    "learnMore": "En savoir plus",
-    "viewAll": "Voir tout",
     "notFound": {
       "code": "404",
       "title": "Page introuvable",
