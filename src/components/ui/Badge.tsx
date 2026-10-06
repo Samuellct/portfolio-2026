@@ -12,7 +12,7 @@ import { cn } from '@/lib/cn'
 export type ProjectStatusValue = 'in-progress' | 'paused'
 
 const TONE = {
-  card: 'px-2.5 py-1 backdrop-blur-sm text-meta tracking-caps uppercase',
+  card: 'px-2.5 py-1 text-meta tracking-caps uppercase',
   inline: 'px-2 py-1 text-meta tracking-wider uppercase',
 } as const
 

@@ -110,14 +110,6 @@ export default function MountainProfile({ progress, className }: MountainProfile
           <stop offset="100%" stopColor={ILLUSTRATION.mountainHigh} />
         </linearGradient>
 
-        <filter id={`${id}_glow`} x="-100%" y="-100%" width="300%" height="300%">
-          <feGaussianBlur stdDeviation="4" result="blur" />
-          <feMerge>
-            <feMergeNode in="blur" />
-            <feMergeNode in="SourceGraphic" />
-          </feMerge>
-        </filter>
-
         <linearGradient id={`${id}_fog`} x1="0%" y1="0%" x2="0%" y2="100%">
           <stop offset="0%" stopColor={SECTION_BG.aboutInterests} stopOpacity="0" />
           <stop offset="60%" stopColor={SECTION_BG.aboutInterests} stopOpacity="0" />
@@ -231,9 +223,9 @@ export default function MountainProfile({ progress, className }: MountainProfile
         <polygon points="126,17 134,19.5 126,22" fill={ILLUSTRATION.mountain} opacity={flagFill} />
       </g>
 
-      {/* Climber dot + glow */}
+      {/* Climber dot */}
       {progress > 0.003 && (
-        <g filter={`url(#${id}_glow)`}>
+        <g>
           <circle cx={climber.x} cy={climber.y} r="7" fill={withAlpha(ILLUSTRATION.mountain, 0.15)} />
           <circle cx={climber.x} cy={climber.y} r="2.5" fill={ILLUSTRATION.mountain} />
         </g>

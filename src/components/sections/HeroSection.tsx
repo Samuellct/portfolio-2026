@@ -10,8 +10,6 @@ import dynamic from 'next/dynamic'
 import { useTranslations } from 'next-intl'
 import { useSite } from '@/context/SiteContext'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
-import { STATUS } from '@/lib/theme'
-import { withAlpha } from '@/lib/color'
 
 // Dynamic import for WebGL (client-side only)
 const WaveBackground = dynamic(
@@ -126,7 +124,6 @@ export default function HeroSection() {
         >
           <span
             className="w-1.5 h-1.5 rounded-full bg-status-available shrink-0 animate-pulse-slow"
-            style={{ boxShadow: `0 0 6px ${withAlpha(STATUS.available, 0.8)}` }}
           />
           <span className="font-mono text-meta tracking-hero-caps uppercase text-muted">
             {t('available')}

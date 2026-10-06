@@ -158,9 +158,7 @@ export default function NavBar() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className={`scheme-night fixed top-0 inset-x-0 z-40 bg-primary transition-all duration-500 ${
-          isScrolled ? 'backdrop-blur-xl' : ''
-        }`}
+        className="scheme-night fixed top-0 inset-x-0 z-40 bg-primary"
       >
         <div className="flex items-center justify-between px-6 md:px-12 py-4">
           {/* Logo */}

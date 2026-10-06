@@ -661,7 +661,6 @@ export default function AboutPage() {
                         style={{ 
                           width: `${barFill}%`,
                           backgroundColor: tech.color,
-                          boxShadow: `0 0 15px ${tech.color}50`,
                         }}
                       />
                     </div>
