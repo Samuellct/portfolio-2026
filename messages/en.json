@@ -157,9 +157,9 @@
   },
   "contact": {
     "sectionLabel": "03 · Contact",
-    "title": "Let's Connect",
+    "title": "Write to me",
     "preview": {
-      "text": "Interested in my work? Want to discuss a potential opportunity?",
+      "text": "A job offer or a question about a project: I answer every message.",
       "cta": "Get in touch"
     },
     "collision": {
@@ -168,7 +168,7 @@
     },
     "page": {
       "title": "Contact Me",
-      "description": "Whether you have a question, a project idea, or just want to say hello, feel free to reach out. I'll get back to you as soon as possible.",
+      "description": "A technical question about my projects, a job opportunity, or a wish to talk about my background? Write to me directly. I'll get back to you quickly.",
       "form": {
         "name": "Name",
         "namePlaceholder": "Your name",
@@ -217,9 +217,9 @@
     },
     "contact": {
       "title": "Contact",
-      "description": "Have a question about a project, a job opportunity, or just want to say hello? Reach Samuel Lecomte directly.",
+      "description": "Contact Samuel Lecomte by form or e-mail about a job or a project.",
       "ogTitle": "Contact | Samuel Lecomte",
-      "ogDescription": "Reach out about collaborations, opportunities, or questions."
+      "ogDescription": "Contact form and e-mail address for Samuel Lecomte."
     },
     "projects": {
       "title": "Projects",

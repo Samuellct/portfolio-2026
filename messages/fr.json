@@ -157,9 +157,9 @@
   },
   "contact": {
     "sectionLabel": "03 · Contact",
-    "title": "Échangeons",
+    "title": "Écrivez-moi",
     "preview": {
-      "text": "Intéressé par mon travail ? Envie de discuter d'une opportunité ?",
+      "text": "Une offre de poste ou une question sur un projet : je réponds à chaque message.",
       "cta": "Me contacter"
     },
     "collision": {
@@ -217,9 +217,9 @@
     },
     "contact": {
       "title": "Contact",
-      "description": "Une question sur un projet, une opportunité professionnelle, ou juste envie d'échanger ? Contactez directement Samuel Lecomte.",
+      "description": "Contacter Samuel Lecomte par formulaire ou par e-mail, au sujet d'un poste ou d'un projet.",
       "ogTitle": "Contact | Samuel Lecomte",
-      "ogDescription": "Pour des collaborations, opportunités ou questions."
+      "ogDescription": "Formulaire de contact et adresse e-mail de Samuel Lecomte."
     },
     "projects": {
       "title": "Projets",
