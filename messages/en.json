@@ -42,7 +42,7 @@
     },
     "full": {
       "intro": "I hold a Master's in fundamental physics from Université Clermont Auvergne and a university diploma in Data Science. My two research internships, at LPC Clermont in teams from the LHCb and then ATLAS collaborations, taught me to build a full analysis in C++ and Python, from data selection to uncertainty estimates. Since then I have applied the same method to software projects I run on my own.",
-      "experience": "During my Master's, I worked with the LHCb and ATLAS collaborations at CERN, on datasets running into terabytes. It's where I learned to build proper analysis pipelines and to work alongside physicists from all over the world.",
+      "experience": "During my Master's, I worked at LPC Clermont, in teams from the LHCb and ATLAS collaborations, on datasets running into terabytes. That is where I learned to build complete analysis pipelines.",
       "goals": "I'm looking for a role between research and engineering, where data analysis and software development work on the same problem.",
       "goalsTitle": "Professional Goals"
     },
@@ -53,8 +53,13 @@
       "repos": "Public code repositories",
       "reposHover": "on GitHub, linked from the project pages"
     },
+    "experience": {
+      "sectionLabel": "02 · Experience",
+      "title": "Research internships",
+      "viewProject": "View project"
+    },
     "stack": {
-      "sectionLabel": "02 · Technical Stack",
+      "sectionLabel": "03 · Technical Stack",
       "title": "Core Skills",
       "description": "Programming languages ranked by usage across my projects.",
       "projectCount": "{count, plural, one {# project} other {# projects}}",
@@ -68,7 +73,7 @@
       }
     },
     "education": {
-      "sectionLabel": "03 · Education",
+      "sectionLabel": "04 · Education",
       "title": "Education",
       "subtitle": "Academic Path",
       "master2": {
@@ -89,7 +94,7 @@
       }
     },
     "interests": {
-      "sectionLabel": "04 · Interests",
+      "sectionLabel": "05 · Interests",
       "title": "Interests",
       "subtitle": "Personal Sandbox",
       "running": {

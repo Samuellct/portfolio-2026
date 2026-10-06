@@ -42,7 +42,7 @@
     },
     "full": {
       "intro": "Je suis titulaire d'un Master de physique fondamentale de l'Université Clermont Auvergne et d'un DU Data Science. Mes deux stages de recherche, au LPC Clermont dans des équipes des collaborations LHCb puis ATLAS, m'ont appris à monter une analyse complète en C++ et Python, de la sélection des données à l'estimation des incertitudes. Depuis, j'applique cette méthode à des projets logiciels que je mène seul.",
-      "experience": "Pendant mon Master, j'ai travaillé au sein des collaborations LHCb et ATLAS au CERN, sur des jeux de données de plusieurs téraoctets. C'est là que j'ai appris à construire de vraies chaînes d'analyse et à travailler aux côtés de physiciens venus du monde entier.",
+      "experience": "Pendant mon Master, j'ai travaillé au LPC Clermont, au sein d'équipes des collaborations LHCb et ATLAS, sur des jeux de données de plusieurs téraoctets. C'est là que j'ai appris à construire des chaînes d'analyse complètes.",
       "goals": "Je cherche un poste à l'interface entre recherche et ingénierie, où l'analyse de données et le développement logiciel servent le même problème.",
       "goalsTitle": "Objectifs professionnels"
     },
@@ -53,8 +53,13 @@
       "repos": "Dépôts de code publics",
       "reposHover": "sur GitHub, liés depuis les fiches"
     },
+    "experience": {
+      "sectionLabel": "02 · Expérience",
+      "title": "Stages de recherche",
+      "viewProject": "Voir la fiche"
+    },
     "stack": {
-      "sectionLabel": "02 · Stack technique",
+      "sectionLabel": "03 · Stack technique",
       "title": "Compétences clés",
       "description": "Langages de programmation classés par utilisation dans mes projets.",
       "projectCount": "{count, plural, one {# projet} other {# projets}}",
@@ -68,7 +73,7 @@
       }
     },
     "education": {
-      "sectionLabel": "03 · Formation",
+      "sectionLabel": "04 · Formation",
       "title": "Formation",
       "subtitle": "Parcours universitaire",
       "master2": {
@@ -89,7 +94,7 @@
       }
     },
     "interests": {
-      "sectionLabel": "04 · Centres d'intérêt",
+      "sectionLabel": "05 · Centres d'intérêt",
       "title": "Centres d'intérêt",
       "subtitle": "Bac à sable personnel",
       "running": {

@@ -35,6 +35,7 @@ export const SECTION_BG = {
   projects: '#1c1008',
   contact: '#081c10',
   aboutIntro: '#050e20', // also CinemaSpotlight.tsx SVG fill (AUDIT-034)
+  aboutExperience: '#0a1024',
   aboutStack: '#051525',
   aboutEducation: '#0e200e',
   aboutInterests: '#200a0a', // also MountainProfile.tsx SVG gradient (AUDIT-034)

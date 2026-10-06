@@ -5,13 +5,14 @@ import TransitionLink from '@/components/navigation/TransitionLink'
 import { motion, AnimatePresence } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { ArrowLeft, Download, Github, Linkedin } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Download, Github, Linkedin } from 'lucide-react'
 import { extractTechStats, TechStats, isLightColor } from '@/lib/techStats'
+import { getProjectsByCategory, getLocalizedField, type Locale } from '@/lib/projects'
 import MountainProfile from '@/components/about/MountainProfile'
 import NetworkGraph from '@/components/about/NetworkGraph'
 import CinemaSpotlight from '@/components/about/CinemaSpotlight'
 import ScrollIndicator from '@/components/about/ScrollIndicator'
-import { useTranslations } from 'next-intl'
+import { useLocale, useTranslations } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { SECTION_BG } from '@/lib/theme'
 
@@ -22,6 +23,7 @@ gsap.registerPlugin(ScrollTrigger)
 // ============================================
 const sectionColors = {
   intro: SECTION_BG.aboutIntro,
+  experience: SECTION_BG.aboutExperience,
   stack: SECTION_BG.aboutStack,
   education: SECTION_BG.aboutEducation,
   interests: SECTION_BG.aboutInterests,
@@ -30,7 +32,12 @@ const sectionColors = {
 // ============================================
 // BACKGROUND TEXTS
 // ============================================
-const bgTexts = ['ABOUT', 'STACK', 'EDUCATION', 'INTERESTS']
+const bgTexts = ['ABOUT', 'EXPERIENCE', 'STACK', 'EDUCATION', 'INTERESTS']
+
+// Research internships, most recent first (data from projects.ts)
+const internships = [...getProjectsByCategory('internship')].sort((a, b) =>
+  b.dateCreated.localeCompare(a.dateCreated)
+)
 
 // ============================================
 // GHOST TAG COMPONENT
@@ -65,6 +72,7 @@ export default function AboutPage() {
   const tAbout = useTranslations('about')
   const tCommon = useTranslations('common')
   const tMenu = useTranslations('menu')
+  const locale = useLocale() as Locale
   const prefersReducedMotion = useReducedMotion()
 
   const education = [
@@ -118,18 +126,21 @@ export default function AboutPage() {
   
   // Section refs
   const introSectionRef = useRef<HTMLElement>(null)
+  const experienceSectionRef = useRef<HTMLElement>(null)
   const stackSectionRef = useRef<HTMLElement>(null)
   const educationSectionRef = useRef<HTMLElement>(null)
   const interestsSectionRef = useRef<HTMLElement>(null)
-  
+
   // Refs pour stocker la progression MAXIMALE atteinte
   const introMaxProgressRef = useRef(0)
+  const experienceMaxProgressRef = useRef(0)
   const stackMaxProgressRef = useRef(0)
   const educationMaxProgressRef = useRef(0)
   const interestsMaxProgressRef = useRef(0)
-  
+
   // Progress states for animations
   const [introProgress, setIntroProgress] = useState(0)
+  const [experienceProgress, setExperienceProgress] = useState(0)
   const [stackProgress, setStackProgress] = useState(0)
   const [educationProgress, setEducationProgress] = useState(0)
   const [interestsProgress, setInterestsProgress] = useState(0)
@@ -155,10 +166,12 @@ export default function AboutPage() {
     // section at full progress so all content is visible, page scrolls natively.
     if (prefersReducedMotion) {
       introMaxProgressRef.current = 1
+      experienceMaxProgressRef.current = 1
       stackMaxProgressRef.current = 1
       educationMaxProgressRef.current = 1
       interestsMaxProgressRef.current = 1
       setIntroProgress(1)
+      setExperienceProgress(1)
       setStackProgress(1)
       setEducationProgress(1)
       setInterestsProgress(1)
@@ -207,7 +220,7 @@ export default function AboutPage() {
           }
         },
         onLeave: () => {
-          gsap.to(document.body, { backgroundColor: sectionColors.stack, duration: 1.2, ease: 'power2.out' })
+          gsap.to(document.body, { backgroundColor: sectionColors.experience, duration: 1.2, ease: 'power2.out' })
           setCurrentBgText(1)
         },
         onEnterBack: () => {
@@ -215,8 +228,31 @@ export default function AboutPage() {
           setCurrentBgText(0)
         },
       })
-      
-      // Section 002 - Stack
+
+      // Section 002 - Experience
+      ScrollTrigger.create({
+        trigger: experienceSectionRef.current,
+        start: 'top top',
+        end: '+=2000',
+        pin: true,
+        scrub: 1,
+        onUpdate: (self) => {
+          if (self.progress > experienceMaxProgressRef.current) {
+            experienceMaxProgressRef.current = self.progress
+            setExperienceProgress(self.progress)
+          }
+        },
+        onLeave: () => {
+          gsap.to(document.body, { backgroundColor: sectionColors.stack, duration: 1.2, ease: 'power2.out' })
+          setCurrentBgText(2)
+        },
+        onEnterBack: () => {
+          gsap.to(document.body, { backgroundColor: sectionColors.experience, duration: 1.2, ease: 'power2.out' })
+          setCurrentBgText(1)
+        },
+      })
+
+      // Section 003 - Stack
       ScrollTrigger.create({
         trigger: stackSectionRef.current,
         start: 'top top',
@@ -231,15 +267,15 @@ export default function AboutPage() {
         },
         onLeave: () => {
           gsap.to(document.body, { backgroundColor: sectionColors.education, duration: 1.2, ease: 'power2.out' })
-          setCurrentBgText(2)
+          setCurrentBgText(3)
         },
         onEnterBack: () => {
           gsap.to(document.body, { backgroundColor: sectionColors.stack, duration: 1.2, ease: 'power2.out' })
-          setCurrentBgText(1)
+          setCurrentBgText(2)
         },
       })
-      
-      // Section 003 - Education
+
+      // Section 004 - Education
       ScrollTrigger.create({
         trigger: educationSectionRef.current,
         start: 'top top',
@@ -254,15 +290,15 @@ export default function AboutPage() {
         },
         onLeave: () => {
           gsap.to(document.body, { backgroundColor: sectionColors.interests, duration: 1.2, ease: 'power2.out' })
-          setCurrentBgText(3)
+          setCurrentBgText(4)
         },
         onEnterBack: () => {
           gsap.to(document.body, { backgroundColor: sectionColors.education, duration: 1.2, ease: 'power2.out' })
-          setCurrentBgText(2)
+          setCurrentBgText(3)
         },
       })
-      
-      // Section 004 - Interests
+
+      // Section 005 - Interests
       ScrollTrigger.create({
         trigger: interestsSectionRef.current,
         start: 'top top',
@@ -293,6 +329,15 @@ export default function AboutPage() {
   const buttonsOpacity = Math.max(0, Math.min(1, (introProgress - 0.6) / 0.25))
   const buttonsY = Math.max(0, 40 - (introProgress - 0.6) * 160)
   
+  // ============================================
+  // EXPERIENCE SECTION CALCULATIONS
+  // ============================================
+  const expTitleOpacity = Math.min(1, experienceProgress * 10)
+  const expIntroOpacity = Math.max(0, Math.min(1, (experienceProgress - 0.1) / 0.2))
+  const expItemProgress = internships.map((_, i) =>
+    Math.max(0, Math.min(1, (experienceProgress - 0.3 - i * 0.25) / 0.25))
+  )
+
   // ============================================
   // STACK SECTION CALCULATIONS
   // ============================================
@@ -479,7 +524,87 @@ export default function AboutPage() {
         </section>
         
         {/* ============================================ */}
-        {/* SECTION 002 - TECHNICAL STACK */}
+        {/* SECTION 002 - EXPERIENCE */}
+        {/* ============================================ */}
+        <section
+          ref={experienceSectionRef}
+          className="min-h-screen flex items-center px-6 md:px-12 lg:px-16 py-24"
+        >
+          <div className="max-w-5xl mx-auto w-full">
+            {/* Title */}
+            <div className="mb-8" style={{ opacity: expTitleOpacity }}>
+              <div className="section-label text-accent-pink mb-4">
+                {tAbout('experience.sectionLabel')}
+              </div>
+              <h2 className="font-display text-display-page leading-display-snug tracking-wide">
+                {tAbout('experience.title')}
+              </h2>
+            </div>
+
+            {/* Intro */}
+            <p
+              className="text-white/70 leading-relaxed max-w-3xl mb-12"
+              style={{ opacity: expIntroOpacity }}
+            >
+              {tAbout('full.experience')}
+            </p>
+
+            {/* Internships */}
+            <div className="grid md:grid-cols-2 gap-6">
+              {internships.map((project, index) => (
+                <article
+                  key={project.id}
+                  className="flex flex-col p-6 bg-white/[0.02] border border-white/5 border-l-2 border-l-accent-pink/60"
+                  style={{
+                    opacity: expItemProgress[index],
+                    transform: `translateY(${30 - expItemProgress[index] * 30}px)`,
+                  }}
+                >
+                  <p className="text-micro-xs tracking-wider uppercase text-muted mb-3">
+                    {[
+                      getLocalizedField(project.period, locale),
+                      project.research?.collaboration,
+                      getLocalizedField(project.research?.lab, locale),
+                    ].filter(Boolean).join(' · ')}
+                  </p>
+                  <h3 className="font-display text-lg md:text-xl tracking-wide mb-2">
+                    {getLocalizedField(project.title, locale)}
+                  </h3>
+                  <p className="text-sm text-white/60 leading-relaxed mb-6">
+                    {getLocalizedField(project.subtitle, locale)}
+                  </p>
+
+                  {project.results && project.results.length > 0 && (
+                    <dl className="grid grid-cols-3 gap-4 mb-6">
+                      {project.results.map((result) => (
+                        <div key={getLocalizedField(result.label, 'en')}>
+                          <dt className="sr-only">{getLocalizedField(result.label, locale)}</dt>
+                          <dd className="font-display text-xl md:text-2xl tracking-wide tabular-nums">
+                            {result.value}
+                          </dd>
+                          <dd className="text-xs text-muted leading-snug mt-1" aria-hidden="true">
+                            {getLocalizedField(result.label, locale)}
+                          </dd>
+                        </div>
+                      ))}
+                    </dl>
+                  )}
+
+                  <TransitionLink
+                    href={`/projects/${project.category}/${project.id}`}
+                    className="tap-target mt-auto inline-flex items-center gap-2 text-sm tracking-caps uppercase text-accent-pink hover:text-white transition-colors group"
+                  >
+                    {tAbout('experience.viewProject')}
+                    <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+                  </TransitionLink>
+                </article>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ============================================ */}
+        {/* SECTION 003 - TECHNICAL STACK */}
         {/* ============================================ */}
         <section 
           ref={stackSectionRef}
@@ -577,7 +702,7 @@ export default function AboutPage() {
         </section>
         
         {/* ============================================ */}
-        {/* SECTION 003 - EDUCATION */}
+        {/* SECTION 004 - EDUCATION */}
         {/* ============================================ */}
         <section 
           ref={educationSectionRef}
@@ -669,7 +794,7 @@ export default function AboutPage() {
         </section>
         
         {/* ============================================ */}
-        {/* SECTION 004 - INTERESTS */}
+        {/* SECTION 005 - INTERESTS */}
         {/* ============================================ */}
         <section 
           ref={interestsSectionRef}
