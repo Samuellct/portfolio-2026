@@ -24,7 +24,7 @@
   --surface: 241 235 224;   /* paper #f1ebe0 */
   --accent: 0 90 146;       /* small accent text: ink */
   --accent-line: 0 120 191; /* rules, frames, focus: blue #0078bf */
-  --muted: rgb(24 105 154); /* ink at 90% on paper, 5.08:1 */
+  --muted: rgb(24 105 154); /* 5.02:1 on paper */
   --subtle: rgb(60 126 166);/* ink at 75% on paper, 3.74:1, large text only */
   --pink: 255 72 176;
 
