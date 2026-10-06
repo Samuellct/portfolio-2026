@@ -37,13 +37,12 @@
     "title": "From physicist to ... developer",
     "preview": {
       "intro": "Two research internships in experimental physics, within groups affiliated to the LHCb and ATLAS collaborations, taught me to build full analysis pipelines: data acquisition, cleaning, statistical modelling, reporting. Python and C++ are my main tools. ROOT, NumPy, Pandas, and scikit-learn are part of my daily workflow.",
-      "highlight": "This portfolio gathers personal and academic projects: a geospatial simulation in Python, a Python/Qt desktop tool for physicists, and this Next.js website.",
-      "cta": "Full profile & CV"
+      "cta": "Full profile & CV",
+      "whatIBuild": "Most of my projects start from a need of my own. I run a Proxmox server at home, and the JellyUX Jellyfin plugins grew out of using it. TimePredict comes from my trail running, Accred from the film festivals I attend. This site is one of those projects and has its own page."
     },
     "full": {
       "intro": "I hold a Master's in fundamental physics from Université Clermont Auvergne and a university diploma in Data Science. My two research internships, at LPC Clermont in teams from the LHCb and then ATLAS collaborations, taught me to build a full analysis in C++ and Python, from data selection to uncertainty estimates. Since then I have applied the same method to software projects I run on my own.",
       "experience": "During my Master's, I worked with the LHCb and ATLAS collaborations at CERN, on datasets running into terabytes. It's where I learned to build proper analysis pipelines and to work alongside physicists from all over the world.",
-      "passion": "Beyond physics, I'm passionate about building systems and tools. I maintain a home server infrastructure, experiment with automation, and continuously explore new technologies. This website itself is a personal project where I apply modern web development practices.",
       "goals": "I'm looking for a role between research and engineering, where data analysis and software development work on the same problem.",
       "goalsTitle": "Professional Goals"
     },

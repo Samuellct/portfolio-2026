@@ -37,13 +37,12 @@
     "title": "De physicien à ... développeur",
     "preview": {
       "intro": "Deux stages de recherche en physique fondamentale, au sein d'équipes membres des collaborations LHCb et ATLAS, m'ont formé à construire des pipelines d'analyse complets : acquisition, nettoyage, modélisation statistique, présentation. Python et C++ sont mes outils principaux. ROOT, NumPy, Pandas et scikit-learn font partie de ma stack quotidienne.",
-      "highlight": "Ce portfolio rassemble mes projets personnels et académiques : simulation géospatiale en Python, interface desktop Python/Qt pour physiciens, et ce site web Next.js.",
-      "cta": "Profil complet & CV"
+      "cta": "Profil complet & CV",
+      "whatIBuild": "La plupart de mes projets partent d'un besoin personnel. J'administre un serveur Proxmox chez moi, et les plugins Jellyfin de JellyUX sont nés de son utilisation. TimePredict vient de ma pratique du trail, Accred des festivals de cinéma où je vais. Ce site est l'un de ces projets, avec sa propre page."
     },
     "full": {
       "intro": "Je suis titulaire d'un Master de physique fondamentale de l'Université Clermont Auvergne et d'un DU Data Science. Mes deux stages de recherche, au LPC Clermont dans des équipes des collaborations LHCb puis ATLAS, m'ont appris à monter une analyse complète en C++ et Python, de la sélection des données à l'estimation des incertitudes. Depuis, j'applique cette méthode à des projets logiciels que je mène seul.",
       "experience": "Pendant mon Master, j'ai travaillé au sein des collaborations LHCb et ATLAS au CERN, sur des jeux de données de plusieurs téraoctets. C'est là que j'ai appris à construire de vraies chaînes d'analyse et à travailler aux côtés de physiciens venus du monde entier.",
-      "passion": "Au-delà de la physique, je suis passionné par la construction de systèmes et d'outils. J'administre une infrastructure serveur personnelle, j'expérimente l'automatisation et j'explore continuellement de nouvelles technologies. Ce site web est lui-même un projet personnel où j'applique les pratiques modernes du développement web.",
       "goals": "Je cherche un poste à l'interface entre recherche et ingénierie, où l'analyse de données et le développement logiciel servent le même problème.",
       "goalsTitle": "Objectifs professionnels"
     },

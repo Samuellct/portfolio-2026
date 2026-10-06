@@ -210,7 +210,7 @@ export default function AboutSection() {
               </p>
               
               <p className="text-white/50 leading-relaxed text-justify">
-                {t('preview.highlight')}
+                {t('preview.whatIBuild')}
               </p>
             </div>
             
