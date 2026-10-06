@@ -88,11 +88,11 @@
       "subtitle": "Bac à sable personnel",
       "running": {
         "title": "Sports de montagne",
-        "description": "J'aime particulièrement les activités qui demandent de l'endurance et une bonne gestion du risque. Je fais notamment du trail running, j'ai déjà participé à un ultra-trail (100 km) et de l'alpinisme, avec l'ascension de plusieurs sommets alpins comme l'Aiguille du Midi et le Grand Paradis."
+        "description": "J'aime les activités qui demandent de l'endurance et une bonne gestion du risque. Je pratique le trail, avec un ultra-trail de 100 km à mon actif, et l'alpinisme, avec plusieurs sommets alpins dont l'Aiguille du Midi et le Grand Paradis."
       },
       "tech": {
         "title": "Home Lab & Auto-hébergement",
-        "description": "Construction d'une infrastructure cloud privée avec Proxmox, TrueNAS et des services conteneurisés. Auto-hébergement pour la confidentialité et sécurisation via reverse proxy."
+        "description": "J'administre chez moi un serveur Proxmox avec TrueNAS et des services en conteneurs, accessibles derrière un reverse proxy. Je m'auto-héberge pour garder la main sur mes données."
       },
       "science": {
         "title": "Cinéma",

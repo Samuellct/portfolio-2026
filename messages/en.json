@@ -88,11 +88,11 @@
       "subtitle": "Personal Sandbox",
       "running": {
         "title": "Mountain Sports",
-        "description": "I particularly enjoy activities that require endurance and risk management. I mainly do trail running, I even took part in a 100 km ultra-trail, and alpinism, with the ascent of several alpine peaks like the Aiguille du Midi and Gran Paradiso."
+        "description": "I enjoy activities that call for endurance and good risk management. I do trail running, with one 100 km ultra-trail behind me, and mountaineering, with several alpine summits including the Aiguille du Midi and Gran Paradiso."
       },
       "tech": {
         "title": "Home Lab & Self-Hosting",
-        "description": "Building private cloud infrastructure with Proxmox, TrueNAS, and containerized services. Self-hosting for privacy and learning."
+        "description": "I run a Proxmox server at home with TrueNAS and containerised services behind a reverse proxy. I self-host so my data stays under my control."
       },
       "science": {
         "title": "Cinema",
