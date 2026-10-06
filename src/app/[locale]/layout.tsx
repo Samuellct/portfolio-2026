@@ -92,10 +92,12 @@ function buildJsonLd(locale: string, t: (key: string) => string) {
           'Particle Physics',
           'Data Science',
           'Python',
-          'ROOT',
           'Machine Learning',
           'Data Analysis',
           'Scientific Computing',
+          'Web Development',
+          'DevOps',
+          'Data Engineering',
         ],
         sameAs: [
           'https://github.com/Samuellct',
