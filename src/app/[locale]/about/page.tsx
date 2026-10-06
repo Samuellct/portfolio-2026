@@ -684,10 +684,9 @@ export default function AboutPage() {
               <div className="space-y-8">
                 {secondaryByFamily.map((family) => (
                   <div key={family.id}>
-                    <h4 
-                      className="text-xs tracking-wider uppercase mb-4"
-                      style={{ color: family.color }}
-                    >
+                    <h4 className="flex items-center gap-2 text-xs tracking-wider uppercase mb-4 text-accent">
+                      {/* Brand tint as a swatch only: the label stays in ink (COL-04). */}
+                      <span aria-hidden="true" className="w-2 h-2 shrink-0" style={{ backgroundColor: family.color }} />
                       {tAbout(`stack.families.${family.id}`)}
                     </h4>
                     <div className="flex flex-wrap gap-3">
@@ -866,7 +865,7 @@ export default function AboutPage() {
               }}
             >
               <div className="md:w-1/2">
-                <h3 className="font-display uppercase font-black text-title tracking-wide mb-3 text-illustration-cinema">
+                <h3 className="font-display uppercase font-black text-title tracking-wide mb-3 text-riso-pinkTitle">
                   {interests[2].label}
                 </h3>
                 <p className="text-muted leading-relaxed">
