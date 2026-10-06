@@ -11,6 +11,9 @@
   "images": {
     "binding": "IMAGES"
   },
+  "observability": {
+    "enabled": true
+  },
   "services": [
     {
       "binding": "WORKER_SELF_REFERENCE",
