@@ -562,7 +562,7 @@ export default function AboutPage() {
                       className="text-xs tracking-wider uppercase mb-4"
                       style={{ color: family.color }}
                     >
-                      {family.label}
+                      {tAbout(`stack.families.${family.id}`)}
                     </h4>
                     <div className="flex flex-wrap gap-3">
                       {family.techs.map((tech) => (

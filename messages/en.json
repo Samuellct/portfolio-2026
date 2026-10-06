@@ -59,7 +59,14 @@
       "title": "Core Skills",
       "description": "Programming languages ranked by usage across my projects.",
       "projectCount": "{count, plural, one {# project} other {# projects}}",
-      "extendedToolkit": "Extended Toolkit"
+      "extendedToolkit": "Extended Toolkit",
+      "families": {
+        "languages": "Languages",
+        "frameworks": "Frameworks & Libraries",
+        "dataAnalysis": "Data & Analysis",
+        "tools": "Tools & Systems",
+        "other": "Other"
+      }
     },
     "education": {
       "sectionLabel": "03 · Education",

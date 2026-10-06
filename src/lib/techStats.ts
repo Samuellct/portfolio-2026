@@ -5,7 +5,7 @@ export { getTechColor, techFamilies }
 
 // Langages de prog pour le Top 4
 export const programmingLanguages = [
-  'Python', 'C++', 'TypeScript', 'JavaScript', 'Bash', 'SQL', 'R', 'Java', 'Go', 'Rust'
+  'Python', 'C++', 'TypeScript', 'JavaScript', 'Bash', 'Kotlin', 'C#', 'SQL', 'R', 'Java', 'Go', 'Rust'
 ]
 
 // test fct pour savoir si une couleur est claire pour choisir le bon contraste du txt
@@ -27,7 +27,6 @@ export interface TechStats {
 
 export interface TechFamilyStats {
   id: string
-  label: string
   color: string
   techs: TechStats[]
 }
@@ -59,7 +58,8 @@ export function extractTechStats(): {
       color: getTechColor(name),
       percentage: 0 // Calculé après
     }))
-    .sort((a, b) => b.count - a.count)
+    // ties broken by name so the ranking does not depend on project order
+    .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name))
 
   // Top 4 = only langages de prog
   const topTechs = sortedTechs
@@ -90,7 +90,6 @@ export function extractTechStats(): {
     if (familyTechs.length > 0) {
       secondaryByFamily.push({
         id,
-        label: family.label,
         color: family.color,
         techs: familyTechs,
       })

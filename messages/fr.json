@@ -59,7 +59,14 @@
       "title": "Compétences clés",
       "description": "Langages de programmation classés par utilisation dans mes projets.",
       "projectCount": "{count, plural, one {# projet} other {# projets}}",
-      "extendedToolkit": "Outils complémentaires"
+      "extendedToolkit": "Outils complémentaires",
+      "families": {
+        "languages": "Langages",
+        "frameworks": "Frameworks et bibliothèques",
+        "dataAnalysis": "Données et analyse",
+        "tools": "Outils et systèmes",
+        "other": "Autres"
+      }
     },
     "education": {
       "sectionLabel": "03 · Formation",
