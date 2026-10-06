@@ -5,6 +5,24 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.19.0](https://github.com/Samuellct/portfolio-2026/compare/v4.18.0...v4.19.0) (2026-10-06)
+
+### Ajouté
+
+* introduce a single type scale and raise micro text to readable sizes ([3da8b6b](https://github.com/Samuellct/portfolio-2026/commit/3da8b6ba526e09e5f1c4fc6d2b5f03efa16acc29))
+* switch the shared palette to the riso paper and inks ([d2506d3](https://github.com/Samuellct/portfolio-2026/commit/d2506d324f454f0f1b48831073d655d6fd649ac4))
+
+### Corrigé
+
+* raise placeholder, caption and small label contrast to WCAG AA ([c12e26a](https://github.com/Samuellct/portfolio-2026/commit/c12e26a48ec98e1bd0843a2345680c6c92ec4d99))
+* shorten page transitions and simplify the hero title entrance ([5acd9ee](https://github.com/Samuellct/portfolio-2026/commit/5acd9eec4825394a553eb714256eb9819e76cbb4))
+
+### Modifié
+
+* enable workers observability logs ([9cdc270](https://github.com/Samuellct/portfolio-2026/commit/9cdc270a4b921b1aa553b34cc8fbdc080da32394))
+* remove decorative glows and inert backdrop blur ([d73aeca](https://github.com/Samuellct/portfolio-2026/commit/d73aeca75774e2bfe8b07fff9377a594990eb17a))
+* route hardcoded colors through theme tokens ([edb8415](https://github.com/Samuellct/portfolio-2026/commit/edb8415f543d70464e958e244ed917ac12b8c021))
+
 ## [4.18.0](https://github.com/Samuellct/portfolio-2026/compare/v4.17.0...v4.18.0) (2026-10-06)
 
 ### Ajouté
