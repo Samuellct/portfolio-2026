@@ -5,6 +5,22 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.18.0](https://github.com/Samuellct/portfolio-2026/compare/v4.17.0...v4.18.0) (2026-10-06)
+
+### Ajouté
+
+* add an experience section to the about page ([8bbeae9](https://github.com/Samuellct/portfolio-2026/commit/8bbeae908ef3e32ca942753398117e2a8af95282))
+
+### Corrigé
+
+* derive the homepage statistics from the project data ([a220edf](https://github.com/Samuellct/portfolio-2026/commit/a220edf53c633754ea97c4e8d79f4d43cd5d2a97))
+* keep unit casing in the experience results ([01b6991](https://github.com/Samuellct/portfolio-2026/commit/01b6991caa87babbd0d1824e0c246e5a3370bb2b))
+* realign the remaining FR/EN content divergences ([673201f](https://github.com/Samuellct/portfolio-2026/commit/673201facf0ddf88fc94a821b85fc0d6f6639795))
+
+### Modifié
+
+* derive the tech inventory from real project data with curation ([609c011](https://github.com/Samuellct/portfolio-2026/commit/609c0118679146d1241098a3b3205a217aea94ac))
+
 ## [4.17.0](https://github.com/Samuellct/portfolio-2026/compare/v4.16.0...v4.17.0) (2026-10-06)
 
 ### Ajouté
