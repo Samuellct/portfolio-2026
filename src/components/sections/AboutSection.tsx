@@ -164,7 +164,7 @@ export default function AboutSection() {
         aria-hidden="true"
         className="absolute top-1/2 -translate-y-1/2 -left-1/4 pointer-events-none select-none"
       >
-        <span className="font-display text-ghost-35 text-white/[0.015] leading-none whitespace-nowrap">
+        <span className="font-display uppercase font-black text-ghost-35 text-white/[0.015] leading-none whitespace-nowrap">
           ABOUT
         </span>
       </div>
@@ -190,7 +190,7 @@ export default function AboutSection() {
           
           <h2
             ref={titleRef}
-            className="text-display-section leading-display-loose overflow-hidden"
+            className="text-page leading-display-loose overflow-hidden"
           >
             {t('title').split(' ').map((word: string, i: number) => {
               const clean = word.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
@@ -201,7 +201,7 @@ export default function AboutSection() {
                   className={`title-word inline-block mr-[0.2em] ${
                     isAccent
                       ? 'fraunces-display-italic text-accent-cyan'
-                      : 'font-display tracking-wide'
+                      : 'font-display uppercase font-black tracking-wide'
                   }`}
                 >
                   {word}
@@ -260,10 +260,10 @@ export default function AboutSection() {
                     className="float-stat absolute cursor-default transition-transform duration-[400ms] ease-[cubic-bezier(0.4,0,0.2,1)] hover:-translate-y-1.5 group"
                     style={{ top: positions[index].top, left: positions[index].left }}
                   >
-                    <div className="fraunces-display-italic text-stat font-light leading-none mb-1.5 gradient-text">
+                    <div className="fraunces-display-italic text-heading font-light leading-none mb-1.5 gradient-text">
                       {stat.value}
                     </div>
-                    <div className="text-micro-11 text-white/50 uppercase tracking-caps font-medium">
+                    <div className="text-meta text-white/50 uppercase tracking-caps font-medium">
                       {stat.label}
                     </div>
                     <div className="text-xs text-white/30 italic mt-1.5 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">

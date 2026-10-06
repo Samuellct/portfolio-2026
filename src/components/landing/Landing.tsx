@@ -49,7 +49,7 @@ export default function Landing({ onEnter, isTransitioning, onTransitionComplete
       {/* Content */}
       <div className="relative z-10 text-center">
         <motion.h1
-          className="font-display text-[clamp(3rem,12vw,10rem)] leading-none tracking-wider"
+          className="font-display uppercase font-black text-display leading-none tracking-wider"
           initial={{ opacity: 0, y: 20 }}
           animate={{ 
             opacity: isTransitioning ? 0 : 1,

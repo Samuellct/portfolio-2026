@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from 'next'
-import { Syne, Bebas_Neue, Unbounded, Space_Mono, Fraunces } from 'next/font/google'
+import { Schibsted_Grotesk, Space_Mono, Fraunces } from 'next/font/google'
 import { hasLocale } from 'next-intl'
 import { setRequestLocale, getTranslations } from 'next-intl/server'
 import { NextIntlClientProvider } from 'next-intl'
@@ -11,23 +11,11 @@ import { Providers } from '../providers'
 import '@/styles/globals.css'
 
 // Fonts optimized by Next.js
-const syne = Syne({
+// One grotesque carries display and text (A4: three families at most)
+const schibsted = Schibsted_Grotesk({
   subsets: ['latin'],
   display: 'swap',
-  variable: '--font-syne',
-})
-
-const bebasNeue = Bebas_Neue({
-  weight: '400',
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-bebas',
-})
-
-const unbounded = Unbounded({
-  subsets: ['latin'],
-  display: 'swap',
-  variable: '--font-unbounded',
+  variable: '--font-schibsted',
 })
 
 const spaceMono = Space_Mono({
@@ -189,7 +177,7 @@ export default async function LocaleLayout({
   const jsonLd = buildJsonLd(locale, t)
 
   return (
-    <html lang={locale} className={`${syne.variable} ${bebasNeue.variable} ${unbounded.variable} ${spaceMono.variable} ${fraunces.variable}`}>
+    <html lang={locale} className={`${schibsted.variable} ${spaceMono.variable} ${fraunces.variable}`}>
       <head>
         <link rel="icon" type="image/png" href="/favicon.png" />
         <script

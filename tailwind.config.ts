@@ -36,36 +36,26 @@ const config: Config = {
         faint: 'rgb(255 255 255 / 0.20)',
       },
       fontFamily: {
-        display: ['var(--font-bebas)', 'sans-serif'],
-        body: ['var(--font-syne)', 'sans-serif'],
-        'display-accent': ['var(--font-unbounded)', 'sans-serif'],
+        display: ['var(--font-schibsted)', 'sans-serif'],
+        body: ['var(--font-schibsted)', 'sans-serif'],
         mono: ['var(--font-mono)', 'monospace'],
         fraunces: ['var(--font-fraunces)', 'serif'],
       },
-      // Named type scale (AUDIT-047). Each token preserves the exact computed
-      // value of the ad-hoc utilities it replaces; near-duplicate values are
-      // kept distinct here and flagged for unification in Phase 12.
+      // Role type scale (TYPO-03, TYPO-04): six steps, body text stays at the
+      // 1rem default. `meta` is the floor for informative text (12px).
+      // `ghost-*` are decorative watermarks, outside the reading scale.
       fontSize: {
-        'micro-2xs': '0.58rem',
-        'micro-xs': '0.6rem',
-        'micro-sm': '0.65rem',
-        'micro-11': '11px',
-        stat: '54px',
+        meta: ['0.75rem', { lineHeight: '1.4' }],
+        lead: 'clamp(1.125rem, 2.2vw, 1.5rem)',
+        title: 'clamp(1.25rem, 2vw, 1.5rem)',
+        heading: 'clamp(2rem, 4.5vw, 3.5rem)',
+        page: 'clamp(2.5rem, 6.5vw, 5rem)',
+        display: 'clamp(2.75rem, 9vw, 6rem)',
         'ghost-15': '15vw',
         'ghost-20': '20vw',
         'ghost-25': '25vw',
         'ghost-35': '35vw',
         'ghost-40': '40vw',
-        lead: 'clamp(1.1rem,2.5vw,1.8rem)',
-        'display-hero': 'clamp(1.5rem, 9vw, 8rem)',
-        'display-project': 'clamp(1.8rem,6vw,5rem)',
-        'display-page': 'clamp(2rem,5vw,3.5rem)',
-        'display-about-heading': 'clamp(2.5rem,7vw,5rem)',
-        'display-menu': 'clamp(2.5rem,8vw,6rem)',
-        'display-section': 'clamp(3rem,10vw,7rem)',
-        'display-contact': 'clamp(3rem,10vw,6rem)',
-        'display-listing': 'clamp(3rem,10vw,8rem)',
-        'display-404': 'clamp(6rem,20vw,15rem)',
       },
       letterSpacing: {
         label: '0.1em',

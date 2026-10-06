@@ -34,16 +34,16 @@ function cleanIndentation(content: string): string {
 
 const components: Components = {
   h1: ({ children }) => (
-    <h1 className="font-display text-4xl text-white mt-10 mb-6 tracking-wide">{children}</h1>
+    <h1 className="font-display uppercase font-black text-heading text-white mt-10 mb-6 tracking-wide">{children}</h1>
   ),
   h2: ({ children }) => (
-    <h2 className="font-body font-semibold text-3xl text-white mt-10 mb-4">{children}</h2>
+    <h2 className="font-display font-black text-title text-white mt-10 mb-4">{children}</h2>
   ),
   h3: ({ children }) => (
-    <h3 className="font-body font-semibold text-2xl text-white/90 mt-8 mb-3">{children}</h3>
+    <h3 className="font-body font-semibold text-lg text-white/90 mt-8 mb-3">{children}</h3>
   ),
   h4: ({ children }) => (
-    <h4 className="font-display text-xl text-white/80 mt-6 mb-2 tracking-wide">{children}</h4>
+    <h4 className="font-body font-semibold text-base text-white/80 mt-6 mb-2 tracking-wide">{children}</h4>
   ),
   p: ({ children }) => (
     <p className="text-white/70 leading-relaxed mb-4 text-justify">{children}</p>

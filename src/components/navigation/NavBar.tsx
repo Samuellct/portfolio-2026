@@ -166,7 +166,7 @@ export default function NavBar() {
           {/* Logo */}
           <TransitionLink
             href="/"
-            className="font-display text-2xl tracking-widest hover:text-accent-cyan transition-colors"
+            className="font-display uppercase font-black text-title tracking-widest hover:text-accent-cyan transition-colors"
           >
             SL
           </TransitionLink>
@@ -281,7 +281,7 @@ export default function NavBar() {
                       <TransitionLink
                         href={link.href}
                         onClick={(e) => handleNavClick(e, link.sectionId)}
-                        className="block font-display text-display-menu leading-none tracking-wide text-faint hover:text-white transition-all duration-300 hover:translate-x-4"
+                        className="block font-display uppercase font-black text-page leading-none tracking-wide text-faint hover:text-white transition-all duration-300 hover:translate-x-4"
                       >
                         {link.label}
                       </TransitionLink>

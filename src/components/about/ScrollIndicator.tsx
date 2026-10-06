@@ -64,7 +64,7 @@ export default function ScrollIndicator({ hideAfterPx = 100 }: ScrollIndicatorPr
           </motion.div>
           
           {/* Label */}
-          <span className="text-[10px] tracking-[0.2em] uppercase text-white/30">
+          <span className="text-meta tracking-[0.2em] uppercase text-white/30">
             {t('scrollHint')}
           </span>
         </motion.div>

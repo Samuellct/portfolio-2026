@@ -126,7 +126,7 @@ export default function HeroSection() {
             className="w-1.5 h-1.5 rounded-full bg-green-400 shrink-0 animate-pulse-slow"
             style={{ boxShadow: '0 0 6px rgba(34,197,94,0.8)' }}
           />
-          <span className="font-mono text-micro-2xs tracking-hero-caps uppercase text-white/50">
+          <span className="font-mono text-meta tracking-hero-caps uppercase text-white/50">
             {t('available')}
           </span>
         </motion.div>
@@ -134,7 +134,7 @@ export default function HeroSection() {
         {/* Greeting */}
         <h1
           ref={greetingRef}
-          className="font-display-accent font-black uppercase mb-6 whitespace-nowrap text-display-hero leading-hero tracking-hero-tight"
+          className="font-display font-black uppercase mb-6 whitespace-nowrap text-display leading-hero tracking-hero-tight"
           style={{
             perspective: '1000px',
           }}
@@ -154,7 +154,7 @@ export default function HeroSection() {
         >
           <div className="flex items-center gap-4 mb-4">
             <span className="w-12 h-px bg-gradient-to-r from-accent-cyan to-transparent shrink-0" />
-            <span className="font-display text-lead leading-heading tracking-wide text-accent-cyan">
+            <span className="font-display uppercase font-black text-lead leading-heading tracking-wide text-accent-cyan">
               {t('title')}
             </span>
           </div>
@@ -204,7 +204,7 @@ export default function HeroSection() {
         transition={{ delay: 1.5, duration: 0.8 }}
         className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 text-muted z-10"
       >
-        <span className="text-micro-sm tracking-hint uppercase">{t('scrollHint')}</span>
+        <span className="text-meta tracking-hint uppercase">{t('scrollHint')}</span>
         <div className="w-px h-16 relative overflow-hidden">
           <span className="absolute inset-0 w-full bg-gradient-to-b from-accent-cyan via-accent-cyan to-transparent animate-scroll-line" />
         </div>

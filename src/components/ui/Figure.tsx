@@ -43,7 +43,7 @@ export function Figure({
         )}
       </div>
 
-      {caption && <p className="mt-2 text-xs text-white/50">{caption}</p>}
+      {caption && <p className="mt-2 font-fraunces italic text-sm text-white/50">{caption}</p>}
 
       {credit && (
         <p className="mt-2 text-xs text-muted">

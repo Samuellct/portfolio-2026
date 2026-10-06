@@ -117,7 +117,7 @@ export default function ProjectDetailView({
                 </div>
 
                 {/* Title */}
-                <h1 className="font-body font-semibold text-display-page leading-display-snug mb-4">
+                <h1 className="font-display font-black text-heading leading-display-snug mb-4">
                   {getLocalizedField(project.title, locale)}
                 </h1>
 
@@ -284,7 +284,7 @@ export default function ProjectDetailView({
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 + index * 0.05, duration: 0.6 }}
                       >
-                        <h2 className="font-body font-semibold text-xl mb-4">{t(`sections.${key}`)}</h2>
+                        <h2 className="font-display font-black text-title mb-4">{t(`sections.${key}`)}</h2>
                         <MarkdownRenderer
                           content={getLocalizedField(content, locale)}
                           className="prose prose-lg max-w-none"

@@ -167,7 +167,7 @@ export default function ProjectsSection() {
                     ease: [0.215, 0.61, 0.355, 1],
                     delay: i * 0.04
                   }}
-                  className="font-display text-ghost-25 text-white/[0.05] leading-none whitespace-pre"
+                  className="font-display uppercase font-black text-ghost-25 text-white/[0.05] leading-none whitespace-pre"
                 >
                   {char}
                 </motion.span>
@@ -200,7 +200,7 @@ export default function ProjectsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.8 }}
-              className="font-display text-display-section leading-display tracking-wide"
+              className="font-display uppercase font-black text-page leading-display tracking-wide"
             >
               {t('title')}
             </motion.h2>
@@ -299,7 +299,7 @@ export default function ProjectsSection() {
                     onMouseEnter={() => handleProjectEnter(project)}
                   >
                     <motion.h3
-                      className="font-body font-semibold text-display-project leading-display-loose text-balance"
+                      className="font-body font-semibold text-page leading-display-loose text-balance"
                       animate={{ 
                         opacity: isHovering 
                           ? (isActive ? 1 : 0.15)  // Active: full, Others: very dim

@@ -126,7 +126,7 @@ body {
 }
 
 .section-label {
-  font-size: 0.7rem;
+  font-size: 0.75rem;
   letter-spacing: 0.3em;
   text-transform: uppercase;
   display: flex;
@@ -254,16 +254,16 @@ body {
   padding: 1em 1.5em;
 }
 
-/* Bebas Neue is reserved for short display titles (AUDIT-056); Markdown
-   sub-headings use the body face so accented French text stays legible. */
+/* Markdown sub-headings use the text weight of the grotesque, not the
+   black display cut, so long French headings stay legible. */
 .prose h2 {
-  font-family: var(--font-syne), sans-serif;
+  font-family: var(--font-schibsted), sans-serif;
   font-weight: 600;
   letter-spacing: normal;
 }
 
 .prose h3 {
-  font-family: var(--font-syne), sans-serif;
+  font-family: var(--font-schibsted), sans-serif;
   font-weight: 600;
   letter-spacing: normal;
 }

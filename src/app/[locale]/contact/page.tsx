@@ -101,7 +101,7 @@ export default function ContactPage() {
     <div ref={pageRef} className="min-h-screen relative" style={{ backgroundColor: CONTACT_BG_COLOR }}>
       {/* parallax */}
       <div aria-hidden="true" className="decor-text fixed top-1/2 -translate-y-1/2 left-0 pointer-events-none select-none z-0">
-        <span className="font-display text-ghost-20 text-white/[0.015] leading-none whitespace-nowrap">
+        <span className="font-display uppercase font-black text-ghost-20 text-white/[0.015] leading-none whitespace-nowrap">
           CONTACT
         </span>
       </div>
@@ -133,7 +133,7 @@ export default function ContactPage() {
           <div className="section-label text-accent-cyan mb-4">
             {tContact('sectionLabel')}
           </div>
-          <h1 className="font-display text-display-contact leading-display tracking-wide mb-6">
+          <h1 className="font-display uppercase font-black text-page leading-display tracking-wide mb-6">
             {tContact('page.title')}
           </h1>
           <p className="text-lg text-white/50 text-justify">
@@ -149,7 +149,7 @@ export default function ContactPage() {
             className="p-8 bg-green-500/10 border border-green-500/30 text-center"
           >
             <CheckCircle size={48} className="mx-auto mb-4 text-green-400" />
-            <h2 className="font-display text-2xl mb-2">{tContact('page.form.success')}</h2>
+            <h2 className="font-display uppercase font-black text-title mb-2">{tContact('page.form.success')}</h2>
             <p className="text-white/60 mb-6">{tContact('page.form.successDescription')}</p>
             <button
               onClick={resetForm}
@@ -168,7 +168,7 @@ export default function ContactPage() {
             className="p-8 bg-red-500/10 border border-red-500/30 text-center mb-8"
           >
             <AlertCircle size={48} className="mx-auto mb-4 text-red-400" />
-            <h2 className="font-display text-2xl mb-2">{tContact('page.form.error')}</h2>
+            <h2 className="font-display uppercase font-black text-title mb-2">{tContact('page.form.error')}</h2>
             <p className="text-white/60 mb-6">{tContact('page.form.errorDescription')}</p>
             <button
               onClick={resetForm}

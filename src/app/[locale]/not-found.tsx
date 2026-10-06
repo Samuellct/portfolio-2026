@@ -8,10 +8,10 @@ export default function NotFound() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-primary">
       <div className="text-center px-6">
-        <h1 className="font-display text-display-404 leading-none text-white/10">
+        <h1 className="font-display uppercase font-black text-display leading-none text-white/10">
           {t('notFound.code')}
         </h1>
-        <h2 className="font-display text-2xl md:text-4xl mb-4 -mt-8">
+        <h2 className="font-display uppercase font-black text-heading mb-4 -mt-8">
           {t('notFound.title')}
         </h2>
         <p className="text-white/50 mb-8 max-w-md mx-auto">

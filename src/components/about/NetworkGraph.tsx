@@ -158,7 +158,7 @@ export default function NetworkGraph({ progress, className = '' }: NetworkGraphP
               style={{ filter: `drop-shadow(0 0 6px ${node.color}40)` }}
             />
             <span 
-              className="text-[8px] tracking-wider uppercase whitespace-nowrap"
+              className="text-meta tracking-wider uppercase whitespace-nowrap"
               style={{ color: node.color, opacity: 0.8 }}
             >
               {node.label}

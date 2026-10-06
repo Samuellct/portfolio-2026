@@ -422,7 +422,7 @@ export default function AboutPage() {
                 x: currentBgText % 2 === 0 ? 30 : -30 
               }}
               transition={{ duration: 0.8, ease: 'easeOut' }}
-              className="font-display text-ghost-20 md:text-ghost-15 leading-none tracking-widest text-white whitespace-nowrap"
+              className="font-display uppercase font-black text-ghost-20 md:text-ghost-15 leading-none tracking-widest text-white whitespace-nowrap"
             >
               {bgTexts[currentBgText]}
             </motion.span>
@@ -448,7 +448,7 @@ export default function AboutPage() {
               <div className="section-label text-accent-cyan mb-4">
                 {tAbout('sectionLabel')}
               </div>
-              <h1 className="font-display text-display-about-heading leading-display-snug tracking-wide mb-12">
+              <h1 className="font-display uppercase font-black text-page leading-display-snug tracking-wide mb-12">
                 {tAbout('title')}
               </h1>
             </div>
@@ -536,7 +536,7 @@ export default function AboutPage() {
               <div className="section-label text-accent-pink mb-4">
                 {tAbout('experience.sectionLabel')}
               </div>
-              <h2 className="font-display text-display-page leading-display-snug tracking-wide">
+              <h2 className="font-display uppercase font-black text-heading leading-display-snug tracking-wide">
                 {tAbout('experience.title')}
               </h2>
             </div>
@@ -560,14 +560,14 @@ export default function AboutPage() {
                     transform: `translateY(${30 - expItemProgress[index] * 30}px)`,
                   }}
                 >
-                  <p className="text-micro-xs tracking-wider uppercase text-muted mb-3">
+                  <p className="text-meta tracking-wider uppercase text-muted mb-3">
                     {[
                       getLocalizedField(project.period, locale),
                       project.research?.collaboration,
                       getLocalizedField(project.research?.lab, locale),
                     ].filter(Boolean).join(' · ')}
                   </p>
-                  <h3 className="font-display text-lg md:text-xl tracking-wide mb-2">
+                  <h3 className="font-display uppercase font-black text-title tracking-wide mb-2">
                     {getLocalizedField(project.title, locale)}
                   </h3>
                   <p className="text-sm text-white/60 leading-relaxed mb-6">
@@ -627,7 +627,7 @@ export default function AboutPage() {
               className="mb-16"
               style={{ opacity: stackSubtitleOpacity }}
             >
-              <h2 className="font-display text-display-page leading-display-snug tracking-wide mb-4">
+              <h2 className="font-display uppercase font-black text-heading leading-display-snug tracking-wide mb-4">
                 {tAbout('stack.title')}
               </h2>
               <p className="text-muted max-w-xl">
@@ -718,7 +718,7 @@ export default function AboutPage() {
               <div className="section-label text-emerald-400 justify-center mb-4">
                 {tAbout('education.sectionLabel')}
               </div>
-              <h2 className="font-display text-display-page leading-display-snug tracking-wide">
+              <h2 className="font-display uppercase font-black text-heading leading-display-snug tracking-wide">
                 {tAbout('education.subtitle')}
               </h2>
             </div>
@@ -761,13 +761,13 @@ export default function AboutPage() {
                         }}
                       >
                         <span 
-                          className="inline-block px-2 py-0.5 text-micro-xs tracking-wider uppercase mb-2"
+                          className="inline-block px-2 py-0.5 text-meta tracking-wider uppercase mb-2"
                           style={{ backgroundColor: `${item.color}15`, color: item.color }}
                         >
                           {item.period}
                         </span>
                         
-                        <h3 className="font-display text-lg md:text-xl tracking-wide mb-1">
+                        <h3 className="font-display uppercase font-black text-title tracking-wide mb-1">
                           {item.degree}
                         </h3>
                         
@@ -824,7 +824,7 @@ export default function AboutPage() {
               }}
             >
               <div className="md:w-1/2">
-                <h3 className="font-display text-2xl md:text-3xl tracking-wide mb-3 text-accent-cyan">
+                <h3 className="font-display uppercase font-black text-title tracking-wide mb-3 text-accent-cyan">
                   {interests[0].label}
                 </h3>
                 <p className="text-white/50 leading-relaxed">
@@ -845,7 +845,7 @@ export default function AboutPage() {
               }}
             >
               <div className="md:w-1/2 md:text-right">
-                <h3 className="font-display text-2xl md:text-3xl tracking-wide mb-3 text-[#e57000]">
+                <h3 className="font-display uppercase font-black text-title tracking-wide mb-3 text-[#e57000]">
                   {interests[1].label}
                 </h3>
                 <p className="text-white/50 leading-relaxed">
@@ -866,7 +866,7 @@ export default function AboutPage() {
               }}
             >
               <div className="md:w-1/2">
-                <h3 className="font-display text-2xl md:text-3xl tracking-wide mb-3 text-[#e5737d]">
+                <h3 className="font-display uppercase font-black text-title tracking-wide mb-3 text-[#e5737d]">
                   {interests[2].label}
                 </h3>
                 <p className="text-white/50 leading-relaxed">

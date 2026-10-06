@@ -164,7 +164,7 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
         
         {/* Content */}
         <div className="space-y-2">
-          <div className="flex items-center gap-3 text-micro-xs tracking-caps-wide uppercase text-muted">
+          <div className="flex items-center gap-3 text-meta tracking-caps-wide uppercase text-muted">
             <span style={{ color: project.category === 'internship' ? '#10b981' : project.category === 'academic' ? '#a855f7' : '#00f0ff' }}>
               {t(`categories.${project.category}`)}
             </span>
@@ -319,7 +319,7 @@ export default function ProjectsPage() {
 
       {/* parallax */}
       <div aria-hidden="true" className="decor-text fixed top-1/2 -translate-y-1/2 left-0 pointer-events-none select-none z-0">
-        <span className="font-display text-ghost-20 text-white/[0.015] leading-none whitespace-nowrap">
+        <span className="font-display uppercase font-black text-ghost-20 text-white/[0.015] leading-none whitespace-nowrap">
           PROJECTS
         </span>
       </div>
@@ -352,7 +352,7 @@ export default function ProjectsPage() {
             {t('sectionLabel')}
           </motion.div>
           
-          <h1 className="font-display text-display-listing leading-display-tight tracking-wide mb-6">
+          <h1 className="font-display uppercase font-black text-page leading-display-tight tracking-wide mb-6">
             {t('pageTitle')}
           </h1>
           

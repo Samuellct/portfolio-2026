@@ -143,7 +143,7 @@ export default function ContactSection() {
         aria-hidden="true"
         className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
       >
-        <span className="font-display text-ghost-35 text-white/[0.015] leading-none">
+        <span className="font-display uppercase font-black text-ghost-35 text-white/[0.015] leading-none">
           CONTACT
         </span>
       </div>
@@ -198,7 +198,7 @@ export default function ContactSection() {
               </div>
             </div>
             
-            <div aria-hidden="true" className="absolute -bottom-4 left-1/2 -translate-x-1/2 text-micro-xs tracking-caps-wide uppercase text-faint">
+            <div aria-hidden="true" className="absolute -bottom-4 left-1/2 -translate-x-1/2 text-meta tracking-caps-wide uppercase text-faint">
               {t('collision.eventDisplay')}
             </div>
           </div>
@@ -219,7 +219,7 @@ export default function ContactSection() {
             {/* Title */}
             <h2 
               ref={titleRef}
-              className="font-display text-display-contact leading-display tracking-wide mb-8"
+              className="font-display uppercase font-black text-page leading-display tracking-wide mb-8"
               style={{ perspective: '1000px' }}
             >
               {titleChars}
