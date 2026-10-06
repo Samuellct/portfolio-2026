@@ -5,6 +5,22 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.17.0](https://github.com/Samuellct/portfolio-2026/compare/v4.16.0...v4.17.0) (2026-10-06)
+
+### Ajouté
+
+* surface the rewritten "what I build" paragraph on the homepage ([2b3a87d](https://github.com/Samuellct/portfolio-2026/commit/2b3a87d66f21731fd84821ac099b35e35ee67ed0))
+
+### Corrigé
+
+* align the projects preview with the real categories ([902905b](https://github.com/Samuellct/portfolio-2026/commit/902905b871a8b5ead6c4dc81f9892b2e81555fa9))
+* broaden knowsAbout in the JSON-LD to match the profile ([9f8b05b](https://github.com/Samuellct/portfolio-2026/commit/9f8b05bc4b6abdfe8dc736729bb3b6c1957725f5))
+* rewrite the contact copy in a single direct voice ([5785637](https://github.com/Samuellct/portfolio-2026/commit/57856377bb30d41e35f51a9742a663eeed162b05))
+
+### Modifié
+
+* apply the editorial role matrix to presentation copy ([8670aff](https://github.com/Samuellct/portfolio-2026/commit/8670affa8234239bfdbea260525951ada9aaf27d))
+
 ## [4.16.0](https://github.com/Samuellct/portfolio-2026/compare/v4.15.1...v4.16.0) (2026-10-05)
 
 ### Ajouté
