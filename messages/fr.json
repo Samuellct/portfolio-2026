@@ -41,10 +41,10 @@
       "cta": "Profil complet & CV"
     },
     "full": {
-      "intro": "Diplômé d'un Master en Physique Fondamentale et d'un DU en Data Science, je me positionne à l'interface entre recherche et ingénierie logicielle. Mon expérience en physique expérimentale (LHCb, ATLAS) m'a formé à la conception de pipelines reproductibles et structurés et à l'analyse de grands ensembles de données en C++ et Python.",
+      "intro": "Je suis titulaire d'un Master de physique fondamentale de l'Université Clermont Auvergne et d'un DU Data Science. Mes deux stages de recherche, au LPC Clermont dans des équipes des collaborations LHCb puis ATLAS, m'ont appris à monter une analyse complète en C++ et Python, de la sélection des données à l'estimation des incertitudes. Depuis, j'applique cette méthode à des projets logiciels que je mène seul.",
       "experience": "Pendant mon Master, j'ai travaillé au sein des collaborations LHCb et ATLAS au CERN, sur des jeux de données de plusieurs téraoctets. C'est là que j'ai appris à construire de vraies chaînes d'analyse et à travailler aux côtés de physiciens venus du monde entier.",
       "passion": "Au-delà de la physique, je suis passionné par la construction de systèmes et d'outils. J'administre une infrastructure serveur personnelle, j'expérimente l'automatisation et j'explore continuellement de nouvelles technologies. Ce site web est lui-même un projet personnel où j'applique les pratiques modernes du développement web.",
-      "goals": "Je cherche un poste où mettre à profit mon analyse scientifique et ma pratique du logiciel sur des problèmes concrets, à l'interface entre recherche et ingénierie.",
+      "goals": "Je cherche un poste à l'interface entre recherche et ingénierie, où l'analyse de données et le développement logiciel servent le même problème.",
       "goalsTitle": "Objectifs professionnels"
     },
     "stats": {
@@ -205,10 +205,10 @@
     "home": {
       "titleDefault": "Samuel Lecomte",
       "titleTemplate": "%s | Samuel Lecomte",
-      "description": "Samuel Lecomte, physicien reconverti au développement, entre analyse de données des expériences ATLAS et LHCb du CERN et projets logiciels construits en autonomie.",
-      "ogDescription": "Physicien reconverti au développement, entre analyse de données des expériences ATLAS et LHCb du CERN et projets logiciels personnels.",
+      "description": "Samuel Lecomte, diplômé en physique des particules. Analyses de données menées au LPC Clermont dans des équipes des collaborations ATLAS et LHCb, et projets logiciels personnels, du serveur domestique aux applications web et Android.",
+      "ogDescription": "Physique des particules au LPC Clermont (équipes ATLAS et LHCb) et projets logiciels personnels.",
       "twitterTitle": "Samuel Lecomte | Portfolio",
-      "twitterDescription": "Physique des particules & Data Science"
+      "twitterDescription": "Physique des particules et développement logiciel"
     },
     "about": {
       "title": "À propos",

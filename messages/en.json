@@ -41,10 +41,10 @@
       "cta": "Full profile & CV"
     },
     "full": {
-      "intro": "I'm Samuel. I hold a Master's in Fundamental Physics and a university diploma in Data Science, and I work at the crossing point between research and software engineering. My time with the LHCb and ATLAS collaborations taught me to build reproducible, well-structured pipelines and to make sense of large datasets in C++ and Python.",
+      "intro": "I hold a Master's in fundamental physics from Université Clermont Auvergne and a university diploma in Data Science. My two research internships, at LPC Clermont in teams from the LHCb and then ATLAS collaborations, taught me to build a full analysis in C++ and Python, from data selection to uncertainty estimates. Since then I have applied the same method to software projects I run on my own.",
       "experience": "During my Master's, I worked with the LHCb and ATLAS collaborations at CERN, on datasets running into terabytes. It's where I learned to build proper analysis pipelines and to work alongside physicists from all over the world.",
       "passion": "Beyond physics, I'm passionate about building systems and tools. I maintain a home server infrastructure, experiment with automation, and continuously explore new technologies. This website itself is a personal project where I apply modern web development practices.",
-      "goals": "I'm looking for a role where I can apply my scientific analysis and software practice to real problems, at the interface between research and engineering.",
+      "goals": "I'm looking for a role between research and engineering, where data analysis and software development work on the same problem.",
       "goalsTitle": "Professional Goals"
     },
     "stats": {
@@ -205,10 +205,10 @@
     "home": {
       "titleDefault": "Samuel Lecomte",
       "titleTemplate": "%s | Samuel Lecomte",
-      "description": "Samuel Lecomte, physics graduate turned developer, presenting data analysis on the ATLAS and LHCb experiments at CERN, and self-built software projects.",
-      "ogDescription": "Physics graduate turned developer: data analysis on the ATLAS and LHCb experiments at CERN, and self-built software projects.",
+      "description": "Samuel Lecomte, particle physics graduate. Data analysis carried out at LPC Clermont in teams from the ATLAS and LHCb collaborations, and personal software projects, from a home server to web and Android apps.",
+      "ogDescription": "Particle physics at LPC Clermont (ATLAS and LHCb teams) and personal software projects.",
       "twitterTitle": "Samuel Lecomte | Portfolio",
-      "twitterDescription": "Particle Physics & Data Science"
+      "twitterDescription": "Particle physics and software development"
     },
     "about": {
       "title": "About",
