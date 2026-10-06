@@ -44,8 +44,8 @@ const vertexShader = `
     // Color based on position and time - slower color shift
     float colorMix = sin(modelPosition.x * 0.15 + uTime * 0.08) * 0.5 + 0.5;
     vColor = mix(
-      vec3(0.0, 0.94, 1.0),  // Cyan
-      vec3(0.65, 0.33, 0.97), // Purple
+      vec3(1.0, 0.28, 0.69), // Riso pink #ff48b0
+      vec3(0.0, 0.47, 0.75), // Riso blue #0078bf
       colorMix
     );
   }

@@ -119,13 +119,18 @@ export default function ContactSection() {
   }, [prefersReducedMotion])
 
   const titleText = t('title')
-  const titleChars = titleText.split('').map((char, i) => (
-    <span 
-      key={i} 
-      className="contact-char inline-block"
-      style={{ display: char === ' ' ? 'inline' : 'inline-block' }}
-    >
-      {char === ' ' ? '\u00A0' : char}
+  // Chars are grouped per word (a break is allowed after a space or a hyphen)
+  // so the per-char animation spans never wrap mid-word.
+  const titleChars = titleText.split(/(?<=[\s-])/).map((word, w) => (
+    <span key={w}>
+      <span className="inline-block whitespace-nowrap">
+        {[...word.trimEnd()].map((char, i) => (
+          <span key={i} className="contact-char inline-block">
+            {char}
+          </span>
+        ))}
+      </span>
+      {word.endsWith(' ') ? ' ' : ''}
     </span>
   ))
   
@@ -133,7 +138,7 @@ export default function ContactSection() {
     <section
       ref={sectionRef}
       id="contact"
-      className="section min-h-screen py-32 md:py-40 relative overflow-hidden flex items-center"
+      className="scheme-night section min-h-screen py-32 md:py-40 relative overflow-hidden flex items-center"
     >
       {/* ============================================ */}
       {/* PARALLAX txt */}
@@ -153,8 +158,8 @@ export default function ContactSection() {
       {/* ============================================ */}
       <div className="absolute inset-0 pointer-events-none">
         {/* phase de transition avec la section bolg */}
-        <div className="absolute bottom-1/4 left-1/4 w-[35vw] h-[35vw] bg-accent-pink/5 rounded-full blur-[150px]" />
-        <div className="absolute top-1/3 right-1/3 w-[25vw] h-[25vw] bg-accent-cyan/5 rounded-full blur-[120px]" />
+        <div className="absolute bottom-1/4 left-1/4 w-[35vw] h-[35vw] bg-riso-pink/5 rounded-full blur-[150px]" />
+        <div className="absolute top-1/3 right-1/3 w-[25vw] h-[25vw] bg-riso-blue/5 rounded-full blur-[120px]" />
       </div>
       
       {/* ============================================ */}
@@ -185,16 +190,16 @@ export default function ContactSection() {
               <div className="absolute inset-16 border border-white/[0.02] rounded-full" />
               
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                <div className="w-px h-8 bg-gradient-to-b from-accent-cyan/40 to-transparent" />
+                <div className="w-px h-8 bg-gradient-to-b from-accent-line/40 to-transparent" />
               </div>
               <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2">
-                <div className="w-px h-8 bg-gradient-to-t from-accent-purple/40 to-transparent" />
+                <div className="w-px h-8 bg-gradient-to-t from-riso-blue/40 to-transparent" />
               </div>
               <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2">
-                <div className="w-8 h-px bg-gradient-to-r from-accent-cyan/40 to-transparent" />
+                <div className="w-8 h-px bg-gradient-to-r from-accent-line/40 to-transparent" />
               </div>
               <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2">
-                <div className="w-8 h-px bg-gradient-to-l from-accent-purple/40 to-transparent" />
+                <div className="w-8 h-px bg-gradient-to-l from-riso-blue/40 to-transparent" />
               </div>
             </div>
             
@@ -211,7 +216,7 @@ export default function ContactSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="section-label text-accent-cyan mb-4"
+              className="section-label text-accent mb-4"
             >
               {t('sectionLabel')}
             </motion.div>
@@ -231,7 +236,7 @@ export default function ContactSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 0.6 }}
-              className="text-xl md:text-2xl text-white/60 leading-relaxed mb-12 max-w-lg"
+              className="text-xl md:text-2xl text-muted leading-relaxed mb-12 max-w-lg"
             >
               {t('preview.text')}
             </motion.p>
@@ -240,7 +245,7 @@ export default function ContactSection() {
             <div ref={ctaRef}>
               <TransitionLink
                 href="/contact"
-                className="inline-flex items-center gap-4 px-10 py-5 bg-accent-cyan text-black text-sm font-medium tracking-caps-wide uppercase transition-all duration-300 hover:bg-white hover:shadow-glow-cyan-strong group relative overflow-hidden"
+                className="inline-flex items-center gap-4 px-10 py-5 bg-riso-pink text-snow hover:text-black text-sm font-medium tracking-caps-wide uppercase transition-all duration-300 hover:bg-white hover:shadow-glow-accent-strong group relative overflow-hidden"
               >
                 <span className="relative z-10">{t('preview.cta')}</span>
                 <ArrowRight size={18} className="relative z-10 transition-transform group-hover:translate-x-1" />

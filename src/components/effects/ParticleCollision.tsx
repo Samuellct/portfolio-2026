@@ -64,11 +64,11 @@ export default function ParticleCollision({ isVisible, className = '' }: Particl
     
     // Detector layers
     const detectorLayers = [
-      { radius: 0.15, label: 'Pixel', color: withAlpha(ACCENT.cyan, 0.15) },
-      { radius: 0.25, label: 'SCT', color: withAlpha(ACCENT.cyan, 0.10) },
-      { radius: 0.40, label: 'TRT', color: withAlpha(ACCENT.cyan, 0.08) },
-      { radius: 0.60, label: 'ECAL', color: withAlpha(ACCENT.purple, 0.08) },
-      { radius: 0.80, label: 'HCAL', color: withAlpha(ACCENT.purple, 0.06) },
+      { radius: 0.15, label: 'Pixel', color: withAlpha(ACCENT.blue, 0.15) },
+      { radius: 0.25, label: 'SCT', color: withAlpha(ACCENT.blue, 0.10) },
+      { radius: 0.40, label: 'TRT', color: withAlpha(ACCENT.blue, 0.08) },
+      { radius: 0.60, label: 'ECAL', color: withAlpha(ACCENT.pink, 0.08) },
+      { radius: 0.80, label: 'HCAL', color: withAlpha(ACCENT.pink, 0.06) },
       { radius: 0.95, label: 'Muon', color: 'rgba(255, 255, 255, 0.04)' },
     ]
     
@@ -95,11 +95,11 @@ export default function ParticleCollision({ isVisible, className = '' }: Particl
         let color: string
         if (maxRadius > 0.85) {
           // Rare exotic track, reserved accent - roughly 1 in 50 tracks
-          color = Math.random() < 0.15 ? withAlpha(ACCENT.amber, 0.8) : withAlpha(ACCENT.purple, 0.8)
+          color = Math.random() < 0.15 ? withAlpha(ACCENT.yellow, 0.8) : withAlpha(ACCENT.pink, 0.8)
         } else if (maxRadius > 0.55) {
-          color = withAlpha(ACCENT.green, 0.7)
+          color = withAlpha(ACCENT.yellow, 0.7)
         } else {
-          color = withAlpha(ACCENT.cyan, 0.8)
+          color = withAlpha(ACCENT.blue, 0.8)
         }
         
         tracks.push({
@@ -196,8 +196,8 @@ export default function ParticleCollision({ isVisible, className = '' }: Particl
       
       const gradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, radius)
       gradient.addColorStop(0, `rgba(255, 255, 255, ${opacity})`)
-      gradient.addColorStop(0.5, withAlpha(ACCENT.cyan, opacity * 0.5))
-      gradient.addColorStop(1, withAlpha(ACCENT.cyan, 0))
+      gradient.addColorStop(0.5, withAlpha(ACCENT.blue, opacity * 0.5))
+      gradient.addColorStop(1, withAlpha(ACCENT.blue, 0))
       
       ctx.beginPath()
       ctx.arc(centerX, centerY, radius, 0, Math.PI * 2)
@@ -254,7 +254,7 @@ export default function ParticleCollision({ isVisible, className = '' }: Particl
         disabled={!canShuffle || isAnimating}
         className={`absolute bottom-4 right-4 p-2 rounded-full border transition-all duration-300 ${
           canShuffle && !isAnimating
-            ? 'border-white/20 text-white/40 hover:border-accent-cyan/50 hover:text-accent-cyan cursor-pointer'
+            ? 'border-white/20 text-muted hover:border-accent-line/50 hover:text-accent cursor-pointer'
             : 'border-white/5 text-white/10 cursor-not-allowed'
         }`}
         title={t('collision.newCollision')}

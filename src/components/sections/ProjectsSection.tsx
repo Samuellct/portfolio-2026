@@ -191,7 +191,7 @@ export default function ProjectsSection() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="section-label text-accent-cyan mb-4"
+              className="section-label text-accent mb-4"
             >
               {t('sectionLabel')}
             </motion.div>
@@ -215,7 +215,7 @@ export default function ProjectsSection() {
           >
             <TransitionLink
               href="/projects"
-              className="inline-flex items-center gap-3 text-white/50 hover:text-white transition-colors group"
+              className="inline-flex items-center gap-3 text-muted hover:text-white transition-colors group"
             >
               <span className="text-sm tracking-caps uppercase">{t('preview.cta')}</span>
               <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />

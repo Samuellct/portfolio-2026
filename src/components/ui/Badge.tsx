@@ -18,12 +18,12 @@ const TONE = {
 
 const STATUS = {
   'in-progress': {
-    card: 'bg-accent-cyan/20 border border-accent-cyan/30 text-accent-cyan',
-    inline: 'bg-accent-cyan/10 border border-accent-cyan/20 text-accent-cyan',
+    card: 'bg-surface border border-accent-line/60 text-accent',
+    inline: 'bg-accent-line/10 border border-accent-line/20 text-accent',
   },
   paused: {
-    card: 'bg-white/10 border border-white/20 text-white/60',
-    inline: 'bg-white/10 border border-white/20 text-white/60',
+    card: 'bg-surface border border-white/20 text-muted',
+    inline: 'bg-white/10 border border-white/20 text-muted',
   },
 } as const
 

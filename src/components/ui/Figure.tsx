@@ -43,7 +43,7 @@ export function Figure({
         )}
       </div>
 
-      {caption && <p className="mt-2 font-fraunces italic text-sm text-white/50">{caption}</p>}
+      {caption && <p className="mt-2 font-fraunces italic text-sm text-muted">{caption}</p>}
 
       {credit && (
         <p className="mt-2 text-xs text-muted">
@@ -53,7 +53,7 @@ export function Figure({
               href={credit.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-white/50 underline"
+              className="hover:text-white underline"
             >
               {credit.name}
             </a>

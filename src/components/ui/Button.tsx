@@ -19,12 +19,12 @@ export type ButtonSize = 'sm' | 'md' | 'lg'
 
 const VARIANT: Record<Exclude<ButtonVariant, 'filter'>, string> = {
   primary:
-    'inline-flex items-center gap-3 font-medium uppercase tracking-caps transition-all bg-accent-cyan text-black hover:bg-white',
+    'inline-flex items-center gap-3 font-medium uppercase tracking-caps transition-all bg-riso-pink text-snow hover:text-black hover:bg-white',
   secondary:
     'inline-flex items-center gap-3 font-medium uppercase tracking-caps transition-all bg-white/5 border border-white/15 hover:border-white/30',
   ghost:
     'inline-flex items-center gap-3 font-medium uppercase tracking-caps transition-all border border-white/10 hover:border-white/30',
-  link: 'inline-flex items-center gap-2 text-white/50 transition-colors hover:text-white group',
+  link: 'inline-flex items-center gap-2 text-muted transition-colors hover:text-white group',
 }
 
 const SIZE: Record<ButtonSize, string> = {
@@ -52,7 +52,7 @@ function classesFor({ variant = 'primary', size = 'md', active = false, classNam
       'px-6 py-2.5 text-xs tracking-caps-wide uppercase border transition-all duration-300',
       active
         ? 'bg-white text-black border-white'
-        : 'bg-transparent text-white/60 border-white/20 hover:border-white/50 hover:text-white',
+        : 'bg-transparent text-muted border-white/20 hover:border-white/50 hover:text-white',
       className,
     )
   }

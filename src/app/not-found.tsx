@@ -18,7 +18,7 @@ export default function RootNotFound() {
               style={{
                 display: 'inline-block',
                 padding: '1rem 2rem',
-                backgroundColor: ACCENT.cyan,
+                backgroundColor: ACCENT.pink,
                 color: '#000',
                 textDecoration: 'none',
                 fontSize: '0.875rem',

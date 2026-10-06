@@ -10,6 +10,7 @@ import MarkdownRenderer from '@/components/ui/MarkdownRenderer'
 import { Badge } from '@/components/ui/Badge'
 import { Tag } from '@/components/ui/Tag'
 import { Figure } from '@/components/ui/Figure'
+import { CategoryIcon } from '@/components/ui/CategoryIcon'
 import { useTranslations } from 'next-intl'
 import { SECTION_BG } from '@/lib/theme'
 
@@ -26,7 +27,7 @@ function RelatedProjectCard({ project, locale }: { project: ProjectData; locale:
         alt={getLocalizedField(project.imageAlt, locale)}
         frameClassName="mb-3 transition-opacity duration-300 group-hover:opacity-80"
       />
-      <h3 className="font-body font-semibold group-hover:text-accent-cyan transition-colors duration-300">
+      <h3 className="font-body font-semibold group-hover:text-accent transition-colors duration-300">
         {getLocalizedField(project.title, locale)}
       </h3>
     </TransitionLink>
@@ -81,7 +82,7 @@ export default function ProjectDetailView({
               >
                 <TransitionLink
                   href="/projects"
-                  className="tap-target inline-flex items-center gap-2 text-white/50 hover:text-white transition-colors"
+                  className="tap-target inline-flex items-center gap-2 text-muted hover:text-white transition-colors"
                 >
                   <ArrowLeft size={16} />
                   <span className="text-sm tracking-label uppercase">{tCommon('back')}</span>
@@ -98,9 +99,10 @@ export default function ProjectDetailView({
                 <div className="flex flex-wrap items-center gap-3 mb-4">
                   <TransitionLink
                     href={`/projects?category=${categoryId}`}
-                    className="tap-target text-xs tracking-caps-wide uppercase hover:underline"
+                    className="tap-target inline-flex items-center gap-1.5 text-xs tracking-caps-wide uppercase hover:underline"
                     style={{ color: category?.accentColor }}
                   >
+                    <CategoryIcon category={categoryId} />
                     {t(`categories.${categoryId}`)}
                   </TransitionLink>
 
@@ -123,7 +125,7 @@ export default function ProjectDetailView({
 
                 {/* Subtitle */}
                 {project.subtitle && (
-                  <p className="text-lg text-white/60 mb-6">{getLocalizedField(project.subtitle, locale)}</p>
+                  <p className="text-lg text-muted mb-6">{getLocalizedField(project.subtitle, locale)}</p>
                 )}
 
                 {/* Meta info */}
@@ -196,7 +198,7 @@ export default function ProjectDetailView({
                     <h2 className="text-xs tracking-caps-wide uppercase text-muted mb-4">
                       {t('sections.context')}
                     </h2>
-                    <p className="text-sm text-white/60">
+                    <p className="text-sm text-muted">
                       {getLocalizedField(project.sections.context, locale)}
                     </p>
                   </div>
@@ -330,7 +332,7 @@ export default function ProjectDetailView({
                     <div className="text-xs tracking-caps-wide uppercase text-muted mb-1">
                       {t('previousProject')}
                     </div>
-                    <div className="font-body font-semibold group-hover:text-accent-cyan transition-colors">
+                    <div className="font-body font-semibold group-hover:text-accent transition-colors">
                       {getLocalizedField(previousProject.title, locale)}
                     </div>
                   </div>
@@ -347,7 +349,7 @@ export default function ProjectDetailView({
                     <div className="text-xs tracking-caps-wide uppercase text-muted mb-1">
                       {t('nextProject')}
                     </div>
-                    <div className="font-body font-semibold group-hover:text-accent-cyan transition-colors">
+                    <div className="font-body font-semibold group-hover:text-accent transition-colors">
                       {getLocalizedField(nextProject.title, locale)}
                     </div>
                   </div>

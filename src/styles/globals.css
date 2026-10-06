@@ -23,19 +23,32 @@
 /* ===================================
    BASE STYLES
 =================================== */
-/* Colour tokens. Keep in sync with src/lib/theme.ts (the single source of
-   truth, shared with tailwind.config.ts). */
+/* Colour schemes. Values mirror RISO / SURFACE in src/lib/theme.ts (the
+   single source of truth). Paper is the default; `.scheme-night` marks the
+   hero, the landing, the navigation band and the home contact scene.
+   Channels are space-separated RGB so Tailwind can add alpha. */
 :root {
-  --color-primary: #06060e;
-  --color-primary-light: #0a0a18;
-  --color-accent-cyan: #00f0ff;
-  --color-accent-purple: #a855f7;
-  --color-accent-pink: #f472b6;
-  --color-accent-amber: #d9713a;
+  --fg: 0 90 146;           /* ink #005a92, 6.15:1 on paper */
+  --surface: 241 235 224;   /* paper #f1ebe0 */
+  --accent: 0 90 146;       /* small accent text: ink */
+  --accent-line: 0 120 191; /* rules, frames, focus: blue #0078bf */
+  --muted: rgb(24 105 154); /* ink at 90% on paper, 5.08:1 */
+  --subtle: rgb(60 126 166);/* ink at 75% on paper, 3.74:1, large text only */
+  --pink: 255 72 176;
 
   /* First-paint background before hydration; afterwards GSAP drives
      document.body.style.backgroundColor directly. */
-  --bg-color: #06060e;
+  --bg-color: #f1ebe0;
+}
+
+.scheme-night {
+  --fg: 255 255 255;
+  --surface: 6 6 14;
+  --accent: 255 72 176;      /* pink on night, 6.36:1 */
+  --accent-line: 255 72 176;
+  --muted: rgb(255 255 255 / 0.62);
+  --subtle: rgb(255 255 255 / 0.45);
+  color: rgb(var(--fg));
 }
 
 * {
@@ -68,7 +81,7 @@ html.lenis body {
 
 body {
   background-color: var(--bg-color);
-  color: #ffffff;
+  color: rgb(var(--fg));
   overflow-x: hidden;
 }
 
@@ -82,8 +95,8 @@ body {
    SELECTION
 =================================== */
 ::selection {
-  background: var(--color-accent-cyan);
-  color: #000;
+  background: rgb(var(--pink));
+  color: #ffffff;
 }
 
 /* ===================================
@@ -94,23 +107,23 @@ body {
 }
 
 ::-webkit-scrollbar-track {
-  background: var(--color-primary);
+  background: rgb(var(--surface));
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: rgb(var(--fg) / 0.2);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgb(var(--fg) / 0.4);
 }
 
 /* ===================================
    UTILITY CLASSES
 =================================== */
 .gradient-text {
-  background: linear-gradient(135deg, #fff, var(--color-accent-cyan));
+  background: linear-gradient(135deg, rgb(var(--fg)), rgb(var(--pink)));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -176,7 +189,7 @@ body {
    FOCUS STYLES
 =================================== */
 :focus-visible {
-  outline: 2px solid var(--color-accent-cyan);
+  outline: 2px solid rgb(var(--accent-line));
   outline-offset: 2px;
 }
 
@@ -226,31 +239,31 @@ body {
    MARKDOWN
 =================================== */
 .prose a {
-  color: var(--color-accent-cyan);
+  color: rgb(var(--accent));
   text-decoration: none;
   border-bottom: 1px solid transparent;
   transition: border-color 0.2s ease;
 }
 
 .prose a:hover {
-  border-bottom-color: var(--color-accent-cyan);
+  border-bottom-color: rgb(var(--accent-line));
 }
 
 .prose code:not(pre code) {
-  background-color: rgba(255, 255, 255, 0.05);
+  background-color: rgb(var(--fg) / 0.05);
   padding: 0.2em 0.4em;
   border-radius: 0.25em;
   font-size: 0.9em;
 }
 
 .prose pre {
-  background-color: rgba(255, 255, 255, 0.03);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgb(var(--fg) / 0.03);
+  border: 1px solid rgb(var(--fg) / 0.1);
 }
 
 .prose blockquote {
-  border-left-color: var(--color-accent-purple);
-  background-color: rgba(168, 85, 247, 0.05);
+  border-left-color: rgb(var(--pink));
+  background-color: rgb(var(--pink) / 0.06);
   padding: 1em 1.5em;
 }
 
@@ -269,13 +282,13 @@ body {
 }
 
 .prose strong {
-  color: #ffffff;
+  color: rgb(var(--fg));
 }
 
 .prose ul > li::marker {
-  color: var(--color-accent-cyan);
+  color: rgb(var(--accent-line));
 }
 
 .prose ol > li::marker {
-  color: var(--color-accent-purple);
+  color: rgb(var(--pink));
 }

@@ -8,11 +8,29 @@
  * Scope notes:
  * - Brand colours for technologies live in `src/lib/technologies.ts` (AUDIT-011).
  * - Translucent variants are derived with `withAlpha` (`src/lib/color.ts`).
+ * - Text colours that depend on the surface (paper or night) are CSS variables
+ *   set in `globals.css` (`:root` for paper, `.scheme-night` for night).
  */
 
-/** Near-black surfaces. Four historically distinct values, kept as-is. */
+/**
+ * Risograph print run: two spot inks over paper, one night plate for the hero.
+ * Contrast on paper (WCAG): ink 6.15:1 (body text), blue 3.99:1 (large text,
+ * rules, frames), pinkTitle 3.04:1 (large titles only), pink 2.60:1 (fills,
+ * pills, misregistration, and text on night only: 6.36:1).
+ */
+export const RISO = {
+  paper: '#f1ebe0',
+  ink: '#005a92',
+  blue: '#0078bf',
+  pink: '#ff48b0',
+  pinkTitle: '#ff159a',
+  yellow: '#ffe800',
+  night: '#0b0b10',
+} as const
+
+/** Night surfaces (hero, landing, navigation band). */
 export const SURFACE = {
-  /** App shell / hero. Also the Tailwind `primary` DEFAULT and the CSS `--bg-color`. */
+  /** Hero and navigation band. Also the Tailwind `primary` DEFAULT. */
   primary: '#06060e',
   /** Slightly lifted primary (Tailwind `primary.light`). */
   primaryLight: '#0a0a18',
@@ -20,7 +38,7 @@ export const SURFACE = {
    *  `themeColor`, and the OG / Twitter image generators. */
   shell: '#030308',
   /** Page transition curtain. */
-  curtain: '#1a0a2e',
+  curtain: RISO.night,
 } as const
 
 /**
@@ -28,40 +46,44 @@ export const SURFACE = {
  * to `document.body` / a page wrapper. GSAP tweens the computed `backgroundColor`
  * from inline styles, so these must remain plain constants (a CSS variable would
  * interpolate differently); they are centralised here, not moved into CSS.
+ * Night is reserved for the hero and, until its rebuild, the home contact scene.
  */
 export const SECTION_BG = {
-  hero: '#06060e',
-  about: '#081828',
-  projects: '#1c1008',
-  contact: '#081c10',
-  aboutIntro: '#050e20',
-  aboutExperience: '#0a1024',
-  aboutStack: '#051525',
-  aboutEducation: '#0e200e',
-  aboutInterests: '#200a0a',
-  listing: '#0c0c1e',
-  projectDetail: '#080810',
+  hero: SURFACE.primary,
+  about: RISO.paper,
+  projects: RISO.paper,
+  contact: SURFACE.primary,
+  aboutIntro: RISO.paper,
+  aboutExperience: RISO.paper,
+  aboutStack: RISO.paper,
+  aboutEducation: RISO.paper,
+  aboutInterests: RISO.paper,
+  listing: RISO.paper,
+  projectDetail: RISO.paper,
 } as const
 
-/** Accent palette. Mirrors the Tailwind `accent` colours. */
+/** Accent inks for canvas, SVG and generated images. */
 export const ACCENT = {
-  cyan: '#00f0ff',
-  purple: '#a855f7',
-  pink: '#f472b6',
-  amber: '#d9713a',
-  green: '#10b981',
+  pink: RISO.pink,
+  blue: RISO.blue,
+  yellow: RISO.yellow,
 } as const
 
-/** Project category colours: label tint and muted card fill (`projects.ts`). */
+/**
+ * Project categories share one ink and are told apart by a glyph and their
+ * label (DEC-13h). `muted` is the paper shade behind the home project list.
+ */
 export const CATEGORY = {
-  personal: { accent: ACCENT.cyan, muted: '#1a4a5c' },
-  academic: { accent: ACCENT.purple, muted: '#3d2a5c' },
-  internship: { accent: ACCENT.green, muted: '#1a4a3d' },
+  personal: { accent: RISO.ink, muted: '#e8dfcf' },
+  academic: { accent: RISO.ink, muted: '#e8dfcf' },
+  internship: { accent: RISO.ink, muted: '#e8dfcf' },
 } as const
 
-/** Status signals. */
+/** Status signals. `success` and `error` clear 4.5:1 on paper. */
 export const STATUS = {
   available: '#22c55e',
+  success: '#1b6e37',
+  error: '#b3261e',
 } as const
 
 /** Third-party brand colours (logos and their hover states). */
@@ -78,15 +100,15 @@ export const BRAND = {
   truenas: '#0095d5',
 } as const
 
-/** Palettes of the About page illustrations (AUDIT-034). */
+/** Palettes of the About page illustrations (AUDIT-034), recoloured to the inks. */
 export const ILLUSTRATION = {
-  cinema: '#e5737d',
-  cinemaDeep: '#1a0810',
-  mountain: ACCENT.cyan,
-  mountainLow: '#00c8ff',
-  mountainHigh: '#66f7ff',
-  homelab: '#e57000',
-  homelabNode: '#1a1a2e',
+  cinema: RISO.pink,
+  cinemaDeep: RISO.paper,
+  mountain: RISO.blue,
+  mountainLow: RISO.ink,
+  mountainHigh: RISO.blue,
+  homelab: RISO.blue,
+  homelabNode: RISO.paper,
 } as const
 
 /** Fixed text colours chosen against a computed background. */

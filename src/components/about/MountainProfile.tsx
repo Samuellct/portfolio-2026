@@ -96,7 +96,7 @@ export default function MountainProfile({ progress, className }: MountainProfile
     >
       <defs>
         <pattern id={`${id}_grid`} width="20" height="20" patternUnits="userSpaceOnUse">
-          <path d="M 20 0 L 0 0 0 20" fill="none" stroke="rgba(255,255,255,0.02)" strokeWidth="0.5" />
+          <path d="M 20 0 L 0 0 0 20" fill="none" stroke={withAlpha(ILLUSTRATION.mountainLow, 0.02)} strokeWidth="0.5" />
         </pattern>
 
         <linearGradient id={`${id}_mtnFill`} x1="0%" y1="0%" x2="0%" y2="100%">
@@ -134,9 +134,9 @@ export default function MountainProfile({ progress, className }: MountainProfile
       <rect width="200" height="200" fill={`url(#${id}_grid)`} />
 
       {/* Altitude reference lines */}
-      <line x1="8" y1="50" x2="195" y2="50" stroke="rgba(255,255,255,0.02)" strokeWidth="0.3" strokeDasharray="2 8" />
-      <line x1="8" y1="90" x2="195" y2="90" stroke="rgba(255,255,255,0.02)" strokeWidth="0.3" strokeDasharray="2 8" />
-      <line x1="8" y1="130" x2="195" y2="130" stroke="rgba(255,255,255,0.02)" strokeWidth="0.3" strokeDasharray="2 8" />
+      <line x1="8" y1="50" x2="195" y2="50" stroke={withAlpha(ILLUSTRATION.mountainLow, 0.02)} strokeWidth="0.3" strokeDasharray="2 8" />
+      <line x1="8" y1="90" x2="195" y2="90" stroke={withAlpha(ILLUSTRATION.mountainLow, 0.02)} strokeWidth="0.3" strokeDasharray="2 8" />
+      <line x1="8" y1="130" x2="195" y2="130" stroke={withAlpha(ILLUSTRATION.mountainLow, 0.02)} strokeWidth="0.3" strokeDasharray="2 8" />
 
       {/* Subtle summit glow */}
       <circle cx="126" cy="27" r="30" fill={`url(#${id}_summitGlow)`} />
@@ -151,7 +151,7 @@ export default function MountainProfile({ progress, className }: MountainProfile
           key={i}
           d={d}
           fill="none"
-          stroke="rgba(255,255,255,0.18)"
+          stroke={withAlpha(ILLUSTRATION.mountainLow, 0.18)}
           strokeWidth="1.5"
           strokeLinecap="round"
           strokeLinejoin="round"
@@ -162,7 +162,7 @@ export default function MountainProfile({ progress, className }: MountainProfile
       <path
         d={routeD}
         fill="none"
-        stroke="rgba(255,255,255,0.04)"
+        stroke={withAlpha(ILLUSTRATION.mountainLow, 0.04)}
         strokeWidth="0.8"
         strokeDasharray="3 4"
         strokeLinecap="round"

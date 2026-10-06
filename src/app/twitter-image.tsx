@@ -33,8 +33,8 @@ export default async function Image() {
             width: 8,
             height: 8,
             borderRadius: '50%',
-            backgroundColor: ACCENT.cyan,
-            boxShadow: `0 0 20px ${ACCENT.cyan}`,
+            backgroundColor: ACCENT.pink,
+            boxShadow: `0 0 20px ${ACCENT.pink}`,
           }}
         />
         <div
@@ -45,8 +45,8 @@ export default async function Image() {
             width: 6,
             height: 6,
             borderRadius: '50%',
-            backgroundColor: ACCENT.purple,
-            boxShadow: `0 0 15px ${ACCENT.purple}`,
+            backgroundColor: ACCENT.blue,
+            boxShadow: `0 0 15px ${ACCENT.blue}`,
           }}
         />
         <div
@@ -69,8 +69,8 @@ export default async function Image() {
             width: 7,
             height: 7,
             borderRadius: '50%',
-            backgroundColor: ACCENT.cyan,
-            boxShadow: `0 0 18px ${ACCENT.cyan}`,
+            backgroundColor: ACCENT.pink,
+            boxShadow: `0 0 18px ${ACCENT.pink}`,
           }}
         />
 
@@ -103,7 +103,7 @@ export default async function Image() {
             style={{
               width: 120,
               height: 2,
-              background: `linear-gradient(90deg, transparent, ${ACCENT.cyan}, transparent)`,
+              background: `linear-gradient(90deg, transparent, ${ACCENT.pink}, transparent)`,
               marginBottom: 24,
             }}
           />
@@ -112,7 +112,7 @@ export default async function Image() {
           <div
             style={{
               fontSize: 32,
-              color: ACCENT.cyan,
+              color: ACCENT.pink,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
               marginBottom: 12,

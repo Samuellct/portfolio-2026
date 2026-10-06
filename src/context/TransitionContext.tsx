@@ -78,7 +78,7 @@ function TransitionOverlayInternal({
   
   return (
     <div
-      className="fixed inset-0 z-[200] pointer-events-none"
+      className="scheme-night fixed inset-0 z-[200] pointer-events-none"
       style={{
         backgroundColor: SURFACE.curtain,
         clipPath: phase === 'covering' ? 'polygon(0 0, 0 0, 0 100%, 0 100%)' : undefined,

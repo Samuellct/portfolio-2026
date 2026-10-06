@@ -1,6 +1,6 @@
 import type { Config } from 'tailwindcss'
 import typography from '@tailwindcss/typography'
-import { ACCENT, BRAND, ILLUSTRATION, SECTION_BG, STATUS, SURFACE } from './src/lib/theme'
+import { ACCENT, BRAND, ILLUSTRATION, RISO, SECTION_BG, STATUS, SURFACE } from './src/lib/theme'
 import { withAlpha } from './src/lib/color'
 
 const config: Config = {
@@ -21,24 +21,30 @@ const config: Config = {
           light: SURFACE.primaryLight,
         },
         shell: SURFACE.shell,
+        // Scheme-driven colours (globals.css): `white` is the foreground and
+        // `black` the surface of the current scheme, so the existing
+        // `text-white/..`, `border-white/..` and `bg-black` classes follow
+        // paper (ink on paper) or night (white on night) without rewriting.
+        white: 'rgb(var(--fg) / <alpha-value>)',
+        black: 'rgb(var(--surface) / <alpha-value>)',
+        surface: 'rgb(var(--surface) / <alpha-value>)',
+        snow: '#ffffff',
         accent: {
-          cyan: ACCENT.cyan,
-          purple: ACCENT.purple,
-          pink: ACCENT.pink,
-          amber: ACCENT.amber,
-          green: ACCENT.green,
+          DEFAULT: 'rgb(var(--accent) / <alpha-value>)',
+          line: 'rgb(var(--accent-line) / <alpha-value>)',
         },
+        riso: RISO,
         brand: BRAND,
         illustration: ILLUSTRATION,
         status: STATUS,
         section: SECTION_BG,
-        // Text grey scale (AUDIT-029). `muted` clears WCAG AA (>= 4.5:1) on
-        // every section background; `subtle` is for large or non-interactive
-        // text only; `faint` is decorative / rest-state only (documented
-        // AUDIT-029 derogation for the fullscreen menu links at rest).
-        muted: 'rgb(255 255 255 / 0.62)',
-        subtle: 'rgb(255 255 255 / 0.45)',
-        faint: 'rgb(255 255 255 / 0.20)',
+        // Secondary text (AUDIT-029, COL-02), solid per scheme. `muted` clears
+        // WCAG AA (>= 4.5:1) on paper and night; `subtle` is for large or
+        // non-interactive text only; `faint` is decorative / rest-state only
+        // (documented AUDIT-029 derogation for the fullscreen menu links).
+        muted: 'var(--muted)',
+        subtle: 'var(--subtle)',
+        faint: 'rgb(var(--fg) / 0.2)',
       },
       fontFamily: {
         display: ['var(--font-schibsted)', 'sans-serif'],
@@ -80,8 +86,8 @@ const config: Config = {
         heading: '1.1',
       },
       boxShadow: {
-        'glow-cyan': `0 0 25px ${withAlpha(ACCENT.cyan, 0.2)}`,
-        'glow-cyan-strong': `0 0 30px ${withAlpha(ACCENT.cyan, 0.25)}`,
+        'glow-accent': `0 0 25px ${withAlpha(ACCENT.pink, 0.2)}`,
+        'glow-accent-strong': `0 0 30px ${withAlpha(ACCENT.pink, 0.25)}`,
       },
       borderRadius: {
         // Sharp angles are the signature (AUDIT-080): the bare `rounded`
@@ -105,22 +111,22 @@ const config: Config = {
       typography: {
         DEFAULT: {
           css: {
-            '--tw-prose-body': 'rgba(255, 255, 255, 0.7)',
-            '--tw-prose-headings': '#ffffff',
-            '--tw-prose-lead': 'rgba(255, 255, 255, 0.6)',
-            '--tw-prose-links': ACCENT.cyan,
-            '--tw-prose-bold': '#ffffff',
-            '--tw-prose-counters': 'rgba(255, 255, 255, 0.5)',
-            '--tw-prose-bullets': 'rgba(255, 255, 255, 0.4)',
-            '--tw-prose-hr': 'rgba(255, 255, 255, 0.1)',
-            '--tw-prose-quotes': 'rgba(255, 255, 255, 0.8)',
-            '--tw-prose-quote-borders': ACCENT.purple,
-            '--tw-prose-captions': 'rgba(255, 255, 255, 0.5)',
-            '--tw-prose-code': ACCENT.cyan,
-            '--tw-prose-pre-code': 'rgba(255, 255, 255, 0.9)',
-            '--tw-prose-pre-bg': 'rgba(255, 255, 255, 0.05)',
-            '--tw-prose-th-borders': 'rgba(255, 255, 255, 0.2)',
-            '--tw-prose-td-borders': 'rgba(255, 255, 255, 0.1)',
+            '--tw-prose-body': 'var(--muted)',
+            '--tw-prose-headings': 'rgb(var(--fg))',
+            '--tw-prose-lead': 'var(--muted)',
+            '--tw-prose-links': 'rgb(var(--accent))',
+            '--tw-prose-bold': 'rgb(var(--fg))',
+            '--tw-prose-counters': 'rgb(var(--fg) / 0.5)',
+            '--tw-prose-bullets': 'rgb(var(--fg) / 0.4)',
+            '--tw-prose-hr': 'rgb(var(--fg) / 0.1)',
+            '--tw-prose-quotes': 'rgb(var(--fg))',
+            '--tw-prose-quote-borders': ACCENT.pink,
+            '--tw-prose-captions': 'var(--muted)',
+            '--tw-prose-code': 'rgb(var(--accent))',
+            '--tw-prose-pre-code': 'rgb(var(--fg))',
+            '--tw-prose-pre-bg': 'rgb(var(--fg) / 0.05)',
+            '--tw-prose-th-borders': 'rgb(var(--fg) / 0.2)',
+            '--tw-prose-td-borders': 'rgb(var(--fg) / 0.1)',
           },
         },
       },

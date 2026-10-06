@@ -116,7 +116,7 @@ export default function ContactPage() {
         >
           <TransitionLink
             href="/"
-            className="tap-target inline-flex items-center gap-2 text-white/50 hover:text-white transition-colors"
+            className="tap-target inline-flex items-center gap-2 text-muted hover:text-white transition-colors"
           >
             <ArrowLeft size={16} />
             <span className="text-sm tracking-label uppercase">{tCommon('back')}</span>
@@ -130,13 +130,13 @@ export default function ContactPage() {
           transition={{ duration: 0.6 }}
           className="mb-12"
         >
-          <div className="section-label text-accent-cyan mb-4">
+          <div className="section-label text-accent mb-4">
             {tContact('sectionLabel')}
           </div>
           <h1 className="font-display uppercase font-black text-page leading-display tracking-wide mb-6">
             {tContact('page.title')}
           </h1>
-          <p className="text-lg text-white/50 text-justify">
+          <p className="text-lg text-muted text-justify">
             {tContact('page.description')}
           </p>
         </motion.header>
@@ -146,11 +146,11 @@ export default function ContactPage() {
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="p-8 bg-green-500/10 border border-green-500/30 text-center"
+            className="p-8 bg-status-success/10 border border-status-success/30 text-center"
           >
-            <CheckCircle size={48} className="mx-auto mb-4 text-green-400" />
+            <CheckCircle size={48} className="mx-auto mb-4 text-status-success" />
             <h2 className="font-display uppercase font-black text-title mb-2">{tContact('page.form.success')}</h2>
-            <p className="text-white/60 mb-6">{tContact('page.form.successDescription')}</p>
+            <p className="text-muted mb-6">{tContact('page.form.successDescription')}</p>
             <button
               onClick={resetForm}
               className="px-6 py-2 text-sm tracking-label uppercase border border-white/20 hover:border-white/40 transition-colors"
@@ -165,11 +165,11 @@ export default function ContactPage() {
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            className="p-8 bg-red-500/10 border border-red-500/30 text-center mb-8"
+            className="p-8 bg-status-error/10 border border-status-error/30 text-center mb-8"
           >
-            <AlertCircle size={48} className="mx-auto mb-4 text-red-400" />
+            <AlertCircle size={48} className="mx-auto mb-4 text-status-error" />
             <h2 className="font-display uppercase font-black text-title mb-2">{tContact('page.form.error')}</h2>
-            <p className="text-white/60 mb-6">{tContact('page.form.errorDescription')}</p>
+            <p className="text-muted mb-6">{tContact('page.form.errorDescription')}</p>
             <button
               onClick={resetForm}
               className="px-6 py-2 text-sm tracking-label uppercase border border-white/20 hover:border-white/40 transition-colors"
@@ -202,7 +202,7 @@ export default function ContactPage() {
                   onChange={handleChange}
                   required
                   placeholder={tContact('page.form.namePlaceholder')}
-                  className="w-full px-4 py-3 bg-white/[0.03] border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:border-accent-cyan transition-colors"
+                  className="w-full px-4 py-3 bg-white/[0.03] border border-white/10 text-white placeholder:text-muted focus:outline-none focus:border-accent-line transition-colors"
                 />
               </div>
               
@@ -218,7 +218,7 @@ export default function ContactPage() {
                   onChange={handleChange}
                   required
                   placeholder={tContact('page.form.emailPlaceholder')}
-                  className="w-full px-4 py-3 bg-white/[0.03] border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:border-accent-cyan transition-colors"
+                  className="w-full px-4 py-3 bg-white/[0.03] border border-white/10 text-white placeholder:text-muted focus:outline-none focus:border-accent-line transition-colors"
                 />
               </div>
             </div>
@@ -236,7 +236,7 @@ export default function ContactPage() {
                 onChange={handleChange}
                 required
                 placeholder={tContact('page.form.subjectPlaceholder')}
-                className="w-full px-4 py-3 bg-white/[0.03] border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:border-accent-cyan transition-colors"
+                className="w-full px-4 py-3 bg-white/[0.03] border border-white/10 text-white placeholder:text-muted focus:outline-none focus:border-accent-line transition-colors"
               />
             </div>
             
@@ -253,7 +253,7 @@ export default function ContactPage() {
                 required
                 rows={6}
                 placeholder={tContact('page.form.messagePlaceholder')}
-                className="w-full px-4 py-3 bg-white/[0.03] border border-white/10 text-white placeholder:text-white/30 focus:outline-none focus:border-accent-cyan transition-colors resize-none"
+                className="w-full px-4 py-3 bg-white/[0.03] border border-white/10 text-white placeholder:text-muted focus:outline-none focus:border-accent-line transition-colors resize-none"
               />
             </div>
             
@@ -261,7 +261,7 @@ export default function ContactPage() {
             <button
               type="submit"
               disabled={status === 'submitting'}
-              className="inline-flex items-center gap-3 px-8 py-4 bg-accent-cyan text-black text-sm font-medium tracking-caps uppercase transition-all hover:bg-white hover:shadow-glow-cyan disabled:opacity-50 disabled:cursor-not-allowed"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-riso-pink text-snow hover:text-black text-sm font-medium tracking-caps uppercase transition-all hover:bg-white hover:shadow-glow-accent disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {status === 'submitting' ? (
                 <>
@@ -292,9 +292,9 @@ export default function ContactPage() {
           <div className="flex flex-wrap gap-4">
             <a
               href={`mailto:${tContact('page.directContact.email')}`}
-              className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 border border-white/10 transition-all hover:border-accent-cyan/30 hover:text-accent-cyan group"
+              className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 border border-white/10 transition-all hover:border-accent-line/30 hover:text-accent group"
             >
-              <Mail size={16} className="text-accent-cyan" />
+              <Mail size={16} className="text-accent" />
               <span>{tContact('page.directContact.emailLabel')}</span>
             </a>
             

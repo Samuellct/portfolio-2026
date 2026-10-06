@@ -105,7 +105,7 @@ export default function HeroSection() {
     <section
       ref={sectionRef}
       id="hero"
-      className="section min-h-screen flex items-center relative overflow-hidden"
+      className="scheme-night section min-h-screen flex items-center relative overflow-hidden"
     >
       {/* PARTICLE BKG */}
       <WaveBackground className="opacity-50" />
@@ -122,13 +122,13 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2, duration: 0.6 }}
-          className="inline-flex items-center gap-2 mb-5 border border-green-400/40 px-3 py-1.5"
+          className="inline-flex items-center gap-2 mb-5 border border-status-available/40 px-3 py-1.5"
         >
           <span
-            className="w-1.5 h-1.5 rounded-full bg-green-400 shrink-0 animate-pulse-slow"
+            className="w-1.5 h-1.5 rounded-full bg-status-available shrink-0 animate-pulse-slow"
             style={{ boxShadow: `0 0 6px ${withAlpha(STATUS.available, 0.8)}` }}
           />
-          <span className="font-mono text-meta tracking-hero-caps uppercase text-white/50">
+          <span className="font-mono text-meta tracking-hero-caps uppercase text-muted">
             {t('available')}
           </span>
         </motion.div>
@@ -155,8 +155,8 @@ export default function HeroSection() {
           className="mb-8"
         >
           <div className="flex items-center gap-4 mb-4">
-            <span className="w-12 h-px bg-gradient-to-r from-accent-cyan to-transparent shrink-0" />
-            <span className="font-display uppercase font-black text-lead leading-heading tracking-wide text-accent-cyan">
+            <span className="w-12 h-px bg-gradient-to-r from-accent-line to-transparent shrink-0" />
+            <span className="font-display uppercase font-black text-lead leading-heading tracking-wide text-accent">
               {t('title')}
             </span>
           </div>
@@ -167,7 +167,7 @@ export default function HeroSection() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 1, duration: 0.8, ease: [0.25, 0.1, 0.25, 1] }}
-          className="text-base md:text-lg text-white/60 leading-relaxed max-w-xl mb-12"
+          className="text-base md:text-lg text-muted leading-relaxed max-w-xl mb-12"
         >
           {t('description')}
         </motion.p>
@@ -181,7 +181,7 @@ export default function HeroSection() {
         >
           <TransitionLink
             href="/projects"
-            className="inline-flex items-center gap-3 px-6 md:px-8 py-3 md:py-4 bg-white/5 border border-white/20 text-xs md:text-sm font-medium tracking-caps uppercase transition-all duration-300 hover:bg-accent-cyan hover:text-black hover:border-accent-cyan hover:shadow-glow-cyan group relative overflow-hidden"
+            className="inline-flex items-center gap-3 px-6 md:px-8 py-3 md:py-4 bg-white/5 border border-white/20 text-xs md:text-sm font-medium tracking-caps uppercase transition-all duration-300 hover:bg-accent-line hover:text-black hover:border-accent-line hover:shadow-glow-accent group relative overflow-hidden"
           >
             <span className="relative z-10">{t('cta')}</span>
             <ArrowRight size={14} className="relative z-10 transition-transform group-hover:translate-x-1" />
@@ -191,7 +191,7 @@ export default function HeroSection() {
             href="/Resume.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 px-6 md:px-8 py-3 md:py-4 border border-white/10 text-xs md:text-sm font-medium tracking-caps uppercase text-white/60 transition-all duration-300 hover:border-white/30 hover:text-white/90"
+            className="inline-flex items-center gap-3 px-6 md:px-8 py-3 md:py-4 border border-white/10 text-xs md:text-sm font-medium tracking-caps uppercase text-muted transition-all duration-300 hover:border-white/30 hover:text-white"
           >
             <span>{t('ctaSecondary')}</span>
             <Download size={14} />
@@ -208,7 +208,7 @@ export default function HeroSection() {
       >
         <span className="text-meta tracking-hint uppercase">{t('scrollHint')}</span>
         <div className="w-px h-16 relative overflow-hidden">
-          <span className="absolute inset-0 w-full bg-gradient-to-b from-accent-cyan via-accent-cyan to-transparent animate-scroll-line" />
+          <span className="absolute inset-0 w-full bg-gradient-to-b from-accent-line via-accent-line to-transparent animate-scroll-line" />
         </div>
       </motion.div>
     </section>

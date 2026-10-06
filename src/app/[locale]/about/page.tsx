@@ -14,7 +14,7 @@ import CinemaSpotlight from '@/components/about/CinemaSpotlight'
 import ScrollIndicator from '@/components/about/ScrollIndicator'
 import { useLocale, useTranslations } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
-import { ACCENT, CONTRAST_TEXT, SECTION_BG } from '@/lib/theme'
+import { CONTRAST_TEXT, RISO, SECTION_BG } from '@/lib/theme'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -47,14 +47,14 @@ function GhostTag({ tech }: { tech: TechStats }) {
   
   const textColor = isHovered 
     ? (isLightColor(tech.color) ? CONTRAST_TEXT.onLight : CONTRAST_TEXT.onDark)
-    : 'rgba(255,255,255,0.5)'
+    : 'var(--muted)'
   
   return (
     <span
       className="inline-block px-4 py-2 text-sm tracking-wide border cursor-default transition-all duration-300"
       style={{
         backgroundColor: isHovered ? tech.color : 'transparent',
-        borderColor: isHovered ? tech.color : 'rgba(255,255,255,0.15)',
+        borderColor: isHovered ? tech.color : 'rgb(var(--fg) / 0.15)',
         color: textColor,
       }}
       onMouseEnter={() => setIsHovered(true)}
@@ -82,21 +82,21 @@ export default function AboutPage() {
       degree: tAbout('education.master2.degree'),
       track: tAbout('education.master2.track'),
       school: tAbout('education.master2.school'),
-      color: ACCENT.cyan,
+      color: RISO.ink,
     },
     {
       id: 'datascience',
       period: tAbout('education.datascience.period'),
       degree: tAbout('education.datascience.degree'),
       school: tAbout('education.datascience.school'),
-      color: ACCENT.purple,
+      color: RISO.ink,
     },
     {
       id: 'bachelor',
       period: tAbout('education.bachelor.period'),
       degree: tAbout('education.bachelor.degree'),
       school: tAbout('education.bachelor.school'),
-      color: ACCENT.green,
+      color: RISO.ink,
     },
   ]
 
@@ -371,7 +371,7 @@ export default function AboutPage() {
       {/* HEADER */}
       {/* z-index = 100 pour être au-dessus des sections pinnées */}
       {/* ============================================ */}
-      <header className="fixed top-0 left-0 right-0 z-[100] pt-6 pb-4 px-6 md:px-12 lg:px-16 pointer-events-none">
+      <header className="scheme-night fixed top-0 left-0 right-0 z-[100] pt-6 pb-4 px-6 md:px-12 lg:px-16 pointer-events-none">
         <div className="flex justify-between items-center">
           {/* Espace pour le logo SL de la NavBar (à gauche) */}
           <div className="w-20" />
@@ -385,7 +385,7 @@ export default function AboutPage() {
           >
             <TransitionLink
               href="/"
-              className="tap-target inline-flex items-center gap-2 text-white/50 hover:text-white transition-colors group"
+              className="tap-target inline-flex items-center gap-2 text-muted hover:text-white transition-colors group"
             >
               <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1" />
               <span className="text-sm tracking-label uppercase">{tCommon('back')}</span>
@@ -445,7 +445,7 @@ export default function AboutPage() {
           <div className="max-w-4xl mx-auto w-full">
             {/* Title */}
             <div style={{ opacity: introTitleOpacity }}>
-              <div className="section-label text-accent-cyan mb-4">
+              <div className="section-label text-accent mb-4">
                 {tAbout('sectionLabel')}
               </div>
               <h1 className="font-display uppercase font-black text-page leading-display-snug tracking-wide mb-12">
@@ -461,7 +461,7 @@ export default function AboutPage() {
                 transform: `translateY(${introTextY}px)`,
               }}
             >
-              <p className="text-lg md:text-xl text-white/70 leading-relaxed">
+              <p className="text-lg md:text-xl text-muted leading-relaxed">
                 {tAbout('full.intro')}
               </p>
             </div>
@@ -474,10 +474,10 @@ export default function AboutPage() {
                 transform: `translateY(${goalsY}px)`,
               }}
             >
-              <h2 className="text-xs tracking-caps-wide uppercase text-accent-purple mb-4">
+              <h2 className="text-xs tracking-caps-wide uppercase text-accent mb-4">
                 {tAbout('full.goalsTitle')}
               </h2>
-              <p className="text-white/50 leading-relaxed">
+              <p className="text-muted leading-relaxed">
                 {tAbout('full.goals')}
               </p>
             </div>
@@ -494,9 +494,9 @@ export default function AboutPage() {
                 href="/Resume.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center justify-center gap-3 px-6 py-3 rounded-full bg-white/[0.03] border border-white/10 hover:border-accent-cyan/50 hover:bg-accent-cyan/10 transition-all duration-300"
+                className="group flex items-center justify-center gap-3 px-6 py-3 rounded-full bg-white/[0.03] border border-white/10 hover:border-accent-line/50 hover:bg-accent-line/10 transition-all duration-300"
               >
-                <Download size={18} className="text-accent-cyan" />
+                <Download size={18} className="text-accent" />
                 <span className="text-sm">{tAbout('downloadCV')}</span>
               </a>
               
@@ -533,7 +533,7 @@ export default function AboutPage() {
           <div className="max-w-5xl mx-auto w-full">
             {/* Title */}
             <div className="mb-8" style={{ opacity: expTitleOpacity }}>
-              <div className="section-label text-accent-pink mb-4">
+              <div className="section-label text-accent mb-4">
                 {tAbout('experience.sectionLabel')}
               </div>
               <h2 className="font-display uppercase font-black text-heading leading-display-snug tracking-wide">
@@ -543,7 +543,7 @@ export default function AboutPage() {
 
             {/* Intro */}
             <p
-              className="text-white/70 leading-relaxed max-w-3xl mb-12"
+              className="text-muted leading-relaxed max-w-3xl mb-12"
               style={{ opacity: expIntroOpacity }}
             >
               {tAbout('full.experience')}
@@ -554,7 +554,7 @@ export default function AboutPage() {
               {internships.map((project, index) => (
                 <article
                   key={project.id}
-                  className="flex flex-col p-6 bg-white/[0.02] border border-white/5 border-l-2 border-l-accent-pink/60"
+                  className="flex flex-col p-6 bg-white/[0.02] border border-white/5 border-l-2 border-l-riso-pink/60"
                   style={{
                     opacity: expItemProgress[index],
                     transform: `translateY(${30 - expItemProgress[index] * 30}px)`,
@@ -570,7 +570,7 @@ export default function AboutPage() {
                   <h3 className="font-display uppercase font-black text-title tracking-wide mb-2">
                     {getLocalizedField(project.title, locale)}
                   </h3>
-                  <p className="text-sm text-white/60 leading-relaxed mb-6">
+                  <p className="text-sm text-muted leading-relaxed mb-6">
                     {getLocalizedField(project.subtitle, locale)}
                   </p>
 
@@ -593,7 +593,7 @@ export default function AboutPage() {
 
                   <TransitionLink
                     href={`/projects/${project.category}/${project.id}`}
-                    className="tap-target mt-auto inline-flex items-center gap-2 text-sm tracking-caps uppercase text-accent-pink hover:text-white transition-colors group"
+                    className="tap-target mt-auto inline-flex items-center gap-2 text-sm tracking-caps uppercase text-accent hover:text-white transition-colors group"
                   >
                     {tAbout('experience.viewProject')}
                     <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
@@ -617,7 +617,7 @@ export default function AboutPage() {
               className="mb-4"
               style={{ opacity: stackTitleOpacity }}
             >
-              <div className="section-label text-accent-purple mb-4">
+              <div className="section-label text-accent mb-4">
                 {tAbout('stack.sectionLabel')}
               </div>
             </div>
@@ -648,7 +648,7 @@ export default function AboutPage() {
                 return (
                   <div key={tech.name} className="mb-4">
                     <div className="flex justify-between items-center mb-2">
-                      <span className="text-sm font-medium tracking-wide text-white/90">
+                      <span className="text-sm font-medium tracking-wide text-white">
                         {tech.name}
                       </span>
                       <span className="text-xs text-muted tabular-nums">
@@ -715,7 +715,7 @@ export default function AboutPage() {
               className="mb-12 text-center"
               style={{ opacity: eduTitleOpacity }}
             >
-              <div className="section-label text-emerald-400 justify-center mb-4">
+              <div className="section-label text-accent justify-center mb-4">
                 {tAbout('education.sectionLabel')}
               </div>
               <h2 className="font-display uppercase font-black text-heading leading-display-snug tracking-wide">
@@ -728,7 +728,7 @@ export default function AboutPage() {
               {/* Central line */}
               <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2 bg-white/5">
                 <div 
-                  className="w-full bg-gradient-to-b from-accent-cyan via-accent-purple to-emerald-400 origin-top"
+                  className="w-full bg-gradient-to-b from-riso-blue to-riso-pink origin-top"
                   style={{ height: `${lineProgress * 100}%` }}
                 />
               </div>
@@ -772,7 +772,7 @@ export default function AboutPage() {
                         </h3>
                         
                         {'track' in item && item.track && (
-                          <p className="text-xs text-white/60 mb-1">{item.track}</p>
+                          <p className="text-xs text-muted mb-1">{item.track}</p>
                         )}
                         
                         <p className="text-xs text-muted">{item.school}</p>
@@ -781,7 +781,7 @@ export default function AboutPage() {
                     
                     {/* Center point */}
                     <div 
-                      className="hidden md:block absolute left-1/2 -translate-x-1/2 w-3 h-3 rounded-full border-2 bg-primary z-10"
+                      className="hidden md:block absolute left-1/2 -translate-x-1/2 w-3 h-3 rounded-full border-2 bg-surface z-10"
                       style={{ 
                         borderColor: item.color,
                         opacity: itemProgress
@@ -807,7 +807,7 @@ export default function AboutPage() {
               className="mb-16"
               style={{ opacity: interestsTitleOpacity }}
             >
-              <div className="section-label text-pink-400 mb-4">
+              <div className="section-label text-accent mb-4">
                 {tAbout('interests.sectionLabel')}
               </div>
               <p className="text-muted">
@@ -824,10 +824,10 @@ export default function AboutPage() {
               }}
             >
               <div className="md:w-1/2">
-                <h3 className="font-display uppercase font-black text-title tracking-wide mb-3 text-accent-cyan">
+                <h3 className="font-display uppercase font-black text-title tracking-wide mb-3 text-accent">
                   {interests[0].label}
                 </h3>
-                <p className="text-white/50 leading-relaxed">
+                <p className="text-muted leading-relaxed">
                   {interests[0].description}
                 </p>
               </div>
@@ -848,7 +848,7 @@ export default function AboutPage() {
                 <h3 className="font-display uppercase font-black text-title tracking-wide mb-3 text-illustration-homelab">
                   {interests[1].label}
                 </h3>
-                <p className="text-white/50 leading-relaxed">
+                <p className="text-muted leading-relaxed">
                   {interests[1].description}
                 </p>
               </div>
@@ -869,7 +869,7 @@ export default function AboutPage() {
                 <h3 className="font-display uppercase font-black text-title tracking-wide mb-3 text-illustration-cinema">
                   {interests[2].label}
                 </h3>
-                <p className="text-white/50 leading-relaxed">
+                <p className="text-muted leading-relaxed">
                   {interests[2].description}
                 </p>
               </div>

@@ -170,8 +170,8 @@ export default function AboutSection() {
       </div>
       
       {/* test orbs (maybe dlt) */}
-      <div className="absolute top-0 right-0 w-[40vw] h-[40vw] bg-accent-purple/5 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute bottom-1/4 left-1/4 w-[30vw] h-[30vw] bg-accent-cyan/5 rounded-full blur-[120px] pointer-events-none" />
+      <div className="absolute top-0 right-0 w-[40vw] h-[40vw] bg-riso-blue/5 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute bottom-1/4 left-1/4 w-[30vw] h-[30vw] bg-riso-blue/5 rounded-full blur-[120px] pointer-events-none" />
       
       {/* MAIN */}
       <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-12 lg:px-16">
@@ -183,7 +183,7 @@ export default function AboutSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="section-label text-accent-purple mb-4"
+            className="section-label text-accent mb-4"
           >
             {t('sectionLabel')}
           </motion.div>
@@ -200,7 +200,7 @@ export default function AboutSection() {
                   key={i}
                   className={`title-word inline-block mr-[0.2em] ${
                     isAccent
-                      ? 'fraunces-display-italic text-accent-cyan'
+                      ? 'fraunces-display-italic text-accent'
                       : 'font-display uppercase font-black tracking-wide'
                   }`}
                 >
@@ -218,11 +218,11 @@ export default function AboutSection() {
           <div>
             {/* txt */}
             <div ref={textBlockRef} className="space-y-6 mb-12">
-              <p className="text-lg md:text-xl text-white/70 leading-relaxed text-justify">
+              <p className="text-lg md:text-xl text-muted leading-relaxed text-justify">
                 {t('preview.intro')}
               </p>
               
-              <p className="text-white/50 leading-relaxed text-justify">
+              <p className="text-muted leading-relaxed text-justify">
                 {t('preview.whatIBuild')}
               </p>
             </div>
@@ -236,7 +236,7 @@ export default function AboutSection() {
             >
               <TransitionLink
                 href="/about"
-                className="inline-flex items-center gap-3 text-accent-purple hover:text-white transition-colors group"
+                className="inline-flex items-center gap-3 text-accent hover:text-white transition-colors group"
               >
                 <span className="text-sm tracking-caps uppercase">{t('preview.cta')}</span>
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
@@ -263,10 +263,10 @@ export default function AboutSection() {
                     <div className="fraunces-display-italic text-heading font-light leading-none mb-1.5 gradient-text">
                       {stat.value}
                     </div>
-                    <div className="text-meta text-white/50 uppercase tracking-caps font-medium">
+                    <div className="text-meta text-muted uppercase tracking-caps font-medium">
                       {stat.label}
                     </div>
-                    <div className="text-xs text-white/30 italic mt-1.5 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
+                    <div className="text-xs text-muted italic mt-1.5 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
                       {stat.hoverText}
                     </div>
                   </div>

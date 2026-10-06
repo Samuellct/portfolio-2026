@@ -60,11 +60,11 @@ export default function ScrollIndicator({ hideAfterPx = 100 }: ScrollIndicatorPr
               ease: 'easeInOut'
             }}
           >
-            <ChevronDown size={16} className="text-white/40" />
+            <ChevronDown size={16} className="text-muted" />
           </motion.div>
           
           {/* Label */}
-          <span className="text-meta tracking-[0.2em] uppercase text-white/30">
+          <span className="text-meta tracking-[0.2em] uppercase text-muted">
             {t('scrollHint')}
           </span>
         </motion.div>

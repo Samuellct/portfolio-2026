@@ -50,7 +50,7 @@ export default function NetworkGraph({ progress, className = '' }: NetworkGraphP
         {/* Grille de fond */}
         <defs>
           <pattern id="networkGrid" width="20" height="20" patternUnits="userSpaceOnUse">
-            <circle cx="10" cy="10" r="0.5" fill="rgba(255,255,255,0.05)" />
+            <circle cx="10" cy="10" r="0.5" fill={withAlpha(ILLUSTRATION.homelab, 0.05)} />
           </pattern>
         </defs>
         <rect width="100%" height="100%" fill="url(#networkGrid)" />

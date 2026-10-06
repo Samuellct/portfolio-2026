@@ -15,6 +15,7 @@ import { CATEGORY, SECTION_BG } from '@/lib/theme'
 import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
 import { Tag } from '@/components/ui/Tag'
+import { CategoryIcon } from '@/components/ui/CategoryIcon'
 
 // Label tint per category; unknown categories fall back to the personal tint.
 const categoryAccent = (category: string) =>
@@ -117,7 +118,7 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
             {/* Loading placeholder */}
             {!imageLoaded && !imageFailed && (
               <div className="absolute inset-0 flex items-center justify-center">
-                <div className="w-8 h-8 border-2 border-white/10 border-t-accent-cyan rounded-full animate-spin" />
+                <div className="w-8 h-8 border-2 border-white/10 border-t-accent-line rounded-full animate-spin" />
               </div>
             )}
 
@@ -127,7 +128,7 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
                 className="absolute inset-0 flex items-center justify-center p-6 text-center"
                 style={{ backgroundColor: `${categoryColor}14` }}
               >
-                <span className="font-body font-semibold text-lg text-white/70">
+                <span className="font-body font-semibold text-lg text-muted">
                   {getLocalizedField(project.title, locale)}
                 </span>
               </div>
@@ -168,14 +169,15 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
         {/* Content */}
         <div className="space-y-2">
           <div className="flex items-center gap-3 text-meta tracking-caps-wide uppercase text-muted">
-            <span style={{ color: categoryAccent(project.category) }}>
+            <span className="inline-flex items-center gap-1.5" style={{ color: categoryAccent(project.category) }}>
+              <CategoryIcon category={project.category} />
               {t(`categories.${project.category}`)}
             </span>
             <span>•</span>
             <span>{getLocalizedField(project.period, locale)}</span>
           </div>
           
-          <h3 className="font-body font-semibold text-xl md:text-2xl min-h-[3.5rem] md:min-h-[4rem] group-hover:text-accent-cyan transition-colors duration-300">
+          <h3 className="font-body font-semibold text-xl md:text-2xl min-h-[3.5rem] md:min-h-[4rem] group-hover:text-accent transition-colors duration-300">
             {getLocalizedField(project.title, locale)}
           </h3>
 
@@ -188,13 +190,13 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
             )}
           </div>
 
-          <p className="text-sm text-white/50 leading-relaxed line-clamp-2 text-justify">
+          <p className="text-sm text-muted leading-relaxed line-clamp-2 text-justify">
             {getLocalizedField(project.description, locale)}
           </p>
           
           {/* View link */}
           <motion.div
-            className="flex items-center gap-2 pt-2 text-accent-cyan"
+            className="flex items-center gap-2 pt-2 text-accent"
             initial={{ opacity: 0, x: -10 }}
             animate={{ 
               opacity: isHovered ? 1 : 0,
@@ -337,7 +339,7 @@ export default function ProjectsPage() {
         >
           <TransitionLink
             href="/"
-            className="tap-target inline-flex items-center gap-2 text-white/50 hover:text-white transition-colors group"
+            className="tap-target inline-flex items-center gap-2 text-muted hover:text-white transition-colors group"
           >
             <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1" />
             <span className="text-sm tracking-label uppercase">{tCommon('back')}</span>
@@ -350,7 +352,7 @@ export default function ProjectsPage() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            className="section-label text-accent-cyan mb-4"
+            className="section-label text-accent mb-4"
           >
             {t('sectionLabel')}
           </motion.div>
@@ -359,7 +361,7 @@ export default function ProjectsPage() {
             {t('pageTitle')}
           </h1>
           
-          <p className="text-lg text-white/50 max-w-2xl">
+          <p className="text-lg text-muted max-w-2xl">
             {t('preview.description')}
           </p>
         </div>
@@ -391,20 +393,23 @@ export default function ProjectsPage() {
                 aria-pressed={activeFilter === category.id}
                 onClick={() => setActiveFilter(category.id)}
               >
-                {t(`categories.${category.id}`)}
+                <span className="inline-flex items-center gap-1.5">
+                  <CategoryIcon category={category.id} />
+                  {t(`categories.${category.id}`)}
+                </span>
               </Button>
             ))}
           </div>
 
           <div className="relative">
-            <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-white/30 pointer-events-none" />
+            <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted pointer-events-none" />
             <input
               type="search"
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder={t('searchPlaceholder')}
               aria-label={t('searchLabel')}
-              className="tap-target bg-transparent border border-white/20 text-white text-sm pl-9 pr-4 py-2.5 placeholder:text-white/30 focus:outline-none focus:border-accent-cyan"
+              className="tap-target bg-transparent border border-white/20 text-white text-sm pl-9 pr-4 py-2.5 placeholder:text-muted focus:outline-none focus:border-accent-line"
             />
           </div>
         </motion.div>

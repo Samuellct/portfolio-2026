@@ -40,29 +40,29 @@ const components: Components = {
     <h2 className="font-display font-black text-title text-white mt-10 mb-4">{children}</h2>
   ),
   h3: ({ children }) => (
-    <h3 className="font-body font-semibold text-lg text-white/90 mt-8 mb-3">{children}</h3>
+    <h3 className="font-body font-semibold text-lg text-white mt-8 mb-3">{children}</h3>
   ),
   h4: ({ children }) => (
-    <h4 className="font-body font-semibold text-base text-white/80 mt-6 mb-2 tracking-wide">{children}</h4>
+    <h4 className="font-body font-semibold text-base text-white mt-6 mb-2 tracking-wide">{children}</h4>
   ),
   p: ({ children }) => (
-    <p className="text-white/70 leading-relaxed mb-4 text-justify">{children}</p>
+    <p className="text-muted leading-relaxed mb-4 text-justify">{children}</p>
   ),
   a: ({ href, children }) => (
     <a 
       href={href}
       target={href?.startsWith('http') ? '_blank' : undefined}
       rel={href?.startsWith('http') ? 'noopener noreferrer' : undefined}
-      className="text-accent-cyan hover:underline underline-offset-2 transition-colors"
+      className="text-accent hover:underline underline-offset-2 transition-colors"
     >
       {children}
     </a>
   ),
   ul: ({ children }) => (
-    <ul className="list-disc list-outside ml-6 mb-4 space-y-2 text-white/70">{children}</ul>
+    <ul className="list-disc list-outside ml-6 mb-4 space-y-2 text-muted">{children}</ul>
   ),
   ol: ({ children }) => (
-    <ol className="list-decimal list-outside ml-6 mb-4 space-y-2 text-white/70">{children}</ol>
+    <ol className="list-decimal list-outside ml-6 mb-4 space-y-2 text-muted">{children}</ol>
   ),
   li: ({ children }) => (
     <li className="pl-1">{children}</li>
@@ -71,7 +71,7 @@ const components: Components = {
     const isInline = !className
     if (isInline) {
       return (
-        <code className="bg-white/5 px-1.5 py-0.5 rounded-code text-accent-cyan text-sm font-mono" {...props}>
+        <code className="bg-white/5 px-1.5 py-0.5 rounded-code text-accent text-sm font-mono" {...props}>
           {children}
         </code>
       )
@@ -84,7 +84,7 @@ const components: Components = {
     <pre className="bg-white/[0.03] border border-white/10 p-4 rounded-lg overflow-x-auto mb-4">{children}</pre>
   ),
   blockquote: ({ children }) => (
-    <blockquote className="border-l-2 border-accent-purple bg-accent-purple/5 pl-4 py-2 my-4 italic text-white/60">
+    <blockquote className="border-l-2 border-accent-line bg-riso-blue/5 pl-4 py-2 my-4 italic text-muted">
       {children}
     </blockquote>
   ),
@@ -92,7 +92,7 @@ const components: Components = {
     <strong className="text-white font-semibold">{children}</strong>
   ),
   em: ({ children }) => (
-    <em className="text-white/80 italic">{children}</em>
+    <em className="text-white italic">{children}</em>
   ),
   hr: () => <hr className="border-white/10 my-8" />,
   table: ({ children }) => (
@@ -102,7 +102,7 @@ const components: Components = {
   ),
   thead: ({ children }) => <thead className="border-b border-white/20">{children}</thead>,
   th: ({ children }) => <th className="text-left p-2 text-white font-medium">{children}</th>,
-  td: ({ children }) => <td className="p-2 text-white/70 border-b border-white/10">{children}</td>,
+  td: ({ children }) => <td className="p-2 text-muted border-b border-white/10">{children}</td>,
 }
 
 export default function MarkdownRenderer({ content, className = '' }: MarkdownRendererProps) {

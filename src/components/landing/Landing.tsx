@@ -35,7 +35,7 @@ export default function Landing({ onEnter, isTransitioning, onTransitionComplete
 
   return (
     <motion.div
-      className="fixed inset-0 z-50 flex items-center justify-center bg-black"
+      className="scheme-night fixed inset-0 z-50 flex items-center justify-center bg-black"
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.3 }}

@@ -20,7 +20,7 @@ export default function NavBar() {
   ]
 
   const externalLinks = [
-    { href: 'https://samuel-lecomte.fr', label: tMenu('blog'), icon: ExternalLink, hoverColor: 'hover:text-accent-cyan' },
+    { href: 'https://samuel-lecomte.fr', label: tMenu('blog'), icon: ExternalLink, hoverColor: 'hover:text-accent' },
     { href: 'https://github.com/Samuellct', label: tMenu('github'), icon: Github, hoverColor: 'hover:text-brand-github' },
     { href: 'https://www.linkedin.com/in/samuel-lecomte37/', label: tMenu('linkedin'), icon: Linkedin, hoverColor: 'hover:text-brand-linkedinAlt' },
   ]
@@ -158,15 +158,15 @@ export default function NavBar() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className={`fixed top-0 inset-x-0 z-40 transition-all duration-500 ${
-          isScrolled ? 'bg-primary/90 backdrop-blur-xl' : ''
+        className={`scheme-night fixed top-0 inset-x-0 z-40 bg-primary transition-all duration-500 ${
+          isScrolled ? 'backdrop-blur-xl' : ''
         }`}
       >
         <div className="flex items-center justify-between px-6 md:px-12 py-4">
           {/* Logo */}
           <TransitionLink
             href="/"
-            className="font-display uppercase font-black text-title tracking-widest hover:text-accent-cyan transition-colors"
+            className="font-display uppercase font-black text-title tracking-widest hover:text-accent transition-colors"
           >
             SL
           </TransitionLink>
@@ -184,17 +184,17 @@ export default function NavBar() {
                 key={link.href}
                 href={link.href}
                 onClick={(e) => handleNavClick(e, link.sectionId)}
-                className="text-xs font-medium tracking-caps-wide uppercase text-white/50 hover:text-white relative transition-colors group"
+                className="text-xs font-medium tracking-caps-wide uppercase text-muted hover:text-white relative transition-colors group"
               >
                 {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-px bg-accent-cyan transition-all duration-300 group-hover:w-full" />
+                <span className="absolute -bottom-1 left-0 w-0 h-px bg-accent-line transition-all duration-300 group-hover:w-full" />
               </TransitionLink>
             ))}
           </motion.div>
           
           {/* Language switcher + Hamburger */}
           <div className="flex items-center gap-4">
-            <LanguageSwitcher className="text-xs font-medium tracking-caps-wide uppercase text-white/50 hover:text-white transition-colors" />
+            <LanguageSwitcher className="text-xs font-medium tracking-caps-wide uppercase text-muted hover:text-white transition-colors" />
 
             {/* Hamburger bttn */}
             <motion.button
@@ -250,12 +250,12 @@ export default function NavBar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
-            className="fixed inset-0 z-30 bg-primary"
+            className="scheme-night fixed inset-0 z-30 bg-primary"
           >
             {/* bkg */}
             <div className="absolute inset-0 opacity-5">
-              <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-accent-cyan rounded-full blur-[150px]" />
-              <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-purple rounded-full blur-[150px]" />
+              <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-riso-pink rounded-full blur-[150px]" />
+              <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-riso-blue rounded-full blur-[150px]" />
             </div>
             
             <div className="relative h-full flex">
@@ -311,7 +311,7 @@ export default function NavBar() {
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.25 + index * 0.08 }}
-                      className={`flex items-center gap-4 text-white/50 transition-colors group ${link.hoverColor}`}
+                      className={`flex items-center gap-4 text-muted transition-colors group ${link.hoverColor}`}
                     >
                       <link.icon size={20} />
                       <span className="text-lg">{link.label}</span>
@@ -328,7 +328,7 @@ export default function NavBar() {
                 >
                   <LanguageSwitcher
                     label={tMenu('switchLang')}
-                    className="flex items-center gap-3 text-white/50 hover:text-accent-cyan transition-colors text-lg"
+                    className="flex items-center gap-3 text-muted hover:text-accent transition-colors text-lg"
                   />
                 </motion.div>
               </div>
