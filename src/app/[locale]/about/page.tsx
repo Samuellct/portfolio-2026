@@ -579,7 +579,8 @@ export default function AboutPage() {
                       {project.results.map((result) => (
                         <div key={getLocalizedField(result.label, 'en')}>
                           <dt className="sr-only">{getLocalizedField(result.label, locale)}</dt>
-                          <dd className="font-display text-xl md:text-2xl tracking-wide tabular-nums">
+                          {/* body font: the display face is all caps and would print MeV as MEV */}
+                          <dd className="text-xl md:text-2xl font-semibold tabular-nums">
                             {result.value}
                           </dd>
                           <dd className="text-xs text-muted leading-snug mt-1" aria-hidden="true">
