@@ -10,6 +10,8 @@ import dynamic from 'next/dynamic'
 import { useTranslations } from 'next-intl'
 import { useSite } from '@/context/SiteContext'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
+import { STATUS } from '@/lib/theme'
+import { withAlpha } from '@/lib/color'
 
 // Dynamic import for WebGL (client-side only)
 const WaveBackground = dynamic(
@@ -124,7 +126,7 @@ export default function HeroSection() {
         >
           <span
             className="w-1.5 h-1.5 rounded-full bg-green-400 shrink-0 animate-pulse-slow"
-            style={{ boxShadow: '0 0 6px rgba(34,197,94,0.8)' }}
+            style={{ boxShadow: `0 0 6px ${withAlpha(STATUS.available, 0.8)}` }}
           />
           <span className="font-mono text-meta tracking-hero-caps uppercase text-white/50">
             {t('available')}
@@ -179,7 +181,7 @@ export default function HeroSection() {
         >
           <TransitionLink
             href="/projects"
-            className="inline-flex items-center gap-3 px-6 md:px-8 py-3 md:py-4 bg-white/5 border border-white/20 text-xs md:text-sm font-medium tracking-caps uppercase transition-all duration-300 hover:bg-accent-cyan hover:text-black hover:border-accent-cyan hover:shadow-[0_0_25px_rgba(0,240,255,0.2)] group relative overflow-hidden"
+            className="inline-flex items-center gap-3 px-6 md:px-8 py-3 md:py-4 bg-white/5 border border-white/20 text-xs md:text-sm font-medium tracking-caps uppercase transition-all duration-300 hover:bg-accent-cyan hover:text-black hover:border-accent-cyan hover:shadow-glow-cyan group relative overflow-hidden"
           >
             <span className="relative z-10">{t('cta')}</span>
             <ArrowRight size={14} className="relative z-10 transition-transform group-hover:translate-x-1" />

@@ -2,6 +2,7 @@
 
 import { createContext, useContext, useState, useCallback, useEffect, useRef, ReactNode } from 'react'
 import { useRouter, usePathname } from '@/i18n/navigation'
+import { SURFACE } from '@/lib/theme'
 
 const COVER_DURATION = 500
 
@@ -79,7 +80,7 @@ function TransitionOverlayInternal({
     <div
       className="fixed inset-0 z-[200] pointer-events-none"
       style={{
-        backgroundColor: '#1a0a2e',
+        backgroundColor: SURFACE.curtain,
         clipPath: phase === 'covering' ? 'polygon(0 0, 0 0, 0 100%, 0 100%)' : undefined,
         animation: phase === 'covering' 
           ? `coverScreen ${COVER_DURATION}ms cubic-bezier(0.76, 0, 0.24, 1) forwards`

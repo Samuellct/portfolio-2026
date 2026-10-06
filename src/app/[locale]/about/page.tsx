@@ -14,7 +14,7 @@ import CinemaSpotlight from '@/components/about/CinemaSpotlight'
 import ScrollIndicator from '@/components/about/ScrollIndicator'
 import { useLocale, useTranslations } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
-import { SECTION_BG } from '@/lib/theme'
+import { ACCENT, CONTRAST_TEXT, SECTION_BG } from '@/lib/theme'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -46,7 +46,7 @@ function GhostTag({ tech }: { tech: TechStats }) {
   const [isHovered, setIsHovered] = useState(false)
   
   const textColor = isHovered 
-    ? (isLightColor(tech.color) ? '#000000' : '#ffffff')
+    ? (isLightColor(tech.color) ? CONTRAST_TEXT.onLight : CONTRAST_TEXT.onDark)
     : 'rgba(255,255,255,0.5)'
   
   return (
@@ -82,21 +82,21 @@ export default function AboutPage() {
       degree: tAbout('education.master2.degree'),
       track: tAbout('education.master2.track'),
       school: tAbout('education.master2.school'),
-      color: '#00f0ff',
+      color: ACCENT.cyan,
     },
     {
       id: 'datascience',
       period: tAbout('education.datascience.period'),
       degree: tAbout('education.datascience.degree'),
       school: tAbout('education.datascience.school'),
-      color: '#a855f7',
+      color: ACCENT.purple,
     },
     {
       id: 'bachelor',
       period: tAbout('education.bachelor.period'),
       degree: tAbout('education.bachelor.degree'),
       school: tAbout('education.bachelor.school'),
-      color: '#10b981',
+      color: ACCENT.green,
     },
   ]
 
@@ -514,9 +514,9 @@ export default function AboutPage() {
                 href="https://www.linkedin.com/in/samuel-lecomte37/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="group flex items-center justify-center gap-3 px-6 py-3 rounded-full bg-white/[0.03] border border-white/10 hover:border-[#0077b5]/50 hover:bg-[#0077b5]/10 transition-all duration-300"
+                className="group flex items-center justify-center gap-3 px-6 py-3 rounded-full bg-white/[0.03] border border-white/10 hover:border-brand-linkedin/50 hover:bg-brand-linkedin/10 transition-all duration-300"
               >
-                <Linkedin size={18} className="text-[#0077b5]" />
+                <Linkedin size={18} className="text-brand-linkedin" />
                 <span className="text-sm">{tMenu('linkedin')}</span>
               </a>
             </div>
@@ -845,7 +845,7 @@ export default function AboutPage() {
               }}
             >
               <div className="md:w-1/2 md:text-right">
-                <h3 className="font-display uppercase font-black text-title tracking-wide mb-3 text-[#e57000]">
+                <h3 className="font-display uppercase font-black text-title tracking-wide mb-3 text-illustration-homelab">
                   {interests[1].label}
                 </h3>
                 <p className="text-white/50 leading-relaxed">
@@ -866,7 +866,7 @@ export default function AboutPage() {
               }}
             >
               <div className="md:w-1/2">
-                <h3 className="font-display uppercase font-black text-title tracking-wide mb-3 text-[#e5737d]">
+                <h3 className="font-display uppercase font-black text-title tracking-wide mb-3 text-illustration-cinema">
                   {interests[2].label}
                 </h3>
                 <p className="text-white/50 leading-relaxed">

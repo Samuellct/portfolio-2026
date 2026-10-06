@@ -11,10 +11,14 @@ import Image from 'next/image'
 import { getProjectsSortedByDate, getLocalizedField, Locale, projectCategories, ProjectData } from '@/lib/projects'
 import { useTranslations, useLocale } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
-import { SECTION_BG } from '@/lib/theme'
+import { CATEGORY, SECTION_BG } from '@/lib/theme'
 import { Button } from '@/components/ui/Button'
 import { Badge } from '@/components/ui/Badge'
 import { Tag } from '@/components/ui/Tag'
+
+// Label tint per category; unknown categories fall back to the personal tint.
+const categoryAccent = (category: string) =>
+  category in CATEGORY ? CATEGORY[category as keyof typeof CATEGORY].accent : CATEGORY.personal.accent
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -40,8 +44,7 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
   const [imageLoaded, setImageLoaded] = useState(false)
   const [imageFailed, setImageFailed] = useState(false)
 
-  const categoryColor =
-    project.category === 'internship' ? '#10b981' : project.category === 'academic' ? '#a855f7' : '#00f0ff'
+  const categoryColor = categoryAccent(project.category)
 
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
@@ -165,7 +168,7 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
         {/* Content */}
         <div className="space-y-2">
           <div className="flex items-center gap-3 text-meta tracking-caps-wide uppercase text-muted">
-            <span style={{ color: project.category === 'internship' ? '#10b981' : project.category === 'academic' ? '#a855f7' : '#00f0ff' }}>
+            <span style={{ color: categoryAccent(project.category) }}>
               {t(`categories.${project.category}`)}
             </span>
             <span>•</span>

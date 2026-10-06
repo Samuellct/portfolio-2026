@@ -1,4 +1,5 @@
 import type { TechName } from './technologies'
+import { CATEGORY } from './theme'
 
 export type BilingualText = { en: string; fr: string }
 export type Locale = 'en' | 'fr'
@@ -81,20 +82,20 @@ export const projectCategories: CategoryData[] = [
   {
     id: 'personal',
     color: 'from-blue-500 to-cyan-500',
-    accentColor: '#00f0ff',
-    mutedColor: '#1a4a5c',
+    accentColor: CATEGORY.personal.accent,
+    mutedColor: CATEGORY.personal.muted,
   },
   {
     id: 'academic',
     color: 'from-purple-500 to-violet-500',
-    accentColor: '#a855f7',
-    mutedColor: '#3d2a5c',
+    accentColor: CATEGORY.academic.accent,
+    mutedColor: CATEGORY.academic.muted,
   },
   {
     id: 'internship',
     color: 'from-green-500 to-emerald-500',
-    accentColor: '#10b981',
-    mutedColor: '#1a4a3d',
+    accentColor: CATEGORY.internship.accent,
+    mutedColor: CATEGORY.internship.muted,
   },
 ]
 

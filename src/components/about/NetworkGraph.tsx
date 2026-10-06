@@ -3,6 +3,8 @@
 import { useRef } from 'react'
 import { SiDocker, SiNextcloud, SiProxmox, SiJellyfin } from 'react-icons/si'
 import { TbServer } from 'react-icons/tb'
+import { BRAND, ILLUSTRATION } from '@/lib/theme'
+import { withAlpha } from '@/lib/color'
 
 interface NetworkGraphProps {
   progress: number // 0 to 1
@@ -11,11 +13,11 @@ interface NetworkGraphProps {
 
 // Configuration des nodes du réseau
 const nodes = [
-  { id: 'docker', Icon: SiDocker, color: '#2496ed', angle: 0, label: 'Docker' },
-  { id: 'nextcloud', Icon: SiNextcloud, color: '#0082c9', angle: 72, label: 'Nextcloud' },
-  { id: 'proxmox', Icon: SiProxmox, color: '#e57000', angle: 144, label: 'Proxmox' },
-  { id: 'jellyfin', Icon: SiJellyfin, color: '#00a4dc', angle: 216, label: 'Jellyfin' },
-  { id: 'truenas', Icon: TbServer, color: '#0095d5', angle: 288, label: 'TrueNAS' },
+  { id: 'docker', Icon: SiDocker, color: BRAND.docker, angle: 0, label: 'Docker' },
+  { id: 'nextcloud', Icon: SiNextcloud, color: BRAND.nextcloud, angle: 72, label: 'Nextcloud' },
+  { id: 'proxmox', Icon: SiProxmox, color: BRAND.proxmox, angle: 144, label: 'Proxmox' },
+  { id: 'jellyfin', Icon: SiJellyfin, color: BRAND.jellyfin, angle: 216, label: 'Jellyfin' },
+  { id: 'truenas', Icon: TbServer, color: BRAND.truenas, angle: 288, label: 'TrueNAS' },
 ]
 
 export default function NetworkGraph({ progress, className = '' }: NetworkGraphProps) {
@@ -80,15 +82,15 @@ export default function NetworkGraph({ progress, className = '' }: NetworkGraphP
             cx={centerX}
             cy={centerY}
             r="18"
-            fill="rgba(229, 112, 0, 0.2)"
+            fill={withAlpha(ILLUSTRATION.homelab, 0.2)}
           />
           {/* Cercle principal */}
           <circle
             cx={centerX}
             cy={centerY}
             r="14"
-            fill="#1a1a2e"
-            stroke="#e57000"
+            fill={ILLUSTRATION.homelabNode}
+            stroke={ILLUSTRATION.homelab}
             strokeWidth="1.5"
           />
           {/* Icône serveur au centre (marche pas)*/}
@@ -98,7 +100,7 @@ export default function NetworkGraph({ progress, className = '' }: NetworkGraphP
             textAnchor="middle"
             dominantBaseline="middle"
             fontSize="12"
-            fill="#e57000"
+            fill={ILLUSTRATION.homelab}
           >
             ⬡
           </text>

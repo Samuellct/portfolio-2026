@@ -1,6 +1,7 @@
 'use client'
 
 import { useId, useMemo } from 'react'
+import { ILLUSTRATION, SECTION_BG } from '@/lib/theme'
 
 interface CinemaSpotlightProps {
   progress: number
@@ -34,8 +35,8 @@ export default function CinemaSpotlight({ progress, className }: CinemaSpotlight
       <defs>
         {/* Dégradé simple pour simuler la perte d'intensité de la lumière */}
         <linearGradient id={`${id}_beamGrad`} x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="#e5737d" stopOpacity="0.8" />
-          <stop offset="100%" stopColor="#e5737d" stopOpacity="0.1" />
+          <stop offset="0%" stopColor={ILLUSTRATION.cinema} stopOpacity="0.8" />
+          <stop offset="100%" stopColor={ILLUSTRATION.cinema} stopOpacity="0.1" />
         </linearGradient>
         
         {/* Masque d'écrêtage qui simule l'avancée de la lumière */}
@@ -56,7 +57,7 @@ export default function CinemaSpotlight({ progress, className }: CinemaSpotlight
       {/* --- L'ÉCRAN (s'illumine sur la fin du scroll) --- */}
       <line 
         x1="190" y1="30" x2="190" y2="170" 
-        stroke="#e5737d" 
+        stroke={ILLUSTRATION.cinema} 
         strokeWidth="3" 
         strokeLinecap="round"
         opacity={progress > 0.8 ? (progress - 0.8) * 5 : 0} 
@@ -65,35 +66,35 @@ export default function CinemaSpotlight({ progress, className }: CinemaSpotlight
       {/* --- LE PROJECTEUR (Épuré) --- */}
       <g>
         {/* Corps principal */}
-        <rect x="15" y="90" width="25" height="20" rx="2" fill="#1a0810" stroke="#e5737d" strokeWidth="1.5" />
+        <rect x="15" y="90" width="25" height="20" rx="2" fill={ILLUSTRATION.cinemaDeep} stroke={ILLUSTRATION.cinema} strokeWidth="1.5" />
         {/* Lentille */}
-        <rect x="40" y="96" width="6" height="8" rx="1" fill="#1a0810" stroke="#e5737d" strokeWidth="1.5" />
+        <rect x="40" y="96" width="6" height="8" rx="1" fill={ILLUSTRATION.cinemaDeep} stroke={ILLUSTRATION.cinema} strokeWidth="1.5" />
         
         {/* Trépied minimaliste */}
-        <line x1="27" y1="110" x2="27" y2="135" stroke="#e5737d" strokeWidth="2" />
-        <line x1="27" y1="135" x2="15" y2="145" stroke="#e5737d" strokeWidth="1.5" strokeLinecap="round" />
-        <line x1="27" y1="135" x2="40" y2="145" stroke="#e5737d" strokeWidth="1.5" strokeLinecap="round" />
+        <line x1="27" y1="110" x2="27" y2="135" stroke={ILLUSTRATION.cinema} strokeWidth="2" />
+        <line x1="27" y1="135" x2="15" y2="145" stroke={ILLUSTRATION.cinema} strokeWidth="1.5" strokeLinecap="round" />
+        <line x1="27" y1="135" x2="40" y2="145" stroke={ILLUSTRATION.cinema} strokeWidth="1.5" strokeLinecap="round" />
         
         {/* Bobine Haut/Avant */}
         <g transform="translate(20, 80)">
-          <circle cx="0" cy="0" r="10" fill="#050e20" stroke="#e5737d" strokeWidth="1.5" />
+          <circle cx="0" cy="0" r="10" fill={SECTION_BG.aboutIntro} stroke={ILLUSTRATION.cinema} strokeWidth="1.5" />
           <g transform={`rotate(${reelAngle})`}>
-            <line x1="0" y1="-10" x2="0" y2="10" stroke="#e5737d" strokeWidth="1" />
-            <line x1="-8.6" y1="-5" x2="8.6" y2="5" stroke="#e5737d" strokeWidth="1" />
-            <line x1="-8.6" y1="5" x2="8.6" y2="-5" stroke="#e5737d" strokeWidth="1" />
+            <line x1="0" y1="-10" x2="0" y2="10" stroke={ILLUSTRATION.cinema} strokeWidth="1" />
+            <line x1="-8.6" y1="-5" x2="8.6" y2="5" stroke={ILLUSTRATION.cinema} strokeWidth="1" />
+            <line x1="-8.6" y1="5" x2="8.6" y2="-5" stroke={ILLUSTRATION.cinema} strokeWidth="1" />
           </g>
-          <circle cx="0" cy="0" r="2" fill="#e5737d" />
+          <circle cx="0" cy="0" r="2" fill={ILLUSTRATION.cinema} />
         </g>
 
         {/* Bobine Bas/Arrière */}
         <g transform="translate(38, 85)">
-          <circle cx="0" cy="0" r="7" fill="#050e20" stroke="#e5737d" strokeWidth="1.5" />
+          <circle cx="0" cy="0" r="7" fill={SECTION_BG.aboutIntro} stroke={ILLUSTRATION.cinema} strokeWidth="1.5" />
           <g transform={`rotate(${-reelAngle * 1.5})`}>
-            <line x1="0" y1="-7" x2="0" y2="7" stroke="#e5737d" strokeWidth="1" />
-            <line x1="-6" y1="-3.5" x2="6" y2="3.5" stroke="#e5737d" strokeWidth="1" />
-            <line x1="-6" y1="3.5" x2="6" y2="-3.5" stroke="#e5737d" strokeWidth="1" />
+            <line x1="0" y1="-7" x2="0" y2="7" stroke={ILLUSTRATION.cinema} strokeWidth="1" />
+            <line x1="-6" y1="-3.5" x2="6" y2="3.5" stroke={ILLUSTRATION.cinema} strokeWidth="1" />
+            <line x1="-6" y1="3.5" x2="6" y2="-3.5" stroke={ILLUSTRATION.cinema} strokeWidth="1" />
           </g>
-          <circle cx="0" cy="0" r="1.5" fill="#e5737d" />
+          <circle cx="0" cy="0" r="1.5" fill={ILLUSTRATION.cinema} />
         </g>
       </g>
     </svg>

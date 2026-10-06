@@ -10,6 +10,7 @@ import Image from 'next/image'
 import { getAllProjects, getCategoryById, getLocalizedField, Locale, ProjectData } from '@/lib/projects'
 import { useTranslations, useLocale } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
+import { CONTRAST_TEXT } from '@/lib/theme'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -278,7 +279,7 @@ export default function ProjectsSection() {
           <div className="relative py-8 flex flex-col items-center">
             {displayProjects.map((project, index) => {
               const isActive = activeProject?.id === project.id
-              const activeTextColor = activeProject?.textColor === 'black' ? '#000000' : '#ffffff'
+              const activeTextColor = activeProject?.textColor === 'black' ? CONTRAST_TEXT.onLight : CONTRAST_TEXT.onDark
               
               return (
                 <motion.div

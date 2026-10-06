@@ -209,7 +209,7 @@ export default function ProjectDetailView({
                       href={project.gitHubUrl}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-3 px-6 py-3 bg-[#238636] text-white text-sm font-medium tracking-wide transition-colors hover:bg-[#2ea043]"
+                      className="inline-flex items-center gap-3 px-6 py-3 bg-brand-githubButton text-white text-sm font-medium tracking-wide transition-colors hover:bg-brand-githubButtonHover"
                     >
                       <FaGithub size={18} />
                       {t('viewOnGitHub')}

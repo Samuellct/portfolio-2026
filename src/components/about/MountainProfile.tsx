@@ -1,6 +1,8 @@
 'use client'
 
 import { useId, useMemo } from 'react'
+import { ILLUSTRATION, SECTION_BG } from '@/lib/theme'
+import { withAlpha } from '@/lib/color'
 
 interface MountainProfileProps {
   progress: number
@@ -98,14 +100,14 @@ export default function MountainProfile({ progress, className }: MountainProfile
         </pattern>
 
         <linearGradient id={`${id}_mtnFill`} x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#00f0ff" stopOpacity="0.1" />
-          <stop offset="100%" stopColor="#00f0ff" stopOpacity="0.01" />
+          <stop offset="0%" stopColor={ILLUSTRATION.mountain} stopOpacity="0.1" />
+          <stop offset="100%" stopColor={ILLUSTRATION.mountain} stopOpacity="0.01" />
         </linearGradient>
 
         <linearGradient id={`${id}_routeGrad`} x1="0%" y1="100%" x2="40%" y2="0%">
-          <stop offset="0%" stopColor="#00c8ff" stopOpacity="0.5" />
-          <stop offset="40%" stopColor="#00f0ff" />
-          <stop offset="100%" stopColor="#66f7ff" />
+          <stop offset="0%" stopColor={ILLUSTRATION.mountainLow} stopOpacity="0.5" />
+          <stop offset="40%" stopColor={ILLUSTRATION.mountain} />
+          <stop offset="100%" stopColor={ILLUSTRATION.mountainHigh} />
         </linearGradient>
 
         <filter id={`${id}_glow`} x="-100%" y="-100%" width="300%" height="300%">
@@ -117,14 +119,14 @@ export default function MountainProfile({ progress, className }: MountainProfile
         </filter>
 
         <linearGradient id={`${id}_fog`} x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor="#200a0a" stopOpacity="0" />
-          <stop offset="60%" stopColor="#200a0a" stopOpacity="0" />
-          <stop offset="100%" stopColor="#200a0a" stopOpacity="0.5" />
+          <stop offset="0%" stopColor={SECTION_BG.aboutInterests} stopOpacity="0" />
+          <stop offset="60%" stopColor={SECTION_BG.aboutInterests} stopOpacity="0" />
+          <stop offset="100%" stopColor={SECTION_BG.aboutInterests} stopOpacity="0.5" />
         </linearGradient>
 
         <radialGradient id={`${id}_summitGlow`} cx="63%" cy="14%" r="15%">
-          <stop offset="0%" stopColor="#00f0ff" stopOpacity="0.06" />
-          <stop offset="100%" stopColor="#00f0ff" stopOpacity="0" />
+          <stop offset="0%" stopColor={ILLUSTRATION.mountain} stopOpacity="0.06" />
+          <stop offset="100%" stopColor={ILLUSTRATION.mountain} stopOpacity="0" />
         </radialGradient>
       </defs>
 
@@ -141,7 +143,7 @@ export default function MountainProfile({ progress, className }: MountainProfile
 
       {/* Mountain silhouette */}
       <path d={mountainPath} fill={`url(#${id}_mtnFill)`} />
-      <path d={mountainPath} fill="none" stroke="#00f0ff" strokeWidth="0.7" opacity="0.25" />
+      <path d={mountainPath} fill="none" stroke={ILLUSTRATION.mountain} strokeWidth="0.7" opacity="0.25" />
 
       {/* Snow patches */}
       {snowPaths.map((d, i) => (
@@ -170,7 +172,7 @@ export default function MountainProfile({ progress, className }: MountainProfile
       <path
         d={routeD}
         fill="none"
-        stroke="#00f0ff"
+        stroke={ILLUSTRATION.mountain}
         strokeWidth="4"
         opacity="0.07"
         strokeLinecap="round"
@@ -204,7 +206,7 @@ export default function MountainProfile({ progress, className }: MountainProfile
             cy={pt[1]}
             r="1.2"
             fill="none"
-            stroke="#00c8ff"
+            stroke={ILLUSTRATION.mountainLow}
             strokeWidth="0.5"
             opacity={fade}
           />
@@ -216,24 +218,24 @@ export default function MountainProfile({ progress, className }: MountainProfile
         <polygon
           points="12,170 18,170 15,163"
           fill="none"
-          stroke="#00f0ff"
+          stroke={ILLUSTRATION.mountain}
           strokeWidth="0.6"
           strokeLinejoin="round"
         />
-        <line x1="15" y1="170" x2="15" y2="175" stroke="#00f0ff" strokeWidth="0.4" />
+        <line x1="15" y1="170" x2="15" y2="175" stroke={ILLUSTRATION.mountain} strokeWidth="0.4" />
       </g>
 
       {/* Summit flag */}
       <g opacity={flagOpacity}>
-        <line x1="126" y1="27" x2="126" y2="17" stroke="#00f0ff" strokeWidth="0.6" />
-        <polygon points="126,17 134,19.5 126,22" fill="#00f0ff" opacity={flagFill} />
+        <line x1="126" y1="27" x2="126" y2="17" stroke={ILLUSTRATION.mountain} strokeWidth="0.6" />
+        <polygon points="126,17 134,19.5 126,22" fill={ILLUSTRATION.mountain} opacity={flagFill} />
       </g>
 
       {/* Climber dot + glow */}
       {progress > 0.003 && (
         <g filter={`url(#${id}_glow)`}>
-          <circle cx={climber.x} cy={climber.y} r="7" fill="rgba(0,240,255,0.15)" />
-          <circle cx={climber.x} cy={climber.y} r="2.5" fill="#00f0ff" />
+          <circle cx={climber.x} cy={climber.y} r="7" fill={withAlpha(ILLUSTRATION.mountain, 0.15)} />
+          <circle cx={climber.x} cy={climber.y} r="2.5" fill={ILLUSTRATION.mountain} />
         </g>
       )}
 

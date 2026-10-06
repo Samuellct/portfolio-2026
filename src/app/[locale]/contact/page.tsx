@@ -261,7 +261,7 @@ export default function ContactPage() {
             <button
               type="submit"
               disabled={status === 'submitting'}
-              className="inline-flex items-center gap-3 px-8 py-4 bg-accent-cyan text-black text-sm font-medium tracking-caps uppercase transition-all hover:bg-white hover:shadow-[0_0_25px_rgba(0,240,255,0.2)] disabled:opacity-50 disabled:cursor-not-allowed"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-accent-cyan text-black text-sm font-medium tracking-caps uppercase transition-all hover:bg-white hover:shadow-glow-cyan disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {status === 'submitting' ? (
                 <>
@@ -302,7 +302,7 @@ export default function ContactPage() {
               href="https://github.com/Samuellct"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 border border-white/10 transition-all hover:border-[#fafbfc]/30 hover:text-[#fafbfc]"
+              className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 border border-white/10 transition-all hover:border-brand-github/30 hover:text-brand-github"
             >
               <Github size={16} />
               <span>{tContact('page.directContact.githubLabel')}</span>
@@ -312,7 +312,7 @@ export default function ContactPage() {
               href="https://www.linkedin.com/in/samuel-lecomte37/"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 border border-white/10 transition-all hover:border-[#0e76a8]/30 hover:text-[#0e76a8]"
+              className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 border border-white/10 transition-all hover:border-brand-linkedinAlt/30 hover:text-brand-linkedinAlt"
             >
               <Linkedin size={16} />
               <span>{tContact('page.directContact.linkedinLabel')}</span>

@@ -4,6 +4,8 @@ import { useRef, useEffect, useState, useCallback } from 'react'
 import { RefreshCw } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
+import { ACCENT } from '@/lib/theme'
+import { withAlpha } from '@/lib/color'
 
 interface Track {
   id: number
@@ -62,11 +64,11 @@ export default function ParticleCollision({ isVisible, className = '' }: Particl
     
     // Detector layers
     const detectorLayers = [
-      { radius: 0.15, label: 'Pixel', color: 'rgba(0, 240, 255, 0.15)' },
-      { radius: 0.25, label: 'SCT', color: 'rgba(0, 240, 255, 0.10)' },
-      { radius: 0.40, label: 'TRT', color: 'rgba(0, 240, 255, 0.08)' },
-      { radius: 0.60, label: 'ECAL', color: 'rgba(168, 85, 247, 0.08)' },
-      { radius: 0.80, label: 'HCAL', color: 'rgba(168, 85, 247, 0.06)' },
+      { radius: 0.15, label: 'Pixel', color: withAlpha(ACCENT.cyan, 0.15) },
+      { radius: 0.25, label: 'SCT', color: withAlpha(ACCENT.cyan, 0.10) },
+      { radius: 0.40, label: 'TRT', color: withAlpha(ACCENT.cyan, 0.08) },
+      { radius: 0.60, label: 'ECAL', color: withAlpha(ACCENT.purple, 0.08) },
+      { radius: 0.80, label: 'HCAL', color: withAlpha(ACCENT.purple, 0.06) },
       { radius: 0.95, label: 'Muon', color: 'rgba(255, 255, 255, 0.04)' },
     ]
     
@@ -93,11 +95,11 @@ export default function ParticleCollision({ isVisible, className = '' }: Particl
         let color: string
         if (maxRadius > 0.85) {
           // Rare exotic track, reserved accent - roughly 1 in 50 tracks
-          color = Math.random() < 0.15 ? 'rgba(217, 113, 58, 0.8)' : 'rgba(168, 85, 247, 0.8)'
+          color = Math.random() < 0.15 ? withAlpha(ACCENT.amber, 0.8) : withAlpha(ACCENT.purple, 0.8)
         } else if (maxRadius > 0.55) {
-          color = 'rgba(16, 185, 129, 0.7)'
+          color = withAlpha(ACCENT.green, 0.7)
         } else {
-          color = 'rgba(0, 240, 255, 0.8)'
+          color = withAlpha(ACCENT.cyan, 0.8)
         }
         
         tracks.push({
@@ -194,8 +196,8 @@ export default function ParticleCollision({ isVisible, className = '' }: Particl
       
       const gradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, radius)
       gradient.addColorStop(0, `rgba(255, 255, 255, ${opacity})`)
-      gradient.addColorStop(0.5, `rgba(0, 240, 255, ${opacity * 0.5})`)
-      gradient.addColorStop(1, 'rgba(0, 240, 255, 0)')
+      gradient.addColorStop(0.5, withAlpha(ACCENT.cyan, opacity * 0.5))
+      gradient.addColorStop(1, withAlpha(ACCENT.cyan, 0))
       
       ctx.beginPath()
       ctx.arc(centerX, centerY, radius, 0, Math.PI * 2)

@@ -240,7 +240,7 @@ export default function ContactSection() {
             <div ref={ctaRef}>
               <TransitionLink
                 href="/contact"
-                className="inline-flex items-center gap-4 px-10 py-5 bg-accent-cyan text-black text-sm font-medium tracking-caps-wide uppercase transition-all duration-300 hover:bg-white hover:shadow-[0_0_30px_rgba(0,240,255,0.25)] group relative overflow-hidden"
+                className="inline-flex items-center gap-4 px-10 py-5 bg-accent-cyan text-black text-sm font-medium tracking-caps-wide uppercase transition-all duration-300 hover:bg-white hover:shadow-glow-cyan-strong group relative overflow-hidden"
               >
                 <span className="relative z-10">{t('preview.cta')}</span>
                 <ArrowRight size={18} className="relative z-10 transition-transform group-hover:translate-x-1" />

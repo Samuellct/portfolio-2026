@@ -1,6 +1,7 @@
 import type { Config } from 'tailwindcss'
 import typography from '@tailwindcss/typography'
-import { ACCENT, SECTION_BG, SURFACE } from './src/lib/theme'
+import { ACCENT, BRAND, ILLUSTRATION, SECTION_BG, STATUS, SURFACE } from './src/lib/theme'
+import { withAlpha } from './src/lib/color'
 
 const config: Config = {
   content: [
@@ -25,7 +26,11 @@ const config: Config = {
           purple: ACCENT.purple,
           pink: ACCENT.pink,
           amber: ACCENT.amber,
+          green: ACCENT.green,
         },
+        brand: BRAND,
+        illustration: ILLUSTRATION,
+        status: STATUS,
         section: SECTION_BG,
         // Text grey scale (AUDIT-029). `muted` clears WCAG AA (>= 4.5:1) on
         // every section background; `subtle` is for large or non-interactive
@@ -73,6 +78,10 @@ const config: Config = {
         'display-snug': '0.95',
         'display-loose': '1.05',
         heading: '1.1',
+      },
+      boxShadow: {
+        'glow-cyan': `0 0 25px ${withAlpha(ACCENT.cyan, 0.2)}`,
+        'glow-cyan-strong': `0 0 30px ${withAlpha(ACCENT.cyan, 0.25)}`,
       },
       borderRadius: {
         // Sharp angles are the signature (AUDIT-080): the bare `rounded`
