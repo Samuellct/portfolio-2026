@@ -25,6 +25,7 @@ function RelatedProjectCard({ project, locale }: { project: ProjectData; locale:
       <Figure
         src={project.image}
         alt={getLocalizedField(project.imageAlt, locale)}
+        sizes="(min-width: 1024px) 30vw, (min-width: 640px) 50vw, 100vw"
         frameClassName="mb-3 transition-opacity duration-300 group-hover:opacity-80"
       />
       <h3 className="font-body font-semibold group-hover:text-accent transition-colors duration-300">
@@ -53,6 +54,7 @@ export default function ProjectDetailView({
 }) {
   const t = useTranslations('projects')
   const tCommon = useTranslations('common')
+  const leadMedia = project.media?.[0]
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -245,24 +247,38 @@ export default function ProjectDetailView({
           {/* ============================================ */}
           <div className="lg:col-span-8 mt-12 lg:mt-0">
 
-            {/* Featured Image */}
+            {/* Lead media: first `media[]` entry, `image` for fiches without one (A15, DEC-10c) */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.6 }}
               className="mb-10"
             >
-              <Figure
-                src={project.image}
-                alt={getLocalizedField(project.imageAlt, locale)}
-                priority
-                creditLabel={t('imageCredit')}
-                credit={
-                  project.imageCredit
-                    ? { name: project.imageCredit, url: project.imageCreditUrl }
-                    : undefined
-                }
-              />
+              {leadMedia ? (
+                <Figure
+                  src={leadMedia.src}
+                  alt={getLocalizedField(leadMedia.alt, locale)}
+                  priority
+                  framing={leadMedia.frame === 'figure' ? 'whole' : 'crop'}
+                  width={leadMedia.width}
+                  height={leadMedia.height}
+                  caption={leadMedia.caption && getLocalizedField(leadMedia.caption, locale)}
+                  creditLabel={t('imageCredit')}
+                  credit={leadMedia.credit}
+                />
+              ) : (
+                <Figure
+                  src={project.image}
+                  alt={getLocalizedField(project.imageAlt, locale)}
+                  priority
+                  creditLabel={t('imageCredit')}
+                  credit={
+                    project.imageCredit
+                      ? { name: project.imageCredit, url: project.imageCreditUrl }
+                      : undefined
+                  }
+                />
+              )}
             </motion.div>
 
             {/* Description: named sections (AUDIT-017) when present, legacy free-form text otherwise.

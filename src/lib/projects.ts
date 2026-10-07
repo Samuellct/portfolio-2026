@@ -43,12 +43,17 @@ export interface ProjectData {
   // migrated fiche by fiche in Phases 7-8. `image` and `gitHubUrl` above stay
   // as derived shortcuts during the migration.
   kind?: 'research' | 'webapp' | 'mobile' | 'desktop' | 'library' | 'infra' | 'analysis'
+  // The first entry is the fiche's lead image. `frame: 'figure'` (charts,
+  // diagrams) is shown whole at its native ratio and needs `width`/`height`
+  // (the file's pixel size); every other frame keeps the 16:9 crop (A15).
   media?: Array<{
     src: string
     alt: BilingualText
     caption?: BilingualText
     credit?: { name: string; url?: string }
-    frame?: 'phone' | 'browser' | 'figure' | 'raw'
+    frame: 'figure' | 'interface' | 'photo'
+    width?: number
+    height?: number
     role: 'hero' | 'result' | 'interface' | 'architecture' | 'context'
   }>
   results?: Array<{ label: BilingualText; value: string; note?: BilingualText }>
@@ -146,6 +151,15 @@ export const projectsData: Record<string, Record<string, ProjectData>> = {
         en: 'TrueNAS dashboard showing virtual machines and server interface',
         fr: 'Tableau de bord TrueNAS affichant les machines virtuelles et l\'interface serveur',
       },
+      media: [
+        {
+          src: '/images/Dashboard_Truenas.webp',
+          alt: { en: 'TrueNAS dashboard showing virtual machines and server interface', fr: 'Tableau de bord TrueNAS affichant les machines virtuelles et l\'interface serveur' },
+          caption: { en: 'The TrueNAS dashboard of the server: system, CPU, memory and storage.', fr: 'Le tableau de bord TrueNAS du serveur : système, processeur, mémoire et stockage.' },
+          frame: 'interface',
+          role: 'interface',
+        },
+      ],
       textColor: "black",
       dateCreated: '2025-07-15',
     },
@@ -197,6 +211,14 @@ Le site tourne sur Cloudflare Workers via OpenNext. Chaque push sur la branche p
       location: { en: 'Personal project', fr: 'Projet personnel' },
       image: '/images/portfolioWebsite.webp',
       imageAlt: { en: 'Front page of my website', fr: 'Page d\'accueil de mon site web' },
+      media: [
+        {
+          src: '/images/portfolioWebsite.webp',
+          alt: { en: 'Front page of my website', fr: 'Page d\'accueil de mon site web' },
+          frame: 'photo',
+          role: 'hero',
+        },
+      ],
       gitHubUrl: "https://github.com/Samuellct/portfolio-2026",
       dateCreated: '2025-02-15',
     },
@@ -256,6 +278,8 @@ Ces couches raster sont combinées avec des données vectorielles : contours gla
         {
           src: '/images/alpineRoute.webp',
           alt: { en: 'Topographic map showing a computed mountaineering route', fr: 'Carte topographique montrant un itinéraire alpiniste calculé' },
+          caption: { en: 'A route computed by AlpineRoute on a topographic base map, with the settings panel on the left.', fr: 'Un itinéraire calculé par AlpineRoute sur fond topographique, avec le panneau de réglages à gauche.' },
+          frame: 'interface',
           role: 'interface',
         },
       ],
@@ -303,6 +327,17 @@ HEP-GUI était une preuve de concept limitée à ce workflow précis, et je ne p
         en: 'HEP-GUI desktop interface showing Monte Carlo simulation controls and histogram visualization',
         fr: 'Interface desktop HEP-GUI affichant les contrôles de simulation Monte Carlo et la visualisation des histogrammes',
       },
+      media: [
+        {
+          src: '/images/hepGUI.webp',
+          alt: { en: 'HEP-GUI desktop interface showing Monte Carlo simulation controls and histogram visualization', fr: 'Interface desktop HEP-GUI affichant les contrôles de simulation Monte Carlo et la visualisation des histogrammes' },
+          caption: { en: 'Output histograms drawn by PyQtGraph in the Plots tab of HEP-GUI.', fr: 'Histogrammes de sortie tracés par PyQtGraph dans l\'onglet Plots de HEP-GUI.' },
+          frame: 'figure',
+          width: 1202,
+          height: 832,
+          role: 'interface',
+        },
+      ],
       gitHubUrl: 'https://github.com/Samuellct/HEP-GUI',
       kind: 'desktop',
       sourceOfSkills: 'personal',
@@ -352,6 +387,15 @@ Les métadonnées des films sont récupérées depuis l'API TMDb (The Movie Data
         en: 'Accred app interface showing a film festival programme grid with selected screenings',
         fr: 'Interface de l\'application Accred montrant une grille de programme de festival avec des séances sélectionnées',
       },
+      media: [
+        {
+          src: '/images/accred.webp',
+          alt: { en: 'Accred app interface showing a film festival programme grid with selected screenings', fr: 'Interface de l\'application Accred montrant une grille de programme de festival avec des séances sélectionnées' },
+          caption: { en: 'A festival programme grid in Accred, with the selected screenings.', fr: 'La grille de programme d\'un festival dans Accred, avec les séances sélectionnées.' },
+          frame: 'interface',
+          role: 'interface',
+        },
+      ],
       gitHubUrl: 'https://github.com/Samuellct/Accred',
       dateCreated: '2026-03-10',
     },
@@ -408,6 +452,10 @@ Les métadonnées des films sont récupérées depuis l'API TMDb (The Movie Data
         {
           src: '/images/timepredict.webp',
           alt: { en: 'Chart of the measured cost-of-transport factor against slope, fitted on real GPS data with 95% confidence intervals, compared to the Minetti model and the old lookup table', fr: 'Graphique du facteur de coût mesuré en fonction de la pente, ajusté sur des données GPS réelles avec intervalles de confiance à 95 %, comparé au modèle de Minetti et à l\'ancienne table' },
+          caption: { en: 'Measured cost factor against slope, fitted on 26,301 GPS segments (bars: 95% confidence intervals), compared with the Minetti model and the old V1 table.', fr: 'Facteur de coût mesuré selon la pente, ajusté sur 26 301 segments GPS (barres : intervalles de confiance à 95 %), comparé au modèle de Minetti et à l\'ancienne table V1.' },
+          frame: 'figure',
+          width: 1210,
+          height: 770,
           role: 'result',
         },
       ],
@@ -472,6 +520,15 @@ Un service de notifications par email interne à Jellyfin : une newsletter des n
         en: 'Screenshot of the JellyUX Homepage widget engine on a Jellyfin home page',
         fr: 'Capture d\'écran du moteur de widgets JellyUX Homepage sur une page d\'accueil Jellyfin',
       },
+      media: [
+        {
+          src: '/images/jellyux.webp',
+          alt: { en: 'Screenshot of the JellyUX Homepage widget engine on a Jellyfin home page', fr: 'Capture d\'écran du moteur de widgets JellyUX Homepage sur une page d\'accueil Jellyfin' },
+          caption: { en: 'The JellyUX Homepage widget engine on the Jellyfin home page.', fr: 'Le moteur de widgets JellyUX Homepage sur la page d\'accueil de Jellyfin.' },
+          frame: 'interface',
+          role: 'interface',
+        },
+      ],
       gitHubUrl: 'https://github.com/JellyUX',
       links: [{ type: 'docs', url: 'https://jellyux.github.io/Homepage/', label: { en: 'Homepage docs', fr: 'Documentation Homepage' } }],
       featured: true,
@@ -512,6 +569,15 @@ L'application fonctionne entièrement hors ligne : aucun serveur, aucun cloud, a
         en: 'Home screen and delivery mode of the Delivr Android app, side by side',
         fr: 'Écran d\'accueil et mode livraison de l\'application Android Delivr, côte à côte',
       },
+      media: [
+        {
+          src: '/images/delivr.webp',
+          alt: { en: 'Home screen and delivery mode of the Delivr Android app, side by side', fr: 'Écran d\'accueil et mode livraison de l\'application Android Delivr, côte à côte' },
+          caption: { en: 'Home screen and delivery mode of the Delivr Android app.', fr: 'Écran d\'accueil et mode livraison de l\'application Android Delivr.' },
+          frame: 'interface',
+          role: 'interface',
+        },
+      ],
       gitHubUrl: 'https://github.com/Samuellct/Delivr',
       links: [{ type: 'release', url: 'https://github.com/Samuellct/Delivr/releases', label: { en: 'Releases (APK)', fr: 'Versions (APK)' } }],
       kind: 'mobile',
@@ -571,6 +637,17 @@ En suivant la méthode CLs (méthode statistique standard pour fixer des limites
         en: 'Exponential fit of the diphoton invariant mass background in the sidebands, with statistical and systematic errors',
         fr: 'Ajustement exponentiel du bruit de fond de la masse invariante diphoton sur les bandes latérales, avec erreurs statistiques et systématiques',
       },
+      media: [
+        {
+          src: '/images/data_analysis_fit.webp',
+          alt: { en: 'Exponential fit of the diphoton invariant mass background in the sidebands, with statistical and systematic errors', fr: 'Ajustement exponentiel du bruit de fond de la masse invariante diphoton sur les bandes latérales, avec erreurs statistiques et systématiques' },
+          caption: { en: 'Exponential fit of the diphoton invariant mass background in the sidebands, with statistical and systematic errors.', fr: 'Ajustement exponentiel du bruit de fond de la masse invariante diphoton dans les bandes latérales, avec erreurs statistiques et systématiques.' },
+          frame: 'figure',
+          width: 571,
+          height: 432,
+          role: 'result',
+        },
+      ],
       gitHubUrl: 'https://github.com/Samuellct/ATLAS-basic-particle-search-workflow',
       dateCreated: '2024-09-17',
     },
@@ -645,6 +722,15 @@ Nous avons également compris pourquoi les chercheurs développent actuellement 
         en: 'Close-up of a quantum processor chip with superconducting qubits',
         fr: 'Gros plan d\'une puce de processeur quantique avec qubits supraconducteurs',
       },
+      media: [
+        {
+          src: '/images/quantum_cpu.webp',
+          alt: { en: 'Close-up of a quantum processor chip with superconducting qubits', fr: 'Gros plan d\'une puce de processeur quantique avec qubits supraconducteurs' },
+          credit: { name: 'Google' },
+          frame: 'photo',
+          role: 'context',
+        },
+      ],
       imageCredit: 'Google',
       gitHubUrl: 'https://github.com/Samuellct/Cirq-Quantum-Cryptography-Demo',
       dateCreated: '2023-11-29',
@@ -745,6 +831,18 @@ Les deux fonctionnalités ont été ajoutées au système LabVIEW existant : le 
         en: 'Example LabVIEW block diagram (illustration, not from this project)',
         fr: 'Exemple de diagramme de blocs LabVIEW (illustration, hors projet)',
       },
+      media: [
+        {
+          src: '/images/LabVIEW.webp',
+          alt: { en: 'Example LabVIEW block diagram (illustration, not from this project)', fr: 'Exemple de diagramme de blocs LabVIEW (illustration, hors projet)' },
+          caption: { en: 'An example LabVIEW block diagram, not from this project: the graphical programming I used for the TAC calibration module.', fr: 'Un exemple de diagramme de blocs LabVIEW, hors projet : la programmation graphique que j\'ai utilisée pour le module d\'étalonnage du TAC.' },
+          credit: { name: 'Aldhair.gsnt', url: 'https://commons.wikimedia.org/wiki/File:Labview_code_example.png' },
+          frame: 'figure',
+          width: 960,
+          height: 416,
+          role: 'context',
+        },
+      ],
       imageCredit: 'Aldhair.gsnt',
       imageCreditUrl: 'https://commons.wikimedia.org/wiki/File:Labview_code_example.png',
       textColor: 'black',
@@ -816,6 +914,15 @@ Les deux fonctionnalités ont été ajoutées au système LabVIEW existant : le 
         en: 'Hubble Space Telescope image of Saturn showing its distinctive ring system',
         fr: 'Image du télescope spatial Hubble montrant Saturne et son système d\'anneaux caractéristique',
       },
+      media: [
+        {
+          src: '/images/saturn.webp',
+          alt: { en: 'Hubble Space Telescope image of Saturn showing its distinctive ring system', fr: 'Image du télescope spatial Hubble montrant Saturne et son système d\'anneaux caractéristique' },
+          credit: { name: 'NASA, ESA, A. Simon, and M.H. Wong', url: 'https://esahubble.org/images/heic1917a/' },
+          frame: 'photo',
+          role: 'context',
+        },
+      ],
       imageCredit: 'NASA, ESA, A. Simon, and M.H. Wong',
       imageCreditUrl: 'https://esahubble.org/images/heic1917a/',
       gitHubUrl: "https://github.com/Samuellct/Stability-of-Saturns-rings",
@@ -900,6 +1007,17 @@ J'ai consacré la majeure partie de mon temps à élaborer une stratégie de pr�
         en: 'Attempt to Fit the B Meson mass',
         fr: 'Tentative d\'ajustement de la masse du méson B',
       },
+      media: [
+        {
+          src: '/images/m1Internship.webp',
+          alt: { en: 'Attempt to Fit the B Meson mass', fr: 'Tentative d\'ajustement de la masse du méson B' },
+          caption: { en: 'Fit of the B meson mass (χ²/ndf = 47/24): the K₁⁺ signal was not observed.', fr: 'Ajustement de la masse du méson B (χ²/ndf = 47/24) : le signal K₁⁺ n\'a pas été observé.' },
+          frame: 'figure',
+          width: 752,
+          height: 541,
+          role: 'result',
+        },
+      ],
       gitHubUrl: "https://github.com/Samuellct/Internship-M1-B-meson-decay",
       textColor: 'black',
       dateCreated: '2024-07-05',
@@ -964,7 +1082,11 @@ J'ai consacré la majeure partie de mon temps à élaborer une stratégie de pr�
         {
           src: '/images/m2Internship.webp',
           alt: { en: 'Types of LLPs signatures in LHC detectors', fr: 'Types de signatures de LLP dans les détecteurs du LHC' },
+          caption: { en: 'Possible signatures of long-lived particles in the LHC detectors.', fr: 'Signatures possibles des particules à longue durée de vie dans les détecteurs du LHC.' },
           credit: { name: 'H. Russell', url: 'https://indico.cern.ch/event/607314/contributions/2542309/attachments/1447873/2231444/20170424_LLPs.pdf' },
+          frame: 'figure',
+          width: 1200,
+          height: 854,
           role: 'context',
         },
       ],
