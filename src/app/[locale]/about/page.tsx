@@ -129,6 +129,11 @@ export default function AboutPage() {
     },
   ]
 
+  // last word of the page title set in Fraunces italic (DEC-13c accent)
+  const titleWords = tAbout('title').split(' ')
+  const titleLast = titleWords.pop()
+  const titleLead = titleWords.join(' ')
+
   const sectionLabels = [
     tAbout('sectionLabel'),
     tAbout('experience.sectionLabel'),
@@ -556,8 +561,9 @@ export default function AboutPage() {
               <div className="section-label text-accent mb-4">
                 {tAbout('sectionLabel')}
               </div>
-              <h1 className="font-display uppercase font-black text-page leading-display-snug tracking-wide mb-12">
-                {tAbout('title')}
+              <h1 className="font-display uppercase font-black text-page leading-display-snug tracking-wide mb-12 text-riso-pinkTitle misregister">
+                {titleLead}{' '}
+                <span className="fraunces-display-italic normal-case">{titleLast}</span>
               </h1>
             </div>
             
@@ -611,7 +617,7 @@ export default function AboutPage() {
               <div className="section-label text-accent mb-4">
                 {tAbout('experience.sectionLabel')}
               </div>
-              <h2 className="font-display uppercase font-black text-heading leading-display-snug tracking-wide">
+              <h2 className="font-display uppercase font-black text-heading leading-display-snug tracking-wide text-riso-pinkTitle misregister">
                 {tAbout('experience.title')}
               </h2>
             </div>
@@ -629,7 +635,7 @@ export default function AboutPage() {
               {internships.map((project, index) => (
                 <article
                   key={project.id}
-                  className="flex flex-col p-6 bg-white/[0.02] border border-white/5 border-l-2 border-l-riso-pink/60"
+                  className="flex flex-col p-6 border border-accent-line"
                   style={{
                     opacity: expItemProgress[index],
                     transform: `translateY(${30 - expItemProgress[index] * 30}px)`,
@@ -698,7 +704,7 @@ export default function AboutPage() {
             
             {/* Sous-titre + description */}
             <div className="mb-16">
-              <h2 className="font-display uppercase font-black text-heading leading-display-snug tracking-wide mb-4">
+              <h2 className="font-display uppercase font-black text-heading leading-display-snug tracking-wide mb-4 text-riso-pinkTitle misregister">
                 {tAbout('stack.title')}
               </h2>
               <p className="text-muted max-w-xl" style={{ opacity: stackDescriptionOpacity }}>
@@ -728,11 +734,8 @@ export default function AboutPage() {
                     </div>
                     <div className="relative h-[3px] bg-white/10 overflow-hidden">
                       <div
-                        className="absolute inset-y-0 left-0"
-                        style={{ 
-                          width: `${barFill}%`,
-                          backgroundColor: tech.color,
-                        }}
+                        className="absolute inset-y-0 left-0 bg-riso-pink"
+                        style={{ width: `${barFill}%` }}
                       />
                     </div>
                   </div>
@@ -786,7 +789,7 @@ export default function AboutPage() {
               <div className="section-label text-accent justify-center mb-4">
                 {tAbout('education.sectionLabel')}
               </div>
-              <h2 className="font-display uppercase font-black text-heading leading-display-snug tracking-wide">
+              <h2 className="font-display uppercase font-black text-heading leading-display-snug tracking-wide text-riso-pinkTitle misregister">
                 {tAbout('education.subtitle')}
               </h2>
             </div>
@@ -796,7 +799,7 @@ export default function AboutPage() {
               {/* Central line */}
               <div className="hidden md:block absolute left-1/2 top-0 bottom-0 w-px -translate-x-1/2 bg-white/5">
                 <div 
-                  className="w-full bg-gradient-to-b from-riso-blue to-riso-pink origin-top"
+                  className="w-full bg-riso-pink origin-top"
                   style={{ height: `${lineProgress * 100}%` }}
                 />
               </div>
@@ -820,13 +823,7 @@ export default function AboutPage() {
                   >
                     <div className={`w-full md:w-[45%] ${isLeft ? 'md:mr-auto md:pr-12' : 'md:ml-auto md:pl-12'}`}>
                       <div 
-                        className="relative p-4 bg-white/[0.02] border border-white/5 hover:border-white/10 transition-colors duration-500"
-                        style={{ 
-                          borderLeftColor: isLeft ? item.color : undefined,
-                          borderRightColor: !isLeft ? item.color : undefined,
-                          borderLeftWidth: isLeft ? '2px' : undefined,
-                          borderRightWidth: !isLeft ? '2px' : undefined,
-                        }}
+                        className="relative p-4 border border-accent-line"
                       >
                         <span 
                           className="inline-block px-2 py-0.5 text-meta tracking-wider uppercase mb-2"
@@ -891,7 +888,7 @@ export default function AboutPage() {
               }}
             >
               <div className="md:w-1/2">
-                <h3 className="font-display uppercase font-black text-title tracking-wide mb-3 text-accent">
+                <h3 className="font-display uppercase font-black text-title tracking-wide mb-3">
                   {interests[0].label}
                 </h3>
                 <p className="text-muted leading-relaxed">
@@ -912,7 +909,7 @@ export default function AboutPage() {
               }}
             >
               <div className="md:w-1/2 md:text-right">
-                <h3 className="font-display uppercase font-black text-title tracking-wide mb-3 text-illustration-homelab">
+                <h3 className="font-display uppercase font-black text-title tracking-wide mb-3">
                   {interests[1].label}
                 </h3>
                 <p className="text-muted leading-relaxed">
@@ -933,7 +930,7 @@ export default function AboutPage() {
               }}
             >
               <div className="md:w-1/2">
-                <h3 className="font-display uppercase font-black text-title tracking-wide mb-3 text-riso-pinkTitle">
+                <h3 className="font-display uppercase font-black text-title tracking-wide mb-3">
                   {interests[2].label}
                 </h3>
                 <p className="text-muted leading-relaxed">
