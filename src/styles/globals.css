@@ -217,6 +217,15 @@ body {
 }
 
 /* ===================================
+   MISREGISTRATION (DEC-14e)
+   Riso print: the pink plate lands slightly off the blue one. A crisp,
+   unblurred blue copy offset down-right; scales with the type size.
+=================================== */
+.misregister {
+  text-shadow: 0.04em 0.035em 0 theme('colors.riso.blue');
+}
+
+/* ===================================
    KATEX STYLES
 =================================== */
 .katex {

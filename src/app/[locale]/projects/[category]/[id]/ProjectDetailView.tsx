@@ -3,7 +3,7 @@
 import { useEffect } from 'react'
 import TransitionLink from '@/components/navigation/TransitionLink'
 import { motion } from 'framer-motion'
-import { ArrowLeft, ArrowRight, ExternalLink, Calendar, MapPin, Building2 } from 'lucide-react'
+import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react'
 import { FaGithub } from 'react-icons/fa'
 import { getLocalizedField, formatMeasure, CategoryData, Locale, ProjectData } from '@/lib/projects'
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer'
@@ -74,7 +74,6 @@ function ResultMeasure({ result, locale }: { result: ProjectResult; locale: Loca
 
 export default function ProjectDetailView({
   project,
-  category,
   categoryId,
   previousProject,
   nextProject,
@@ -90,173 +89,136 @@ export default function ProjectDetailView({
   locale: Locale
 }) {
   const t = useTranslations('projects')
-  const tCommon = useTranslations('common')
+  const tNav = useTranslations('nav')
   const leadMedia = project.media?.[0]
 
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [project.id])
 
+  const location = getLocalizedField(project.location, locale)
+  const lab = project.research ? getLocalizedField(project.research.lab, locale) : undefined
+  // Facts of the context frame. "Personal project" repeats the category, and a
+  // lab equal to the location is shown once (CONS-06).
+  const facts: Array<[string, string]> = [
+    [t('facts.period'), getLocalizedField(project.period, locale)],
+    ...(project.category !== 'personal' ? [[t('facts.location'), location] as [string, string]] : []),
+    ...(lab && lab !== location ? [[t('research.lab'), lab] as [string, string]] : []),
+    ...(project.research?.collaboration
+      ? [[t('research.collaboration'), project.research.collaboration] as [string, string]]
+      : []),
+  ]
+  const outLinks = [
+    ...(project.gitHubUrl ? [{ url: project.gitHubUrl, label: t('viewOnGitHub'), github: true }] : []),
+    ...(project.links ?? [])
+      .filter((link) => link.type !== 'code')
+      .map((link) => ({ url: link.url, label: link.label ? getLocalizedField(link.label, locale) : link.url, github: false })),
+  ]
+
   return (
     <div className="min-h-screen pt-24 pb-20" style={{ backgroundColor: PROJECT_DETAIL_BG_COLOR }}>
       <div className="max-w-7xl mx-auto px-6 md:px-12">
 
         {/* ============================================ */}
-        {/* SPLIT LAYOUT: Desktop (lg+) = 2 colonnes */}
+        {/* HEADER: breadcrumb, title, hook, status, links (full width) */}
         {/* ============================================ */}
-        <div className="lg:grid lg:grid-cols-12 lg:gap-12">
-
-          {/* ============================================ */}
-          {/* LEFT COLUMN - Sticky sidebar (4/12) */}
-          {/* ============================================ */}
-          <div className="lg:col-span-4">
-            <div className="lg:sticky lg:top-24">
-
-              {/* Back link */}
-              <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4 }}
-                className="mb-8"
-              >
-                <TransitionLink
-                  href="/projects"
-                  className="tap-target inline-flex items-center gap-2 text-muted hover:text-white transition-colors"
-                >
-                  <ArrowLeft size={16} />
-                  <span className="text-sm tracking-label uppercase">{tCommon('back')}</span>
+        <motion.header
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="pt-6 pb-10 mb-10 border-b border-white/15"
+        >
+          <nav aria-label={t('breadcrumbLabel')} className="mb-5">
+            <ol className="flex flex-wrap items-center gap-x-2 text-sm text-muted">
+              <li>
+                <TransitionLink href="/projects" className="tap-target inline-flex items-center hover:text-white transition-colors">
+                  {tNav('projects')}
                 </TransitionLink>
-              </motion.div>
+              </li>
+              <li aria-hidden="true">/</li>
+              <li>
+                <TransitionLink
+                  href={`/projects?category=${categoryId}`}
+                  className="tap-target inline-flex items-center gap-1.5 hover:text-white transition-colors"
+                >
+                  <CategoryIcon category={categoryId} />
+                  {t(`categories.${categoryId}`)}
+                </TransitionLink>
+              </li>
+            </ol>
+          </nav>
 
-              {/* Project info */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6 }}
+          <h1 className="misregister font-display font-black text-page leading-display-snug text-riso-pinkTitle break-words [hyphens:manual]">
+            {getLocalizedField(project.title, locale)}
+          </h1>
+
+          {project.subtitle && (
+            <p className="mt-5 max-w-3xl text-lead font-semibold">{getLocalizedField(project.subtitle, locale)}</p>
+          )}
+
+          <div className="mt-6 flex flex-wrap items-center gap-3">
+            {project.status === 'in-progress' && (
+              <Badge status="in-progress" tone="pill">
+                {t('status.inProgress')}
+              </Badge>
+            )}
+            {project.status === 'paused' && (
+              <Badge status="paused" tone="pill">
+                {t('status.paused')}
+              </Badge>
+            )}
+            {outLinks.map((link) => (
+              <a
+                key={link.url}
+                href={link.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white text-sm font-semibold tracking-caps uppercase transition-colors hover:bg-white hover:text-black"
               >
-                {/* Category */}
-                <div className="flex flex-wrap items-center gap-3 mb-4">
-                  <TransitionLink
-                    href={`/projects?category=${categoryId}`}
-                    className="tap-target inline-flex items-center gap-1.5 text-xs tracking-caps-wide uppercase hover:underline"
-                    style={{ color: category?.accentColor }}
-                  >
-                    <CategoryIcon category={categoryId} />
-                    {t(`categories.${categoryId}`)}
-                  </TransitionLink>
-
-                  {project.status === 'in-progress' && (
-                    <Badge status="in-progress" tone="inline">
-                      {t('status.inProgress')}
-                    </Badge>
-                  )}
-                  {project.status === 'paused' && (
-                    <Badge status="paused" tone="inline">
-                      {t('status.paused')}
-                    </Badge>
-                  )}
-                </div>
-
-                {/* Title */}
-                <h1 className="font-display font-black text-heading leading-display-snug mb-4">
-                  {getLocalizedField(project.title, locale)}
-                </h1>
-
-                {/* Subtitle */}
-                {project.subtitle && (
-                  <p className="text-lg text-muted mb-6">{getLocalizedField(project.subtitle, locale)}</p>
-                )}
-
-                {/* Meta info */}
-                <div className="flex flex-col gap-3 text-sm text-muted mb-8">
-                  <div className="flex items-center gap-2">
-                    <Calendar size={14} />
-                    <span>{getLocalizedField(project.period, locale)}</span>
-                  </div>
-                  <div className="flex items-center gap-2">
-                    {/* ICON-01: "Personal project" is not a place, so no pin; the spacer keeps the text aligned */}
-                    {project.category === 'personal' ? (
-                      <span className="w-[14px] shrink-0" aria-hidden="true" />
-                    ) : (
-                      <MapPin size={14} />
-                    )}
-                    <span>{getLocalizedField(project.location, locale)}</span>
-                  </div>
-                  {project.research && (
-                    <div className="flex items-center gap-2">
-                      <Building2 size={14} />
-                      <span>
-                        {getLocalizedField(project.research.lab, locale)}
-                        {project.research.collaboration && ` - ${project.research.collaboration}`}
-                      </span>
-                    </div>
-                  )}
-                </div>
-
-                {/* Technologies */}
-                <div className="mb-8">
-                  <h2 className="text-xs tracking-caps-wide uppercase text-muted mb-4">
-                    {t('technologies')}
-                  </h2>
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.map((tech) => (
-                      <Tag key={tech}>{tech}</Tag>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Context (AUDIT-017: an intro reads better in the sidebar than Limits does) */}
-                {project.sections?.context && (
-                  <div className="mb-8">
-                    <h2 className="text-xs tracking-caps-wide uppercase text-muted mb-4">
-                      {t('sections.context')}
-                    </h2>
-                    <p className="text-sm text-muted">
-                      {getLocalizedField(project.sections.context, locale)}
-                    </p>
-                  </div>
-                )}
-
-                {/* gitHub CTA */}
-                {project.gitHubUrl && (
-                  <div className="flex justify-center">
-                    <a
-                      href={project.gitHubUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="inline-flex items-center gap-3 px-6 py-3 bg-brand-githubButton text-white text-sm font-medium tracking-wide transition-colors hover:bg-brand-githubButtonHover"
-                    >
-                      <FaGithub size={18} />
-                      {t('viewOnGitHub')}
-                      <ExternalLink size={14} />
-                    </a>
-                  </div>
-                )}
-
-                {/* Non-code links (live site, beta app); `code` stays on the GitHub CTA above */}
-                {project.links
-                  ?.filter((link) => link.type !== 'code')
-                  .map((link) => (
-                    <div key={link.url} className="flex justify-center mt-3">
-                      <a
-                        href={link.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-3 px-6 py-3 border border-white/20 text-white text-sm font-medium tracking-wide transition-colors hover:border-white/50"
-                      >
-                        {link.label ? getLocalizedField(link.label, locale) : link.url}
-                        <ExternalLink size={14} />
-                      </a>
-                    </div>
-                  ))}
-              </motion.div>
-            </div>
+                {link.github && <FaGithub size={16} aria-hidden="true" />}
+                {link.label}
+                <ExternalLink size={14} aria-hidden="true" />
+              </a>
+            ))}
           </div>
+        </motion.header>
 
-          {/* ============================================ */}
-          {/* RIGHT COLUMN - Scrollable txt (8/12) */}
-          {/* ============================================ */}
-          <div className="lg:col-span-8 mt-12 lg:mt-0">
+        {/* ============================================ */}
+        {/* SPLIT LAYOUT: lg+ = sticky context frame (4/12) + narrative (8/12);
+            below lg the narrative comes first and the frame follows it (RESP-02) */}
+        {/* ============================================ */}
+        <div className="flex flex-col lg:grid lg:grid-cols-12 lg:gap-12">
+
+          {/* Context frame (AUDIT-082: sticky on desktop) */}
+          <aside className="order-2 lg:order-1 lg:col-span-4 mt-14 lg:mt-0 lg:sticky lg:top-24 lg:self-start border border-accent-line p-6">
+            <h2 className="pb-3 mb-5 border-b border-riso-pink text-meta font-semibold tracking-caps-wide uppercase">
+              {t('sections.context')}
+            </h2>
+            <dl className="space-y-4 text-sm">
+              {facts.map(([label, value]) => (
+                <div key={label}>
+                  <dt className="font-semibold">{label}</dt>
+                  <dd className="text-muted">{value}</dd>
+                </div>
+              ))}
+              <div>
+                <dt className="font-semibold mb-2">{t('technologies')}</dt>
+                <dd className="flex flex-wrap gap-2">
+                  {project.technologies.map((tech) => (
+                    <Tag key={tech}>{tech}</Tag>
+                  ))}
+                </dd>
+              </div>
+            </dl>
+            {project.sections?.context && (
+              <p className="mt-6 pt-5 border-t border-white/15 text-sm text-muted">
+                {getLocalizedField(project.sections.context, locale)}
+              </p>
+            )}
+          </aside>
+
+          {/* Narrative column: results, lead media, sections */}
+          <div className="order-1 lg:order-2 lg:col-span-8">
 
             {/* Results as measures (UX-12): main column, ahead of the figure and the narrative */}
             {project.results && project.results.length > 0 && (
@@ -332,7 +294,7 @@ export default function ProjectDetailView({
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 + index * 0.05, duration: 0.6 }}
                       >
-                        <h2 className="font-display font-black text-title mb-4">{t(`sections.${key}`)}</h2>
+                        <h2 className="pb-3 mb-5 border-b border-riso-pink text-meta font-semibold tracking-caps-wide uppercase">{t(`sections.${key}`)}</h2>
                         <MarkdownRenderer
                           content={getLocalizedField(content, locale)}
                           className="prose prose-lg max-w-none"

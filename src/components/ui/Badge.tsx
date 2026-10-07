@@ -14,16 +14,20 @@ export type ProjectStatusValue = 'in-progress' | 'paused'
 const TONE = {
   card: 'px-2.5 py-1 text-meta tracking-caps uppercase',
   inline: 'px-2 py-1 text-meta tracking-wider uppercase',
+  // Project page header (DEC-14g): a printed pill next to the links.
+  pill: 'inline-flex items-center px-4 py-2.5 rounded-full text-sm font-semibold tracking-caps uppercase',
 } as const
 
 const STATUS = {
   'in-progress': {
     card: 'bg-surface border border-accent-line/60 text-accent',
     inline: 'bg-accent-line/10 border border-accent-line/20 text-accent',
+    pill: 'bg-riso-pink text-snow border border-riso-pink',
   },
   paused: {
     card: 'bg-surface border border-white/20 text-muted',
     inline: 'bg-white/10 border border-white/20 text-muted',
+    pill: 'border border-dashed border-white text-white',
   },
 } as const
 
@@ -34,7 +38,7 @@ export function Badge({
   children,
 }: {
   status: ProjectStatusValue
-  tone: 'card' | 'inline'
+  tone: 'card' | 'inline' | 'pill'
   className?: string
   children: React.ReactNode
 }) {

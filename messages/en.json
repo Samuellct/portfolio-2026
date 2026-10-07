@@ -143,6 +143,8 @@
     "relatedProjects": "Related projects",
     "searchLabel": "Search projects",
     "searchPlaceholder": "Search...",
+    "breadcrumbLabel": "Breadcrumb",
+    "facts": {"period": "Period", "category": "Category", "location": "Location"},
     "resultBaseline": "vs {value}, {label}",
     "sections": {
       "context": "Context",
