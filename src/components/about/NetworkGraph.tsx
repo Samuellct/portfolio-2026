@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef } from 'react'
+import { useId } from 'react'
 import { SiDocker, SiNextcloud, SiProxmox, SiJellyfin } from 'react-icons/si'
 import { TbServer } from 'react-icons/tb'
 import { BRAND, ILLUSTRATION } from '@/lib/theme'
@@ -11,157 +11,114 @@ interface NetworkGraphProps {
   className?: string
 }
 
-// Configuration des nodes du réseau
+const WIDTH = 400
+const HEIGHT = 150
+const CENTER_X = 200
+const CENTER_Y = 78
+// Nodes sit on a flat ellipse so the graph fills a landscape frame
+const RADIUS_X = 145
+const RADIUS_Y = 52
+// Lines stop short of each node so they do not run under the icon
+const NODE_GAP = 16
+
 const nodes = [
   { id: 'docker', Icon: SiDocker, color: BRAND.docker, angle: 0, label: 'Docker' },
   { id: 'nextcloud', Icon: SiNextcloud, color: BRAND.nextcloud, angle: 72, label: 'Nextcloud' },
   { id: 'proxmox', Icon: SiProxmox, color: BRAND.proxmox, angle: 144, label: 'Proxmox' },
   { id: 'jellyfin', Icon: SiJellyfin, color: BRAND.jellyfin, angle: 216, label: 'Jellyfin' },
   { id: 'truenas', Icon: TbServer, color: BRAND.truenas, angle: 288, label: 'TrueNAS' },
-]
+].map((node) => {
+  const rad = (node.angle - 90) * (Math.PI / 180)
+  const x = CENTER_X + RADIUS_X * Math.cos(rad)
+  const y = CENTER_Y + RADIUS_Y * Math.sin(rad)
+  const dx = x - CENTER_X
+  const dy = y - CENTER_Y
+  const length = Math.sqrt(dx * dx + dy * dy)
+  return { ...node, x, y, endX: x - (dx / length) * NODE_GAP, endY: y - (dy / length) * NODE_GAP }
+})
 
 export default function NetworkGraph({ progress, className = '' }: NetworkGraphProps) {
-  const containerRef = useRef<HTMLDivElement>(null)
-  
-  // Calculer les positions des noeuds sur un cercle
-  const radius = 70
-  const centerX = 100
-  const centerY = 100
-  
-  const getNodePosition = (angle: number) => {
-    const rad = (angle - 90) * (Math.PI / 180)
-    return {
-      x: centerX + radius * Math.cos(rad),
-      y: centerY + radius * Math.sin(rad)
-    }
-  }
-  
-  // Phase de l'animation
-  // 0-0.2: Centre apparaît
-  // 0.2-0.7: Lignes se dessinent
-  // 0.7-1: Icônes apparaissent
-  const centerOpacity = Math.min(1, progress * 5) // 0-0.2 -> 0-1
-  const lineProgress = Math.max(0, Math.min(1, (progress - 0.2) / 0.5)) // 0.2-0.7 -> 0-1
-  const iconsOpacity = Math.max(0, (progress - 0.7) / 0.3) // 0.7-1 -> 0-1
-  
+  const id = useId()
+
+  // Animation phases
+  // 0-0.2: hub appears
+  // 0.2-0.7: lines draw out
+  // 0.7-1: icons appear
+  const centerOpacity = Math.min(1, progress * 5)
+  const lineProgress = Math.max(0, Math.min(1, (progress - 0.2) / 0.5))
+  const iconsOpacity = Math.max(0, (progress - 0.7) / 0.3)
+  const nodeProgress = (index: number) => Math.max(0, Math.min(1, (lineProgress - index * 0.15) / 0.4))
+
   return (
-    <div ref={containerRef} className={`relative ${className}`}>
-      <svg viewBox="0 0 200 200" className="w-full h-full">
-        {/* Grille de fond */}
+    // The frame keeps the viewBox ratio, so percentage positions match SVG units
+    <div className={`relative aspect-[8/3] ${className}`} aria-hidden="true">
+      <svg viewBox={`0 0 ${WIDTH} ${HEIGHT}`} className="absolute inset-0 w-full h-full">
         <defs>
-          <pattern id="networkGrid" width="20" height="20" patternUnits="userSpaceOnUse">
-            <circle cx="10" cy="10" r="0.5" fill={withAlpha(ILLUSTRATION.homelab, 0.05)} />
+          <pattern id={`${id}_grid`} width="20" height="20" patternUnits="userSpaceOnUse">
+            <circle cx="10" cy="10" r="0.6" fill={withAlpha(ILLUSTRATION.homelab, 0.18)} />
           </pattern>
         </defs>
-        <rect width="100%" height="100%" fill="url(#networkGrid)" />
-        
-        {/* Lignes vers les noeuds */}
+        <rect width={WIDTH} height={HEIGHT} fill={`url(#${id}_grid)`} />
+
+        {/* Lines out to the nodes */}
         {nodes.map((node, index) => {
-          const pos = getNodePosition(node.angle)
-          const nodeLineProgress = Math.max(0, Math.min(1, (lineProgress - index * 0.15) / 0.4))
-          
+          const p = nodeProgress(index)
           return (
             <line
               key={`line-${node.id}`}
-              x1={centerX}
-              y1={centerY}
-              x2={centerX + (pos.x - centerX) * nodeLineProgress}
-              y2={centerY + (pos.y - centerY) * nodeLineProgress}
+              x1={CENTER_X}
+              y1={CENTER_Y}
+              x2={CENTER_X + (node.endX - CENTER_X) * p}
+              y2={CENTER_Y + (node.endY - CENTER_Y) * p}
               stroke={node.color}
-              strokeWidth="1"
-              strokeOpacity={0.6}
-              style={{ transition: 'all 0.1s ease-out' }}
+              strokeWidth="1.2"
+              strokeOpacity={0.7}
             />
           )
         })}
-        
-        {/* Cercle central */}
+
+        {/* Hub: a small two-unit server rack */}
         <g style={{ opacity: centerOpacity, transition: 'opacity 0.3s ease-out' }}>
-          {/* Glow */}
-          <circle
-            cx={centerX}
-            cy={centerY}
-            r="18"
-            fill={withAlpha(ILLUSTRATION.homelab, 0.2)}
-          />
-          {/* Cercle principal */}
-          <circle
-            cx={centerX}
-            cy={centerY}
-            r="14"
-            fill={ILLUSTRATION.homelabNode}
-            stroke={ILLUSTRATION.homelab}
-            strokeWidth="1.5"
-          />
-          {/* Icône serveur au centre (marche pas)*/}
-          <text
-            x={centerX}
-            y={centerY + 1}
-            textAnchor="middle"
-            dominantBaseline="middle"
-            fontSize="12"
-            fill={ILLUSTRATION.homelab}
-          >
-            ⬡
-          </text>
+          <circle cx={CENTER_X} cy={CENTER_Y} r="21" fill={withAlpha(ILLUSTRATION.homelab, 0.15)} />
+          <circle cx={CENTER_X} cy={CENTER_Y} r="16" fill={ILLUSTRATION.homelabNode} stroke={ILLUSTRATION.homelab} strokeWidth="1.5" />
+          {[-4.5, 4.5].map((dy) => (
+            <g key={dy}>
+              <rect
+                x={CENTER_X - 8.5}
+                y={CENTER_Y + dy - 3.5}
+                width="17"
+                height="7"
+                rx="1.5"
+                fill="none"
+                stroke={ILLUSTRATION.homelab}
+                strokeWidth="1.2"
+              />
+              <circle cx={CENTER_X - 4.5} cy={CENTER_Y + dy} r="1" fill={ILLUSTRATION.homelab} />
+            </g>
+          ))}
         </g>
-        
-        {/* Petits cercles aux extrémités des lignes */}
-        {nodes.map((node, index) => {
-          const pos = getNodePosition(node.angle)
-          const nodeLineProgress = Math.max(0, Math.min(1, (lineProgress - index * 0.15) / 0.4))
-          
-          if (nodeLineProgress < 1) return null
-          
-          return (
-            <circle
-              key={`dot-${node.id}`}
-              cx={pos.x}
-              cy={pos.y}
-              r="3"
-              fill={node.color}
-              style={{ opacity: iconsOpacity, transition: 'opacity 0.3s ease-out' }}
-            />
-          )
-        })}
       </svg>
-      
-      {/* Icônes positionnées en absolute */}
+
+      {/* Node icons and labels, the icon centred on each node */}
       {nodes.map((node, index) => {
-        const pos = getNodePosition(node.angle)
+        if (nodeProgress(index) < 1) return null
         const Icon = node.Icon
-        const nodeLineProgress = Math.max(0, Math.min(1, (lineProgress - index * 0.15) / 0.4))
-        
-        if (nodeLineProgress < 1) return null
-        
-        const left = (pos.x / 200) * 100
-        const top = (pos.y / 200) * 100
-        
-        // Décalage pour mettre l'icône à l'extérieur du cercle
-        const angle = node.angle - 90
-        const offsetX = Math.cos(angle * Math.PI / 180) * 20
-        const offsetY = Math.sin(angle * Math.PI / 180) * 20
-        
+        // The top node's line arrives from below, so its label goes beside the icon
+        const labelBeside = node.y < CENTER_Y - RADIUS_Y / 2
         return (
           <div
             key={`icon-${node.id}`}
-            className="absolute flex flex-col items-center gap-1"
+            className={`absolute flex items-center ${labelBeside ? 'flex-row gap-1.5' : 'flex-col gap-0.5'}`}
             style={{
-              left: `calc(${left}% + ${offsetX}px)`,
-              top: `calc(${top}% + ${offsetY}px)`,
-              transform: 'translate(-50%, -50%)',
+              left: `${(node.x / WIDTH) * 100}%`,
+              top: `${(node.y / HEIGHT) * 100}%`,
+              transform: labelBeside ? 'translate(-10px, -50%)' : 'translate(-50%, -30%)',
               opacity: iconsOpacity,
               transition: 'opacity 0.3s ease-out',
             }}
           >
-            <Icon 
-              size={20} 
-              color={node.color}
-            />
-            <span 
-              className="text-meta tracking-wider uppercase whitespace-nowrap"
-              style={{ color: node.color, opacity: 0.8 }}
-            >
+            <Icon size={20} color={node.color} />
+            <span className="text-meta tracking-wider uppercase whitespace-nowrap" style={{ color: node.color }}>
               {node.label}
             </span>
           </div>

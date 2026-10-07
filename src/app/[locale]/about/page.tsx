@@ -896,7 +896,7 @@ export default function AboutPage() {
                   {interests[0].description}
                 </p>
               </div>
-              <div className="md:w-1/2 h-48 md:h-52">
+              <div className="w-full md:w-1/2 aspect-[8/3]">
                 <MountainProfile progress={interest1Progress} className="w-full h-full" />
               </div>
             </div>
@@ -917,7 +917,7 @@ export default function AboutPage() {
                   {interests[1].description}
                 </p>
               </div>
-              <div className="md:w-1/2 h-48 md:h-52">
+              <div className="w-full md:w-1/2 aspect-[8/3]">
                 <NetworkGraph progress={interest2Progress} className="w-full h-full" />
               </div>
             </div>
@@ -938,7 +938,7 @@ export default function AboutPage() {
                   {interests[2].description}
                 </p>
               </div>
-              <div className="md:w-1/2 h-48 md:h-52">
+              <div className="w-full md:w-1/2 aspect-[8/3]">
                 <CinemaSpotlight progress={interest3Progress} className="w-full h-full" />
               </div>
             </div>

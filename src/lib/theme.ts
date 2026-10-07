@@ -104,9 +104,9 @@ export const ILLUSTRATION = {
   cinemaDeep: RISO.paper,
   mountain: RISO.blue,
   mountainLow: RISO.ink,
-  mountainHigh: RISO.blue,
   homelab: RISO.blue,
   homelabNode: RISO.paper,
+  overprint: RISO.pink,
 } as const
 
 /** Fixed text colours chosen against a computed background. */

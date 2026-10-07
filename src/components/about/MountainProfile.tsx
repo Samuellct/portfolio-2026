@@ -11,16 +11,32 @@ interface MountainProfileProps {
 
 const clamp = (v: number, min: number, max: number) => Math.max(min, Math.min(max, v))
 
-// 24 route points — climbing route from base to summit
-const routePoints: [number, number][] = [
-  [15, 173], [22, 165], [30, 153], [38, 143], [46, 133],
-  [52, 125], [58, 117], [62, 115], [66, 108], [72, 98],
-  [76, 88],  [80, 78],  [84, 68],  [88, 60],  [92, 52],
-  [96, 46],  [100, 43], [104, 46], [108, 49], [112, 44],
-  [116, 38], [120, 32], [124, 29], [126, 27],
+// Elevation profile of a personal Gran Paradiso ascent (GPX, 27.7 km round trip),
+// resampled to 60 points over distance and normalised to 0..1. No coordinates kept.
+const elevation = [
+  0.056, 0.053, 0.037, 0.024, 0.007, 0.003, 0, 0.031, 0.09, 0.129,
+  0.158, 0.189, 0.219, 0.251, 0.288, 0.315, 0.348, 0.375, 0.35, 0.349,
+  0.326, 0.312, 0.321, 0.339, 0.34, 0.362, 0.378, 0.38, 0.408, 0.441,
+  0.495, 0.542, 0.617, 0.701, 0.791, 0.864, 0.92, 0.982, 1, 0.994,
+  0.927, 0.874, 0.804, 0.714, 0.628, 0.55, 0.499, 0.45, 0.411, 0.374,
+  0.333, 0.295, 0.258, 0.22, 0.184, 0.136, 0.087, 0.069, 0.061, 0.055,
 ]
 
-// Arc-length parameterization — pre-compute cumulative segment lengths
+const WIDTH = 400
+const HEIGHT = 150
+const LEFT = 12
+const RIGHT = 388
+const BASE = 136
+const TOP = 22
+
+const routePoints: [number, number][] = elevation.map((e, i) => [
+  LEFT + ((RIGHT - LEFT) * i) / (elevation.length - 1),
+  BASE - e * (BASE - TOP),
+])
+
+const summitIndex = elevation.indexOf(1)
+
+// Arc-length parameterization - pre-compute cumulative segment lengths
 const cumLengths = [0]
 let totalLength = 0
 for (let i = 1; i < routePoints.length; i++) {
@@ -29,34 +45,13 @@ for (let i = 1; i < routePoints.length; i++) {
   totalLength += Math.sqrt(dx * dx + dy * dy)
   cumLengths.push(totalLength)
 }
+const summitProgress = cumLengths[summitIndex] / totalLength
 
-// Route SVG path
-const routeD = routePoints.map((pt, i) =>
-  i === 0 ? `M ${pt[0]} ${pt[1]}` : `L ${pt[0]} ${pt[1]}`
-).join(' ')
+const routeD = routePoints.map((pt, i) => `${i === 0 ? 'M' : 'L'} ${pt[0].toFixed(1)} ${pt[1].toFixed(1)}`).join(' ')
+const areaD = `${routeD} L ${RIGHT} ${HEIGHT} L ${LEFT} ${HEIGHT} Z`
 
-// Mountain silhouette path
-const mountainPath = [
-  'M0,192',
-  'L8,180 L15,168 L22,158 L30,148',
-  'L38,138 L45,128 L52,120 L58,112',
-  'L64,104 L70,96 L76,86 L82,74',
-  'L86,65 L90,56 L94,48 L98,42',
-  'L100,38 L104,41 L108,44',
-  'L112,40 L116,33 L120,28 L124,24 L126,22',
-  'L128,25 L132,34 L136,42 L142,52',
-  'L148,64 L154,76 L160,90 L166,104',
-  'L172,118 L178,132 L184,148 L190,164 L196,178 L200,192 Z',
-].join(' ')
-
-// Snow patches at peaks
-const snowPaths = [
-  'M96,44 L100,38 L104,41',
-  'M122,28 L126,22 L128,25',
-]
-
-// Anchor indices along the route
-const anchorIndices = [3, 7, 11, 15, 19]
+// Faint altitude reference lines
+const referenceLines = [0.25, 0.5, 0.75].map((f) => BASE - f * (BASE - TOP))
 
 function posAtProgress(p: number) {
   p = clamp(p, 0, 1)
@@ -77,151 +72,107 @@ function posAtProgress(p: number) {
 
 export default function MountainProfile({ progress, className }: MountainProfileProps) {
   const id = useId()
+  const [summitX, summitY] = routePoints[summitIndex]
 
-  const { climber, dashOffset, flagOpacity, flagFill } = useMemo(() => {
+  const { climber, dashOffset, flagOpacity } = useMemo(() => {
     const p = clamp(progress, 0, 1)
     return {
       climber: posAtProgress(p),
       dashOffset: totalLength * (1 - p),
-      flagOpacity: p > 0.9 ? clamp((p - 0.9) * 10, 0, 0.7) : 0.12,
-      flagFill: p > 0.9 ? 0.6 : 0.08,
+      flagOpacity: clamp((p - summitProgress) * 12, 0, 1),
     }
   }, [progress])
 
   return (
     <svg
-      viewBox="0 0 200 200"
+      viewBox={`0 0 ${WIDTH} ${HEIGHT}`}
       xmlns="http://www.w3.org/2000/svg"
       className={className}
+      aria-hidden="true"
     >
       <defs>
-        <pattern id={`${id}_grid`} width="20" height="20" patternUnits="userSpaceOnUse">
-          <path d="M 20 0 L 0 0 0 20" fill="none" stroke={withAlpha(ILLUSTRATION.mountainLow, 0.02)} strokeWidth="0.5" />
-        </pattern>
-
         <linearGradient id={`${id}_mtnFill`} x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor={ILLUSTRATION.mountain} stopOpacity="0.1" />
-          <stop offset="100%" stopColor={ILLUSTRATION.mountain} stopOpacity="0.01" />
-        </linearGradient>
-
-        <linearGradient id={`${id}_routeGrad`} x1="0%" y1="100%" x2="40%" y2="0%">
-          <stop offset="0%" stopColor={ILLUSTRATION.mountainLow} stopOpacity="0.5" />
-          <stop offset="40%" stopColor={ILLUSTRATION.mountain} />
-          <stop offset="100%" stopColor={ILLUSTRATION.mountainHigh} />
-        </linearGradient>
-
-        <radialGradient id={`${id}_summitGlow`} cx="63%" cy="14%" r="15%">
-          <stop offset="0%" stopColor={ILLUSTRATION.mountain} stopOpacity="0.06" />
+          <stop offset="0%" stopColor={ILLUSTRATION.mountain} stopOpacity="0.16" />
           <stop offset="100%" stopColor={ILLUSTRATION.mountain} stopOpacity="0" />
-        </radialGradient>
+        </linearGradient>
       </defs>
 
-      {/* Grid background */}
-      <rect width="200" height="200" fill={`url(#${id}_grid)`} />
-
       {/* Altitude reference lines */}
-      <line x1="8" y1="50" x2="195" y2="50" stroke={withAlpha(ILLUSTRATION.mountainLow, 0.02)} strokeWidth="0.3" strokeDasharray="2 8" />
-      <line x1="8" y1="90" x2="195" y2="90" stroke={withAlpha(ILLUSTRATION.mountainLow, 0.02)} strokeWidth="0.3" strokeDasharray="2 8" />
-      <line x1="8" y1="130" x2="195" y2="130" stroke={withAlpha(ILLUSTRATION.mountainLow, 0.02)} strokeWidth="0.3" strokeDasharray="2 8" />
-
-      {/* Subtle summit glow */}
-      <circle cx="126" cy="27" r="30" fill={`url(#${id}_summitGlow)`} />
-
-      {/* Mountain silhouette */}
-      <path d={mountainPath} fill={`url(#${id}_mtnFill)`} />
-      <path d={mountainPath} fill="none" stroke={ILLUSTRATION.mountain} strokeWidth="0.7" opacity="0.25" />
-
-      {/* Snow patches */}
-      {snowPaths.map((d, i) => (
-        <path
-          key={i}
-          d={d}
-          fill="none"
+      {referenceLines.map((y) => (
+        <line
+          key={y}
+          x1={LEFT}
+          y1={y}
+          x2={RIGHT}
+          y2={y}
           stroke={withAlpha(ILLUSTRATION.mountainLow, 0.18)}
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          strokeLinejoin="round"
+          strokeWidth="0.5"
+          strokeDasharray="2 6"
         />
       ))}
 
-      {/* Ghost route (full path, very subtle) */}
+      {/* Profile silhouette, fading out towards the base */}
+      <path d={areaD} fill={`url(#${id}_mtnFill)`} />
+
+      {/* Ghost route (full profile, very subtle) */}
       <path
         d={routeD}
         fill="none"
-        stroke={withAlpha(ILLUSTRATION.mountainLow, 0.04)}
-        strokeWidth="0.8"
+        stroke={withAlpha(ILLUSTRATION.mountainLow, 0.25)}
+        strokeWidth="1"
         strokeDasharray="3 4"
         strokeLinecap="round"
       />
 
-      {/* Route: wide transparent halo */}
+      {/* Route: pink misregistered pass, then the blue line on top */}
+      <path
+        d={routeD}
+        transform="translate(1.5 1.5)"
+        fill="none"
+        stroke={ILLUSTRATION.overprint}
+        strokeOpacity="0.55"
+        strokeWidth="2"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        strokeDasharray={totalLength}
+        strokeDashoffset={dashOffset}
+      />
       <path
         d={routeD}
         fill="none"
         stroke={ILLUSTRATION.mountain}
-        strokeWidth="4"
-        opacity="0.07"
+        strokeWidth="2"
         strokeLinecap="round"
         strokeLinejoin="round"
         strokeDasharray={totalLength}
         strokeDashoffset={dashOffset}
       />
 
-      {/* Route: sharp line with gradient */}
-      <path
-        d={routeD}
-        fill="none"
-        stroke={`url(#${id}_routeGrad)`}
-        strokeWidth="1.5"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeDasharray={totalLength}
-        strokeDashoffset={dashOffset}
+      {/* Start marker */}
+      <line
+        x1={routePoints[0][0]}
+        y1={routePoints[0][1] - 5}
+        x2={routePoints[0][0]}
+        y2={routePoints[0][1] + 5}
+        stroke={ILLUSTRATION.mountainLow}
+        strokeWidth="1"
+        opacity="0.5"
       />
 
-      {/* Anchor points */}
-      {anchorIndices.map((idx) => {
-        const anchorProg = cumLengths[idx] / totalLength
-        if (progress < anchorProg + 0.01) return null
-        const pt = routePoints[idx]
-        const fade = clamp((progress - anchorProg) * 5, 0, 0.45)
-        return (
-          <circle
-            key={idx}
-            cx={pt[0]}
-            cy={pt[1]}
-            r="1.2"
-            fill="none"
-            stroke={ILLUSTRATION.mountainLow}
-            strokeWidth="0.5"
-            opacity={fade}
-          />
-        )
-      })}
-
-      {/* Base camp triangle */}
-      <g opacity="0.4">
-        <polygon
-          points="12,170 18,170 15,163"
-          fill="none"
-          stroke={ILLUSTRATION.mountain}
-          strokeWidth="0.6"
-          strokeLinejoin="round"
-        />
-        <line x1="15" y1="170" x2="15" y2="175" stroke={ILLUSTRATION.mountain} strokeWidth="0.4" />
-      </g>
-
-      {/* Summit flag */}
+      {/* Summit flag, raised once the climber passes the top */}
       <g opacity={flagOpacity}>
-        <line x1="126" y1="27" x2="126" y2="17" stroke={ILLUSTRATION.mountain} strokeWidth="0.6" />
-        <polygon points="126,17 134,19.5 126,22" fill={ILLUSTRATION.mountain} opacity={flagFill} />
+        <line x1={summitX} y1={summitY} x2={summitX} y2={summitY - 16} stroke={ILLUSTRATION.mountainLow} strokeWidth="1" />
+        <polygon
+          points={`${summitX},${summitY - 16} ${summitX + 11},${summitY - 12.5} ${summitX},${summitY - 9}`}
+          fill={ILLUSTRATION.overprint}
+        />
       </g>
 
       {/* Climber dot */}
       {progress > 0.003 && (
         <g>
           <circle cx={climber.x} cy={climber.y} r="7" fill={withAlpha(ILLUSTRATION.mountain, 0.15)} />
-          <circle cx={climber.x} cy={climber.y} r="2.5" fill={ILLUSTRATION.mountain} />
+          <circle cx={climber.x} cy={climber.y} r="3" fill={ILLUSTRATION.mountain} />
         </g>
       )}
     </svg>
