@@ -12,6 +12,7 @@ import { Tag } from '@/components/ui/Tag'
 import { Figure } from '@/components/ui/Figure'
 import { CategoryIcon } from '@/components/ui/CategoryIcon'
 import { useTranslations } from 'next-intl'
+import { cn } from '@/lib/cn'
 import { SECTION_BG } from '@/lib/theme'
 
 const PROJECT_DETAIL_BG_COLOR = SECTION_BG.projectDetail
@@ -45,11 +46,11 @@ function ResultMeasure({ result, locale }: { result: ProjectResult; locale: Loca
   const fmt = (text: string) => formatMeasure(text, locale)
   return (
     <div className="py-5 border-b border-white/15 flex flex-col">
-      <dt className="order-2 mt-2 text-meta font-semibold tracking-caps uppercase">
+      <dt className="order-2 mt-2 text-sm font-semibold">
         {getLocalizedField(result.label, locale)}
       </dt>
       <dd className="order-1 flex flex-wrap items-baseline gap-x-2">
-        <span className="font-display font-black text-heading leading-none text-riso-pinkTitle">
+        <span className="font-display font-black text-heading leading-none text-riso-pinkTitle whitespace-nowrap">
           {fmt(result.value)}
         </span>
         {result.uncertainty && (
@@ -231,7 +232,7 @@ export default function ProjectDetailView({
                 <h2 className="pb-3 mb-2 border-b border-riso-pink text-meta font-semibold tracking-caps-wide uppercase">
                   {t('sections.results')}
                 </h2>
-                <dl className="grid sm:grid-cols-2 sm:gap-x-10">
+                <dl className={cn('grid sm:grid-cols-2 sm:gap-x-10', project.results.length === 3 && 'lg:grid-cols-3')}>
                   {project.results.map((result) => (
                     <ResultMeasure key={getLocalizedField(result.label, locale)} result={result} locale={locale} />
                   ))}

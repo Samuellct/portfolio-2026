@@ -268,8 +268,9 @@ Ces couches raster sont combinées avec des données vectorielles : contours gla
       },
       kind: 'webapp',
       results: [
-        { label: { en: 'Lidar resolution', fr: 'Résolution Lidar' }, value: '50 cm', note: { en: 'IGN Lidar HD', fr: 'IGN Lidar HD' } },
-        { label: { en: 'Route computation time', fr: 'Temps de calcul' }, value: '10-90 s' },
+        { label: { en: 'Working resolution', fr: 'Résolution de travail' }, value: '1', unit: 'm', note: { en: '0.5 m remains possible but too heavy to compute for now', fr: '0.5 m reste possible, mais trop lourd à calculer pour l\'instant' } },
+        { label: { en: 'Average computation time', fr: 'Temps de calcul moyen' }, value: '10-90', unit: 's' },
+        { label: { en: 'Largest area computed', fr: 'Surface maximale traitée' }, value: '100', unit: 'km²', note: { en: '10,000 × 10,000 px grid at 1 m', fr: 'grille de 10 000 × 10 000 px à 1 m' } },
       ],
       limits: {
         en: `The project works well on the itineraries I've tested in the French Alps, including approaches around Chamonix and the Écrins. It's now on its second major iteration, but it still only runs locally: hosting the Lidar processing and routing stack publicly at a reasonable cost remains an open problem, so development is on hold for now.`,
@@ -636,8 +637,8 @@ En suivant la méthode CLs (méthode statistique standard pour fixer des limites
       kind: 'analysis',
       results: [
         { label: { en: 'Background reduction', fr: 'Réduction du bruit de fond' }, value: '40×', note: { en: 'most signal events kept', fr: 'la plupart des événements de signal conservés' } },
-        { label: { en: 'Observed significance', fr: 'Significance observée' }, value: '0.5 σ', note: { en: 'no evidence of the X boson', fr: 'aucun signe du boson X' } },
-        { label: { en: 'Cross-section upper limit', fr: 'Limite sur la section efficace' }, value: '2.017 pb', note: { en: 'signal strength above 0.3736 excluded (CLs)', fr: 'intensité de signal au-delà de 0.3736 exclue (CLs)' } },
+        { label: { en: 'Observed significance', fr: 'Significance observée' }, value: '0.5', unit: 'σ', note: { en: 'no evidence of the X boson', fr: 'aucun signe du boson X' } },
+        { label: { en: 'Cross-section upper limit', fr: 'Limite sur la section efficace' }, value: '2.017', unit: 'pb', note: { en: 'signal strength above 0.3736 excluded (CLs)', fr: 'intensité de signal au-delà de 0.3736 exclue (CLs)' } },
       ],
       sourceOfSkills: 'academic',
       technologies: ['Python', 'NumPy', 'Matplotlib', 'Pandas', 'SciPy'],
@@ -1002,8 +1003,8 @@ J'ai consacré la majeure partie de mon temps à élaborer une stratégie de pr�
       kind: 'research',
       results: [
         { label: { en: 'Data reduction', fr: 'Réduction des données' }, value: '30×', note: { en: 'on real Run 1 data', fr: 'sur les données réelles du Run 1' } },
-        { label: { en: 'Signal efficiency', fr: 'Efficacité du signal' }, value: '57 %', note: { en: 'on simulated signal', fr: 'sur le signal simulé' } },
-        { label: { en: 'ω meson peak', fr: 'Pic du méson ω' }, value: '783 MeV', note: { en: 'reconstructed in the data', fr: 'reconstruit dans les données' } },
+        { label: { en: 'Signal efficiency', fr: 'Efficacité du signal' }, value: '57', unit: '%', note: { en: 'on simulated signal', fr: 'sur le signal simulé' } },
+        { label: { en: 'ω meson peak', fr: 'Pic du méson ω' }, value: '783', unit: 'MeV', note: { en: 'reconstructed in the data', fr: 'reconstruit dans les données' } },
       ],
       sourceOfSkills: 'internship',
       research: {
@@ -1071,9 +1072,9 @@ J'ai consacré la majeure partie de mon temps à élaborer une stratégie de pr�
       },
       kind: 'research',
       results: [
-        { label: { en: 'Signal efficiency', fr: 'Efficacité du signal' }, value: '61 %', note: { en: 'at a 60 GeV transverse momentum cut', fr: 'à une coupure de 60 GeV en impulsion transverse' } },
-        { label: { en: 'QCD background', fr: 'Bruit de fond QCD' }, value: '7 %' },
-        { label: { en: 'HL-LHC gain', fr: 'Gain HL-LHC' }, value: '+16 %', note: { en: 'additional signal events captured', fr: 'événements de signal supplémentaires captés' } },
+        { label: { en: 'Signal efficiency', fr: 'Efficacité du signal' }, value: '61', unit: '%', note: { en: 'at a 60 GeV transverse momentum cut', fr: 'à une coupure de 60 GeV en impulsion transverse' } },
+        { label: { en: 'QCD background', fr: 'Bruit de fond QCD' }, value: '7', unit: '%' },
+        { label: { en: 'HL-LHC gain', fr: 'Gain HL-LHC' }, value: '+16', unit: '%', note: { en: 'additional signal events captured', fr: 'événements de signal supplémentaires captés' } },
       ],
       sourceOfSkills: 'internship',
       research: {
