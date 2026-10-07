@@ -1,7 +1,7 @@
 'use client'
 
 import { useId, useMemo } from 'react'
-import { ILLUSTRATION, SECTION_BG } from '@/lib/theme'
+import { ILLUSTRATION } from '@/lib/theme'
 import { withAlpha } from '@/lib/color'
 
 interface MountainProfileProps {
@@ -108,12 +108,6 @@ export default function MountainProfile({ progress, className }: MountainProfile
           <stop offset="0%" stopColor={ILLUSTRATION.mountainLow} stopOpacity="0.5" />
           <stop offset="40%" stopColor={ILLUSTRATION.mountain} />
           <stop offset="100%" stopColor={ILLUSTRATION.mountainHigh} />
-        </linearGradient>
-
-        <linearGradient id={`${id}_fog`} x1="0%" y1="0%" x2="0%" y2="100%">
-          <stop offset="0%" stopColor={SECTION_BG.aboutInterests} stopOpacity="0" />
-          <stop offset="60%" stopColor={SECTION_BG.aboutInterests} stopOpacity="0" />
-          <stop offset="100%" stopColor={SECTION_BG.aboutInterests} stopOpacity="0.5" />
         </linearGradient>
 
         <radialGradient id={`${id}_summitGlow`} cx="63%" cy="14%" r="15%">
@@ -230,9 +224,6 @@ export default function MountainProfile({ progress, className }: MountainProfile
           <circle cx={climber.x} cy={climber.y} r="2.5" fill={ILLUSTRATION.mountain} />
         </g>
       )}
-
-      {/* Fog at base */}
-      <rect x="0" y="145" width="200" height="55" fill={`url(#${id}_fog)`} />
     </svg>
   )
 }

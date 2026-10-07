@@ -1,7 +1,7 @@
 'use client'
 
 import { useId, useMemo } from 'react'
-import { ILLUSTRATION, SECTION_BG } from '@/lib/theme'
+import { ILLUSTRATION } from '@/lib/theme'
 
 interface CinemaSpotlightProps {
   progress: number
@@ -77,7 +77,7 @@ export default function CinemaSpotlight({ progress, className }: CinemaSpotlight
         
         {/* Bobine Haut/Avant */}
         <g transform="translate(20, 80)">
-          <circle cx="0" cy="0" r="10" fill={SECTION_BG.aboutIntro} stroke={ILLUSTRATION.cinema} strokeWidth="1.5" />
+          <circle cx="0" cy="0" r="10" fill={ILLUSTRATION.cinemaDeep} stroke={ILLUSTRATION.cinema} strokeWidth="1.5" />
           <g transform={`rotate(${reelAngle})`}>
             <line x1="0" y1="-10" x2="0" y2="10" stroke={ILLUSTRATION.cinema} strokeWidth="1" />
             <line x1="-8.6" y1="-5" x2="8.6" y2="5" stroke={ILLUSTRATION.cinema} strokeWidth="1" />
@@ -88,7 +88,7 @@ export default function CinemaSpotlight({ progress, className }: CinemaSpotlight
 
         {/* Bobine Bas/Arrière */}
         <g transform="translate(38, 85)">
-          <circle cx="0" cy="0" r="7" fill={SECTION_BG.aboutIntro} stroke={ILLUSTRATION.cinema} strokeWidth="1.5" />
+          <circle cx="0" cy="0" r="7" fill={ILLUSTRATION.cinemaDeep} stroke={ILLUSTRATION.cinema} strokeWidth="1.5" />
           <g transform={`rotate(${-reelAngle * 1.5})`}>
             <line x1="0" y1="-7" x2="0" y2="7" stroke={ILLUSTRATION.cinema} strokeWidth="1" />
             <line x1="-6" y1="-3.5" x2="6" y2="3.5" stroke={ILLUSTRATION.cinema} strokeWidth="1" />
