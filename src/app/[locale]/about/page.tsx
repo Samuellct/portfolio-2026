@@ -151,14 +151,15 @@ export default function AboutPage() {
   const interestsSectionRef = useRef<HTMLElement>(null)
 
   // Refs pour stocker la progression MAXIMALE atteinte
-  const introMaxProgressRef = useRef(0)
+  // the intro is the first screen: shown whole, never pinned
+  const introMaxProgressRef = useRef(1)
   const experienceMaxProgressRef = useRef(0)
   const stackMaxProgressRef = useRef(0)
   const educationMaxProgressRef = useRef(0)
   const interestsMaxProgressRef = useRef(0)
 
   // Progress states for animations
-  const [introProgress, setIntroProgress] = useState(0)
+  const [, setIntroProgress] = useState(1)
   const [experienceProgress, setExperienceProgress] = useState(0)
   const [stackProgress, setStackProgress] = useState(0)
   const [educationProgress, setEducationProgress] = useState(0)
@@ -170,7 +171,7 @@ export default function AboutPage() {
   const [railProgress, setRailProgress] = useState(0)
 
   // One-way pins: which sections have been played, and their live pin triggers
-  const releasedRef = useRef<boolean[]>(SECTION_IDS.map(() => false))
+  const releasedRef = useRef<boolean[]>(SECTION_IDS.map((_, i) => i === 0))
   const pinTriggersRef = useRef<(ScrollTrigger | null)[]>(SECTION_IDS.map(() => null))
 
   const { lenis } = useSmoothScroll()
@@ -418,13 +419,6 @@ export default function AboutPage() {
     }
   }, [prefersReducedMotion, layoutVersion, sectionRefs, maxProgressRefs, progressSetters, releasePins])
 
-  // ============================================
-  // INTRO SECTION CALCULATIONS
-  // ============================================
-  const introTextOpacity = Math.max(0, Math.min(1, (introProgress - 0.1) / 0.25))
-  const introTextY = Math.max(0, 30 - introProgress * 120)
-  const goalsOpacity = Math.max(0, Math.min(1, (introProgress - 0.35) / 0.25))
-  const goalsY = Math.max(0, 30 - (introProgress - 0.35) * 120)
   
   // ============================================
   // EXPERIENCE SECTION CALCULATIONS
@@ -568,26 +562,14 @@ export default function AboutPage() {
             </div>
             
             {/* Intro text */}
-            <div 
-              className="mb-12"
-              style={{ 
-                opacity: introTextOpacity,
-                transform: `translateY(${introTextY}px)`,
-              }}
-            >
+            <div className="mb-12">
               <p className="text-lg md:text-xl text-muted leading-relaxed">
                 {tAbout('full.intro')}
               </p>
             </div>
             
             {/* Goals */}
-            <div 
-              className="mb-12"
-              style={{ 
-                opacity: goalsOpacity,
-                transform: `translateY(${goalsY}px)`,
-              }}
-            >
+            <div className="mb-12">
               <h2 className="text-xs tracking-caps-wide uppercase text-accent mb-4">
                 {tAbout('full.goalsTitle')}
               </h2>
