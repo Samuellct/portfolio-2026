@@ -5,6 +5,23 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.20.0](https://github.com/Samuellct/portfolio-2026/compare/v4.19.0...v4.20.0) (2026-10-07)
+
+### Ajouté
+
+* close project pages with a contact and CV call to action ([0879a5f](https://github.com/Samuellct/portfolio-2026/commit/0879a5fcc815d3882d2f94a5a84510cf10a3f2ba))
+* let project results carry an uncertainty and a baseline ([bfba716](https://github.com/Samuellct/portfolio-2026/commit/bfba71675ca1af9aaddfeb86f2de41fe79264edc))
+* render figures uncropped with captions and secondary project links ([d043912](https://github.com/Samuellct/portfolio-2026/commit/d043912279cff2c31d733b2cb7b06001a5124092))
+
+### Corrigé
+
+* keep the category filter when returning from a project page ([960214d](https://github.com/Samuellct/portfolio-2026/commit/960214dc0b6b1095e789cf0a333ed3e50b224bec))
+* order projects by the start of their period ([2eb8642](https://github.com/Samuellct/portfolio-2026/commit/2eb8642ed21e3f13645ddd3492100a005187e3ba))
+* put the narrative before the metadata on mobile project pages ([10c5413](https://github.com/Samuellct/portfolio-2026/commit/10c54132834817391d78d594db5ce7d05c8b9149))
+* sharpen the AlpineRoute hook and gloss its acronyms ([3624f0e](https://github.com/Samuellct/portfolio-2026/commit/3624f0e0c471563665cc4a07cc0a601755c684d7))
+* show AlpineRoute measures and keep result values on one line ([6a5e9e5](https://github.com/Samuellct/portfolio-2026/commit/6a5e9e596a79433a75ace28a6d88408c19320187))
+* show full short descriptions and a visible action on project cards ([35bed45](https://github.com/Samuellct/portfolio-2026/commit/35bed451ff30f133e46f4ccca777f325fabcd51a))
+
 ## [4.19.0](https://github.com/Samuellct/portfolio-2026/compare/v4.18.0...v4.19.0) (2026-10-06)
 
 ### Ajouté
