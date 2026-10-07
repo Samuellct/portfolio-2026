@@ -5,7 +5,7 @@ import TransitionLink from '@/components/navigation/TransitionLink'
 import { motion, AnimatePresence } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { ArrowLeft, ArrowRight, Download, Github, Linkedin } from 'lucide-react'
+import { ArrowRight, Download, Github, Linkedin } from 'lucide-react'
 import { extractTechStats, TechStats, isLightColor } from '@/lib/techStats'
 import { getProjectsByCategory, getLocalizedField, type Locale } from '@/lib/projects'
 import MountainProfile from '@/components/about/MountainProfile'
@@ -73,7 +73,6 @@ function GhostTag({ tech }: { tech: TechStats }) {
 // ============================================
 export default function AboutPage() {
   const tAbout = useTranslations('about')
-  const tCommon = useTranslations('common')
   const tMenu = useTranslations('menu')
   const tContact = useTranslations('contact')
   const locale = useLocale() as Locale
@@ -461,33 +460,6 @@ export default function AboutPage() {
   
   return (
     <>
-      {/* ============================================ */}
-      {/* HEADER */}
-      {/* z-index = 100 pour être au-dessus des sections pinnées */}
-      {/* ============================================ */}
-      <header className="scheme-night fixed top-0 left-0 right-0 z-[100] pt-6 pb-4 px-6 md:px-12 lg:px-16 pointer-events-none">
-        <div className="flex justify-between items-center">
-          {/* Espace pour le logo SL de la NavBar (à gauche) */}
-          <div className="w-20" />
-          
-          {/* Bouton Back */}
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.4 }}
-            className="absolute left-20 md:left-24 pointer-events-auto"
-          >
-            <TransitionLink
-              href="/"
-              className="tap-target inline-flex items-center gap-2 text-muted hover:text-white transition-colors group"
-            >
-              <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1" />
-              <span className="text-sm tracking-label uppercase">{tCommon('back')}</span>
-            </TransitionLink>
-          </motion.div>
-        </div>
-      </header>
-      
       {/* ============================================ */}
       {/* SCROLL INDICATOR */}
       {/* ============================================ */}
