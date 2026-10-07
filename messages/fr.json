@@ -145,6 +145,7 @@
     "searchPlaceholder": "Rechercher...",
     "breadcrumbLabel": "Fil d'Ariane",
     "facts": {"period": "Période", "category": "Catégorie", "location": "Lieu"},
+    "onThisPage": "Sur cette page",
     "resultBaseline": "contre {value}, {label}",
     "sections": {
       "context": "Contexte",

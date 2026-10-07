@@ -3,7 +3,7 @@
 import { useEffect, useState } from 'react'
 import TransitionLink from '@/components/navigation/TransitionLink'
 import { motion } from 'framer-motion'
-import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react'
+import { ArrowLeft, ArrowRight, Download, ExternalLink } from 'lucide-react'
 import { FaGithub } from 'react-icons/fa'
 import { getLocalizedField, formatMeasure, CategoryData, Locale, ProjectData, PROJECTS_FILTER_KEY } from '@/lib/projects'
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer'
@@ -91,6 +91,8 @@ export default function ProjectDetailView({
 }) {
   const t = useTranslations('projects')
   const tNav = useTranslations('nav')
+  const tContact = useTranslations('contact')
+  const tAbout = useTranslations('about')
   const leadMedia = project.media?.[0]
 
   useEffect(() => {
@@ -105,6 +107,17 @@ export default function ProjectDetailView({
       if (filter && filter !== 'all') setProjectsHref(`/projects?category=${filter}`)
     } catch {}
   }, [])
+
+  const narrative = project.sections
+    ? (
+        [
+          ['problem', project.sections.problem],
+          ['approach', project.sections.approach],
+          ['whatIBuilt', project.sections.whatIBuilt],
+          ['limits', project.limits],
+        ] as const
+      ).filter(([, content]) => content)
+    : []
 
   const location = getLocalizedField(project.location, locale)
   const lab = project.research ? getLocalizedField(project.research.lab, locale) : undefined
@@ -225,6 +238,21 @@ export default function ProjectDetailView({
                 {getLocalizedField(project.sections.context, locale)}
               </p>
             )}
+            {/* In-page anchors for fiches with several narrative sections (desktop, where the frame stays in view) */}
+            {narrative.length >= 2 && (
+              <nav aria-label={t('onThisPage')} className="hidden lg:block mt-6 pt-5 border-t border-white/15">
+                <p className="mb-3 text-sm font-semibold">{t('onThisPage')}</p>
+                <ul className="space-y-1 text-sm">
+                  {[...(project.results?.length ? ['results'] : []), ...narrative.map(([key]) => key)].map((key) => (
+                    <li key={key}>
+                      <a href={`#section-${key}`} className="text-muted hover:text-white underline-offset-4 hover:underline transition-colors">
+                        {t(`sections.${key}`)}
+                      </a>
+                    </li>
+                  ))}
+                </ul>
+              </nav>
+            )}
           </aside>
 
           {/* Narrative column: results, lead media, sections */}
@@ -236,7 +264,8 @@ export default function ProjectDetailView({
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="mb-12"
+                id="section-results"
+                className="mb-12 scroll-mt-28"
               >
                 <h2 className="pb-3 mb-2 border-b border-riso-pink text-meta font-semibold tracking-caps-wide uppercase">
                   {t('sections.results')}
@@ -288,18 +317,13 @@ export default function ProjectDetailView({
                 Limits moved here, after What I built, closing the narrative on an honest note. */}
             {project.sections ? (
               <div className="space-y-10">
-                {(
-                  [
-                    ['problem', project.sections.problem],
-                    ['approach', project.sections.approach],
-                    ['whatIBuilt', project.sections.whatIBuilt],
-                    ['limits', project.limits],
-                  ] as const
-                ).map(
+                {narrative.map(
                   ([key, content], index) =>
                     content && (
                       <motion.section
                         key={key}
+                        id={`section-${key}`}
+                        className="scroll-mt-28"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 + index * 0.05, duration: 0.6 }}
@@ -338,6 +362,26 @@ export default function ProjectDetailView({
           transition={{ duration: 0.6 }}
           className="mt-20 pt-12 border-t border-white/10"
         >
+          {/* UX-08: the fiche closes on the two actions, before moving to other projects */}
+          <div className="flex flex-wrap items-center gap-4 mb-16">
+            <TransitionLink
+              href="/contact"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-riso-pink text-snow text-sm font-semibold tracking-caps uppercase transition-colors hover:bg-white hover:text-black"
+            >
+              {tContact('preview.cta')}
+              <ArrowRight size={16} aria-hidden="true" />
+            </TransitionLink>
+            <a
+              href="/Resume.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white text-sm font-semibold tracking-caps uppercase transition-colors hover:bg-white hover:text-black"
+            >
+              <Download size={16} aria-hidden="true" />
+              {tAbout('downloadCV')}
+            </a>
+          </div>
+
           {(previousProject || nextProject) && (
             <div className="flex flex-col sm:flex-row items-stretch justify-between gap-6 mb-16">
               {previousProject && (

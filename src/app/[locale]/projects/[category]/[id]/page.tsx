@@ -34,7 +34,9 @@ export default async function ProjectDetailPage({ params }: Props) {
       : null
   const nextProject =
     currentIndex >= 0 ? sortedProjects[(currentIndex + 1) % sortedProjects.length] : null
-  const relatedProjects = getRelatedProjects(project, 3)
+  // UX-08: related projects never repeat the previous / next links
+  const neighbours = [previousProject, nextProject].filter((p): p is NonNullable<typeof p> => p !== null)
+  const relatedProjects = getRelatedProjects(project, 3, neighbours)
 
   return (
     <ProjectDetailView

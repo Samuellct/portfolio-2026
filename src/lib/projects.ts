@@ -1154,9 +1154,14 @@ export const getProjectsSortedByDate = (): ProjectData[] => {
 // Up to `max` related projects for the "connexes" block on a project detail
 // page (AUDIT-019): same category first, then most shared technologies,
 // ties broken by most recent. Excludes the project itself.
-export const getRelatedProjects = (project: ProjectData, max: number = 3): ProjectData[] => {
+export const getRelatedProjects = (
+  project: ProjectData,
+  max: number = 3,
+  exclude: ProjectData[] = []
+): ProjectData[] => {
+  const skip = [project, ...exclude]
   return getAllProjects()
-    .filter((p) => !(p.category === project.category && p.id === project.id))
+    .filter((p) => !skip.some((s) => s.category === p.category && s.id === p.id))
     .map((p) => ({
       project: p,
       sameCategory: p.category === project.category,
