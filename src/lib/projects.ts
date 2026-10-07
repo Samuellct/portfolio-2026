@@ -16,6 +16,15 @@ export function getLocalizedField(
 // sessionStorage key: the listing's active filter, read back by a project page (UX-13)
 export const PROJECTS_FILTER_KEY = 'projects-filter'
 
+// Listing cards show only the years of a month-precise period (translated ones,
+// e.g. "July - October 2026" -> "2026"); the project page keeps the full period.
+export function getCardPeriod(period: BilingualText | string, locale: Locale): string {
+  const full = getLocalizedField(period, locale)
+  if (typeof period === 'string') return full
+  const years = [...new Set(full.match(/\d{4}/g) ?? [])]
+  return years.length ? years.join(' - ') : full
+}
+
 // Measures are written with a decimal point; French reads a decimal comma.
 export function formatMeasure(text: string, locale: Locale): string {
   return locale === 'fr' ? text.replace(/(\d)\.(\d)/g, '$1,$2') : text

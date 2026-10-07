@@ -8,14 +8,14 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowLeft, ArrowRight, Search } from 'lucide-react'
 import Image from 'next/image'
-import { getProjectsSortedByDate, getLocalizedField, Locale, projectCategories, ProjectData, PROJECTS_FILTER_KEY } from '@/lib/projects'
+import { getProjectsSortedByDate, getLocalizedField, getCardPeriod, Locale, projectCategories, ProjectData, PROJECTS_FILTER_KEY } from '@/lib/projects'
 import { useTranslations, useLocale } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { CATEGORY, SECTION_BG } from '@/lib/theme'
 import { Button } from '@/components/ui/Button'
-import { Badge } from '@/components/ui/Badge'
 import { Tag } from '@/components/ui/Tag'
 import { CategoryIcon } from '@/components/ui/CategoryIcon'
+import { cn } from '@/lib/cn'
 
 // Label tint per category; unknown categories fall back to the personal tint.
 const categoryAccent = (category: string) =>
@@ -46,6 +46,7 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
   const [imageFailed, setImageFailed] = useState(false)
 
   const categoryColor = categoryAccent(project.category)
+  const statusKey = project.status === 'in-progress' ? 'inProgress' : project.status === 'paused' ? 'paused' : null
 
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
@@ -142,18 +143,6 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
             transition={{ duration: 0.4 }}
           />
           
-          {/* Status badge */}
-          {project.status === 'in-progress' && (
-            <Badge status="in-progress" tone="card" className="absolute top-3 right-3">
-              {t('status.inProgress')}
-            </Badge>
-          )}
-          {project.status === 'paused' && (
-            <Badge status="paused" tone="card" className="absolute top-3 right-3">
-              {t('status.paused')}
-            </Badge>
-          )}
-          
           {/* hover */}
           <motion.div
             className="absolute inset-3 border border-white/20 pointer-events-none"
@@ -168,16 +157,17 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
         
         {/* Content */}
         <div className="space-y-2">
-          <div className="flex items-center gap-3 text-meta tracking-caps-wide uppercase text-muted">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-meta tracking-caps-wide uppercase text-muted [&>span]:whitespace-nowrap">
             <span className="inline-flex items-center gap-1.5" style={{ color: categoryAccent(project.category) }}>
               <CategoryIcon category={project.category} />
               {t(`categories.${project.category}`)}
             </span>
-            <span>•</span>
-            <span>{getLocalizedField(project.period, locale)}</span>
+            <span aria-hidden="true">•</span>
+            <span>{getCardPeriod(project.period, locale)}</span>
           </div>
-          
-          <h3 className="font-body font-semibold text-xl md:text-2xl min-h-[3.5rem] md:min-h-[4rem] group-hover:text-accent transition-colors duration-300">
+
+          {/* Pink title at bold weight: the one focal point of the card (DEC-14m) */}
+          <h3 className="font-body font-bold text-xl md:text-2xl text-riso-pinkTitle min-h-[3.5rem] md:min-h-[4rem] group-hover:text-accent transition-colors duration-300">
             {getLocalizedField(project.title, locale)}
           </h3>
 
@@ -190,23 +180,27 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
             )}
           </div>
 
-          <p className="text-sm text-muted leading-relaxed line-clamp-2 text-justify">
+          <p className="text-sm text-muted leading-relaxed">
             {getLocalizedField(project.description, locale)}
           </p>
           
-          {/* View link */}
-          <motion.div
-            className="flex items-center gap-2 pt-2 text-accent"
-            initial={{ opacity: 0, x: -10 }}
-            animate={{ 
-              opacity: isHovered ? 1 : 0,
-              x: isHovered ? 0 : -10
-            }}
-            transition={{ duration: 0.3 }}
-          >
-            <span className="text-xs tracking-caps uppercase">{t('viewProject')}</span>
-            <ArrowRight size={12} />
-          </motion.div>
+          {/* View link, visible without hover (UI-01); the status closes the line, a live project on a yellow pass */}
+          <div className="flex items-center justify-between gap-4 pt-2">
+            <span className="flex items-center gap-2 text-accent">
+              <span className="text-xs tracking-caps uppercase">{t('viewProject')}</span>
+              <ArrowRight size={12} aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1" />
+            </span>
+            {statusKey && (
+              <span
+                className={cn(
+                  'text-meta tracking-caps-wide uppercase whitespace-nowrap',
+                  statusKey === 'inProgress' ? 'px-1.5 py-0.5 bg-riso-yellow text-white' : 'text-muted'
+                )}
+              >
+                {t(`status.${statusKey}`)}
+              </span>
+            )}
+          </div>
         </div>
       </TransitionLink>
     </motion.div>
