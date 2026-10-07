@@ -28,6 +28,8 @@ const bgTexts = ['ABOUT', 'EXPERIENCE', 'STACK', 'EDUCATION', 'INTERESTS']
 // its section has been played to the end, the pin is removed and the scroll
 // position compensated, so scrolling back up never pins again (DEC-15a).
 const PIN_LENGTH = 1300
+// Pins on desktop only; below, sections are static and fade in once (DEC-15b)
+const DESKTOP_QUERY = '(min-width: 1024px)'
 const SECTION_IDS = ['about-intro', 'about-experience', 'about-stack', 'about-education', 'about-interests']
 
 // Research internships, most recent first (data from projects.ts)
@@ -70,6 +72,14 @@ export default function AboutPage() {
   const tMenu = useTranslations('menu')
   const locale = useLocale() as Locale
   const prefersReducedMotion = useReducedMotion()
+  // bumped when the viewport crosses the desktop breakpoint, to rebuild the triggers
+  const [layoutVersion, setLayoutVersion] = useState(0)
+  useEffect(() => {
+    const mql = window.matchMedia(DESKTOP_QUERY)
+    const onChange = () => setLayoutVersion((v) => v + 1)
+    mql.addEventListener('change', onChange)
+    return () => mql.removeEventListener('change', onChange)
+  }, [])
 
   const education = [
     {
@@ -253,9 +263,10 @@ export default function AboutPage() {
   useEffect(() => {
     if (!pageRef.current) return
 
-    // Reduced motion: no pins, no scrub, no parallax. Reveal every pinned
-    // section at full progress so all content is visible, page scrolls natively.
-    if (prefersReducedMotion) {
+    // Reduced motion: no pins, no scrub, no parallax. Small screens: no pins.
+    // Either way every section is shown at full progress and scrolls natively.
+    const isDesktop = window.matchMedia(DESKTOP_QUERY).matches
+    if (prefersReducedMotion || !isDesktop) {
       SECTION_IDS.forEach((_, i) => {
         releasedRef.current[i] = true
         maxProgressRefs[i].current = 1
@@ -335,6 +346,22 @@ export default function AboutPage() {
         )
       }
       
+      // Small screens: each section fades in once as it enters the viewport
+      if (!isDesktop) {
+        sectionRefs.forEach((ref) => {
+          const content = ref.current?.firstElementChild
+          if (!content) return
+          gsap.from(content, {
+            opacity: 0,
+            y: 24,
+            duration: 0.5,
+            ease: 'power2.out',
+            scrollTrigger: { trigger: ref.current, start: 'top 85%', once: true },
+          })
+        })
+        return
+      }
+
       // ========================================
       // 2. ONE-WAY SECTION PINS
       // ========================================
@@ -363,7 +390,7 @@ export default function AboutPage() {
       ctx.revert()
       pinTriggersRef.current = SECTION_IDS.map(() => null)
     }
-  }, [prefersReducedMotion, sectionRefs, maxProgressRefs, progressSetters, releasePins])
+  }, [prefersReducedMotion, layoutVersion, sectionRefs, maxProgressRefs, progressSetters, releasePins])
 
   // ============================================
   // INTRO SECTION CALCULATIONS
@@ -530,7 +557,7 @@ export default function AboutPage() {
           ref={introSectionRef}
           id={SECTION_IDS[0]}
           tabIndex={-1}
-          className="min-h-screen flex items-center outline-none px-6 md:px-12 lg:px-16 py-24"
+          className="min-h-[100svh] lg:min-h-screen flex items-center outline-none px-6 md:px-12 lg:px-16 pt-28 pb-16 lg:py-24"
         >
           <div className="max-w-4xl mx-auto w-full">
             {/* Title */}
@@ -620,7 +647,7 @@ export default function AboutPage() {
           ref={experienceSectionRef}
           id={SECTION_IDS[1]}
           tabIndex={-1}
-          className="min-h-screen flex items-center outline-none px-6 md:px-12 lg:px-16 py-24"
+          className="lg:min-h-screen flex items-center outline-none px-6 md:px-12 lg:px-16 py-16 lg:py-24"
         >
           <div className="max-w-5xl mx-auto w-full">
             {/* Title */}
@@ -703,7 +730,7 @@ export default function AboutPage() {
           ref={stackSectionRef}
           id={SECTION_IDS[2]}
           tabIndex={-1}
-          className="min-h-screen flex items-center outline-none px-6 md:px-12 lg:px-16 py-24"
+          className="lg:min-h-screen flex items-center outline-none px-6 md:px-12 lg:px-16 py-16 lg:py-24"
         >
           <div className="max-w-5xl mx-auto w-full">
             {/* Titre section */}
@@ -795,7 +822,7 @@ export default function AboutPage() {
           ref={educationSectionRef}
           id={SECTION_IDS[3]}
           tabIndex={-1}
-          className="min-h-screen flex items-center outline-none px-6 md:px-12 lg:px-16 py-24"
+          className="lg:min-h-screen flex items-center outline-none px-6 md:px-12 lg:px-16 py-16 lg:py-24"
         >
           <div className="max-w-5xl mx-auto w-full">
             {/* Title */}
@@ -886,7 +913,7 @@ export default function AboutPage() {
           ref={interestsSectionRef}
           id={SECTION_IDS[4]}
           tabIndex={-1}
-          className="min-h-screen flex items-center outline-none px-6 md:px-12 lg:px-16 py-24"
+          className="lg:min-h-screen flex items-center outline-none px-6 md:px-12 lg:px-16 py-16 lg:py-24"
         >
           <div className="max-w-6xl mx-auto w-full">
             {/* Title */}
