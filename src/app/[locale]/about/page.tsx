@@ -368,7 +368,6 @@ export default function AboutPage() {
   // ============================================
   // INTRO SECTION CALCULATIONS
   // ============================================
-  const introTitleOpacity = 1
   const introTextOpacity = Math.max(0, Math.min(1, (introProgress - 0.1) / 0.25))
   const introTextY = Math.max(0, 30 - introProgress * 120)
   const goalsOpacity = Math.max(0, Math.min(1, (introProgress - 0.35) / 0.25))
@@ -379,7 +378,6 @@ export default function AboutPage() {
   // ============================================
   // EXPERIENCE SECTION CALCULATIONS
   // ============================================
-  const expTitleOpacity = Math.min(1, experienceProgress * 10)
   const expIntroOpacity = Math.max(0, Math.min(1, (experienceProgress - 0.1) / 0.2))
   const expItemProgress = internships.map((_, i) =>
     Math.max(0, Math.min(1, (experienceProgress - 0.3 - i * 0.25) / 0.25))
@@ -388,8 +386,7 @@ export default function AboutPage() {
   // ============================================
   // STACK SECTION CALCULATIONS
   // ============================================
-  const stackTitleOpacity = Math.max(0, Math.min(1, stackProgress / 0.1))
-  const stackSubtitleOpacity = Math.max(0, Math.min(1, (stackProgress - 0.1) / 0.1))
+  const stackDescriptionOpacity = Math.max(0, Math.min(1, stackProgress / 0.2))
   const barContainerOpacity = Math.max(0, Math.min(1, (stackProgress - 0.2) / 0.1))
   const barProgress = Math.max(0, Math.min(1, (stackProgress - 0.3) / 0.4))
   const toolkitOpacity = Math.max(0, Math.min(1, (stackProgress - 0.7) / 0.2))
@@ -398,7 +395,6 @@ export default function AboutPage() {
   // ============================================
   // EDUCATION SECTION CALCULATIONS
   // ============================================
-  const eduTitleOpacity = Math.min(1, educationProgress * 10)
   const lineProgress = Math.max(0, Math.min(1, (educationProgress - 0.1) / 0.6))
   const item1Progress = Math.max(0, Math.min(1, (lineProgress - 0.05) / 0.25))
   const item2Progress = Math.max(0, Math.min(1, (lineProgress - 0.35) / 0.25))
@@ -407,7 +403,6 @@ export default function AboutPage() {
   // ============================================
   // INTERESTS SECTION CALCULATIONS
   // ============================================
-  const interestsTitleOpacity = Math.min(1, interestsProgress * 10)
   const interest1Progress = Math.max(0, Math.min(1, (interestsProgress - 0.15) / 0.25))
   const interest2Progress = Math.max(0, Math.min(1, (interestsProgress - 0.4) / 0.25))
   const interest3Progress = Math.max(0, Math.min(1, (interestsProgress - 0.65) / 0.25))
@@ -539,7 +534,7 @@ export default function AboutPage() {
         >
           <div className="max-w-4xl mx-auto w-full">
             {/* Title */}
-            <div style={{ opacity: introTitleOpacity }}>
+            <div>
               <div className="section-label text-accent mb-4">
                 {tAbout('sectionLabel')}
               </div>
@@ -629,7 +624,7 @@ export default function AboutPage() {
         >
           <div className="max-w-5xl mx-auto w-full">
             {/* Title */}
-            <div className="mb-8" style={{ opacity: expTitleOpacity }}>
+            <div className="mb-8">
               <div className="section-label text-accent mb-4">
                 {tAbout('experience.sectionLabel')}
               </div>
@@ -712,24 +707,18 @@ export default function AboutPage() {
         >
           <div className="max-w-5xl mx-auto w-full">
             {/* Titre section */}
-            <div 
-              className="mb-4"
-              style={{ opacity: stackTitleOpacity }}
-            >
+            <div className="mb-4">
               <div className="section-label text-accent mb-4">
                 {tAbout('stack.sectionLabel')}
               </div>
             </div>
             
             {/* Sous-titre + description */}
-            <div 
-              className="mb-16"
-              style={{ opacity: stackSubtitleOpacity }}
-            >
+            <div className="mb-16">
               <h2 className="font-display uppercase font-black text-heading leading-display-snug tracking-wide mb-4">
                 {tAbout('stack.title')}
               </h2>
-              <p className="text-muted max-w-xl">
+              <p className="text-muted max-w-xl" style={{ opacity: stackDescriptionOpacity }}>
                 {tAbout('stack.description')}
               </p>
             </div>
@@ -810,10 +799,7 @@ export default function AboutPage() {
         >
           <div className="max-w-5xl mx-auto w-full">
             {/* Title */}
-            <div 
-              className="mb-12 text-center"
-              style={{ opacity: eduTitleOpacity }}
-            >
+            <div className="mb-12 text-center">
               <div className="section-label text-accent justify-center mb-4">
                 {tAbout('education.sectionLabel')}
               </div>
@@ -904,10 +890,7 @@ export default function AboutPage() {
         >
           <div className="max-w-6xl mx-auto w-full">
             {/* Title */}
-            <div 
-              className="mb-16"
-              style={{ opacity: interestsTitleOpacity }}
-            >
+            <div className="mb-16">
               <div className="section-label text-accent mb-4">
                 {tAbout('interests.sectionLabel')}
               </div>
