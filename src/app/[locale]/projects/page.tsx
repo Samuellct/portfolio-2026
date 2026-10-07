@@ -8,7 +8,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowLeft, ArrowRight, Search } from 'lucide-react'
 import Image from 'next/image'
-import { getProjectsSortedByDate, getLocalizedField, Locale, projectCategories, ProjectData } from '@/lib/projects'
+import { getProjectsSortedByDate, getLocalizedField, Locale, projectCategories, ProjectData, PROJECTS_FILTER_KEY } from '@/lib/projects'
 import { useTranslations, useLocale } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { CATEGORY, SECTION_BG } from '@/lib/theme'
@@ -239,6 +239,13 @@ export default function ProjectsPage() {
   const prefersReducedMotion = useReducedMotion()
   const [activeFilter, setActiveFilter] = useState<string>('all')
   const [searchQuery, setSearchQuery] = useState('')
+
+  // Remember the filter so a project page can link back to it (UX-13)
+  useEffect(() => {
+    try {
+      sessionStorage.setItem(PROJECTS_FILTER_KEY, activeFilter)
+    } catch {}
+  }, [activeFilter])
   // Chronological order (newest first), deliberately distinct from the
   // featured-first order of the homepage preview (AUDIT-009). Shared with the
   // project detail page's previous/next navigation (AUDIT-019).

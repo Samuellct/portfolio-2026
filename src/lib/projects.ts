@@ -13,6 +13,9 @@ export function getLocalizedField(
   return field[locale] || field.en
 }
 
+// sessionStorage key: the listing's active filter, read back by a project page (UX-13)
+export const PROJECTS_FILTER_KEY = 'projects-filter'
+
 // Measures are written with a decimal point; French reads a decimal comma.
 export function formatMeasure(text: string, locale: Locale): string {
   return locale === 'fr' ? text.replace(/(\d)\.(\d)/g, '$1,$2') : text

@@ -1,11 +1,11 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import TransitionLink from '@/components/navigation/TransitionLink'
 import { motion } from 'framer-motion'
 import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react'
 import { FaGithub } from 'react-icons/fa'
-import { getLocalizedField, formatMeasure, CategoryData, Locale, ProjectData } from '@/lib/projects'
+import { getLocalizedField, formatMeasure, CategoryData, Locale, ProjectData, PROJECTS_FILTER_KEY } from '@/lib/projects'
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer'
 import { Badge } from '@/components/ui/Badge'
 import { Tag } from '@/components/ui/Tag'
@@ -97,6 +97,15 @@ export default function ProjectDetailView({
     window.scrollTo(0, 0)
   }, [project.id])
 
+  // UX-13: "Projects" returns to the listing with the filter the visitor left it on
+  const [projectsHref, setProjectsHref] = useState('/projects')
+  useEffect(() => {
+    try {
+      const filter = sessionStorage.getItem(PROJECTS_FILTER_KEY)
+      if (filter && filter !== 'all') setProjectsHref(`/projects?category=${filter}`)
+    } catch {}
+  }, [])
+
   const location = getLocalizedField(project.location, locale)
   const lab = project.research ? getLocalizedField(project.research.lab, locale) : undefined
   // Facts of the context frame. "Personal project" repeats the category, and a
@@ -132,7 +141,7 @@ export default function ProjectDetailView({
           <nav aria-label={t('breadcrumbLabel')} className="mb-5">
             <ol className="flex flex-wrap items-center gap-x-2 text-sm text-muted">
               <li>
-                <TransitionLink href="/projects" className="tap-target inline-flex items-center hover:text-white transition-colors">
+                <TransitionLink href={projectsHref} className="tap-target inline-flex items-center hover:text-white transition-colors">
                   {tNav('projects')}
                 </TransitionLink>
               </li>
