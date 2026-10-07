@@ -30,6 +30,11 @@ const bgTexts = ['ABOUT', 'EXPERIENCE', 'STACK', 'EDUCATION', 'INTERESTS']
 const PIN_LENGTH = 1300
 // Pins on desktop only; below, sections are static and fade in once (DEC-15b)
 const DESKTOP_QUERY = '(min-width: 1024px)'
+// Riso pills, same classes as the project page end block (DEC-15e)
+const PILL_PRIMARY =
+  'inline-flex items-center gap-2 px-6 py-3 rounded-full bg-riso-pink text-snow text-sm font-semibold tracking-caps uppercase transition-colors hover:bg-white hover:text-black'
+const PILL_OUTLINE =
+  'inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white text-sm font-semibold tracking-caps uppercase transition-colors hover:bg-white hover:text-black'
 const SECTION_IDS = ['about-intro', 'about-experience', 'about-stack', 'about-education', 'about-interests']
 
 // Research internships, most recent first (data from projects.ts)
@@ -399,8 +404,6 @@ export default function AboutPage() {
   const introTextY = Math.max(0, 30 - introProgress * 120)
   const goalsOpacity = Math.max(0, Math.min(1, (introProgress - 0.35) / 0.25))
   const goalsY = Math.max(0, 30 - (introProgress - 0.35) * 120)
-  const buttonsOpacity = Math.max(0, Math.min(1, (introProgress - 0.6) / 0.25))
-  const buttonsY = Math.max(0, 40 - (introProgress - 0.6) * 160)
   
   // ============================================
   // EXPERIENCE SECTION CALCULATIONS
@@ -599,42 +602,19 @@ export default function AboutPage() {
               </p>
             </div>
             
-            {/* Buttons */}
-            <div 
-              className="flex flex-wrap justify-center gap-4"
-              style={{ 
-                opacity: buttonsOpacity,
-                transform: `translateY(${buttonsY}px)`,
-              }}
-            >
-              <a
-                href="/Resume.pdf"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center justify-center gap-3 px-6 py-3 rounded-full bg-white/[0.03] border border-white/10 hover:border-accent-line/50 hover:bg-accent-line/10 transition-all duration-300"
-              >
-                <Download size={18} className="text-accent" />
-                <span className="text-sm">{tAbout('downloadCV')}</span>
+            {/* Buttons: visible from the start, outside the pin animation */}
+            <div className="flex flex-wrap gap-4">
+              <a href="/Resume.pdf" target="_blank" rel="noopener noreferrer" className={PILL_PRIMARY}>
+                <Download size={16} aria-hidden="true" />
+                {tAbout('downloadCV')}
               </a>
-              
-              <a
-                href="https://github.com/Samuellct"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center justify-center gap-3 px-6 py-3 rounded-full bg-white/[0.03] border border-white/10 hover:border-white/30 hover:bg-white/10 transition-all duration-300"
-              >
-                <Github size={18} />
-                <span className="text-sm">{tMenu('github')}</span>
+              <a href="https://github.com/Samuellct" target="_blank" rel="noopener noreferrer" className={PILL_OUTLINE}>
+                <Github size={16} aria-hidden="true" />
+                {tMenu('github')}
               </a>
-              
-              <a
-                href="https://www.linkedin.com/in/samuel-lecomte37/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group flex items-center justify-center gap-3 px-6 py-3 rounded-full bg-white/[0.03] border border-white/10 hover:border-brand-linkedin/50 hover:bg-brand-linkedin/10 transition-all duration-300"
-              >
-                <Linkedin size={18} className="text-brand-linkedin" />
-                <span className="text-sm">{tMenu('linkedin')}</span>
+              <a href="https://www.linkedin.com/in/samuel-lecomte37/" target="_blank" rel="noopener noreferrer" className={PILL_OUTLINE}>
+                <Linkedin size={16} aria-hidden="true" />
+                {tMenu('linkedin')}
               </a>
             </div>
           </div>
