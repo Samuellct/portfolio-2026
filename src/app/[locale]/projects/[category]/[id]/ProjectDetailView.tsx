@@ -5,7 +5,7 @@ import TransitionLink from '@/components/navigation/TransitionLink'
 import { motion } from 'framer-motion'
 import { ArrowLeft, ArrowRight, ExternalLink, Calendar, MapPin, Building2 } from 'lucide-react'
 import { FaGithub } from 'react-icons/fa'
-import { getLocalizedField, CategoryData, Locale, ProjectData } from '@/lib/projects'
+import { getLocalizedField, formatMeasure, CategoryData, Locale, ProjectData } from '@/lib/projects'
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer'
 import { Badge } from '@/components/ui/Badge'
 import { Tag } from '@/components/ui/Tag'
@@ -32,6 +32,43 @@ function RelatedProjectCard({ project, locale }: { project: ProjectData; locale:
         {getLocalizedField(project.title, locale)}
       </h3>
     </TransitionLink>
+  )
+}
+
+// ============================================
+// One measured result: value (± uncertainty, unit), label, baseline, note
+// ============================================
+type ProjectResult = NonNullable<ProjectData['results']>[number]
+
+function ResultMeasure({ result, locale }: { result: ProjectResult; locale: Locale }) {
+  const t = useTranslations('projects')
+  const fmt = (text: string) => formatMeasure(text, locale)
+  return (
+    <div className="py-5 border-b border-white/15 flex flex-col">
+      <dt className="order-2 mt-2 text-meta font-semibold tracking-caps uppercase">
+        {getLocalizedField(result.label, locale)}
+      </dt>
+      <dd className="order-1 flex flex-wrap items-baseline gap-x-2">
+        <span className="font-display font-black text-heading leading-none text-riso-pinkTitle">
+          {fmt(result.value)}
+        </span>
+        {result.uncertainty && (
+          <span className="font-mono text-lg tabular-nums">± {fmt(result.uncertainty)}</span>
+        )}
+        {result.unit && <span className="font-display font-black text-title">{result.unit}</span>}
+      </dd>
+      {result.baseline && (
+        <dd className="order-3 mt-1 font-mono text-sm text-muted">
+          {t('resultBaseline', {
+            value: fmt(result.baseline.value),
+            label: getLocalizedField(result.baseline.label, locale),
+          })}
+        </dd>
+      )}
+      {result.note && (
+        <dd className="order-4 mt-1 text-sm text-muted">{fmt(getLocalizedField(result.note, locale))}</dd>
+      )}
+    </div>
   )
 }
 
@@ -156,32 +193,6 @@ export default function ProjectDetailView({
                   )}
                 </div>
 
-                {/* Results (AUDIT-017, AUDIT-082: sidebar, separate from the prose) */}
-                {project.results && project.results.length > 0 && (
-                  <div className="mb-8">
-                    <h2 className="text-xs tracking-caps-wide uppercase text-muted mb-4">
-                      {t('sections.results')}
-                    </h2>
-                    <dl className="grid grid-cols-2 gap-4">
-                      {project.results.map((result) => (
-                        <div key={getLocalizedField(result.label, locale)}>
-                          <dt className="text-xs text-muted mb-1">
-                            {getLocalizedField(result.label, locale)}
-                          </dt>
-                          <dd className="font-body font-semibold text-white">
-                            {result.value}
-                            {result.note && (
-                              <span className="block text-xs font-normal text-muted mt-0.5">
-                                {getLocalizedField(result.note, locale)}
-                              </span>
-                            )}
-                          </dd>
-                        </div>
-                      ))}
-                    </dl>
-                  </div>
-                )}
-
                 {/* Technologies */}
                 <div className="mb-8">
                   <h2 className="text-xs tracking-caps-wide uppercase text-muted mb-4">
@@ -246,6 +257,25 @@ export default function ProjectDetailView({
           {/* RIGHT COLUMN - Scrollable txt (8/12) */}
           {/* ============================================ */}
           <div className="lg:col-span-8 mt-12 lg:mt-0">
+
+            {/* Results as measures (UX-12): main column, ahead of the figure and the narrative */}
+            {project.results && project.results.length > 0 && (
+              <motion.section
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="mb-12"
+              >
+                <h2 className="pb-3 mb-2 border-b border-riso-pink text-meta font-semibold tracking-caps-wide uppercase">
+                  {t('sections.results')}
+                </h2>
+                <dl className="grid sm:grid-cols-2 sm:gap-x-10">
+                  {project.results.map((result) => (
+                    <ResultMeasure key={getLocalizedField(result.label, locale)} result={result} locale={locale} />
+                  ))}
+                </dl>
+              </motion.section>
+            )}
 
             {/* Lead media: first `media[]` entry, `image` for fiches without one (A15, DEC-10c) */}
             <motion.div

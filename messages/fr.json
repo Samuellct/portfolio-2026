@@ -143,6 +143,7 @@
     "relatedProjects": "Projets connexes",
     "searchLabel": "Rechercher des projets",
     "searchPlaceholder": "Rechercher...",
+    "resultBaseline": "contre {value}, {label}",
     "sections": {
       "context": "Contexte",
       "problem": "Problème",

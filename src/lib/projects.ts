@@ -13,6 +13,11 @@ export function getLocalizedField(
   return field[locale] || field.en
 }
 
+// Measures are written with a decimal point; French reads a decimal comma.
+export function formatMeasure(text: string, locale: Locale): string {
+  return locale === 'fr' ? text.replace(/(\d)\.(\d)/g, '$1,$2') : text
+}
+
 export interface ProjectData {
   id: string
   title: BilingualText | string
@@ -56,7 +61,17 @@ export interface ProjectData {
     height?: number
     role: 'hero' | 'result' | 'interface' | 'architecture' | 'context'
   }>
-  results?: Array<{ label: BilingualText; value: string; note?: BilingualText }>
+  // Measured results. Numbers are written with a decimal point and localised
+  // at render time (`formatMeasure`). `uncertainty` and `baseline` are only
+  // filled from values the fiche already states (AUDIT-089/090).
+  results?: Array<{
+    label: BilingualText
+    value: string
+    unit?: string
+    uncertainty?: string
+    baseline?: { value: string; label: BilingualText }
+    note?: BilingualText
+  }>
   limits?: BilingualText
   links?: Array<{ type: 'code' | 'demo' | 'docs' | 'report' | 'release'; url: string; label?: BilingualText | string }>
   sourceOfSkills?: 'academic' | 'internship' | 'personal'
@@ -427,9 +442,9 @@ Les métadonnées des films sont récupérées depuis l'API TMDb (The Movie Data
       kind: 'analysis',
       results: [
         { label: { en: 'GPS segments', fr: 'Segments GPS' }, value: '26 301' },
-        { label: { en: 'Model error', fr: 'Erreur modèle' }, value: '25.4 %', note: { en: 'vs 37.0 % for a Riegel estimate', fr: 'vs 37.0 % pour une estimation de Riegel' } },
-        { label: { en: 'WBGT accuracy', fr: 'Précision météo WBGT' }, value: '0.00 °C' },
-        { label: { en: 'Route coverage', fr: 'Couverture parcours' }, value: '138/138', note: { en: 'vs 0/6 for the old version', fr: 'vs 0/6 pour l\'ancienne version' } },
+        { label: { en: 'Model error', fr: 'Erreur modèle' }, value: '25.4', unit: '%', baseline: { value: '37.0 %', label: { en: 'Riegel estimate', fr: 'estimation de Riegel' } } },
+        { label: { en: 'WBGT accuracy', fr: 'Précision météo WBGT' }, value: '0.00', unit: '°C' },
+        { label: { en: 'Route coverage', fr: 'Couverture parcours' }, value: '138/138', baseline: { value: '0/6', label: { en: 'old version', fr: 'ancienne version' } } },
       ],
       limits: {
         en: `These validated pieces now run as one system: the prediction engine combines terrain, weather and a runner's profile into one estimate, the report generator turns it into a race report (HTML, PDF or JSON), and a web app ties it all together. That app is still a beta. Each finished piece ships with its own tests and its own documented limits, so nothing gets marked done just because it looks like it works.`,
@@ -815,8 +830,8 @@ Les deux fonctionnalités ont été ajoutées au système LabVIEW existant : le 
       },
       kind: 'desktop',
       results: [
-        { label: { en: 'TAC calibration slope', fr: 'Pente d\'étalonnage du TAC' }, value: '0.996 ± 0.001', note: { en: 'intercept 0.085 ± 0.001 µs', fr: 'ordonnée à l\'origine 0.085 ± 0.001 µs' } },
-        { label: { en: 'Acquisition timeout', fr: 'Timeout d\'acquisition' }, value: '50 → 4.8 min', note: { en: 'overnight acquisitions stabilized', fr: 'acquisitions nocturnes stabilisées' } },
+        { label: { en: 'TAC calibration slope', fr: 'Pente d\'étalonnage du TAC' }, value: '0.996', uncertainty: '0.001', note: { en: 'intercept 0.085 ± 0.001 µs', fr: 'ordonnée à l\'origine 0.085 ± 0.001 µs' } },
+        { label: { en: 'Acquisition timeout', fr: 'Timeout d\'acquisition' }, value: '4.8', unit: 'min', baseline: { value: '50 min', label: { en: 'initial value', fr: 'valeur initiale' } }, note: { en: 'overnight acquisitions stabilized', fr: 'acquisitions nocturnes stabilisées' } },
       ],
       sourceOfSkills: 'academic',
       technologies: ['LabVIEW', 'Python'],
