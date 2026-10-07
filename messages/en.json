@@ -110,7 +110,8 @@
         "description": "Passionate about cinema and a regular at festivals (Cannes, Clermont-Ferrand, Deauville), I like to take the time to write reviews for the (many) films I watch, and I enjoy sharing this passion with the people around me."
       }
     },
-    "downloadCV": "Download CV"
+    "downloadCV": "Download CV",
+    "sectionNav": "Page sections"
   },
   "projects": {
     "sectionLabel": "02 · Projects",

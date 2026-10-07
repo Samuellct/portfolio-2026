@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef, useLayoutEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useRef, useLayoutEffect, useMemo, useState } from 'react'
 import TransitionLink from '@/components/navigation/TransitionLink'
 import { motion, AnimatePresence } from 'framer-motion'
 import gsap from 'gsap'
@@ -14,25 +14,21 @@ import CinemaSpotlight from '@/components/about/CinemaSpotlight'
 import ScrollIndicator from '@/components/about/ScrollIndicator'
 import { useLocale, useTranslations } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
+import { useSmoothScroll } from '@/context/SmoothScrollContext'
 import { CONTRAST_TEXT, RISO, SECTION_BG } from '@/lib/theme'
 
 gsap.registerPlugin(ScrollTrigger)
 
 // ============================================
-// SECTION COLORS
-// ============================================
-const sectionColors = {
-  intro: SECTION_BG.aboutIntro,
-  experience: SECTION_BG.aboutExperience,
-  stack: SECTION_BG.aboutStack,
-  education: SECTION_BG.aboutEducation,
-  interests: SECTION_BG.aboutInterests,
-}
-
-// ============================================
 // BACKGROUND TEXTS
 // ============================================
 const bgTexts = ['ABOUT', 'EXPERIENCE', 'STACK', 'EDUCATION', 'INTERESTS']
+
+// Scroll length of each section's pin. A pin plays once, on the way down: when
+// its section has been played to the end, the pin is removed and the scroll
+// position compensated, so scrolling back up never pins again (DEC-15a).
+const PIN_LENGTH = 1000
+const SECTION_IDS = ['about-intro', 'about-experience', 'about-stack', 'about-education', 'about-interests']
 
 // Research internships, most recent first (data from projects.ts)
 const internships = [...getProjectsByCategory('internship')].sort((a, b) =>
@@ -118,6 +114,14 @@ export default function AboutPage() {
     },
   ]
 
+  const sectionLabels = [
+    tAbout('sectionLabel'),
+    tAbout('experience.sectionLabel'),
+    tAbout('stack.sectionLabel'),
+    tAbout('education.sectionLabel'),
+    tAbout('interests.sectionLabel'),
+  ]
+
   // Page container ref
   const pageRef = useRef<HTMLDivElement>(null)
   
@@ -145,17 +149,104 @@ export default function AboutPage() {
   const [educationProgress, setEducationProgress] = useState(0)
   const [interestsProgress, setInterestsProgress] = useState(0)
   
-  const [currentBgText, setCurrentBgText] = useState(0)
-  
+  // Section in view (drives the background word and the section rail) and the
+  // position of the rail's progress thumb, from 0 (first dot) to 1 (last dot)
+  const [activeSection, setActiveSection] = useState(0)
+  const [railProgress, setRailProgress] = useState(0)
+
+  // One-way pins: which sections have been played, and their live pin triggers
+  const releasedRef = useRef<boolean[]>(SECTION_IDS.map(() => false))
+  const pinTriggersRef = useRef<(ScrollTrigger | null)[]>(SECTION_IDS.map(() => null))
+
+  const { lenis } = useSmoothScroll()
+  const lenisRef = useRef(lenis)
+  useEffect(() => {
+    lenisRef.current = lenis
+  }, [lenis])
+
+  const sectionRefs = useMemo(
+    () => [introSectionRef, experienceSectionRef, stackSectionRef, educationSectionRef, interestsSectionRef],
+    []
+  )
+  const maxProgressRefs = useMemo(
+    () => [introMaxProgressRef, experienceMaxProgressRef, stackMaxProgressRef, educationMaxProgressRef, interestsMaxProgressRef],
+    []
+  )
+  const progressSetters = useMemo(
+    () => [setIntroProgress, setExperienceProgress, setStackProgress, setEducationProgress, setInterestsProgress],
+    []
+  )
+
+  /** Mark sections as played and remove their pins. With `compensate`, the
+   *  scroll position moves up by the pin length removed above the viewport,
+   *  so nothing on screen moves. */
+  const releasePins = useCallback((indices: number[], compensate: boolean) => {
+    const y = window.scrollY
+    let removed = 0
+    for (const i of indices) {
+      if (releasedRef.current[i]) continue
+      releasedRef.current[i] = true
+      maxProgressRefs[i].current = 1
+      progressSetters[i](1)
+      const trigger = pinTriggersRef.current[i]
+      if (!trigger) continue
+      if (compensate && y >= trigger.end) removed += trigger.end - trigger.start
+      trigger.kill()
+      pinTriggersRef.current[i] = null
+    }
+    const compensateScroll = () => {
+      if (removed === 0) return
+      const target = y - removed
+      const smooth = lenisRef.current
+      if (smooth) {
+        smooth.resize()
+        smooth.scrollTo(target, { immediate: true, force: true })
+      } else {
+        window.scrollTo({ top: target, behavior: 'instant' })
+      }
+    }
+    // before the refresh, so the triggers below are measured at the right
+    // position; again after it, since the refresh restores the scroll position
+    // it recorded
+    compensateScroll()
+    ScrollTrigger.refresh()
+    // Lenis already targets this position and would ignore a second scrollTo
+    if (removed > 0 && Math.abs(window.scrollY - (y - removed)) > 1) {
+      window.scrollTo({ top: y - removed, behavior: 'instant' })
+      ScrollTrigger.update()
+    }
+  }, [maxProgressRefs, progressSetters])
+
+  /** Rail jump: sections above the target count as played, then scroll to it. */
+  const jumpToSection = (index: number) => {
+    releasePins(SECTION_IDS.map((_, i) => i).filter((i) => i < index), false)
+    const el = sectionRefs[index].current
+    if (!el) return
+    const box = el.parentElement?.classList.contains('pin-spacer') ? el.parentElement : el
+    const top = box.getBoundingClientRect().top + window.scrollY
+    const smooth = lenisRef.current
+    if (smooth) smooth.scrollTo(top, { force: true })
+    else window.scrollTo({ top, behavior: prefersReducedMotion ? 'auto' : 'smooth' })
+    el.focus({ preventScroll: true })
+  }
+
   // Get tech stats
   const { topTechs, secondaryByFamily } = useMemo(() => extractTechStats(), [])
-  
+
   // Scroll to top on mount
   useLayoutEffect(() => {
     window.scrollTo(0, 0)
-    document.body.style.backgroundColor = sectionColors.intro
+    document.body.style.backgroundColor = SECTION_BG.aboutIntro
+    // the browser's own scroll anchoring would shift the page a second time
+    // when a played pin is removed (the compensation is done by hand)
+    const root = document.documentElement
+    const previousAnchor = root.style.overflowAnchor
+    root.style.overflowAnchor = 'none'
+    return () => {
+      root.style.overflowAnchor = previousAnchor
+    }
   }, [])
-  
+
   // ============================================
   // GSAP
   // ============================================
@@ -165,20 +256,58 @@ export default function AboutPage() {
     // Reduced motion: no pins, no scrub, no parallax. Reveal every pinned
     // section at full progress so all content is visible, page scrolls natively.
     if (prefersReducedMotion) {
-      introMaxProgressRef.current = 1
-      experienceMaxProgressRef.current = 1
-      stackMaxProgressRef.current = 1
-      educationMaxProgressRef.current = 1
-      interestsMaxProgressRef.current = 1
-      setIntroProgress(1)
-      setExperienceProgress(1)
-      setStackProgress(1)
-      setEducationProgress(1)
-      setInterestsProgress(1)
-      return
+      SECTION_IDS.forEach((_, i) => {
+        releasedRef.current[i] = true
+        maxProgressRefs[i].current = 1
+        progressSetters[i](1)
+      })
+    }
+
+    let releaseFrame = 0
+    const pending = new Set<number>()
+    const scheduleRelease = (index: number) => {
+      pending.add(index)
+      if (releaseFrame) return
+      // outside ScrollTrigger's own update pass: killing a trigger mid-update
+      // would skip the callbacks of the triggers below it
+      releaseFrame = requestAnimationFrame(() => {
+        releaseFrame = 0
+        const indices = [...pending]
+        pending.clear()
+        releasePins(indices, true)
+      })
     }
 
     const ctx = gsap.context(() => {
+
+      // ========================================
+      // 0. SECTION TRACKER (rail, background word)
+      // ========================================
+      ScrollTrigger.create({
+        start: 0,
+        end: 'max',
+        onUpdate: (self) => {
+          const probe = window.scrollY + window.innerHeight / 3
+          const starts = sectionRefs.map((ref) => {
+            const el = ref.current
+            if (!el) return 0
+            const box = el.parentElement?.classList.contains('pin-spacer') ? el.parentElement : el
+            return box.getBoundingClientRect().top + window.scrollY
+          })
+          let active = 0
+          starts.forEach((start, i) => {
+            if (start <= probe) active = i
+          })
+          const last = starts.length - 1
+          const next = active < last ? starts[active + 1] : self.end
+          const span = next - starts[active]
+          const within = span > 0 ? Math.min(1, Math.max(0, (window.scrollY - starts[active]) / span)) : 1
+          setActiveSection(active)
+          setRailProgress(active === last ? 1 : (active + within) / last)
+        },
+      })
+
+      if (prefersReducedMotion) return
 
       // ========================================
       // 1. PARALLAX BACKGROUND txt
@@ -203,120 +332,34 @@ export default function AboutPage() {
       }
       
       // ========================================
-      // 2. SECTION TRIGGERS AVEC NAVIGATION INTÉGRÉE
+      // 2. ONE-WAY SECTION PINS
       // ========================================
-      
-      // Section 001 - Intro
-      ScrollTrigger.create({
-        trigger: introSectionRef.current,
-        start: 'top top',
-        end: '+=2000',
-        pin: true,
-        scrub: 1,
-        onUpdate: (self) => {
-          if (self.progress > introMaxProgressRef.current) {
-            introMaxProgressRef.current = self.progress
-            setIntroProgress(self.progress)
-          }
-        },
-        onLeave: () => {
-          gsap.to(document.body, { backgroundColor: sectionColors.experience, duration: 1.2, ease: 'power2.out' })
-          setCurrentBgText(1)
-        },
-        onEnterBack: () => {
-          gsap.to(document.body, { backgroundColor: sectionColors.intro, duration: 1.2, ease: 'power2.out' })
-          setCurrentBgText(0)
-        },
+      sectionRefs.forEach((ref, i) => {
+        if (releasedRef.current[i] || !ref.current) return
+        pinTriggersRef.current[i] = ScrollTrigger.create({
+          trigger: ref.current,
+          start: 'top top',
+          end: `+=${PIN_LENGTH}`,
+          pin: true,
+          onUpdate: (self) => {
+            // ratchet: revealed content never fades back (AUDIT-079)
+            if (self.progress > maxProgressRefs[i].current) {
+              maxProgressRefs[i].current = self.progress
+              progressSetters[i](self.progress)
+            }
+            if (self.progress >= 1) scheduleRelease(i)
+          },
+          onLeave: () => scheduleRelease(i),
+        })
       })
-
-      // Section 002 - Experience
-      ScrollTrigger.create({
-        trigger: experienceSectionRef.current,
-        start: 'top top',
-        end: '+=2000',
-        pin: true,
-        scrub: 1,
-        onUpdate: (self) => {
-          if (self.progress > experienceMaxProgressRef.current) {
-            experienceMaxProgressRef.current = self.progress
-            setExperienceProgress(self.progress)
-          }
-        },
-        onLeave: () => {
-          gsap.to(document.body, { backgroundColor: sectionColors.stack, duration: 1.2, ease: 'power2.out' })
-          setCurrentBgText(2)
-        },
-        onEnterBack: () => {
-          gsap.to(document.body, { backgroundColor: sectionColors.experience, duration: 1.2, ease: 'power2.out' })
-          setCurrentBgText(1)
-        },
-      })
-
-      // Section 003 - Stack
-      ScrollTrigger.create({
-        trigger: stackSectionRef.current,
-        start: 'top top',
-        end: '+=2500',
-        pin: true,
-        scrub: 1,
-        onUpdate: (self) => {
-          if (self.progress > stackMaxProgressRef.current) {
-            stackMaxProgressRef.current = self.progress
-            setStackProgress(self.progress)
-          }
-        },
-        onLeave: () => {
-          gsap.to(document.body, { backgroundColor: sectionColors.education, duration: 1.2, ease: 'power2.out' })
-          setCurrentBgText(3)
-        },
-        onEnterBack: () => {
-          gsap.to(document.body, { backgroundColor: sectionColors.stack, duration: 1.2, ease: 'power2.out' })
-          setCurrentBgText(2)
-        },
-      })
-
-      // Section 004 - Education
-      ScrollTrigger.create({
-        trigger: educationSectionRef.current,
-        start: 'top top',
-        end: '+=2000',
-        pin: true,
-        scrub: 1,
-        onUpdate: (self) => {
-          if (self.progress > educationMaxProgressRef.current) {
-            educationMaxProgressRef.current = self.progress
-            setEducationProgress(self.progress)
-          }
-        },
-        onLeave: () => {
-          gsap.to(document.body, { backgroundColor: sectionColors.interests, duration: 1.2, ease: 'power2.out' })
-          setCurrentBgText(4)
-        },
-        onEnterBack: () => {
-          gsap.to(document.body, { backgroundColor: sectionColors.education, duration: 1.2, ease: 'power2.out' })
-          setCurrentBgText(3)
-        },
-      })
-
-      // Section 005 - Interests
-      ScrollTrigger.create({
-        trigger: interestsSectionRef.current,
-        start: 'top top',
-        end: '+=3000',
-        pin: true,
-        scrub: 1,
-        onUpdate: (self) => {
-          if (self.progress > interestsMaxProgressRef.current) {
-            interestsMaxProgressRef.current = self.progress
-            setInterestsProgress(self.progress)
-          }
-        },
-      })
-      
     }, pageRef)
 
-    return () => ctx.revert()
-  }, [prefersReducedMotion])
+    return () => {
+      cancelAnimationFrame(releaseFrame)
+      ctx.revert()
+      pinTriggersRef.current = SECTION_IDS.map(() => null)
+    }
+  }, [prefersReducedMotion, sectionRefs, maxProgressRefs, progressSetters, releasePins])
 
   // ============================================
   // INTRO SECTION CALCULATIONS
@@ -398,7 +441,53 @@ export default function AboutPage() {
       {/* SCROLL INDICATOR */}
       {/* ============================================ */}
       <ScrollIndicator hideAfterPx={100} />
-      
+
+      {/* ============================================ */}
+      {/* SECTION RAIL (desktop) */}
+      {/* ============================================ */}
+      <nav
+        aria-label={tAbout('sectionNav')}
+        className="hidden lg:block fixed right-8 top-1/2 -translate-y-1/2 z-[90]"
+      >
+        <div className="relative h-[50vh]">
+          <span aria-hidden="true" className="absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-riso-blue" />
+          <span
+            aria-hidden="true"
+            className="absolute left-1/2 w-[5px] h-10 -translate-x-1/2 -translate-y-1/2 rounded-full bg-riso-pink"
+            style={{ top: `${railProgress * 100}%` }}
+          />
+          <ol className="absolute inset-0">
+            {sectionLabels.map((label, i) => (
+              <li
+                key={SECTION_IDS[i]}
+                className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2"
+                style={{ top: `${(i / (SECTION_IDS.length - 1)) * 100}%` }}
+              >
+                <a
+                  href={`#${SECTION_IDS[i]}`}
+                  aria-current={activeSection === i ? 'true' : undefined}
+                  onClick={(event) => {
+                    event.preventDefault()
+                    jumpToSection(i)
+                  }}
+                  className="group relative flex items-center justify-center w-6 h-6"
+                >
+                  <span
+                    aria-hidden="true"
+                    className={`w-3 h-3 rounded-full border-2 border-riso-blue transition-colors ${
+                      activeSection === i ? 'bg-riso-pink border-riso-pink' : 'bg-surface group-hover:bg-riso-blue'
+                    }`}
+                  />
+                  <span className="absolute right-full mr-3 px-2 py-1 whitespace-nowrap text-meta tracking-caps uppercase bg-surface opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
+                    {label}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </nav>
+
       {/* ============================================ */}
       {/* PARALLAX BACKGROUND TEXT */}
       {/* pointer-events: none pour pas bloquer les clics */}
@@ -411,20 +500,20 @@ export default function AboutPage() {
         <div ref={bgContainerRef} className="relative">
           <AnimatePresence mode="wait">
             <motion.span
-              key={currentBgText}
-              initial={{ 
-                opacity: 0, 
-                x: currentBgText % 2 === 0 ? -30 : 30 
+              key={activeSection}
+              initial={{
+                opacity: 0,
+                x: activeSection % 2 === 0 ? -30 : 30
               }}
               animate={{ opacity: 0.025, x: 0 }}
-              exit={{ 
-                opacity: 0, 
-                x: currentBgText % 2 === 0 ? 30 : -30 
+              exit={{
+                opacity: 0,
+                x: activeSection % 2 === 0 ? 30 : -30
               }}
               transition={{ duration: 0.8, ease: 'easeOut' }}
               className="font-display uppercase font-black text-ghost-20 md:text-ghost-15 leading-none tracking-widest text-white whitespace-nowrap"
             >
-              {bgTexts[currentBgText]}
+              {bgTexts[activeSection]}
             </motion.span>
           </AnimatePresence>
         </div>
@@ -440,7 +529,9 @@ export default function AboutPage() {
         {/* ============================================ */}
         <section 
           ref={introSectionRef}
-          className="min-h-screen flex items-center px-6 md:px-12 lg:px-16 py-24"
+          id={SECTION_IDS[0]}
+          tabIndex={-1}
+          className="min-h-screen flex items-center outline-none px-6 md:px-12 lg:px-16 py-24"
         >
           <div className="max-w-4xl mx-auto w-full">
             {/* Title */}
@@ -528,7 +619,9 @@ export default function AboutPage() {
         {/* ============================================ */}
         <section
           ref={experienceSectionRef}
-          className="min-h-screen flex items-center px-6 md:px-12 lg:px-16 py-24"
+          id={SECTION_IDS[1]}
+          tabIndex={-1}
+          className="min-h-screen flex items-center outline-none px-6 md:px-12 lg:px-16 py-24"
         >
           <div className="max-w-5xl mx-auto w-full">
             {/* Title */}
@@ -609,7 +702,9 @@ export default function AboutPage() {
         {/* ============================================ */}
         <section 
           ref={stackSectionRef}
-          className="min-h-screen flex items-center px-6 md:px-12 lg:px-16 py-24"
+          id={SECTION_IDS[2]}
+          tabIndex={-1}
+          className="min-h-screen flex items-center outline-none px-6 md:px-12 lg:px-16 py-24"
         >
           <div className="max-w-5xl mx-auto w-full">
             {/* Titre section */}
@@ -705,7 +800,9 @@ export default function AboutPage() {
         {/* ============================================ */}
         <section 
           ref={educationSectionRef}
-          className="min-h-screen flex items-center px-6 md:px-12 lg:px-16 py-24"
+          id={SECTION_IDS[3]}
+          tabIndex={-1}
+          className="min-h-screen flex items-center outline-none px-6 md:px-12 lg:px-16 py-24"
         >
           <div className="max-w-5xl mx-auto w-full">
             {/* Title */}
@@ -797,7 +894,9 @@ export default function AboutPage() {
         {/* ============================================ */}
         <section 
           ref={interestsSectionRef}
-          className="min-h-screen flex items-center px-6 md:px-12 lg:px-16 py-24"
+          id={SECTION_IDS[4]}
+          tabIndex={-1}
+          className="min-h-screen flex items-center outline-none px-6 md:px-12 lg:px-16 py-24"
         >
           <div className="max-w-6xl mx-auto w-full">
             {/* Title */}

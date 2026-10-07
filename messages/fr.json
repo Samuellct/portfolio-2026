@@ -110,7 +110,8 @@
         "description": "Passionné de cinéma et habitué des festivals (Cannes, Clermont-Ferrand, Deauville), j'aime prendre le temps de rédiger des critiques sur les (nombreux) films que je vois et partager cette passion avec mon entourage."
       }
     },
-    "downloadCV": "Télécharger le CV"
+    "downloadCV": "Télécharger le CV",
+    "sectionNav": "Sections de la page"
   },
   "projects": {
     "sectionLabel": "02 · Projets",
