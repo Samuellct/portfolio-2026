@@ -7,7 +7,7 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowRight, Download, Github, Linkedin } from 'lucide-react'
 import { extractTechStats, TechStats, isLightColor } from '@/lib/techStats'
-import { getProjectsByCategory, getLocalizedField, type Locale } from '@/lib/projects'
+import { getProjectsByCategory, getLocalizedField, formatMeasure, type Locale } from '@/lib/projects'
 import MountainProfile from '@/components/about/MountainProfile'
 import NetworkGraph from '@/components/about/NetworkGraph'
 import CinemaSpotlight from '@/components/about/CinemaSpotlight'
@@ -661,8 +661,9 @@ export default function AboutPage() {
                         <div key={getLocalizedField(result.label, 'en')}>
                           <dt className="sr-only">{getLocalizedField(result.label, locale)}</dt>
                           {/* body font: the display face is all caps and would print MeV as MEV */}
-                          <dd className="text-xl md:text-2xl font-semibold tabular-nums">
-                            {result.value}
+                          <dd className="text-xl md:text-2xl font-semibold tabular-nums whitespace-nowrap">
+                            {formatMeasure(result.value, locale)}
+                            {result.unit && <span className="ml-1 text-base font-medium">{result.unit}</span>}
                           </dd>
                           <dd className="text-xs text-muted leading-snug mt-1" aria-hidden="true">
                             {getLocalizedField(result.label, locale)}
