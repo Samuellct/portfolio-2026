@@ -75,6 +75,7 @@ export default function AboutPage() {
   const tAbout = useTranslations('about')
   const tCommon = useTranslations('common')
   const tMenu = useTranslations('menu')
+  const tContact = useTranslations('contact')
   const locale = useLocale() as Locale
   const prefersReducedMotion = useReducedMotion()
   // bumped when the viewport crosses the desktop breakpoint, to rebuild the triggers
@@ -991,7 +992,22 @@ export default function AboutPage() {
             </div>
           </div>
         </section>
-        
+
+        {/* ============================================ */}
+        {/* END OF PAGE: CV first, then contact (DEC-15f) */}
+        {/* ============================================ */}
+        <div className="px-6 md:px-12 lg:px-16 pb-24">
+          <div className="max-w-6xl mx-auto w-full flex flex-wrap items-center gap-4 pt-12 border-t border-riso-pink">
+            <a href="/Resume.pdf" target="_blank" rel="noopener noreferrer" className={PILL_PRIMARY}>
+              <Download size={16} aria-hidden="true" />
+              {tAbout('downloadCV')}
+            </a>
+            <TransitionLink href="/contact" className={PILL_OUTLINE}>
+              {tContact('preview.cta')}
+              <ArrowRight size={16} aria-hidden="true" />
+            </TransitionLink>
+          </div>
+        </div>
       </div>
     </>
   )
