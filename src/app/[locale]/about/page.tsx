@@ -283,28 +283,32 @@ export default function AboutPage() {
       // ========================================
       // 0. SECTION TRACKER (rail, background word)
       // ========================================
+      const track = (self: ScrollTrigger) => {
+        const probe = window.scrollY + window.innerHeight / 3
+        const starts = sectionRefs.map((ref) => {
+          const el = ref.current
+          if (!el) return 0
+          const box = el.parentElement?.classList.contains('pin-spacer') ? el.parentElement : el
+          return box.getBoundingClientRect().top + window.scrollY
+        })
+        let active = 0
+        starts.forEach((start, i) => {
+          if (start <= probe) active = i
+        })
+        const last = starts.length - 1
+        const next = active < last ? starts[active + 1] : self.end
+        const span = next - starts[active]
+        const within = span > 0 ? Math.min(1, Math.max(0, (window.scrollY - starts[active]) / span)) : 1
+        setActiveSection(active)
+        setRailProgress(active === last ? 1 : (active + within) / last)
+      }
       ScrollTrigger.create({
         start: 0,
         end: 'max',
-        onUpdate: (self) => {
-          const probe = window.scrollY + window.innerHeight / 3
-          const starts = sectionRefs.map((ref) => {
-            const el = ref.current
-            if (!el) return 0
-            const box = el.parentElement?.classList.contains('pin-spacer') ? el.parentElement : el
-            return box.getBoundingClientRect().top + window.scrollY
-          })
-          let active = 0
-          starts.forEach((start, i) => {
-            if (start <= probe) active = i
-          })
-          const last = starts.length - 1
-          const next = active < last ? starts[active + 1] : self.end
-          const span = next - starts[active]
-          const within = span > 0 ? Math.min(1, Math.max(0, (window.scrollY - starts[active]) / span)) : 1
-          setActiveSection(active)
-          setRailProgress(active === last ? 1 : (active + within) / last)
-        },
+        onUpdate: track,
+        // a refresh (each time a played pin is removed) updates the triggers
+        // while pins are reverted; measure again once it has settled
+        onRefresh: track,
       })
 
       if (prefersReducedMotion) return
