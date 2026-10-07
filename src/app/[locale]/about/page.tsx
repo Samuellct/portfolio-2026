@@ -27,7 +27,7 @@ const bgTexts = ['ABOUT', 'EXPERIENCE', 'STACK', 'EDUCATION', 'INTERESTS']
 // Scroll length of each section's pin. A pin plays once, on the way down: when
 // its section has been played to the end, the pin is removed and the scroll
 // position compensated, so scrolling back up never pins again (DEC-15a).
-const PIN_LENGTH = 1000
+const PIN_LENGTH = 1300
 const SECTION_IDS = ['about-intro', 'about-experience', 'about-stack', 'about-education', 'about-interests']
 
 // Research internships, most recent first (data from projects.ts)
