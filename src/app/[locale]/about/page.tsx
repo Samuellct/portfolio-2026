@@ -197,6 +197,9 @@ export default function AboutPage() {
    *  so nothing on screen moves. */
   const releasePins = useCallback((indices: number[], compensate: boolean) => {
     const y = window.scrollY
+    // removing a pin moves its section out of the spacer, which drops the
+    // focus of any element inside it (keyboard navigation)
+    const focused = document.activeElement instanceof HTMLElement ? document.activeElement : null
     let removed = 0
     for (const i of indices) {
       if (releasedRef.current[i]) continue
@@ -225,12 +228,30 @@ export default function AboutPage() {
     // it recorded
     compensateScroll()
     ScrollTrigger.refresh()
+    if (focused && focused !== document.body && focused.isConnected && document.activeElement !== focused) {
+      focused.focus({ preventScroll: true })
+    }
     // Lenis already targets this position and would ignore a second scrollTo
     if (removed > 0 && Math.abs(window.scrollY - (y - removed)) > 1) {
       window.scrollTo({ top: y - removed, behavior: 'instant' })
       ScrollTrigger.update()
     }
   }, [maxProgressRefs, progressSetters])
+
+  /** Keyboard focus entering a section not yet played: that section and the
+   *  ones above it are shown at their final state, then the focused element is
+   *  brought into view (a focused link must never be invisible, UX-14). */
+  const revealFocusedSection = (event: React.FocusEvent<HTMLDivElement>) => {
+    const index = sectionRefs.findIndex((ref) => ref.current?.contains(event.target))
+    // the rail focuses the section itself: its animation must still play
+    if (index < 0 || releasedRef.current[index] || sectionRefs[index].current === event.target) return
+    releasePins(SECTION_IDS.map((_, i) => i).filter((i) => i <= index), true)
+    const target = event.target as HTMLElement
+    const top = target.getBoundingClientRect().top + window.scrollY - window.innerHeight / 3
+    const smooth = lenisRef.current
+    if (smooth) smooth.scrollTo(top, { immediate: true, force: true })
+    else window.scrollTo({ top, behavior: 'instant' })
+  }
 
   /** Rail jump: sections above the target count as played, then scroll to it. */
   const jumpToSection = (index: number) => {
@@ -551,7 +572,7 @@ export default function AboutPage() {
       {/* ============================================ */}
       {/* PAGE CONTENT */}
       {/* ============================================ */}
-      <div ref={pageRef}>
+      <div ref={pageRef} onFocus={revealFocusedSection}>
         
         {/* ============================================ */}
         {/* SECTION 001 - ABOUT */}
