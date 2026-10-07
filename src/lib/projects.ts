@@ -46,6 +46,8 @@ export interface ProjectData {
   visible?: boolean // default: true
   textColor?: 'white' | 'black' // default: white
   dateCreated: string
+  // Start of the period, YYYY-MM: the listing's sort key (CONS-03). Defaults to dateCreated's month.
+  periodStart?: string
 
   // Structured fiche fields (AUDIT-018). All optional: the 19 entries are
   // migrated fiche by fiche in Phases 7-8. `image` and `gitHubUrl` above stay
@@ -180,6 +182,7 @@ export const projectsData: Record<string, Record<string, ProjectData>> = {
       ],
       textColor: "black",
       dateCreated: '2025-07-15',
+      periodStart: '2025-07',
     },
     'portfolio-website': {
       id: 'portfolio-website',
@@ -239,6 +242,7 @@ Le site tourne sur Cloudflare Workers via OpenNext. Chaque push sur la branche p
       ],
       gitHubUrl: "https://github.com/Samuellct/portfolio-2026",
       dateCreated: '2025-02-15',
+      periodStart: '2024-09',
     },
     'alpine-route': {
       id: 'alpine-route',
@@ -305,6 +309,7 @@ Ces couches raster sont combinées avec des données vectorielles : contours gla
       gitHubUrl: 'https://github.com/Samuellct/AlpineRoute',
       featured: true,
       dateCreated: '2025-12-09',
+      periodStart: '2025-12',
     },
     'hep-gui': {
       id: 'hep-gui',
@@ -361,6 +366,7 @@ HEP-GUI était une preuve de concept limitée à ce workflow précis, et je ne p
       kind: 'desktop',
       sourceOfSkills: 'personal',
       dateCreated: '2026-02-22',
+      periodStart: '2026-02',
     },
     'accred': {
       id: 'accred',
@@ -417,6 +423,7 @@ Les métadonnées des films sont récupérées depuis l'API TMDb (The Movie Data
       ],
       gitHubUrl: 'https://github.com/Samuellct/Accred',
       dateCreated: '2026-03-10',
+      periodStart: '2026-03',
     },
     'time-predict': {
       id: 'time-predict',
@@ -483,6 +490,7 @@ Les métadonnées des films sont récupérées depuis l'API TMDb (The Movie Data
       visible: true,
       featured: true,
       dateCreated: '2025-11-27',
+      periodStart: '2025-11',
     },
     'jellyux': {
       id: 'jellyux',
@@ -552,6 +560,7 @@ Un service de notifications par email interne à Jellyfin : une newsletter des n
       links: [{ type: 'docs', url: 'https://jellyux.github.io/Homepage/', label: { en: 'Homepage docs', fr: 'Documentation Homepage' } }],
       featured: true,
       dateCreated: '2026-06-27',
+      periodStart: '2026-07',
     },
     'delivr': {
       id: 'delivr',
@@ -602,6 +611,7 @@ L'application fonctionne entièrement hors ligne : aucun serveur, aucun cloud, a
       kind: 'mobile',
       sourceOfSkills: 'personal',
       dateCreated: '2026-07-06',
+      periodStart: '2026-07',
     },
   },
   academic: {
@@ -669,6 +679,7 @@ En suivant la méthode CLs (méthode statistique standard pour fixer des limites
       ],
       gitHubUrl: 'https://github.com/Samuellct/ATLAS-basic-particle-search-workflow',
       dateCreated: '2024-09-17',
+      periodStart: '2023-11',
     },
     'ising-model': {
       id: 'ising-model',
@@ -753,6 +764,7 @@ Nous avons également compris pourquoi les chercheurs développent actuellement 
       imageCredit: 'Google',
       gitHubUrl: 'https://github.com/Samuellct/Cirq-Quantum-Cryptography-Demo',
       dateCreated: '2023-11-29',
+      periodStart: '2023-11',
     },
     'weather-station': {
       id: 'weather-station',
@@ -866,6 +878,7 @@ Les deux fonctionnalités ont été ajoutées au système LabVIEW existant : le 
       imageCreditUrl: 'https://commons.wikimedia.org/wiki/File:Labview_code_example.png',
       textColor: 'black',
       dateCreated: '2024-04-15',
+      periodStart: '2024-03',
     },
     'muon-lifetime': {
       id: 'muon-lifetime',
@@ -946,6 +959,7 @@ Les deux fonctionnalités ont été ajoutées au système LabVIEW existant : le 
       imageCreditUrl: 'https://esahubble.org/images/heic1917a/',
       gitHubUrl: "https://github.com/Samuellct/Stability-of-Saturns-rings",
       dateCreated: '2022-12-16',
+      periodStart: '2022-12',
     },
     'arduino-anemometer': {
       id: 'arduino-anemometer',
@@ -1040,6 +1054,7 @@ J'ai consacré la majeure partie de mon temps à élaborer une stratégie de pr�
       gitHubUrl: "https://github.com/Samuellct/Internship-M1-B-meson-decay",
       textColor: 'black',
       dateCreated: '2024-07-05',
+      periodStart: '2024-04',
     },
     'internship-m2': {
       id: 'internship-m2',
@@ -1114,6 +1129,7 @@ J'ai consacré la majeure partie de mon temps à élaborer une stratégie de pr�
       textColor: 'black',
       featured: true,
       dateCreated: '2025-09-17',
+      periodStart: '2025-02',
     },
   },
 }
@@ -1147,8 +1163,13 @@ export const getFeaturedProjects = (): ProjectData[] => {
 
 // The listing's chronological order (AUDIT-009), the single source for what
 // "previous / next" means on a project detail page (AUDIT-019).
+// Most recent period first (CONS-03); projects starting the same month fall back to dateCreated.
+const periodStartOf = (p: ProjectData) => p.periodStart ?? p.dateCreated.slice(0, 7)
+
 export const getProjectsSortedByDate = (): ProjectData[] => {
-  return [...getAllProjects()].sort((a, b) => b.dateCreated.localeCompare(a.dateCreated))
+  return [...getAllProjects()].sort(
+    (a, b) => periodStartOf(b).localeCompare(periodStartOf(a)) || b.dateCreated.localeCompare(a.dateCreated)
+  )
 }
 
 // Up to `max` related projects for the "connexes" block on a project detail
