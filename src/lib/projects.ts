@@ -245,8 +245,8 @@ Le site tourne sur Cloudflare Workers via OpenNext. Chaque push sur la branche p
         fr: 'Optimiseur d\'itinéraires pour l\'alpinisme hors-piste dans les Alpes, utilisant des données Lidar HD et une fonction de coût multi-critères.',
       },
       subtitle: {
-        en: 'Optimal Route Planning for hiking and mountaineering',
-        fr: 'Planification d\'itinéraires optimaux en montagne',
+        en: 'Off-trail mountaineering routes, computed from Lidar and OSM data',
+        fr: 'Itinéraires d\'alpinisme hors sentier, calculés via des données Lidar et OSM',
       },
       sections: {
         context: {
@@ -256,10 +256,10 @@ Le site tourne sur Cloudflare Workers via OpenNext. Chaque push sur la branche p
         approach: {
           en: `The system downloads IGN Lidar HD elevation tiles (50 cm resolution, downsampled afterwards) on demand via the Géoplateforme API, covering only the bounding box of the planned route. For areas outside France, it falls back to the Copernicus GLO-30 DEM (30 m resolution). From the elevation data, the pipeline derives slope, aspect, roughness, and solar radiation for each grid cell.
 
-These raster layers are combined with vector data: glacier outlines from RGI 7.0, land cover from ESA WorldCover, and trails and barriers from OpenStreetMap. The resulting cost function penalizes steep slopes, glacier zones, dense vegetation and restricted areas, while favoring established trails and safer aspects.`,
-          fr: `Le système télécharge à la demande des tuiles IGN Lidar MNT (résolution 50 cm, sous-échantillonné ensuite) via l'API Géoplateforme, en se limitant à l'emprise de l'itinéraire planifié. Pour les zones hors de France, le système bascule sur le MNT Copernicus GLO-30 (résolution 30 m). À partir des données d'élévation, le pipeline dérive la pente, l'orientation, la rugosité et l'exposition solaire pour chaque cellule de la grille.
+These raster layers are combined with vector data: glacier outlines from RGI 7.0 (the Randolph Glacier Inventory), land cover from ESA WorldCover, and trails and barriers from OpenStreetMap. The resulting cost function penalizes steep slopes, glacier zones, dense vegetation and restricted areas, while favoring established trails and safer aspects.`,
+          fr: `Le système télécharge à la demande des tuiles IGN Lidar MNT (modèle numérique de terrain, résolution 50 cm, sous-échantillonné ensuite) via l'API Géoplateforme, en se limitant à l'emprise de l'itinéraire planifié. Pour les zones hors de France, le système bascule sur le MNT Copernicus GLO-30 (résolution 30 m). À partir des données d'élévation, le pipeline dérive la pente, l'orientation, la rugosité et l'exposition solaire pour chaque cellule de la grille.
 
-Ces couches raster sont combinées avec des données vectorielles : contours glaciaires RGI 7.0, occupation du sol ESA WorldCover 10 m, et sentiers/barrières OSM. La fonction de coût pénalise les fortes pentes, les zones glaciaires crevassées, la végétation dense et les zones interdites, tout en favorisant les sentiers établis et les expositions sûres.`,
+Ces couches raster sont combinées avec des données vectorielles : contours glaciaires RGI 7.0 (Randolph Glacier Inventory, l'inventaire mondial des glaciers), occupation du sol ESA WorldCover 10 m, et sentiers/barrières OSM. La fonction de coût pénalise les fortes pentes, les zones glaciaires crevassées, la végétation dense et les zones interdites, tout en favorisant les sentiers établis et les expositions sûres.`,
         },
         whatIBuilt: {
           en: `Two routing strategies handle different terrain types: Valhalla, an open-source routing engine built on OpenStreetMap data, for sections that follow existing trails, and Dijkstra pathfinding on the cost raster for off-trail itineraries. Route computations typically take 10 to 90 seconds, so the API streams progress updates live as it works, rather than leaving the user staring at a frozen screen until the final result.`,
