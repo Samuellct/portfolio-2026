@@ -278,6 +278,10 @@ export default function AboutPage() {
   // Scroll to top on mount
   useLayoutEffect(() => {
     window.scrollTo(0, 0)
+    // the home page's section tween can still be running from the page
+    // transition (it scrolls to the top before the route swaps); stop it so it
+    // does not repaint the body in the night colour after this page sets paper
+    gsap.killTweensOf(document.body)
     document.body.style.backgroundColor = SECTION_BG.aboutIntro
     // the browser's own scroll anchoring would shift the page a second time
     // when a played pin is removed (the compensation is done by hand)
@@ -544,7 +548,7 @@ export default function AboutPage() {
       {/* ============================================ */}
       {/* PAGE CONTENT */}
       {/* ============================================ */}
-      <div ref={pageRef} onFocus={revealFocusedSection}>
+      <div ref={pageRef} onFocus={revealFocusedSection} style={{ backgroundColor: SECTION_BG.aboutIntro }}>
         
         {/* ============================================ */}
         {/* SECTION 001 - ABOUT */}
