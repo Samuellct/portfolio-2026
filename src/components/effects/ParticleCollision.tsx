@@ -4,7 +4,7 @@ import { useRef, useEffect, useState, useCallback } from 'react'
 import { RefreshCw } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
-import { ACCENT } from '@/lib/theme'
+import { RISO } from '@/lib/theme'
 import { withAlpha } from '@/lib/color'
 
 interface Track {
@@ -16,6 +16,8 @@ interface Track {
   maxRadius: number
   color: string
   thickness: number
+  // Exotic track: a yellow highlighter pass printed under the pink line
+  highlight: boolean
 }
 
 interface ParticleCollisionProps {
@@ -55,6 +57,9 @@ export default function ParticleCollision({ isVisible, className = '' }: Particl
       ctx.scale(dpr, dpr)
     }
     updateSize()
+    // Printed on paper (DEC-16j): inks multiply where tracks cross, like
+    // overlapping riso plates; no light, no glow.
+    ctx.globalCompositeOperation = 'multiply'
     
     const width = canvas.getBoundingClientRect().width
     const height = canvas.getBoundingClientRect().height
@@ -64,12 +69,12 @@ export default function ParticleCollision({ isVisible, className = '' }: Particl
     
     // Detector layers
     const detectorLayers = [
-      { radius: 0.15, label: 'Pixel', color: withAlpha(ACCENT.blue, 0.15) },
-      { radius: 0.25, label: 'SCT', color: withAlpha(ACCENT.blue, 0.10) },
-      { radius: 0.40, label: 'TRT', color: withAlpha(ACCENT.blue, 0.08) },
-      { radius: 0.60, label: 'ECAL', color: withAlpha(ACCENT.pink, 0.08) },
-      { radius: 0.80, label: 'HCAL', color: withAlpha(ACCENT.pink, 0.06) },
-      { radius: 0.95, label: 'Muon', color: 'rgba(255, 255, 255, 0.04)' },
+      { radius: 0.15, label: 'Pixel', color: withAlpha(RISO.blue, 0.40) },
+      { radius: 0.25, label: 'SCT', color: withAlpha(RISO.blue, 0.30) },
+      { radius: 0.40, label: 'TRT', color: withAlpha(RISO.blue, 0.22) },
+      { radius: 0.60, label: 'ECAL', color: withAlpha(RISO.pink, 0.35) },
+      { radius: 0.80, label: 'HCAL', color: withAlpha(RISO.pink, 0.25) },
+      { radius: 0.95, label: 'Muon', color: withAlpha(RISO.ink, 0.2) },
     ]
     
     // Generate tracks
@@ -92,14 +97,17 @@ export default function ParticleCollision({ isVisible, className = '' }: Particl
           maxRadius = Math.random() > 0.7 ? 0.95 : 0.7 + momentum * 0.2
         }
         
+        // Yellow vanishes on paper as a line, so it only survives as the
+        // highlighter under the rare exotic track (roughly 1 in 50 tracks).
         let color: string
+        let highlight = false
         if (maxRadius > 0.85) {
-          // Rare exotic track, reserved accent - roughly 1 in 50 tracks
-          color = Math.random() < 0.15 ? withAlpha(ACCENT.yellow, 0.8) : withAlpha(ACCENT.pink, 0.8)
+          color = withAlpha(RISO.pink, 0.9)
+          highlight = Math.random() < 0.15
         } else if (maxRadius > 0.55) {
-          color = withAlpha(ACCENT.yellow, 0.7)
+          color = withAlpha(RISO.blue, 0.85)
         } else {
-          color = withAlpha(ACCENT.blue, 0.8)
+          color = withAlpha(RISO.ink, 0.9)
         }
         
         tracks.push({
@@ -110,7 +118,8 @@ export default function ParticleCollision({ isVisible, className = '' }: Particl
           charge,
           maxRadius: maxRadius * maxR,
           color,
-          thickness: 1 + momentum * 1.5,
+          thickness: 1.25 + momentum * 1.5,
+          highlight,
         })
       }
       
@@ -136,7 +145,7 @@ export default function ParticleCollision({ isVisible, className = '' }: Particl
         ctx.stroke()
       })
       
-      ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)'
+      ctx.strokeStyle = withAlpha(RISO.ink, 0.5)
       ctx.lineWidth = 1
       ctx.beginPath()
       ctx.moveTo(centerX - 8, centerY)
@@ -152,25 +161,33 @@ export default function ParticleCollision({ isVisible, className = '' }: Particl
       
       if (currentSteps < 2) return
       
-      ctx.beginPath()
-      ctx.strokeStyle = track.color
-      ctx.lineWidth = track.thickness
-      ctx.lineCap = 'round'
-      
-      for (let i = 0; i <= currentSteps; i++) {
-        const t = i / steps
-        const r = t * track.maxRadius
-        const angle = track.startAngle + track.curvature * t * Math.PI
-        const x = centerX + Math.cos(angle) * r
-        const y = centerY + Math.sin(angle) * r
-        
-        if (i === 0) {
-          ctx.moveTo(x, y)
-        } else {
-          ctx.lineTo(x, y)
+      const tracePath = () => {
+        ctx.beginPath()
+        for (let i = 0; i <= currentSteps; i++) {
+          const t = i / steps
+          const r = t * track.maxRadius
+          const angle = track.startAngle + track.curvature * t * Math.PI
+          const x = centerX + Math.cos(angle) * r
+          const y = centerY + Math.sin(angle) * r
+          
+          if (i === 0) {
+            ctx.moveTo(x, y)
+          } else {
+            ctx.lineTo(x, y)
+          }
         }
       }
       
+      ctx.lineCap = 'round'
+      if (track.highlight) {
+        tracePath()
+        ctx.strokeStyle = RISO.yellow
+        ctx.lineWidth = track.thickness + 4
+        ctx.stroke()
+      }
+      tracePath()
+      ctx.strokeStyle = track.color
+      ctx.lineWidth = track.thickness
       ctx.stroke()
       
       if (progress > 0.3) {
@@ -187,22 +204,22 @@ export default function ParticleCollision({ isVisible, className = '' }: Particl
       }
     }
     
+    // Vertex burst: a flat ring of pink halftone dots spreading out and
+    // shrinking, instead of a glow.
     const drawVertexFlash = (progress: number) => {
       if (progress > 0.2) return
       
       const flashProgress = progress / 0.2
       const radius = flashProgress * 30
-      const opacity = 1 - flashProgress
+      const dot = 2.5 * (1 - flashProgress)
       
-      const gradient = ctx.createRadialGradient(centerX, centerY, 0, centerX, centerY, radius)
-      gradient.addColorStop(0, `rgba(255, 255, 255, ${opacity})`)
-      gradient.addColorStop(0.5, withAlpha(ACCENT.blue, opacity * 0.5))
-      gradient.addColorStop(1, withAlpha(ACCENT.blue, 0))
-      
-      ctx.beginPath()
-      ctx.arc(centerX, centerY, radius, 0, Math.PI * 2)
-      ctx.fillStyle = gradient
-      ctx.fill()
+      ctx.fillStyle = withAlpha(RISO.pink, 1 - flashProgress)
+      for (let k = 0; k < 12; k++) {
+        const a = (Math.PI * 2 * k) / 12
+        ctx.beginPath()
+        ctx.arc(centerX + Math.cos(a) * radius, centerY + Math.sin(a) * radius, dot, 0, Math.PI * 2)
+        ctx.fill()
+      }
     }
     
     const animate = (timestamp: number) => {
@@ -221,7 +238,7 @@ export default function ParticleCollision({ isVisible, className = '' }: Particl
       
       ctx.beginPath()
       ctx.arc(centerX, centerY, 3, 0, Math.PI * 2)
-      ctx.fillStyle = 'rgba(255, 255, 255, 0.9)'
+      ctx.fillStyle = RISO.ink
       ctx.fill()
       
       if (progress < 1) {
@@ -244,7 +261,7 @@ export default function ParticleCollision({ isVisible, className = '' }: Particl
     <div className={`relative w-full h-full ${className}`}>
       <canvas
         ref={canvasRef}
-        className="w-full h-full"
+        className="w-full h-full mix-blend-multiply"
         style={{ display: 'block' }}
       />
       
@@ -254,8 +271,8 @@ export default function ParticleCollision({ isVisible, className = '' }: Particl
         disabled={!canShuffle || isAnimating}
         className={`absolute bottom-4 right-4 p-2 rounded-full border transition-all duration-300 ${
           canShuffle && !isAnimating
-            ? 'border-white/20 text-muted hover:border-accent-line/50 hover:text-accent cursor-pointer'
-            : 'border-white/5 text-white/10 cursor-not-allowed'
+            ? 'border-riso-blue/50 text-riso-ink hover:bg-riso-ink hover:text-riso-paper cursor-pointer'
+            : 'border-riso-blue/20 text-riso-ink/30 cursor-not-allowed'
         }`}
         title={t('collision.newCollision')}
         aria-label={t('collision.newCollision')}
