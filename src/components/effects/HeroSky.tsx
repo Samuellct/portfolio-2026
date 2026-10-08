@@ -4,27 +4,31 @@ import { useEffect, useRef } from 'react'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { RISO } from '@/lib/theme'
 
-// The hero's night plate (DEC-16i): a sparse pastel sky printed in halftone,
-// under a film grain, ending in a paper halftone fringe. One WebGL draw call.
+// The hero's night plate (DEC-16i): a sky printed in halftone, pastels with
+// pure ink specks, under a light film grain, ending in a paper halftone fringe
+// just below the fold. One WebGL draw call.
 //
-// Motion: the sky turns very slowly around a point far below the screen, on three
-// depth planes (0.5 / 1.5 / 3 px/s). The former WaveBackground survives as the
-// sine field that makes the stars sway (same frequencies), plus a light pointer
-// parallax and a phased twinkle on about one star in ten. Reduced motion prints a
-// single still frame.
+// Motion: the sky turns around a point far below the screen, on three depth
+// planes (2 / 5 / 10 px/s). The former WaveBackground survives as the sine field
+// that makes the stars sway, plus a phased twinkle on about one star in seven.
+// The sky ignores the pointer. Reduced motion prints a single still frame.
+// Parameters chosen by the owner on the variant bench (audit 2, 2026-10-08).
 
-const PASTELS: Array<[number, [number, number, number]]> = [
-  [0.3, [255, 179, 220]], // pink ink, pastel
-  [0.35, [158, 201, 240]], // blue ink, pastel
-  [0.27, [255, 244, 232]], // warm white
-  [0.08, [255, 243, 160]], // yellow ink, pastel (rare)
+const PALETTE: Array<[number, [number, number, number]]> = [
+  [0.2, [255, 179, 220]], // pink ink, pastel
+  [0.2, [158, 201, 240]], // blue ink, pastel
+  [0.2, [255, 244, 232]], // warm white
+  [0.14, [255, 72, 176]], // pink ink
+  [0.14, [70, 160, 230]], // blue ink, lightened
+  [0.07, [255, 232, 0]], // yellow ink
+  [0.05, [255, 243, 160]], // yellow ink, pastel
 ]
-const PLANE_SPEED = [0.5, 1.5, 3] // px/s along the arc
-const CANDIDATES = 160
-const CROSSES = 4
+const PLANE_SPEED = [2, 5, 10] // px/s along the arc, far to near
+// Stars for a 1440 x 900 viewport, scaled with the area.
+const DENSITY = 110 / (1440 * 900)
 // Lifted, slightly warm black: the plate is printed, not a screen void.
 const BASE = [17 / 255, 16 / 255, 23 / 255]
-const FRINGE_HEIGHT = 56
+export const FRINGE_HEIGHT = 56
 const FRINGE_STEP = 6
 
 const vertexShader = `
@@ -36,7 +40,6 @@ uniform float uDpr;
 uniform float uTime;
 uniform float uDist;
 uniform float uHalf;
-uniform vec2 uMouse;
 varying vec4 vColor;
 varying float vKind;
 varying float vSoft;
@@ -55,14 +58,13 @@ void main() {
   // WaveBackground's sines, now a sway field.
   float amp = 2.0 + plane * 2.0;
   p += vec2(sin(aA.x * 0.004 + uTime * 0.15), sin(aA.y * 0.0025 + uTime * 0.1)) * amp;
-  p += uMouse * (2.0 + plane * 3.0);
 
   vec2 clip = p / uRes * 2.0 - 1.0;
   gl_Position = vec4(clip.x, -clip.y, 0.0, 1.0);
   gl_PointSize = aA.z * uDpr;
 
   float period = 4.0 + 5.0 * fract(aB.z * 7.31);
-  float twinkle = 1.0 + 0.15 * aB.w * sin(uTime * 6.2831853 / period + aB.z * 6.2831853);
+  float twinkle = 1.0 + 0.25 * aB.w * sin(uTime * 6.2831853 / period + aB.z * 6.2831853);
   vColor = vec4(aColor.rgb, aColor.a * twinkle);
   vKind = aA.w;
   vSoft = aB.y;
@@ -113,46 +115,44 @@ function seeded(seed: number) {
 
 function pickColor(t: number) {
   let acc = 0
-  for (const [weight, rgb] of PASTELS) {
+  for (const [weight, rgb] of PALETTE) {
     acc += weight
     if (t <= acc) return rgb
   }
-  return PASTELS[0][1]
+  return PALETTE[0][1]
 }
 
 // Same seed for every viewport, so the sky keeps its constellation across sizes.
 function buildStars(width: number, height: number) {
   const rand = seeded(7)
   const desktop = width >= 1024
-  const target = Math.max(28, Math.min(80, Math.round((width * height) / 22000)))
-  // Keep the name and the four star-projects clear on desktop.
-  const clear = (x: number, y: number) => {
-    if (!desktop) return true
-    const nx = (x - 0.5) / 0.27
-    const ny = (y - 0.5) / 0.24
-    if (nx * nx + ny * ny < 1) return false
-    const slots = [[0.26, 0.22], [0.74, 0.24], [0.25, 0.76], [0.75, 0.74]]
-    return slots.every(([sx, sy]) => Math.hypot((x - sx) * width, (y - sy) * height) > 110)
-  }
+  const target = Math.max(28, Math.round(width * height * DENSITY))
+  const crossCap = Math.max(4, target / 45)
 
   const a: number[] = []
   const b: number[] = []
   const c: number[] = []
   let crosses = 0
-  for (let i = 0; i < CANDIDATES && a.length / 4 < target; i++) {
+  for (let i = 0; i < target * 3 && a.length / 4 < target; i++) {
     const x = rand()
     const y = rand()
     const roll = rand()
     const soft = rand()
     const phase = rand()
-    const twinkle = rand() < 0.1 ? 1 : 0
-    const plane = Math.floor(rand() * 3)
+    const twinkle = rand() < 0.15 ? 1 : 0
+    const pr = rand()
+    const plane = pr < 0.55 ? 0 : pr < 0.85 ? 1 : 2
     const color = pickColor(rand())
-    if (!clear(x, y)) continue
-    const kind = crosses < CROSSES && roll < 0.12 ? 2 : roll < 0.37 ? 1 : 0
+    // Thin the sky behind the name on desktop, without emptying it.
+    const nx = (x - 0.5) / 0.25
+    const ny = (y - 0.5) / 0.22
+    if (desktop && nx * nx + ny * ny < 1 && rand() < 0.85) continue
+    // Near planes carry the large halftone halos, the far plane the pinpricks.
+    const kind = crosses < crossCap && roll < 0.06 ? 2 : roll < [0.1, 0.3, 0.6][plane] ? 1 : 0
     if (kind === 2) crosses++
-    const size = kind === 2 ? 40 + soft * 10 : kind === 1 ? 22 + soft * 18 : 5 + soft * 4
-    const alpha = kind === 0 ? 0.45 + phase * 0.35 : 0.85
+    const scale = [0.75, 1, 1.25][plane]
+    const size = (kind === 2 ? 40 + soft * 10 : kind === 1 ? 20 + soft * 16 : 4 + soft * 4) * scale
+    const alpha = kind === 0 ? (0.35 + phase * 0.4) * (plane === 0 ? 0.8 : 1) : 0.85
     a.push(x * width, y * height, size, kind)
     b.push(plane, soft, phase, twinkle)
     c.push(color[0] / 255, color[1] / 255, color[2] / 255, alpha)
@@ -220,7 +220,7 @@ export default function HeroSky() {
     gl.clearColor(BASE[0], BASE[1], BASE[2], 1)
 
     const u = (name: string) => gl.getUniformLocation(program, name)
-    const uRes = u('uRes'), uDpr = u('uDpr'), uDotScale = u('uDotScale'), uTime = u('uTime'), uDist = u('uDist'), uHalf = u('uHalf'), uMouse = u('uMouse')
+    const uRes = u('uRes'), uDpr = u('uDpr'), uDotScale = u('uDotScale'), uTime = u('uTime'), uDist = u('uDist'), uHalf = u('uHalf')
     const buffers = (['aA', 'aB', 'aColor'] as const).map((name) => {
       const buffer = gl.createBuffer()
       const loc = gl.getAttribLocation(program, name)
@@ -232,13 +232,11 @@ export default function HeroSky() {
     let visible = true
     let last = 0
     const start = performance.now()
-    const mouse = { x: 0, y: 0, tx: 0, ty: 0 }
     const mobile = window.matchMedia('(max-width: 767px)').matches
     const minFrameMs = mobile ? 1000 / 30 : 0
 
     const draw = (seconds: number) => {
       gl.uniform1f(uTime, seconds)
-      gl.uniform2f(uMouse, mouse.x, mouse.y)
       gl.clear(gl.COLOR_BUFFER_BIT)
       gl.drawArrays(gl.POINTS, 0, count)
     }
@@ -273,15 +271,9 @@ export default function HeroSky() {
       frame = requestAnimationFrame(tick)
       if (!visible || document.hidden || now - last < minFrameMs) return
       last = now
-      mouse.x += (mouse.tx - mouse.x) * 0.04
-      mouse.y += (mouse.ty - mouse.y) * 0.04
       draw((now - start) / 1000)
     }
 
-    const onPointer = (e: PointerEvent) => {
-      mouse.tx = (e.clientX / window.innerWidth) * 2 - 1
-      mouse.ty = (e.clientY / window.innerHeight) * 2 - 1
-    }
     const onLost = (e: Event) => {
       e.preventDefault()
       cancelAnimationFrame(frame)
@@ -293,7 +285,6 @@ export default function HeroSky() {
     window.addEventListener('resize', resize)
     canvas.addEventListener('webglcontextlost', onLost)
     if (!prefersReducedMotion) {
-      window.addEventListener('pointermove', onPointer, { passive: true })
       frame = requestAnimationFrame(tick)
     }
 
@@ -301,7 +292,6 @@ export default function HeroSky() {
       cancelAnimationFrame(frame)
       observer.disconnect()
       window.removeEventListener('resize', resize)
-      window.removeEventListener('pointermove', onPointer)
       canvas.removeEventListener('webglcontextlost', onLost)
       buffers.forEach(({ buffer }) => gl.deleteBuffer(buffer))
       gl.deleteProgram(program)
@@ -314,7 +304,6 @@ export default function HeroSky() {
     <div aria-hidden="true" className="absolute inset-0 pointer-events-none overflow-hidden">
       <canvas ref={skyRef} className="absolute inset-0 w-full h-full" />
       <div className="film-grain" />
-      <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-primary to-transparent" />
       <canvas ref={fringeRef} className="absolute inset-x-0 bottom-0 w-full" style={{ height: FRINGE_HEIGHT }} />
     </div>
   )

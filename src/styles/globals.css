@@ -228,16 +228,16 @@ body {
   text-shadow: 0.04em 0.035em 0 theme('colors.riso.blue');
 }
 
-/* Film grain over the hero's night plate (DEC-16i): a grey noise tile in
-   screen blend, jumping between offsets at about 12 frames per second like
-   a projected print. Still under reduced motion. */
+/* Film grain over the hero's night plate (DEC-16i): a light grey noise tile
+   in screen blend, jumping between offsets at about 12 frames per second
+   like a projected print. Still under reduced motion. */
 .film-grain {
   position: absolute;
   inset: -120px;
   background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='220' height='220'><filter id='g'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.8  0 0 0 0 0.78  0 0 0 0 0.74  0.33 0.33 0.33 0 -0.25'/></filter><rect width='100%' height='100%' filter='url(%23g)'/></svg>");
   background-size: 220px 220px;
   mix-blend-mode: screen;
-  opacity: 0.3;
+  opacity: 0.12;
   animation: film-grain 0.66s steps(1, end) infinite;
   will-change: transform;
 }
