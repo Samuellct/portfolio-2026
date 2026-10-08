@@ -5,12 +5,16 @@ import TransitionLink from '@/components/navigation/TransitionLink'
 import { motion } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, Mail } from 'lucide-react'
 import ParticleCollision from '@/components/effects/ParticleCollision'
 import { useTranslations } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 
 gsap.registerPlugin(ScrollTrigger)
+
+// Same pill as the hero's call to action, inked for paper.
+const pillBase =
+  'inline-flex items-center justify-center gap-2 px-6 lg:px-7 py-3.5 rounded-full text-xs lg:text-sm font-bold tracking-caps uppercase whitespace-nowrap transition-colors duration-200'
 
 export default function ContactSection() {
   const t = useTranslations('contact')
@@ -121,11 +125,12 @@ export default function ContactSection() {
   const titleText = t('title')
   // Chars are grouped per word (a break is allowed after a space or a hyphen)
   // so the per-char animation spans never wrap mid-word.
+  const email = t('page.directContact.email')
   const titleChars = titleText.split(/(?<=[\s-])/).map((word, w) => (
     <span key={w}>
       <span className="inline-block whitespace-nowrap">
         {[...word.trimEnd()].map((char, i) => (
-          <span key={i} className="contact-char inline-block">
+          <span key={i} aria-hidden="true" className="contact-char inline-block">
             {char}
           </span>
         ))}
@@ -138,8 +143,13 @@ export default function ContactSection() {
     <section
       ref={sectionRef}
       id="contact"
-      className="scheme-night section py-32 md:py-40 relative overflow-hidden flex items-center"
+      className="section py-32 md:py-40 relative overflow-hidden flex items-center"
     >
+      {/* Paper follows paper (DEC-16j): a thin blue rule parts Contact from About. */}
+      <div aria-hidden="true" className="absolute top-0 inset-x-0 max-w-7xl mx-auto px-6 md:px-12 lg:px-16">
+        <div className="h-px bg-riso-blue/30" />
+      </div>
+
       {/* ============================================ */}
       {/* PARALLAX txt */}
       {/* ============================================ */}
@@ -151,15 +161,6 @@ export default function ContactSection() {
         <span className="font-display uppercase font-black text-ghost-35 text-white/[0.015] leading-none">
           CONTACT
         </span>
-      </div>
-      
-      {/* ============================================ */}
-      {/* GRADIENT ORBS */}
-      {/* ============================================ */}
-      <div className="absolute inset-0 pointer-events-none">
-        {/* phase de transition avec la section bolg */}
-        <div className="absolute bottom-1/4 left-1/4 w-[35vw] h-[35vw] bg-riso-pink/5 rounded-full blur-[150px]" />
-        <div className="absolute top-1/3 right-1/3 w-[25vw] h-[25vw] bg-riso-blue/5 rounded-full blur-[120px]" />
       </div>
       
       {/* ============================================ */}
@@ -178,34 +179,34 @@ export default function ContactSection() {
               {!prefersReducedMotion && (
                 <ParticleCollision
                   isVisible={isCollisionVisible}
-                  className="opacity-80"
                 />
               )}
             </div>
             
             <div className="absolute inset-0 pointer-events-none">
-              <div className="absolute inset-0 border border-white/5 rounded-full" />
+              <div className="absolute inset-0 border border-riso-blue/40 rounded-full" />
               
-              <div className="absolute inset-8 border border-white/[0.03] rounded-full" />
-              <div className="absolute inset-16 border border-white/[0.02] rounded-full" />
+              <div className="absolute inset-8 border border-riso-blue/25 rounded-full" />
+              <div className="absolute inset-16 border border-riso-pink/30 rounded-full" />
               
               <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                <div className="w-px h-8 bg-gradient-to-b from-accent-line/40 to-transparent" />
+                <div className="w-px h-8 bg-riso-blue" />
               </div>
               <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2">
-                <div className="w-px h-8 bg-gradient-to-t from-riso-blue/40 to-transparent" />
+                <div className="w-px h-8 bg-riso-blue" />
               </div>
               <div className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-1/2">
-                <div className="w-8 h-px bg-gradient-to-r from-accent-line/40 to-transparent" />
+                <div className="w-8 h-px bg-riso-pink" />
               </div>
               <div className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-1/2">
-                <div className="w-8 h-px bg-gradient-to-l from-riso-blue/40 to-transparent" />
+                <div className="w-8 h-px bg-riso-pink" />
               </div>
             </div>
             
-            <div aria-hidden="true" className="absolute -bottom-4 left-1/2 -translate-x-1/2 text-meta tracking-caps-wide uppercase text-faint">
-              {t('collision.eventDisplay')}
-            </div>
+            {/* UX-06: one line a non-physicist can read. */}
+            <p className="absolute -bottom-10 inset-x-0 text-center font-mono text-meta text-muted">
+              {t('collision.legend')}
+            </p>
           </div>
           
           {/* Right side : txt */}
@@ -224,7 +225,8 @@ export default function ContactSection() {
             {/* Title */}
             <h2 
               ref={titleRef}
-              className="font-display uppercase font-black text-page leading-display tracking-wide mb-8"
+              aria-label={titleText}
+              className="misregister font-display uppercase font-black text-page leading-display tracking-wide mb-8 text-riso-pinkTitle"
               style={{ perspective: '1000px' }}
             >
               {titleChars}
@@ -241,25 +243,22 @@ export default function ContactSection() {
               {t('preview.text')}
             </motion.p>
             
-            {/* CTA */}
-            <div ref={ctaRef}>
+            {/* CTA: the contact page, or a direct e-mail */}
+            <div ref={ctaRef} className="flex flex-wrap gap-3">
               <TransitionLink
                 href="/contact"
-                className="inline-flex items-center gap-4 px-10 py-5 bg-riso-pink text-snow hover:text-black text-sm font-medium tracking-caps-wide uppercase transition-all duration-300 hover:bg-white hover:shadow-glow-accent-strong group relative overflow-hidden"
+                className={`${pillBase} bg-riso-pink text-primary hover:bg-riso-ink hover:text-riso-paper group`}
               >
-                <span className="relative z-10">{t('preview.cta')}</span>
-                <ArrowRight size={18} className="relative z-10 transition-transform group-hover:translate-x-1" />
-                
-                <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
+                {t('preview.cta')}
+                <ArrowRight size={16} aria-hidden="true" className="transition-transform group-hover:translate-x-1" />
               </TransitionLink>
-            </div>
-            
-            {/* Deco */}
-            <div aria-hidden="true" className="mt-16 flex items-center gap-4 text-faint">
-              <span className="w-12 h-px bg-white/10" />
-              <span className="text-xs tracking-menu-label uppercase flex items-center gap-2">
-                Samuel Lecomte
-              </span>
+              <a
+                href={`mailto:${email}`}
+                className={`${pillBase} normal-case tracking-normal border-[1.5px] border-riso-ink text-riso-ink hover:bg-riso-ink hover:text-riso-paper`}
+              >
+                <Mail size={16} aria-hidden="true" />
+                {email}
+              </a>
             </div>
           </div>
         </div>

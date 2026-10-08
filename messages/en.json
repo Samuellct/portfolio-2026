@@ -176,7 +176,7 @@
     },
     "collision": {
       "newCollision": "New collision",
-      "eventDisplay": "Event Display"
+      "legend": "Simulated particle collision"
     },
     "page": {
       "title": "Contact Me",
