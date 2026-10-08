@@ -5,18 +5,11 @@ import TransitionLink from '@/components/navigation/TransitionLink'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowRight, Download } from 'lucide-react'
-import dynamic from 'next/dynamic'
 import { useLocale, useTranslations } from 'next-intl'
 import { useSite } from '@/context/SiteContext'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
-import HeroStarfield from '@/components/effects/HeroStarfield'
+import HeroSky from '@/components/effects/HeroSky'
 import { getCardPeriod, getFeaturedProjects, getLocalizedField, Locale, ProjectData } from '@/lib/projects'
-
-// Dynamic import for WebGL (client-side only)
-const WaveBackground = dynamic(
-  () => import('@/components/effects/WaveBackground'),
-  { ssr: false }
-)
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -179,10 +172,7 @@ export default function HeroSection() {
         </filter>
       </svg>
 
-      <HeroStarfield />
-      <WaveBackground className="opacity-50" />
-
-      <div className="absolute inset-0 bg-gradient-to-b from-primary/25 via-transparent to-primary pointer-events-none z-[1]" />
+      <HeroSky />
 
       {/* Desktop star-projects */}
       <div ref={starsRef} className="hidden lg:block absolute inset-0 z-10">
