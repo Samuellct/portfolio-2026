@@ -5,6 +5,32 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.21.0](https://github.com/Samuellct/portfolio-2026/compare/v4.20.0...v4.21.0) (2026-10-08)
+
+### Ajouté
+
+* close the about page with a CV-first call to action ([fc4082b](https://github.com/Samuellct/portfolio-2026/commit/fc4082bc0b50c3f0960c8f6b41c889b9052d5e42))
+* rework the three about-page illustrations for framing and quality ([e10d4f4](https://github.com/Samuellct/portfolio-2026/commit/e10d4f40a597bbdc9feaabb496cfdc43d3363029))
+
+### Corrigé
+
+* keep keyboard focus visible on the about page ([9c51e72](https://github.com/Samuellct/portfolio-2026/commit/9c51e7299b678aab6f47034817828760a3415914))
+* keep the about intro within the viewport on small screens ([a3f9326](https://github.com/Samuellct/portfolio-2026/commit/a3f9326f762ba1b5b6d8ea4bf480b4cba13429a1))
+* keep the about page on paper after arriving from the home page ([cf9b06f](https://github.com/Samuellct/portfolio-2026/commit/cf9b06fa3f73a3d53fb7c2e3a6518d24728e1768))
+* keep the about section rail in sync after a pin is removed ([be3098f](https://github.com/Samuellct/portfolio-2026/commit/be3098f95623c58de01512ba01cf6c8b4439ac5e))
+* lengthen the about page pins to 1300px ([c15c984](https://github.com/Samuellct/portfolio-2026/commit/c15c984c7bcbba99eab46e4c3390f6dd82a9e970))
+* remove hardcoded section colors from the SVG illustrations ([066108b](https://github.com/Samuellct/portfolio-2026/commit/066108b8a14c3ede79c84b270c01e2652e56a144))
+* remove the back link from the about page ([e1ed0c6](https://github.com/Samuellct/portfolio-2026/commit/e1ed0c6c523903ea956c90f9609ab0783162a724))
+* shorten the about page pin lengths and add section navigation ([a657905](https://github.com/Samuellct/portfolio-2026/commit/a657905e7bd6a6002b83addccc14abd149b17d06))
+* show result units on the about internship cards ([0659b9b](https://github.com/Samuellct/portfolio-2026/commit/0659b9bd0bc1a29d350b535781d3ee22c9a77450))
+* show section headings as soon as each pinned section starts ([dc8666c](https://github.com/Samuellct/portfolio-2026/commit/dc8666c8698701c67c79e48748f365af924fb255))
+* show the about intro buttons as pills from the start ([2b2e137](https://github.com/Samuellct/portfolio-2026/commit/2b2e13723453fcd107e8dfaa385dafe14823f995))
+* show the whole about intro without pinning it ([327390e](https://github.com/Samuellct/portfolio-2026/commit/327390e5f4c488907b4f9ecca57fa7f53421b166))
+
+### Modifié
+
+* bring the about page back to the shared palette and type ([35d94ea](https://github.com/Samuellct/portfolio-2026/commit/35d94ea3622a961304d7cbc61e6a8f8946916a2a))
+
 ## [4.20.0](https://github.com/Samuellct/portfolio-2026/compare/v4.19.0...v4.20.0) (2026-10-07)
 
 ### Ajouté
