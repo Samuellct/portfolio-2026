@@ -8,7 +8,7 @@ import { ArrowRight, Download } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import { useSite } from '@/context/SiteContext'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
-import HeroSky from '@/components/effects/HeroSky'
+import HeroSky, { FRINGE_HEIGHT } from '@/components/effects/HeroSky'
 import { getCardPeriod, getFeaturedProjects, getLocalizedField, Locale, ProjectData } from '@/lib/projects'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -158,10 +158,13 @@ export default function HeroSection() {
   }, [hasEnteredSite, prefersReducedMotion])
 
   return (
+    // The hero runs one fringe height past the fold, so the paper fringe only
+    // starts as the visitor scrolls; content and star slots stay on the first screen.
     <section
       ref={sectionRef}
       id="hero"
-      className="scheme-night section min-h-screen flex items-center justify-center relative overflow-hidden"
+      className="scheme-night section flex items-center justify-center relative overflow-hidden"
+      style={{ minHeight: `calc(100vh + ${FRINGE_HEIGHT}px)`, paddingBottom: FRINGE_HEIGHT }}
     >
       {/* Ink dropout inside the name: small specks of the plate show through. */}
       <svg aria-hidden="true" className="absolute w-0 h-0">
@@ -175,7 +178,7 @@ export default function HeroSection() {
       <HeroSky />
 
       {/* Desktop star-projects */}
-      <div ref={starsRef} className="hidden lg:block absolute inset-0 z-10">
+      <div ref={starsRef} className="hidden lg:block absolute inset-x-0 top-0 z-10" style={{ bottom: FRINGE_HEIGHT }}>
         {featured.map((project, i) => (
           <StarProject key={project.id} project={project} slot={STAR_SLOTS[i]} locale={locale} status={statusOf(project)} />
         ))}
