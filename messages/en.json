@@ -23,13 +23,11 @@
     "switchLangAria": "Switch to French"
   },
   "hero": {
-    "greeting": "Hi, I'm Samuel",
-    "greetingMobile": "Hi, I'm Samuel",
+    "name": "Samuel Lecomte",
     "title": "Physics. Python. Data.",
-    "description": "Particle physics graduate, trained in data analysis in a research lab. I build complete pipelines, from acquisition to result, in Python, C++ and TypeScript. Currently looking for a technical role.",
-    "cta": "My projects",
+    "cta": "All projects",
     "ctaSecondary": "Download my CV",
-    "available": "Open to work",
+    "cv": "CV",
     "scrollHint": "Scroll"
   },
   "about": {

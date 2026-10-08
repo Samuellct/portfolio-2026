@@ -23,13 +23,11 @@
     "switchLangAria": "Passer en anglais"
   },
   "hero": {
-    "greeting": "Samuel",
-    "greetingMobile": "Samuel",
+    "name": "Samuel Lecomte",
     "title": "Physique. Python. Data.",
-    "description": "Diplômé en physique des particules, formé à l'analyse de données en laboratoire. Je construis des chaînes complètes, de l'acquisition au résultat, en Python, C++ et TypeScript. Actuellement en recherche d'un poste technique.",
-    "cta": "Mes projets",
+    "cta": "Tous les projets",
     "ctaSecondary": "Télécharger mon CV",
-    "available": "Disponible",
+    "cv": "CV",
     "scrollHint": "Défiler"
   },
   "about": {
