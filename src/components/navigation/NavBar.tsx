@@ -13,10 +13,10 @@ export default function NavBar() {
   const tMenu = useTranslations('menu')
 
   const navLinks = [
-    { href: '/', label: tNav('home'), sectionId: 'hero' },
-    { href: '/about', label: tNav('about'), sectionId: 'about' },
-    { href: '/projects', label: tNav('projects'), sectionId: 'projects' },
-    { href: '/contact', label: tNav('contact'), sectionId: 'contact' },
+    { href: '/', label: tNav('home') },
+    { href: '/about', label: tNav('about') },
+    { href: '/projects', label: tNav('projects') },
+    { href: '/contact', label: tNav('contact') },
   ]
 
   const externalLinks = [
@@ -137,14 +137,12 @@ export default function NavBar() {
     }
   }, [isMenuOpen])
   
-  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
-    // If on home page, scroll to section instead of navigating
-    if (pathname === '/') {
+  // Every link opens its own page; only Home, clicked on the home page, scrolls
+  // back to the top instead of reloading it.
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
+    if (pathname === '/' && href === '/') {
       e.preventDefault()
-      const element = document.getElementById(sectionId)
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' })
-      }
+      document.getElementById('hero')?.scrollIntoView({ behavior: 'smooth' })
       setIsMenuOpen(false)
     }
   }
@@ -181,7 +179,7 @@ export default function NavBar() {
               <TransitionLink
                 key={link.href}
                 href={link.href}
-                onClick={(e) => handleNavClick(e, link.sectionId)}
+                onClick={(e) => handleNavClick(e, link.href)}
                 className="text-xs font-medium tracking-caps-wide uppercase text-muted hover:text-white relative transition-colors group"
               >
                 {link.label}
@@ -278,7 +276,7 @@ export default function NavBar() {
                     >
                       <TransitionLink
                         href={link.href}
-                        onClick={(e) => handleNavClick(e, link.sectionId)}
+                        onClick={(e) => handleNavClick(e, link.href)}
                         className="block font-display uppercase font-black text-page leading-none tracking-wide text-faint hover:text-white transition-all duration-300 hover:translate-x-4"
                       >
                         {link.label}
