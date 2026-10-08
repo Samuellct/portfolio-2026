@@ -138,7 +138,7 @@ export default function ContactSection() {
     <section
       ref={sectionRef}
       id="contact"
-      className="scheme-night section min-h-screen py-32 md:py-40 relative overflow-hidden flex items-center"
+      className="scheme-night section py-32 md:py-40 relative overflow-hidden flex items-center"
     >
       {/* ============================================ */}
       {/* PARALLAX txt */}

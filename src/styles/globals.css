@@ -125,7 +125,7 @@ body {
    SECTION STYLES
 =================================== */
 .section {
-  min-height: 100vh;
+  /* sized by its content (LAY-03); only the hero fills the screen */
   position: relative;
   overflow: hidden;
   /* each section paints its own scheme surface (paper, or night under

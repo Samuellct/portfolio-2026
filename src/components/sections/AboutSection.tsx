@@ -156,7 +156,7 @@ export default function AboutSection() {
     <section
       ref={sectionRef}
       id="about"
-      className="section min-h-screen py-32 md:py-40 relative overflow-hidden"
+      className="section py-32 md:py-40 relative overflow-hidden"
     >
       {/* PARALLAX txt */}
       <div
