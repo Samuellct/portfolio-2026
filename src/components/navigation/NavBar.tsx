@@ -27,11 +27,28 @@ export default function NavBar() {
   const [isScrolled, setIsScrolled] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const pathname = usePathname()
+  // On the home page the bar melts into the hero's sky (no band of its own)
+  // and takes its night band back once the hero has scrolled under it.
+  const [overHero, setOverHero] = useState(pathname === '/')
 
   const [isMobile, setIsMobile] = useState(false)
 
   const panelRef = useRef<HTMLDivElement>(null)
   const hamburgerRef = useRef<HTMLButtonElement>(null)
+
+  useEffect(() => {
+    const updateOverHero = () => {
+      const hero = pathname === '/' ? document.getElementById('hero') : null
+      setOverHero(!!hero && hero.getBoundingClientRect().bottom > 80)
+    }
+    updateOverHero()
+    window.addEventListener('scroll', updateOverHero, { passive: true })
+    window.addEventListener('resize', updateOverHero)
+    return () => {
+      window.removeEventListener('scroll', updateOverHero)
+      window.removeEventListener('resize', updateOverHero)
+    }
+  }, [pathname])
 
   useEffect(() => {
     const handleScroll = () => {
@@ -156,7 +173,9 @@ export default function NavBar() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className="scheme-night fixed top-0 inset-x-0 z-40 bg-primary"
+        className={`scheme-night fixed top-0 inset-x-0 z-40 transition-colors duration-200 ${
+          overHero && !isMenuOpen ? 'bg-transparent' : 'bg-primary'
+        }`}
       >
         <div className="flex items-center justify-between px-6 md:px-12 py-4">
           {/* Logo */}
@@ -175,22 +194,28 @@ export default function NavBar() {
             style={{ pointerEvents: isScrolled ? 'none' : 'auto' }}
             inert={isScrolled}
           >
-            {navLinks.map((link) => (
-              <TransitionLink
-                key={link.href}
-                href={link.href}
-                onClick={(e) => handleNavClick(e, link.href)}
-                className="text-xs font-medium tracking-caps-wide uppercase text-muted hover:text-white relative transition-colors group"
-              >
-                {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-px bg-accent-line transition-all duration-300 group-hover:w-full" />
-              </TransitionLink>
-            ))}
+            {navLinks.map((link) => {
+              const active = link.href === '/' ? pathname === '/' : pathname.startsWith(link.href)
+              return (
+                <TransitionLink
+                  key={link.href}
+                  href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
+                  aria-current={active ? 'page' : undefined}
+                  className={`text-xs font-medium tracking-caps-wide uppercase hover:text-riso-paper relative transition-colors group ${
+                    active ? 'text-riso-paper' : 'text-riso-paper/70'
+                  }`}
+                >
+                  {link.label}
+                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-accent-line transition-all duration-300 group-hover:w-full" />
+                </TransitionLink>
+              )
+            })}
           </motion.div>
           
           {/* Language switcher + Hamburger */}
           <div className="flex items-center gap-4">
-            <LanguageSwitcher className="text-xs font-medium tracking-caps-wide uppercase text-muted hover:text-white transition-colors" />
+            <LanguageSwitcher className="text-xs font-medium tracking-caps-wide uppercase text-riso-paper/70 hover:text-riso-paper transition-colors" />
 
             {/* Hamburger bttn */}
             <motion.button
