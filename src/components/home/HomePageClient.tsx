@@ -6,7 +6,6 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 import HeroSection from '@/components/sections/HeroSection'
 import AboutSection from '@/components/sections/AboutSection'
-import ProjectsSection from '@/components/sections/ProjectsSection'
 import ContactSection from '@/components/sections/ContactSection'
 import { useSite } from '@/context/SiteContext'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
@@ -85,7 +84,6 @@ export default function HomePageClient() {
     <>
       <HeroSection />
       <AboutSection />
-      <ProjectsSection />
       <ContactSection />
     </>
   )

@@ -116,10 +116,8 @@
   "projects": {
     "sectionLabel": "02 · Projets",
     "pageTitle": "Projets",
-    "title": "Travaux récents",
     "preview": {
-      "description": "Projets personnels, travaux universitaires et stages de recherche.",
-      "cta": "Voir tous les projets"
+      "description": "Projets personnels, travaux universitaires et stages de recherche."
     },
     "categories": {
       "all": "Tous",

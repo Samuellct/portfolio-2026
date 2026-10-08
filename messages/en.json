@@ -116,10 +116,8 @@
   "projects": {
     "sectionLabel": "02 · Projects",
     "pageTitle": "Projects",
-    "title": "Latest Work",
     "preview": {
-      "description": "Personal projects, university coursework and research internships.",
-      "cta": "View all projects"
+      "description": "Personal projects, university coursework and research internships."
     },
     "categories": {
       "all": "All",
