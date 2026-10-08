@@ -28,7 +28,7 @@
   --subtle: rgb(60 126 166);/* ink at 75% on paper, 3.74:1, large text only */
   --pink: 255 72 176;
 
-  /* First-paint background before hydration; afterwards GSAP drives
+  /* Body background before hydration; inner pages may then set
      document.body.style.backgroundColor directly. */
   --bg-color: #f1ebe0;
 }
@@ -128,6 +128,9 @@ body {
   min-height: 100vh;
   position: relative;
   overflow: hidden;
+  /* each section paints its own scheme surface (paper, or night under
+     .scheme-night), so text never sits on a neighbour's background */
+  background-color: rgb(var(--surface));
 }
 
 .section-label {

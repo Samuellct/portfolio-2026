@@ -40,17 +40,11 @@ export const SURFACE = {
 } as const
 
 /**
- * Per-section background colours driven by GSAP (homepage) or written directly
- * to `document.body` / a page wrapper. GSAP tweens the computed `backgroundColor`
- * from inline styles, so these must remain plain constants (a CSS variable would
- * interpolate differently); they are centralised here, not moved into CSS.
- * Night is reserved for the hero and, until its rebuild, the home contact scene.
+ * Page background colours written directly to `document.body` or to a page
+ * wrapper. Homepage sections take theirs from the scheme (`.section` in
+ * globals.css): night for the hero and the contact scene, paper elsewhere.
  */
 export const SECTION_BG = {
-  hero: SURFACE.primary,
-  about: RISO.paper,
-  projects: RISO.paper,
-  contact: SURFACE.primary,
   aboutIntro: RISO.paper,
   aboutExperience: RISO.paper,
   aboutStack: RISO.paper,
