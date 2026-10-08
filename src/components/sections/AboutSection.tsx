@@ -32,22 +32,22 @@ export default function AboutSection() {
     {
       value: String(statValues.internships),
       label: t('stats.experiments'),
-      hoverText: t('stats.experimentsHover')
+      context: t('stats.experimentsHover')
     },
     {
       value: String(statValues.languages.length),
       label: t('stats.languages'),
-      hoverText: statValues.languages.join(', ')
+      context: statValues.languages.join(', ')
     },
     {
       value: String(statValues.repos),
       label: t('stats.repos'),
-      hoverText: t('stats.reposHover')
+      context: t('stats.reposHover')
     },
   ]
   const sectionRef = useRef<HTMLElement>(null)
   const decorativeTextRef = useRef<HTMLDivElement>(null)
-  const statsRef = useRef<HTMLDivElement>(null)
+  const statsRef = useRef<HTMLUListElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const textBlockRef = useRef<HTMLDivElement>(null)
   
@@ -246,33 +246,26 @@ export default function AboutSection() {
           
           {/* Right column */}
           <div>
-            {/* Stats - Floating Tags */}
-            <div ref={statsRef} className="relative h-[350px] md:h-[400px]">
-              {stats.map((stat, index) => {
-                const positions = [
-                  { top: '10%', left: '8%' },
-                  { top: '42%', left: '45%' },
-                  { top: '72%', left: '14%' },
-                ]
-                return (
-                  <div
-                    key={stat.label}
-                    className="float-stat absolute cursor-default transition-transform duration-[400ms] ease-[cubic-bezier(0.4,0,0.2,1)] hover:-translate-y-1.5 group"
-                    style={{ top: positions[index].top, left: positions[index].left }}
-                  >
-                    <div className="fraunces-display-italic text-heading font-light leading-none mb-1.5 gradient-text">
-                      {stat.value}
-                    </div>
-                    <div className="text-meta text-muted uppercase tracking-caps font-medium">
-                      {stat.label}
-                    </div>
-                    <div className="text-xs text-muted italic mt-1.5 opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                      {stat.hoverText}
-                    </div>
+            {/* Stats: a staircase in the flow (AUDIT-040, DEC-16e). The offsets keep the
+                floating-tag feel on desktop; the context line is always shown. */}
+            <ul ref={statsRef} className="flex flex-col gap-10 md:gap-12">
+              {stats.map((stat, index) => (
+                <li
+                  key={stat.label}
+                  className={`float-stat max-w-sm ${['lg:ml-[4%]', 'lg:ml-[28%]', 'lg:ml-[12%]'][index]}`}
+                >
+                  <div className="fraunces-display-italic text-heading font-light leading-none mb-1.5 gradient-text">
+                    {stat.value}
                   </div>
-                )
-              })}
-            </div>
+                  <div className="text-meta text-muted uppercase tracking-caps font-medium">
+                    {stat.label}
+                  </div>
+                  <div className="text-sm text-muted italic mt-1.5">
+                    {stat.context}
+                  </div>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
       </div>
