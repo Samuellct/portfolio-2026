@@ -25,6 +25,8 @@ export default function NavBar() {
     { href: 'https://www.linkedin.com/in/samuel-lecomte37/', label: tMenu('linkedin'), icon: Linkedin, hoverColor: 'hover:text-brand-linkedinAlt' },
   ]
   const [isScrolled, setIsScrolled] = useState(false)
+  const [isHidden, setIsHidden] = useState(false)
+  const [hasFocusWithin, setHasFocusWithin] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const pathname = usePathname()
   // On the home page the bar melts into the hero's sky (no band of its own)
@@ -50,9 +52,18 @@ export default function NavBar() {
     }
   }, [pathname])
 
+  // AUDIT-024: the bar slides away while scrolling down and comes back on the
+  // first scroll up. A few pixels of slack keep trackpad jitter from toggling it.
   useEffect(() => {
+    let lastY = window.scrollY
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 100)
+      const y = window.scrollY
+      setIsScrolled(y > 100)
+      if (y <= 100) setIsHidden(false)
+      else if (y - lastY > 6) setIsHidden(true)
+      else if (lastY - y > 6) setIsHidden(false)
+      else return
+      lastY = y
     }
 
     const checkMobile = () => {
@@ -166,6 +177,10 @@ export default function NavBar() {
     }
   }
   
+  // Never hidden over the home hero (the bar is part of it), with the menu
+  // open, or while keyboard focus is inside it.
+  const isBarHidden = isHidden && !overHero && !isMenuOpen && !hasFocusWithin
+
   return (
     <>
       {/* Navigation Bar */}
@@ -173,8 +188,12 @@ export default function NavBar() {
         id="site-nav"
         aria-label={tNav('mainLabel')}
         initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6, delay: 0.2 }}
+        animate={{ opacity: 1, y: isBarHidden ? '-100%' : 0 }}
+        transition={{ y: { duration: 0.3, ease: 'easeOut' }, opacity: { duration: 0.6, delay: 0.2 } }}
+        onFocus={() => setHasFocusWithin(true)}
+        onBlur={(e) => {
+          if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setHasFocusWithin(false)
+        }}
         className={`scheme-night fixed top-0 inset-x-0 z-40 transition-colors duration-200 ${
           overHero && !isMenuOpen ? 'bg-transparent' : 'bg-primary'
         }`}
@@ -189,13 +208,7 @@ export default function NavBar() {
           </TransitionLink>
           
           {/* Desktop nav */}
-          <motion.div
-            className="hidden md:flex items-center gap-10"
-            animate={{ opacity: isScrolled ? 0 : 1 }}
-            transition={{ duration: 0.3 }}
-            style={{ pointerEvents: isScrolled ? 'none' : 'auto' }}
-            inert={isScrolled}
-          >
+          <div className="hidden md:flex items-center gap-10">
             {navLinks.map((link) => {
               const active = isActive(link.href)
               return (
@@ -213,8 +226,8 @@ export default function NavBar() {
                 </TransitionLink>
               )
             })}
-          </motion.div>
-          
+          </div>
+
           {/* Language switcher + Hamburger */}
           <div className="flex items-center gap-4">
             <LanguageSwitcher className="text-xs font-medium tracking-caps-wide uppercase text-riso-paper/70 hover:text-riso-paper transition-colors" />
