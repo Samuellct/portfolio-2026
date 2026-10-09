@@ -176,12 +176,13 @@
     "page": {
       "title": "Contact Me",
       "description": "A technical question about my projects, a job opportunity, or a wish to talk about my background? Write to me directly. I'll get back to you quickly.",
+      "emailFirst": "By email: <email></email>, or with the form below.",
       "form": {
         "name": "Name",
         "namePlaceholder": "Your name",
         "email": "Email",
         "emailPlaceholder": "your.email@example.com",
-        "subject": "Subject",
+        "subject": "Subject (optional)",
         "subjectPlaceholder": "What's this about?",
         "message": "Message",
         "messagePlaceholder": "Your message...",
@@ -197,7 +198,6 @@
       "directContact": {
         "title": "Or reach me directly",
         "email": "contact@samuel-lecomte.fr",
-        "emailLabel": "E-mail",
         "githubLabel": "GitHub",
         "linkedinLabel": "LinkedIn"
       }

@@ -5,7 +5,7 @@ import Breadcrumb from '@/components/navigation/Breadcrumb'
 import { motion } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { Send, CheckCircle, AlertCircle, Mail, Github, Linkedin } from 'lucide-react'
+import { Send, CheckCircle, AlertCircle, Github, Linkedin } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { SECTION_BG } from '@/lib/theme'
@@ -136,6 +136,19 @@ export default function ContactPage() {
           <p className="text-lg text-muted text-justify">
             {tContact('page.description')}
           </p>
+          {/* UX-11: the direct address comes before the form */}
+          <p className="mt-4 text-lg text-muted">
+            {tContact.rich('page.emailFirst', {
+              email: () => (
+                <a
+                  href={`mailto:${tContact('page.directContact.email')}`}
+                  className="tap-target text-accent underline underline-offset-4 decoration-accent-line/40 hover:decoration-accent-line transition-colors break-all"
+                >
+                  {tContact('page.directContact.email')}
+                </a>
+              ),
+            })}
+          </p>
         </motion.header>
         
         {/* Live region, in the DOM before any submission so screen readers
@@ -241,7 +254,6 @@ export default function ContactPage() {
                 name="subject"
                 value={formData.subject}
                 onChange={handleChange}
-                required
                 placeholder={tContact('page.form.subjectPlaceholder')}
                 className="w-full px-4 py-3 bg-white/[0.03] border border-white/10 text-white placeholder:text-muted focus:outline-none focus:border-accent-line transition-colors"
               />
@@ -302,14 +314,6 @@ export default function ContactPage() {
           </h2>
           
           <div className="flex flex-wrap gap-4">
-            <a
-              href={`mailto:${tContact('page.directContact.email')}`}
-              className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 border border-white/10 transition-all hover:border-accent-line/30 hover:text-accent group"
-            >
-              <Mail size={16} className="text-accent" />
-              <span>{tContact('page.directContact.emailLabel')}</span>
-            </a>
-            
             <a
               href="https://github.com/Samuellct"
               target="_blank"
