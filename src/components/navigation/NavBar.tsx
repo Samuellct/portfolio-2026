@@ -294,9 +294,11 @@ export default function NavBar() {
               <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-riso-blue rounded-full blur-[150px]" />
             </div>
             
-            <div className="relative h-full flex">
+            {/* RESP-03: below md the external column stacks under the sections
+                instead of disappearing; the panel scrolls if a short screen needs it. */}
+            <div className="relative h-full flex flex-col justify-center overflow-y-auto py-20 md:flex-row md:justify-start md:overflow-visible md:py-0">
               {/* Left side - Navigation Links */}
-              <div className="flex-1 flex flex-col justify-center px-8 md:px-16 lg:px-24">
+              <div className="md:flex-1 flex flex-col justify-center px-8 md:px-16 lg:px-24">
                 <motion.p
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -330,7 +332,7 @@ export default function NavBar() {
               </div>
               
               {/* Right side - External Links */}
-              <div className="hidden md:flex flex-col justify-center px-16 lg:px-24 border-l border-white/5">
+              <div className="flex flex-col justify-center mx-8 mt-10 pt-8 border-t border-white/5 md:mx-0 md:mt-0 md:pt-0 md:px-16 lg:px-24 md:border-t-0 md:border-l">
                 <motion.p
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
@@ -350,7 +352,7 @@ export default function NavBar() {
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
                       transition={{ delay: 0.25 + index * 0.08 }}
-                      className={`flex items-center gap-4 text-muted transition-colors group ${link.hoverColor}`}
+                      className={`tap-target flex items-center gap-4 text-muted transition-colors group ${link.hoverColor}`}
                     >
                       <link.icon size={20} />
                       <span className="text-lg">{link.label}</span>
