@@ -132,6 +132,7 @@ export default function ProjectDetailView({
       ? [[t('research.collaboration'), project.research.collaboration] as [string, string]]
       : []),
   ]
+  const contextText = project.sections?.context ? getLocalizedField(project.sections.context, locale) : undefined
   const outLinks = [
     ...(project.gitHubUrl ? [{ url: project.gitHubUrl, label: t('viewOnGitHub'), github: true }] : []),
     ...(project.links ?? [])
@@ -205,18 +206,19 @@ export default function ProjectDetailView({
 
         {/* ============================================ */}
         {/* SPLIT LAYOUT: lg+ = sticky context frame (4/12) + narrative (8/12);
-            below lg the narrative comes first and the frame follows it (RESP-02) */}
+            below lg the results come first, then a compact context, the
+            narrative, and the frame (technologies only) at the end (RESP-02) */}
         {/* ============================================ */}
         <div className="flex flex-col lg:grid lg:grid-cols-12 lg:gap-12">
 
           {/* Context frame (AUDIT-082: sticky on desktop) */}
           <aside className="order-2 lg:order-1 lg:col-span-4 mt-14 lg:mt-0 lg:sticky lg:top-24 lg:self-start border border-accent-line p-6">
-            <h2 className="pb-3 mb-5 border-b border-riso-pink text-meta font-semibold tracking-caps-wide uppercase">
+            <h2 className="hidden lg:block pb-3 mb-5 border-b border-riso-pink text-meta font-semibold tracking-caps-wide uppercase">
               {t('sections.context')}
             </h2>
             <dl className="space-y-4 text-sm">
               {facts.map(([label, value]) => (
-                <div key={label}>
+                <div key={label} className="hidden lg:block">
                   <dt className="font-semibold">{label}</dt>
                   <dd className="text-muted">{value}</dd>
                 </div>
@@ -230,10 +232,8 @@ export default function ProjectDetailView({
                 </dd>
               </div>
             </dl>
-            {project.sections?.context && (
-              <p className="mt-6 pt-5 border-t border-white/15 text-sm text-muted">
-                {getLocalizedField(project.sections.context, locale)}
-              </p>
+            {contextText && (
+              <p className="hidden lg:block mt-6 pt-5 border-t border-white/15 text-sm text-muted">{contextText}</p>
             )}
             {/* In-page anchors for fiches with several narrative sections (desktop, where the frame stays in view) */}
             {narrative.length >= 2 && (
@@ -274,6 +274,26 @@ export default function ProjectDetailView({
                 </dl>
               </motion.section>
             )}
+
+            {/* Compact context below lg: period, place and purpose right after the
+                results, instead of after the narrative (the frame holds it on desktop) */}
+            <section aria-labelledby="section-context-compact" className="lg:hidden mb-10">
+              <h2
+                id="section-context-compact"
+                className="pb-3 mb-4 border-b border-riso-pink text-meta font-semibold tracking-caps-wide uppercase"
+              >
+                {t('sections.context')}
+              </h2>
+              <dl className="flex flex-wrap gap-x-6 gap-y-2 text-sm">
+                {facts.map(([label, value]) => (
+                  <div key={label}>
+                    <dt className="font-semibold">{label}</dt>
+                    <dd className="text-muted">{value}</dd>
+                  </div>
+                ))}
+              </dl>
+              {contextText && <p className="mt-4 text-sm text-muted">{contextText}</p>}
+            </section>
 
             {/* Lead media: first `media[]` entry, `image` for fiches without one (A15, DEC-10c) */}
             <motion.div
