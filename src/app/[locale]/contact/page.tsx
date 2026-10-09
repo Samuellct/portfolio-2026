@@ -29,7 +29,10 @@ export default function ContactPage() {
     message: '',
   })
   const [status, setStatus] = useState<FormStatus>('idle')
-  
+  // Honeypot: left empty by people, filled by bots; Formspree drops submissions
+  // that carry a value in `_gotcha`.
+  const gotchaRef = useRef<HTMLInputElement>(null)
+
   // Scroll to top before paint
   useLayoutEffect(() => {
     window.scrollTo(0, 0)
@@ -79,6 +82,7 @@ export default function ContactPage() {
         body: JSON.stringify({
           ...formData,
           _replyto: formData.email,
+          _gotcha: gotchaRef.current?.value ?? '',
         }),
       })
       
@@ -134,6 +138,14 @@ export default function ContactPage() {
           </p>
         </motion.header>
         
+        {/* Live region, in the DOM before any submission so screen readers
+            announce the outcome (AUDIT-069). */}
+        <p role="status" aria-live="polite" className="sr-only">
+          {status === 'submitting' && tContact('page.form.sending')}
+          {status === 'success' && tContact('page.form.success')}
+          {status === 'error' && tContact('page.form.error')}
+        </p>
+
         {/* Success State */}
         {status === 'success' && (
           <motion.div
@@ -194,6 +206,7 @@ export default function ContactPage() {
                   value={formData.name}
                   onChange={handleChange}
                   required
+                  autoComplete="name"
                   placeholder={tContact('page.form.namePlaceholder')}
                   className="w-full px-4 py-3 bg-white/[0.03] border border-white/10 text-white placeholder:text-muted focus:outline-none focus:border-accent-line transition-colors"
                 />
@@ -210,6 +223,7 @@ export default function ContactPage() {
                   value={formData.email}
                   onChange={handleChange}
                   required
+                  autoComplete="email"
                   placeholder={tContact('page.form.emailPlaceholder')}
                   className="w-full px-4 py-3 bg-white/[0.03] border border-white/10 text-white placeholder:text-muted focus:outline-none focus:border-accent-line transition-colors"
                 />
@@ -250,6 +264,11 @@ export default function ContactPage() {
               />
             </div>
             
+            {/* Honeypot, out of sight and out of the tab order */}
+            <div aria-hidden="true" className="absolute -left-[9999px] w-px h-px overflow-hidden">
+              <input ref={gotchaRef} type="text" name="_gotcha" tabIndex={-1} autoComplete="off" defaultValue="" />
+            </div>
+
             {/* Submit bttn */}
             <button
               type="submit"
