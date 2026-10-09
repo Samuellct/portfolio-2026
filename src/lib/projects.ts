@@ -1098,7 +1098,7 @@ J'ai consacré la majeure partie de mon temps à élaborer une stratégie de pr�
       kind: 'research',
       results: [
         { label: { en: 'Signal efficiency', fr: 'Efficacité du signal' }, value: '61', unit: '%', note: { en: 'at a 60 GeV transverse momentum cut', fr: 'à une coupure de 60 GeV en impulsion transverse' } },
-        { label: { en: 'QCD background remaining', fr: 'Bruit de fond QCD restant' }, value: '7', unit: '%', note: { en: '61% of the signal kept', fr: '61 % du signal conservé' } },
+        { label: { en: 'QCD background remaining', fr: 'Bruit de fond QCD restant' }, value: '7', unit: '%', note: { en: 'at the same 60 GeV cut', fr: 'à la même coupure de 60 GeV' } },
         { label: { en: 'HL-LHC gain', fr: 'Gain HL-LHC' }, value: '+16', unit: '%', note: { en: 'additional signal events captured', fr: 'événements de signal supplémentaires captés' } },
       ],
       sourceOfSkills: 'internship',
