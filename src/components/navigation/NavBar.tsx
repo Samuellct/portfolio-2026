@@ -194,7 +194,7 @@ export default function NavBar() {
         onBlur={(e) => {
           if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setHasFocusWithin(false)
         }}
-        className={`scheme-night fixed top-0 inset-x-0 z-40 transition-colors duration-200 ${
+        className={`scheme-night fixed top-0 inset-x-0 z-[110] transition-colors duration-200 ${
           overHero && !isMenuOpen ? 'bg-transparent' : 'bg-primary'
         }`}
       >
@@ -286,7 +286,7 @@ export default function NavBar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
-            className="scheme-night fixed inset-0 z-30 bg-primary"
+            className="scheme-night fixed inset-0 z-[100] bg-primary"
           >
             {/* bkg */}
             <div className="absolute inset-0 opacity-5">
