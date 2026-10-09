@@ -193,7 +193,9 @@ export default function NavBar() {
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: isBarHidden ? '-100%' : 0 }}
         transition={{ y: { duration: 0.3, ease: 'easeOut' }, opacity: { duration: 0.6, delay: 0.2 } }}
-        onFocus={() => setHasFocusWithin(true)}
+        // Only keyboard focus pins the bar: a clicked link keeps focus after the
+        // client-side navigation, which would otherwise lock the bar open.
+        onFocus={(e) => setHasFocusWithin(e.target.matches(':focus-visible'))}
         onBlur={(e) => {
           if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setHasFocusWithin(false)
         }}
