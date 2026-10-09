@@ -349,15 +349,6 @@ export default function ProjectsPage() {
         
         {/* Header */}
         <div ref={headerRef} className="mb-16">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="section-label text-accent mb-4"
-          >
-            {t('sectionLabel')}
-          </motion.div>
-          
           <h1 className="font-display uppercase font-black text-page leading-display-tight tracking-wide mb-6">
             {t('pageTitle')}
           </h1>
