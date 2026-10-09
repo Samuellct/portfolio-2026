@@ -5,6 +5,33 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.23.0](https://github.com/Samuellct/portfolio-2026/compare/v4.22.0...v4.23.0) (2026-10-09)
+
+### Ajouté
+
+* add a breadcrumb on deep pages ([ec3b3a3](https://github.com/Samuellct/portfolio-2026/commit/ec3b3a36c5d3504261d997d4b868dd3323f7a68e))
+* fold the navbar into a menu pill on scroll down ([8066729](https://github.com/Samuellct/portfolio-2026/commit/806672943c244feffbe778748f0f59e0be5d3f8f))
+* harden the contact form with autocomplete, aria-live and a honeypot ([d348ccd](https://github.com/Samuellct/portfolio-2026/commit/d348ccd809a74d3559b3cd082aa3622f014076b6))
+* hide the navbar on scroll down and reveal it on scroll up ([7f5d653](https://github.com/Samuellct/portfolio-2026/commit/7f5d65313e036b8c2393a729d7bc73e454c29712))
+* negotiate the locale from Accept-Language at the root ([4009615](https://github.com/Samuellct/portfolio-2026/commit/400961589ad027ef20f80ac6623e2d4de2c84b17))
+* remove the landing intro ([934e11a](https://github.com/Samuellct/portfolio-2026/commit/934e11aaed28c0ac6a8c5e4dd03d7bb927bf931c))
+
+### Corrigé
+
+* adapt the scroll hint to touch screens and raise its contrast ([a112e37](https://github.com/Samuellct/portfolio-2026/commit/a112e3749b4fbfd9855fdf9a90f7b90a877bb395))
+* answer unknown pages with a real 404 status ([7950f07](https://github.com/Samuellct/portfolio-2026/commit/7950f07d77d604eb235909a21fba3e0288f37e57))
+* describe the current site on the portfolio project page ([13d63a2](https://github.com/Samuellct/portfolio-2026/commit/13d63a2ba44b06bd840b9ef1e8cf33c840c709f6))
+* expose the external links in the mobile menu ([45ded25](https://github.com/Samuellct/portfolio-2026/commit/45ded251394a85006d91150d6fa56e671a344746))
+* keep the fullscreen menu above the about page overlays ([4664cdc](https://github.com/Samuellct/portfolio-2026/commit/4664cdca27bdc3f68652892c434ebee477987344))
+* let the navbar fold after a click on one of its links ([2ce40c7](https://github.com/Samuellct/portfolio-2026/commit/2ce40c7c7c91f2590ad086655ef2844b5b6cc6ab))
+* localize the 404 page under a locale prefix ([5db74fd](https://github.com/Samuellct/portfolio-2026/commit/5db74fd64805bf92b406595b342bf9b000f4e09d))
+* make the language switcher visible and accessible ([601cf96](https://github.com/Samuellct/portfolio-2026/commit/601cf96456d3f12d3f400b041a6b037a160c61f5))
+* surface the direct email before the contact form ([722b4e6](https://github.com/Samuellct/portfolio-2026/commit/722b4e609763277f8bcc25a10bf625b92f876883))
+
+### Modifié
+
+* drop the landing keys and leftovers ([9ee1e63](https://github.com/Samuellct/portfolio-2026/commit/9ee1e6356087a3e2783189c9ff48acdf3294313e))
+
 ## [4.22.0](https://github.com/Samuellct/portfolio-2026/compare/v4.21.0...v4.22.0) (2026-10-09)
 
 ### Ajouté
