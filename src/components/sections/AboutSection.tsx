@@ -169,10 +169,6 @@ export default function AboutSection() {
         </span>
       </div>
       
-      {/* test orbs (maybe dlt) */}
-      <div className="absolute top-0 right-0 w-[40vw] h-[40vw] bg-riso-blue/5 rounded-full blur-[150px] pointer-events-none" />
-      <div className="absolute bottom-1/4 left-1/4 w-[30vw] h-[30vw] bg-riso-blue/5 rounded-full blur-[120px] pointer-events-none" />
-      
       {/* MAIN */}
       <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-12 lg:px-16">
         
