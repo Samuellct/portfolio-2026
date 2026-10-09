@@ -32,7 +32,9 @@ export default function ScrollIndicator({ hideAfterPx = 100 }: ScrollIndicatorPr
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 10 }}
           transition={{ duration: 0.5 }}
-          className="fixed bottom-8 left-1/2 -translate-x-1/2 z-40 flex flex-col items-center gap-2"
+          // ICON-02: a mouse hint means nothing on touch screens, and on a phone the
+          // fixed hint sat over the intro text, so it is desktop only.
+          className="fixed bottom-8 left-1/2 -translate-x-1/2 z-40 flex flex-col items-center gap-2 [@media(hover:none)]:hidden"
         >
           {/* Mouse icon */}
           <div className="relative w-6 h-10 rounded-full border border-white/30 flex justify-center">
