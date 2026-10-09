@@ -1,11 +1,11 @@
 'use client'
 
 import { useState, useEffect, useRef, useLayoutEffect } from 'react'
-import TransitionLink from '@/components/navigation/TransitionLink'
+import Breadcrumb from '@/components/navigation/Breadcrumb'
 import { motion } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { ArrowLeft, Send, CheckCircle, AlertCircle, Mail, Github, Linkedin } from 'lucide-react'
+import { Send, CheckCircle, AlertCircle, Mail, Github, Linkedin } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { SECTION_BG } from '@/lib/theme'
@@ -19,7 +19,7 @@ type FormStatus = 'idle' | 'submitting' | 'success' | 'error'
 
 export default function ContactPage() {
   const tContact = useTranslations('contact')
-  const tCommon = useTranslations('common')
+  const tNav = useTranslations('nav')
   const prefersReducedMotion = useReducedMotion()
   const pageRef = useRef<HTMLDivElement>(null)
   const [formData, setFormData] = useState({
@@ -107,20 +107,13 @@ export default function ContactPage() {
       </div>
       
       <div className="relative z-10 pt-24 pb-20 max-w-3xl mx-auto px-6 md:px-12">
-        {/* Back link */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.4 }}
           className="mb-12"
         >
-          <TransitionLink
-            href="/"
-            className="tap-target inline-flex items-center gap-2 text-muted hover:text-white transition-colors"
-          >
-            <ArrowLeft size={16} />
-            <span className="text-sm tracking-label uppercase">{tCommon('back')}</span>
-          </TransitionLink>
+          <Breadcrumb items={[{ label: tNav('contact') }]} />
         </motion.div>
         
         {/* Header */}

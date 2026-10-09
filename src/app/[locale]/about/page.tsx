@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useLayoutEffect, useMemo, useState } from 'react'
 import TransitionLink from '@/components/navigation/TransitionLink'
+import Breadcrumb from '@/components/navigation/Breadcrumb'
 import { motion, AnimatePresence } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
@@ -73,6 +74,7 @@ function GhostTag({ tech }: { tech: TechStats }) {
 // ============================================
 export default function AboutPage() {
   const tAbout = useTranslations('about')
+  const tNav = useTranslations('nav')
   const tMenu = useTranslations('menu')
   const tContact = useTranslations('contact')
   const locale = useLocale() as Locale
@@ -562,6 +564,7 @@ export default function AboutPage() {
           <div className="max-w-4xl mx-auto w-full">
             {/* Title */}
             <div>
+              <Breadcrumb className="mb-8" items={[{ label: tNav('about') }]} />
               <div className="section-label text-accent mb-4">
                 {tAbout('sectionLabel')}
               </div>

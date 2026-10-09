@@ -3,10 +3,12 @@
 import { Suspense, useState, useEffect, useRef, useLayoutEffect, useMemo } from 'react'
 import { useSearchParams } from 'next/navigation'
 import TransitionLink from '@/components/navigation/TransitionLink'
+import Breadcrumb from '@/components/navigation/Breadcrumb'
+import BreadcrumbJsonLd from '@/components/seo/BreadcrumbJsonLd'
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { ArrowLeft, ArrowRight, Search } from 'lucide-react'
+import { ArrowRight, Search } from 'lucide-react'
 import Image from 'next/image'
 import { getProjectsSortedByDate, getLocalizedField, getCardPeriod, Locale, projectCategories, ProjectData, PROJECTS_FILTER_KEY } from '@/lib/projects'
 import { useTranslations, useLocale } from 'next-intl'
@@ -228,7 +230,7 @@ function CategoryFromQuery({ onCategory }: { onCategory: (category: string) => v
 // ============================================
 export default function ProjectsPage() {
   const t = useTranslations('projects')
-  const tCommon = useTranslations('common')
+  const tNav = useTranslations('nav')
   const locale = useLocale() as Locale
   const prefersReducedMotion = useReducedMotion()
   const [activeFilter, setActiveFilter] = useState<string>('all')
@@ -331,20 +333,17 @@ export default function ProjectsPage() {
       </div>
       
       <div className="relative z-10 pt-24 pb-20 max-w-7xl mx-auto px-6 md:px-12">
-        {/* Back link */}
         <motion.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.4 }}
           className="mb-12"
         >
-          <TransitionLink
-            href="/"
-            className="tap-target inline-flex items-center gap-2 text-muted hover:text-white transition-colors group"
-          >
-            <ArrowLeft size={16} className="transition-transform group-hover:-translate-x-1" />
-            <span className="text-sm tracking-label uppercase">{tCommon('back')}</span>
-          </TransitionLink>
+          <Breadcrumb items={[{ label: tNav('projects') }]} />
+          <BreadcrumbJsonLd
+            locale={locale}
+            items={[{ name: tNav('home'), path: '' }, { name: tNav('projects'), path: '/projects' }]}
+          />
         </motion.div>
         
         {/* Header */}

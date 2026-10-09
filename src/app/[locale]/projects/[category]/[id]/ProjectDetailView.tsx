@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import TransitionLink from '@/components/navigation/TransitionLink'
+import Breadcrumb from '@/components/navigation/Breadcrumb'
 import { motion } from 'framer-motion'
 import { ArrowLeft, ArrowRight, Download, ExternalLink } from 'lucide-react'
 import { FaGithub } from 'react-icons/fa'
@@ -151,25 +152,21 @@ export default function ProjectDetailView({
           transition={{ duration: 0.6 }}
           className="pt-6 pb-10 mb-10 border-b border-white/15"
         >
-          <nav aria-label={t('breadcrumbLabel')} className="mb-5">
-            <ol className="flex flex-wrap items-center gap-x-2 text-sm text-muted">
-              <li>
-                <TransitionLink href={projectsHref} className="tap-target inline-flex items-center hover:text-white transition-colors">
-                  {tNav('projects')}
-                </TransitionLink>
-              </li>
-              <li aria-hidden="true">/</li>
-              <li>
-                <TransitionLink
-                  href={`/projects?category=${categoryId}`}
-                  className="tap-target inline-flex items-center gap-1.5 hover:text-white transition-colors"
-                >
-                  <CategoryIcon category={categoryId} />
-                  {t(`categories.${categoryId}`)}
-                </TransitionLink>
-              </li>
-            </ol>
-          </nav>
+          <Breadcrumb
+            className="mb-5"
+            items={[
+              { label: tNav('projects'), href: projectsHref },
+              {
+                label: (
+                  <>
+                    <CategoryIcon category={categoryId} />
+                    {t(`categories.${categoryId}`)}
+                  </>
+                ),
+                href: `/projects?category=${categoryId}`,
+              },
+            ]}
+          />
 
           <h1 className="misregister font-display font-black text-page leading-display-snug text-riso-pinkTitle break-words [hyphens:manual]">
             {getLocalizedField(project.title, locale)}

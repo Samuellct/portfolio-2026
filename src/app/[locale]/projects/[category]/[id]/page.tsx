@@ -4,9 +4,12 @@ import {
   getCategoryById,
   getProjectsSortedByDate,
   getRelatedProjects,
+  getLocalizedField,
   Locale,
 } from '@/lib/projects'
 import ProjectDetailView from './ProjectDetailView'
+import BreadcrumbJsonLd from '@/components/seo/BreadcrumbJsonLd'
+import { getTranslations } from 'next-intl/server'
 
 type Props = {
   params: Promise<{ locale: string; category: string; id: string }>
@@ -38,15 +41,27 @@ export default async function ProjectDetailPage({ params }: Props) {
   const neighbours = [previousProject, nextProject].filter((p): p is NonNullable<typeof p> => p !== null)
   const relatedProjects = getRelatedProjects(project, 3, neighbours)
 
+  const tNav = await getTranslations({ locale, namespace: 'nav' })
+
   return (
-    <ProjectDetailView
-      project={project}
-      category={category}
-      categoryId={categoryId}
-      previousProject={previousProject}
-      nextProject={nextProject}
-      relatedProjects={relatedProjects}
-      locale={locale as Locale}
-    />
+    <>
+      <BreadcrumbJsonLd
+        locale={locale}
+        items={[
+          { name: tNav('home'), path: '' },
+          { name: tNav('projects'), path: '/projects' },
+          { name: getLocalizedField(project.title, locale as Locale), path: `/projects/${categoryId}/${projectId}` },
+        ]}
+      />
+      <ProjectDetailView
+        project={project}
+        category={category}
+        categoryId={categoryId}
+        previousProject={previousProject}
+        nextProject={nextProject}
+        relatedProjects={relatedProjects}
+        locale={locale as Locale}
+      />
+    </>
   )
 }
