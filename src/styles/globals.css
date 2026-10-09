@@ -17,7 +17,7 @@
 =================================== */
 /* Colour schemes. Values mirror RISO / SURFACE in src/lib/theme.ts (the
    single source of truth). Paper is the default; `.scheme-night` marks the
-   hero, the landing and the navigation and footer bands.
+   hero and the navigation and footer bands.
    Channels are space-separated RGB so Tailwind can add alpha. */
 :root {
   --fg: 0 90 146;           /* ink #005a92, 6.15:1 on paper */

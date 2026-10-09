@@ -28,7 +28,7 @@ export const RISO = {
   night: '#0b0b10',
 } as const
 
-/** Night surfaces (hero, landing, navigation band). */
+/** Night surfaces (hero, navigation band). */
 export const SURFACE = {
   /** Hero and navigation band. Also the Tailwind `primary` DEFAULT. */
   primary: '#06060e',
