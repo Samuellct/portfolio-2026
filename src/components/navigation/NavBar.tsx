@@ -230,7 +230,7 @@ export default function NavBar() {
 
           {/* Language switcher + Hamburger */}
           <div className="flex items-center gap-4">
-            <LanguageSwitcher className="text-xs font-medium tracking-caps-wide uppercase text-riso-paper/70 hover:text-riso-paper transition-colors" />
+            <LanguageSwitcher className="text-xs font-medium tracking-caps-wide uppercase text-riso-paper" />
 
             {/* Hamburger bttn */}
             <motion.button
