@@ -19,7 +19,7 @@ const TONE = {
 const STATUS = {
   'in-progress': {
     inline: 'bg-accent-line/10 border border-accent-line/20 text-accent',
-    pill: 'bg-riso-pink text-snow border border-riso-pink',
+    pill: 'bg-riso-pink text-primary border border-riso-pink',
   },
   paused: {
     inline: 'bg-white/10 border border-white/20 text-muted',

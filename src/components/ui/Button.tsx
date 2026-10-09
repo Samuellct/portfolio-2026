@@ -19,7 +19,7 @@ export type ButtonSize = 'sm' | 'md' | 'lg'
 
 const VARIANT: Record<Exclude<ButtonVariant, 'filter'>, string> = {
   primary:
-    'inline-flex items-center gap-3 font-medium uppercase tracking-caps transition-all bg-riso-pink text-snow hover:text-black hover:bg-white',
+    'inline-flex items-center gap-3 font-medium uppercase tracking-caps transition-all bg-riso-pink text-primary hover:text-black hover:bg-white',
   secondary:
     'inline-flex items-center gap-3 font-medium uppercase tracking-caps transition-all bg-white/5 border border-white/15 hover:border-white/30',
   ghost:

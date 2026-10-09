@@ -363,7 +363,7 @@ export default function ProjectDetailView({
           <div className="flex flex-wrap items-center gap-4 mb-16">
             <TransitionLink
               href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-riso-pink text-snow text-sm font-semibold tracking-caps uppercase transition-colors hover:bg-white hover:text-black"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-riso-pink text-primary text-sm font-semibold tracking-caps uppercase transition-colors hover:bg-white hover:text-black"
             >
               {tContact('preview.cta')}
               <ArrowRight size={16} aria-hidden="true" />

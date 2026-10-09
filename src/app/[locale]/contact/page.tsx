@@ -285,11 +285,11 @@ export default function ContactPage() {
             <button
               type="submit"
               disabled={status === 'submitting'}
-              className="inline-flex items-center gap-3 px-8 py-4 bg-riso-pink text-snow hover:text-black text-sm font-medium tracking-caps uppercase transition-all hover:bg-white hover:shadow-glow-accent disabled:opacity-50 disabled:cursor-not-allowed"
+              className="inline-flex items-center gap-3 px-8 py-4 bg-riso-pink text-primary hover:text-black text-sm font-medium tracking-caps uppercase transition-all hover:bg-white hover:shadow-glow-accent disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {status === 'submitting' ? (
                 <>
-                  <span className="w-4 h-4 border-2 border-black/30 border-t-black rounded-full animate-spin" />
+                  <span className="w-4 h-4 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
                   {tContact('page.form.sending')}
                 </>
               ) : (

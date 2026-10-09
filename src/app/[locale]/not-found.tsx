@@ -19,7 +19,7 @@ export default function NotFound() {
         </p>
         <TransitionLink
           href="/"
-          className="inline-flex items-center gap-3 px-8 py-4 bg-riso-pink text-snow hover:text-black text-sm font-medium tracking-caps uppercase transition-all hover:bg-white"
+          className="inline-flex items-center gap-3 px-8 py-4 bg-riso-pink text-primary hover:text-black text-sm font-medium tracking-caps uppercase transition-all hover:bg-white"
         >
           {t('notFound.backHome')}
         </TransitionLink>

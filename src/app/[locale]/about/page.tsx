@@ -33,7 +33,7 @@ const PIN_LENGTH = 1300
 const DESKTOP_QUERY = '(min-width: 1024px)'
 // Riso pills, same classes as the project page end block (DEC-15e)
 const PILL_PRIMARY =
-  'inline-flex items-center gap-2 px-6 py-3 rounded-full bg-riso-pink text-snow text-sm font-semibold tracking-caps uppercase transition-colors hover:bg-white hover:text-black'
+  'inline-flex items-center gap-2 px-6 py-3 rounded-full bg-riso-pink text-primary text-sm font-semibold tracking-caps uppercase transition-colors hover:bg-white hover:text-black'
 const PILL_OUTLINE =
   'inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white text-sm font-semibold tracking-caps uppercase transition-colors hover:bg-white hover:text-black'
 const SECTION_IDS = ['about-intro', 'about-experience', 'about-stack', 'about-education', 'about-interests']
