@@ -216,6 +216,22 @@ body {
   text-shadow: 0.04em 0.035em 0 theme('colors.riso.blue');
 }
 
+/* Hero name entrance (ANIM-02: one block, no per-letter motion). A CSS
+   animation runs from the first painted frame, before hydration, so the
+   server-rendered name never shows, hides, then rises. */
+.hero-rise {
+  animation: hero-rise 0.8s cubic-bezier(0.215, 0.61, 0.355, 1) 0.3s both;
+}
+
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-rise { animation: none; }
+}
+
 /* Film grain over the hero's night plate (DEC-16i): a light grey noise tile
    in screen blend, jumping between offsets at about 12 frames per second
    like a projected print. Still under reduced motion. */

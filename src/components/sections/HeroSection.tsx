@@ -6,7 +6,6 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowRight, Download } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
-import { useSite } from '@/context/SiteContext'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import HeroSky, { FRINGE_HEIGHT } from '@/components/effects/HeroSky'
 import { pillBase } from '@/components/ui/pill'
@@ -100,12 +99,10 @@ export default function HeroSection() {
   const t = useTranslations('hero')
   const tp = useTranslations('projects')
   const locale = useLocale() as Locale
-  const { hasEnteredSite } = useSite()
   const prefersReducedMotion = useReducedMotion()
   const sectionRef = useRef<HTMLElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)
   const starsRef = useRef<HTMLDivElement>(null)
-  const nameRef = useRef<HTMLHeadingElement>(null)
 
   const featured = getFeaturedProjects().slice(0, STAR_SLOTS.length)
   const statusOf = (p: ProjectData) => {
@@ -133,29 +130,6 @@ export default function HeroSection() {
 
     return () => ctx.revert()
   }, [prefersReducedMotion])
-
-  // Name reveal: plays once the entrance is over (landing overlay gone, or
-  // immediately on a direct visit), never behind the overlay.
-  useEffect(() => {
-    if (!hasEnteredSite || !nameRef.current) return
-
-    const title = nameRef.current
-
-    if (prefersReducedMotion) {
-      gsap.set(title, { y: 0, opacity: 1 })
-      return
-    }
-
-    // ANIM-02: the title rises as one block, no per-letter rotation.
-    const tween = gsap.fromTo(title,
-      { y: 24, opacity: 0 },
-      { y: 0, opacity: 1, duration: 0.8, ease: 'power3.out', delay: 0.3 }
-    )
-
-    return () => {
-      tween.kill()
-    }
-  }, [hasEnteredSite, prefersReducedMotion])
 
   return (
     // The hero runs one fringe height past the fold, so the paper fringe only
@@ -189,8 +163,7 @@ export default function HeroSection() {
         className="relative z-10 flex w-full flex-col items-center px-4 pt-28 pb-12 lg:px-0 lg:py-0 lg:w-auto"
       >
         <h1
-          ref={nameRef}
-          className="misregister text-center font-display font-black uppercase text-riso-pink leading-[0.86] tracking-[-0.02em] text-[clamp(2.6rem,14vw,5rem)] lg:text-[clamp(4rem,8.6vw,13rem)]"
+          className="hero-rise misregister text-center font-display font-black uppercase text-riso-pink leading-[0.86] tracking-[-0.02em] text-[clamp(2.6rem,14vw,5rem)] lg:text-[clamp(4rem,8.6vw,13rem)]"
           style={{ filter: 'url(#hero-riso-grain)' }}
         >
           {t('name').split(' ').map((word) => (
