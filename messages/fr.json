@@ -30,13 +30,13 @@
     "sectionLabel": "01 · À propos",
     "title": "De physicien à ... développeur",
     "preview": {
-      "intro": "Deux stages de recherche en physique fondamentale, au sein d'équipes membres des collaborations LHCb et ATLAS, m'ont formé à construire des pipelines d'analyse complets : acquisition, nettoyage, modélisation statistique, présentation. Python et C++ sont mes outils principaux. ROOT, NumPy, Pandas et scikit-learn font partie de ma stack quotidienne.",
+      "intro": "Deux stages de recherche en physique des particules, au sein d'équipes membres des collaborations LHCb et ATLAS, m'ont formé à construire des pipelines d'analyse complets : acquisition, nettoyage, modélisation statistique, présentation. Python et C++ sont mes outils principaux. ROOT, NumPy, Pandas et scikit-learn font partie de ma stack quotidienne.",
       "cta": "Profil complet & CV",
       "whatIBuild": "La plupart de mes projets partent d'un besoin personnel. J'administre un serveur Proxmox chez moi, et les plugins Jellyfin de JellyUX sont nés de son utilisation. TimePredict vient de ma pratique du trail, Accred des festivals de cinéma où je vais. Ce site est l'un de ces projets, avec sa propre page."
     },
     "full": {
       "intro": "Je suis titulaire d'un Master de physique fondamentale de l'Université Clermont Auvergne et d'un DU Data Science. Mes deux stages de recherche, au LPC Clermont dans des équipes des collaborations LHCb puis ATLAS, m'ont appris à monter une analyse complète en C++ et Python, de la sélection des données à l'estimation des incertitudes. Depuis, j'applique cette méthode à des projets logiciels que je mène seul.",
-      "experience": "Pendant mon Master, j'ai travaillé au LPC Clermont, au sein d'équipes des collaborations LHCb et ATLAS, sur des jeux de données de plusieurs téraoctets. C'est là que j'ai appris à construire des chaînes d'analyse complètes.",
+      "experience": "Pendant mon Master, j'ai travaillé au LPC Clermont, au sein d'équipes des collaborations LHCb et ATLAS, sur des jeux de données de plusieurs téraoctets. J'y présentais l'avancement de mon travail en réunion d'équipe, en français et en anglais.",
       "goals": "Je cherche un poste à l'interface entre recherche et ingénierie, où l'analyse de données et le développement logiciel servent le même problème.",
       "goalsTitle": "Objectifs professionnels"
     },
@@ -101,7 +101,7 @@
       },
       "science": {
         "title": "Cinéma",
-        "description": "Passionné de cinéma et habitué des festivals (Cannes, Clermont-Ferrand, Deauville), j'aime prendre le temps de rédiger des critiques sur les (nombreux) films que je vois et partager cette passion avec mon entourage."
+        "description": "J'écris régulièrement des critiques des (nombreux) films que je vois, et je suis un habitué des festivals : Cannes en 2025, le Festival du court métrage de Clermont-Ferrand, le Festival du film américain de Deauville. C'est pour ces festivals que j'ai développé Accred."
       }
     },
     "downloadCV": "Télécharger le CV",
@@ -175,7 +175,7 @@
     },
     "page": {
       "title": "Me contacter",
-      "description": "Une question technique sur mes projets, une opportunité de poste ou l'envie d'échanger sur mon parcours ? Écrivez-moi directement. Je vous répondrai rapidement.",
+      "description": "Une question technique sur mes projets, une opportunité de poste ou l'envie d'échanger sur mon parcours ? Écrivez-moi directement.",
       "emailFirst": "Par e-mail : <email></email>, ou avec le formulaire ci-dessous.",
       "form": {
         "name": "Nom",
@@ -189,7 +189,7 @@
         "send": "Envoyer le message",
         "sending": "Envoi en cours...",
         "success": "Message envoyé avec succès",
-        "successDescription": "Merci pour votre message. Je vous répondrai dans les meilleurs délais.",
+        "successDescription": "Merci pour votre message.",
         "error": "Une erreur est survenue",
         "errorDescription": "Veuillez réessayer ou me contacter directement par e-mail.",
         "retry": "Réessayer",
@@ -230,9 +230,9 @@
     },
     "projects": {
       "title": "Projets",
-      "description": "Un journal de bord des projets personnels, travaux académiques et stages sur des données des expériences ATLAS et LHCb du CERN, incluant outils géospatiaux, simulations de physique et ce site.",
+      "description": "Projets personnels, travaux universitaires et stages de recherche de Samuel Lecomte, des outils géospatiaux à l'analyse de données des expériences ATLAS et LHCb du CERN.",
       "ogTitle": "Projets | Samuel Lecomte",
-      "ogDescription": "Projets personnels, travaux académiques et stages sur des données des expériences ATLAS et LHCb du CERN, des outils géospatiaux aux simulations de physique."
+      "ogDescription": "Projets personnels, travaux universitaires et stages de recherche, des outils géospatiaux à l'analyse de données ATLAS et LHCb."
     },
     "jsonLd": {
       "siteDescription": "Portfolio personnel de Samuel Lecomte, physicien diplômé et développeur.",

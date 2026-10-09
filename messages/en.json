@@ -30,20 +30,20 @@
     "sectionLabel": "01 · About",
     "title": "From physicist to ... developer",
     "preview": {
-      "intro": "Two research internships in experimental physics, within groups affiliated to the LHCb and ATLAS collaborations, taught me to build full analysis pipelines: data acquisition, cleaning, statistical modelling, reporting. Python and C++ are my main tools. ROOT, NumPy, Pandas, and scikit-learn are part of my daily workflow.",
+      "intro": "Two research internships in particle physics, within teams from the LHCb and ATLAS collaborations, taught me to build full analysis pipelines: data acquisition, cleaning, statistical modelling, reporting. Python and C++ are my main tools. ROOT, NumPy, Pandas, and scikit-learn are part of my daily workflow.",
       "cta": "Full profile & CV",
       "whatIBuild": "Most of my projects start from a need of my own. I run a Proxmox server at home, and the JellyUX Jellyfin plugins grew out of using it. TimePredict comes from my trail running, Accred from the film festivals I attend. This site is one of those projects and has its own page."
     },
     "full": {
       "intro": "I hold a Master's in fundamental physics from Université Clermont Auvergne and a university diploma in Data Science. My two research internships, at LPC Clermont in teams from the LHCb and then ATLAS collaborations, taught me to build a full analysis in C++ and Python, from data selection to uncertainty estimates. Since then I have applied the same method to software projects I run on my own.",
-      "experience": "During my Master's, I worked at LPC Clermont, in teams from the LHCb and ATLAS collaborations, on datasets running into terabytes. That is where I learned to build complete analysis pipelines.",
+      "experience": "During my Master's, I worked at LPC Clermont, in teams from the LHCb and ATLAS collaborations, on datasets running into terabytes. I presented my progress at team meetings, in French and in English.",
       "goals": "I'm looking for a role between research and engineering, where data analysis and software development work on the same problem.",
-      "goalsTitle": "Professional Goals"
+      "goalsTitle": "Professional goals"
     },
     "stats": {
       "experiments": "Research internships",
       "experimentsHover": "within the ATLAS & LHCb research groups at LPC",
-      "languages": "Programming Languages",
+      "languages": "Programming languages",
       "repos": "Public code repositories",
       "reposHover": "on GitHub, linked from the project pages"
     },
@@ -53,23 +53,23 @@
       "viewProject": "View project"
     },
     "stack": {
-      "sectionLabel": "03 · Technical Stack",
-      "title": "Core Skills",
+      "sectionLabel": "03 · Technical stack",
+      "title": "Core skills",
       "description": "Programming languages ranked by usage across my projects.",
       "projectCount": "{count, plural, one {# project} other {# projects}}",
-      "extendedToolkit": "Extended Toolkit",
+      "extendedToolkit": "Extended toolkit",
       "families": {
         "languages": "Languages",
-        "frameworks": "Frameworks & Libraries",
-        "dataAnalysis": "Data & Analysis",
-        "tools": "Tools & Systems",
+        "frameworks": "Frameworks & libraries",
+        "dataAnalysis": "Data & analysis",
+        "tools": "Tools & systems",
         "other": "Other"
       }
     },
     "education": {
       "sectionLabel": "04 · Education",
       "title": "Education",
-      "subtitle": "Academic Path",
+      "subtitle": "Academic path",
       "master2": {
         "degree": "M.Sc. Fundamental Physics and Applications",
         "track": "Universe & Particles",
@@ -90,18 +90,18 @@
     "interests": {
       "sectionLabel": "05 · Interests",
       "title": "Interests",
-      "subtitle": "Personal Sandbox",
+      "subtitle": "Personal sandbox",
       "running": {
-        "title": "Mountain Sports",
+        "title": "Mountain sports",
         "description": "I enjoy activities that call for endurance and good risk management. I do trail running, with one 100 km ultra-trail behind me, and mountaineering, with several alpine summits including the Aiguille du Midi and Gran Paradiso."
       },
       "tech": {
-        "title": "Home Lab & Self-Hosting",
+        "title": "Home lab & self-hosting",
         "description": "I run a Proxmox server at home with TrueNAS and containerised services behind a reverse proxy. I self-host so my data stays under my control."
       },
       "science": {
         "title": "Cinema",
-        "description": "Passionate about cinema and a regular at festivals (Cannes, Clermont-Ferrand, Deauville), I like to take the time to write reviews for the (many) films I watch, and I enjoy sharing this passion with the people around me."
+        "description": "I write regular reviews of the (many) films I see, and I'm a festival regular: Cannes in 2025, the Clermont-Ferrand short film festival, the Deauville American film festival. I built Accred for these festivals."
       }
     },
     "downloadCV": "Download CV",
@@ -120,7 +120,7 @@
     },
     "status": {
       "completed": "Completed",
-      "inProgress": "In Progress",
+      "inProgress": "In progress",
       "paused": "Paused"
     },
     "emptyState": "No projects found in this category.",
@@ -156,10 +156,10 @@
     "sectionLabel": "03 · Blog",
     "title": "Journal",
     "comingSoon": {
-      "badge": "Coming Soon",
-      "title": "Blog Coming Soon",
+      "badge": "Coming soon",
+      "title": "Blog coming soon",
       "description": "A dedicated blog website is currently under development. Stay tuned for articles about physics, technology, and personal adventures.",
-      "cta": "Visit Blog"
+      "cta": "Visit blog"
     }
   },
   "contact": {
@@ -174,8 +174,8 @@
       "legend": "Simulated particle collision"
     },
     "page": {
-      "title": "Contact Me",
-      "description": "A technical question about my projects, a job opportunity, or a wish to talk about my background? Write to me directly. I'll get back to you quickly.",
+      "title": "Contact me",
+      "description": "A technical question about my projects, a job opportunity, or a wish to talk about my background? Write to me directly.",
       "emailFirst": "By email: <email></email>, or with the form below.",
       "form": {
         "name": "Name",
@@ -186,17 +186,17 @@
         "subjectPlaceholder": "What's this about?",
         "message": "Message",
         "messagePlaceholder": "Your message...",
-        "send": "Send Message",
+        "send": "Send message",
         "sending": "Sending...",
         "success": "Message sent successfully",
-        "successDescription": "Thank you for reaching out. I'll get back to you soon.",
+        "successDescription": "Thanks for your message.",
         "error": "Something went wrong",
         "errorDescription": "Please try again or contact me directly via email.",
         "retry": "Try again",
         "sendAnother": "Send another message"
       },
       "directContact": {
-        "title": "Or reach me directly",
+        "title": "Reach me directly",
         "email": "contact@samuel-lecomte.fr",
         "githubLabel": "GitHub",
         "linkedinLabel": "LinkedIn"
@@ -204,7 +204,7 @@
     }
   },
   "footer": {
-    "resume": "Resume",
+    "resume": "CV",
     "navLabel": "Footer navigation"
   },
   "metadata": {
@@ -230,9 +230,9 @@
     },
     "projects": {
       "title": "Projects",
-      "description": "A working log of personal builds, academic research, and internship work on data from the ATLAS and LHCb experiments at CERN, including geospatial tools, physics simulations, and this website.",
+      "description": "Personal projects, university coursework and research internships by Samuel Lecomte, from geospatial tools to data analysis on the ATLAS and LHCb experiments at CERN.",
       "ogTitle": "Projects | Samuel Lecomte",
-      "ogDescription": "Personal builds, academic research, and internship work on data from the ATLAS and LHCb experiments at CERN, from geospatial tools to physics simulations."
+      "ogDescription": "Personal projects, university coursework and research internships, from geospatial tools to ATLAS and LHCb data analysis."
     },
     "jsonLd": {
       "siteDescription": "Personal portfolio of Samuel Lecomte, physics graduate and developer.",
@@ -246,9 +246,9 @@
     "skipToContent": "Skip to content",
     "notFound": {
       "code": "404",
-      "title": "Page Not Found",
+      "title": "Page not found",
       "description": "The page you're looking for doesn't exist or has been moved.",
-      "backHome": "Back to Home"
+      "backHome": "Back to home"
     },
     "newTab": "opens in a new tab"
   }
