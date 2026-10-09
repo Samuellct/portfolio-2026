@@ -66,6 +66,8 @@ void main() {
   float period = 4.0 + 5.0 * fract(aB.z * 7.31);
   float twinkle = 1.0 + 0.25 * aB.w * sin(uTime * 6.2831853 / period + aB.z * 6.2831853);
   vColor = vec4(aColor.rgb, aColor.a * twinkle);
+  // Halos and crosses dim as they pass under the transparent navigation bar.
+  if (aA.w > 0.5) vColor.a *= mix(0.15, 1.0, smoothstep(48.0, 110.0, p.y));
   vKind = aA.w;
   vSoft = aB.y;
 }

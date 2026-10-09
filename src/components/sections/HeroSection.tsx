@@ -9,6 +9,7 @@ import { useLocale, useTranslations } from 'next-intl'
 import { useSite } from '@/context/SiteContext'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import HeroSky, { FRINGE_HEIGHT } from '@/components/effects/HeroSky'
+import { pillBase } from '@/components/ui/pill'
 import { getCardPeriod, getFeaturedProjects, getLocalizedField, Locale, ProjectData } from '@/lib/projects'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -27,8 +28,6 @@ const TAG_TILT = ['-1.5deg', '1.2deg', '1deg', '-1.2deg']
 
 const STATUS_KEY = { completed: 'completed', 'in-progress': 'inProgress', paused: 'paused' } as const
 
-const pillBase =
-  'inline-flex items-center justify-center gap-2 px-6 lg:px-7 py-3.5 rounded-full text-xs lg:text-sm font-bold tracking-caps uppercase whitespace-nowrap transition-colors duration-200'
 
 function Sparkle({ fill }: { fill: string }) {
   return (
@@ -69,7 +68,8 @@ function StarProject({ project, slot, locale, status }: StarProjectProps) {
         </span>
       </span>
 
-      <span className="flex flex-col gap-1 transition-opacity duration-150 group-hover:opacity-0 group-focus-visible:opacity-0 motion-reduce:transition-none">
+      {/* The paper label below carries the accessible name; this resting caption repeats it. */}
+      <span aria-hidden="true" className="flex flex-col gap-1 transition-opacity duration-150 group-hover:opacity-0 group-focus-visible:opacity-0 motion-reduce:transition-none">
         <span className="max-w-[250px] text-[clamp(0.875rem,0.6vw,1.0625rem)] font-extrabold leading-snug tracking-[0.12em] uppercase text-riso-paper">
           {title}
         </span>
@@ -77,7 +77,7 @@ function StarProject({ project, slot, locale, status }: StarProjectProps) {
       </span>
 
       <span
-        className={`pointer-events-none absolute top-1/2 w-[300px] bg-riso-paper px-4 pt-3 pb-3.5 text-left text-riso-ink shadow-[0_10px_30px_rgb(0_0_0/0.45)] opacity-0 transition-[opacity,transform] duration-200 ease-out group-hover:opacity-100 group-focus-visible:opacity-100 motion-reduce:transition-none ${
+        className={`pointer-events-none absolute top-1/2 w-[min(300px,21vw)] bg-riso-paper px-4 pt-3 pb-3.5 text-left text-riso-ink shadow-[0_10px_30px_rgb(0_0_0/0.45)] opacity-0 transition-[opacity,transform] duration-200 ease-out group-hover:opacity-100 group-focus-visible:opacity-100 motion-reduce:transition-none ${
           toLeft
             ? 'right-[46px] -translate-y-1/2 -rotate-[1.5deg]'
             : 'left-[46px] -translate-y-1/2 rotate-[1.5deg]'
@@ -205,7 +205,7 @@ export default function HeroSection() {
         <div className="mt-6 flex w-full gap-3 lg:w-auto lg:gap-3.5">
           <TransitionLink
             href="/projects"
-            className={`${pillBase} flex-1 lg:flex-none bg-riso-pink text-primary hover:bg-snow`}
+            className={`${pillBase} flex-1 lg:flex-none border-[1.5px] border-transparent bg-riso-pink text-primary hover:bg-snow`}
           >
             {t('cta')}
             <ArrowRight size={16} aria-hidden="true" />

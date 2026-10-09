@@ -7,14 +7,12 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowRight, Mail } from 'lucide-react'
 import ParticleCollision from '@/components/effects/ParticleCollision'
+import { pillBase } from '@/components/ui/pill'
 import { useTranslations } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 
 gsap.registerPlugin(ScrollTrigger)
 
-// Same pill as the hero's call to action, inked for paper.
-const pillBase =
-  'inline-flex items-center justify-center gap-2 px-6 lg:px-7 py-3.5 rounded-full text-xs lg:text-sm font-bold tracking-caps uppercase whitespace-nowrap transition-colors duration-200'
 
 export default function ContactSection() {
   const t = useTranslations('contact')
@@ -60,7 +58,7 @@ export default function ContactSection() {
       }
       
       // ============================================
-      // trigger pour l'animation de collision
+      // Start the collision when the section comes into view
       // ============================================
       if (collisionRef.current) {
         ScrollTrigger.create({
@@ -98,7 +96,7 @@ export default function ContactSection() {
       }
       
       // ============================================
-      // CTA (page perso)
+      // CTA: contact page and direct e-mail
       // ============================================
       if (ctaRef.current) {
         gsap.fromTo(ctaRef.current,
@@ -204,9 +202,11 @@ export default function ContactSection() {
             </div>
             
             {/* UX-06: one line a non-physicist can read. */}
-            <p className="absolute -bottom-10 inset-x-0 text-center font-mono text-meta text-muted">
-              {t('collision.legend')}
-            </p>
+            {!prefersReducedMotion && (
+              <p className="absolute -bottom-10 inset-x-0 text-center font-mono text-meta text-muted">
+                {t('collision.legend')}
+              </p>
+            )}
           </div>
           
           {/* Right side : txt */}
@@ -247,7 +247,7 @@ export default function ContactSection() {
             <div ref={ctaRef} className="flex flex-wrap gap-3">
               <TransitionLink
                 href="/contact"
-                className={`${pillBase} bg-riso-pink text-primary hover:bg-riso-ink hover:text-riso-paper group`}
+                className={`${pillBase} border-[1.5px] border-transparent bg-riso-pink text-primary hover:bg-riso-ink hover:text-riso-paper group`}
               >
                 {t('preview.cta')}
                 <ArrowRight size={16} aria-hidden="true" className="transition-transform group-hover:translate-x-1" />

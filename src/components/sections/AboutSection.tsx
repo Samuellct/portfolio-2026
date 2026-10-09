@@ -234,11 +234,11 @@ export default function AboutSection() {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
+              transition={{ duration: 0.6 }}
             >
               <TransitionLink
                 href="/about"
-                className="inline-flex items-center gap-3 text-accent hover:text-white transition-colors group"
+                className="tap-target inline-flex items-center gap-3 text-accent hover:text-white transition-colors group"
               >
                 <span className="text-sm tracking-caps uppercase">{t('preview.cta')}</span>
                 <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />

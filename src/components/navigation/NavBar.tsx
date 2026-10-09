@@ -156,6 +156,8 @@ export default function NavBar() {
   
   // Every link opens its own page; only Home, clicked on the home page, scrolls
   // back to the top instead of reloading it.
+  const isActive = (href: string) => (href === '/' ? pathname === '/' : pathname.startsWith(href))
+
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     if (pathname === '/' && href === '/') {
       e.preventDefault()
@@ -181,7 +183,7 @@ export default function NavBar() {
           {/* Logo */}
           <TransitionLink
             href="/"
-            className="font-display uppercase font-black text-title tracking-widest hover:text-accent transition-colors"
+            className="tap-target font-display uppercase font-black text-title tracking-widest hover:text-accent transition-colors"
           >
             SL
           </TransitionLink>
@@ -195,7 +197,7 @@ export default function NavBar() {
             inert={isScrolled}
           >
             {navLinks.map((link) => {
-              const active = link.href === '/' ? pathname === '/' : pathname.startsWith(link.href)
+              const active = isActive(link.href)
               return (
                 <TransitionLink
                   key={link.href}
@@ -207,7 +209,7 @@ export default function NavBar() {
                   }`}
                 >
                   {link.label}
-                  <span className="absolute -bottom-1 left-0 w-0 h-px bg-accent-line transition-all duration-300 group-hover:w-full" />
+                  <span className={`absolute -bottom-1 left-0 h-px bg-accent-line transition-all duration-300 group-hover:w-full ${active ? 'w-full' : 'w-0'}`} />
                 </TransitionLink>
               )
             })}
@@ -302,7 +304,10 @@ export default function NavBar() {
                       <TransitionLink
                         href={link.href}
                         onClick={(e) => handleNavClick(e, link.href)}
-                        className="block font-display uppercase font-black text-page leading-none tracking-wide text-faint hover:text-white transition-all duration-300 hover:translate-x-4"
+                        aria-current={isActive(link.href) ? 'page' : undefined}
+                        className={`block font-display uppercase font-black text-page leading-none tracking-wide hover:text-white transition-all duration-300 hover:translate-x-4 ${
+                          isActive(link.href) ? 'text-white' : 'text-faint'
+                        }`}
                       >
                         {link.label}
                       </TransitionLink>

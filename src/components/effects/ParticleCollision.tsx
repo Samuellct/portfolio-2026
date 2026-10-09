@@ -269,7 +269,7 @@ export default function ParticleCollision({ isVisible, className = '' }: Particl
       <button
         onClick={handleShuffle}
         disabled={!canShuffle || isAnimating}
-        className={`absolute bottom-4 right-4 p-2 rounded-full border transition-all duration-300 ${
+        className={`absolute bottom-4 right-4 p-[15px] rounded-full border transition-all duration-300 ${
           canShuffle && !isAnimating
             ? 'border-riso-blue/50 text-riso-ink hover:bg-riso-ink hover:text-riso-paper cursor-pointer'
             : 'border-riso-blue/20 text-riso-ink/30 cursor-not-allowed'
