@@ -36,7 +36,7 @@ export const TECHNOLOGIES = {
   Astro: { color: D, family: null },
   'Tailwind CSS': { color: '#38b2ac', family: null },
   'Framer Motion': { color: '#bb4b96', family: null },
-  'Three.js': { color: '#000000', family: null },
+  WebGL: { color: D, family: null },
   GSAP: { color: '#0ae348', family: null },
   Vite: { color: '#646cff', family: 'frameworks' },
   FastAPI: { color: D, family: 'frameworks' },

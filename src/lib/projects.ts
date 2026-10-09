@@ -197,8 +197,8 @@ export const projectsData: Record<string, Record<string, ProjectData>> = {
       id: 'portfolio-website',
       title: { en: 'Portfolio Website', fr: 'Site portfolio' },
       description: {
-        en: 'A personal website built with Next.js 15: Three.js effects, server-side rendering, and every page in French and English.',
-        fr: 'Site personnel développé avec Next.js 15 : effets Three.js, rendu côté serveur, et chaque page en français et en anglais.',
+        en: 'A personal website built with Next.js 15: a WebGL night sky, server-side rendering, and every page in French and English.',
+        fr: 'Site personnel développé avec Next.js 15 : ciel nocturne en WebGL, rendu côté serveur, et chaque page en français et en anglais.',
       },
       subtitle: {
         en: 'Presenting my profile and projects in physics and computer science',
@@ -218,12 +218,12 @@ By October 2025, I decided to migrate to Next.js 15. The main motivation was to 
 À partir d'octobre 2025, j'ai décidé de migrer vers Next.js 15. Ma principale motivation était de résoudre les problèmes de performances que j'avais remarqués dans la V3, notamment grâce au rendu côté serveur et à des optimisations intégrées telles que le chargement différé des images. La transition vers l'architecture App Router a nécessité beaucoup de travail et de tests pour comprendre comment passer de Vite à ce nouveau framework.`,
         },
         whatIBuilt: {
-          en: `The visual design centers on Three.js particle effects. Getting acceptable performance on mobile devices meant reducing particle counts and implementing proper cleanup to prevent memory leaks. The landing page includes a moving starfield with an animated hyperspace effect that plays on first visit.
+          en: `The design borrows from risograph printing: two inks, fluorescent pink and federal blue, over a night plate in the hero and cream paper elsewhere. The hero sky is drawn in WebGL, in a single draw call and without a library; it replaces the Three.js particle effects of the previous version.
 
 Finally, all site text is managed through two JSON files, one per language, except for project pages which use Markdown. This translation infrastructure is what makes the site bilingual (French and English). For content rendering, I integrated react-markdown with KaTeX to support LaTeX equations in project descriptions.
 
 The site runs on Cloudflare Workers through OpenNext. Every push to the main branch goes through a CI pipeline (type checking, lint, build), then semantic-release reads the commit messages to set the version number, write the changelog and tag the release.`,
-          fr: `La conception visuelle est centrée sur les effets de particules Three.js. Pour obtenir des performances acceptables sur les appareils mobiles, il a fallu réduire le nombre de particules et mettre en place un nettoyage approprié afin d'éviter les fuites de mémoire. La page d'accueil comprend un champ d'étoiles en mouvement avec un effet d'hyperspace animé qui s'affiche lors de la première visite.
+          fr: `Le design emprunte à l'impression en risographie : deux encres, rose fluo et bleu fédéral, sur une plaque de nuit dans le hero et sur papier crème ailleurs. Le ciel du hero est dessiné en WebGL, en un seul appel de rendu et sans bibliothèque ; il remplace les effets de particules Three.js de la version précédente.
 
 Enfin, tout le texte du site est géré via deux fichiers JSON, un par langue, à l'exception des pages de projet qui utilisent Markdown. C'est cette infrastructure de traduction qui rend le site bilingue (français et anglais). Pour le rendu du contenu, j'ai intégré react-markdown avec KaTeX afin de prendre en charge les équations LaTeX dans les descriptions de projet.
 
@@ -232,7 +232,7 @@ Le site tourne sur Cloudflare Workers via OpenNext. Chaque push sur la branche p
       },
       kind: 'webapp',
       sourceOfSkills: 'personal',
-      technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'Three.js', 'GSAP', 'Cloudflare Workers'],
+      technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'WebGL', 'GSAP', 'Cloudflare Workers'],
       domains: ['Web Development', 'Frontend'],
       keywords: ['portfolio', 'frontend', 'typescript', 'nextjs', 'threejs', 'webgl'],
       category: 'personal',
