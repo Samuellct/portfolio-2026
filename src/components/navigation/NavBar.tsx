@@ -24,7 +24,6 @@ export default function NavBar() {
     { href: 'https://github.com/Samuellct', label: tMenu('github'), icon: Github, hoverColor: 'hover:text-brand-github' },
     { href: 'https://www.linkedin.com/in/samuel-lecomte37/', label: tMenu('linkedin'), icon: Linkedin, hoverColor: 'hover:text-brand-linkedinAlt' },
   ]
-  const [isScrolled, setIsScrolled] = useState(false)
   const [isHidden, setIsHidden] = useState(false)
   const [hasFocusWithin, setHasFocusWithin] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -58,7 +57,6 @@ export default function NavBar() {
     let lastY = window.scrollY
     const handleScroll = () => {
       const y = window.scrollY
-      setIsScrolled(y > 100)
       if (y <= 100) setIsHidden(false)
       else if (y - lastY > 6) setIsHidden(true)
       else if (lastY - y > 6) setIsHidden(false)
@@ -180,6 +178,11 @@ export default function NavBar() {
   // Never hidden over the home hero (the bar is part of it), with the menu
   // open, or while keyboard focus is inside it.
   const isBarHidden = isHidden && !overHero && !isMenuOpen && !hasFocusWithin
+  // DEC-17g: the menu button lives outside the bar so it stays when the bar
+  // folds away, turning into a pink pill. On desktop the expanded bar shows its
+  // links, so the button only appears folded or with the menu open. Its focus
+  // is not the bar's: unfolding on mousedown would make it inert before the click.
+  const showMenuButton = isBarHidden || isMenuOpen || isMobile
 
   return (
     <>
@@ -232,46 +235,51 @@ export default function NavBar() {
           <div className="flex items-center gap-4">
             <LanguageSwitcher className="text-xs font-medium tracking-caps-wide uppercase text-riso-paper" />
 
-            {/* Hamburger bttn */}
-            <motion.button
-            ref={hamburgerRef}
-            className="relative z-50 p-3 min-w-[44px] min-h-[44px] flex items-center justify-center"
-            onClick={() => setIsMenuOpen(!isMenuOpen)}
-            animate={{ opacity: isScrolled || isMenuOpen || isMobile ? 1 : 0 }}
-            transition={{ duration: 0.3 }}
-            style={{ pointerEvents: isScrolled || isMenuOpen || isMobile ? 'auto' : 'none' }}
-            inert={!(isScrolled || isMenuOpen || isMobile)}
-            aria-label={isMenuOpen ? tMenu('close') : tMenu('open')}
-            aria-expanded={isMenuOpen}
-            aria-controls={isMenuOpen ? 'main-menu' : undefined}
-          >
-            <AnimatePresence mode="wait">
-              {isMenuOpen ? (
-                <motion.div
-                  key="close"
-                  initial={{ rotate: -90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: 90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <X size={24} />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="menu"
-                  initial={{ rotate: 90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: -90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <Menu size={24} />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.button>
+            {/* Room for the menu button, which is positioned over it */}
+            <span aria-hidden="true" className="w-12 h-12" />
           </div>
         </div>
       </motion.nav>
+
+      {/* Menu button: sits over its slot in the bar, a pink pill once the bar folds */}
+      <motion.button
+        ref={hamburgerRef}
+        className={`fixed top-4 right-6 md:right-12 z-[120] p-3 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full transition-[background-color,color,box-shadow] duration-300 motion-reduce:transition-none ${
+          isBarHidden ? 'bg-riso-pinkTitle text-primary shadow-[0_6px_18px_rgb(0_0_0/0.22)]' : 'bg-transparent text-snow'
+        }`}
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        animate={{ opacity: showMenuButton ? 1 : 0 }}
+        transition={{ duration: 0.3 }}
+        style={{ pointerEvents: showMenuButton ? 'auto' : 'none' }}
+        inert={!showMenuButton}
+        aria-label={isMenuOpen ? tMenu('close') : tMenu('open')}
+        aria-expanded={isMenuOpen}
+        aria-controls={isMenuOpen ? 'main-menu' : undefined}
+      >
+        <AnimatePresence mode="wait">
+          {isMenuOpen ? (
+            <motion.div
+              key="close"
+              initial={{ rotate: -90, opacity: 0 }}
+              animate={{ rotate: 0, opacity: 1 }}
+              exit={{ rotate: 90, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <X size={24} />
+            </motion.div>
+          ) : (
+            <motion.div
+              key="menu"
+              initial={{ rotate: 90, opacity: 0 }}
+              animate={{ rotate: 0, opacity: 1 }}
+              exit={{ rotate: -90, opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            >
+              <Menu size={24} />
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </motion.button>
       
       {/* Fullscreen Menu */}
       <AnimatePresence>
