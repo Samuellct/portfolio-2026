@@ -97,17 +97,6 @@ const config: Config = {
         DEFAULT: '0',
         code: '0.25rem',
       },
-      animation: {
-        'scroll-line': 'scrollLine 1.5s ease-in-out infinite',
-        'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-      },
-      keyframes: {
-        scrollLine: {
-          '0%': { transform: 'translateY(-100%)' },
-          '50%': { transform: 'translateY(0)' },
-          '100%': { transform: 'translateY(100%)' },
-        },
-      },
       typography: {
         DEFAULT: {
           css: {

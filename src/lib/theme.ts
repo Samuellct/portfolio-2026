@@ -42,7 +42,7 @@ export const SURFACE = {
 /**
  * Page background colours written directly to `document.body` or to a page
  * wrapper. Homepage sections take theirs from the scheme (`.section` in
- * globals.css): night for the hero and the contact scene, paper elsewhere.
+ * globals.css): night for the hero, paper elsewhere.
  */
 export const SECTION_BG = {
   aboutIntro: RISO.paper,
@@ -73,7 +73,6 @@ export const CATEGORY = {
 
 /** Status signals. `success` and `error` clear 4.5:1 on paper. */
 export const STATUS = {
-  available: '#22c55e',
   success: '#1b6e37',
   error: '#b3261e',
 } as const
