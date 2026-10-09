@@ -186,18 +186,24 @@ export default function AboutSection() {
           
           <h2
             ref={titleRef}
-            className="text-page leading-display-loose overflow-hidden"
+            // Display scale, second only to the hero's name (bolder pass, 2026-10-09).
+            // The bottom padding keeps the descenders of the last line inside the
+            // overflow mask that the word reveal needs.
+            className="text-display leading-[0.98] overflow-hidden pb-[0.18em]"
           >
             {t('title').split(' ').map((word: string, i: number) => {
               const clean = word.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
               const isAccent = ['physicien', 'developpeur', 'physicist', 'developer'].includes(clean)
+              const isEllipsis = word === '...'
               return (
                 <span
                   key={i}
                   className={`title-word inline-block mr-[0.2em] ${
                     isAccent
-                      ? 'fraunces-display-italic text-accent'
-                      : 'font-display uppercase font-black tracking-wide'
+                      ? 'fraunces-display-italic text-riso-pinkTitle misregister'
+                      : isEllipsis
+                        ? 'font-display font-light text-subtle'
+                        : 'font-display uppercase font-black tracking-wide'
                   }`}
                 >
                   {word}
@@ -250,7 +256,7 @@ export default function AboutSection() {
                   key={stat.label}
                   className={`float-stat max-w-sm ${['lg:ml-[4%]', 'lg:ml-[28%]', 'lg:ml-[12%]'][index]}`}
                 >
-                  <div className="fraunces-display-italic text-heading font-light leading-none mb-1.5 gradient-text">
+                  <div className="fraunces-display-italic text-heading font-light leading-none mb-1.5 text-white">
                     {stat.value}
                   </div>
                   <div className="text-meta text-muted uppercase tracking-caps font-medium">

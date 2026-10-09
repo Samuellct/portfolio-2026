@@ -112,16 +112,6 @@ body {
 }
 
 /* ===================================
-   UTILITY CLASSES
-=================================== */
-.gradient-text {
-  background: linear-gradient(135deg, rgb(var(--fg)), rgb(var(--pink)));
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* ===================================
    SECTION STYLES
 =================================== */
 .section {
