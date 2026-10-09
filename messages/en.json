@@ -242,7 +242,6 @@
     }
   },
   "common": {
-    "loading": "Loading...",
     "error": "An error occurred",
     "skipToContent": "Skip to content",
     "notFound": {

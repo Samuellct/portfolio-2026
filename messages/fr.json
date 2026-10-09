@@ -242,7 +242,6 @@
     }
   },
   "common": {
-    "loading": "Chargement...",
     "error": "Une erreur est survenue",
     "skipToContent": "Aller au contenu",
     "notFound": {

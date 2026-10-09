@@ -1,5 +1,5 @@
 import type { Metadata } from 'next'
-import { setRequestLocale } from 'next-intl/server'
+import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { getProjectById, getLocalizedField, getAllProjectParams, Locale } from '@/lib/projects'
 import { routing } from '@/i18n/routing'
 import { BASE_URL, buildAlternates } from '@/lib/constants'
@@ -30,8 +30,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const projectPath = `/projects/${category}/${id}`
 
   if (!project) {
+    const t = await getTranslations({ locale, namespace: 'common' })
     return {
-      title: 'Project Not Found',
+      title: t('notFound.title'),
     }
   }
 
