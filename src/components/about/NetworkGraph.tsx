@@ -118,7 +118,8 @@ export default function NetworkGraph({ progress, className = '' }: NetworkGraphP
             }}
           >
             <Icon size={20} color={node.color} />
-            <span className="text-meta tracking-wider uppercase whitespace-nowrap" style={{ color: node.color }}>
+            {/* Brand colour stays on the icon; the label is ink (brand hues fail AA on paper) */}
+            <span className="text-meta tracking-wider uppercase whitespace-nowrap text-white">
               {node.label}
             </span>
           </div>
