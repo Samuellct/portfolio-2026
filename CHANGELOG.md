@@ -5,6 +5,35 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.22.0](https://github.com/Samuellct/portfolio-2026/compare/v4.21.0...v4.22.0) (2026-10-09)
+
+### Ajouté
+
+* melt the navigation bar into the home hero ([bba35a9](https://github.com/Samuellct/portfolio-2026/commit/bba35a9db5eae3e3f7717bdf8d22983b68673a08))
+* move the homepage contact section onto paper ([dae247f](https://github.com/Samuellct/portfolio-2026/commit/dae247f5409b67d8758e922a6be31587e7652af9))
+* print the hero sky as a halftone night plate ([a08c5a2](https://github.com/Samuellct/portfolio-2026/commit/a08c5a2367134aa07e9d36334d0a6b76eb862c34))
+* print the particle collision in riso inks ([78382ef](https://github.com/Samuellct/portfolio-2026/commit/78382ef03ea857d43a1f6db99002426deb871915))
+* recompose the hero so content and background share the width ([8de789e](https://github.com/Samuellct/portfolio-2026/commit/8de789e2d4d1d42f6ebc1b6924b6bceddb72366d))
+* remove the homepage projects section now carried by the hero ([757fff1](https://github.com/Samuellct/portfolio-2026/commit/757fff19004498cedf7371876dcdd5ad967bd4b9))
+* retune the hero sky to the bench choice ([62ad144](https://github.com/Samuellct/portfolio-2026/commit/62ad144a327de324054faab36a159fd53a0c5fc9))
+* strengthen the homepage hierarchy within the existing design system ([2521c28](https://github.com/Samuellct/portfolio-2026/commit/2521c2885fb799d2469514f7519d0ee00fa7cd8b))
+
+### Corrigé
+
+* always open the dedicated page from the navigation bar ([6e43d84](https://github.com/Samuellct/portfolio-2026/commit/6e43d84b26f0c59e25de6f2e7cbda8516b69d569))
+* drop the numbered eyebrow from the projects page ([a244979](https://github.com/Samuellct/portfolio-2026/commit/a244979efb5f9e2d696641f9207d1e97566a09be))
+* give each homepage section its own background ([1546fb6](https://github.com/Samuellct/portfolio-2026/commit/1546fb650d335f2697ba230945e1664b20f8b870))
+* lay the profile stats out in the flow with their context shown ([90b0344](https://github.com/Samuellct/portfolio-2026/commit/90b03448e1ed45baa5ef376c88a773cd1e6196b4))
+* number the contact label after about ([0234b6c](https://github.com/Samuellct/portfolio-2026/commit/0234b6cffe3e9e3594ddf1075ae6866d55e8ce10))
+* polish the homepage after the hero and contact rework ([f84ccad](https://github.com/Samuellct/portfolio-2026/commit/f84ccad45d35444fe1adb629565d274a797b5005))
+* size homepage sections to their content ([852eec1](https://github.com/Samuellct/portfolio-2026/commit/852eec16c445cb53f64ff54478d056021e29083c))
+* start the hero paper fringe below the fold ([36b78f2](https://github.com/Samuellct/portfolio-2026/commit/36b78f214772ff83e4e8d51e0666015cbf194228))
+
+### Modifié
+
+* drop tokens and animations orphaned by the hero rework ([d79afff](https://github.com/Samuellct/portfolio-2026/commit/d79afff068a33396e3f3a30fd79e7bfd5c9953c4))
+* resolve the decorative orbs in the about section ([649e49c](https://github.com/Samuellct/portfolio-2026/commit/649e49ca3c1162915f0c3dd4469c0819e9bece43))
+
 ## [4.21.0](https://github.com/Samuellct/portfolio-2026/compare/v4.20.0...v4.21.0) (2026-10-08)
 
 ### Ajouté
