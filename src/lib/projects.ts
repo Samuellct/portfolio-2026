@@ -266,8 +266,8 @@ Le site tourne sur Cloudflare Workers via OpenNext. Chaque push sur la branche p
       },
       sections: {
         context: {
-          en: `Most apps for mountain route planning follow established trails or ignore terrain complexity entirely. I built AlpineRoute to compute realistic off-trail itineraries in the Alps, treating the mountain as a continuous cost surface rather than a network of paths.`,
-          fr: `La plupart des applications de planification en montagne suivent des sentiers balisés ou ignorent la complexité du terrain. J'ai décidé de développer AlpineRoute pour calculer des itinéraires hors-sentier dans les Alpes, en modélisant la montagne comme une surface de coût continue plutôt que comme un réseau de chemins incomplet.`,
+          en: `AlpineRoute comes from my own mountaineering: I have climbed several Alpine summits, including the Gran Paradiso and the Aiguille du Midi. Most route planning apps follow marked trails or ignore terrain complexity. I built AlpineRoute to compute off-trail itineraries, treating the mountain as a continuous cost surface instead of an incomplete network of paths.`,
+          fr: `AlpineRoute part de ma pratique de l'alpinisme : j'ai déjà grimpé plusieurs sommets alpins, notamment le Grand Paradis et l'Aiguille du Midi. La plupart des applications de planification d'itinéraire suivent des sentiers balisés ou ignorent la complexité du terrain. J'ai développé AlpineRoute pour calculer des itinéraires hors sentier, en modélisant la montagne comme une surface de coût continue, et non comme un réseau de chemins incomplet.`,
         },
         approach: {
           en: `The system downloads IGN Lidar HD elevation tiles (50 cm resolution, downsampled afterwards) on demand via the Géoplateforme API, covering only the bounding box of the planned route. For areas outside France, it falls back to the Copernicus GLO-30 DEM (30 m resolution). From the elevation data, the pipeline derives slope, aspect, roughness, and solar radiation for each grid cell.
@@ -278,14 +278,14 @@ These raster layers are combined with vector data: glacier outlines from RGI 7.0
 Ces couches raster sont combinées avec des données vectorielles : contours glaciaires RGI 7.0 (Randolph Glacier Inventory, l'inventaire mondial des glaciers), occupation du sol ESA WorldCover 10 m, et sentiers/barrières OSM. La fonction de coût pénalise les fortes pentes, les zones glaciaires crevassées, la végétation dense et les zones interdites, tout en favorisant les sentiers établis et les expositions sûres.`,
         },
         whatIBuilt: {
-          en: `Two routing strategies handle different terrain types: Valhalla, an open-source routing engine built on OpenStreetMap data, for sections that follow existing trails, and Dijkstra pathfinding on the cost raster for off-trail itineraries. Route computations typically take 10 to 90 seconds, so the API streams progress updates live as it works, rather than leaving the user staring at a frozen screen until the final result.`,
-          fr: `Deux stratégies de calcul d'itinéraire sont utilisées en fonction du type de terrain : Valhalla, un moteur de routage open source qui s'appuie sur les données OpenStreetMap, pour les sections de suivi des chemins existants, et l'algorithme de Dijkstra sur la grille de coûts pour les itinéraires hors-piste. Le calcul d'un itinéraire prend généralement entre 10 et 90 secondes ; l'API envoie donc sa progression en direct au fur et à mesure, plutôt que de faire attendre l'utilisateur devant un écran figé jusqu'au résultat final.`,
+          en: `Routing goes through Valhalla first, an open-source routing engine built on OpenStreetMap data. Where that data runs out, the route switches to off-trail mode: Dijkstra pathfinding searches for the best path across the cost raster. Along with data loading, this step weighs most on how long a computation takes, from 10 to 90 seconds, so the API streams its progress live.`,
+          fr: `Le calcul passe d'abord par Valhalla, un moteur de routage open source qui s'appuie sur les données OpenStreetMap. Là où ces données manquent, l'itinéraire bascule en mode hors-piste : l'algorithme de Dijkstra cherche le meilleur chemin sur la grille de coûts. Avec le chargement des données, c'est cette étape qui pèse le plus sur la durée d'un calcul, de 10 à 90 secondes ; l'API envoie donc sa progression en direct.`,
         },
       },
       kind: 'webapp',
       results: [
-        { label: { en: 'Working resolution', fr: 'Résolution de travail' }, value: '1', unit: 'm', note: { en: '0.5 m remains possible but too heavy to compute for now', fr: '0.5 m reste possible, mais trop lourd à calculer pour l\'instant' } },
-        { label: { en: 'Average computation time', fr: 'Temps de calcul moyen' }, value: '10-90', unit: 's' },
+        { label: { en: 'Grid resolution chosen', fr: 'Résolution de grille choisie' }, value: '1', unit: 'm', note: { en: '0.5 m remains possible but too heavy to compute for now', fr: '0.5 m reste possible, mais trop lourd à calculer pour l\'instant' } },
+        { label: { en: 'Computation time per route', fr: 'Temps de calcul par itinéraire' }, value: '10-90', unit: 's', note: { en: 'depends on off-trail share and data to load', fr: 'selon le hors-piste et les données à charger' } },
         { label: { en: 'Largest area computed', fr: 'Surface maximale traitée' }, value: '100', unit: 'km²', note: { en: '10,000 × 10,000 px grid at 1 m', fr: 'grille de 10 000 × 10 000 px à 1 m' } },
       ],
       limits: {
