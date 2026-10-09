@@ -2,16 +2,20 @@ import Link from 'next/link'
 import { routing } from '@/i18n/routing'
 import { ACCENT, SURFACE } from '@/lib/theme'
 
-export default function RootNotFound() {
+// Paths without a locale prefix: no next-intl context here, so the default
+// locale's strings are read straight from its message file, matching `lang`.
+export default async function RootNotFound() {
+  const { common } = (await import(`../../messages/${routing.defaultLocale}.json`)).default
+  const t = common.notFound as Record<'code' | 'title' | 'description' | 'backHome', string>
   return (
     <html lang={routing.defaultLocale}>
       <body style={{ backgroundColor: SURFACE.shell, color: '#fff', margin: 0, fontFamily: 'system-ui, sans-serif' }}>
         <div style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
           <div style={{ textAlign: 'center', padding: '1.5rem' }}>
-            <h1 style={{ fontSize: '6rem', opacity: 0.1, margin: 0 }}>404</h1>
-            <h2 style={{ fontSize: '1.5rem', marginBottom: '1rem', marginTop: '-1rem' }}>Page Not Found</h2>
+            <h1 style={{ fontSize: '6rem', opacity: 0.1, margin: 0 }}>{t.code}</h1>
+            <h2 style={{ fontSize: '1.5rem', marginBottom: '1rem', marginTop: '-1rem' }}>{t.title}</h2>
             <p style={{ opacity: 0.5, marginBottom: '2rem' }}>
-              The page you&apos;re looking for doesn&apos;t exist or has been moved.
+              {t.description}
             </p>
             <Link
               href={`/${routing.defaultLocale}`}
@@ -27,7 +31,7 @@ export default function RootNotFound() {
                 textTransform: 'uppercase' as const,
               }}
             >
-              Back to Home
+              {t.backHome}
             </Link>
           </div>
         </div>
