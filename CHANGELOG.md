@@ -5,6 +5,26 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [4.24.0](https://github.com/Samuellct/portfolio-2026/compare/v4.23.0...v4.24.0) (2026-10-10)
+
+### Ajouté
+
+* set the category glyphs on spot-colour plates ([ed2c7f6](https://github.com/Samuellct/portfolio-2026/commit/ed2c7f6bd37fab8fa643c41a6c0499be65a41803))
+
+### Corrigé
+
+* describe the internships as team work in the person metadata ([1dac2d7](https://github.com/Samuellct/portfolio-2026/commit/1dac2d7317b2188d7bd23c04b23c6a263bc46884))
+* describe the quantum project as its report does ([3f4d828](https://github.com/Samuellct/portfolio-2026/commit/3f4d8286a5624c5f5b7ddab3d1e0e5b8cc69e618))
+* give the internship results their baseline and trim the stock phrasing ([32dccc8](https://github.com/Samuellct/portfolio-2026/commit/32dccc81e5c8686b06a6008680ca8a68c821e23a))
+* realign the interface copy and use sentence case in English ([fe2f39c](https://github.com/Samuellct/portfolio-2026/commit/fe2f39c98a52e5087fd17566b1e3c0b5bde3b821))
+* set night text on the pink buttons to meet AA contrast ([5b26da4](https://github.com/Samuellct/portfolio-2026/commit/5b26da4943c01fa4a84d7d70a23cc88d32dad1b1))
+* set the home lab graph labels in ink to meet AA contrast ([6b33078](https://github.com/Samuellct/portfolio-2026/commit/6b330784df0087f629a979547e1d0a18ccb19491))
+* show the current hero on the portfolio project page ([6321311](https://github.com/Samuellct/portfolio-2026/commit/63213117606f8e006500dd3283ed2c27b0d6c01d))
+* show the project context right after the results on mobile ([c580ad6](https://github.com/Samuellct/portfolio-2026/commit/c580ad68f44c3382153269df2f62cf4f68309991))
+* strip the machine-like phrasing from the project pages ([691de4a](https://github.com/Samuellct/portfolio-2026/commit/691de4aeaddcc8614c75741b75b1f115dd68ed5d))
+* tie AlpineRoute to my mountaineering and explain its computation time ([7dc4530](https://github.com/Samuellct/portfolio-2026/commit/7dc45306e163154f76e0945202e7c4c37646690e))
+* tie the remaining QCD background to its 60 GeV cut ([e9d0697](https://github.com/Samuellct/portfolio-2026/commit/e9d06977c8afbbd75bb7038ce499dda6653aad39))
+
 ## [4.23.0](https://github.com/Samuellct/portfolio-2026/compare/v4.22.0...v4.23.0) (2026-10-09)
 
 ### Ajouté
