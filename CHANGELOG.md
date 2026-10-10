@@ -5,6 +5,18 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.0.0](https://github.com/Samuellct/portfolio-2026/compare/v4.24.0...v5.0.0) (2026-10-10)
+
+### ⚠ BREAKING CHANGES
+
+* new V5 baseline: Riso redesign, Cloudflare Workers deployment and automated releases
+
+* describe the V5 site in the README ([159ee81](https://github.com/Samuellct/portfolio-2026/commit/159ee81209e417fb0c9fcdf3b038c70150e63041))
+
+### Modifié
+
+* read the hero star colours from the Riso tokens ([304ff04](https://github.com/Samuellct/portfolio-2026/commit/304ff04379e8eeff0e9148f15878220b08e7d1a5)), closes [#0078bf](https://github.com/Samuellct/portfolio-2026/issues/0078bf) [#ff48b0](https://github.com/Samuellct/portfolio-2026/issues/ff48b0)
+
 ## Synthèse de la V5 (4.9.27 à 5.0.0, septembre et octobre 2026)
 
 La V5 reprend le site à partir de l'audit du 2026-09-09 et de la revue de design et de contenu du 2026-09-24. Les entrées détaillées de 4.9.28 à 4.24.0 ci-dessous en donnent le contenu commit par commit.
