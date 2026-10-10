@@ -9,6 +9,7 @@ import { useLocale, useTranslations } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import HeroSky, { FRINGE_HEIGHT } from '@/components/effects/HeroSky'
 import { pillBase } from '@/components/ui/pill'
+import { ACCENT } from '@/lib/theme'
 import { getCardPeriod, getFeaturedProjects, getLocalizedField, Locale, ProjectData } from '@/lib/projects'
 
 gsap.registerPlugin(ScrollTrigger)
@@ -58,12 +59,12 @@ function StarProject({ project, slot, locale, status }: StarProjectProps) {
       style={{ left: slot.left, top: slot.top }}
     >
       <span className="relative w-[34px] h-[34px] shrink-0">
-        <span className="absolute -inset-6 rounded-full bg-[radial-gradient(circle,rgb(255_72_176/0.35),transparent_60%)] transition-transform duration-200 ease-out group-hover:scale-150 group-focus-visible:scale-150 motion-reduce:transition-none" />
+        <span className="absolute -inset-6 rounded-full bg-[radial-gradient(circle,theme(colors.riso.pink/35%),transparent_60%)] transition-transform duration-200 ease-out group-hover:scale-150 group-focus-visible:scale-150 motion-reduce:transition-none" />
         <span className="absolute inset-0 translate-x-[3px] translate-y-[2px] transition-transform duration-200 ease-out group-hover:translate-x-0 group-hover:translate-y-0 group-focus-visible:translate-x-0 group-focus-visible:translate-y-0 motion-reduce:transition-none">
-          <Sparkle fill="#0078bf" />
+          <Sparkle fill={ACCENT.blue} />
         </span>
         <span className="absolute inset-0 mix-blend-screen">
-          <Sparkle fill="#ff48b0" />
+          <Sparkle fill={ACCENT.pink} />
         </span>
       </span>
 
