@@ -5,6 +5,18 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## Synthèse de la V5 (4.9.27 à 5.0.0, septembre et octobre 2026)
+
+La V5 reprend le site à partir de l'audit du 2026-09-09 et de la revue de design et de contenu du 2026-09-24. Les entrées détaillées de 4.9.28 à 4.24.0 ci-dessous en donnent le contenu commit par commit.
+
+- Socle technique : contenu rendu côté serveur, runtime edge retiré, mouvement réduit respecté partout, code mort supprimé. Déploiement passé de Cloudflare Pages (`next-on-pages`) à Cloudflare Workers avec OpenNext, images redimensionnées par le binding Cloudflare Images.
+- Versions : numéro, tag, release GitHub et entrée de ce fichier sont produits par `semantic-release` à partir des messages de commit.
+- Fiches projets : modèle à sections optionnelles, résultats présentés comme des mesures avec leur référence, figures de résultat affichées en entier, liens et statuts vérifiés. Toutes les fiches ont été relues, et chaque réécriture a été validée passage par passage.
+- Identité visuelle : nouveau monde « Risographie » (papier crème, encres rose et bleue, noir réservé au hero), trois familles de polices au lieu de cinq, contrastes AA sur les textes et les boutons.
+- Accueil : hero sur un ciel nocturne WebGL dont les étoiles mènent aux projets phares. Landing d'entrée supprimée.
+- Navigation : barre masquée au défilement, fil d'Ariane sur les pages profondes, langue négociée à la racine, vraie erreur 404.
+- À propos : section Expérience, statistiques calculées depuis les projets, épinglages raccourcis, illustrations redessinées.
+
 ## [4.24.0](https://github.com/Samuellct/portfolio-2026/compare/v4.23.0...v4.24.0) (2026-10-10)
 
 ### Ajouté
