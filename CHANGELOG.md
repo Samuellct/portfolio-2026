@@ -5,6 +5,12 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.0.2](https://github.com/Samuellct/portfolio-2026/compare/v5.0.1...v5.0.2) (2026-10-13)
+
+### Corrigé
+
+* **layout:** show pages before hydration with a short CSS fade ([22f9e2c](https://github.com/Samuellct/portfolio-2026/commit/22f9e2cdee5cf3250b4edf8e66d90791aed6a9a6))
+
 ## [5.0.1](https://github.com/Samuellct/portfolio-2026/compare/v5.0.0...v5.0.1) (2026-10-13)
 
 ### Performance
