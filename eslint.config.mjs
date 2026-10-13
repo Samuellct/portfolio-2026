@@ -10,6 +10,21 @@ const compat = new FlatCompat({
 });
 
 const eslintConfig = [
+  {
+    // Build output, generated types and local working folders kept out of git.
+    ignores: [
+      ".next/**",
+      ".open-next/**",
+      ".wrangler/**",
+      "next-env.d.ts",
+      "cloudflare-env.d.ts",
+      ".claude/**",
+      ".impeccable/**",
+      "TODO_V6/**",
+      "rapports markdown/**",
+      "Redaction_projets/**",
+    ],
+  },
   ...compat.extends("next/core-web-vitals", "next/typescript"),
   {
     rules: {
