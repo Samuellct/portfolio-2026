@@ -3,6 +3,8 @@ import { getAllProjectParams } from '@/lib/projects'
 import { routing } from '@/i18n/routing'
 import { BASE_URL, buildAlternates } from '@/lib/constants'
 
+// No lastModified: nothing records when a page last changed, and the build
+// date would claim every page changed on each deploy (V6-COD-30).
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPaths = [
     { path: '', changeFrequency: 'monthly' as const, priority: 1 },
@@ -14,7 +16,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPages: MetadataRoute.Sitemap = routing.locales.flatMap((locale) =>
     staticPaths.map(({ path, changeFrequency, priority }) => ({
       url: `${BASE_URL}/${locale}${path}`,
-      lastModified: new Date(),
       changeFrequency,
       priority,
       alternates: buildAlternates(path),
@@ -27,7 +28,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       const path = `/projects/${params.category}/${params.id}`
       return {
         url: `${BASE_URL}/${locale}${path}`,
-        lastModified: new Date(),
         changeFrequency: 'monthly' as const,
         priority: 0.6,
         alternates: buildAlternates(path),
