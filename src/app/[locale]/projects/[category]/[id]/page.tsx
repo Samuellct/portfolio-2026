@@ -9,6 +9,7 @@ import {
 } from '@/lib/projects'
 import ProjectDetailView from './ProjectDetailView'
 import BreadcrumbJsonLd from '@/components/seo/BreadcrumbJsonLd'
+import ProjectJsonLd from '@/components/seo/ProjectJsonLd'
 import { getTranslations } from 'next-intl/server'
 
 type Props = {
@@ -54,6 +55,7 @@ export default async function ProjectDetailPage({ params }: Props) {
           { name: getLocalizedField(project.title, locale as Locale), path: `/projects/${categoryId}/${projectId}` },
         ]}
       />
+      <ProjectJsonLd project={project} locale={locale as Locale} />
       <ProjectDetailView
         project={project}
         category={category}
