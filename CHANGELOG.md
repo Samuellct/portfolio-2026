@@ -5,6 +5,21 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.0.1](https://github.com/Samuellct/portfolio-2026/compare/v5.0.0...v5.0.1) (2026-10-13)
+
+### Performance
+
+* **cache:** mark hashed Next static files as immutable ([a1b7720](https://github.com/Samuellct/portfolio-2026/commit/a1b7720fc42cce447eeb5b94a2397255a8a5088b))
+* **cache:** serve prerendered pages from the static assets cache ([49bc1c3](https://github.com/Samuellct/portfolio-2026/commit/49bc1c39bcea0ab4a5ad8d4acb6019c875f89871))
+
+### Modifié
+
+* **deps:** align the lenis and wrangler ranges with the installed versions ([f3c4e17](https://github.com/Samuellct/portfolio-2026/commit/f3c4e17fe06cf75bca4e397082575d1c7a30b635))
+* **deps:** bump next and eslint-config-next to 15.5.27 ([d38df55](https://github.com/Samuellct/portfolio-2026/commit/d38df556182fe99d4cb8b00fe68a2ca4ca288f65))
+* **deps:** refresh vulnerable transitive packages ([6f21399](https://github.com/Samuellct/portfolio-2026/commit/6f2139929e744db0dd2dca4f8065b690222b401e))
+* drop legacy-peer-deps and resolve peers in the lockfile ([c203e6c](https://github.com/Samuellct/portfolio-2026/commit/c203e6c027fbf51a714d381cd145b537fe558bea))
+* lint with the ESLint CLI instead of next lint ([da20510](https://github.com/Samuellct/portfolio-2026/commit/da20510205aef709623e53f24a7148b564d8b845))
+
 ## [5.0.0](https://github.com/Samuellct/portfolio-2026/compare/v4.24.0...v5.0.0) (2026-10-10)
 
 ### ⚠ BREAKING CHANGES
