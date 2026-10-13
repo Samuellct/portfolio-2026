@@ -19,7 +19,8 @@ export default async function ProjectDetailPage({ params }: Props) {
   const { locale, category: categoryId, id: projectId } = await params
 
   const project = getProjectById(categoryId, projectId)
-  if (!project) {
+  // Hidden projects stay unreachable (V6-Q-11, V6-Q-12)
+  if (!project || project.visible === false) {
     notFound()
   }
 

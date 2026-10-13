@@ -10,6 +10,9 @@ type Props = {
 
 const ogLocaleMap: Record<string, string> = { en: 'en_US', fr: 'fr_FR' }
 
+// Only the prerendered (visible) projects exist: any other id is a 404
+export const dynamicParams = false
+
 // Generate static params for all projects × all locales (SSG)
 export async function generateStaticParams() {
   const projectParams = getAllProjectParams()
@@ -29,7 +32,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const loc = locale as Locale
   const projectPath = `/projects/${category}/${id}`
 
-  if (!project) {
+  if (!project || project.visible === false) {
     const t = await getTranslations({ locale, namespace: 'common' })
     return {
       title: t('notFound.title'),
