@@ -5,6 +5,19 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.1.0](https://github.com/Samuellct/portfolio-2026/compare/v5.0.2...v5.1.0) (2026-10-13)
+
+### Ajouté
+
+* **seo:** describe each project page with a CreativeWork node ([41e59cc](https://github.com/Samuellct/portfolio-2026/commit/41e59cc8ec357eb08a376fdaccd00b853f71fa4c))
+
+### Corrigé
+
+* **projects:** return 404 for hidden project pages ([ec2a876](https://github.com/Samuellct/portfolio-2026/commit/ec2a876ce4e698be6d9ff993d3b642ece4e50dba))
+* **seo:** give the about, contact and projects pages the share image ([897c7b2](https://github.com/Samuellct/portfolio-2026/commit/897c7b2bc5237d55284ce7ada0caa12cd2c87332))
+* **seo:** keep 404 pages free of index, canonical and hreflang tags ([29fffde](https://github.com/Samuellct/portfolio-2026/commit/29fffded65790ae7cdf6d868c8cfebdfcc73a486))
+* **seo:** stop dating every sitemap entry with the build day ([096150e](https://github.com/Samuellct/portfolio-2026/commit/096150e35000fdf548ab34f54ceda2da51c64151))
+
 ## [5.0.2](https://github.com/Samuellct/portfolio-2026/compare/v5.0.1...v5.0.2) (2026-10-13)
 
 ### Corrigé
