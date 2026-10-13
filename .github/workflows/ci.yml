@@ -52,8 +52,10 @@ jobs:
       pull-requests: write
 
     steps:
+      # Kept on v4: with v7, semantic-release pushed the tag but GitHub rejected
+      # its git notes push ("missing necessary objects", run 38435734171).
       - name: Checkout
-        uses: actions/checkout@v7
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
