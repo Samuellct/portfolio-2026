@@ -5,7 +5,7 @@ import { setRequestLocale, getTranslations } from 'next-intl/server'
 import { NextIntlClientProvider } from 'next-intl'
 import { notFound } from 'next/navigation'
 import { routing } from '@/i18n/routing'
-import { BASE_URL, buildAlternates } from '@/lib/constants'
+import { BASE_URL } from '@/lib/constants'
 import { SURFACE } from '@/lib/theme'
 import { Providers } from '../providers'
 import '@/styles/globals.css'
@@ -121,12 +121,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     authors: [{ name: 'Samuel Lecomte' }],
     creator: 'Samuel Lecomte',
     publisher: 'Samuel Lecomte',
+    // Indexing is the default; an explicit index/follow here would be inherited
+    // by 404s and contradict their noindex (V6-COD-06). Only the preview hints stay.
     robots: {
-      index: true,
-      follow: true,
       googleBot: {
-        index: true,
-        follow: true,
         'max-video-preview': -1,
         'max-image-preview': 'large',
         'max-snippet': -1,
@@ -145,10 +143,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: t('home.twitterTitle'),
       description: t('home.twitterDescription'),
     },
-    alternates: {
-      canonical: `${BASE_URL}/${locale}`,
-      ...buildAlternates(''),
-    },
+    // No alternates here: the 404s render at this level and would inherit the
+    // home canonical and hreflang (V6-COD-06). The home page sets its own.
   }
 }
 
