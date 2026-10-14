@@ -5,6 +5,29 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.2.1](https://github.com/Samuellct/portfolio-2026/compare/v5.2.0...v5.2.1) (2026-10-14)
+
+### Corrigé
+
+* **project:** serve the detail page visible without JavaScript ([a4b4f98](https://github.com/Samuellct/portfolio-2026/commit/a4b4f98d175efec0f3c8d13521e13563cc838604))
+
+### Performance
+
+* **about:** prepare internships and tech stats on the server ([8e19c9a](https://github.com/Samuellct/portfolio-2026/commit/8e19c9a651dbf5399629c2e4f5ba4f36cba735b9))
+* **fonts:** drop the Fraunces optical axis and unused Space Mono bold ([c056287](https://github.com/Samuellct/portfolio-2026/commit/c0562878190a6256dbcafef9cda4a8d3b3f53390))
+* **home:** pass featured projects and stats from the server page ([9956ea1](https://github.com/Samuellct/portfolio-2026/commit/9956ea162bcd822cafdabaed185dc22f1da00bbf))
+* **i18n:** keep server-only metadata messages out of the client payload ([f193ef4](https://github.com/Samuellct/portfolio-2026/commit/f193ef4364059f2ac3a977b040199337fd2efdc4))
+* **links:** prefetch on intent on slow or data-saving connections ([cd3884f](https://github.com/Samuellct/portfolio-2026/commit/cd3884f73c8ecf3497e366458cc969139d72da67))
+* **motion:** load Framer Motion features lazily with m components ([e5c41ca](https://github.com/Samuellct/portfolio-2026/commit/e5c41cab84a871fbcf07d61246ca004e77eb9ce9))
+* **project:** keep project data out of the detail page bundle ([f0f2300](https://github.com/Samuellct/portfolio-2026/commit/f0f230099c3f1307400433c46f6a80bc679f4b73))
+* **project:** render Markdown and KaTeX on the server ([51d37cc](https://github.com/Samuellct/portfolio-2026/commit/51d37cce699487ce4264ec56248d079808001537))
+* **projects:** pass card summaries from the server page ([2af8a4a](https://github.com/Samuellct/portfolio-2026/commit/2af8a4a4e091d9ea028a705648d8ad561b726973))
+* **scroll:** run Lenis on its own frame loop and load GSAP only where used ([eee0c58](https://github.com/Samuellct/portfolio-2026/commit/eee0c58a68300b7d8f53f187b863b10cb42adae4))
+
+### Modifié
+
+* **projects:** split pure helpers from the project data ([b32a234](https://github.com/Samuellct/portfolio-2026/commit/b32a2348e92cdc1e93e3a9226f6d7b2dd540847e))
+
 ## [5.2.0](https://github.com/Samuellct/portfolio-2026/compare/v5.1.0...v5.2.0) (2026-10-14)
 
 ### Ajouté
