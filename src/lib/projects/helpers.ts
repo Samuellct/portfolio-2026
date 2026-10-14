@@ -101,3 +101,10 @@ export interface ProjectData {
 }
 
 export const PROJECT_CATEGORIES = ['personal', 'academic', 'internship'] as const
+
+// What the listing and the homepage cards read from a project: client
+// components get these fields instead of whole projects (V6-COD-08)
+export type ProjectSummary = Pick<
+  ProjectData,
+  'id' | 'category' | 'title' | 'subtitle' | 'period' | 'description' | 'image' | 'imageAlt' | 'status' | 'technologies' | 'keywords'
+>

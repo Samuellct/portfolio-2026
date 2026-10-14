@@ -8,21 +8,14 @@ import Watermark from '@/components/effects/Watermark'
 import { ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
-import { getAllProjects } from '@/lib/projects/data'
-import { programmingLanguages } from '@/lib/techStats'
+// Homepage statistics, derived from the visible projects by the page
+export interface HomeStats {
+  internships: number
+  languages: string[]
+  repos: number
+}
 
-// Homepage statistics, derived from the visible projects
-const statValues = (() => {
-  const projects = getAllProjects()
-  const usedTechs = new Set<string>(projects.flatMap((p) => p.technologies))
-  return {
-    internships: projects.filter((p) => p.category === 'internship').length,
-    languages: programmingLanguages.filter((lang) => usedTechs.has(lang)),
-    repos: projects.filter((p) => p.gitHubUrl).length,
-  }
-})()
-
-export default function AboutSection() {
+export default function AboutSection({ statValues }: { statValues: HomeStats }) {
   const t = useTranslations('about')
   const prefersReducedMotion = useReducedMotion()
 

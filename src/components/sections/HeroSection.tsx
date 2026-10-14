@@ -9,7 +9,7 @@ import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import HeroSky, { FRINGE_HEIGHT } from '@/components/effects/HeroSky'
 import { pillBase } from '@/components/ui/pill'
 import { ACCENT } from '@/lib/theme'
-import { getCardPeriod, getFeaturedProjects, getLocalizedField, Locale, ProjectData } from '@/lib/projects/data'
+import { getCardPeriod, getLocalizedField, Locale, ProjectSummary } from '@/lib/projects/helpers'
 import { RESUME_PATH } from '@/lib/constants'
 
 // Desktop "star-projects" sit at the four corners of the name (DEC-16g, comp A);
@@ -36,7 +36,7 @@ function Sparkle({ fill }: { fill: string }) {
 }
 
 interface StarProjectProps {
-  project: ProjectData
+  project: ProjectSummary
   slot: (typeof STAR_SLOTS)[number]
   locale: Locale
   status: string | null
@@ -94,7 +94,7 @@ function StarProject({ project, slot, locale, status }: StarProjectProps) {
   )
 }
 
-export default function HeroSection() {
+export default function HeroSection({ featuredProjects }: { featuredProjects: ProjectSummary[] }) {
   const t = useTranslations('hero')
   const tp = useTranslations('projects')
   const locale = useLocale()
@@ -103,8 +103,8 @@ export default function HeroSection() {
   const contentRef = useRef<HTMLDivElement>(null)
   const starsRef = useRef<HTMLDivElement>(null)
 
-  const featured = getFeaturedProjects().slice(0, STAR_SLOTS.length)
-  const statusOf = (p: ProjectData) => {
+  const featured = featuredProjects.slice(0, STAR_SLOTS.length)
+  const statusOf = (p: ProjectSummary) => {
     const key = STATUS_KEY[p.status as keyof typeof STATUS_KEY]
     return key ? tp(`status.${key}`) : null
   }

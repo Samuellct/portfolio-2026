@@ -1,6 +1,6 @@
 // Project content, server side only: client components receive what they
 // need as props, so this data never ships in their bundle (V6-COD-08).
-import type { ProjectData } from './helpers'
+import type { ProjectData, ProjectSummary } from './helpers'
 
 export * from './helpers'
 
@@ -1021,3 +1021,9 @@ export const getAllProjectParams = () => {
   })
   return params
 }
+
+export const toProjectSummary = ({
+  id, category, title, subtitle, period, description, image, imageAlt, status, technologies, keywords,
+}: ProjectData): ProjectSummary => ({
+  id, category, title, subtitle, period, description, image, imageAlt, status, technologies, keywords,
+})
