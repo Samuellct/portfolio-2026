@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from 'next'
 import { Schibsted_Grotesk, Space_Mono, Fraunces } from 'next/font/google'
 import { hasLocale } from 'next-intl'
-import { setRequestLocale, getTranslations } from 'next-intl/server'
+import { setRequestLocale, getTranslations, getMessages } from 'next-intl/server'
 import { NextIntlClientProvider } from 'next-intl'
 import { notFound } from 'next/navigation'
 import { routing } from '@/i18n/routing'
@@ -161,7 +161,8 @@ export default async function LocaleLayout({
 
   // Load messages for next-intl. `metadata` is read on the server only
   // (generateMetadata, JSON-LD), so it stays out of the client payload (V6-COD-33).
-  const messages = (await import(`../../../messages/${locale}.json`)).default
+  // getMessages() returns them as typeset by src/i18n/request.ts.
+  const messages = await getMessages()
   const clientMessages = Object.fromEntries(Object.entries(messages).filter(([namespace]) => namespace !== 'metadata'))
 
   // Build locale-aware JSON-LD
