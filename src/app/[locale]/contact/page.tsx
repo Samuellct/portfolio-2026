@@ -66,10 +66,10 @@ export default function ContactPage() {
   }
   
   return (
-    <div className="min-h-screen relative" style={{ backgroundColor: CONTACT_BG_COLOR }}>
+    <div className="min-h-screen relative overflow-x-clip" style={{ backgroundColor: CONTACT_BG_COLOR }}>
       <Watermark
         word="CONTACT"
-        className="fixed top-1/2 -translate-y-1/2 left-0 z-0"
+        className="absolute top-1/2 -translate-y-1/2 left-0 z-0"
         textClassName="text-ghost-20 whitespace-nowrap"
         parallax={{ axis: 'x', from: -5, to: 5, scrub: 2 }}
       />

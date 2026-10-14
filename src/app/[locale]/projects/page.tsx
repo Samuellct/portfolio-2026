@@ -290,14 +290,14 @@ export default function ProjectsPage() {
   }, [prefersReducedMotion])
 
   return (
-    <div ref={pageRef} className="min-h-screen relative" style={{ backgroundColor: PROJECTS_BG_COLOR }}>
+    <div ref={pageRef} className="min-h-screen relative overflow-x-clip" style={{ backgroundColor: PROJECTS_BG_COLOR }}>
       <Suspense fallback={null}>
         <CategoryFromQuery onCategory={setActiveFilter} />
       </Suspense>
 
       <Watermark
         word="PROJECTS"
-        className="fixed top-1/2 -translate-y-1/2 left-0 z-0"
+        className="absolute top-1/2 -translate-y-1/2 left-0 z-0"
         textClassName="text-ghost-20 whitespace-nowrap"
         parallax={{ axis: 'x', from: -5, to: 5, scrub: 2 }}
       />

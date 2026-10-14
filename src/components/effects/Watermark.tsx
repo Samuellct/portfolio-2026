@@ -57,7 +57,7 @@ export default function Watermark({ word, className, textClassName, parallax }: 
 
   return (
     <div ref={ref} data-watermark aria-hidden="true" className={`pointer-events-none select-none ${className}`}>
-      <span className={`font-display uppercase font-black text-white/[0.015] leading-none ${textClassName}`}>
+      <span className={`font-display uppercase font-black text-riso-ink/[0.03] leading-none ${textClassName}`}>
         {word}
       </span>
     </div>
