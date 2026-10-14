@@ -2,13 +2,11 @@ import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
 import { getProjectById, getLocalizedField, getAllProjectParams, Locale } from '@/lib/projects'
 import { routing } from '@/i18n/routing'
-import { BASE_URL, buildAlternates } from '@/lib/constants'
+import { BASE_URL, buildAlternates, OG_LOCALE } from '@/lib/constants'
 
 type Props = {
   params: Promise<{ locale: string; category: string; id: string }>
 }
-
-const ogLocaleMap: Record<string, string> = { en: 'en_US', fr: 'fr_FR' }
 
 // Only the prerendered (visible) projects exist: any other id is a 404
 export const dynamicParams = false
@@ -50,7 +48,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: `${title} | Samuel Lecomte`,
       description,
       type: 'article',
-      locale: ogLocaleMap[locale] || 'en_US',
+      locale: OG_LOCALE[locale] || 'en_US',
       images: project.image.startsWith('/')
         ? [`${BASE_URL}${project.image}`]
         : [project.image],

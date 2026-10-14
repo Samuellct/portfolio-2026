@@ -9,6 +9,7 @@ import { Send, CheckCircle, AlertCircle, Github, Linkedin } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { PAGE_BG } from '@/lib/theme'
+import { SOCIAL, FORMSPREE_ENDPOINT } from '@/lib/constants'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -74,7 +75,7 @@ export default function ContactPage() {
     setStatus('submitting')
     
     try {
-      const response = await fetch('https://formspree.io/f/xpwjbwkb', {
+      const response = await fetch(FORMSPREE_ENDPOINT, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -315,7 +316,7 @@ export default function ContactPage() {
           
           <div className="flex flex-wrap gap-4">
             <a
-              href="https://github.com/Samuellct"
+              href={SOCIAL.github}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 border border-white/10 transition-all hover:border-brand-github/30 hover:text-brand-github"
@@ -325,7 +326,7 @@ export default function ContactPage() {
             </a>
             
             <a
-              href="https://www.linkedin.com/in/samuel-lecomte37/"
+              href={SOCIAL.linkedin}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 border border-white/10 transition-all hover:border-brand-linkedinAlt/30 hover:text-brand-linkedinAlt"

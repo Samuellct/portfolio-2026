@@ -2,6 +2,21 @@ import { routing } from '@/i18n/routing'
 
 export const BASE_URL = 'https://www.samuel-lecomte.fr'
 
+export const SOCIAL = {
+  github: 'https://github.com/Samuellct',
+  linkedin: 'https://www.linkedin.com/in/samuel-lecomte37/',
+} as const
+
+export const RESUME_PATH = '/Resume.pdf'
+
+export const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xpwjbwkb'
+
+/** Open Graph `og:locale` value per site locale. */
+export const OG_LOCALE: Record<string, string> = { en: 'en_US', fr: 'fr_FR' }
+
+/** BCP 47 language tag per site locale (JSON-LD `inLanguage`). */
+export const LANG_TAG: Record<string, string> = { en: 'en-US', fr: 'fr-FR' }
+
 /**
  * Build hreflang alternates for a given path.
  * Used by layouts (generateMetadata) and sitemap.

@@ -1,7 +1,5 @@
-import { BASE_URL } from '@/lib/constants'
+import { BASE_URL, LANG_TAG } from '@/lib/constants'
 import { getLocalizedField, Locale, ProjectData } from '@/lib/projects'
-
-const langTagMap: Record<string, string> = { en: 'en-US', fr: 'fr-FR' }
 
 // One CreativeWork node per visible project (DEC-11d), authored by the Person
 // node of [locale]/layout.tsx.
@@ -15,7 +13,7 @@ export default function ProjectJsonLd({ project, locale }: { project: ProjectDat
     description: getLocalizedField(project.description, locale),
     dateCreated: project.dateCreated,
     url,
-    inLanguage: langTagMap[locale] || 'en-US',
+    inLanguage: LANG_TAG[locale] || 'en-US',
     author: { '@id': `${BASE_URL}/#person` },
     image: project.image.startsWith('/') ? `${BASE_URL}${project.image}` : project.image,
     ...(project.gitHubUrl && { codeRepository: project.gitHubUrl }),

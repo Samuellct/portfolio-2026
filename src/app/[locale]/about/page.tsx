@@ -17,6 +17,7 @@ import { useLocale, useTranslations } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { useSmoothScroll } from '@/context/SmoothScrollContext'
 import { CONTRAST_TEXT, PAGE_BG, RISO } from '@/lib/theme'
+import { RESUME_PATH, SOCIAL } from '@/lib/constants'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -593,15 +594,15 @@ export default function AboutPage() {
             
             {/* Buttons: visible from the start, outside the pin animation */}
             <div className="flex flex-wrap gap-4">
-              <a href="/Resume.pdf" target="_blank" rel="noopener noreferrer" className={PILL_PRIMARY}>
+              <a href={RESUME_PATH} target="_blank" rel="noopener noreferrer" className={PILL_PRIMARY}>
                 <Download size={16} aria-hidden="true" />
                 {tAbout('downloadCV')}
               </a>
-              <a href="https://github.com/Samuellct" target="_blank" rel="noopener noreferrer" className={PILL_OUTLINE}>
+              <a href={SOCIAL.github} target="_blank" rel="noopener noreferrer" className={PILL_OUTLINE}>
                 <Github size={16} aria-hidden="true" />
                 {tMenu('github')}
               </a>
-              <a href="https://www.linkedin.com/in/samuel-lecomte37/" target="_blank" rel="noopener noreferrer" className={PILL_OUTLINE}>
+              <a href={SOCIAL.linkedin} target="_blank" rel="noopener noreferrer" className={PILL_OUTLINE}>
                 <Linkedin size={16} aria-hidden="true" />
                 {tMenu('linkedin')}
               </a>
@@ -957,7 +958,7 @@ export default function AboutPage() {
         {/* ============================================ */}
         <div className="px-6 md:px-12 lg:px-16 pb-24">
           <div className="max-w-6xl mx-auto w-full flex flex-wrap items-center gap-4 pt-12 border-t border-riso-pink">
-            <a href="/Resume.pdf" target="_blank" rel="noopener noreferrer" className={PILL_PRIMARY}>
+            <a href={RESUME_PATH} target="_blank" rel="noopener noreferrer" className={PILL_PRIMARY}>
               <Download size={16} aria-hidden="true" />
               {tAbout('downloadCV')}
             </a>

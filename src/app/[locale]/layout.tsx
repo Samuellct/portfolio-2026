@@ -5,7 +5,7 @@ import { setRequestLocale, getTranslations } from 'next-intl/server'
 import { NextIntlClientProvider } from 'next-intl'
 import { notFound } from 'next/navigation'
 import { routing } from '@/i18n/routing'
-import { BASE_URL } from '@/lib/constants'
+import { BASE_URL, SOCIAL, OG_LOCALE, LANG_TAG } from '@/lib/constants'
 import { SURFACE } from '@/lib/theme'
 import { Providers } from '../providers'
 import '@/styles/globals.css'
@@ -47,11 +47,8 @@ type Props = {
   params: Promise<{ locale: string }>
 }
 
-const ogLocaleMap: Record<string, string> = { en: 'en_US', fr: 'fr_FR' }
-const langTagMap: Record<string, string> = { en: 'en-US', fr: 'fr-FR' }
-
 function buildJsonLd(locale: string, t: (key: string) => string) {
-  const inLanguage = langTagMap[locale] || 'en-US'
+  const inLanguage = LANG_TAG[locale] || 'en-US'
   return {
     '@context': 'https://schema.org',
     '@graph': [
@@ -88,8 +85,8 @@ function buildJsonLd(locale: string, t: (key: string) => string) {
           'Data Engineering',
         ],
         sameAs: [
-          'https://github.com/Samuellct',
-          'https://www.linkedin.com/in/samuel-lecomte37/',
+          SOCIAL.github,
+          SOCIAL.linkedin,
         ],
       },
       {
@@ -132,7 +129,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     },
     openGraph: {
       type: 'website',
-      locale: ogLocaleMap[locale] || 'en_US',
+      locale: OG_LOCALE[locale] || 'en_US',
       url: `${BASE_URL}/${locale}`,
       siteName: 'Samuel Lecomte Portfolio',
       title: t('home.titleDefault'),

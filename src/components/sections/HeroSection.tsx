@@ -11,6 +11,7 @@ import HeroSky, { FRINGE_HEIGHT } from '@/components/effects/HeroSky'
 import { pillBase } from '@/components/ui/pill'
 import { ACCENT } from '@/lib/theme'
 import { getCardPeriod, getFeaturedProjects, getLocalizedField, Locale, ProjectData } from '@/lib/projects'
+import { RESUME_PATH } from '@/lib/constants'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -185,7 +186,7 @@ export default function HeroSection() {
             <ArrowRight size={16} aria-hidden="true" />
           </TransitionLink>
           <a
-            href="/Resume.pdf"
+            href={RESUME_PATH}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={t('ctaSecondary')}

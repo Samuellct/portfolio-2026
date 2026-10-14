@@ -7,6 +7,7 @@ import { Menu, X, Github, Linkedin, ExternalLink } from 'lucide-react'
 import TransitionLink from '@/components/navigation/TransitionLink'
 import LanguageSwitcher from '@/components/ui/LanguageSwitcher'
 import { useTranslations } from 'next-intl'
+import { SOCIAL } from '@/lib/constants'
 
 export default function NavBar() {
   const tNav = useTranslations('nav')
@@ -21,8 +22,8 @@ export default function NavBar() {
 
   const externalLinks = [
     { href: 'https://samuel-lecomte.fr', label: tMenu('blog'), icon: ExternalLink, hoverColor: 'hover:text-accent' },
-    { href: 'https://github.com/Samuellct', label: tMenu('github'), icon: Github, hoverColor: 'hover:text-brand-github' },
-    { href: 'https://www.linkedin.com/in/samuel-lecomte37/', label: tMenu('linkedin'), icon: Linkedin, hoverColor: 'hover:text-brand-linkedinAlt' },
+    { href: SOCIAL.github, label: tMenu('github'), icon: Github, hoverColor: 'hover:text-brand-github' },
+    { href: SOCIAL.linkedin, label: tMenu('linkedin'), icon: Linkedin, hoverColor: 'hover:text-brand-linkedinAlt' },
   ]
   const [isHidden, setIsHidden] = useState(false)
   const [hasFocusWithin, setHasFocusWithin] = useState(false)

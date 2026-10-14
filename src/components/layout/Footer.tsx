@@ -2,6 +2,7 @@
 
 import TransitionLink from '@/components/navigation/TransitionLink'
 import { useTranslations } from 'next-intl'
+import { RESUME_PATH } from '@/lib/constants'
 
 export default function Footer() {
   const tNav = useTranslations('nav')
@@ -38,7 +39,7 @@ export default function Footer() {
             {tNav('contact')}
           </TransitionLink>
           <a
-            href="/Resume.pdf"
+            href={RESUME_PATH}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={`${tFooter('resume')} (${tCommon('newTab')})`}
