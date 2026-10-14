@@ -152,16 +152,6 @@
       "collaboration": "Collaboration"
     }
   },
-  "blog": {
-    "sectionLabel": "03 · Blog",
-    "title": "Journal",
-    "comingSoon": {
-      "badge": "Coming soon",
-      "title": "Blog coming soon",
-      "description": "A dedicated blog website is currently under development. Stay tuned for articles about physics, technology, and personal adventures.",
-      "cta": "Visit blog"
-    }
-  },
   "contact": {
     "sectionLabel": "02 · Contact",
     "title": "Write to me",

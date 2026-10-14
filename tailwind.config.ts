@@ -66,7 +66,6 @@ const config: Config = {
         'ghost-20': '20vw',
         'ghost-25': '25vw',
         'ghost-35': '35vw',
-        'ghost-40': '40vw',
       },
       letterSpacing: {
         label: '0.1em',

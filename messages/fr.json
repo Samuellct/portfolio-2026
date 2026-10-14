@@ -152,16 +152,6 @@
       "collaboration": "Collaboration"
     }
   },
-  "blog": {
-    "sectionLabel": "03 · Blog",
-    "title": "Journal",
-    "comingSoon": {
-      "badge": "Bientôt disponible",
-      "title": "Blog à venir",
-      "description": "Un site de blog dédié est actuellement en cours de développement. Vous pourrez y trouver des articles sur la physique, la technologie et mes aventures personnelles.",
-      "cta": "Visiter le blog"
-    }
-  },
   "contact": {
     "sectionLabel": "02 · Contact",
     "title": "Écrivez-moi",

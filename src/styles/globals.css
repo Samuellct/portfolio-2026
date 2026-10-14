@@ -183,14 +183,10 @@ body {
 =================================== */
 /* ANIM-03: targeted reduced motion instead of a global cut. Colour and
    opacity fades (hover states, the page veil) stay as state feedback;
-   movement goes: looping decoration stops and hover nudges snap instead of
-   sliding. Framer Motion follows the setting through `MotionConfig`, GSAP
-   and Lenis through `useReducedMotion`. */
+   movement goes: hover nudges snap instead of sliding. Framer Motion follows
+   the setting through `MotionConfig`, GSAP and Lenis through
+   `useReducedMotion`. */
 @media (prefers-reduced-motion: reduce) {
-  .animate-pulse {
-    animation: none;
-  }
-
   [class*="translate-"],
   [class*="scale-"] {
     transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity;
