@@ -130,7 +130,7 @@ export default function ContactPage() {
             animate={{ opacity: 1, scale: 1 }}
             className="p-8 bg-status-success/10 border border-status-success/30 text-center"
           >
-            <CheckCircle size={48} className="mx-auto mb-4 text-status-success" />
+            <CheckCircle aria-hidden="true" size={48} className="mx-auto mb-4 text-status-success" />
             <h2 className="font-display uppercase font-black text-title mb-2">{tContact('page.form.success')}</h2>
             <p className="text-muted mb-6">{tContact('page.form.successDescription')}</p>
             <button
@@ -149,7 +149,7 @@ export default function ContactPage() {
             animate={{ opacity: 1, scale: 1 }}
             className="p-8 bg-status-error/10 border border-status-error/30 text-center mb-8"
           >
-            <AlertCircle size={48} className="mx-auto mb-4 text-status-error" />
+            <AlertCircle aria-hidden="true" size={48} className="mx-auto mb-4 text-status-error" />
             <h2 className="font-display uppercase font-black text-title mb-2">{tContact('page.form.error')}</h2>
             <p className="text-muted mb-6">{tContact('page.form.errorDescription')}</p>
             <button
@@ -259,7 +259,7 @@ export default function ContactPage() {
               ) : (
                 <>
                   {tContact('page.form.send')}
-                  <Send size={16} />
+                  <Send aria-hidden="true" size={16} />
                 </>
               )}
             </button>
@@ -284,7 +284,7 @@ export default function ContactPage() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 border border-white/10 transition-all hover:border-brand-github/30 hover:text-brand-github"
             >
-              <Github size={16} />
+              <Github aria-hidden="true" size={16} />
               <span>{tContact('page.directContact.githubLabel')}</span>
             </a>
             
@@ -294,7 +294,7 @@ export default function ContactPage() {
               rel="noopener noreferrer"
               className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 border border-white/10 transition-all hover:border-brand-linkedinAlt/30 hover:text-brand-linkedinAlt"
             >
-              <Linkedin size={16} />
+              <Linkedin aria-hidden="true" size={16} />
               <span>{tContact('page.directContact.linkedinLabel')}</span>
             </a>
           </div>

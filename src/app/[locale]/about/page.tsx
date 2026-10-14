@@ -682,7 +682,7 @@ export default function AboutPage() {
                     className="tap-target mt-auto inline-flex items-center gap-2 text-sm tracking-caps uppercase text-accent hover:text-white transition-colors group"
                   >
                     {tAbout('experience.viewProject')}
-                    <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+                    <ArrowRight aria-hidden="true" size={16} className="transition-transform group-hover:translate-x-1" />
                   </TransitionLink>
                 </article>
               ))}

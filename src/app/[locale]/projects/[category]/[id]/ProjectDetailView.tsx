@@ -402,7 +402,7 @@ export default function ProjectDetailView({
                   href={`/projects/${previousProject.category}/${previousProject.id}`}
                   className="tap-target group flex items-center gap-3"
                 >
-                  <ArrowLeft size={18} className="shrink-0 transition-transform group-hover:-translate-x-1" />
+                  <ArrowLeft aria-hidden="true" size={18} className="shrink-0 transition-transform group-hover:-translate-x-1" />
                   <div>
                     <div className="text-xs tracking-caps-wide uppercase text-muted mb-1">
                       {t('previousProject')}
@@ -419,7 +419,7 @@ export default function ProjectDetailView({
                   href={`/projects/${nextProject.category}/${nextProject.id}`}
                   className="tap-target group flex items-center gap-3 sm:text-right sm:flex-row-reverse sm:ml-auto"
                 >
-                  <ArrowRight size={18} className="shrink-0 transition-transform group-hover:translate-x-1" />
+                  <ArrowRight aria-hidden="true" size={18} className="shrink-0 transition-transform group-hover:translate-x-1" />
                   <div>
                     <div className="text-xs tracking-caps-wide uppercase text-muted mb-1">
                       {t('nextProject')}

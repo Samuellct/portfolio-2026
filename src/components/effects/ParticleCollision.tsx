@@ -277,7 +277,7 @@ export default function ParticleCollision({ isVisible, className = '' }: Particl
         title={t('collision.newCollision')}
         aria-label={t('collision.newCollision')}
       >
-        <RefreshCw 
+        <RefreshCw aria-hidden="true" 
           size={14} 
           className={isAnimating ? 'animate-spin' : ''} 
         />

@@ -216,7 +216,7 @@ export default function AboutSection() {
                 className="tap-target inline-flex items-center gap-3 text-accent hover:text-white transition-colors group"
               >
                 <span className="text-sm tracking-caps uppercase">{t('preview.cta')}</span>
-                <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+                <ArrowRight aria-hidden="true" size={16} className="transition-transform group-hover:translate-x-1" />
               </TransitionLink>
             </motion.div>
           </div>

@@ -62,7 +62,7 @@ export default function ScrollIndicator({ hideAfterPx = 100 }: ScrollIndicatorPr
               ease: 'easeInOut'
             }}
           >
-            <ChevronDown size={16} className="text-muted" />
+            <ChevronDown aria-hidden="true" size={16} className="text-muted" />
           </motion.div>
           
           {/* Label */}

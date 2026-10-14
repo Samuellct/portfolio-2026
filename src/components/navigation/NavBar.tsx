@@ -268,7 +268,7 @@ export default function NavBar() {
               exit={{ rotate: 90, opacity: 0 }}
               transition={{ duration: 0.2 }}
             >
-              <X size={24} />
+              <X aria-hidden="true" size={24} />
             </motion.div>
           ) : (
             <motion.div
@@ -278,7 +278,7 @@ export default function NavBar() {
               exit={{ rotate: -90, opacity: 0 }}
               transition={{ duration: 0.2 }}
             >
-              <Menu size={24} />
+              <Menu aria-hidden="true" size={24} />
             </motion.div>
           )}
         </AnimatePresence>
@@ -365,7 +365,7 @@ export default function NavBar() {
                       transition={{ delay: 0.25 + index * 0.08 }}
                       className={`tap-target flex items-center gap-4 text-muted transition-colors group ${link.hoverColor}`}
                     >
-                      <link.icon size={20} />
+                      <link.icon aria-hidden="true" size={20} />
                       <span className="text-lg">{link.label}</span>
                     </motion.a>
                   ))}
