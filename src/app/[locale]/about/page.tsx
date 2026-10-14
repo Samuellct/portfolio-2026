@@ -145,7 +145,7 @@ export default function AboutPage() {
   // Page container ref
   const pageRef = useRef<HTMLDivElement>(null)
   
-  // Background text CONTAINER ref (pour le parallax)
+  // Container of the background word (parallax target)
   const bgContainerRef = useRef<HTMLDivElement>(null)
   
   // Section refs
@@ -155,7 +155,7 @@ export default function AboutPage() {
   const educationSectionRef = useRef<HTMLElement>(null)
   const interestsSectionRef = useRef<HTMLElement>(null)
 
-  // Refs pour stocker la progression MAXIMALE atteinte
+  // Highest progress reached by each pinned section
   // the intro is the first screen: shown whole, never pinned
   const introMaxProgressRef = useRef(1)
   const experienceMaxProgressRef = useRef(0)
@@ -515,8 +515,8 @@ export default function AboutPage() {
 
       {/* ============================================ */}
       {/* PARALLAX BACKGROUND TEXT */}
-      {/* pointer-events: none pour pas bloquer les clics */}
-      {/* ref sur le conteneur, pas sur le span qui change */}
+      {/* pointer-events: none so it never blocks clicks */}
+      {/* the ref is on the container, not on the span that changes */}
       {/* ============================================ */}
       <div
         aria-hidden="true"

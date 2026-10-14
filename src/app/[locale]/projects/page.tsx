@@ -87,7 +87,7 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
           className="relative overflow-hidden mb-5 bg-white/[0.02]"
           style={{ x, y }}
         >
-          {/* Container flexible avec hauteur min/max */}
+          {/* Flexible container with a min and max height */}
           <div className="relative min-h-[200px] max-h-[280px] overflow-hidden">
             <motion.div
               className={`relative w-full h-full min-h-[200px] transition-opacity duration-300 ${

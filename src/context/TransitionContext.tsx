@@ -25,7 +25,7 @@ export function TransitionProvider({ children }: { children: ReactNode }) {
   const previousPathname = useRef(pathname)
   const isNavigating = useRef(false)
   
-  // Detect when navigation is complete (???)
+  // The new route has rendered: lift the veil
   useEffect(() => {
     if (pathname !== previousPathname.current) {
       previousPathname.current = pathname

@@ -12,7 +12,7 @@ interface MarkdownRendererProps {
   className?: string
 }
 
-// Supprime l'indentation commune des template literals
+// Strip the indentation shared by every line of a template literal
 function cleanIndentation(content: string): string {
   const lines = content.split('\n')
   const nonEmptyLines = lines.filter(line => line.trim().length > 0)

@@ -2,18 +2,18 @@ import type { NextConfig } from 'next'
 import createNextIntlPlugin from 'next-intl/plugin'
 
 const nextConfig: NextConfig = {
-  // Optimisation des images
+  // Image optimisation
   images: {
     formats: ['image/avif', 'image/webp'],
     deviceSizes: [640, 750, 828, 1080, 1200, 1920],
   },
   
-  // test autres optimisations
+  // Tree-shake the barrel imports of these packages
   experimental: {
     optimizePackageImports: ['lucide-react', 'framer-motion'],
   },
   
-  // Headers de secu
+  // Security headers
   async headers() {
     return [
       {

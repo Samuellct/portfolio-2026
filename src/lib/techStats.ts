@@ -1,12 +1,12 @@
 import { getAllProjects } from './projects'
 import { getTechColor, techFamilies, type TechFamily } from './technologies'
 
-// Langages de prog pour le Top 4
+// Programming languages eligible for the top 4
 export const programmingLanguages = [
   'Python', 'C++', 'TypeScript', 'JavaScript', 'Bash', 'Kotlin', 'C#', 'SQL', 'R', 'Java', 'Go', 'Rust'
 ]
 
-// test fct pour savoir si une couleur est claire pour choisir le bon contraste du txt
+// Whether a colour is light, to pick a readable text colour on top of it
 export function isLightColor(hex: string): boolean {
   const cleanHex = hex.startsWith('#') ? hex.slice(1) : hex
   const r = parseInt(cleanHex.slice(0, 2), 16)
@@ -29,7 +29,7 @@ export interface TechFamilyStats {
   techs: TechStats[]
 }
 
-// Extraire les technologies des projets
+// Technology statistics from the visible projects
 export function extractTechStats(): {
   topTechs: TechStats[]
   secondaryByFamily: TechFamilyStats[]
@@ -38,30 +38,30 @@ export function extractTechStats(): {
   const totalProjects = projects.length
   const techCount: Record<string, number> = {}
 
-  // Compter les occurrences de chaque technologie
+  // Count the projects that use each technology
   projects.forEach(project => {
     project.technologies.forEach(tech => {
       techCount[tech] = (techCount[tech] || 0) + 1
     })
   })
 
-  // trier par nb décroissant
+  // Most used first
   const sortedTechs = Object.entries(techCount)
     .map(([name, count]) => ({
       name,
       count,
       color: getTechColor(name),
-      percentage: 0 // Calculé après
+      percentage: 0 // computed below
     }))
     // ties broken by name so the ranking does not depend on project order
     .sort((a, b) => b.count - a.count || a.name.localeCompare(b.name))
 
-  // Top 4 = only langages de prog
+  // Top 4: programming languages only
   const topTechs = sortedTechs
     .filter(t => programmingLanguages.includes(t.name))
     .slice(0, 4)
 
-  // Calculer les pourcentages pour le top (nb de projets qui utilie la tech / nbtot de projets)
+  // Share of projects using each top technology (projects using it / all projects)
   topTechs.forEach(tech => {
     tech.percentage = Math.round((tech.count / totalProjects) * 100)
   })
@@ -74,7 +74,7 @@ export function extractTechStats(): {
     const family = techFamilies[id]
     const familyTechs = family.techs
       .filter(techName => {
-        // Inclure only if visible dans les projets + pas dans le top
+        // Only technologies used by a project and not already in the top 4
         const techStat = sortedTechs.find(t => t.name === techName)
         return techStat && !topTechNames.has(techName)
       })
