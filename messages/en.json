@@ -227,7 +227,8 @@
       "siteDescription": "Personal portfolio of Samuel Lecomte, physics graduate and developer.",
       "jobTitle": "Physics graduate specializing in data science",
       "personDescription": "Physics graduate specialized in high-energy physics and data science, with two research internships in teams from CERN's ATLAS and LHCb collaborations.",
-      "webpageDescription": "Portfolio homepage presenting research, data analysis, and software projects by Samuel Lecomte."
+      "webpageDescription": "Portfolio homepage presenting research, data analysis, and software projects by Samuel Lecomte.",
+      "knowsAbout": ["Particle Physics", "Data Science", "Python", "Machine Learning", "Data Analysis", "Scientific Computing", "Web Development", "DevOps", "Data Engineering"]
     }
   },
   "common": {

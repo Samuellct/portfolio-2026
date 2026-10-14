@@ -10,6 +10,7 @@ import { SURFACE } from '@/lib/theme'
 import { Providers } from '../providers'
 import '@/styles/globals.css'
 import { toLocale } from '@/i18n/locale'
+import { getShareImage } from '@/lib/shareImage'
 
 // Fonts optimized by Next.js
 // One grotesque carries display and text (A4: three families at most)
@@ -74,17 +75,7 @@ function buildJsonLd(locale: string, t: Awaited<ReturnType<typeof getTranslation
           name: 'Université Clermont Auvergne',
           url: 'https://www.uca.fr',
         },
-        knowsAbout: [
-          'Particle Physics',
-          'Data Science',
-          'Python',
-          'Machine Learning',
-          'Data Analysis',
-          'Scientific Computing',
-          'Web Development',
-          'DevOps',
-          'Data Engineering',
-        ],
+        knowsAbout: t.raw('jsonLd.knowsAbout') as string[],
         sameAs: [
           SOCIAL.github,
           SOCIAL.linkedin,
@@ -107,6 +98,7 @@ function buildJsonLd(locale: string, t: Awaited<ReturnType<typeof getTranslation
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const locale = toLocale((await params).locale)
   const t = await getTranslations({ locale, namespace: 'metadata' })
+  const { image } = await getShareImage(locale)
 
   return {
     metadataBase: new URL(BASE_URL),
@@ -135,11 +127,13 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       siteName: 'Samuel Lecomte Portfolio',
       title: t('home.titleDefault'),
       description: t('home.ogDescription'),
+      images: [image],
     },
     twitter: {
       card: 'summary_large_image',
       title: t('home.twitterTitle'),
       description: t('home.twitterDescription'),
+      images: [image],
     },
     // No alternates here: the 404s render at this level and would inherit the
     // home canonical and hreflang (V6-COD-06). The home page sets its own.

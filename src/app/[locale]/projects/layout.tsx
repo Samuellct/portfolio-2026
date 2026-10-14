@@ -1,7 +1,8 @@
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
-import { BASE_URL, OG_IMAGE, buildAlternates, OG_LOCALE } from '@/lib/constants'
+import { BASE_URL, buildAlternates, OG_LOCALE } from '@/lib/constants'
 import { toLocale } from '@/i18n/locale'
+import { getShareImage } from '@/lib/shareImage'
 
 type Props = {
   params: Promise<{ locale: string }>
@@ -20,7 +21,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: t('projects.ogTitle'),
       description: t('projects.ogDescription'),
       locale: OG_LOCALE[locale] || 'en_US',
-      images: [OG_IMAGE],
+      images: [(await getShareImage(locale)).image],
     },
     alternates: {
       canonical: `${BASE_URL}/${locale}/projects`,

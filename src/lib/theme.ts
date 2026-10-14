@@ -32,8 +32,8 @@ export const RISO = {
 export const SURFACE = {
   /** Hero and navigation band. Also the Tailwind `primary` colour. */
   primary: '#06060e',
-  /** Static shell used by server-rendered surfaces: root not-found, viewport
-   *  `themeColor`, and the OG / Twitter image generators. */
+  /** Static shell used by server-rendered surfaces: root not-found and the
+   *  viewport `themeColor`. */
   shell: '#030308',
 } as const
 
@@ -95,10 +95,4 @@ export const ILLUSTRATION = {
 export const CONTRAST_TEXT = {
   onLight: '#000000',
   onDark: '#ffffff',
-} as const
-
-/** Decorative-only colours used by the OG / Twitter image generators. */
-export const OG_DECOR = {
-  glowBlue: '#0a0a1a',
-  glowPurple: '#1a0a2e',
 } as const

@@ -227,7 +227,8 @@
       "siteDescription": "Portfolio personnel de Samuel Lecomte, physicien diplômé et développeur.",
       "jobTitle": "Diplômé en physique, spécialisé en data science.",
       "personDescription": "Diplômé en physique spécialisé en physique des hautes énergies et data science, avec deux stages de recherche au sein d'équipes des collaborations ATLAS et LHCb du CERN.",
-      "webpageDescription": "Page d'accueil du portfolio présentant recherche, analyse de données et projets logiciels de Samuel Lecomte."
+      "webpageDescription": "Page d'accueil du portfolio présentant recherche, analyse de données et projets logiciels de Samuel Lecomte.",
+      "knowsAbout": ["Physique des particules", "Data science", "Python", "Machine learning", "Analyse de données", "Calcul scientifique", "Développement web", "DevOps", "Ingénierie des données"]
     }
   },
   "common": {
