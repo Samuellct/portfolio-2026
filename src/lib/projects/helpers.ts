@@ -55,9 +55,10 @@ export function getCardPeriod(period: BilingualText | string, locale: Locale): s
   return years.length ? years.join(' - ') : full
 }
 
-// Measures are written with a decimal point; French reads a decimal comma.
+// Measures are written with a decimal point and a space between thousands;
+// French reads a decimal comma and a narrow no-break space, English a comma.
 export function formatMeasure(text: string, locale: Locale): string {
-  const spaced = unitSpacing(text)
+  const spaced = unitSpacing(text).replace(/(\d)[ \u00A0\u202F](?=\d{3}(?!\d))/g, locale === 'fr' ? '$1\u202F' : '$1,')
   return locale === 'fr' ? spaced.replace(/(\d)\.(\d)/g, '$1,$2') : spaced
 }
 

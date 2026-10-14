@@ -147,7 +147,7 @@ Ces couches raster sont combinées avec des données vectorielles : contours gla
         },
       },
       results: [
-        { label: { en: 'Grid resolution chosen', fr: 'Résolution de grille choisie' }, value: '1', unit: 'm', note: { en: '0.5 m remains possible but too heavy to compute for now', fr: '0.5 m reste possible, mais trop lourd à calculer pour l\'instant' } },
+        { label: { en: 'Grid resolution chosen', fr: 'Résolution de grille choisie' }, value: '1', unit: 'm', note: { en: '0.5 m remains possible but too heavy to compute for now', fr: '0,5 m reste possible, mais trop lourd à calculer pour l\'instant' } },
         { label: { en: 'Computation time per route', fr: 'Temps de calcul par itinéraire' }, value: '10-90', unit: 's', note: { en: 'depends on off-trail share and data to load', fr: 'selon le hors-piste et les données à charger' } },
         { label: { en: 'Largest area computed', fr: 'Surface maximale traitée' }, value: '100', unit: 'km²', note: { en: '10,000 × 10,000 px grid at 1 m', fr: 'grille de 10 000 × 10 000 px à 1 m' } },
       ],
@@ -488,15 +488,15 @@ After establishing the selection criteria on simulated samples, we moved to stat
 Following the CLs method (a standard statistical method for setting exclusion limits), we determined that we could exclude signals of strength above $0.3736~\\mu$, corresponding to an effective cross-section ($\\sigma$) of approximately $2.017~\\text{pb}$ (picobarns, a unit of cross-section).`,
           fr: `Bien que je connaisse bien Python et des bibliothèques telles que Pandas ou SciPy, leur application à l'analyse en physique demandait une autre approche. Nous devions optimiser les critères de sélection sur des variables telles que la *photon isolation* (variable permettant de séparer les vrais photons de ceux étant des produits de désintégration) et *l'impulsion transverse* afin de séparer le signal du bruit de fond du modèle standard. Les critères devaient être précis : trop stricts, nous perdions des événements de signal, trop laxistes, le bruit de fond dominait. Grâce à ce processus d'essais et d'erreurs, nous avons réussi à réduire le bruit de fond d'un facteur 40 tout en conservant la plupart des événements de signal.
 
-Après avoir établi les critères de sélection sur des échantillons simulés, nous sommes passés à l'analyse statistique. Le fond du spectre de masse invariante a été ajusté par une fonction exponentielle afin de détecter un éventuel excès local, ce qui indiquerait une nouvelle particule. Notre ensemble de données observées n'a montré aucune preuve de l'existence du boson X, avec une signification de seulement $0.5~\\sigma$, ce qui correspond à une fluctuation statistique.
+Après avoir établi les critères de sélection sur des échantillons simulés, nous sommes passés à l'analyse statistique. Le fond du spectre de masse invariante a été ajusté par une fonction exponentielle afin de détecter un éventuel excès local, ce qui indiquerait une nouvelle particule. Notre ensemble de données observées n'a montré aucune preuve de l'existence du boson X, avec une signification de seulement $0{,}5~\\sigma$, ce qui correspond à une fluctuation statistique.
 
-En suivant la méthode CLs (méthode statistique standard pour fixer des limites d'exclusion), nous avons déterminé que nous pouvions exclure les signaux d'une intensité supérieure à $0.3736~\\mu$, ce qui correspond à une section efficace ($\\sigma$) d'environ $2.017~\\text{pb}$ (picobarns, unité de section efficace).`,
+En suivant la méthode CLs (méthode statistique standard pour fixer des limites d'exclusion), nous avons déterminé que nous pouvions exclure les signaux d'une intensité supérieure à $0{,}3736~\\mu$, ce qui correspond à une section efficace ($\\sigma$) d'environ $2{,}017~\\text{pb}$ (picobarns, unité de section efficace).`,
         },
       },
       results: [
         { label: { en: 'Background reduction', fr: 'Réduction du bruit de fond' }, value: '40×', note: { en: 'most signal events kept', fr: 'la plupart des événements de signal conservés' } },
         { label: { en: 'Observed significance', fr: 'Significance observée' }, value: '0.5', unit: 'σ', note: { en: 'no evidence of the X boson', fr: 'aucun signe du boson X' } },
-        { label: { en: 'Cross-section upper limit', fr: 'Limite sur la section efficace' }, value: '2.017', unit: 'pb', note: { en: 'signal strength above 0.3736 excluded (CLs)', fr: 'intensité de signal au-delà de 0.3736 exclue (CLs)' } },
+        { label: { en: 'Cross-section upper limit', fr: 'Limite sur la section efficace' }, value: '2.017', unit: 'pb', note: { en: 'signal strength above 0.3736 excluded (CLs)', fr: 'intensité de signal au-delà de 0,3736 exclue (CLs)' } },
       ],
       technologies: ['Python', 'NumPy', 'Matplotlib', 'Pandas', 'SciPy'],
       keywords: ['physics', 'statistics', 'python', 'simulation'],
