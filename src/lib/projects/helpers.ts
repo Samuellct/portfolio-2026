@@ -10,7 +10,25 @@ export function getLocalizedField(
 ): string {
   if (!field) return ''
   if (typeof field === 'string') return field
-  return field[locale] || field.en
+  const text = field[locale] || field.en
+  return locale === 'fr' && field.fr ? frenchSpacing(text) : text
+}
+
+// LaTeX ($...$, $$...$$) and inline code are left as written.
+const VERBATIM = /(\$\$[\s\S]*?\$\$|\$[^$]*\$|`[^`]*`)/
+
+// French typography (V6-I18-01): a narrow no-break space before ; ? ! and a
+// no-break space before :, replacing the plain space the text was typed with.
+// "!" opening a Markdown image ("![") is not punctuation.
+export function frenchSpacing(text: string): string {
+  return text
+    .split(VERBATIM)
+    .map((part, i) =>
+      i % 2
+        ? part
+        : part.replace(/[ \u00A0\u202F]+(?=[;?]|!(?!\[))/g, '\u202F').replace(/[ \u00A0\u202F]+(?=:)/g, '\u00A0')
+    )
+    .join('')
 }
 
 // sessionStorage key: the listing's active filter, read back by a project page (UX-13)
