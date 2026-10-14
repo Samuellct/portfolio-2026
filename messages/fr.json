@@ -68,7 +68,6 @@
     },
     "education": {
       "sectionLabel": "04 · Formation",
-      "title": "Formation",
       "subtitle": "Parcours universitaire",
       "master2": {
         "degree": "Master Physique Fondamentale et Applications",
@@ -136,7 +135,7 @@
     "searchLabel": "Rechercher des projets",
     "searchPlaceholder": "Rechercher...",
     "breadcrumbLabel": "Fil d'Ariane",
-    "facts": {"period": "Période", "category": "Catégorie", "location": "Lieu"},
+    "facts": {"period": "Période", "location": "Lieu"},
     "onThisPage": "Sur cette page",
     "resultBaseline": "contre {value}, {label}",
     "sections": {
@@ -232,7 +231,6 @@
     }
   },
   "common": {
-    "error": "Une erreur est survenue",
     "skipToContent": "Aller au contenu",
     "notFound": {
       "code": "404",

@@ -68,7 +68,6 @@
     },
     "education": {
       "sectionLabel": "04 · Education",
-      "title": "Education",
       "subtitle": "Academic path",
       "master2": {
         "degree": "M.Sc. Fundamental Physics and Applications",
@@ -136,7 +135,7 @@
     "searchLabel": "Search projects",
     "searchPlaceholder": "Search...",
     "breadcrumbLabel": "Breadcrumb",
-    "facts": {"period": "Period", "category": "Category", "location": "Location"},
+    "facts": {"period": "Period", "location": "Location"},
     "onThisPage": "On this page",
     "resultBaseline": "vs {value}, {label}",
     "sections": {
@@ -232,7 +231,6 @@
     }
   },
   "common": {
-    "error": "An error occurred",
     "skipToContent": "Skip to content",
     "notFound": {
       "code": "404",
