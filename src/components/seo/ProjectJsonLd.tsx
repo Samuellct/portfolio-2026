@@ -1,5 +1,5 @@
 import { BASE_URL, LANG_TAG } from '@/lib/constants'
-import { getLocalizedField, Locale, ProjectData } from '@/lib/projects'
+import { getLocalizedField, Locale, ProjectData } from '@/lib/projects/data'
 
 // One CreativeWork node per visible project (DEC-11d), authored by the Person
 // node of [locale]/layout.tsx.

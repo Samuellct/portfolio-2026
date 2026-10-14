@@ -8,7 +8,7 @@ import Watermark from '@/components/effects/Watermark'
 import { ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
-import { getAllProjects } from '@/lib/projects'
+import { getAllProjects } from '@/lib/projects/data'
 import { programmingLanguages } from '@/lib/techStats'
 
 // Homepage statistics, derived from the visible projects

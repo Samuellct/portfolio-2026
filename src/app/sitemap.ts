@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { getAllProjectParams } from '@/lib/projects'
+import { getAllProjectParams } from '@/lib/projects/data'
 import { routing } from '@/i18n/routing'
 import { BASE_URL, buildAlternates } from '@/lib/constants'
 

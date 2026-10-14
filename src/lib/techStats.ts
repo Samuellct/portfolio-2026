@@ -1,4 +1,4 @@
-import { getAllProjects } from './projects'
+import { getAllProjects } from './projects/data'
 import { getTechColor, techFamilies, type TechFamily } from './technologies'
 
 // Programming languages eligible for the top 4

@@ -1,6 +1,6 @@
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
-import { getProjectById, getLocalizedField, getAllProjectParams } from '@/lib/projects'
+import { getProjectById, getLocalizedField, getAllProjectParams } from '@/lib/projects/data'
 import { routing } from '@/i18n/routing'
 import { BASE_URL, buildAlternates, OG_LOCALE } from '@/lib/constants'
 import { toLocale } from '@/i18n/locale'

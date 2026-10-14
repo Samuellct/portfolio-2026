@@ -9,7 +9,7 @@ import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from
 import { gsap } from '@/lib/gsap'
 import { ArrowRight, Search } from 'lucide-react'
 import Image from 'next/image'
-import { getProjectsSortedByDate, getLocalizedField, getCardPeriod, PROJECT_CATEGORIES, ProjectData, PROJECTS_FILTER_KEY } from '@/lib/projects'
+import { getProjectsSortedByDate, getLocalizedField, getCardPeriod, PROJECT_CATEGORIES, ProjectData, PROJECTS_FILTER_KEY } from '@/lib/projects/data'
 import { useTranslations, useLocale } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { PAGE_BG, RISO } from '@/lib/theme'

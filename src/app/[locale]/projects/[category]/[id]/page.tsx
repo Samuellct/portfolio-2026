@@ -5,7 +5,7 @@ import {
   getRelatedProjects,
   getLocalizedField,
   type BilingualText,
-} from '@/lib/projects'
+} from '@/lib/projects/data'
 import ProjectDetailView, { type ProjectMarkdown } from './ProjectDetailView'
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer'
 import BreadcrumbJsonLd from '@/components/seo/BreadcrumbJsonLd'

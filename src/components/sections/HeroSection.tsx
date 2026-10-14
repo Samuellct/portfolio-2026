@@ -9,7 +9,7 @@ import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import HeroSky, { FRINGE_HEIGHT } from '@/components/effects/HeroSky'
 import { pillBase } from '@/components/ui/pill'
 import { ACCENT } from '@/lib/theme'
-import { getCardPeriod, getFeaturedProjects, getLocalizedField, Locale, ProjectData } from '@/lib/projects'
+import { getCardPeriod, getFeaturedProjects, getLocalizedField, Locale, ProjectData } from '@/lib/projects/data'
 import { RESUME_PATH } from '@/lib/constants'
 
 // Desktop "star-projects" sit at the four corners of the name (DEC-16g, comp A);
