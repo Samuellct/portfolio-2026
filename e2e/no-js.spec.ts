@@ -7,14 +7,14 @@ type Case = {
   path: string
   // visible text blocks in <main> measured on 2026-10-14; raise them when a phase fixes a page
   floor: { desktop: number; mobile: number }
-  // V6 roadmap phase that should make every block visible without JavaScript
+  // V6 roadmap phase that should make every block visible without JavaScript ('done' once it has)
   fixedBy: string
 }
 
 const CASES: Case[] = [
   { path: '/fr', floor: { desktop: 10, mobile: 13 }, fixedBy: 'phase 15' },
   { path: '/fr/projects', floor: { desktop: 3, mobile: 3 }, fixedBy: 'phase 12' },
-  { path: '/fr/projects/personal/alpine-route', floor: { desktop: 7, mobile: 2 }, fixedBy: 'phase 08' },
+  { path: '/fr/projects/personal/alpine-route', floor: { desktop: 25, mobile: 20 }, fixedBy: 'done' },
   { path: '/fr/contact', floor: { desktop: 0, mobile: 0 }, fixedBy: 'phase 11' },
   { path: '/fr/about', floor: { desktop: 15, mobile: 10 }, fixedBy: 'phase 13' },
 ]
@@ -34,10 +34,17 @@ for (const { path, floor, fixedBy } of CASES) {
     expect(s.visible, `visible text blocks (hidden: ${s.hidden.join(' | ')})`).toBeGreaterThanOrEqual(min)
   })
 
-  test(`no-JS all text visible ${path}`, async ({ page }) => {
-    test.info().annotations.push({ type: 'issue', description: `expected to fail until ${fixedBy}` })
-    test.fail()
+  // Without JavaScript, nothing is hidden beyond the blocks the JS page also
+  // leaves out with display:none (responsive duplicates)
+  test(`no-JS all text visible ${path}`, async ({ page, browser }, info) => {
+    if (fixedBy !== 'done') {
+      test.info().annotations.push({ type: 'issue', description: `expected to fail until ${fixedBy}` })
+      test.fail()
+    }
     const s = await stats(page, path)
-    expect(s.hidden).toEqual([])
+    const ctx = await browser.newContext({ ...info.project.use, javaScriptEnabled: true })
+    const withJs = await stats(await ctx.newPage(), path)
+    await ctx.close()
+    expect(s.hidden.filter((text) => !withJs.undisplayed.includes(text))).toEqual([])
   })
 }

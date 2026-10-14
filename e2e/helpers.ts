@@ -21,6 +21,8 @@ export async function visibleTextStats(page: Page, selector = TEXT_SELECTOR) {
   return page.$$eval(selector, (nodes) => {
     const blocks = nodes.filter((n) => (n.textContent ?? '').trim().length > 0)
     const hidden: string[] = []
+    // hidden by display:none (responsive duplicates such as sidebar and compact blocks)
+    const undisplayed: string[] = []
     for (const el of blocks) {
       const rect = el.getBoundingClientRect()
       let opacity = 1
@@ -30,10 +32,12 @@ export async function visibleTextStats(page: Page, selector = TEXT_SELECTOR) {
         opacity *= Number(style.opacity)
         if (style.display === 'none') invisible = true
       }
+      const text = (el.textContent ?? '').trim().slice(0, 40)
       if (invisible || opacity <= 0.05 || rect.width === 0 || rect.height === 0) {
-        hidden.push((el.textContent ?? '').trim().slice(0, 40))
+        hidden.push(text)
       }
+      if (rect.width === 0 && rect.height === 0 && invisible) undisplayed.push(text)
     }
-    return { total: blocks.length, visible: blocks.length - hidden.length, hidden }
+    return { total: blocks.length, visible: blocks.length - hidden.length, hidden, undisplayed }
   })
 }
