@@ -264,7 +264,7 @@ Les métadonnées des films sont récupérées depuis l'API TMDb (The Movie Data
       keywords: ['pwa', 'film festival', 'mobile', 'self-hosted', 'nextjs', 'scheduler'],
       category: 'personal',
       status: 'paused',
-      period: { en: 'March - May 2026', fr: 'Mars - Mai 2026' },
+      period: { en: 'March - May 2026', fr: 'Mars - mai 2026' },
       location: { en: 'Personal project', fr: 'Projet personnel' },
       image: '/images/accred.webp',
       imageAlt: {
@@ -391,7 +391,7 @@ Un service de notifications par email interne à Jellyfin : une newsletter des n
       keywords: ['jellyfin', 'plugin', 'homelab', 'self-hosted', 'csharp', 'dotnet'],
       category: 'personal',
       status: 'in-progress',
-      period: { en: 'July - October 2026', fr: 'Juillet - Octobre 2026' },
+      period: { en: 'July - October 2026', fr: 'Juillet - octobre 2026' },
       location: { en: 'Personal project', fr: 'Projet personnel' },
       image: '/images/jellyux.webp',
       imageAlt: {
@@ -439,7 +439,7 @@ L'application fonctionne entièrement hors ligne : aucun serveur, aucun cloud, a
       keywords: ['android', 'kotlin', 'ocr', 'jetpack compose', 'offline-first'],
       category: 'personal',
       status: 'completed',
-      period: { en: 'July - August 2026', fr: 'Juillet - Août 2026' },
+      period: { en: 'July - August 2026', fr: 'Juillet - août 2026' },
       location: { en: 'Personal project', fr: 'Projet personnel' },
       image: '/images/delivr.webp',
       imageAlt: {
@@ -851,7 +851,7 @@ J'ai consacré la majeure partie de mon temps à élaborer une stratégie de pr�
       keywords: ['lhcb', 'particle physics', 'root', 'data analysis', 'B meson', 'rare decay'],
       category: 'internship',
       status: 'completed',
-      period: { en: 'April - June 2024', fr: 'Avril - Juin 2024' },
+      period: { en: 'April - June 2024', fr: 'Avril - juin 2024' },
       location: { en: 'Clermont Physics Laboratory (LPC)', fr: 'Laboratoire de Physique de Clermont (LPC)' },
       image: '/images/m1Internship.webp',
       imageAlt: {
@@ -917,7 +917,7 @@ J'ai consacré la majeure partie de mon temps à élaborer une stratégie de pr�
       keywords: ['atlas', 'long-lived particles', 'hl-lhc', 'simulation', 'bsm physics'],
       category: 'internship',
       status: 'completed',
-      period: { en: 'February - July 2025', fr: 'Février - Juillet 2025' },
+      period: { en: 'February - July 2025', fr: 'Février - juillet 2025' },
       location: { en: 'Clermont Physics Laboratory (LPC)', fr: 'Laboratoire de Physique de Clermont (LPC)' },
       gitHubUrl: "https://github.com/Samuellct/Internship-M2-LLP-in-ATLAS",
       image: '/images/m2Internship.webp',
