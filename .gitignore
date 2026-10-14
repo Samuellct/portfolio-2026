@@ -17,6 +17,8 @@
 !/eslint.config.mjs
 !/wrangler.jsonc
 !/open-next.config.ts
+!/playwright.config.ts
+!/e2e/
 !/README.md
 !/CHANGELOG.md
 !/LICENSE
