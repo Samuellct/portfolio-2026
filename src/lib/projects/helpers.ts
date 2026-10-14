@@ -9,26 +9,38 @@ export function getLocalizedField(
   locale: Locale
 ): string {
   if (!field) return ''
-  if (typeof field === 'string') return field
-  const text = field[locale] || field.en
+  if (typeof field === 'string') return unitSpacing(field)
+  const text = unitSpacing(field[locale] || field.en)
   return locale === 'fr' && field.fr ? frenchSpacing(text) : text
 }
 
 // LaTeX ($...$, $$...$$) and inline code are left as written.
 const VERBATIM = /(\$\$[\s\S]*?\$\$|\$[^$]*\$|`[^`]*`)/
 
+function outsideVerbatim(text: string, fix: (prose: string) => string): string {
+  return text
+    .split(VERBATIM)
+    .map((part, i) => (i % 2 ? part : fix(part)))
+    .join('')
+}
+
 // French typography (V6-I18-01): a narrow no-break space before ; ? ! and a
 // no-break space before :, replacing the plain space the text was typed with.
 // "!" opening a Markdown image ("![") is not punctuation.
 export function frenchSpacing(text: string): string {
-  return text
-    .split(VERBATIM)
-    .map((part, i) =>
-      i % 2
-        ? part
-        : part.replace(/[ \u00A0\u202F]+(?=[;?]|!(?!\[))/g, '\u202F').replace(/[ \u00A0\u202F]+(?=:)/g, '\u00A0')
-    )
-    .join('')
+  return outsideVerbatim(text, (prose) =>
+    prose
+      .replace(/[ \u00A0\u202F]+(?=[;?]|!(?!\[))/g, '\u202F')
+      .replace(/[ \u00A0\u202F]+(?=:)/g, '\u00A0')
+  )
+}
+
+// A number never ends a line apart from its unit or % sign (V6-I18-02).
+const UNIT =
+  /(\d) (?=(?:%|°C|km²|[kMGT]?eV|[kMGT]?Hz|[kmcµμn]?m|[mµμn]?s|min|h|kg|g|[kMGT]B|[kMGT]o|px|pb|fb|kW|W|V)(?![\p{L}\d]))/gu
+
+export function unitSpacing(text: string): string {
+  return outsideVerbatim(text, (prose) => prose.replace(UNIT, '$1\u00A0'))
 }
 
 // sessionStorage key: the listing's active filter, read back by a project page (UX-13)
@@ -45,7 +57,8 @@ export function getCardPeriod(period: BilingualText | string, locale: Locale): s
 
 // Measures are written with a decimal point; French reads a decimal comma.
 export function formatMeasure(text: string, locale: Locale): string {
-  return locale === 'fr' ? text.replace(/(\d)\.(\d)/g, '$1,$2') : text
+  const spaced = unitSpacing(text)
+  return locale === 'fr' ? spaced.replace(/(\d)\.(\d)/g, '$1,$2') : spaced
 }
 
 export interface ProjectData {

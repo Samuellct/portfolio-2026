@@ -54,7 +54,8 @@ function ResultMeasure({ result, locale }: { result: ProjectResult; locale: Loca
       <dt className="order-2 mt-2 text-sm font-semibold">
         {getLocalizedField(result.label, locale)}
       </dt>
-      <dd className="order-1 flex flex-wrap items-baseline gap-x-2">
+      {/* No wrap: a value never ends a line apart from its unit (V6-I18-02) */}
+      <dd className="order-1 flex items-baseline gap-x-2 whitespace-nowrap">
         <span className="font-display font-black text-heading leading-none text-riso-pinkTitle whitespace-nowrap">
           {fmt(result.value)}
         </span>
