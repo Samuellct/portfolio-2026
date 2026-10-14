@@ -1,0 +1,14 @@
+{
+  "$schema": "https://unpkg.com/knip@5/schema.json",
+  "entry": ["open-next.config.ts"],
+  "ignore": [".next/**", ".open-next/**", ".wrangler/**", "rapports markdown/**", "TODO_V6/**"],
+  "ignoreDependencies": [
+    "@semantic-release/commit-analyzer",
+    "@semantic-release/github",
+    "@semantic-release/npm",
+    "@semantic-release/release-notes-generator",
+    "conventional-changelog-conventionalcommits",
+    "eslint-config-next",
+    "postcss-load-config"
+  ]
+}

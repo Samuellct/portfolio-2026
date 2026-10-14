@@ -18,6 +18,7 @@
 !/wrangler.jsonc
 !/open-next.config.ts
 !/playwright.config.ts
+!/knip.json
 !/e2e/
 !/README.md
 !/CHANGELOG.md
