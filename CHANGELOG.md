@@ -5,6 +5,35 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.2.0](https://github.com/Samuellct/portfolio-2026/compare/v5.1.0...v5.2.0) (2026-10-14)
+
+### Ajouté
+
+* **seo:** print a share image per locale on paper ([69a880c](https://github.com/Samuellct/portfolio-2026/commit/69a880ca7b16a41096d260d315fc7f130dd37e76))
+
+### Corrigé
+
+* **a11y:** hide decorative icons from screen readers ([8aed8b9](https://github.com/Samuellct/portfolio-2026/commit/8aed8b9e8fd8d5edce692f34fc769ee29ac5b890))
+* **collision:** clear the shuffle timer on unmount ([fc29c90](https://github.com/Samuellct/portfolio-2026/commit/fc29c908665b9686b5d7964d4018757756ea4797))
+
+### Modifié
+
+* drop unused exports and tech stats fields ([17d2628](https://github.com/Samuellct/portfolio-2026/commit/17d2628290ad58a24e0161d539407000e5f0a7ef))
+* **figure:** drop the remote image branch and remote patterns ([e63c47b](https://github.com/Samuellct/portfolio-2026/commit/e63c47b299a634772ff31e03a0a142dcb66ce01e))
+* **gsap:** register ScrollTrigger once in lib/gsap ([421cc9a](https://github.com/Samuellct/portfolio-2026/commit/421cc9a1ad77b85a00411c8fab3ab3dcd6b8cca1))
+* **home:** render the home sections from the page ([73e4d65](https://github.com/Samuellct/portfolio-2026/commit/73e4d6534988235a1101dbcb4d9152abda681f4d))
+* **i18n:** remove message keys that no page calls ([34bf45a](https://github.com/Samuellct/portfolio-2026/commit/34bf45aa50be29aafd36cab1e2a86862f41fe751))
+* **projects:** drop project fields that nothing reads ([90d104e](https://github.com/Samuellct/portfolio-2026/commit/90d104eb7b81295f83f0bcf63c687451d3cffdb3))
+* **projects:** reduce category data to its ids ([fabb286](https://github.com/Samuellct/portfolio-2026/commit/fabb2865a949c346520e38b0c97623dd87550bd7))
+* read social links, resume path, Formspree and locale tags from constants ([c5aff6b](https://github.com/Samuellct/portfolio-2026/commit/c5aff6b646ce97180f0b72c94178c6cf873014ef))
+* remove the unused blog section, its messages and styles ([af7d147](https://github.com/Samuellct/portfolio-2026/commit/af7d1476a95ef88e4007d6b7822f14f2682458df))
+* **scroll:** leave the scroll reset to the page transition ([58ac391](https://github.com/Samuellct/portfolio-2026/commit/58ac3910143124d5ed3e245f05765f86557ae113))
+* **tech:** remove Cloudflare D1 and Umami, used by no project ([aa0bf41](https://github.com/Samuellct/portfolio-2026/commit/aa0bf41ecb7c17a4ef305b3320e55df9dcbe4045))
+* **theme:** drop unused tokens and merge page backgrounds into PAGE_BG ([a49e218](https://github.com/Samuellct/portfolio-2026/commit/a49e218e68845796e33aa1a750f51de810de295b))
+* **theme:** name the z-index scale, lift shadows and touch target size ([54e2fa7](https://github.com/Samuellct/portfolio-2026/commit/54e2fa75ceb53fec2b04f372ac4f0bf9eca24dac))
+* **types:** type locales and message keys through next-intl AppConfig ([22005e1](https://github.com/Samuellct/portfolio-2026/commit/22005e1414e6e7a6752a6264222d33a55f31d44e))
+* **watermark:** share one Watermark component and its parallax ([7a97d9d](https://github.com/Samuellct/portfolio-2026/commit/7a97d9d7e41f15944394b8a1256a2ba9adda4454))
+
 ## [5.1.0](https://github.com/Samuellct/portfolio-2026/compare/v5.0.2...v5.1.0) (2026-10-13)
 
 ### Ajouté
