@@ -16,7 +16,7 @@ import ScrollIndicator from '@/components/about/ScrollIndicator'
 import { useLocale, useTranslations } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { useSmoothScroll } from '@/context/SmoothScrollContext'
-import { CONTRAST_TEXT, RISO, SECTION_BG } from '@/lib/theme'
+import { CONTRAST_TEXT, PAGE_BG, RISO } from '@/lib/theme'
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -284,7 +284,7 @@ export default function AboutPage() {
     // transition (it scrolls to the top before the route swaps); stop it so it
     // does not repaint the body in the night colour after this page sets paper
     gsap.killTweensOf(document.body)
-    document.body.style.backgroundColor = SECTION_BG.aboutIntro
+    document.body.style.backgroundColor = PAGE_BG
     // the browser's own scroll anchoring would shift the page a second time
     // when a played pin is removed (the compensation is done by hand)
     const root = document.documentElement
@@ -550,7 +550,7 @@ export default function AboutPage() {
       {/* ============================================ */}
       {/* PAGE CONTENT */}
       {/* ============================================ */}
-      <div ref={pageRef} onFocus={revealFocusedSection} style={{ backgroundColor: SECTION_BG.aboutIntro }}>
+      <div ref={pageRef} onFocus={revealFocusedSection} style={{ backgroundColor: PAGE_BG }}>
         
         {/* ============================================ */}
         {/* SECTION 001 - ABOUT */}

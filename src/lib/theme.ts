@@ -30,29 +30,19 @@ export const RISO = {
 
 /** Night surfaces (hero, navigation band). */
 export const SURFACE = {
-  /** Hero and navigation band. Also the Tailwind `primary` DEFAULT. */
+  /** Hero and navigation band. Also the Tailwind `primary` colour. */
   primary: '#06060e',
-  /** Slightly lifted primary (Tailwind `primary.light`). */
-  primaryLight: '#0a0a18',
   /** Static shell used by server-rendered surfaces: root not-found, viewport
    *  `themeColor`, and the OG / Twitter image generators. */
   shell: '#030308',
 } as const
 
 /**
- * Page background colours written directly to `document.body` or to a page
- * wrapper. Homepage sections take theirs from the scheme (`.section` in
- * globals.css): night for the hero, paper elsewhere.
+ * Page background written directly to `document.body` or to a page wrapper.
+ * Homepage sections take theirs from the scheme (`.section` in globals.css):
+ * night for the hero, paper elsewhere.
  */
-export const SECTION_BG = {
-  aboutIntro: RISO.paper,
-  aboutExperience: RISO.paper,
-  aboutStack: RISO.paper,
-  aboutEducation: RISO.paper,
-  aboutInterests: RISO.paper,
-  listing: RISO.paper,
-  projectDetail: RISO.paper,
-} as const
+export const PAGE_BG = RISO.paper
 
 /** Accent inks for canvas, SVG and generated images. */
 export const ACCENT = {
@@ -81,11 +71,8 @@ export const STATUS = {
 
 /** Third-party brand colours (logos and their hover states). */
 export const BRAND = {
-  linkedin: '#0077b5',
   linkedinAlt: '#0e76a8',
   github: '#fafbfc',
-  githubButton: '#238636',
-  githubButtonHover: '#2ea043',
   docker: '#2496ed',
   nextcloud: '#0082c9',
   proxmox: '#e57000',

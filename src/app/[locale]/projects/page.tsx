@@ -13,7 +13,7 @@ import Image from 'next/image'
 import { getProjectsSortedByDate, getLocalizedField, getCardPeriod, Locale, PROJECT_CATEGORIES, ProjectData, PROJECTS_FILTER_KEY } from '@/lib/projects'
 import { useTranslations, useLocale } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
-import { RISO, SECTION_BG } from '@/lib/theme'
+import { PAGE_BG, RISO } from '@/lib/theme'
 import { Button } from '@/components/ui/Button'
 import { Tag } from '@/components/ui/Tag'
 import { CategoryIcon } from '@/components/ui/CategoryIcon'
@@ -30,7 +30,7 @@ function normalizeForSearch(value: string): string {
 }
 
 // Background color for projects page
-const PROJECTS_BG_COLOR = SECTION_BG.listing
+const PROJECTS_BG_COLOR = PAGE_BG
 
 // ============================================
 // Project card

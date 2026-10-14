@@ -14,9 +14,9 @@ import { Figure } from '@/components/ui/Figure'
 import { CategoryIcon } from '@/components/ui/CategoryIcon'
 import { useTranslations } from 'next-intl'
 import { cn } from '@/lib/cn'
-import { SECTION_BG } from '@/lib/theme'
+import { PAGE_BG } from '@/lib/theme'
 
-const PROJECT_DETAIL_BG_COLOR = SECTION_BG.projectDetail
+const PROJECT_DETAIL_BG_COLOR = PAGE_BG
 
 // ============================================
 // Related project thumbnail

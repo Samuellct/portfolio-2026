@@ -1,6 +1,6 @@
 import type { Config } from 'tailwindcss'
 import typography from '@tailwindcss/typography'
-import { ACCENT, BRAND, ILLUSTRATION, RISO, SECTION_BG, STATUS, SURFACE } from './src/lib/theme'
+import { ACCENT, BRAND, RISO, STATUS, SURFACE } from './src/lib/theme'
 import { withAlpha } from './src/lib/color'
 
 const config: Config = {
@@ -16,11 +16,7 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        primary: {
-          DEFAULT: SURFACE.primary,
-          light: SURFACE.primaryLight,
-        },
-        shell: SURFACE.shell,
+        primary: SURFACE.primary,
         // Scheme-driven colours (globals.css): `white` is the foreground and
         // `black` the surface of the current scheme, so the existing
         // `text-white/..`, `border-white/..` and `bg-black` classes follow
@@ -34,10 +30,9 @@ const config: Config = {
           line: 'rgb(var(--accent-line) / <alpha-value>)',
         },
         riso: RISO,
-        brand: BRAND,
-        illustration: ILLUSTRATION,
+        // Only the brand colours used as classes; the others are read in TS.
+        brand: { github: BRAND.github, linkedinAlt: BRAND.linkedinAlt },
         status: STATUS,
-        section: SECTION_BG,
         // Secondary text (AUDIT-029, COL-02), solid per scheme. `muted` clears
         // WCAG AA (>= 4.5:1) on paper and night; `subtle` is for large or
         // non-interactive text only; `faint` is decorative / rest-state only
@@ -64,29 +59,21 @@ const config: Config = {
         display: 'clamp(2.75rem, 9vw, 6rem)',
         'ghost-15': '15vw',
         'ghost-20': '20vw',
-        'ghost-25': '25vw',
         'ghost-35': '35vw',
       },
       letterSpacing: {
         label: '0.1em',
         caps: '0.15em',
         'caps-wide': '0.2em',
-        'hero-caps': '0.22em',
-        hint: '0.25em',
         'menu-label': '0.3em',
-        'hero-tight': '-0.03em',
       },
       lineHeight: {
         'display-tight': '0.85',
         display: '0.9',
-        hero: '0.92',
         'display-snug': '0.95',
-        'display-loose': '1.05',
-        heading: '1.1',
       },
       boxShadow: {
         'glow-accent': `0 0 25px ${withAlpha(ACCENT.pink, 0.2)}`,
-        'glow-accent-strong': `0 0 30px ${withAlpha(ACCENT.pink, 0.25)}`,
       },
       borderRadius: {
         // Sharp angles are the signature (AUDIT-080): the bare `rounded`
