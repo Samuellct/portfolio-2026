@@ -1,5 +1,4 @@
 import type { TechName } from './technologies'
-import { CATEGORY } from './theme'
 
 export type BilingualText = { en: string; fr: string }
 export type Locale = 'en' | 'fr'
@@ -105,33 +104,7 @@ export interface ProjectData {
   research?: { lab: BilingualText; collaboration?: string }
 }
 
-export interface CategoryData {
-  id: string
-  color: string
-  accentColor: string
-  mutedColor: string
-}
-
-export const projectCategories: CategoryData[] = [
-  {
-    id: 'personal',
-    color: 'from-blue-500 to-cyan-500',
-    accentColor: CATEGORY.personal.accent,
-    mutedColor: CATEGORY.personal.muted,
-  },
-  {
-    id: 'academic',
-    color: 'from-purple-500 to-violet-500',
-    accentColor: CATEGORY.academic.accent,
-    mutedColor: CATEGORY.academic.muted,
-  },
-  {
-    id: 'internship',
-    color: 'from-green-500 to-emerald-500',
-    accentColor: CATEGORY.internship.accent,
-    mutedColor: CATEGORY.internship.muted,
-  },
-]
+export const PROJECT_CATEGORIES = ['personal', 'academic', 'internship'] as const
 
 export const projectsData: Record<string, Record<string, ProjectData>> = {
   personal: {
@@ -1203,10 +1176,6 @@ export const getRelatedProjects = (
     })
     .slice(0, max)
     .map((entry) => entry.project)
-}
-
-export const getCategoryById = (categoryId: string): CategoryData | undefined => {
-  return projectCategories.find((cat) => cat.id === categoryId)
 }
 
 export const getAllProjectParams = () => {

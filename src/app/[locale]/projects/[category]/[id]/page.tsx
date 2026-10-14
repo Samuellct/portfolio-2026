@@ -1,7 +1,6 @@
 import { notFound } from 'next/navigation'
 import {
   getProjectById,
-  getCategoryById,
   getProjectsSortedByDate,
   getRelatedProjects,
   getLocalizedField,
@@ -24,8 +23,6 @@ export default async function ProjectDetailPage({ params }: Props) {
   if (!project || project.visible === false) {
     notFound()
   }
-
-  const category = getCategoryById(categoryId)
 
   // Previous / next follow the listing's chronological order (AUDIT-009);
   // navigation loops at both ends so a button is always available.
@@ -58,7 +55,6 @@ export default async function ProjectDetailPage({ params }: Props) {
       <ProjectJsonLd project={project} locale={locale as Locale} />
       <ProjectDetailView
         project={project}
-        category={category}
         categoryId={categoryId}
         previousProject={previousProject}
         nextProject={nextProject}

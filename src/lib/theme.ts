@@ -65,13 +65,12 @@ export const ACCENT = {
  * Project categories: the label stays in the one ink, the glyph sits on a
  * small spot-colour plate (DEC-13h, option C chosen by DEC-18c), so colour
  * helps spotting but never carries the meaning alone. `glyph` is the icon
- * colour on its `plate` (6.78, 3.99 and 5.84:1). `muted` has no reader since
- * the home project list was removed.
+ * colour on its `plate` (6.78, 3.99 and 5.84:1).
  */
 export const CATEGORY = {
-  personal: { accent: RISO.ink, plate: RISO.pink, glyph: RISO.night, muted: '#e8dfcf' },
-  academic: { accent: RISO.ink, plate: RISO.blue, glyph: RISO.paper, muted: '#e8dfcf' },
-  internship: { accent: RISO.ink, plate: RISO.yellow, glyph: RISO.ink, muted: '#e8dfcf' },
+  personal: { plate: RISO.pink, glyph: RISO.night },
+  academic: { plate: RISO.blue, glyph: RISO.paper },
+  internship: { plate: RISO.yellow, glyph: RISO.ink },
 } as const
 
 /** Status signals. `success` and `error` clear 4.5:1 on paper. */

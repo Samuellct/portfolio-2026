@@ -6,7 +6,7 @@ import Breadcrumb from '@/components/navigation/Breadcrumb'
 import { motion } from 'framer-motion'
 import { ArrowLeft, ArrowRight, Download, ExternalLink } from 'lucide-react'
 import { FaGithub } from 'react-icons/fa'
-import { getLocalizedField, formatMeasure, CategoryData, Locale, ProjectData, PROJECTS_FILTER_KEY } from '@/lib/projects'
+import { getLocalizedField, formatMeasure, Locale, ProjectData, PROJECTS_FILTER_KEY } from '@/lib/projects'
 import MarkdownRenderer from '@/components/ui/MarkdownRenderer'
 import { Badge } from '@/components/ui/Badge'
 import { Tag } from '@/components/ui/Tag'
@@ -83,7 +83,6 @@ export default function ProjectDetailView({
   locale,
 }: {
   project: ProjectData
-  category: CategoryData | undefined
   categoryId: string
   previousProject: ProjectData | null
   nextProject: ProjectData | null

@@ -10,18 +10,14 @@ import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ArrowRight, Search } from 'lucide-react'
 import Image from 'next/image'
-import { getProjectsSortedByDate, getLocalizedField, getCardPeriod, Locale, projectCategories, ProjectData, PROJECTS_FILTER_KEY } from '@/lib/projects'
+import { getProjectsSortedByDate, getLocalizedField, getCardPeriod, Locale, PROJECT_CATEGORIES, ProjectData, PROJECTS_FILTER_KEY } from '@/lib/projects'
 import { useTranslations, useLocale } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
-import { CATEGORY, SECTION_BG } from '@/lib/theme'
+import { RISO, SECTION_BG } from '@/lib/theme'
 import { Button } from '@/components/ui/Button'
 import { Tag } from '@/components/ui/Tag'
 import { CategoryIcon } from '@/components/ui/CategoryIcon'
 import { cn } from '@/lib/cn'
-
-// Label tint per category; unknown categories fall back to the personal tint.
-const categoryAccent = (category: string) =>
-  category in CATEGORY ? CATEGORY[category as keyof typeof CATEGORY].accent : CATEGORY.personal.accent
 
 gsap.registerPlugin(ScrollTrigger)
 
@@ -47,7 +43,6 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
   const [imageLoaded, setImageLoaded] = useState(false)
   const [imageFailed, setImageFailed] = useState(false)
 
-  const categoryColor = categoryAccent(project.category)
   const statusKey = project.status === 'in-progress' ? 'inProgress' : project.status === 'paused' ? 'paused' : null
 
   const mouseX = useMotionValue(0)
@@ -129,7 +124,7 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
             {imageFailed && (
               <div
                 className="absolute inset-0 flex items-center justify-center p-6 text-center"
-                style={{ backgroundColor: `${categoryColor}14` }}
+                style={{ backgroundColor: `${RISO.ink}14` }}
               >
                 <span className="font-body font-semibold text-lg text-muted">
                   {getLocalizedField(project.title, locale)}
@@ -160,7 +155,7 @@ function ProjectCard({ project, index }: { project: ProjectData; index: number }
         {/* Content */}
         <div className="space-y-2">
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-meta tracking-caps-wide uppercase text-muted [&>span]:whitespace-nowrap">
-            <span className="inline-flex items-center gap-1.5" style={{ color: categoryAccent(project.category) }}>
+            <span className="inline-flex items-center gap-1.5" style={{ color: RISO.ink }}>
               <CategoryIcon category={project.category} />
               {t(`categories.${project.category}`)}
             </span>
@@ -375,18 +370,18 @@ export default function ProjectsPage() {
               {t('categories.all')}
             </Button>
 
-            {projectCategories.map((category) => (
+            {PROJECT_CATEGORIES.map((categoryId) => (
               <Button
-                key={category.id}
+                key={categoryId}
                 variant="filter"
                 className="tap-target"
-                active={activeFilter === category.id}
-                aria-pressed={activeFilter === category.id}
-                onClick={() => setActiveFilter(category.id)}
+                active={activeFilter === categoryId}
+                aria-pressed={activeFilter === categoryId}
+                onClick={() => setActiveFilter(categoryId)}
               >
                 <span className="inline-flex items-center gap-1.5">
-                  <CategoryIcon category={category.id} />
-                  {t(`categories.${category.id}`)}
+                  <CategoryIcon category={categoryId} />
+                  {t(`categories.${categoryId}`)}
                 </span>
               </Button>
             ))}
