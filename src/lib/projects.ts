@@ -39,7 +39,6 @@ export interface ProjectData {
   // is no longer rendered.
   detailedDescription?: BilingualText | string
   technologies: TechName[]
-  domains: string[]
   keywords: string[]
   category: 'personal' | 'academic' | 'internship'
   status: 'completed' | 'in-progress' | 'planned' | 'paused'
@@ -52,7 +51,6 @@ export interface ProjectData {
   gitHubUrl?: string
   featured?: boolean
   visible?: boolean // default: true
-  textColor?: 'white' | 'black' // default: white
   dateCreated: string
   // Start of the period, YYYY-MM: the listing's sort key (CONS-03). Defaults to dateCreated's month.
   periodStart?: string
@@ -60,7 +58,6 @@ export interface ProjectData {
   // Structured fiche fields (AUDIT-018). All optional: the 19 entries are
   // migrated fiche by fiche in Phases 7-8. `image` and `gitHubUrl` above stay
   // as derived shortcuts during the migration.
-  kind?: 'research' | 'webapp' | 'mobile' | 'desktop' | 'library' | 'infra' | 'analysis'
   // The first entry is the fiche's lead image. `frame: 'figure'` (charts,
   // diagrams) is shown whole at its native ratio and needs `width`/`height`
   // (the file's pixel size); every other frame keeps the 16:9 crop (A15).
@@ -72,7 +69,6 @@ export interface ProjectData {
     frame: 'figure' | 'interface' | 'photo'
     width?: number
     height?: number
-    role: 'hero' | 'result' | 'interface' | 'architecture' | 'context'
   }>
   // Measured results. Numbers are written with a decimal point and localised
   // at render time (`formatMeasure`). `uncertainty` and `baseline` are only
@@ -87,7 +83,6 @@ export interface ProjectData {
   }>
   limits?: BilingualText
   links?: Array<{ type: 'code' | 'demo' | 'docs' | 'report' | 'release'; url: string; label?: BilingualText | string }>
-  sourceOfSkills?: 'academic' | 'internship' | 'personal'
 
   // Named optional narrative sections (AUDIT-017). When present, these replace
   // `detailedDescription` in the fiche render. "Résultats" and "Limites" (the
@@ -100,7 +95,7 @@ export interface ProjectData {
     whatIBuilt?: BilingualText
   }
 
-  // Structured research metadata (AUDIT-067), for `kind: 'research'` fiches.
+  // Structured research metadata (AUDIT-067), for research fiches.
   research?: { lab: BilingualText; collaboration?: string }
 }
 
@@ -141,10 +136,7 @@ Nginx Proxy Manager gère le reverse proxy : il relie Nextcloud et Jellyfin à d
         en: `Jellyfin now has about ten user accounts, around five of them used regularly. Running Proxmox as a base layer might be too heavy for my old PC once several users rely on the planned services: video streaming (Jellyfin), dedicated photo storage (Immich) and bulk storage (NAS access, Nextcloud). I'm currently considering switching to a bare-metal TrueNAS install and building a dedicated machine for virtualization later on. I also planned to add an Arc A380 GPU, which would allow Jellyfin to transcode video files on the fly without crushing the CPU. With component prices rising sharply, these upgrades are on hold, so this test phase will last longer than planned.`,
         fr: `Jellyfin compte maintenant une dizaine de comptes utilisateur, dont environ cinq utilisés régulièrement. L'exécution de Proxmox en tant que couche de base risque d'être trop lourde pour mon ancien PC une fois que plusieurs utilisateurs s'appuieront sur les services prévus : streaming vidéo (Jellyfin), stockage dédié des photos (Immich) et stockage de masse (accès NAS, Nextcloud). J'envisage actuellement de passer à une installation TrueNAS *bare-metal* et de construire plus tard une machine dédiée à la virtualisation. J'avais aussi prévu d'ajouter un GPU Arc A380, qui permettrait à Jellyfin de transcoder des fichiers vidéo à la volée sans saturer le CPU. Avec la flambée des prix des composants, ces améliorations sont en attente, et cette phase de test va durer plus longtemps que prévu.`,
       },
-      kind: 'infra',
-      sourceOfSkills: 'personal',
       technologies: ['Proxmox', 'TrueNAS', 'Nextcloud', 'Jellyfin', 'Nginx Proxy Manager'],
-      domains: ['Virtualization', 'Networking', 'Self-hosting'],
       keywords: ['virtualization', 'storage', 'cloud', 'server', 'truenas', 'NAS'],
       category: 'personal',
       status: 'in-progress',
@@ -161,10 +153,8 @@ Nginx Proxy Manager gère le reverse proxy : il relie Nextcloud et Jellyfin à d
           alt: { en: 'TrueNAS dashboard showing virtual machines and server interface', fr: 'Tableau de bord TrueNAS affichant les machines virtuelles et l\'interface serveur' },
           caption: { en: 'The TrueNAS dashboard of the server: system, CPU, memory and storage.', fr: 'Le tableau de bord TrueNAS du serveur : système, processeur, mémoire et stockage.' },
           frame: 'interface',
-          role: 'interface',
         },
       ],
-      textColor: "black",
       dateCreated: '2025-07-15',
       periodStart: '2025-07',
     },
@@ -205,10 +195,7 @@ Tout le texte du site tient dans deux fichiers JSON, un par langue, ce qui donne
 Le site tourne sur Cloudflare Workers via OpenNext. Chaque push sur la branche principale passe par une chaîne CI (vérification des types, lint, build), puis semantic-release lit les messages de commit pour fixer le numéro de version, écrire le changelog, créer le tag et publier la release.`,
         },
       },
-      kind: 'webapp',
-      sourceOfSkills: 'personal',
       technologies: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Framer Motion', 'WebGL', 'GSAP', 'Cloudflare Workers'],
-      domains: ['Web Development', 'Frontend'],
       keywords: ['portfolio', 'frontend', 'typescript', 'nextjs', 'webgl'],
       category: 'personal',
       status: 'in-progress',
@@ -221,7 +208,6 @@ Le site tourne sur Cloudflare Workers via OpenNext. Chaque push sur la branche p
           src: '/images/portfolioWebsite.webp',
           alt: { en: 'Front page of my website', fr: 'Page d\'accueil de mon site web' },
           frame: 'photo',
-          role: 'hero',
         },
       ],
       gitHubUrl: "https://github.com/Samuellct/portfolio-2026",
@@ -257,7 +243,6 @@ Ces couches raster sont combinées avec des données vectorielles : contours gla
           fr: `Le calcul passe d'abord par Valhalla, un moteur de routage open source qui s'appuie sur les données OpenStreetMap. Là où ces données manquent, l'itinéraire bascule en mode hors-piste : l'algorithme de Dijkstra cherche le meilleur chemin sur la grille de coûts. Avec le chargement des données, c'est cette étape qui pèse le plus sur la durée d'un calcul, de 10 à 90 secondes ; l'API envoie donc sa progression en direct.`,
         },
       },
-      kind: 'webapp',
       results: [
         { label: { en: 'Grid resolution chosen', fr: 'Résolution de grille choisie' }, value: '1', unit: 'm', note: { en: '0.5 m remains possible but too heavy to compute for now', fr: '0.5 m reste possible, mais trop lourd à calculer pour l\'instant' } },
         { label: { en: 'Computation time per route', fr: 'Temps de calcul par itinéraire' }, value: '10-90', unit: 's', note: { en: 'depends on off-trail share and data to load', fr: 'selon le hors-piste et les données à charger' } },
@@ -267,15 +252,12 @@ Ces couches raster sont combinées avec des données vectorielles : contours gla
         en: `The project works well on the itineraries I've tested in the French Alps, including approaches around Chamonix and the Écrins. It's now on its second major iteration, but it still only runs locally: hosting the Lidar processing and routing stack publicly at a reasonable cost remains an open problem, so development is on hold for now.`,
         fr: `Le projet fonctionne bien sur les itinéraires testés dans les Alpes françaises, notamment autour de Chamonix et des Écrins. Il en est maintenant à sa deuxième itération majeure, mais il ne tourne encore qu'en local : héberger la chaîne de traitement Lidar et de calcul d'itinéraire publiquement à un coût raisonnable reste un problème non résolu, donc le développement est en pause pour le moment.`,
       },
-      sourceOfSkills: 'personal',
       technologies: ['Python', 'FastAPI', 'NetworkX', 'Rasterio', 'GDAL', 'GeoPandas', 'scikit-image', 'React', 'MapLibre GL JS', 'Leaflet', 'Recharts', 'Terra Draw', 'Valhalla', 'Docker'],
-      domains: ['Geospatial Analysis', 'Shortest path problem', 'Web Development'],
       keywords: ['mountaineering', 'route planning', 'lidar', 'pathfinding', 'geospatial', 'alps', 'dem', 'fastapi'],
       category: 'personal',
       status: 'paused',
       period: '2025 - 2026',
       location: { en: 'Personal project', fr: 'Projet personnel' },
-      textColor: "black",
       image: '/images/alpineRoute.webp',
       imageAlt: {
         en: 'Topographic map showing a computed mountaineering route',
@@ -287,7 +269,6 @@ Ces couches raster sont combinées avec des données vectorielles : contours gla
           alt: { en: 'Topographic map showing a computed mountaineering route', fr: 'Carte topographique montrant un itinéraire alpiniste calculé' },
           caption: { en: 'A route computed by AlpineRoute on a topographic base map, with the settings panel on the left.', fr: 'Un itinéraire calculé par AlpineRoute sur fond topographique, avec le panneau de réglages à gauche.' },
           frame: 'interface',
-          role: 'interface',
         },
       ],
       gitHubUrl: 'https://github.com/Samuellct/AlpineRoute',
@@ -323,13 +304,11 @@ Pour maintenir la réactivité de l'interface lors des calculs longs (la génér
 HEP-GUI était une preuve de concept limitée à ce workflow précis, et je ne prévois pas de le développer davantage.`,
       },
       technologies: ['Python', 'PySide6', 'Docker', 'MadGraph5', 'Pythia8', 'Rivet'],
-      domains: ['Particle Physics', 'Desktop Application', 'Monte Carlo Simulation'],
       keywords: ['particle physics', 'monte carlo', 'madgraph', 'hep', 'gui', 'simulation', 'docker'],
       category: 'personal',
       status: 'completed',
       period: { en: 'February 2026', fr: 'Février 2026' },
       location: { en: 'Personal project', fr: 'Projet personnel' },
-      textColor: "black",
       image: '/images/hepGUI.webp',
       imageAlt: {
         en: 'HEP-GUI desktop interface showing Monte Carlo simulation controls and histogram visualization',
@@ -343,12 +322,9 @@ HEP-GUI était une preuve de concept limitée à ce workflow précis, et je ne p
           frame: 'figure',
           width: 1202,
           height: 832,
-          role: 'interface',
         },
       ],
       gitHubUrl: 'https://github.com/Samuellct/HEP-GUI',
-      kind: 'desktop',
-      sourceOfSkills: 'personal',
       dateCreated: '2026-02-22',
       periodStart: '2026-02',
     },
@@ -381,16 +357,12 @@ Les métadonnées des films sont récupérées depuis l'API TMDb (The Movie Data
         en: `I used Accred at the Cannes 2026 festival, in a private deployment. It's not yet ready for a full public release.`,
         fr: `J'ai utilisé Accred au Festival de Cannes 2026, en déploiement privé. L'application n'est pas encore prête pour une mise en ligne publique.`,
       },
-      kind: 'webapp',
-      sourceOfSkills: 'personal',
       technologies: ['Next.js', 'TypeScript', 'SQLite', 'PostgreSQL', 'Docker'],
-      domains: ['Web Development', 'Mobile', 'PWA'],
       keywords: ['pwa', 'film festival', 'mobile', 'self-hosted', 'nextjs', 'scheduler'],
       category: 'personal',
       status: 'paused',
       period: { en: 'March - May 2026', fr: 'Mars - Mai 2026' },
       location: { en: 'Personal project', fr: 'Projet personnel' },
-      textColor: "black",
       image: '/images/accred.webp',
       imageAlt: {
         en: 'Accred app interface showing a film festival programme grid with selected screenings',
@@ -402,7 +374,6 @@ Les métadonnées des films sont récupérées depuis l'API TMDb (The Movie Data
           alt: { en: 'Accred app interface showing a film festival programme grid with selected screenings', fr: 'Interface de l\'application Accred montrant une grille de programme de festival avec des séances sélectionnées' },
           caption: { en: 'A festival programme grid in Accred, with the selected screenings.', fr: 'La grille de programme d\'un festival dans Accred, avec les séances sélectionnées.' },
           frame: 'interface',
-          role: 'interface',
         },
       ],
       gitHubUrl: 'https://github.com/Samuellct/Accred',
@@ -434,7 +405,6 @@ Les métadonnées des films sont récupérées depuis l'API TMDb (The Movie Data
           fr: `La nouvelle version est en ligne en bêta et toujours en cours de développement. La courbe vitesse-pente est désormais ajustée sur 26 301 segments GPS réels. Le modèle de niveau et d'incertitude atteint une erreur moyenne de 25,4 % sur neuf courses réelles, contre 37,0 % pour une estimation de Riegel, la formule empirique classique qui prédit un temps de course à partir d'une seule performance de référence sur une autre distance. Hors de ses conditions d'entraînement, son erreur double à peu près. La classification du terrain et le calcul de dénivelé sont vérifiés sur de vraies courses (Trail du Sancy, MaxiRace, UTMB). Le module météo, reconstruit autour de l'indice de stress thermique WBGT (un indicateur qui combine température, humidité et rayonnement pour estimer le risque de coup de chaleur), retrouve à 0,00 °C près une référence officielle, et renvoie un résultat sur les 138 points d'un parcours réel testé, contre zéro sur six tentatives pour l'ancienne version.`,
         },
       },
-      kind: 'analysis',
       results: [
         { label: { en: 'GPS segments', fr: 'Segments GPS' }, value: '26 301' },
         { label: { en: 'Model error', fr: 'Erreur modèle' }, value: '25.4', unit: '%', baseline: { value: '37.0 %', label: { en: 'Riegel estimate', fr: 'estimation de Riegel' } } },
@@ -445,9 +415,7 @@ Les métadonnées des films sont récupérées depuis l'API TMDb (The Movie Data
         en: `These validated pieces now run as one system: the prediction engine combines terrain, weather and a runner's profile into one estimate, the report generator turns it into a race report (HTML, PDF or JSON), and a web app ties it all together. That app is still a beta. Each finished piece ships with its own tests and its own documented limits, so nothing gets marked done just because it looks like it works.`,
         fr: `Ces briques validées fonctionnent désormais comme un seul système : le moteur de prédiction combine le terrain, la météo et le profil du coureur en une seule estimation, le générateur de rapport en tire un rapport de course (HTML, PDF ou JSON), et une application web réunit le tout. Cette application est encore en bêta. Chaque brique déjà terminée est livrée avec ses propres tests et ses propres limites documentées, pour ne rien déclarer fini simplement parce que ça a l'air de marcher.`,
       },
-      sourceOfSkills: 'personal',
       technologies: ['Python', 'uv', 'Rasterio', 'OSMnx', 'GeoPandas', 'pvlib', 'thermofeel', 'gpxpy', 'Meteostat'],
-      domains: ['Data Science', 'Meteorology', 'Sports Analytics', 'Geospatial Analysis'],
       keywords: ['trail running', 'weather', 'gpx', 'utci', 'python', 'forecast', 'thermal analysis'],
       category: 'personal',
       status: 'in-progress',
@@ -466,7 +434,6 @@ Les métadonnées des films sont récupérées depuis l'API TMDb (The Movie Data
           frame: 'figure',
           width: 1210,
           height: 770,
-          role: 'result',
         },
       ],
       gitHubUrl: 'https://github.com/Samuellct/TimePredict',
@@ -517,10 +484,7 @@ Un petit plugin volontairement temporaire pour les moments où le stockage du se
 Un service de notifications par email interne à Jellyfin : une newsletter des nouveautés au rythme choisi par l'admin (hebdomadaire, mensuelle, tous les N jours ou quotidienne), avec affiches et liens vers chaque titre ; un récapitulatif hebdomadaire personnel pour chaque utilisateur, avec ce qu'il a regardé dans la semaine et son total de l'année ; et des annonces ponctuelles rédigées depuis le tableau de bord, en texte brut ou en HTML. Chaque utilisateur choisit les catégories qu'il reçoit et sa propre adresse, chaque email porte un lien de désinscription en un clic, et le plugin ne fait que lire les données de bibliothèque et de lecture. L'envoi passe par Resend. Sur [GitHub](https://github.com/JellyUX/Easy_Notif).`,
         },
       },
-      kind: 'library',
-      sourceOfSkills: 'personal',
       technologies: ['C#', '.NET', 'TypeScript', 'GitHub Actions', 'semantic-release'],
-      domains: ['Web Development', 'Open Source'],
       keywords: ['jellyfin', 'plugin', 'homelab', 'self-hosted', 'csharp', 'dotnet'],
       category: 'personal',
       status: 'in-progress',
@@ -537,7 +501,6 @@ Un service de notifications par email interne à Jellyfin : une newsletter des n
           alt: { en: 'Screenshot of the JellyUX Homepage widget engine on a Jellyfin home page', fr: 'Capture d\'écran du moteur de widgets JellyUX Homepage sur une page d\'accueil Jellyfin' },
           caption: { en: 'The JellyUX Homepage widget engine on the Jellyfin home page.', fr: 'Le moteur de widgets JellyUX Homepage sur la page d\'accueil de Jellyfin.' },
           frame: 'interface',
-          role: 'interface',
         },
       ],
       gitHubUrl: 'https://github.com/JellyUX',
@@ -570,7 +533,6 @@ Une fois la tournée lancée, l'écran n'affiche qu'une chose : le numéro du co
 L'application fonctionne entièrement hors ligne : aucun serveur, aucun cloud, aucun compte. Sous le capot, c'est du Kotlin et Jetpack Compose, Room pour le stockage, et le ML Kit de Google pour la détection de document et la reconnaissance de texte, avec une petite chaîne CI qui exécute les tests et le lint et construit une APK de release signée à chaque montée de version.`,
       },
       technologies: ['Kotlin', 'Jetpack Compose', 'Room', 'ML Kit', 'GitHub Actions'],
-      domains: ['Mobile Development', 'Android'],
       keywords: ['android', 'kotlin', 'ocr', 'jetpack compose', 'offline-first'],
       category: 'personal',
       status: 'completed',
@@ -587,13 +549,10 @@ L'application fonctionne entièrement hors ligne : aucun serveur, aucun cloud, a
           alt: { en: 'Home screen and delivery mode of the Delivr Android app, side by side', fr: 'Écran d\'accueil et mode livraison de l\'application Android Delivr, côte à côte' },
           caption: { en: 'Home screen and delivery mode of the Delivr Android app.', fr: 'Écran d\'accueil et mode livraison de l\'application Android Delivr.' },
           frame: 'interface',
-          role: 'interface',
         },
       ],
       gitHubUrl: 'https://github.com/Samuellct/Delivr',
       links: [{ type: 'release', url: 'https://github.com/Samuellct/Delivr/releases', label: { en: 'Releases (APK)', fr: 'Versions (APK)' } }],
-      kind: 'mobile',
-      sourceOfSkills: 'personal',
       dateCreated: '2026-07-06',
       periodStart: '2026-07',
     },
@@ -631,15 +590,12 @@ Après avoir établi les critères de sélection sur des échantillons simulés,
 En suivant la méthode CLs (méthode statistique standard pour fixer des limites d'exclusion), nous avons déterminé que nous pouvions exclure les signaux d'une intensité supérieure à $0.3736~\\mu$, ce qui correspond à une section efficace ($\\sigma$) d'environ $2.017~\\text{pb}$ (picobarns, unité de section efficace).`,
         },
       },
-      kind: 'analysis',
       results: [
         { label: { en: 'Background reduction', fr: 'Réduction du bruit de fond' }, value: '40×', note: { en: 'most signal events kept', fr: 'la plupart des événements de signal conservés' } },
         { label: { en: 'Observed significance', fr: 'Significance observée' }, value: '0.5', unit: 'σ', note: { en: 'no evidence of the X boson', fr: 'aucun signe du boson X' } },
         { label: { en: 'Cross-section upper limit', fr: 'Limite sur la section efficace' }, value: '2.017', unit: 'pb', note: { en: 'signal strength above 0.3736 excluded (CLs)', fr: 'intensité de signal au-delà de 0.3736 exclue (CLs)' } },
       ],
-      sourceOfSkills: 'academic',
       technologies: ['Python', 'NumPy', 'Matplotlib', 'Pandas', 'SciPy'],
-      domains: ['Particle Physics', 'Data Analysis', 'Simulation'],
       keywords: ['physics', 'statistics', 'python', 'simulation'],
       category: 'academic',
       status: 'completed',
@@ -658,7 +614,6 @@ En suivant la méthode CLs (méthode statistique standard pour fixer des limites
           frame: 'figure',
           width: 571,
           height: 432,
-          role: 'result',
         },
       ],
       gitHubUrl: 'https://github.com/Samuellct/ATLAS-basic-particle-search-workflow',
@@ -672,7 +627,6 @@ En suivant la méthode CLs (méthode statistique standard pour fixer des limites
       subtitle: 'Simulating Phase Transitions in Magnetic Systems',
       detailedDescription: 'This project explores the Ising model, a fundamental model in statistical mechanics for understanding phase transitions in magnetic systems. The simulation uses Monte Carlo methods to study the behavior of a 2D spin lattice.',
       technologies: ['Python', 'NumPy', 'Matplotlib', 'SciPy'],
-      domains: ['Statistical Physics', 'Monte Carlo Simulation'],
       keywords: ['ising', 'monte carlo', 'phase transition'],
       category: 'academic',
       status: 'completed',
@@ -722,10 +676,7 @@ Nous avons aussi compris pourquoi les chercheurs développent de nouvelles méth
         en: `The algorithm worked well for small numbers, but we quickly hit memory limitations for numbers larger than five digits. This makes sense because simulating n qubits requires storing $2^{n}$ complex numbers in memory, so the requirements explode exponentially.`,
         fr: `L'algorithme a bien fonctionné pour les petits nombres, mais nous avons rapidement atteint les limites de mémoire pour les nombres supérieurs à cinq chiffres. C'est logique, car la simulation de n qubits nécessite de stocker $2^{n}$ nombres complexes en mémoire, ce qui fait exploser les besoins de manière exponentielle.`,
       },
-      kind: 'analysis',
-      sourceOfSkills: 'academic',
       technologies: ['Python', 'Qiskit', 'Cirq', 'SymPy'],
-      domains: ['Quantum Computing', 'Cryptography'],
       keywords: ['quantum computing', 'Shor algorithm', 'RSA', 'cryptography'],
       category: 'academic',
       status: 'completed',
@@ -742,7 +693,6 @@ Nous avons aussi compris pourquoi les chercheurs développent de nouvelles méth
           alt: { en: 'Close-up of a quantum processor chip with superconducting qubits', fr: 'Gros plan d\'une puce de processeur quantique avec qubits supraconducteurs' },
           credit: { name: 'Google' },
           frame: 'photo',
-          role: 'context',
         },
       ],
       imageCredit: 'Google',
@@ -757,7 +707,6 @@ Nous avons aussi compris pourquoi les chercheurs développent de nouvelles méth
       subtitle: 'Building a DIY Environmental Monitoring System',
       detailedDescription: 'A complete weather station built with Arduino, featuring multiple environmental sensors and a display for real-time data visualization.',
       technologies: ['Arduino', 'C++'],
-      domains: ['IoT', 'Electronics'],
       keywords: ['arduino', 'iot', 'sensors', 'weather'],
       category: 'academic',
       status: 'completed',
@@ -824,14 +773,11 @@ Le troisième jour a été consacré à l'étalonnage du TAC et à la qualité d
 Au quatrième jour, nous avons simplifié l'interface pour ne conserver que les commandes essentielles : ON/OFF pour le champ magnétique, START pour l'acquisition des données et affichage en temps réel de l'intensité du champ. Des structures de gestion des erreurs évitent désormais les plantages des premières phases ; l'interface de contrôle du champ est stable, et le module d'étalonnage du TAC, intégré au système LabVIEW existant, tourne automatiquement.`,
         },
       },
-      kind: 'desktop',
       results: [
         { label: { en: 'TAC calibration slope', fr: 'Pente d\'étalonnage du TAC' }, value: '0.996', uncertainty: '0.001', note: { en: 'intercept 0.085 ± 0.001 µs', fr: 'ordonnée à l\'origine 0.085 ± 0.001 µs' } },
         { label: { en: 'Acquisition timeout', fr: 'Timeout d\'acquisition' }, value: '4.8', unit: 'min', baseline: { value: '50 min', label: { en: 'initial value', fr: 'valeur initiale' } }, note: { en: 'overnight acquisitions stabilized', fr: 'acquisitions nocturnes stabilisées' } },
       ],
-      sourceOfSkills: 'academic',
       technologies: ['LabVIEW', 'Python'],
-      domains: ['Data Acquisition', 'Instrument Control', 'Particle Physics'],
       keywords: ['labview', 'muons', 'data acquisition', 'instrument control', 'TAC calibration'],
       category: 'academic',
       status: 'completed',
@@ -851,12 +797,10 @@ Au quatrième jour, nous avons simplifié l'interface pour ne conserver que les 
           frame: 'figure',
           width: 960,
           height: 416,
-          role: 'context',
         },
       ],
       imageCredit: 'Aldhair.gsnt',
       imageCreditUrl: 'https://commons.wikimedia.org/wiki/File:Labview_code_example.png',
-      textColor: 'black',
       dateCreated: '2024-04-15',
       periodStart: '2024-03',
     },
@@ -867,7 +811,6 @@ Au quatrième jour, nous avons simplifié l'interface pour ne conserver que les 
       subtitle: 'Measuring Fundamental Particle Properties',
       detailedDescription: 'An experimental physics project measuring the lifetime of muons using scintillator detectors and ROOT-based analysis.',
       technologies: ['ROOT', 'C++'],
-      domains: ['Particle Physics', 'Data Analysis'],
       keywords: ['muons', 'root', 'particle physics'],
       category: 'academic',
       status: 'completed',
@@ -912,10 +855,7 @@ Au quatrième jour, nous avons simplifié l'interface pour ne conserver que les 
         en: `We tried calculating Lyapunov exponents to quantify the chaos, but we found this task relatively difficult to implement properly.`,
         fr: `Nous avons essayé de calculer les exposants de Lyapunov pour quantifier le chaos, mais nous avons trouvé cette tâche relativement difficile à mettre en œuvre correctement.`,
       },
-      kind: 'analysis',
-      sourceOfSkills: 'academic',
       technologies: ['Python', 'NumPy', 'Matplotlib'],
-      domains: ['Chaos Theory', 'Celestial Mechanics', 'Simulation'],
       keywords: ['chaos theory', 'N-body problem', 'simulation', 'Lyapunov'],
       category: 'academic',
       status: 'completed',
@@ -932,7 +872,6 @@ Au quatrième jour, nous avons simplifié l'interface pour ne conserver que les 
           alt: { en: 'Hubble Space Telescope image of Saturn showing its distinctive ring system', fr: 'Image du télescope spatial Hubble montrant Saturne et son système d\'anneaux caractéristique' },
           credit: { name: 'NASA, ESA, A. Simon, and M.H. Wong', url: 'https://esahubble.org/images/heic1917a/' },
           frame: 'photo',
-          role: 'context',
         },
       ],
       imageCredit: 'NASA, ESA, A. Simon, and M.H. Wong',
@@ -948,7 +887,6 @@ Au quatrième jour, nous avons simplifié l'interface pour ne conserver que les 
       subtitle: 'Designing Precision Wind Measurement Tools',
       detailedDescription: 'A precision wind speed measurement system built with Arduino, featuring sensor calibration and data logging capabilities.',
       technologies: ['Arduino', 'C++'],
-      domains: ['IoT', 'Electronics'],
       keywords: ['arduino', 'anemometer', 'sensors', 'wind measurement'],
       category: 'academic',
       status: 'completed',
@@ -997,19 +935,16 @@ J'ai consacré la majeure partie de mon temps à élaborer une stratégie de pr�
         en: `The $K_{1}^{+}$ signal was not observed, which is not surprising given the rarity of this decay and the limited Run 1 statistics.`,
         fr: `Le signal $K_{1}^{+}$ n'a pas été observé, ce qui n'est pas surprenant compte tenu de la rareté de cette désintégration et des statistiques limitées du Run 1.`,
       },
-      kind: 'research',
       results: [
         { label: { en: 'Data reduction', fr: 'Réduction des données' }, value: '30×', note: { en: 'on real Run 1 data', fr: 'sur les données réelles du Run 1' } },
         { label: { en: 'Signal efficiency', fr: 'Efficacité du signal' }, value: '57', unit: '%', note: { en: 'on simulated signal', fr: 'sur le signal simulé' } },
         { label: { en: 'ω meson peak', fr: 'Pic du méson ω' }, value: '783', unit: 'MeV', note: { en: 'reconstructed in the data', fr: 'reconstruit dans les données' } },
       ],
-      sourceOfSkills: 'internship',
       research: {
         lab: { en: 'Clermont Physics Laboratory (LPC)', fr: 'Laboratoire de Physique de Clermont (LPC)' },
         collaboration: 'LHCb',
       },
       technologies: ['ROOT', 'C++'],
-      domains: ['Particle Physics', 'Data Analysis'],
       keywords: ['lhcb', 'particle physics', 'root', 'data analysis', 'B meson', 'rare decay'],
       category: 'internship',
       status: 'completed',
@@ -1028,11 +963,9 @@ J'ai consacré la majeure partie de mon temps à élaborer une stratégie de pr�
           frame: 'figure',
           width: 752,
           height: 541,
-          role: 'result',
         },
       ],
       gitHubUrl: "https://github.com/Samuellct/Internship-M1-B-meson-decay",
-      textColor: 'black',
       dateCreated: '2024-07-05',
       periodStart: '2024-04',
     },
@@ -1068,19 +1001,16 @@ J'ai consacré la majeure partie de mon temps à élaborer une stratégie de pr�
           fr: `L'analyse s'est concentrée sur l'identification de la cinématique dans les jets résultants (i.e. les gerbes étroites de particules produites lors des collisions). J'ai trouvé qu'une coupure de l'impulsion transverse à 60 GeV conservait 61 % du signal et réduisait le bruit de fond QCD à 7 %. ATLAS est en cours de mise à niveau pour le LHC à haute luminosité, avec de nouveaux détecteurs de trajectoire qui étendront la couverture à des régions aujourd'hui inaccessibles. Mes simulations ont montré que cette mise à niveau permettra de capter 16 % d'événements de signal supplémentaires, qui seraient sinon perdus.`,
         },
       },
-      kind: 'research',
       results: [
         { label: { en: 'Signal efficiency', fr: 'Efficacité du signal' }, value: '61', unit: '%', note: { en: 'at a 60 GeV transverse momentum cut', fr: 'à une coupure de 60 GeV en impulsion transverse' } },
         { label: { en: 'QCD background remaining', fr: 'Bruit de fond QCD restant' }, value: '7', unit: '%', note: { en: 'at the same 60 GeV cut', fr: 'à la même coupure de 60 GeV' } },
         { label: { en: 'HL-LHC gain', fr: 'Gain HL-LHC' }, value: '+16', unit: '%', note: { en: 'additional signal events captured', fr: 'événements de signal supplémentaires captés' } },
       ],
-      sourceOfSkills: 'internship',
       research: {
         lab: { en: 'Clermont Physics Laboratory (LPC)', fr: 'Laboratoire de Physique de Clermont (LPC)' },
         collaboration: 'ATLAS',
       },
       technologies: ['MadGraph5', 'Rivet', 'Docker', 'C++', 'Bash'],
-      domains: ['Particle Physics', 'Simulation'],
       keywords: ['atlas', 'long-lived particles', 'hl-lhc', 'simulation', 'bsm physics'],
       category: 'internship',
       status: 'completed',
@@ -1101,12 +1031,10 @@ J'ai consacré la majeure partie de mon temps à élaborer une stratégie de pr�
           frame: 'figure',
           width: 1200,
           height: 854,
-          role: 'context',
         },
       ],
       imageCredit: 'H. Russell',
       imageCreditUrl: 'https://indico.cern.ch/event/607314/contributions/2542309/attachments/1447873/2231444/20170424_LLPs.pdf',
-      textColor: 'black',
       featured: true,
       dateCreated: '2025-09-17',
       periodStart: '2025-02',
