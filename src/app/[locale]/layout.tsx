@@ -21,7 +21,8 @@ const schibsted = Schibsted_Grotesk({
 })
 
 const spaceMono = Space_Mono({
-  weight: ['400', '700'],
+  // 400 only: no text is set in bold mono (checked on all 36 pages, V6-COD-11)
+  weight: ['400'],
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-mono',
@@ -31,7 +32,8 @@ const fraunces = Fraunces({
   subsets: ['latin'],
   display: 'swap',
   variable: '--font-fraunces',
-  axes: ['opsz'],
+  // No optical-size axis: 45.6 kB instead of 81.7 kB, drawing nearly the same
+  // at display sizes (P08-D2)
   style: ['italic'],
 })
 
