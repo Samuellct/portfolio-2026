@@ -221,7 +221,8 @@ export default function ParticleCollision({ isVisible, className = '' }: Particl
         ctx.fill()
       }
     }
-    
+
+    let shuffleTimer: ReturnType<typeof setTimeout> | undefined
     const animate = (timestamp: number) => {
       if (!startTime) startTime = timestamp
       const elapsed = timestamp - startTime
@@ -246,7 +247,7 @@ export default function ParticleCollision({ isVisible, className = '' }: Particl
       } else {
         setIsAnimating(false)
         // allow new shuffle with small buffer
-        setTimeout(() => setCanShuffle(true), 300)
+        shuffleTimer = setTimeout(() => setCanShuffle(true), 300)
       }
     }
     
@@ -254,6 +255,7 @@ export default function ParticleCollision({ isVisible, className = '' }: Particl
     
     return () => {
       cancelAnimationFrame(animationRef.current)
+      clearTimeout(shuffleTimer)
     }
   }, [isVisible, animationKey, prefersReducedMotion])
   
