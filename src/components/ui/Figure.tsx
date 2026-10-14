@@ -3,9 +3,8 @@ import type { ReactNode } from 'react'
 import { cn } from '@/lib/cn'
 
 /**
- * Framed image with optional caption and credit (AUDIT-047). Encapsulates the
- * "local asset -> next/image, remote URL -> plain img" switch that project
- * pages need, and renders the `media[]` entries of a fiche.
+ * Framed image with optional caption and credit (AUDIT-047), rendered with
+ * next/image from a local asset; it renders the `media[]` entries of a fiche.
  *
  * Two framings (A15): `crop` keeps the uniform 16:9 crop used by the listing,
  * photos and interface captures (AUDIT-039); `whole` shows a result figure or
@@ -43,7 +42,6 @@ export function Figure({
   height?: number
   sizes?: string
 }) {
-  const isLocal = src.startsWith('/')
   const whole = framing === 'whole' && width !== undefined && height !== undefined
   const fit = whole ? 'object-contain' : 'object-cover'
   const body = (
@@ -56,12 +54,7 @@ export function Figure({
         )}
         style={whole ? { aspectRatio: `${width} / ${height}` } : undefined}
       >
-        {isLocal ? (
-          <Image src={src} alt={alt} fill sizes={sizes} className={fit} priority={priority} />
-        ) : (
-          // eslint-disable-next-line @next/next/no-img-element
-          <img src={src} alt={alt} className={cn('w-full h-full', fit)} />
-        )}
+        <Image src={src} alt={alt} fill sizes={sizes} className={fit} priority={priority} />
       </div>
 
       {caption && <p className="mt-3 font-fraunces italic text-sm text-muted">{caption}</p>}
