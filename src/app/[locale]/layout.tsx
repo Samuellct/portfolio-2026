@@ -159,8 +159,10 @@ export default async function LocaleLayout({
   // Enable static rendering
   setRequestLocale(locale)
 
-  // Load messages for next-intl
+  // Load messages for next-intl. `metadata` is read on the server only
+  // (generateMetadata, JSON-LD), so it stays out of the client payload (V6-COD-33).
   const messages = (await import(`../../../messages/${locale}.json`)).default
+  const clientMessages = Object.fromEntries(Object.entries(messages).filter(([namespace]) => namespace !== 'metadata'))
 
   // Build locale-aware JSON-LD
   const t = await getTranslations({ locale, namespace: 'metadata' })
@@ -176,7 +178,7 @@ export default async function LocaleLayout({
         />
       </head>
       <body className="font-body antialiased">
-        <NextIntlClientProvider locale={locale} messages={messages}>
+        <NextIntlClientProvider locale={locale} messages={clientMessages}>
           <Providers>
             {children}
           </Providers>
