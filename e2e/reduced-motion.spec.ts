@@ -57,7 +57,7 @@ test('Projects listing: reduced motion switched on mid-page stops the parallax',
   }
   // horizontal parallax offset (the Tailwind -translate-y-1/2 stays)
   const shiftX = () =>
-    page.$eval('.decor-text', (el) => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41)
+    page.$eval('[data-watermark]', (el) => new DOMMatrixReadOnly(getComputedStyle(el).transform).m41)
   expect(Math.abs(await shiftX()), 'parallax offset before the switch').toBeGreaterThan(1)
 
   await page.emulateMedia({ reducedMotion: 'reduce' })
