@@ -4,8 +4,10 @@ import {
   getProjectsSortedByDate,
   getRelatedProjects,
   getLocalizedField,
+  type BilingualText,
 } from '@/lib/projects'
-import ProjectDetailView from './ProjectDetailView'
+import ProjectDetailView, { type ProjectMarkdown } from './ProjectDetailView'
+import MarkdownRenderer from '@/components/ui/MarkdownRenderer'
 import BreadcrumbJsonLd from '@/components/seo/BreadcrumbJsonLd'
 import ProjectJsonLd from '@/components/seo/ProjectJsonLd'
 import { getTranslations } from 'next-intl/server'
@@ -43,6 +45,20 @@ export default async function ProjectDetailPage({ params }: Props) {
 
   const tNav = await getTranslations({ locale, namespace: 'nav' })
 
+  // Markdown and KaTeX render here, on the server, so their code stays out of
+  // the page's client bundle (V6-COD-03); the view only places the nodes.
+  const renderMarkdown = (content: BilingualText | string | undefined) =>
+    content ? (
+      <MarkdownRenderer content={getLocalizedField(content, locale)} className="prose prose-lg max-w-none" />
+    ) : null
+  const markdown: ProjectMarkdown = {
+    problem: renderMarkdown(project.sections?.problem),
+    approach: renderMarkdown(project.sections?.approach),
+    whatIBuilt: renderMarkdown(project.sections?.whatIBuilt),
+    limits: renderMarkdown(project.limits),
+    description: project.sections ? null : renderMarkdown(project.detailedDescription),
+  }
+
   return (
     <>
       <BreadcrumbJsonLd
@@ -60,6 +76,7 @@ export default async function ProjectDetailPage({ params }: Props) {
         previousProject={previousProject}
         nextProject={nextProject}
         relatedProjects={relatedProjects}
+        markdown={markdown}
         locale={locale}
       />
     </>

@@ -1,13 +1,12 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 import TransitionLink from '@/components/navigation/TransitionLink'
 import Breadcrumb from '@/components/navigation/Breadcrumb'
 import { motion } from 'framer-motion'
 import { ArrowLeft, ArrowRight, Download, ExternalLink } from 'lucide-react'
 import { FaGithub } from 'react-icons/fa'
 import { getLocalizedField, formatMeasure, Locale, ProjectData, PROJECTS_FILTER_KEY } from '@/lib/projects'
-import MarkdownRenderer from '@/components/ui/MarkdownRenderer'
 import { Badge } from '@/components/ui/Badge'
 import { Tag } from '@/components/ui/Tag'
 import { Figure } from '@/components/ui/Figure'
@@ -18,6 +17,9 @@ import { PAGE_BG } from '@/lib/theme'
 import { RESUME_PATH } from '@/lib/constants'
 
 const PROJECT_DETAIL_BG_COLOR = PAGE_BG
+
+// Narrative blocks already rendered from Markdown on the server (page.tsx)
+export type ProjectMarkdown = Record<'problem' | 'approach' | 'whatIBuilt' | 'limits' | 'description', ReactNode>
 
 // ============================================
 // Related project thumbnail
@@ -81,6 +83,7 @@ export default function ProjectDetailView({
   previousProject,
   nextProject,
   relatedProjects,
+  markdown,
   locale,
 }: {
   project: ProjectData
@@ -88,6 +91,7 @@ export default function ProjectDetailView({
   previousProject: ProjectData | null
   nextProject: ProjectData | null
   relatedProjects: ProjectData[]
+  markdown: ProjectMarkdown
   locale: Locale
 }) {
   const t = useTranslations('projects')
@@ -342,10 +346,7 @@ export default function ProjectDetailView({
                         transition={{ delay: 0.2 + index * 0.05, duration: 0.6 }}
                       >
                         <h2 className="pb-3 mb-5 border-b border-riso-pink text-meta font-semibold tracking-caps-wide uppercase">{t(`sections.${key}`)}</h2>
-                        <MarkdownRenderer
-                          content={getLocalizedField(content, locale)}
-                          className="prose prose-lg max-w-none"
-                        />
+                        {markdown[key]}
                       </motion.section>
                     )
                 )}
@@ -356,10 +357,7 @@ export default function ProjectDetailView({
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.6 }}
               >
-                <MarkdownRenderer
-                  content={getLocalizedField(project.detailedDescription, locale)}
-                  className="prose prose-lg max-w-none"
-                />
+                {markdown.description}
               </motion.section>
             )}
           </div>
