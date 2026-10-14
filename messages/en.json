@@ -213,9 +213,9 @@
     },
     "contact": {
       "title": "Contact",
-      "description": "Contact Samuel Lecomte by form or e-mail about a job or a project.",
+      "description": "Contact Samuel Lecomte by form or email about a job or a project.",
       "ogTitle": "Contact | Samuel Lecomte",
-      "ogDescription": "Contact form and e-mail address for Samuel Lecomte."
+      "ogDescription": "Contact form and email address for Samuel Lecomte."
     },
     "projects": {
       "title": "Projects",
@@ -225,8 +225,8 @@
     },
     "jsonLd": {
       "siteDescription": "Personal portfolio of Samuel Lecomte, physics graduate and developer.",
-      "jobTitle": "Physics graduate specializing in data science",
-      "personDescription": "Physics graduate specialized in high-energy physics and data science, with two research internships in teams from CERN's ATLAS and LHCb collaborations.",
+      "jobTitle": "Physics graduate specialising in data science",
+      "personDescription": "Physics graduate specialised in high-energy physics and data science, with two research internships in teams from CERN's ATLAS and LHCb collaborations.",
       "webpageDescription": "Portfolio homepage presenting research, data analysis, and software projects by Samuel Lecomte.",
       "knowsAbout": ["Particle Physics", "Data Science", "Python", "Machine Learning", "Data Analysis", "Scientific Computing", "Web Development", "DevOps", "Data Engineering"]
     }

@@ -95,7 +95,7 @@
         "description": "J'aime les activités qui demandent de l'endurance et une bonne gestion du risque. Je pratique le trail, avec un ultra-trail de 100 km à mon actif, et l'alpinisme, avec plusieurs sommets alpins dont l'Aiguille du Midi et le Grand Paradis."
       },
       "tech": {
-        "title": "Home Lab & Auto-hébergement",
+        "title": "Home lab & auto-hébergement",
         "description": "J'administre chez moi un serveur Proxmox avec TrueNAS et des services en conteneurs, accessibles derrière un reverse proxy. Je m'auto-héberge pour garder la main sur mes données."
       },
       "science": {
@@ -207,7 +207,7 @@
     },
     "about": {
       "title": "À propos",
-      "description": "Du Master de Physique Fondamentale à l'Université Clermont Auvergne au développement logiciel, via deux stages sur des données des expériences ATLAS et LHCb du CERN et un diplôme en Data Science.",
+      "description": "Du master de physique fondamentale à l'Université Clermont Auvergne au développement logiciel, via deux stages sur des données des expériences ATLAS et LHCb du CERN et un diplôme en Data Science.",
       "ogTitle": "À propos | Samuel Lecomte",
       "ogDescription": "De l'analyse de données des expériences ATLAS et LHCb du CERN au développement logiciel : formation, stages et compétences techniques."
     },
@@ -225,7 +225,7 @@
     },
     "jsonLd": {
       "siteDescription": "Portfolio personnel de Samuel Lecomte, physicien diplômé et développeur.",
-      "jobTitle": "Diplômé en physique, spécialisé en data science.",
+      "jobTitle": "Diplômé en physique, spécialisé en data science",
       "personDescription": "Diplômé en physique spécialisé en physique des hautes énergies et data science, avec deux stages de recherche au sein d'équipes des collaborations ATLAS et LHCb du CERN.",
       "webpageDescription": "Page d'accueil du portfolio présentant recherche, analyse de données et projets logiciels de Samuel Lecomte.",
       "knowsAbout": ["Physique des particules", "Data science", "Python", "Machine learning", "Analyse de données", "Calcul scientifique", "Développement web", "DevOps", "Ingénierie des données"]

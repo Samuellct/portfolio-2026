@@ -10,7 +10,7 @@ const projectsData: Record<string, Record<string, ProjectData>> = {
       id: 'home-server',
       title: { en: 'Proxmox Home Server', fr: 'Serveur domestique Proxmox' },
       description: {
-        en: 'Building a home server to learn virtualization, NAS administration and self-hosting.',
+        en: 'Building a home server to learn virtualisation, NAS administration and self-hosting.',
         fr: 'Construction d\'un serveur domestique pour apprendre la virtualisation, l\'administration NAS et l\'auto-hébergement.',
       },
       subtitle: {
@@ -19,7 +19,7 @@ const projectsData: Record<string, Record<string, ProjectData>> = {
       },
       sections: {
         context: {
-          en: `I started this project to learn the basics of server administration and virtualization. Instead of buying a ready-made NAS (network-attached storage), I repurposed an old PC (AMD A8-7650K, 32GB DDR3 RAM, 400 GB SSD for system files) to build a "Proof of Concept" system. The goal is to test how different services work together before investing in more expensive hardware.`,
+          en: `I started this project to learn the basics of server administration and virtualisation. Instead of buying a ready-made NAS (network-attached storage), I repurposed an old PC (AMD A8-7650K, 32GB DDR3 RAM, 400 GB SSD for system files) to build a "Proof of Concept" system. The goal is to test how different services work together before investing in more expensive hardware.`,
           fr: `J'ai lancé ce projet afin d'apprendre les bases de l'administration de serveurs et de la virtualisation. Au lieu d'acheter un NAS (serveur de stockage en réseau) prêt à l'emploi, j'ai réutilisé un ancien PC (AMD A8-7650K, 32 Go de RAM DDR3, SSD de 400 Go pour les fichiers système) afin de construire un système "Proof of Concept". L'objectif est de tester le fonctionnement conjoint de différents services avant d'investir dans du matériel plus coûteux.`,
         },
         whatIBuilt: {
@@ -36,7 +36,7 @@ Nginx Proxy Manager gère le reverse proxy : il relie Nextcloud et Jellyfin à d
         },
       },
       limits: {
-        en: `Jellyfin now has about ten user accounts, around five of them used regularly. Running Proxmox as a base layer might be too heavy for my old PC once several users rely on the planned services: video streaming (Jellyfin), dedicated photo storage (Immich) and bulk storage (NAS access, Nextcloud). I'm currently considering switching to a bare-metal TrueNAS install and building a dedicated machine for virtualization later on. I also planned to add an Arc A380 GPU, which would allow Jellyfin to transcode video files on the fly without crushing the CPU. With component prices rising sharply, these upgrades are on hold, so this test phase will last longer than planned.`,
+        en: `Jellyfin now has about ten user accounts, around five of them used regularly. Running Proxmox as a base layer might be too heavy for my old PC once several users rely on the planned services: video streaming (Jellyfin), dedicated photo storage (Immich) and bulk storage (NAS access, Nextcloud). I'm currently considering switching to a bare-metal TrueNAS install and building a dedicated machine for virtualisation later on. I also planned to add an Arc A380 GPU, which would allow Jellyfin to transcode video files on the fly without crushing the CPU. With component prices rising sharply, these upgrades are on hold, so this test phase will last longer than planned.`,
         fr: `Jellyfin compte maintenant une dizaine de comptes utilisateur, dont environ cinq utilisés régulièrement. L'exécution de Proxmox en tant que couche de base risque d'être trop lourde pour mon ancien PC une fois que plusieurs utilisateurs s'appuieront sur les services prévus : streaming vidéo (Jellyfin), stockage dédié des photos (Immich) et stockage de masse (accès NAS, Nextcloud). J'envisage actuellement de passer à une installation TrueNAS *bare-metal* et de construire plus tard une machine dédiée à la virtualisation. J'avais aussi prévu d'ajouter un GPU Arc A380, qui permettrait à Jellyfin de transcoder des fichiers vidéo à la volée sans saturer le CPU. Avec la flambée des prix des composants, ces améliorations sont en attente, et cette phase de test va durer plus longtemps que prévu.`,
       },
       technologies: ['Proxmox', 'TrueNAS', 'Nextcloud', 'Jellyfin', 'Nginx Proxy Manager'],
@@ -80,7 +80,7 @@ Nginx Proxy Manager gère le reverse proxy : il relie Nextcloud et Jellyfin à d
         approach: {
           en: `The first version used WordPress, but I quickly found the platform too limiting and heavy for what I needed. Between late 2024 and early 2025, I rebuilt everything with Eleventy (V2), which let me work directly with HTML and CSS in a structure I understood well. A few months later, I moved to React with Vite (V3) to learn component-based architecture and client-side rendering (CSR), even though I could already see the limits of pure CSR.
 
-By October 2025, I decided to migrate to Next.js 15. The main motivation was to solve the performance gaps I noticed in V3, specifically through server-side rendering and built-in optimizations like image lazy loading. The transition to the App Router architecture required a lot of work and testing to figure out how to move from Vite to this new framework.`,
+By October 2025, I decided to migrate to Next.js 15. The main motivation was to solve the performance gaps I noticed in V3, specifically through server-side rendering and built-in optimisations like image lazy loading. The transition to the App Router architecture required a lot of work and testing to figure out how to move from Vite to this new framework.`,
           fr: `La première version utilisait WordPress, mais j'ai rapidement trouvé cette plateforme trop restrictive et trop lourde pour mes besoins. Entre fin 2024 et début 2025, j'ai tout reconstruit avec Eleventy (V2), qui m'a permis de travailler directement avec HTML et CSS dans une structure que je comprenais bien. Quelques mois plus tard, je suis passé à React avec Vite (V3) pour apprendre l'architecture basée sur les composants et le rendu côté client (CSR), même si je voyais déjà les limites du CSR pur.
 
 À partir d'octobre 2025, j'ai décidé de migrer vers Next.js 15. Ma principale motivation était de résoudre les problèmes de performances que j'avais remarqués dans la V3, notamment grâce au rendu côté serveur et à des optimisations intégrées telles que le chargement différé des images. La transition vers l'architecture App Router a nécessité beaucoup de travail et de tests pour comprendre comment passer de Vite à ce nouveau framework.`,
@@ -121,7 +121,7 @@ Le site tourne sur Cloudflare Workers via OpenNext. Chaque push sur la branche p
       id: 'alpine-route',
       title: { en: 'AlpineRoute', fr: 'AlpineRoute' },
       description: {
-        en: 'Route optimizer for off-trail mountaineering in the Alps, using high-resolution Lidar data and a multi-criteria cost function.',
+        en: 'Route optimiser for off-trail mountaineering in the Alps, using high-resolution Lidar data and a multi-criteria cost function.',
         fr: 'Optimiseur d\'itinéraires pour l\'alpinisme hors-piste dans les Alpes, utilisant des données Lidar HD et une fonction de coût multi-critères.',
       },
       subtitle: {
@@ -136,7 +136,7 @@ Le site tourne sur Cloudflare Workers via OpenNext. Chaque push sur la branche p
         approach: {
           en: `The system downloads IGN Lidar HD elevation tiles (50 cm resolution, downsampled afterwards) on demand via the Géoplateforme API, covering only the bounding box of the planned route. For areas outside France, it falls back to the Copernicus GLO-30 DEM (30 m resolution). From the elevation data, the pipeline derives slope, aspect, roughness, and solar radiation for each grid cell.
 
-These raster layers are combined with vector data: glacier outlines from RGI 7.0 (the Randolph Glacier Inventory), land cover from ESA WorldCover, and trails and barriers from OpenStreetMap. The resulting cost function penalizes steep slopes, glacier zones, dense vegetation and restricted areas, while favoring established trails and safer aspects.`,
+These raster layers are combined with vector data: glacier outlines from RGI 7.0 (the Randolph Glacier Inventory), land cover from ESA WorldCover, and trails and barriers from OpenStreetMap. The resulting cost function penalises steep slopes, glacier zones, dense vegetation and restricted areas, while favouring established trails and safer aspects.`,
           fr: `Le système télécharge à la demande des tuiles IGN Lidar MNT (modèle numérique de terrain, résolution 50 cm, sous-échantillonné ensuite) via l'API Géoplateforme, en se limitant à l'emprise de l'itinéraire planifié. Pour les zones hors de France, le système bascule sur le MNT Copernicus GLO-30 (résolution 30 m). À partir des données d'élévation, le pipeline dérive la pente, l'orientation, la rugosité et l'exposition solaire pour chaque cellule de la grille.
 
 Ces couches raster sont combinées avec des données vectorielles : contours glaciaires RGI 7.0 (Randolph Glacier Inventory, l'inventaire mondial des glaciers), occupation du sol ESA WorldCover 10 m, et sentiers/barrières OSM. La fonction de coût pénalise les fortes pentes, les zones glaciaires crevassées, la végétation dense et les zones interdites, tout en favorisant les sentiers établis et les expositions sûres.`,
@@ -214,13 +214,13 @@ HEP-GUI était une preuve de concept limitée à ce workflow précis, et je ne p
       location: { en: 'Personal project', fr: 'Projet personnel' },
       image: '/images/hepGUI.webp',
       imageAlt: {
-        en: 'HEP-GUI desktop interface showing Monte Carlo simulation controls and histogram visualization',
+        en: 'HEP-GUI desktop interface showing Monte Carlo simulation controls and histogram visualisation',
         fr: 'Interface desktop HEP-GUI affichant les contrôles de simulation Monte Carlo et la visualisation des histogrammes',
       },
       media: [
         {
           src: '/images/hepGUI.webp',
-          alt: { en: 'HEP-GUI desktop interface showing Monte Carlo simulation controls and histogram visualization', fr: 'Interface desktop HEP-GUI affichant les contrôles de simulation Monte Carlo et la visualisation des histogrammes' },
+          alt: { en: 'HEP-GUI desktop interface showing Monte Carlo simulation controls and histogram visualisation', fr: 'Interface desktop HEP-GUI affichant les contrôles de simulation Monte Carlo et la visualisation des histogrammes' },
           caption: { en: 'Output histograms drawn by PyQtGraph in the Plots tab of HEP-GUI.', fr: 'Histogrammes de sortie tracés par PyQtGraph dans l\'onglet Plots de HEP-GUI.' },
           frame: 'figure',
           width: 1202,
@@ -248,7 +248,7 @@ HEP-GUI était une preuve de concept limitée à ce workflow précis, et je ne p
           fr: `Accred vient des festivals de cinéma où je vais. Le nom fait référence aux accréditations de festival : le projet a démarré lorsque j'ai fait une demande d'accréditation cinéphile pour Cannes 2026 et que j'ai voulu un outil dédié pour préparer et suivre mes séances.`,
         },
         whatIBuilt: {
-          en: `The app is a mobile-first PWA (progressive web app: a website you can install on a phone like an app) built with Next.js 15 and SQLite. Its programme view displays the full festival schedule in a grid, color-coded by venue and conflict status; from there I build my lineup, and the app flags scheduling conflicts between chosen screenings. Between two sessions, the journal opens a new note quickly for a few thoughts; the full review waits for the end of the day.
+          en: `The app is a mobile-first PWA (progressive web app: a website you can install on a phone like an app) built with Next.js 15 and SQLite. Its programme view displays the full festival schedule in a grid, colour-coded by venue and conflict status; from there I build my lineup, and the app flags scheduling conflicts between chosen screenings. Between two sessions, the journal opens a new note quickly for a few thoughts; the full review waits for the end of the day.
 
 Film metadata is fetched from the TMDb API (The Movie Database) and cached locally so the app works offline once data is loaded. Festival programmes can be imported from CSV or JSON files, and selections can be exported to Letterboxd CSV or iCalendar format. The app is self-hosted via Docker Compose behind Nginx Proxy Manager.`,
           fr: `L'application est une PWA (application web progressive : un site qui s'installe sur le téléphone comme une application) mobile-first développée avec Next.js 15 et SQLite. Sa vue programme affiche le planning complet du festival sous forme de grille, colorée par salle et par statut de conflit ; à partir de là, je compose ma sélection, et l'application signale les conflits d'horaire entre les séances choisies. Entre deux séances, le journal ouvre rapidement une nouvelle note pour y jeter quelques idées ; la critique complète attend la fin de la journée.
@@ -296,7 +296,7 @@ Les métadonnées des films sont récupérées depuis l'API TMDb (The Movie Data
       },
       sections: {
         context: {
-          en: `TimePredict predicts race performance for trail running: it takes a route, the weather expected along it, and an athlete's physiology and nutrition needs, and turns them into a personalized race report.`,
+          en: `TimePredict predicts race performance for trail running: it takes a route, the weather expected along it, and an athlete's physiology and nutrition needs, and turns them into a personalised race report.`,
           fr: `TimePredict prédit la performance en trail running : à partir d'un parcours, de la météo attendue et des besoins physiologiques et nutritionnels d'un coureur, l'outil génère un rapport de course personnalisé.`,
         },
         problem: {
@@ -365,7 +365,7 @@ Les métadonnées des films sont récupérées depuis l'API TMDb (The Movie Data
         whatIBuilt: {
           en: `### Homepage
 
-The flagship plugin: it replaces Jellyfin's default home page with a fully configurable widget engine, 27 widgets across native, admin-curated, personalized and TMDb-connected categories (TMDb: The Movie Database, a public film database), with drag-and-drop layout from the admin dashboard. It stays out of the way on TV clients, where the native home screen still makes more sense. It has its own documentation site: see it on [GitHub](https://github.com/JellyUX/Homepage) or read the [docs](https://jellyux.github.io/Homepage/).
+The flagship plugin: it replaces Jellyfin's default home page with a fully configurable widget engine, 27 widgets across native, admin-curated, personalised and TMDb-connected categories (TMDb: The Movie Database, a public film database), with drag-and-drop layout from the admin dashboard. It stays out of the way on TV clients, where the native home screen still makes more sense. It has its own documentation site: see it on [GitHub](https://github.com/JellyUX/Homepage) or read the [docs](https://jellyux.github.io/Homepage/).
 
 ### Keep or Remove
 
@@ -481,7 +481,7 @@ L'application fonctionne entièrement hors ligne : aucun serveur, aucun cloud, a
           fr: `Au cours de ma troisième année de licence, j'ai travaillé sur une analyse de physique des particules qui simulait la recherche d'un *boson X* hypothétique se désintégrant en deux photons. Les échantillons simulés étaient fournis par l'enseignant.`,
         },
         approach: {
-          en: `While I was familiar with Python and libraries like Pandas or SciPy, applying them to physics analysis required a different approach. We needed to optimize selection cuts on variables like photon isolation (a variable that separates genuine photons from those produced in particle decays) and transverse momentum to separate the signal from Standard Model background noise. The cuts had to be precise: too strict and we'd lose signal events, too loose and the background would dominate. Through this trial-and-error process, we managed to reduce background by a factor of 40 while retaining most signal events.
+          en: `While I was familiar with Python and libraries like Pandas or SciPy, applying them to physics analysis required a different approach. We needed to optimise selection cuts on variables like photon isolation (a variable that separates genuine photons from those produced in particle decays) and transverse momentum to separate the signal from Standard Model background noise. The cuts had to be precise: too strict and we'd lose signal events, too loose and the background would dominate. Through this trial-and-error process, we managed to reduce background by a factor of 40 while retaining most signal events.
 
 After establishing the selection criteria on simulated samples, we moved to statistical analysis. We fitted the invariant mass spectrum background with an exponential function to see if a local excess appeared, which would indicate a new particle. Our dataset of observed data showed no evidence of the X boson, with a significance of only $0.5~\\sigma$, consistent with statistical fluctuation.
 
@@ -567,7 +567,7 @@ En suivant la méthode CLs (méthode statistique standard pour fixer des limites
           fr: `Nous avons commencé par la théorie. Nous avons étudié la superposition, l'intrication et la représentation de la sphère de Bloch, puis nous sommes passés aux portes quantiques telles que Hadamard, Pauli-X et CNOT (NON contrôlé), ainsi qu'à la transformée de Fourier quantique. Une fois que nous nous sommes familiarisés avec les bases, nous avons implémenté le chiffrement RSA en Python en utilisant à la fois une version simple avec SymPy et une implémentation standard avec la bibliothèque *cryptography*. L'objectif était de voir concrètement le fonctionnement du chiffrement asymétrique avant de tenter de le casser.`,
         },
         whatIBuilt: {
-          en: `Shor's algorithm for integer factorization was the hardest part to implement. We started with IBM's Qiskit library, but several attempts failed. Switching to Google's Cirq library, we wrote code that factors a number both with a classical algorithm and with a simulation of Shor's algorithm.
+          en: `Shor's algorithm for integer factorisation was the hardest part to implement. We started with IBM's Qiskit library, but several attempts failed. Switching to Google's Cirq library, we wrote code that factors a number both with a classical algorithm and with a simulation of Shor's algorithm.
 
 We also learned why researchers are developing new encryption methods that could resist quantum attacks. These "post-quantum" algorithms rely on mathematical problems that even quantum computers would struggle with, like finding short vectors in high-dimensional lattices (the shortest vector problem, SVP).`,
           fr: `L'algorithme de Shor pour la factorisation des nombres entiers a été le plus difficile à mettre en œuvre. Nous avons commencé avec la bibliothèque Qiskit d'IBM, mais plusieurs tentatives n'ont pas abouti. En passant à la bibliothèque Cirq de Google, nous avons pu écrire un code qui factorise un nombre à la fois par un algorithme classique et par une simulation de l'algorithme de Shor.
@@ -640,13 +640,13 @@ Nous avons aussi compris pourquoi les chercheurs développent de nouvelles méth
           fr: `Au cours d'un projet d'une semaine en mars 2024, j'ai travaillé avec une équipe de deux autres étudiants afin de développer des fonctionnalités LabVIEW supplémentaires pour un système existant de mesure du facteur de Landé des muons. Ce projet consistait principalement en une introduction pratique à la programmation du contrôle des instruments et de l'acquisition de données, l'expérience physique servant de contexte pour l'apprentissage du développement LabVIEW.`,
         },
         approach: {
-          en: `Atmospheric muons originate from cosmic ray interactions at an altitude of around 15 km, arriving at ground level with a flux of roughly 1 muon per $\\text{cm}^{2}$ per minute. These particles have a rest-frame lifetime of 2.2 microseconds and decay via the weak interaction: $\\mu^+ \\rightarrow e^+ + \\nu_e + \\bar{\\nu}_\\mu$. The measurement relies on spin polarization: due to parity violation in weak interactions, the decay positron is preferentially emitted along the muon's spin direction at the moment of decay.
+          en: `Atmospheric muons originate from cosmic ray interactions at an altitude of around 15 km, arriving at ground level with a flux of roughly 1 muon per $\\text{cm}^{2}$ per minute. These particles have a rest-frame lifetime of 2.2 microseconds and decay via the weak interaction: $\\mu^+ \\rightarrow e^+ + \\nu_e + \\bar{\\nu}_\\mu$. The measurement relies on spin polarisation: due to parity violation in weak interactions, the decay positron is preferentially emitted along the muon's spin direction at the moment of decay.
 
 When placed in a magnetic field $\\vec{B}$, the muon spin precesses at the Larmor frequency $\\omega_L = g(e/2m_\\mu)B$, where $g$ is the Landé factor we aim to measure. This precession modulates the decay time distribution, creating an oscillatory pattern superimposed on the exponential decay.
 
-The detector consists of four plastic scintillators coupled to photomultiplier tubes (PMT), with 20 mm of copper plates positioned between the upper and lower detector pairs. The copper stops incoming muons while allowing higher-energy decay positrons to escape and reach the lower detectors. Two Helmholtz coils (1 meter diameter, field-to-current ratio of 302 µT/A) generate the uniform magnetic field in the detection volume.
+The detector consists of four plastic scintillators coupled to photomultiplier tubes (PMT), with 20 mm of copper plates positioned between the upper and lower detector pairs. The copper stops incoming muons while allowing higher-energy decay positrons to escape and reach the lower detectors. Two Helmholtz coils (1 metre diameter, field-to-current ratio of 302 µT/A) generate the uniform magnetic field in the detection volume.
 
-Discriminators turn the PMT pulses into standard logic pulses, and coincidence logic selects the events: valid muon stops require signals in the upper detectors but not in the lower ones, while decay positron detection requires the opposite pattern. A Time-to-Amplitude Converter (TAC) measures the microsecond-scale intervals between these events, outputting an analog voltage proportional to the measured time.`,
+Discriminators turn the PMT pulses into standard logic pulses, and coincidence logic selects the events: valid muon stops require signals in the upper detectors but not in the lower ones, while decay positron detection requires the opposite pattern. A Time-to-Amplitude Converter (TAC) measures the microsecond-scale intervals between these events, outputting an analogue voltage proportional to the measured time.`,
           fr: `Les muons atmosphériques proviennent des interactions des rayons cosmiques à une altitude d'environ 15 km et atteignent le sol avec un flux d'environ 1 muon par $\\text{cm}^{2}$ par minute. Ces particules ont une durée de vie propre de 2,2 microsecondes et se désintègrent par interaction faible : $\\mu^+ \\rightarrow e^+ + \\nu_e + \\bar{\\nu}_\\mu$. La mesure repose sur la polarisation du spin : en raison de la violation de parité dans les interactions faibles, le positon issu de la désintégration est émis de préférence dans la direction du spin du muon au moment de la désintégration.
 
 Lorsqu'il est placé dans un champ magnétique $\\vec{B}$, le spin du muon précesse à la fréquence de Larmor $\\omega_L = g(e/2m_\\mu)B$, où $g$ est le facteur de Landé que nous cherchons à mesurer. Cette précession module la distribution du temps de désintégration, créant un motif oscillatoire superposé à la désintégration exponentielle.
@@ -662,7 +662,7 @@ Day one was spent understanding the hardware and the existing LabVIEW code. We l
 
 Day three focused on TAC calibration and data quality. We developed a calibration routine correlating direct oscilloscope timing measurements with TAC voltage outputs. The linear fit yielded a slope of 0.996 ± 0.001 and an intercept of 0.085 ± 0.001 µs, providing the calibration for converting TAC outputs to actual time intervals.
 
-Using Python for rapid prototyping, we developed filtering criteria before implementing them in LabVIEW's graphical environment. In parallel, we worked on the power supply control interface. Initial attempts produced severe current oscillations, requiring systematic tuning of voltage-to-current ratios. We also discovered that the power supply needed about 15 minutes of thermal stabilization and that the teslameter required careful zero calibration before each measurement session.
+Using Python for rapid prototyping, we developed filtering criteria before implementing them in LabVIEW's graphical environment. In parallel, we worked on the power supply control interface. Initial attempts produced severe current oscillations, requiring systematic tuning of voltage-to-current ratios. We also discovered that the power supply needed about 15 minutes of thermal stabilisation and that the teslameter required careful zero calibration before each measurement session.
 
 By day four, we streamlined the interface to essential controls: ON/OFF for the magnetic field, START for data acquisition, and real-time display of field strength. Error handling structures now prevent the crashes of early development; the field control interface is stable, and the TAC calibration module, added to the existing LabVIEW system, runs automatically.`,
           fr: `Le projet s'appuie sur les travaux réalisés par les groupes d'étudiants précédents, chaque itération ajoutant de nouvelles fonctionnalités. Nos principaux objectifs étaient de mettre en œuvre l'analyse graphique de l'étalonnage TAC et de développer une interface pour contrôler l'alimentation électrique de la bobine de Helmholtz.
@@ -678,7 +678,7 @@ Au quatrième jour, nous avons simplifié l'interface pour ne conserver que les 
       },
       results: [
         { label: { en: 'TAC calibration slope', fr: 'Pente d\'étalonnage du TAC' }, value: '0.996', uncertainty: '0.001', note: { en: 'intercept 0.085 ± 0.001 µs', fr: 'ordonnée à l\'origine 0.085 ± 0.001 µs' } },
-        { label: { en: 'Acquisition timeout', fr: 'Timeout d\'acquisition' }, value: '4.8', unit: 'min', baseline: { value: '50 min', label: { en: 'initial value', fr: 'valeur initiale' } }, note: { en: 'overnight acquisitions stabilized', fr: 'acquisitions nocturnes stabilisées' } },
+        { label: { en: 'Acquisition timeout', fr: 'Timeout d\'acquisition' }, value: '4.8', unit: 'min', baseline: { value: '50 min', label: { en: 'initial value', fr: 'valeur initiale' } }, note: { en: 'overnight acquisitions stabilised', fr: 'acquisitions nocturnes stabilisées' } },
       ],
       technologies: ['LabVIEW', 'Python'],
       keywords: ['labview', 'muons', 'data acquisition', 'instrument control', 'TAC calibration'],
@@ -746,11 +746,11 @@ Au quatrième jour, nous avons simplifié l'interface pour ne conserver que les 
           fr: `Dans le cadre d'un projet de trois mois dans le cours de théorie du chaos, nous avons étudié les anneaux de Saturne en tant que système dynamique complexe. L'objectif était de comprendre si ces systèmes d'anneaux sont réellement stables sur des centaines de millions d'années, ou s'ils pourraient finir par se disperser.`,
         },
         approach: {
-          en: `We began by reviewing the historical theories on the composition and dynamics of the rings. Cassini thought they were made of colliding rocks, Laplace argued for solid structures, but Maxwell settled it in 1859 by proving mathematically that only systems of independent particles could remain stable. His work also revealed that these systems are inherently sensitive to initial conditions, which is a hint of chaos theory before Poincaré formalized the concept. We also learned about the Roche limit, which explains how tidal forces can tear apart a moon to create rings in the first place.`,
+          en: `We began by reviewing the historical theories on the composition and dynamics of the rings. Cassini thought they were made of colliding rocks, Laplace argued for solid structures, but Maxwell settled it in 1859 by proving mathematically that only systems of independent particles could remain stable. His work also revealed that these systems are inherently sensitive to initial conditions, which is a hint of chaos theory before Poincaré formalised the concept. We also learned about the Roche limit, which explains how tidal forces can tear apart a moon to create rings in the first place.`,
           fr: `Nous avons commencé par passer en revue les théories historiques sur la composition et la dynamique des anneaux. Cassini pensait qu'ils étaient constitués de roches en collision, Laplace défendait l'hypothèse de structures solides, mais Maxwell a tranché en 1859 en prouvant mathématiquement que seuls des systèmes de particules indépendantes pouvaient rester stables. Ses travaux ont également révélé que ces systèmes sont intrinsèquement sensibles aux conditions initiales, ce qui est un indice de la théorie du chaos avant que Poincaré ne formalise le concept. Nous avons également découvert la limite de Roche, qui explique comment les forces de marée peuvent disloquer une lune pour créer des anneaux.`,
         },
         whatIBuilt: {
-          en: `Our computational work focused on modeling the rings as an N-body problem using Python. We implemented Newton's equations, treating the rings as collections of particles interacting with Saturn and its moons. We ran simulations tracking 20 particles over 10-year periods, visualizing their trajectories in 2D and 3D. The results showed clear chaotic behavior with high sensitivity to initial conditions, just like Poincaré predicted for the three-body problem.`,
+          en: `Our computational work focused on modelling the rings as an N-body problem using Python. We implemented Newton's equations, treating the rings as collections of particles interacting with Saturn and its moons. We ran simulations tracking 20 particles over 10-year periods, visualising their trajectories in 2D and 3D. The results showed clear chaotic behaviour with high sensitivity to initial conditions, just like Poincaré predicted for the three-body problem.`,
           fr: `Le travail numérique s'est concentré sur la modélisation des anneaux en tant que problème à N corps à l'aide de Python. Nous avons mis en œuvre les équations de Newton, en traitant les anneaux comme des collections de particules interagissant avec Saturne et ses lunes. Nous avons effectué des simulations suivant 20 particules sur des périodes de 10 ans, en visualisant leurs trajectoires en 2D et 3D. Les résultats ont montré un comportement chaotique clair avec une grande sensibilité aux conditions initiales, comme Poincaré l'avait prédit pour le problème à trois corps.`,
         },
       },
@@ -818,13 +818,13 @@ Au quatrième jour, nous avons simplifié l'interface pour ne conserver que les 
       },
       sections: {
         context: {
-          en: `During my first year of master's degree, I spent two months at the Clermont Physics Laboratory as part of the LHCb team, working on a rare decay mode of the B meson. I studied B⁺ → K₁⁺γ, which is a process that could reveal physics beyond the Standard Model through the polarization of the emitted photon.`,
+          en: `During my first year of master's degree, I spent two months at the Clermont Physics Laboratory as part of the LHCb team, working on a rare decay mode of the B meson. I studied B⁺ → K₁⁺γ, which is a process that could reveal physics beyond the Standard Model through the polarisation of the emitted photon.`,
           fr: `Au cours de ma première année de master, j'ai passé deux mois au Laboratoire de physique de Clermont au sein de l'équipe LHCb, où j'ai travaillé sur un mode de désintégration rare du méson B. J'ai étudié le processus B⁺ → K₁⁺γ, qui pourrait être un signe de physique au-delà du Modèle standard à travers la polarisation du photon émis.`,
         },
         approach: {
           en: `This internship was my first experience working with large-scale experimental data from LHC Run 1. I worked primarily with ROOT (CERN's data analysis framework) and C++ to filter through the collected events. Starting from samples containing several hundred thousand candidates, the challenge was to reduce this to a manageable dataset while preserving potential signal events.
 
-Most of my time went into building a preselection strategy using simulated data. I studied particle identification variables to distinguish signal from background. For charged particles, the RICH detectors (Cherenkov detectors that identify charged particles) of LHCb produce probability outputs like ProbNNk, which indicates how likely a track is to be a kaon rather than a pion or proton. For photons, I used gammaCL to assess the quality of electromagnetic showers in the calorimeters and reject background noise. I also reconstructed the helicity angle, which relates to the photon's polarization and would eventually help probe for new physics.`,
+Most of my time went into building a preselection strategy using simulated data. I studied particle identification variables to distinguish signal from background. For charged particles, the RICH detectors (Cherenkov detectors that identify charged particles) of LHCb produce probability outputs like ProbNNk, which indicates how likely a track is to be a kaon rather than a pion or proton. For photons, I used gammaCL to assess the quality of electromagnetic showers in the calorimeters and reject background noise. I also reconstructed the helicity angle, which relates to the photon's polarisation and would eventually help probe for new physics.`,
           fr: `Ce stage a été ma première expérience de travail avec des données expérimentales à grande échelle issues du Run 1 du LHC. J'ai principalement utilisé ROOT (l'environnement d'analyse de données du CERN) et C++ pour filtrer les événements collectés. À partir d'échantillons contenant plusieurs centaines de milliers de candidats, le défi était de réduire l'ensemble à un jeu de données exploitable tout en préservant les événements de signal potentiels.
 
 J'ai consacré la majeure partie de mon temps à élaborer une stratégie de présélection à partir de données simulées. J'ai étudié les variables d'identification des particules afin de distinguer le signal du bruit de fond. Pour les particules chargées, les détecteurs RICH (détecteurs Tcherenkov qui identifient les particules chargées) du LHCb produisent des sorties probabilistes telles que ProbNNk, qui indiquent la probabilité qu'une trace soit un kaon plutôt qu'un pion ou un proton. Pour les photons, j'ai utilisé gammaCL afin d'évaluer la qualité des gerbes électromagnétiques dans les calorimètres et de rejeter le bruit de fond. J'ai également reconstruit l'angle d'hélicité, qui est lié à la polarisation du photon et qui pourrait à terme aider à explorer la nouvelle physique.`,
@@ -888,7 +888,7 @@ J'ai consacré la majeure partie de mon temps à élaborer une stratégie de pr�
       },
       sections: {
         context: {
-          en: `During my final master's degree year, I spent five months in the ATLAS team at the Clermont Physics Laboratory. I worked on simulating Long-Lived Particles, a class of particles predicted by several extensions of the Standard Model. Unlike ordinary particles that decay almost instantly near the collision point, LLPs can travel centimeters or even meters through the detector before breaking apart into observable products.`,
+          en: `During my final master's degree year, I spent five months in the ATLAS team at the Clermont Physics Laboratory. I worked on simulating Long-Lived Particles, a class of particles predicted by several extensions of the Standard Model. Unlike ordinary particles that decay almost instantly near the collision point, LLPs can travel centimetres or even metres through the detector before breaking apart into observable products.`,
           fr: `Au cours de ma dernière année de master, j'ai passé cinq mois au sein de l'équipe ATLAS au Laboratoire de physique de Clermont. J'ai travaillé sur la simulation de particules à longue durée de vie (LLP), une classe de particules prédite par plusieurs extensions du Modèle standard. Contrairement aux particules ordinaires qui se désintègrent presque instantanément près du point de collision, les LLP peuvent parcourir plusieurs centimètres, voire plusieurs mètres, à travers le détecteur avant de se désintégrer en produits observables.`,
         },
         problem: {
