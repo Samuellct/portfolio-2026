@@ -38,6 +38,24 @@ npm run dev
 
 `npm run preview` builds the Worker with OpenNext and runs it locally in the Workers runtime.
 
+## Tests
+
+End-to-end tests run locally with Playwright (Chromium) against the OpenNext preview, at two widths: desktop 1440 px and mobile 390 px. They are not part of CI.
+
+```bash
+npx playwright install chromium   # once
+npm run test:e2e
+```
+
+The command starts `npm run preview` on port 8787, or reuses a preview that is already running. The HTML report lands in `playwright-report/`.
+
+What the suite covers (`e2e/`):
+
+- `smoke.spec.ts`: the home, About, projects, contact and two project pages answer 200 with the right `lang`, no horizontal overflow and no console error; an unknown page answers 404 with `noindex`.
+- `no-js.spec.ts`: with JavaScript disabled, each page keeps at least the number of visible text blocks measured on 2026-10-14. A second test per page expects every block to be visible. It is marked as an expected failure until the page is fixed, then the marker comes off and the floor goes up.
+- `about-ratchet.spec.ts`: on desktop, content revealed on the About page never fades back when scrolling up.
+- `reduced-motion.spec.ts`: turning on reduced motion while About or the projects listing is open removes the pins and the parallax and shows every animated part in its final state.
+
 ## Project structure
 
 ```
@@ -50,6 +68,7 @@ src/
 ├── lib/           # Project data, technologies, theme tokens
 └── styles/        # Global CSS
 messages/          # UI text, one JSON file per language
+e2e/               # Playwright end-to-end tests
 ```
 
 ## Customization
