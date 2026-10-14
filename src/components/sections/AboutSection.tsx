@@ -162,7 +162,7 @@ export default function AboutSection({ statValues }: { statValues: HomeStats }) 
             {t('title').split(' ').map((word: string, i: number) => {
               const clean = word.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
               const isAccent = ['physicien', 'developpeur', 'physicist', 'developer'].includes(clean)
-              const isEllipsis = word === '...'
+              const isEllipsis = word === '…'
               return (
                 <span
                   key={i}
