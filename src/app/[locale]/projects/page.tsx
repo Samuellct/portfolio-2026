@@ -9,7 +9,7 @@ import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from
 import { gsap } from '@/lib/gsap'
 import { ArrowRight, Search } from 'lucide-react'
 import Image from 'next/image'
-import { getProjectsSortedByDate, getLocalizedField, getCardPeriod, Locale, PROJECT_CATEGORIES, ProjectData, PROJECTS_FILTER_KEY } from '@/lib/projects'
+import { getProjectsSortedByDate, getLocalizedField, getCardPeriod, PROJECT_CATEGORIES, ProjectData, PROJECTS_FILTER_KEY } from '@/lib/projects'
 import { useTranslations, useLocale } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { PAGE_BG, RISO } from '@/lib/theme'
@@ -35,7 +35,7 @@ const PROJECTS_BG_COLOR = PAGE_BG
 // ============================================
 function ProjectCard({ project, index }: { project: ProjectData; index: number }) {
   const t = useTranslations('projects')
-  const locale = useLocale() as Locale
+  const locale = useLocale()
   const cardRef = useRef<HTMLDivElement>(null)
   const [isHovered, setIsHovered] = useState(false)
   const [imageLoaded, setImageLoaded] = useState(false)
@@ -224,7 +224,7 @@ function CategoryFromQuery({ onCategory }: { onCategory: (category: string) => v
 export default function ProjectsPage() {
   const t = useTranslations('projects')
   const tNav = useTranslations('nav')
-  const locale = useLocale() as Locale
+  const locale = useLocale()
   const prefersReducedMotion = useReducedMotion()
   const [activeFilter, setActiveFilter] = useState<string>('all')
   const [searchQuery, setSearchQuery] = useState('')

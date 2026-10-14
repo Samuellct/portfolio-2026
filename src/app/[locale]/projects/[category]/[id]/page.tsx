@@ -4,19 +4,20 @@ import {
   getProjectsSortedByDate,
   getRelatedProjects,
   getLocalizedField,
-  Locale,
 } from '@/lib/projects'
 import ProjectDetailView from './ProjectDetailView'
 import BreadcrumbJsonLd from '@/components/seo/BreadcrumbJsonLd'
 import ProjectJsonLd from '@/components/seo/ProjectJsonLd'
 import { getTranslations } from 'next-intl/server'
+import { toLocale } from '@/i18n/locale'
 
 type Props = {
   params: Promise<{ locale: string; category: string; id: string }>
 }
 
 export default async function ProjectDetailPage({ params }: Props) {
-  const { locale, category: categoryId, id: projectId } = await params
+  const { locale: segment, category: categoryId, id: projectId } = await params
+  const locale = toLocale(segment)
 
   const project = getProjectById(categoryId, projectId)
   // Hidden projects stay unreachable (V6-Q-11, V6-Q-12)
@@ -49,17 +50,17 @@ export default async function ProjectDetailPage({ params }: Props) {
         items={[
           { name: tNav('home'), path: '' },
           { name: tNav('projects'), path: '/projects' },
-          { name: getLocalizedField(project.title, locale as Locale), path: `/projects/${categoryId}/${projectId}` },
+          { name: getLocalizedField(project.title, locale), path: `/projects/${categoryId}/${projectId}` },
         ]}
       />
-      <ProjectJsonLd project={project} locale={locale as Locale} />
+      <ProjectJsonLd project={project} locale={locale} />
       <ProjectDetailView
         project={project}
-        categoryId={categoryId}
+        categoryId={project.category}
         previousProject={previousProject}
         nextProject={nextProject}
         relatedProjects={relatedProjects}
-        locale={locale as Locale}
+        locale={locale}
       />
     </>
   )

@@ -9,6 +9,7 @@ import { BASE_URL, SOCIAL, OG_LOCALE, LANG_TAG } from '@/lib/constants'
 import { SURFACE } from '@/lib/theme'
 import { Providers } from '../providers'
 import '@/styles/globals.css'
+import { toLocale } from '@/i18n/locale'
 
 // Fonts optimized by Next.js
 // One grotesque carries display and text (A4: three families at most)
@@ -47,7 +48,7 @@ type Props = {
   params: Promise<{ locale: string }>
 }
 
-function buildJsonLd(locale: string, t: (key: string) => string) {
+function buildJsonLd(locale: string, t: Awaited<ReturnType<typeof getTranslations<'metadata'>>>) {
   const inLanguage = LANG_TAG[locale] || 'en-US'
   return {
     '@context': 'https://schema.org',
@@ -104,7 +105,7 @@ function buildJsonLd(locale: string, t: (key: string) => string) {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { locale } = await params
+  const locale = toLocale((await params).locale)
   const t = await getTranslations({ locale, namespace: 'metadata' })
 
   return {

@@ -97,7 +97,7 @@ function StarProject({ project, slot, locale, status }: StarProjectProps) {
 export default function HeroSection() {
   const t = useTranslations('hero')
   const tp = useTranslations('projects')
-  const locale = useLocale() as Locale
+  const locale = useLocale()
   const prefersReducedMotion = useReducedMotion()
   const sectionRef = useRef<HTMLElement>(null)
   const contentRef = useRef<HTMLDivElement>(null)

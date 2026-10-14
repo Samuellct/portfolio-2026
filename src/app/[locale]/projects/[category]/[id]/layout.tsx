@@ -1,8 +1,9 @@
 import type { Metadata } from 'next'
 import { getTranslations, setRequestLocale } from 'next-intl/server'
-import { getProjectById, getLocalizedField, getAllProjectParams, Locale } from '@/lib/projects'
+import { getProjectById, getLocalizedField, getAllProjectParams } from '@/lib/projects'
 import { routing } from '@/i18n/routing'
 import { BASE_URL, buildAlternates, OG_LOCALE } from '@/lib/constants'
+import { toLocale } from '@/i18n/locale'
 
 type Props = {
   params: Promise<{ locale: string; category: string; id: string }>
@@ -25,9 +26,9 @@ export async function generateStaticParams() {
 
 // Generate dynamic metadata for SEO
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { locale, category, id } = await params
+  const { locale: segment, category, id } = await params
+  const locale = toLocale(segment)
   const project = getProjectById(category, id)
-  const loc = locale as Locale
   const projectPath = `/projects/${category}/${id}`
 
   if (!project || project.visible === false) {
@@ -37,8 +38,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }
   }
 
-  const title = getLocalizedField(project.title, loc)
-  const description = getLocalizedField(project.description, loc)
+  const title = getLocalizedField(project.title, locale)
+  const description = getLocalizedField(project.description, locale)
 
   return {
     title,
@@ -72,7 +73,7 @@ export default async function ProjectLayout({
   children: React.ReactNode
   params: Promise<{ locale: string }>
 }) {
-  const { locale } = await params
+  const locale = toLocale((await params).locale)
   setRequestLocale(locale)
   return children
 }

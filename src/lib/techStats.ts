@@ -1,5 +1,5 @@
 import { getAllProjects } from './projects'
-import { getTechColor, techFamilies } from './technologies'
+import { getTechColor, techFamilies, type TechFamily } from './technologies'
 
 // Langages de prog pour le Top 4
 export const programmingLanguages = [
@@ -24,7 +24,7 @@ export interface TechStats {
 }
 
 export interface TechFamilyStats {
-  id: string
+  id: TechFamily
   color: string
   techs: TechStats[]
 }
@@ -70,7 +70,8 @@ export function extractTechStats(): {
 
   const secondaryByFamily: TechFamilyStats[] = []
 
-  Object.entries(techFamilies).forEach(([id, family]) => {
+  ;(Object.keys(techFamilies) as TechFamily[]).forEach((id) => {
+    const family = techFamilies[id]
     const familyTechs = family.techs
       .filter(techName => {
         // Inclure only if visible dans les projets + pas dans le top

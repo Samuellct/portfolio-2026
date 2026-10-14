@@ -1,15 +1,12 @@
 'use client'
 
-import { ReactNode, MouseEvent } from 'react'
+import { ComponentProps, MouseEvent } from 'react'
 import { Link, usePathname } from '@/i18n/navigation'
 import { useTransition } from '@/context/TransitionContext'
 
-interface TransitionLinkProps {
+// Every prop of the locale-aware Link, with a plain string path.
+type TransitionLinkProps = Omit<ComponentProps<typeof Link>, 'href'> & {
   href: string
-  children: ReactNode
-  className?: string
-  onClick?: (e: MouseEvent<HTMLAnchorElement>) => void
-  [key: string]: unknown
 }
 
 export default function TransitionLink({ 

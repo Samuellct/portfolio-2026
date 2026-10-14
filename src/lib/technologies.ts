@@ -8,7 +8,7 @@
 // catch-all, and `null` hides it on purpose (single-use or overly specific
 // libraries). Brand colours are only used by the About page skill bars.
 
-type TechFamily = 'languages' | 'frameworks' | 'dataAnalysis' | 'tools' | 'other'
+export type TechFamily = 'languages' | 'frameworks' | 'dataAnalysis' | 'tools' | 'other'
 
 interface TechEntry {
   color: string
@@ -117,13 +117,14 @@ const FAMILY_META: Record<TechFamily, { color: string }> = {
 }
 
 // Extended Toolkit families, derived from the dictionary.
-export const techFamilies: Record<string, { color: string; techs: string[] }> =
-  Object.fromEntries(
-    (Object.keys(FAMILY_META) as TechFamily[]).map((id) => [
-      id,
-      {
-        ...FAMILY_META[id],
-        techs: (Object.keys(TECHNOLOGIES) as TechName[]).filter((t) => DICT[t].family === id),
-      },
-    ])
-  )
+type FamilyEntry = { color: string; techs: string[] }
+
+export const techFamilies = Object.fromEntries(
+  (Object.keys(FAMILY_META) as TechFamily[]).map((id) => [
+    id,
+    {
+      ...FAMILY_META[id],
+      techs: (Object.keys(TECHNOLOGIES) as TechName[]).filter((t) => DICT[t].family === id),
+    },
+  ])
+) as Record<TechFamily, FamilyEntry>

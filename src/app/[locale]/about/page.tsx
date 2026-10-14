@@ -7,7 +7,7 @@ import { motion, AnimatePresence } from 'framer-motion'
 import { gsap, ScrollTrigger } from '@/lib/gsap'
 import { ArrowRight, Download, Github, Linkedin } from 'lucide-react'
 import { extractTechStats, TechStats, isLightColor } from '@/lib/techStats'
-import { getProjectsByCategory, getLocalizedField, formatMeasure, type Locale } from '@/lib/projects'
+import { getProjectsByCategory, getLocalizedField, formatMeasure } from '@/lib/projects'
 import MountainProfile from '@/components/about/MountainProfile'
 import NetworkGraph from '@/components/about/NetworkGraph'
 import CinemaSpotlight from '@/components/about/CinemaSpotlight'
@@ -75,7 +75,7 @@ export default function AboutPage() {
   const tNav = useTranslations('nav')
   const tMenu = useTranslations('menu')
   const tContact = useTranslations('contact')
-  const locale = useLocale() as Locale
+  const locale = useLocale()
   const prefersReducedMotion = useReducedMotion()
   // bumped when the viewport crosses the desktop breakpoint, to rebuild the triggers
   const [layoutVersion, setLayoutVersion] = useState(0)

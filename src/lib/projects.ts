@@ -1,7 +1,8 @@
+import type { Locale } from 'next-intl'
 import type { TechName } from './technologies'
 
+export type { Locale }
 export type BilingualText = { en: string; fr: string }
-export type Locale = 'en' | 'fr'
 
 export function getLocalizedField(
   field: BilingualText | string | undefined,
