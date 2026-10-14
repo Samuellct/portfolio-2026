@@ -2,7 +2,7 @@
 
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react'
 import Lenis from 'lenis'
-import { gsap, ScrollTrigger } from '@/lib/gsap'
+import { publishLenis } from '@/lib/lenis'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 
 interface SmoothScrollContextType {
@@ -30,20 +30,16 @@ export function SmoothScrollProvider({ children }: { children: ReactNode }) {
       smoothWheel: true,
       wheelMultiplier: 1,
       touchMultiplier: 2,
+      // Its own frame loop: GSAP is not loaded on every route (V6-COD-09);
+      // lib/gsap.ts syncs ScrollTrigger where it is.
+      autoRaf: true,
     })
 
-    // Documented Lenis + GSAP integration: keep ScrollTrigger in sync with Lenis,
-    // and drive Lenis from GSAP's ticker instead of a hand-rolled rAF loop.
-    instance.on('scroll', ScrollTrigger.update)
-    const tick = (time: number) => instance.raf(time * 1000)
-    gsap.ticker.add(tick)
-    gsap.ticker.lagSmoothing(0)
-
+    publishLenis(instance)
     setLenis(instance)
 
     return () => {
-      gsap.ticker.remove(tick)
-      instance.off('scroll', ScrollTrigger.update)
+      publishLenis(null)
       instance.destroy()
       setLenis(null)
     }
