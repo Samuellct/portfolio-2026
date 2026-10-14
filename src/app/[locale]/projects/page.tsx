@@ -1,6 +1,6 @@
 'use client'
 
-import { Suspense, useState, useEffect, useRef, useLayoutEffect, useMemo } from 'react'
+import { Suspense, useState, useEffect, useRef, useMemo } from 'react'
 import { useSearchParams } from 'next/navigation'
 import TransitionLink from '@/components/navigation/TransitionLink'
 import Breadcrumb from '@/components/navigation/Breadcrumb'
@@ -259,11 +259,6 @@ export default function ProjectsPage() {
     })
   }, [allProjects, activeFilter, searchQuery, locale])
 
-  // Scroll to top before paint
-  useLayoutEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
-  
   // GSAP
   useEffect(() => {
     if (!pageRef.current) return

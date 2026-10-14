@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useLayoutEffect } from 'react'
+import { useState, useRef } from 'react'
 import Breadcrumb from '@/components/navigation/Breadcrumb'
 import { motion } from 'framer-motion'
 import { Send, CheckCircle, AlertCircle, Github, Linkedin } from 'lucide-react'
@@ -27,11 +27,6 @@ export default function ContactPage() {
   // Honeypot: left empty by people, filled by bots; Formspree drops submissions
   // that carry a value in `_gotcha`.
   const gotchaRef = useRef<HTMLInputElement>(null)
-
-  // Scroll to top before paint
-  useLayoutEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target

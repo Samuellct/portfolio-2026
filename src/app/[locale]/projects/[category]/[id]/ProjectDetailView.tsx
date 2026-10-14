@@ -96,10 +96,6 @@ export default function ProjectDetailView({
   const tAbout = useTranslations('about')
   const leadMedia = project.media?.[0]
 
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [project.id])
-
   // UX-13: "Projects" returns to the listing with the filter the visitor left it on
   const [projectsHref, setProjectsHref] = useState('/projects')
   useEffect(() => {

@@ -275,9 +275,8 @@ export default function AboutPage() {
   // Get tech stats
   const { topTechs, secondaryByFamily } = useMemo(() => extractTechStats(), [])
 
-  // Scroll to top on mount
+  // Page set-up before paint (the page transition already scrolled to the top)
   useLayoutEffect(() => {
-    window.scrollTo(0, 0)
     // the home page's section tween can still be running from the page
     // transition (it scrolls to the top before the route swaps); stop it so it
     // does not repaint the body in the night colour after this page sets paper
