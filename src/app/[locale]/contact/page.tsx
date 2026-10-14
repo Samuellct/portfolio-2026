@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react'
 import Breadcrumb from '@/components/navigation/Breadcrumb'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { Send, CheckCircle, AlertCircle, Github, Linkedin } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { PAGE_BG } from '@/lib/theme'
@@ -75,17 +75,17 @@ export default function ContactPage() {
       />
       
       <div className="relative z-10 pt-24 pb-20 max-w-3xl mx-auto px-6 md:px-12">
-        <motion.div
+        <m.div
           initial={{ opacity: 0, x: -20 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.4 }}
           className="mb-12"
         >
           <Breadcrumb items={[{ label: tNav('contact') }]} />
-        </motion.div>
+        </m.div>
         
         {/* Header */}
-        <motion.header
+        <m.header
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -113,7 +113,7 @@ export default function ContactPage() {
               ),
             })}
           </p>
-        </motion.header>
+        </m.header>
         
         {/* Live region, in the DOM before any submission so screen readers
             announce the outcome (AUDIT-069). */}
@@ -125,7 +125,7 @@ export default function ContactPage() {
 
         {/* Success State */}
         {status === 'success' && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             className="p-8 bg-status-success/10 border border-status-success/30 text-center"
@@ -139,12 +139,12 @@ export default function ContactPage() {
             >
               {tContact('page.form.sendAnother')}
             </button>
-          </motion.div>
+          </m.div>
         )}
         
         {/* Error State */}
         {status === 'error' && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             className="p-8 bg-status-error/10 border border-status-error/30 text-center mb-8"
@@ -158,12 +158,12 @@ export default function ContactPage() {
             >
               {tContact('page.form.retry')}
             </button>
-          </motion.div>
+          </m.div>
         )}
         
         {/* Form */}
         {(status === 'idle' || status === 'submitting') && (
-          <motion.form
+          <m.form
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.6 }}
@@ -263,11 +263,11 @@ export default function ContactPage() {
                 </>
               )}
             </button>
-          </motion.form>
+          </m.form>
         )}
         
         {/* Direct contact section */}
-        <motion.section
+        <m.section
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.6 }}
@@ -298,7 +298,7 @@ export default function ContactPage() {
               <span>{tContact('page.directContact.linkedinLabel')}</span>
             </a>
           </div>
-        </motion.section>
+        </m.section>
       </div>
     </div>
   )

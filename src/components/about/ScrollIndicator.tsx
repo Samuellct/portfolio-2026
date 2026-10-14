@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { m, AnimatePresence } from 'framer-motion'
 import { ChevronDown } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 
@@ -27,7 +27,7 @@ export default function ScrollIndicator({ hideAfterPx = 100 }: ScrollIndicatorPr
   return (
     <AnimatePresence>
       {isVisible && (
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           exit={{ opacity: 0, y: 10 }}
@@ -39,7 +39,7 @@ export default function ScrollIndicator({ hideAfterPx = 100 }: ScrollIndicatorPr
           {/* Mouse icon */}
           <div className="relative w-6 h-10 rounded-full border border-white/30 flex justify-center">
             {/* Scroll wheel animation */}
-            <motion.div
+            <m.div
               className="w-1 h-2 bg-white/50 rounded-full mt-2"
               animate={{ 
                 y: [0, 6, 0],
@@ -54,7 +54,7 @@ export default function ScrollIndicator({ hideAfterPx = 100 }: ScrollIndicatorPr
           </div>
           
           {/* Chevron with bounce */}
-          <motion.div
+          <m.div
             animate={{ y: [0, 4, 0] }}
             transition={{ 
               duration: 1.2, 
@@ -63,13 +63,13 @@ export default function ScrollIndicator({ hideAfterPx = 100 }: ScrollIndicatorPr
             }}
           >
             <ChevronDown aria-hidden="true" size={16} className="text-muted" />
-          </motion.div>
+          </m.div>
           
           {/* Label */}
           <span className="text-meta tracking-caps-wide uppercase text-muted">
             {t('scrollHint')}
           </span>
-        </motion.div>
+        </m.div>
       )}
     </AnimatePresence>
   )

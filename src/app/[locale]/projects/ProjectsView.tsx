@@ -5,7 +5,7 @@ import { useSearchParams } from 'next/navigation'
 import TransitionLink from '@/components/navigation/TransitionLink'
 import Breadcrumb from '@/components/navigation/Breadcrumb'
 import BreadcrumbJsonLd from '@/components/seo/BreadcrumbJsonLd'
-import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion'
+import { m, AnimatePresence, LazyMotion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { gsap } from '@/lib/gsap'
 import { ArrowRight, Search } from 'lucide-react'
 import Image from 'next/image'
@@ -26,6 +26,8 @@ function normalizeForSearch(value: string): string {
     .replace(/[̀-ͯ]/g, '')
     .toLowerCase()
 }
+
+const loadLayoutFeatures = () => import('@/lib/motion-max').then((mod) => mod.default)
 
 // Background color for projects page
 const PROJECTS_BG_COLOR = PAGE_BG
@@ -66,7 +68,7 @@ function ProjectCard({ project, index }: { project: ProjectSummary; index: numbe
   }
   
   return (
-    <motion.div
+    <m.div
       ref={cardRef}
       layout
       initial={{ opacity: 0, y: 30 }}
@@ -83,13 +85,13 @@ function ProjectCard({ project, index }: { project: ProjectSummary; index: numbe
         className="block"
       >
         {/* Image container - respecte le ratio original */}
-        <motion.div 
+        <m.div 
           className="relative overflow-hidden mb-5 bg-white/[0.02]"
           style={{ x, y }}
         >
           {/* Flexible container with a min and max height */}
           <div className="relative min-h-[200px] max-h-[280px] overflow-hidden">
-            <motion.div
+            <m.div
               className={`relative w-full h-full min-h-[200px] transition-opacity duration-300 ${
                 imageLoaded ? 'opacity-100' : 'opacity-0'
               }`}
@@ -109,7 +111,7 @@ function ProjectCard({ project, index }: { project: ProjectSummary; index: numbe
                   onError={() => setImageFailed(true)}
                 />
               )}
-            </motion.div>
+            </m.div>
 
             {/* Loading placeholder */}
             {!imageLoaded && !imageFailed && (
@@ -132,14 +134,14 @@ function ProjectCard({ project, index }: { project: ProjectSummary; index: numbe
           </div>
           
           {/* Gradient overlay */}
-          <motion.div
+          <m.div
             className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"
             animate={{ opacity: isHovered ? 1 : 0.3 }}
             transition={{ duration: 0.4 }}
           />
           
           {/* hover */}
-          <motion.div
+          <m.div
             className="absolute inset-3 border border-white/20 pointer-events-none"
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ 
@@ -148,7 +150,7 @@ function ProjectCard({ project, index }: { project: ProjectSummary; index: numbe
             }}
             transition={{ duration: 0.4 }}
           />
-        </motion.div>
+        </m.div>
         
         {/* Content */}
         <div className="space-y-2">
@@ -198,7 +200,7 @@ function ProjectCard({ project, index }: { project: ProjectSummary; index: numbe
           </div>
         </div>
       </TransitionLink>
-    </motion.div>
+    </m.div>
   )
 }
 
@@ -286,123 +288,126 @@ export default function ProjectsView({ allProjects }: { allProjects: ProjectSumm
   }, [prefersReducedMotion])
 
   return (
-    <div ref={pageRef} className="min-h-screen relative overflow-x-clip" style={{ backgroundColor: PROJECTS_BG_COLOR }}>
-      <Suspense fallback={null}>
-        <CategoryFromQuery onCategory={setActiveFilter} />
-      </Suspense>
+    // Card reflow on filtering needs the layout features, fetched after first load
+    <LazyMotion features={loadLayoutFeatures}>
+      <div ref={pageRef} className="min-h-screen relative overflow-x-clip" style={{ backgroundColor: PROJECTS_BG_COLOR }}>
+        <Suspense fallback={null}>
+          <CategoryFromQuery onCategory={setActiveFilter} />
+        </Suspense>
 
-      <Watermark
-        word="PROJECTS"
-        className="absolute top-1/2 -translate-y-1/2 left-0 z-0"
-        textClassName="text-ghost-20 whitespace-nowrap"
-        parallax={{ axis: 'x', from: -5, to: 5, scrub: 2 }}
-      />
-      
-      <div className="relative z-10 pt-24 pb-20 max-w-7xl mx-auto px-6 md:px-12">
-        <motion.div
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.4 }}
-          className="mb-12"
-        >
-          <Breadcrumb items={[{ label: tNav('projects') }]} />
-          <BreadcrumbJsonLd
-            locale={locale}
-            items={[{ name: tNav('home'), path: '' }, { name: tNav('projects'), path: '/projects' }]}
-          />
-        </motion.div>
+        <Watermark
+          word="PROJECTS"
+          className="absolute top-1/2 -translate-y-1/2 left-0 z-0"
+          textClassName="text-ghost-20 whitespace-nowrap"
+          parallax={{ axis: 'x', from: -5, to: 5, scrub: 2 }}
+        />
         
-        {/* Header */}
-        <div ref={headerRef} className="mb-16">
-          <h1 className="font-display uppercase font-black text-page leading-display-tight tracking-wide mb-6">
-            {t('pageTitle')}
-          </h1>
+        <div className="relative z-10 pt-24 pb-20 max-w-7xl mx-auto px-6 md:px-12">
+          <m.div
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.4 }}
+            className="mb-12"
+          >
+            <Breadcrumb items={[{ label: tNav('projects') }]} />
+            <BreadcrumbJsonLd
+              locale={locale}
+              items={[{ name: tNav('home'), path: '' }, { name: tNav('projects'), path: '/projects' }]}
+            />
+          </m.div>
           
-          <p className="text-lg text-muted max-w-2xl">
-            {t('preview.description')}
-          </p>
-        </div>
-        
-        {/* Filters */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2, duration: 0.6 }}
-          className="flex flex-wrap items-center gap-3 mb-16"
-        >
-          <div role="group" aria-label={t('filterGroupLabel')} className="flex flex-wrap items-center gap-3">
-            <Button
-              variant="filter"
-              className="tap-target"
-              active={activeFilter === 'all'}
-              aria-pressed={activeFilter === 'all'}
-              onClick={() => setActiveFilter('all')}
-            >
-              {t('categories.all')}
-            </Button>
-
-            {PROJECT_CATEGORIES.map((categoryId) => (
+          {/* Header */}
+          <div ref={headerRef} className="mb-16">
+            <h1 className="font-display uppercase font-black text-page leading-display-tight tracking-wide mb-6">
+              {t('pageTitle')}
+            </h1>
+            
+            <p className="text-lg text-muted max-w-2xl">
+              {t('preview.description')}
+            </p>
+          </div>
+          
+          {/* Filters */}
+          <m.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+            className="flex flex-wrap items-center gap-3 mb-16"
+          >
+            <div role="group" aria-label={t('filterGroupLabel')} className="flex flex-wrap items-center gap-3">
               <Button
-                key={categoryId}
                 variant="filter"
                 className="tap-target"
-                active={activeFilter === categoryId}
-                aria-pressed={activeFilter === categoryId}
-                onClick={() => setActiveFilter(categoryId)}
+                active={activeFilter === 'all'}
+                aria-pressed={activeFilter === 'all'}
+                onClick={() => setActiveFilter('all')}
               >
-                <span className="inline-flex items-center gap-1.5">
-                  <CategoryIcon category={categoryId} />
-                  {t(`categories.${categoryId}`)}
-                </span>
+                {t('categories.all')}
               </Button>
-            ))}
-          </div>
 
-          <div className="relative">
-            <Search aria-hidden="true" size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted pointer-events-none" />
-            <input
-              type="search"
-              value={searchQuery}
-              onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder={t('searchPlaceholder')}
-              aria-label={t('searchLabel')}
-              className="tap-target bg-transparent border border-white/20 text-white text-sm pl-9 pr-4 py-2.5 placeholder:text-muted focus:outline-none focus:border-accent-line"
-            />
-          </div>
-        </motion.div>
+              {PROJECT_CATEGORIES.map((categoryId) => (
+                <Button
+                  key={categoryId}
+                  variant="filter"
+                  className="tap-target"
+                  active={activeFilter === categoryId}
+                  aria-pressed={activeFilter === categoryId}
+                  onClick={() => setActiveFilter(categoryId)}
+                >
+                  <span className="inline-flex items-center gap-1.5">
+                    <CategoryIcon category={categoryId} />
+                    {t(`categories.${categoryId}`)}
+                  </span>
+                </Button>
+              ))}
+            </div>
 
-        {/* Result count, announced to assistive tech on filter change */}
-        <p aria-live="polite" className="sr-only">
-          {t('resultsCount', { count: filteredProjects.length })}
-        </p>
-        
-        {/* Projects Grid */}
-        <motion.div
-          layout
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12"
-        >
-          <AnimatePresence mode="popLayout">
-            {filteredProjects.map((project, index) => (
-              <ProjectCard
-                key={project.id}
-                project={project}
-                index={index}
+            <div className="relative">
+              <Search aria-hidden="true" size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted pointer-events-none" />
+              <input
+                type="search"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder={t('searchPlaceholder')}
+                aria-label={t('searchLabel')}
+                className="tap-target bg-transparent border border-white/20 text-white text-sm pl-9 pr-4 py-2.5 placeholder:text-muted focus:outline-none focus:border-accent-line"
               />
-            ))}
-          </AnimatePresence>
-        </motion.div>
-        
-        {/* Empty state */}
-        {filteredProjects.length === 0 && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            className="text-center py-20 text-muted"
+            </div>
+          </m.div>
+
+          {/* Result count, announced to assistive tech on filter change */}
+          <p aria-live="polite" className="sr-only">
+            {t('resultsCount', { count: filteredProjects.length })}
+          </p>
+          
+          {/* Projects Grid */}
+          <m.div
+            layout
+            className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12"
           >
-            {t('emptyState')}
-          </motion.div>
-        )}
+            <AnimatePresence mode="popLayout">
+              {filteredProjects.map((project, index) => (
+                <ProjectCard
+                  key={project.id}
+                  project={project}
+                  index={index}
+                />
+              ))}
+            </AnimatePresence>
+          </m.div>
+          
+          {/* Empty state */}
+          {filteredProjects.length === 0 && (
+            <m.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              className="text-center py-20 text-muted"
+            >
+              {t('emptyState')}
+            </m.div>
+          )}
+        </div>
       </div>
-    </div>
+    </LazyMotion>
   )
 }

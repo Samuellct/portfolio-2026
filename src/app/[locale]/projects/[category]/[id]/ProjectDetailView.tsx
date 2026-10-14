@@ -3,7 +3,7 @@
 import { useEffect, useState, type ReactNode } from 'react'
 import TransitionLink from '@/components/navigation/TransitionLink'
 import Breadcrumb from '@/components/navigation/Breadcrumb'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { ArrowLeft, ArrowRight, Download, ExternalLink } from 'lucide-react'
 import { FaGithub } from 'react-icons/fa'
 import { getLocalizedField, formatMeasure, Locale, ProjectData, PROJECTS_FILTER_KEY } from '@/lib/projects/helpers'
@@ -150,7 +150,7 @@ export default function ProjectDetailView({
         {/* ============================================ */}
         {/* HEADER: breadcrumb, title, hook, status, links (full width) */}
         {/* ============================================ */}
-        <motion.header
+        <m.header
           initial={enter ? { opacity: 0, y: 20 } : false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
@@ -205,7 +205,7 @@ export default function ProjectDetailView({
               </a>
             ))}
           </div>
-        </motion.header>
+        </m.header>
 
         {/* ============================================ */}
         {/* SPLIT LAYOUT: lg+ = sticky context frame (4/12) + narrative (8/12);
@@ -260,7 +260,7 @@ export default function ProjectDetailView({
 
             {/* Results as measures (UX-12): main column, ahead of the figure and the narrative */}
             {project.results && project.results.length > 0 && (
-              <motion.section
+              <m.section
                 initial={enter ? { opacity: 0, y: 20 } : false}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
@@ -275,7 +275,7 @@ export default function ProjectDetailView({
                     <ResultMeasure key={getLocalizedField(result.label, locale)} result={result} locale={locale} />
                   ))}
                 </dl>
-              </motion.section>
+              </m.section>
             )}
 
             {/* Compact context below lg: period, place and purpose right after the
@@ -299,7 +299,7 @@ export default function ProjectDetailView({
             </section>
 
             {/* Lead media: first `media[]` entry, `image` for fiches without one (A15, DEC-10c) */}
-            <motion.div
+            <m.div
               initial={enter ? { opacity: 0, y: 20 } : false}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.6 }}
@@ -330,7 +330,7 @@ export default function ProjectDetailView({
                   }
                 />
               )}
-            </motion.div>
+            </m.div>
 
             {/* Description: named sections (AUDIT-017) when present, legacy free-form text otherwise.
                 Context moved to the sidebar (reads better as an intro there than Limits did);
@@ -340,7 +340,7 @@ export default function ProjectDetailView({
                 {narrative.map(
                   ([key, content], index) =>
                     content && (
-                      <motion.section
+                      <m.section
                         key={key}
                         id={`section-${key}`}
                         className="scroll-mt-28"
@@ -350,18 +350,18 @@ export default function ProjectDetailView({
                       >
                         <h2 className="pb-3 mb-5 border-b border-riso-pink text-meta font-semibold tracking-caps-wide uppercase">{t(`sections.${key}`)}</h2>
                         {markdown[key]}
-                      </motion.section>
+                      </m.section>
                     )
                 )}
               </div>
             ) : (
-              <motion.section
+              <m.section
                 initial={enter ? { opacity: 0, y: 20 } : false}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.6 }}
               >
                 {markdown.description}
-              </motion.section>
+              </m.section>
             )}
           </div>
         </div>
@@ -369,7 +369,7 @@ export default function ProjectDetailView({
         {/* ============================================ */}
         {/* PREVIOUS / NEXT + RELATED PROJECTS (AUDIT-019) */}
         {/* ============================================ */}
-        <motion.div
+        <m.div
           initial={enter ? { opacity: 0, y: 20 } : false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -446,7 +446,7 @@ export default function ProjectDetailView({
               </div>
             </div>
           )}
-        </motion.div>
+        </m.div>
       </div>
     </div>
   )

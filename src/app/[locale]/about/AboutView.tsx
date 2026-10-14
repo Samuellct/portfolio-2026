@@ -3,7 +3,7 @@
 import { useCallback, useEffect, useRef, useLayoutEffect, useMemo, useState } from 'react'
 import TransitionLink from '@/components/navigation/TransitionLink'
 import Breadcrumb from '@/components/navigation/Breadcrumb'
-import { motion, AnimatePresence } from 'framer-motion'
+import { m, AnimatePresence } from 'framer-motion'
 import { gsap, ScrollTrigger } from '@/lib/gsap'
 import { ArrowRight, Download, Github, Linkedin } from 'lucide-react'
 import { TechStats, TechFamilyStats, isLightColor } from '@/lib/techStats'
@@ -527,7 +527,7 @@ export default function AboutView({
       >
         <div ref={bgContainerRef} className="relative">
           <AnimatePresence mode="wait">
-            <motion.span
+            <m.span
               key={activeSection}
               initial={{
                 opacity: 0,
@@ -542,7 +542,7 @@ export default function AboutView({
               className="font-display uppercase font-black text-ghost-20 md:text-ghost-15 leading-none tracking-widest text-white whitespace-nowrap"
             >
               {bgTexts[activeSection]}
-            </motion.span>
+            </m.span>
           </AnimatePresence>
         </div>
       </div>

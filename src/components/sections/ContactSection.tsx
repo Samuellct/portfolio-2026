@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useState } from 'react'
 import TransitionLink from '@/components/navigation/TransitionLink'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { gsap, ScrollTrigger } from '@/lib/gsap'
 import Watermark from '@/components/effects/Watermark'
 import { ArrowRight, Mail } from 'lucide-react'
@@ -184,7 +184,7 @@ export default function ContactSection() {
           {/* Right side : txt */}
           <div>
             {/* Section label */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -192,7 +192,7 @@ export default function ContactSection() {
               className="section-label text-accent mb-4"
             >
               {t('sectionLabel')}
-            </motion.div>
+            </m.div>
             
             {/* Title */}
             <h2 
@@ -205,7 +205,7 @@ export default function ContactSection() {
             </h2>
             
             {/* Text */}
-            <motion.p
+            <m.p
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -213,7 +213,7 @@ export default function ContactSection() {
               className="text-xl md:text-2xl text-muted leading-relaxed mb-12 max-w-lg"
             >
               {t('preview.text')}
-            </motion.p>
+            </m.p>
             
             {/* CTA: the contact page, or a direct e-mail */}
             <div ref={ctaRef} className="flex flex-wrap gap-3">

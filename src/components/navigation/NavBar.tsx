@@ -2,7 +2,7 @@
 
 import { useState, useEffect, useRef } from 'react'
 import { usePathname } from '@/i18n/navigation'
-import { motion, AnimatePresence } from 'framer-motion'
+import { m, AnimatePresence } from 'framer-motion'
 import { Menu, X, Github, Linkedin, ExternalLink } from 'lucide-react'
 import TransitionLink from '@/components/navigation/TransitionLink'
 import LanguageSwitcher from '@/components/ui/LanguageSwitcher'
@@ -188,7 +188,7 @@ export default function NavBar() {
   return (
     <>
       {/* Navigation Bar */}
-      <motion.nav
+      <m.nav
         id="site-nav"
         aria-label={tNav('mainLabel')}
         initial={{ opacity: 0, y: -20 }}
@@ -242,10 +242,10 @@ export default function NavBar() {
             <span aria-hidden="true" className="w-12 h-12" />
           </div>
         </div>
-      </motion.nav>
+      </m.nav>
 
       {/* Menu button: sits over its slot in the bar, a pink pill once the bar folds */}
-      <motion.button
+      <m.button
         ref={hamburgerRef}
         className={`fixed top-4 right-6 md:right-12 z-menu-button p-3 min-w-tap min-h-tap flex items-center justify-center rounded-full transition-[background-color,color,box-shadow] duration-300 motion-reduce:transition-none ${
           isBarHidden ? 'bg-riso-pinkTitle text-primary shadow-lift-sm' : 'bg-transparent text-snow'
@@ -261,7 +261,7 @@ export default function NavBar() {
       >
         <AnimatePresence mode="wait">
           {isMenuOpen ? (
-            <motion.div
+            <m.div
               key="close"
               initial={{ rotate: -90, opacity: 0 }}
               animate={{ rotate: 0, opacity: 1 }}
@@ -269,9 +269,9 @@ export default function NavBar() {
               transition={{ duration: 0.2 }}
             >
               <X aria-hidden="true" size={24} />
-            </motion.div>
+            </m.div>
           ) : (
-            <motion.div
+            <m.div
               key="menu"
               initial={{ rotate: 90, opacity: 0 }}
               animate={{ rotate: 0, opacity: 1 }}
@@ -279,15 +279,15 @@ export default function NavBar() {
               transition={{ duration: 0.2 }}
             >
               <Menu aria-hidden="true" size={24} />
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
-      </motion.button>
+      </m.button>
       
       {/* Fullscreen Menu */}
       <AnimatePresence>
         {isMenuOpen && (
-          <motion.div
+          <m.div
             ref={panelRef}
             id="main-menu"
             role="dialog"
@@ -310,18 +310,18 @@ export default function NavBar() {
             <div className="relative h-full flex flex-col justify-center overflow-y-auto py-20 md:flex-row md:justify-start md:overflow-visible md:py-0">
               {/* Left side - Navigation Links */}
               <div className="md:flex-1 flex flex-col justify-center px-8 md:px-16 lg:px-24">
-                <motion.p
+                <m.p
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.1 }}
                   className="text-xs tracking-menu-label uppercase text-muted mb-8"
                 >
                   {tMenu('sections')}
-                </motion.p>
+                </m.p>
                 
                 <nav className="space-y-2">
                   {navLinks.map((link, index) => (
-                    <motion.div
+                    <m.div
                       key={link.href}
                       initial={{ opacity: 0, x: -40 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -337,25 +337,25 @@ export default function NavBar() {
                       >
                         {link.label}
                       </TransitionLink>
-                    </motion.div>
+                    </m.div>
                   ))}
                 </nav>
               </div>
               
               {/* Right side - External Links */}
               <div className="flex flex-col justify-center mx-8 mt-10 pt-8 border-t border-white/5 md:mx-0 md:mt-0 md:pt-0 md:px-16 lg:px-24 md:border-t-0 md:border-l">
-                <motion.p
+                <m.p
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.2 }}
                   className="text-xs tracking-menu-label uppercase text-muted mb-8"
                 >
                   {tMenu('external')}
-                </motion.p>
+                </m.p>
                 
                 <div className="space-y-6">
                   {externalLinks.map((link, index) => (
-                    <motion.a
+                    <m.a
                       key={link.href}
                       href={link.href}
                       target="_blank"
@@ -367,12 +367,12 @@ export default function NavBar() {
                     >
                       <link.icon aria-hidden="true" size={20} />
                       <span className="text-lg">{link.label}</span>
-                    </motion.a>
+                    </m.a>
                   ))}
                 </div>
 
                 {/* Language switcher */}
-                <motion.div
+                <m.div
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.25 + externalLinks.length * 0.08 }}
@@ -382,10 +382,10 @@ export default function NavBar() {
                     label={tMenu('switchLang')}
                     className="flex items-center gap-3 text-muted hover:text-accent transition-colors text-lg"
                   />
-                </motion.div>
+                </m.div>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </>

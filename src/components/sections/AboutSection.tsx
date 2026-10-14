@@ -2,7 +2,7 @@
 
 import { useRef, useEffect } from 'react'
 import TransitionLink from '@/components/navigation/TransitionLink'
-import { motion } from 'framer-motion'
+import { m } from 'framer-motion'
 import { gsap } from '@/lib/gsap'
 import Watermark from '@/components/effects/Watermark'
 import { ArrowRight } from 'lucide-react'
@@ -142,7 +142,7 @@ export default function AboutSection({ statValues }: { statValues: HomeStats }) 
         
         {/* header */}
         <div className="mb-16">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -150,7 +150,7 @@ export default function AboutSection({ statValues }: { statValues: HomeStats }) 
             className="section-label text-accent mb-4"
           >
             {t('sectionLabel')}
-          </motion.div>
+          </m.div>
           
           <h2
             ref={titleRef}
@@ -198,7 +198,7 @@ export default function AboutSection({ statValues }: { statValues: HomeStats }) 
             </div>
             
             {/* CTA (page perso) */}
-            <motion.div
+            <m.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
@@ -211,7 +211,7 @@ export default function AboutSection({ statValues }: { statValues: HomeStats }) 
                 <span className="text-sm tracking-caps uppercase">{t('preview.cta')}</span>
                 <ArrowRight aria-hidden="true" size={16} className="transition-transform group-hover:translate-x-1" />
               </TransitionLink>
-            </motion.div>
+            </m.div>
           </div>
           
           {/* Right column */}
