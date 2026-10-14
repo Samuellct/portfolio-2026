@@ -3,15 +3,12 @@
 import { useRef, useEffect } from 'react'
 import TransitionLink from '@/components/navigation/TransitionLink'
 import { motion } from 'framer-motion'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { gsap } from '@/lib/gsap'
 import { ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { getAllProjects } from '@/lib/projects'
 import { programmingLanguages } from '@/lib/techStats'
-
-gsap.registerPlugin(ScrollTrigger)
 
 // Homepage statistics, derived from the visible projects
 const statValues = (() => {

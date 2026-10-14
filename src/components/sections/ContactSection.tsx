@@ -3,15 +3,12 @@
 import { useRef, useEffect, useState } from 'react'
 import TransitionLink from '@/components/navigation/TransitionLink'
 import { motion } from 'framer-motion'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { gsap, ScrollTrigger } from '@/lib/gsap'
 import { ArrowRight, Mail } from 'lucide-react'
 import ParticleCollision from '@/components/effects/ParticleCollision'
 import { pillBase } from '@/components/ui/pill'
 import { useTranslations } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
-
-gsap.registerPlugin(ScrollTrigger)
 
 
 export default function ContactSection() {

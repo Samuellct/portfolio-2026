@@ -6,8 +6,7 @@ import TransitionLink from '@/components/navigation/TransitionLink'
 import Breadcrumb from '@/components/navigation/Breadcrumb'
 import BreadcrumbJsonLd from '@/components/seo/BreadcrumbJsonLd'
 import { motion, AnimatePresence, useMotionValue, useSpring, useTransform } from 'framer-motion'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { gsap } from '@/lib/gsap'
 import { ArrowRight, Search } from 'lucide-react'
 import Image from 'next/image'
 import { getProjectsSortedByDate, getLocalizedField, getCardPeriod, Locale, PROJECT_CATEGORIES, ProjectData, PROJECTS_FILTER_KEY } from '@/lib/projects'
@@ -18,8 +17,6 @@ import { Button } from '@/components/ui/Button'
 import { Tag } from '@/components/ui/Tag'
 import { CategoryIcon } from '@/components/ui/CategoryIcon'
 import { cn } from '@/lib/cn'
-
-gsap.registerPlugin(ScrollTrigger)
 
 // Case- and accent-insensitive comparison for the free-text search (AUDIT-083).
 function normalizeForSearch(value: string): string {

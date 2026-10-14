@@ -2,11 +2,8 @@
 
 import { createContext, useContext, useEffect, useState, ReactNode } from 'react'
 import Lenis from 'lenis'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { gsap, ScrollTrigger } from '@/lib/gsap'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
-
-gsap.registerPlugin(ScrollTrigger)
 
 interface SmoothScrollContextType {
   lenis: Lenis | null

@@ -2,8 +2,7 @@
 
 import { useRef, useEffect } from 'react'
 import TransitionLink from '@/components/navigation/TransitionLink'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { gsap } from '@/lib/gsap'
 import { ArrowRight, Download } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
@@ -12,8 +11,6 @@ import { pillBase } from '@/components/ui/pill'
 import { ACCENT } from '@/lib/theme'
 import { getCardPeriod, getFeaturedProjects, getLocalizedField, Locale, ProjectData } from '@/lib/projects'
 import { RESUME_PATH } from '@/lib/constants'
-
-gsap.registerPlugin(ScrollTrigger)
 
 // Desktop "star-projects" sit at the four corners of the name (DEC-16g, comp A);
 // their caption opens outward, away from the name.

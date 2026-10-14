@@ -4,8 +4,7 @@ import { useCallback, useEffect, useRef, useLayoutEffect, useMemo, useState } fr
 import TransitionLink from '@/components/navigation/TransitionLink'
 import Breadcrumb from '@/components/navigation/Breadcrumb'
 import { motion, AnimatePresence } from 'framer-motion'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { gsap, ScrollTrigger } from '@/lib/gsap'
 import { ArrowRight, Download, Github, Linkedin } from 'lucide-react'
 import { extractTechStats, TechStats, isLightColor } from '@/lib/techStats'
 import { getProjectsByCategory, getLocalizedField, formatMeasure, type Locale } from '@/lib/projects'
@@ -18,8 +17,6 @@ import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { useSmoothScroll } from '@/context/SmoothScrollContext'
 import { CONTRAST_TEXT, PAGE_BG, RISO } from '@/lib/theme'
 import { RESUME_PATH, SOCIAL } from '@/lib/constants'
-
-gsap.registerPlugin(ScrollTrigger)
 
 // ============================================
 // BACKGROUND TEXTS

@@ -3,15 +3,12 @@
 import { useState, useEffect, useRef, useLayoutEffect } from 'react'
 import Breadcrumb from '@/components/navigation/Breadcrumb'
 import { motion } from 'framer-motion'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import { gsap } from '@/lib/gsap'
 import { Send, CheckCircle, AlertCircle, Github, Linkedin } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { PAGE_BG } from '@/lib/theme'
 import { SOCIAL, FORMSPREE_ENDPOINT } from '@/lib/constants'
-
-gsap.registerPlugin(ScrollTrigger)
 
 // Background color (shares the About intro token: same value, one source)
 const CONTACT_BG_COLOR = PAGE_BG
