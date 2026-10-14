@@ -96,9 +96,7 @@ export const TECHNOLOGIES = {
   Jellyfin: { color: D, family: null },
   'Nginx Proxy Manager': { color: D, family: 'tools' },
   'Cloudflare Workers': { color: D, family: 'tools' },
-  'Cloudflare D1': { color: D, family: null },
   PostgreSQL: { color: D, family: 'tools' },
-  Umami: { color: D, family: null },
 } as const satisfies Record<string, TechEntry>
 
 export type TechName = keyof typeof TECHNOLOGIES
