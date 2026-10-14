@@ -74,7 +74,7 @@ e2e/               # Playwright end-to-end tests
 ## Customization
 
 - Edit `messages/fr.json` and `messages/en.json` for UI text
-- Edit `src/lib/projects.ts` to add or change projects
+- Edit `src/lib/projects/data.ts` to add or change projects
 - Edit `src/lib/theme.ts` and `tailwind.config.ts` for colours and fonts
 
 ## Deployment
