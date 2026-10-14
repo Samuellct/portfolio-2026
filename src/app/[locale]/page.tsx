@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { setRequestLocale } from 'next-intl/server'
-import HomePageClient from '@/components/home/HomePageClient'
+import HeroSection from '@/components/sections/HeroSection'
+import AboutSection from '@/components/sections/AboutSection'
+import ContactSection from '@/components/sections/ContactSection'
 import { BASE_URL, buildAlternates } from '@/lib/constants'
 import { toLocale } from '@/i18n/locale'
 
@@ -25,5 +27,13 @@ export default async function HomePage({
 }) {
   const locale = toLocale((await params).locale)
   setRequestLocale(locale)
-  return <HomePageClient />
+  // Each section paints its own background (`.section` in globals.css, from the
+  // scheme's `--surface`), so the body does not change colour while scrolling.
+  return (
+    <>
+      <HeroSection />
+      <AboutSection />
+      <ContactSection />
+    </>
+  )
 }
