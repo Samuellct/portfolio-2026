@@ -472,7 +472,7 @@ export default function AboutPage() {
       {/* ============================================ */}
       <nav
         aria-label={tAbout('sectionNav')}
-        className="hidden lg:block fixed right-8 top-1/2 -translate-y-1/2 z-[90]"
+        className="hidden lg:block fixed right-8 top-1/2 -translate-y-1/2 z-rail"
       >
         <div className="relative h-[50vh]">
           <span aria-hidden="true" className="absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-riso-blue" />

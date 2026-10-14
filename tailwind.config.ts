@@ -74,7 +74,23 @@ const config: Config = {
       },
       boxShadow: {
         'glow-accent': `0 0 25px ${withAlpha(ACCENT.pink, 0.2)}`,
+        // Paper lifted off the page: menu pill, hero tags, hero hover card.
+        'lift-sm': '0 6px 18px rgb(0 0 0 / 0.22)',
+        lift: '0 8px 22px rgb(0 0 0 / 0.4)',
+        'lift-lg': '0 10px 30px rgb(0 0 0 / 0.45)',
       },
+      // Stacking order, bottom to top.
+      zIndex: {
+        rail: '90',
+        menu: '100',
+        nav: '110',
+        'menu-button': '120',
+        veil: '200',
+        skip: '999',
+      },
+      // Minimum touch target (WCAG 2.5.5).
+      minWidth: { tap: '44px' },
+      minHeight: { tap: '44px' },
       borderRadius: {
         // Sharp angles are the signature (AUDIT-080): the bare `rounded`
         // utility resolves to 0. `code` keeps the inline-code chip at its

@@ -200,7 +200,7 @@ export default function NavBar() {
         onBlur={(e) => {
           if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setHasFocusWithin(false)
         }}
-        className={`scheme-night fixed top-0 inset-x-0 z-[110] transition-colors duration-200 ${
+        className={`scheme-night fixed top-0 inset-x-0 z-nav transition-colors duration-200 ${
           overHero && !isMenuOpen ? 'bg-transparent' : 'bg-primary'
         }`}
       >
@@ -247,8 +247,8 @@ export default function NavBar() {
       {/* Menu button: sits over its slot in the bar, a pink pill once the bar folds */}
       <motion.button
         ref={hamburgerRef}
-        className={`fixed top-4 right-6 md:right-12 z-[120] p-3 min-w-[44px] min-h-[44px] flex items-center justify-center rounded-full transition-[background-color,color,box-shadow] duration-300 motion-reduce:transition-none ${
-          isBarHidden ? 'bg-riso-pinkTitle text-primary shadow-[0_6px_18px_rgb(0_0_0/0.22)]' : 'bg-transparent text-snow'
+        className={`fixed top-4 right-6 md:right-12 z-menu-button p-3 min-w-tap min-h-tap flex items-center justify-center rounded-full transition-[background-color,color,box-shadow] duration-300 motion-reduce:transition-none ${
+          isBarHidden ? 'bg-riso-pinkTitle text-primary shadow-lift-sm' : 'bg-transparent text-snow'
         }`}
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         animate={{ opacity: showMenuButton ? 1 : 0 }}
@@ -297,7 +297,7 @@ export default function NavBar() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
-            className="scheme-night fixed inset-0 z-[100] bg-primary"
+            className="scheme-night fixed inset-0 z-menu bg-primary"
           >
             {/* bkg */}
             <div className="absolute inset-0 opacity-5">

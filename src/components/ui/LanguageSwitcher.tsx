@@ -42,7 +42,7 @@ export default function LanguageSwitcher({ className, label }: LanguageSwitcherP
         <Fragment key={loc}>
           {i > 0 && <span aria-hidden="true" className="opacity-40">|</span>}
           {loc === locale ? (
-            <span aria-current="true" lang={loc} className="inline-flex min-w-[44px] justify-center">
+            <span aria-current="true" lang={loc} className="inline-flex min-w-tap justify-center">
               {loc.toUpperCase()}
             </span>
           ) : (
@@ -52,7 +52,7 @@ export default function LanguageSwitcher({ className, label }: LanguageSwitcherP
               hrefLang={loc}
               lang={loc}
               aria-label={t('switchLangAria')}
-              className="tap-target inline-flex min-w-[44px] justify-center opacity-70 hover:opacity-100 transition-opacity"
+              className="tap-target inline-flex min-w-tap justify-center opacity-70 hover:opacity-100 transition-opacity"
             >
               {loc.toUpperCase()}
             </Link>

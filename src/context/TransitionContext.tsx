@@ -79,7 +79,7 @@ function TransitionOverlayInternal({
   
   return (
     <div
-      className="fixed inset-0 z-[200] pointer-events-none bg-surface"
+      className="fixed inset-0 z-veil pointer-events-none bg-surface"
       style={{
         opacity: phase === 'covering' ? 0 : undefined,
         animation: phase === 'covering'
