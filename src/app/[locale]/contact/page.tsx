@@ -1,14 +1,13 @@
 'use client'
 
-import { useState, useEffect, useRef, useLayoutEffect } from 'react'
+import { useState, useRef, useLayoutEffect } from 'react'
 import Breadcrumb from '@/components/navigation/Breadcrumb'
 import { motion } from 'framer-motion'
-import { gsap } from '@/lib/gsap'
 import { Send, CheckCircle, AlertCircle, Github, Linkedin } from 'lucide-react'
 import { useTranslations } from 'next-intl'
-import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { PAGE_BG } from '@/lib/theme'
 import { SOCIAL, FORMSPREE_ENDPOINT } from '@/lib/constants'
+import Watermark from '@/components/effects/Watermark'
 
 // Background color (shares the About intro token: same value, one source)
 const CONTACT_BG_COLOR = PAGE_BG
@@ -18,8 +17,6 @@ type FormStatus = 'idle' | 'submitting' | 'success' | 'error'
 export default function ContactPage() {
   const tContact = useTranslations('contact')
   const tNav = useTranslations('nav')
-  const prefersReducedMotion = useReducedMotion()
-  const pageRef = useRef<HTMLDivElement>(null)
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -35,32 +32,6 @@ export default function ContactPage() {
   useLayoutEffect(() => {
     window.scrollTo(0, 0)
   }, [])
-  
-  // GSAP
-  useEffect(() => {
-    if (!pageRef.current || prefersReducedMotion) return
-
-    const ctx = gsap.context(() => {
-      const decorText = pageRef.current?.querySelector('.decor-text')
-      if (decorText) {
-        gsap.fromTo(decorText,
-          { xPercent: -5 },
-          {
-            xPercent: 5,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: pageRef.current,
-              start: 'top bottom',
-              end: 'bottom top',
-              scrub: 2,
-            },
-          }
-        )
-      }
-    }, pageRef)
-
-    return () => ctx.revert()
-  }, [prefersReducedMotion])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -100,13 +71,13 @@ export default function ContactPage() {
   }
   
   return (
-    <div ref={pageRef} className="min-h-screen relative" style={{ backgroundColor: CONTACT_BG_COLOR }}>
-      {/* parallax */}
-      <div aria-hidden="true" className="decor-text fixed top-1/2 -translate-y-1/2 left-0 pointer-events-none select-none z-0">
-        <span className="font-display uppercase font-black text-ghost-20 text-white/[0.015] leading-none whitespace-nowrap">
-          CONTACT
-        </span>
-      </div>
+    <div className="min-h-screen relative" style={{ backgroundColor: CONTACT_BG_COLOR }}>
+      <Watermark
+        word="CONTACT"
+        className="fixed top-1/2 -translate-y-1/2 left-0 z-0"
+        textClassName="text-ghost-20 whitespace-nowrap"
+        parallax={{ axis: 'x', from: -5, to: 5, scrub: 2 }}
+      />
       
       <div className="relative z-10 pt-24 pb-20 max-w-3xl mx-auto px-6 md:px-12">
         <motion.div

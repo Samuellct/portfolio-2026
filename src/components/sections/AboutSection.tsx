@@ -4,6 +4,7 @@ import { useRef, useEffect } from 'react'
 import TransitionLink from '@/components/navigation/TransitionLink'
 import { motion } from 'framer-motion'
 import { gsap } from '@/lib/gsap'
+import Watermark from '@/components/effects/Watermark'
 import { ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
@@ -43,7 +44,6 @@ export default function AboutSection() {
     },
   ]
   const sectionRef = useRef<HTMLElement>(null)
-  const decorativeTextRef = useRef<HTMLDivElement>(null)
   const statsRef = useRef<HTMLUListElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const textBlockRef = useRef<HTMLDivElement>(null)
@@ -60,24 +60,6 @@ export default function AboutSection() {
     }
 
     const ctx = gsap.context(() => {
-
-      // PARALLAX txt
-      if (decorativeTextRef.current) {
-        gsap.fromTo(decorativeTextRef.current,
-          { xPercent: 10 },
-          {
-            xPercent: -15,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: 'top bottom',
-              end: 'bottom top',
-              scrub: 2,
-            },
-          }
-        )
-      }
-      
       // TITLE
       if (titleRef.current) {
         const words = titleRef.current.querySelectorAll('.title-word')
@@ -155,16 +137,12 @@ export default function AboutSection() {
       id="about"
       className="section py-32 md:py-40 relative overflow-hidden"
     >
-      {/* PARALLAX txt */}
-      <div
-        ref={decorativeTextRef}
-        aria-hidden="true"
-        className="absolute top-1/2 -translate-y-1/2 -left-1/4 pointer-events-none select-none"
-      >
-        <span className="font-display uppercase font-black text-ghost-35 text-white/[0.015] leading-none whitespace-nowrap">
-          ABOUT
-        </span>
-      </div>
+      <Watermark
+        word="ABOUT"
+        className="absolute top-1/2 -translate-y-1/2 -left-1/4"
+        textClassName="text-ghost-35 whitespace-nowrap"
+        parallax={{ axis: 'x', from: 10, to: -15, scrub: 2 }}
+      />
       
       {/* MAIN */}
       <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-12 lg:px-16">

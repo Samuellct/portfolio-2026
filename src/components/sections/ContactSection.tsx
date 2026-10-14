@@ -4,6 +4,7 @@ import { useRef, useEffect, useState } from 'react'
 import TransitionLink from '@/components/navigation/TransitionLink'
 import { motion } from 'framer-motion'
 import { gsap, ScrollTrigger } from '@/lib/gsap'
+import Watermark from '@/components/effects/Watermark'
 import { ArrowRight, Mail } from 'lucide-react'
 import ParticleCollision from '@/components/effects/ParticleCollision'
 import { pillBase } from '@/components/ui/pill'
@@ -15,7 +16,6 @@ export default function ContactSection() {
   const t = useTranslations('contact')
   const prefersReducedMotion = useReducedMotion()
   const sectionRef = useRef<HTMLElement>(null)
-  const decorativeRef = useRef<HTMLDivElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const collisionRef = useRef<HTMLDivElement>(null)
   const ctaRef = useRef<HTMLDivElement>(null)
@@ -35,25 +35,6 @@ export default function ContactSection() {
 
     const ctx = gsap.context(() => {
 
-      // ============================================
-      // PARALLAX txt
-      // ============================================
-      if (decorativeRef.current) {
-        gsap.fromTo(decorativeRef.current,
-          { yPercent: 20 },
-          {
-            yPercent: -20,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: sectionRef.current,
-              start: 'top bottom',
-              end: 'bottom top',
-              scrub: 1.5,
-            },
-          }
-        )
-      }
-      
       // ============================================
       // Start the collision when the section comes into view
       // ============================================
@@ -145,18 +126,12 @@ export default function ContactSection() {
         <div className="h-px bg-riso-blue/30" />
       </div>
 
-      {/* ============================================ */}
-      {/* PARALLAX txt */}
-      {/* ============================================ */}
-      <div
-        ref={decorativeRef}
-        aria-hidden="true"
-        className="absolute inset-0 flex items-center justify-center pointer-events-none select-none"
-      >
-        <span className="font-display uppercase font-black text-ghost-35 text-white/[0.015] leading-none">
-          CONTACT
-        </span>
-      </div>
+      <Watermark
+        word="CONTACT"
+        className="absolute inset-0 flex items-center justify-center"
+        textClassName="text-ghost-35"
+        parallax={{ axis: 'y', from: 20, to: -20, scrub: 1.5 }}
+      />
       
       {/* ============================================ */}
       {/* MAIN */}

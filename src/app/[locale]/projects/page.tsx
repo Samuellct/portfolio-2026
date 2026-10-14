@@ -17,6 +17,7 @@ import { Button } from '@/components/ui/Button'
 import { Tag } from '@/components/ui/Tag'
 import { CategoryIcon } from '@/components/ui/CategoryIcon'
 import { cn } from '@/lib/cn'
+import Watermark from '@/components/effects/Watermark'
 
 // Case- and accent-insensitive comparison for the free-text search (AUDIT-083).
 function normalizeForSearch(value: string): string {
@@ -288,24 +289,6 @@ export default function ProjectsPage() {
           }
         )
       }
-      
-      // Parallax txt
-      const decorText = pageRef.current?.querySelector('.decor-text')
-      if (decorText) {
-        gsap.fromTo(decorText,
-          { xPercent: -5 },
-          {
-            xPercent: 5,
-            ease: 'none',
-            scrollTrigger: {
-              trigger: pageRef.current,
-              start: 'top bottom',
-              end: 'bottom top',
-              scrub: 2,
-            },
-          }
-        )
-      }
     }, pageRef)
 
     return () => ctx.revert()
@@ -317,12 +300,12 @@ export default function ProjectsPage() {
         <CategoryFromQuery onCategory={setActiveFilter} />
       </Suspense>
 
-      {/* parallax */}
-      <div aria-hidden="true" className="decor-text fixed top-1/2 -translate-y-1/2 left-0 pointer-events-none select-none z-0">
-        <span className="font-display uppercase font-black text-ghost-20 text-white/[0.015] leading-none whitespace-nowrap">
-          PROJECTS
-        </span>
-      </div>
+      <Watermark
+        word="PROJECTS"
+        className="fixed top-1/2 -translate-y-1/2 left-0 z-0"
+        textClassName="text-ghost-20 whitespace-nowrap"
+        parallax={{ axis: 'x', from: -5, to: 5, scrub: 2 }}
+      />
       
       <div className="relative z-10 pt-24 pb-20 max-w-7xl mx-auto px-6 md:px-12">
         <motion.div
