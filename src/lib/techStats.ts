@@ -1,4 +1,4 @@
-import { getAllProjects } from './projects/data'
+import type { ProjectData } from './projects/helpers'
 import { getTechColor, techFamilies, type TechFamily } from './technologies'
 
 // Programming languages eligible for the top 4
@@ -30,11 +30,10 @@ export interface TechFamilyStats {
 }
 
 // Technology statistics from the visible projects
-export function extractTechStats(): {
+export function extractTechStats(projects: ProjectData[]): {
   topTechs: TechStats[]
   secondaryByFamily: TechFamilyStats[]
 } {
-  const projects = getAllProjects()
   const totalProjects = projects.length
   const techCount: Record<string, number> = {}
 
