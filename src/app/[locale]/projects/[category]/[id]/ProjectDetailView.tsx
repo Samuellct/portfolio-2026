@@ -12,6 +12,7 @@ import { Tag } from '@/components/ui/Tag'
 import { Figure } from '@/components/ui/Figure'
 import { CategoryIcon } from '@/components/ui/CategoryIcon'
 import { useTranslations } from 'next-intl'
+import { useEntryAnimation } from '@/hooks/use-entry-animation'
 import { cn } from '@/lib/cn'
 import { PAGE_BG } from '@/lib/theme'
 import { RESUME_PATH } from '@/lib/constants'
@@ -99,6 +100,8 @@ export default function ProjectDetailView({
   const tContact = useTranslations('contact')
   const tAbout = useTranslations('about')
   const leadMedia = project.media?.[0]
+  // Served visible without JavaScript; the fade-in plays on client navigations only
+  const enter = useEntryAnimation()
 
   // UX-13: "Projects" returns to the listing with the filter the visitor left it on
   const [projectsHref, setProjectsHref] = useState('/projects')
@@ -148,7 +151,7 @@ export default function ProjectDetailView({
         {/* HEADER: breadcrumb, title, hook, status, links (full width) */}
         {/* ============================================ */}
         <motion.header
-          initial={{ opacity: 0, y: 20 }}
+          initial={enter ? { opacity: 0, y: 20 } : false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="pt-6 pb-10 mb-10 border-b border-white/15"
@@ -258,7 +261,7 @@ export default function ProjectDetailView({
             {/* Results as measures (UX-12): main column, ahead of the figure and the narrative */}
             {project.results && project.results.length > 0 && (
               <motion.section
-                initial={{ opacity: 0, y: 20 }}
+                initial={enter ? { opacity: 0, y: 20 } : false}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
                 id="section-results"
@@ -297,7 +300,7 @@ export default function ProjectDetailView({
 
             {/* Lead media: first `media[]` entry, `image` for fiches without one (A15, DEC-10c) */}
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={enter ? { opacity: 0, y: 20 } : false}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.6 }}
               className="mb-10"
@@ -341,7 +344,7 @@ export default function ProjectDetailView({
                         key={key}
                         id={`section-${key}`}
                         className="scroll-mt-28"
-                        initial={{ opacity: 0, y: 20 }}
+                        initial={enter ? { opacity: 0, y: 20 } : false}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 + index * 0.05, duration: 0.6 }}
                       >
@@ -353,7 +356,7 @@ export default function ProjectDetailView({
               </div>
             ) : (
               <motion.section
-                initial={{ opacity: 0, y: 20 }}
+                initial={enter ? { opacity: 0, y: 20 } : false}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.6 }}
               >
@@ -367,7 +370,7 @@ export default function ProjectDetailView({
         {/* PREVIOUS / NEXT + RELATED PROJECTS (AUDIT-019) */}
         {/* ============================================ */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
+          initial={enter ? { opacity: 0, y: 20 } : false}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
