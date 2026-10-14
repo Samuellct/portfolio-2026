@@ -1,8 +1,6 @@
 import { getAllProjects } from './projects'
 import { getTechColor, techFamilies } from './technologies'
 
-export { getTechColor, techFamilies }
-
 // Langages de prog pour le Top 4
 export const programmingLanguages = [
   'Python', 'C++', 'TypeScript', 'JavaScript', 'Bash', 'Kotlin', 'C#', 'SQL', 'R', 'Java', 'Go', 'Rust'
@@ -34,10 +32,7 @@ export interface TechFamilyStats {
 // Extraire les technologies des projets
 export function extractTechStats(): {
   topTechs: TechStats[]
-  secondaryTechs: TechStats[]
   secondaryByFamily: TechFamilyStats[]
-  allTechs: TechStats[]
-  totalProjects: number
 } {
   const projects = getAllProjects()
   const totalProjects = projects.length
@@ -73,8 +68,6 @@ export function extractTechStats(): {
 
   const topTechNames = new Set(topTechs.map(t => t.name))
 
-  const secondaryTechs = sortedTechs.filter(t => !topTechNames.has(t.name))
-
   const secondaryByFamily: TechFamilyStats[] = []
 
   Object.entries(techFamilies).forEach(([id, family]) => {
@@ -98,14 +91,6 @@ export function extractTechStats(): {
 
   return {
     topTechs,
-    secondaryTechs,
     secondaryByFamily,
-    allTechs: sortedTechs,
-    totalProjects
   }
-}
-
-export function getTopTechNames(count: number = 4): string[] {
-  const { topTechs } = extractTechStats()
-  return topTechs.slice(0, count).map(t => t.name)
 }

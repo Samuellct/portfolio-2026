@@ -14,8 +14,8 @@ import { cn } from '@/lib/cn'
  * one-off CTAs (shine sweep, submit spinner, rounded pills) are migrated there,
  * not here.
  */
-export type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'link' | 'filter'
-export type ButtonSize = 'sm' | 'md' | 'lg'
+type ButtonVariant = 'primary' | 'secondary' | 'ghost' | 'link' | 'filter'
+type ButtonSize = 'sm' | 'md' | 'lg'
 
 const VARIANT: Record<Exclude<ButtonVariant, 'filter'>, string> = {
   primary:

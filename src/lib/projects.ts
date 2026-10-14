@@ -101,7 +101,7 @@ export interface ProjectData {
 
 export const PROJECT_CATEGORIES = ['personal', 'academic', 'internship'] as const
 
-export const projectsData: Record<string, Record<string, ProjectData>> = {
+const projectsData: Record<string, Record<string, ProjectData>> = {
   personal: {
     'home-server': {
       id: 'home-server',

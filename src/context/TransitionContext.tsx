@@ -102,5 +102,3 @@ export function useTransition() {
   }
   return context
 }
-
-export { COVER_DURATION }

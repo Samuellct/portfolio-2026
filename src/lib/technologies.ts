@@ -8,17 +8,17 @@
 // catch-all, and `null` hides it on purpose (single-use or overly specific
 // libraries). Brand colours are only used by the About page skill bars.
 
-export type TechFamily = 'languages' | 'frameworks' | 'dataAnalysis' | 'tools' | 'other'
+type TechFamily = 'languages' | 'frameworks' | 'dataAnalysis' | 'tools' | 'other'
 
 interface TechEntry {
   color: string
   family: TechFamily | null
 }
 
-export const DEFAULT_TECH_COLOR = '#6b7280'
+const DEFAULT_TECH_COLOR = '#6b7280'
 const D = DEFAULT_TECH_COLOR
 
-export const TECHNOLOGIES = {
+const TECHNOLOGIES = {
   // Languages & runtimes
   Python: { color: '#ffdd54', family: 'languages' },
   'C++': { color: '#00599c', family: 'languages' },

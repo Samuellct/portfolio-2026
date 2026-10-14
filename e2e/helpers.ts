@@ -10,7 +10,7 @@ export const PAGES = [
   '/en/projects/academic/data-analysis',
 ] as const
 
-export const TEXT_SELECTOR = 'main h1, main h2, main h3, main p, main li'
+const TEXT_SELECTOR = 'main h1, main h2, main h3, main p, main li'
 
 /**
  * Counts the text blocks inside <main> and how many a reader can see: laid out,

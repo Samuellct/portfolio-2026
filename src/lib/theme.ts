@@ -115,5 +115,3 @@ export const OG_DECOR = {
   glowBlue: '#0a0a1a',
   glowPurple: '#1a0a2e',
 } as const
-
-export type SectionBgName = keyof typeof SECTION_BG
