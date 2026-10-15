@@ -32,8 +32,7 @@ export const RISO = {
 export const SURFACE = {
   /** Hero and navigation band. Also the Tailwind `primary` colour. */
   primary: '#06060e',
-  /** Static shell used by server-rendered surfaces: root not-found and the
-   *  viewport `themeColor`. */
+  /** Static shell colour: the viewport `themeColor`. */
   shell: '#030308',
 } as const
 
