@@ -75,14 +75,16 @@ function ProjectCard({ project, index }: { project: ProjectSummary; index: numbe
       animate={{ opacity: 1, y: 0 }}
       exit={{ opacity: 0, scale: 0.95 }}
       transition={{ duration: 0.5, delay: index * 0.05 }}
-      className="group"
+      // Six subgrid rows (image, meta, title, tags, description, footer) shared
+      // across a grid row, so every footer lines up (V6-LST-03)
+      className="group row-span-6 grid grid-rows-subgrid gap-y-2"
       onMouseMove={handleMouseMove}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={handleMouseLeave}
     >
       <TransitionLink
         href={`/projects/${project.category}/${project.id}`}
-        className="block"
+        className="row-span-6 grid grid-rows-subgrid gap-y-2"
       >
         {/* Image container - respecte le ratio original */}
         <m.div 
@@ -153,7 +155,7 @@ function ProjectCard({ project, index }: { project: ProjectSummary; index: numbe
         </m.div>
         
         {/* Content */}
-        <div className="space-y-2">
+        <div className="contents">
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-meta tracking-caps-wide uppercase text-muted [&>span]:whitespace-nowrap">
             <span className="inline-flex items-center gap-1.5 text-white">
               <CategoryIcon category={project.category} />
@@ -164,11 +166,11 @@ function ProjectCard({ project, index }: { project: ProjectSummary; index: numbe
           </div>
 
           {/* Pink title at bold weight: the one focal point of the card (DEC-14m) */}
-          <h3 className="font-body font-bold text-xl md:text-2xl text-riso-pinkTitle min-h-[3.5rem] md:min-h-[4rem] group-hover:text-accent transition-colors duration-300">
+          <h3 className="font-body font-bold text-xl md:text-2xl text-riso-pinkTitle group-hover:text-accent transition-colors duration-300">
             {getLocalizedField(project.title, locale)}
           </h3>
 
-          <div className="flex flex-wrap gap-2">
+          <div className="flex flex-wrap content-start gap-2">
             {project.technologies.slice(0, 3).map((tech) => (
               <Tag key={tech}>{tech}</Tag>
             ))}
@@ -182,7 +184,7 @@ function ProjectCard({ project, index }: { project: ProjectSummary; index: numbe
           </p>
           
           {/* View link, visible without hover (UI-01); the status label closes the line, mirroring it (P12-D4) */}
-          <div className="flex items-center justify-between gap-4 pt-2">
+          <div className="self-end flex min-h-8 items-center justify-between gap-4 pt-2">
             <span className="flex items-center gap-2 text-accent">
               <span className="text-xs tracking-caps uppercase">{t('viewProject')}</span>
               <ArrowRight size={12} aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1" />
