@@ -11,11 +11,10 @@
     "external": "Liens externes",
     "github": "GitHub",
     "linkedin": "LinkedIn",
-    "switchLang": "English",
     "open": "Ouvrir le menu",
     "close": "Fermer le menu",
     "dialogLabel": "Menu du site",
-    "switchLangAria": "Passer en anglais"
+    "switchLangPrefix": "Version anglaise :"
   },
   "hero": {
     "name": "Samuel Lecomte",

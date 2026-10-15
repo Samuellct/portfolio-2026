@@ -144,10 +144,7 @@ export default function FullscreenMenu({ open, onClose, links, isActive, onNavCl
               </div>
 
               <div className="mt-8 pt-6 border-t border-accent-line/25">
-                <LanguageSwitcher
-                  label={tMenu('switchLang')}
-                  className="flex items-center gap-3 text-white hover:text-riso-blue transition-colors text-lg"
-                />
+                <LanguageSwitcher variant="segment" className="w-fit text-white text-sm font-medium tracking-caps-wide" />
               </div>
             </div>
           </div>
