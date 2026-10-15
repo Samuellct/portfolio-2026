@@ -3,6 +3,7 @@
 import { useEffect, useRef } from 'react'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { RISO } from '@/lib/theme'
+import { SKY_BASE, SKY_DENSITY, pickSkyColor, seeded } from '@/lib/sky'
 
 // The hero's night plate (DEC-16i): a sky printed in halftone, pastels with
 // pure ink specks, under a light film grain, ending in a paper halftone fringe
@@ -12,22 +13,10 @@ import { RISO } from '@/lib/theme'
 // planes (2 / 5 / 10 px/s). The former WaveBackground survives as the sine field
 // that makes the stars sway, plus a phased twinkle on about one star in seven.
 // The sky ignores the pointer. Reduced motion prints a single still frame.
-// Parameters chosen by the owner on the variant bench (audit 2, 2026-10-08).
+// Palette, density and base colour live in lib/sky (shared with the bands).
 
-const PALETTE: Array<[number, [number, number, number]]> = [
-  [0.2, [255, 179, 220]], // pink ink, pastel
-  [0.2, [158, 201, 240]], // blue ink, pastel
-  [0.2, [255, 244, 232]], // warm white
-  [0.14, [255, 72, 176]], // pink ink
-  [0.14, [70, 160, 230]], // blue ink, lightened
-  [0.07, [255, 232, 0]], // yellow ink
-  [0.05, [255, 243, 160]], // yellow ink, pastel
-]
 const PLANE_SPEED = [2, 5, 10] // px/s along the arc, far to near
-// Stars for a 1440 x 900 viewport, scaled with the area.
-const DENSITY = 110 / (1440 * 900)
-// Lifted, slightly warm black: the plate is printed, not a screen void.
-const BASE = [17 / 255, 16 / 255, 23 / 255]
+const BASE = SKY_BASE.map((c) => c / 255)
 export const FRINGE_HEIGHT = 56
 const FRINGE_STEP = 6
 
@@ -107,28 +96,11 @@ void main() {
 }
 `
 
-function seeded(seed: number) {
-  let s = seed
-  return () => {
-    s = (s * 16807) % 2147483647
-    return (s - 1) / 2147483646
-  }
-}
-
-function pickColor(t: number) {
-  let acc = 0
-  for (const [weight, rgb] of PALETTE) {
-    acc += weight
-    if (t <= acc) return rgb
-  }
-  return PALETTE[0][1]
-}
-
 // Same seed for every viewport, so the sky keeps its constellation across sizes.
 function buildStars(width: number, height: number) {
   const rand = seeded(7)
   const desktop = width >= 1024
-  const target = Math.max(28, Math.round(width * height * DENSITY))
+  const target = Math.max(28, Math.round(width * height * SKY_DENSITY))
   const crossCap = Math.max(4, target / 45)
 
   const a: number[] = []
@@ -144,7 +116,7 @@ function buildStars(width: number, height: number) {
     const twinkle = rand() < 0.15 ? 1 : 0
     const pr = rand()
     const plane = pr < 0.55 ? 0 : pr < 0.85 ? 1 : 2
-    const color = pickColor(rand())
+    const color = pickSkyColor(rand())
     // Thin the sky behind the name on desktop, without emptying it.
     const nx = (x - 0.5) / 0.25
     const ny = (y - 0.5) / 0.22
