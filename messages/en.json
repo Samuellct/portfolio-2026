@@ -4,7 +4,8 @@
     "about": "About",
     "projects": "Projects",
     "contact": "Contact",
-    "mainLabel": "Main navigation"
+    "mainLabel": "Main navigation",
+    "logoLabel": "SL, Samuel Lecomte, home"
   },
   "menu": {
     "sections": "Sections",

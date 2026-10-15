@@ -137,6 +137,7 @@ export default function NavBar() {
           {/* Logo */}
           <TransitionLink
             href="/"
+            aria-label={tNav('logoLabel')}
             className="tap-target font-display uppercase font-black text-title tracking-widest hover:text-accent transition-colors"
           >
             SL
