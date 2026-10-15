@@ -9,6 +9,7 @@ import { PAGE_BG } from '@/lib/theme'
 import { SOCIAL, FORMSPREE_ENDPOINT } from '@/lib/constants'
 import Watermark from '@/components/effects/Watermark'
 import { Pill } from '@/components/ui/Pill'
+import { useEntryAnimation } from '@/hooks/use-entry-animation'
 
 // Background color (shares the About intro token: same value, one source)
 const CONTACT_BG_COLOR = PAGE_BG
@@ -23,6 +24,8 @@ type FormStatus = 'idle' | 'submitting' | 'success' | 'error'
 export default function ContactPage() {
   const tContact = useTranslations('contact')
   const tNav = useTranslations('nav')
+  // Served visible (no JS, first load); entries animate only after a client navigation
+  const enter = useEntryAnimation()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -82,25 +85,22 @@ export default function ContactPage() {
       
       <div className="relative z-10 pt-24 pb-20 max-w-3xl mx-auto px-6 md:px-12">
         <m.div
-          initial={{ opacity: 0, x: -20 }}
+          initial={enter ? { opacity: 0, x: -20 } : false}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.4 }}
           className="mb-12"
         >
           <Breadcrumb items={[{ label: tNav('contact') }]} />
         </m.div>
-        
-        {/* Header */}
+
+        {/* Header: the breadcrumb names the page, no orphan section number (P11-D7) */}
         <m.header
-          initial={{ opacity: 0, y: 20 }}
+          initial={enter ? { opacity: 0, y: 20 } : false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="mb-12"
         >
-          <div className="section-label text-accent mb-4">
-            {tContact('sectionLabel')}
-          </div>
-          <h1 className="font-display uppercase font-black text-page leading-display tracking-wide mb-6">
+          <h1 className="misregister font-display uppercase font-black text-heading leading-display tracking-wide mb-6 text-riso-pinkTitle">
             {tContact('page.title')}
           </h1>
           <p className="text-lg text-muted">
@@ -139,12 +139,9 @@ export default function ContactPage() {
             <CheckCircle aria-hidden="true" size={48} className="mx-auto mb-4 text-status-success" />
             <h2 className="font-display uppercase font-black text-title mb-2">{tContact('page.form.success')}</h2>
             <p className="text-muted mb-6">{tContact('page.form.successDescription')}</p>
-            <button
-              onClick={resetForm}
-              className="px-6 py-2 text-sm tracking-label uppercase border border-white/20 hover:border-white/40 transition-colors"
-            >
+            <Pill tone="outline" onClick={resetForm}>
               {tContact('page.form.sendAnother')}
-            </button>
+            </Pill>
           </m.div>
         )}
         
@@ -158,19 +155,16 @@ export default function ContactPage() {
             <AlertCircle aria-hidden="true" size={48} className="mx-auto mb-4 text-status-error" />
             <h2 className="font-display uppercase font-black text-title mb-2">{tContact('page.form.error')}</h2>
             <p className="text-muted mb-6">{tContact('page.form.errorDescription')}</p>
-            <button
-              onClick={resetForm}
-              className="px-6 py-2 text-sm tracking-label uppercase border border-white/20 hover:border-white/40 transition-colors"
-            >
+            <Pill tone="outline" onClick={resetForm}>
               {tContact('page.form.retry')}
-            </button>
+            </Pill>
           </m.div>
         )}
         
         {/* Form */}
         {(status === 'idle' || status === 'submitting') && (
           <m.form
-            initial={{ opacity: 0, y: 20 }}
+            initial={enter ? { opacity: 0, y: 20 } : false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1, duration: 0.6 }}
             onSubmit={handleSubmit}
@@ -252,14 +246,15 @@ export default function ContactPage() {
             </div>
 
             {/* Submit bttn */}
-            <button
+            {/* The pink glow on hover is kept (V6-Q-20) */}
+            <Pill
               type="submit"
               disabled={status === 'submitting'}
-              className="inline-flex items-center gap-3 px-8 py-4 bg-riso-pink text-primary hover:text-black text-sm font-medium tracking-caps uppercase transition-all hover:bg-white hover:shadow-glow-accent disabled:opacity-50 disabled:cursor-not-allowed"
+              className="hover:shadow-glow-accent disabled:opacity-50 disabled:cursor-not-allowed"
             >
               {status === 'submitting' ? (
                 <>
-                  <span className="w-4 h-4 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+                  <span aria-hidden="true" className="w-4 h-4 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
                   {tContact('page.form.sending')}
                 </>
               ) : (
@@ -268,16 +263,16 @@ export default function ContactPage() {
                   <Send aria-hidden="true" size={16} />
                 </>
               )}
-            </button>
+            </Pill>
           </m.form>
         )}
-        
-        {/* Direct contact section */}
+
+        {/* Direct contact: opened by the bands' registered double rule (P11-D8) */}
         <m.section
-          initial={{ opacity: 0, y: 20 }}
+          initial={enter ? { opacity: 0, y: 20 } : false}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3, duration: 0.6 }}
-          className="mt-16 pt-16 border-t border-white/5"
+          className="rule-pair-above relative mt-16 pt-16"
         >
           <h2 className="text-xs tracking-caps-wide uppercase text-muted mb-6">
             {tContact('page.directContact.title')}
