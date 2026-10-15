@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
+import { useEffect, useState, useRef } from 'react'
 import Breadcrumb from '@/components/navigation/Breadcrumb'
 import { m } from 'framer-motion'
 import { Send, CheckCircle, AlertCircle, Github, Linkedin } from 'lucide-react'
@@ -36,6 +36,21 @@ export default function ContactPage() {
   // Honeypot: left empty by people, filled by bots; Formspree drops submissions
   // that carry a value in `_gotcha`.
   const gotchaRef = useRef<HTMLInputElement>(null)
+  // After a submission the form unmounts: focus goes to the outcome heading,
+  // then back to the first field when the form returns (V6-COD-25).
+  const outcomeRef = useRef<HTMLHeadingElement>(null)
+  const nameRef = useRef<HTMLInputElement>(null)
+  const settled = useRef(false)
+
+  useEffect(() => {
+    if (status === 'success' || status === 'error') {
+      settled.current = true
+      outcomeRef.current?.focus()
+    } else if (status === 'idle' && settled.current) {
+      settled.current = false
+      nameRef.current?.focus()
+    }
+  }, [status])
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target
@@ -121,12 +136,10 @@ export default function ContactPage() {
           </p>
         </m.header>
         
-        {/* Live region, in the DOM before any submission so screen readers
-            announce the outcome (AUDIT-069). */}
+        {/* Live region, in the DOM before any submission (AUDIT-069): it announces
+            the sending state; the outcome is read through the focused heading. */}
         <p role="status" aria-live="polite" className="sr-only">
           {status === 'submitting' && tContact('page.form.sending')}
-          {status === 'success' && tContact('page.form.success')}
-          {status === 'error' && tContact('page.form.error')}
         </p>
 
         {/* Success State */}
@@ -137,7 +150,7 @@ export default function ContactPage() {
             className="p-8 bg-status-success/10 border border-status-success/30 text-center"
           >
             <CheckCircle aria-hidden="true" size={48} className="mx-auto mb-4 text-status-success" />
-            <h2 className="font-display uppercase font-black text-title mb-2">{tContact('page.form.success')}</h2>
+            <h2 ref={outcomeRef} tabIndex={-1} className="font-display uppercase font-black text-title mb-2">{tContact('page.form.success')}</h2>
             <p className="text-muted mb-6">{tContact('page.form.successDescription')}</p>
             <Pill tone="outline" onClick={resetForm}>
               {tContact('page.form.sendAnother')}
@@ -153,7 +166,7 @@ export default function ContactPage() {
             className="p-8 bg-status-error/10 border border-status-error/30 text-center mb-8"
           >
             <AlertCircle aria-hidden="true" size={48} className="mx-auto mb-4 text-status-error" />
-            <h2 className="font-display uppercase font-black text-title mb-2">{tContact('page.form.error')}</h2>
+            <h2 ref={outcomeRef} tabIndex={-1} className="font-display uppercase font-black text-title mb-2">{tContact('page.form.error')}</h2>
             <p className="text-muted mb-6">{tContact('page.form.errorDescription')}</p>
             <Pill tone="outline" onClick={resetForm}>
               {tContact('page.form.retry')}
@@ -178,6 +191,7 @@ export default function ContactPage() {
                 </label>
                 <input
                   type="text"
+                  ref={nameRef}
                   id="name"
                   name="name"
                   value={formData.name}
