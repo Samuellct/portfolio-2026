@@ -175,12 +175,12 @@ export default function HeroSection({ featuredProjects }: { featuredProjects: Pr
           {t('title')}
         </p>
 
-        <div className="mt-6 flex w-full gap-3 lg:w-auto lg:gap-3.5">
-          <Pill as="link" href="/projects" scheme="night" className="flex-1 lg:flex-none">
+        <div className="mt-6 flex w-full flex-col gap-3 min-[400px]:flex-row lg:w-auto lg:gap-3.5">
+          <Pill as="link" href="/projects" scheme="night" className="min-[400px]:flex-1 lg:flex-none">
             {t('cta')}
             <ArrowRight size={16} aria-hidden="true" />
           </Pill>
-          <Pill as="external" href={RESUME_PATH} tone="outline" scheme="night" className="flex-1 lg:flex-none">
+          <Pill as="external" href={RESUME_PATH} tone="outline" scheme="night" className="min-[400px]:flex-1 lg:flex-none">
             {tCommon('viewCV')}
             <FileText size={16} aria-hidden="true" />
           </Pill>
