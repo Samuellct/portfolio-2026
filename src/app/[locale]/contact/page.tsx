@@ -13,6 +13,11 @@ import { Pill } from '@/components/ui/Pill'
 // Background color (shares the About intro token: same value, one source)
 const CONTACT_BG_COLOR = PAGE_BG
 
+// Paper fields framed in blue (3.99:1 at rest, V6-CTA-06, P11-D6); focus turns
+// the frame to ink and adds an offset blue ring.
+const FIELD =
+  'w-full px-4 py-3 bg-snow/60 border-[1.5px] border-riso-blue text-white placeholder:text-muted outline-none transition-colors focus:border-riso-ink focus:ring-2 focus:ring-riso-blue focus:ring-offset-2 focus:ring-offset-riso-paper'
+
 type FormStatus = 'idle' | 'submitting' | 'success' | 'error'
 
 export default function ContactPage() {
@@ -186,7 +191,7 @@ export default function ContactPage() {
                   required
                   autoComplete="name"
                   placeholder={tContact('page.form.namePlaceholder')}
-                  className="w-full px-4 py-3 bg-white/[0.03] border border-white/10 text-white placeholder:text-muted focus:outline-none focus:border-accent-line transition-colors"
+                  className={FIELD}
                 />
               </div>
               
@@ -203,7 +208,7 @@ export default function ContactPage() {
                   required
                   autoComplete="email"
                   placeholder={tContact('page.form.emailPlaceholder')}
-                  className="w-full px-4 py-3 bg-white/[0.03] border border-white/10 text-white placeholder:text-muted focus:outline-none focus:border-accent-line transition-colors"
+                  className={FIELD}
                 />
               </div>
             </div>
@@ -220,7 +225,7 @@ export default function ContactPage() {
                 value={formData.subject}
                 onChange={handleChange}
                 placeholder={tContact('page.form.subjectPlaceholder')}
-                className="w-full px-4 py-3 bg-white/[0.03] border border-white/10 text-white placeholder:text-muted focus:outline-none focus:border-accent-line transition-colors"
+                className={FIELD}
               />
             </div>
             
@@ -237,7 +242,7 @@ export default function ContactPage() {
                 required
                 rows={6}
                 placeholder={tContact('page.form.messagePlaceholder')}
-                className="w-full px-4 py-3 bg-white/[0.03] border border-white/10 text-white placeholder:text-muted focus:outline-none focus:border-accent-line transition-colors resize-none"
+                className={`${FIELD} resize-none`}
               />
             </div>
             
