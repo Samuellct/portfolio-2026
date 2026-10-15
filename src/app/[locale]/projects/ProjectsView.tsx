@@ -12,6 +12,7 @@ import Image from 'next/image'
 import { getLocalizedField, getCardPeriod, PROJECT_CATEGORIES, ProjectSummary, PROJECTS_FILTER_KEY, PROJECTS_VIEW_KEY } from '@/lib/projects/helpers'
 import { useTranslations, useLocale } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
+import { useEntryAnimation } from '@/hooks/use-entry-animation'
 import { PAGE_BG, RISO } from '@/lib/theme'
 import { Button } from '@/components/ui/Button'
 import { Tag } from '@/components/ui/Tag'
@@ -268,6 +269,8 @@ export default function ProjectsView({ allProjects }: { allProjects: ProjectSumm
   const tNav = useTranslations('nav')
   const locale = useLocale()
   const prefersReducedMotion = useReducedMotion()
+  // Entrance motion only after a client-side navigation; the served page is visible as is
+  const enter = useEntryAnimation()
   const [activeFilter, setActiveFilter] = useState<string>('all')
   const [searchQuery, setSearchQuery] = useState('')
   // Tiles by default; the list view is remembered for the session (P12-D2),
@@ -318,7 +321,8 @@ export default function ProjectsView({ allProjects }: { allProjects: ProjectSumm
   useEffect(() => {
     if (!pageRef.current) return
 
-    if (prefersReducedMotion) {
+    // Served page: the title is already visible, so no reveal (phase 04 report)
+    if (prefersReducedMotion || !enter) {
       const title = headerRef.current?.querySelector('h1')
       if (title) gsap.set(title, { y: 0, opacity: 1 })
       return
@@ -342,7 +346,7 @@ export default function ProjectsView({ allProjects }: { allProjects: ProjectSumm
     }, pageRef)
 
     return () => ctx.revert()
-  }, [prefersReducedMotion])
+  }, [prefersReducedMotion, enter])
 
   return (
     // Card reflow on filtering needs the layout features, fetched after first load
@@ -361,7 +365,7 @@ export default function ProjectsView({ allProjects }: { allProjects: ProjectSumm
         
         <div className="relative z-10 pt-24 pb-20 max-w-7xl mx-auto px-6 md:px-12">
           <m.div
-            initial={{ opacity: 0, x: -20 }}
+            initial={enter ? { opacity: 0, x: -20 } : false}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.4 }}
             className="mb-12"
@@ -387,7 +391,7 @@ export default function ProjectsView({ allProjects }: { allProjects: ProjectSumm
           
           {/* Filters */}
           <m.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={enter ? { opacity: 0, y: 20 } : false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
             className="flex flex-wrap items-center gap-3 mb-4"
@@ -464,7 +468,9 @@ export default function ProjectsView({ allProjects }: { allProjects: ProjectSumm
               layout
               className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12"
             >
-              <AnimatePresence mode="popLayout">
+              {/* Cards present at the first render skip their entrance on a served page,
+                  so they read without JavaScript; later ones (filtering) still fade in */}
+              <AnimatePresence mode="popLayout" initial={enter}>
                 {filteredProjects.map((project, index) => (
                   <ProjectCard
                     key={project.id}
