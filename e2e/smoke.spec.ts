@@ -22,6 +22,27 @@ for (const path of PAGES) {
   })
 }
 
+test('field web vitals reach the endpoint', async ({ page }) => {
+  // TTFB and FCP are sent soon after the load, without waiting for the page to hide
+  const beacon = page.waitForResponse((r) => r.url().endsWith('/api/vitals') && r.request().method() === 'POST')
+  await page.goto('/fr', { waitUntil: 'networkidle' })
+  const response = await beacon
+  expect(response.status()).toBe(204)
+  const sent = JSON.parse(response.request().postData() ?? '{}')
+  expect(sent).toMatchObject({ landing: '/fr', path: '/fr' })
+  expect(Object.keys(sent).sort()).toEqual(
+    ['landing', 'name', 'navigationType', 'path', 'rating', 'screen', 'v', 'value'],
+  )
+})
+
+test('vitals endpoint rejects what it does not expect', async ({ request }) => {
+  const post = (data: unknown) => request.post('/api/vitals', { data })
+  expect((await post({ name: 'CLS', value: 0.01, path: '/fr', landing: '/fr' })).status()).toBe(204)
+  expect((await post({ name: 'CPU', value: 1, path: '/fr', landing: '/fr' })).status()).toBe(400)
+  expect((await post({ name: 'CLS', value: 0.01, path: 'https://x.test', landing: '/fr' })).status()).toBe(400)
+  expect((await post({ name: 'CLS', value: 0.01, path: '/fr', landing: '/fr', pad: 'x'.repeat(2000) })).status()).toBe(413)
+})
+
 test('unknown page answers 404 without page errors', async ({ page }) => {
   const errors: string[] = []
   page.on('pageerror', (err) => errors.push(err.message))
