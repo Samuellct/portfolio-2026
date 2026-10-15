@@ -167,8 +167,9 @@ function ProjectCard({ project, index }: { project: ProjectSummary; index: numbe
             <span>{getCardPeriod(project.period, locale)}</span>
           </div>
 
-          {/* Pink title at bold weight: the one focal point of the card (DEC-14m) */}
-          <h3 id={titleId} className="font-body font-bold text-xl md:text-2xl text-riso-pinkTitle group-hover:text-accent transition-colors duration-300">
+          {/* Ink title, title pink on hover as in the list view: pink keeps two
+              meanings only, the personal plate and the in-progress label (P12-D5) */}
+          <h3 id={titleId} className="font-body font-bold text-xl md:text-2xl text-white group-hover:text-riso-pinkTitle transition-colors duration-300">
             {getLocalizedField(project.title, locale)}
           </h3>
 
