@@ -5,6 +5,30 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.4.0](https://github.com/Samuellct/portfolio-2026/compare/v5.3.0...v5.4.0) (2026-10-15)
+
+### Ajouté
+
+* **404:** print the not-found pages on paper ([859fca6](https://github.com/Samuellct/portfolio-2026/commit/859fca63764239618285a995755888411d0ab2ab))
+* **contact:** print the contact page on paper ([b7ad4bb](https://github.com/Samuellct/portfolio-2026/commit/b7ad4bb347d73461c37c42473f6c07167aa1dad6))
+
+### Corrigé
+
+* **404:** give the root 404 a tab title, pill states and the shared type scale ([52b094e](https://github.com/Samuellct/portfolio-2026/commit/52b094efacc68526d5f518e9363b77c601d2f45e))
+* **a11y:** announce every new-tab link and give the CV one label ([d2b62c8](https://github.com/Samuellct/portfolio-2026/commit/d2b62c8b74594970d1d06bc63290dcbde98dcdb4))
+* **a11y:** drop the global rule that hid the body link underline ([5396ad7](https://github.com/Samuellct/portfolio-2026/commit/5396ad759cdad0a9754a17b55390d0ce1b82476c))
+* **a11y:** move focus to the contact form outcome after sending ([ca00aea](https://github.com/Samuellct/portfolio-2026/commit/ca00aeab3ea93f12f185a86c95cce09dfdde6795))
+* **a11y:** tell the About project links apart and widen the image credit target ([c5d5e29](https://github.com/Samuellct/portfolio-2026/commit/c5d5e293b5bf8d069f9eceaa0c2000768555b6f1))
+* **a11y:** underline the links in the project body text ([e343d8c](https://github.com/Samuellct/portfolio-2026/commit/e343d8cfc7bd4b3ee01f87e82b93b96b4cf11d91))
+* **contact:** frame the form fields in blue with a visible focus ring ([e97b3d9](https://github.com/Samuellct/portfolio-2026/commit/e97b3d97638087a58ed60ad3b00d68927be3402e))
+* **contact:** print the GitHub and LinkedIn links as outline pills ([07241b8](https://github.com/Samuellct/portfolio-2026/commit/07241b80d04fbea5a2a5518ed09354c7ea06f468))
+* **hero:** stack the two pills on phones under 400 px ([d88c64c](https://github.com/Samuellct/portfolio-2026/commit/d88c64ce52fc54d37ddff00567e1114a61ab8b69))
+
+### Modifié
+
+* **ui:** reduce Button to the listing filter ([91be76c](https://github.com/Samuellct/portfolio-2026/commit/91be76c722ec170bb8d4f11119b00c04b32ebdb0))
+* **ui:** replace the pill variants with one Pill primitive ([dfae795](https://github.com/Samuellct/portfolio-2026/commit/dfae7953ca4a1841299ad814cc1c0574e842b9b1))
+
 ## [5.3.0](https://github.com/Samuellct/portfolio-2026/compare/v5.2.2...v5.3.0) (2026-10-15)
 
 ### Ajouté
