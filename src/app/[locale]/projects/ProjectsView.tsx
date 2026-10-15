@@ -336,7 +336,6 @@ export default function ProjectsView({ allProjects }: { allProjects: ProjectSumm
           >
             <div role="group" aria-label={t('filterGroupLabel')} className="flex flex-wrap items-center gap-3">
               <Button
-                variant="filter"
                 className="tap-target"
                 active={activeFilter === 'all'}
                 aria-pressed={activeFilter === 'all'}
@@ -348,7 +347,6 @@ export default function ProjectsView({ allProjects }: { allProjects: ProjectSumm
               {PROJECT_CATEGORIES.map((categoryId) => (
                 <Button
                   key={categoryId}
-                  variant="filter"
                   className="tap-target"
                   active={activeFilter === categoryId}
                   aria-pressed={activeFilter === categoryId}
