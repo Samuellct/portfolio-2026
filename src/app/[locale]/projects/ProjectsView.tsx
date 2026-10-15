@@ -143,13 +143,6 @@ function ProjectCard({ project, index }: { project: ProjectSummary; index: numbe
             )}
           </div>
           
-          {/* Gradient overlay */}
-          <m.div
-            className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent pointer-events-none"
-            animate={{ opacity: isHovered ? 1 : 0.3 }}
-            transition={{ duration: 0.4 }}
-          />
-          
           {/* hover */}
           <m.div
             className="absolute inset-3 border border-white/20 pointer-events-none"
