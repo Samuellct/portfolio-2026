@@ -1,43 +1,30 @@
 import { cn } from '@/lib/cn'
 
 /**
- * Project status badge (AUDIT-047). Consolidates the two historical
- * implementations behind one component (the listing card shows its status as
- * meta text since UI-01):
- * - `tone="inline"` renders a `<span>` for flowing next to the category on the
- *   detail page.
- * Class strings are preserved exactly so the rendered output does not move.
+ * Project status label (AUDIT-047, P12-D4), one form on the listing card and
+ * the project page (V6-LST-07). A square printed label, not a pill, so it never
+ * reads as an action. "In progress" is pink with its blue plate 3 px off, the
+ * yellow being kept for the research category alone (V6-LST-01); "paused" is
+ * paper with a dashed rule. The word always carries the meaning, so the status
+ * reads without colour.
  */
 export type ProjectStatusValue = 'in-progress' | 'paused'
 
-const TONE = {
-  inline: 'px-2 py-1 text-meta tracking-wider uppercase',
-  // Project page header (DEC-14g): a printed pill next to the links.
-  pill: 'inline-flex items-center px-4 py-2.5 rounded-full text-sm font-semibold tracking-caps uppercase',
-} as const
+const BASE = 'inline-block whitespace-nowrap text-meta font-bold leading-none tracking-caps uppercase'
 
 const STATUS = {
-  'in-progress': {
-    inline: 'bg-accent-line/10 border border-accent-line/20 text-accent',
-    pill: 'bg-riso-pink text-primary border border-riso-pink',
-  },
-  paused: {
-    inline: 'bg-white/10 border border-white/20 text-muted',
-    pill: 'border border-dashed border-white text-white',
-  },
+  'in-progress': 'px-2.5 py-1.5 bg-riso-pink text-primary shadow-plate-3',
+  paused: 'px-2 py-[0.3125rem] bg-riso-paper text-muted border-[1.5px] border-dashed border-muted',
 } as const
 
 export function Badge({
   status,
-  tone,
   className,
   children,
 }: {
   status: ProjectStatusValue
-  tone: 'inline' | 'pill'
   className?: string
   children: React.ReactNode
 }) {
-  const classes = cn(TONE[tone], STATUS[status][tone], className)
-  return <span className={classes}>{children}</span>
+  return <span className={cn(BASE, STATUS[status], className)}>{children}</span>
 }

@@ -15,8 +15,8 @@ import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { PAGE_BG, RISO } from '@/lib/theme'
 import { Button } from '@/components/ui/Button'
 import { Tag } from '@/components/ui/Tag'
+import { Badge } from '@/components/ui/Badge'
 import { CategoryIcon } from '@/components/ui/CategoryIcon'
-import { cn } from '@/lib/cn'
 import Watermark from '@/components/effects/Watermark'
 
 // Case- and accent-insensitive comparison for the free-text search (AUDIT-083).
@@ -181,21 +181,14 @@ function ProjectCard({ project, index }: { project: ProjectSummary; index: numbe
             {getLocalizedField(project.description, locale)}
           </p>
           
-          {/* View link, visible without hover (UI-01); the status closes the line, a live project on a yellow pass */}
+          {/* View link, visible without hover (UI-01); the status label closes the line, mirroring it (P12-D4) */}
           <div className="flex items-center justify-between gap-4 pt-2">
             <span className="flex items-center gap-2 text-accent">
               <span className="text-xs tracking-caps uppercase">{t('viewProject')}</span>
               <ArrowRight size={12} aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1" />
             </span>
             {statusKey && (
-              <span
-                className={cn(
-                  'text-meta tracking-caps-wide uppercase whitespace-nowrap',
-                  statusKey === 'inProgress' ? 'px-1.5 py-0.5 bg-riso-yellow text-white' : 'text-muted'
-                )}
-              >
-                {t(`status.${statusKey}`)}
-              </span>
+              <Badge status={statusKey === 'inProgress' ? 'in-progress' : 'paused'}>{t(`status.${statusKey}`)}</Badge>
             )}
           </div>
         </div>

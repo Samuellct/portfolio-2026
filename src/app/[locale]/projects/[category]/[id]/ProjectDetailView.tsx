@@ -182,17 +182,16 @@ export default function ProjectDetailView({
             <p className="mt-5 max-w-3xl text-lead font-semibold">{getLocalizedField(project.subtitle, locale)}</p>
           )}
 
+          {/* Status on its own line, out of the action row (V6-LST-07, P12-D4) */}
+          {(project.status === 'in-progress' || project.status === 'paused') && (
+            <p className="mt-6">
+              <Badge status={project.status}>
+                {t(project.status === 'in-progress' ? 'status.inProgress' : 'status.paused')}
+              </Badge>
+            </p>
+          )}
+
           <div className="mt-6 flex flex-wrap items-center gap-3">
-            {project.status === 'in-progress' && (
-              <Badge status="in-progress" tone="pill">
-                {t('status.inProgress')}
-              </Badge>
-            )}
-            {project.status === 'paused' && (
-              <Badge status="paused" tone="pill">
-                {t('status.paused')}
-              </Badge>
-            )}
             {outLinks.map((link) => (
               <Pill key={link.url} as="external" href={link.url} tone="outline">
                 {link.github && <FaGithub size={16} aria-hidden="true" />}

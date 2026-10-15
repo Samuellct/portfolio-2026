@@ -75,6 +75,8 @@ const config: Config = {
         'lift-lg': '0 10px 30px rgb(0 0 0 / 0.45)',
         // A second plate printed 2 px off, flat (no blur): the registered blue copy.
         plate: `2px 2px 0 ${RISO.blue}`,
+        // The same plate 3 px off, for the project status label (P12-D4).
+        'plate-3': `3px 3px 0 ${RISO.blue}`,
       },
       // Stacking order, bottom to top.
       zIndex: {
