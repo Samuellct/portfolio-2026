@@ -652,7 +652,7 @@ export default function AboutView({
                       getLocalizedField(project.research?.lab, locale),
                     ].filter(Boolean).join(' · ')}
                   </p>
-                  <h3 className="font-display uppercase font-black text-title tracking-wide mb-2">
+                  <h3 id={`experience-${project.id}`} className="font-display uppercase font-black text-title tracking-wide mb-2">
                     {getLocalizedField(project.title, locale)}
                   </h3>
                   <p className="text-sm text-muted leading-relaxed mb-6">
@@ -679,6 +679,7 @@ export default function AboutView({
 
                   <TransitionLink
                     href={`/projects/${project.category}/${project.id}`}
+                    aria-describedby={`experience-${project.id}`}
                     className="tap-target mt-auto inline-flex items-center gap-2 text-sm tracking-caps uppercase text-accent hover:text-white transition-colors group"
                   >
                     {tAbout('experience.viewProject')}

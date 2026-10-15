@@ -64,7 +64,7 @@ export function Figure({
         <p className={cn('text-xs text-muted', caption ? 'mt-1' : 'mt-2')}>
           {creditLabel ? `${creditLabel}: ` : ''}
           {credit.url ? (
-            <ExternalLink href={credit.url} inline className="hover:text-white underline">
+            <ExternalLink href={credit.url} inline className="tap-target hover:text-white underline">
               {credit.name}
             </ExternalLink>
           ) : (
