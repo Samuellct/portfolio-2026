@@ -16,10 +16,11 @@ export function Button({ children, className, active = false, type = 'button', .
     <button
       type={type}
       className={cn(
-        'px-6 py-2.5 text-xs tracking-caps-wide uppercase border transition-all duration-300',
+        // One 44 px height whether or not the label carries a category plate (V6-LST-02)
+        'inline-flex h-11 items-center px-6 text-xs tracking-caps-wide uppercase border transition-all duration-300',
         active
           ? 'bg-white text-black border-white'
-          : 'bg-transparent text-muted border-white/20 hover:border-white/50 hover:text-white',
+          : 'bg-transparent text-muted border-white/35 hover:border-white hover:text-white',
         className,
       )}
       {...rest}

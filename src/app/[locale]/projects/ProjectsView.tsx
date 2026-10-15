@@ -362,7 +362,8 @@ export default function ProjectsView({ allProjects }: { allProjects: ProjectSumm
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder={t('searchPlaceholder')}
                 aria-label={t('searchLabel')}
-                className="tap-target bg-transparent border border-white/20 text-white text-sm pl-9 pr-4 py-2.5 placeholder:text-muted focus:outline-none focus:border-accent-line"
+                // Framed in blue like the Contact fields (P11-D6): 3.99:1 frame, ink and a blue ring on focus (V6-LST-02)
+                className="h-11 bg-snow/60 border-[1.5px] border-riso-blue text-white text-sm pl-9 pr-4 placeholder:text-muted outline-none transition-colors focus:border-riso-ink focus:ring-2 focus:ring-riso-blue focus:ring-offset-2 focus:ring-offset-riso-paper"
               />
             </div>
           </m.div>
