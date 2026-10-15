@@ -16,6 +16,7 @@ import { useEntryAnimation } from '@/hooks/use-entry-animation'
 import { cn } from '@/lib/cn'
 import { PAGE_BG } from '@/lib/theme'
 import { RESUME_PATH } from '@/lib/constants'
+import { Pill } from '@/components/ui/Pill'
 
 const PROJECT_DETAIL_BG_COLOR = PAGE_BG
 
@@ -193,17 +194,11 @@ export default function ProjectDetailView({
               </Badge>
             )}
             {outLinks.map((link) => (
-              <a
-                key={link.url}
-                href={link.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white text-sm font-semibold tracking-caps uppercase transition-colors hover:bg-white hover:text-black"
-              >
+              <Pill key={link.url} as="a" href={link.url} target="_blank" rel="noopener noreferrer" tone="outline">
                 {link.github && <FaGithub size={16} aria-hidden="true" />}
                 {link.label}
                 <ExternalLink size={14} aria-hidden="true" />
-              </a>
+              </Pill>
             ))}
           </div>
         </m.header>
@@ -379,22 +374,14 @@ export default function ProjectDetailView({
         >
           {/* UX-08: the fiche closes on the two actions, before moving to other projects */}
           <div className="flex flex-wrap items-center gap-4 mb-16">
-            <TransitionLink
-              href="/contact"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-riso-pink text-primary text-sm font-semibold tracking-caps uppercase transition-colors hover:bg-white hover:text-black"
-            >
+            <Pill as="link" href="/contact">
               {tContact('preview.cta')}
               <ArrowRight size={16} aria-hidden="true" />
-            </TransitionLink>
-            <a
-              href={RESUME_PATH}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white text-sm font-semibold tracking-caps uppercase transition-colors hover:bg-white hover:text-black"
-            >
+            </Pill>
+            <Pill as="a" href={RESUME_PATH} target="_blank" rel="noopener noreferrer" tone="outline">
               <Download size={16} aria-hidden="true" />
               {tAbout('downloadCV')}
-            </a>
+            </Pill>
           </div>
 
           {(previousProject || nextProject) && (

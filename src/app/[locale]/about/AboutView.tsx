@@ -17,6 +17,7 @@ import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { useSmoothScroll } from '@/context/SmoothScrollContext'
 import { CONTRAST_TEXT, PAGE_BG, RISO } from '@/lib/theme'
 import { RESUME_PATH, SOCIAL } from '@/lib/constants'
+import { Pill } from '@/components/ui/Pill'
 
 // ============================================
 // BACKGROUND TEXTS
@@ -29,11 +30,6 @@ const bgTexts = ['ABOUT', 'EXPERIENCE', 'STACK', 'EDUCATION', 'INTERESTS']
 const PIN_LENGTH = 1300
 // Pins on desktop only; below, sections are static and fade in once (DEC-15b)
 const DESKTOP_QUERY = '(min-width: 1024px)'
-// Riso pills, same classes as the project page end block (DEC-15e)
-const PILL_PRIMARY =
-  'inline-flex items-center gap-2 px-6 py-3 rounded-full bg-riso-pink text-primary text-sm font-semibold tracking-caps uppercase transition-colors hover:bg-white hover:text-black'
-const PILL_OUTLINE =
-  'inline-flex items-center gap-2 px-6 py-3 rounded-full border border-white text-sm font-semibold tracking-caps uppercase transition-colors hover:bg-white hover:text-black'
 const SECTION_IDS = ['about-intro', 'about-experience', 'about-stack', 'about-education', 'about-interests']
 
 // What the experience timeline reads from an internship (sorted by page.tsx)
@@ -593,18 +589,18 @@ export default function AboutView({
             
             {/* Buttons: visible from the start, outside the pin animation */}
             <div className="flex flex-wrap gap-4">
-              <a href={RESUME_PATH} target="_blank" rel="noopener noreferrer" className={PILL_PRIMARY}>
+              <Pill as="a" href={RESUME_PATH} target="_blank" rel="noopener noreferrer">
                 <Download size={16} aria-hidden="true" />
                 {tAbout('downloadCV')}
-              </a>
-              <a href={SOCIAL.github} target="_blank" rel="noopener noreferrer" className={PILL_OUTLINE}>
+              </Pill>
+              <Pill as="a" href={SOCIAL.github} target="_blank" rel="noopener noreferrer" tone="outline">
                 <Github size={16} aria-hidden="true" />
                 {tMenu('github')}
-              </a>
-              <a href={SOCIAL.linkedin} target="_blank" rel="noopener noreferrer" className={PILL_OUTLINE}>
+              </Pill>
+              <Pill as="a" href={SOCIAL.linkedin} target="_blank" rel="noopener noreferrer" tone="outline">
                 <Linkedin size={16} aria-hidden="true" />
                 {tMenu('linkedin')}
-              </a>
+              </Pill>
             </div>
           </div>
         </section>
@@ -957,14 +953,14 @@ export default function AboutView({
         {/* ============================================ */}
         <div className="px-6 md:px-12 lg:px-16 pb-24">
           <div className="max-w-6xl mx-auto w-full flex flex-wrap items-center gap-4 pt-12 border-t border-riso-pink">
-            <a href={RESUME_PATH} target="_blank" rel="noopener noreferrer" className={PILL_PRIMARY}>
+            <Pill as="a" href={RESUME_PATH} target="_blank" rel="noopener noreferrer">
               <Download size={16} aria-hidden="true" />
               {tAbout('downloadCV')}
-            </a>
-            <TransitionLink href="/contact" className={PILL_OUTLINE}>
+            </Pill>
+            <Pill as="link" href="/contact" tone="outline">
               {tContact('preview.cta')}
               <ArrowRight size={16} aria-hidden="true" />
-            </TransitionLink>
+            </Pill>
           </div>
         </div>
       </div>

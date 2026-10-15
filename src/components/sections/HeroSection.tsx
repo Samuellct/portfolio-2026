@@ -7,7 +7,7 @@ import { ArrowRight, Download } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import HeroSky, { FRINGE_HEIGHT } from '@/components/effects/HeroSky'
-import { pillBase } from '@/components/ui/pill'
+import { Pill } from '@/components/ui/Pill'
 import { ACCENT } from '@/lib/theme'
 import { getCardPeriod, getLocalizedField, Locale, ProjectSummary } from '@/lib/projects/helpers'
 import { RESUME_PATH } from '@/lib/constants'
@@ -175,23 +175,23 @@ export default function HeroSection({ featuredProjects }: { featuredProjects: Pr
         </p>
 
         <div className="mt-6 flex w-full gap-3 lg:w-auto lg:gap-3.5">
-          <TransitionLink
-            href="/projects"
-            className={`${pillBase} flex-1 lg:flex-none border-[1.5px] border-transparent bg-riso-pink text-primary hover:bg-snow`}
-          >
+          <Pill as="link" href="/projects" scheme="night" className="flex-1 lg:flex-none">
             {t('cta')}
             <ArrowRight size={16} aria-hidden="true" />
-          </TransitionLink>
-          <a
+          </Pill>
+          <Pill
+            as="a"
             href={RESUME_PATH}
             target="_blank"
             rel="noopener noreferrer"
             aria-label={t('ctaSecondary')}
-            className={`${pillBase} flex-1 lg:flex-none border-[1.5px] border-riso-paper text-riso-paper hover:bg-riso-paper hover:text-primary`}
+            tone="outline"
+            scheme="night"
+            className="flex-1 lg:flex-none"
           >
             {t('cv')}
             <Download size={16} aria-hidden="true" />
-          </a>
+          </Pill>
         </div>
 
         {/* Mobile and tablet: the four projects as paper labels (DEC-16g, comp M2) */}

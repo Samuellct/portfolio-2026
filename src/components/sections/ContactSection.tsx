@@ -1,13 +1,12 @@
 'use client'
 
 import { useRef, useEffect, useState } from 'react'
-import TransitionLink from '@/components/navigation/TransitionLink'
 import { m } from 'framer-motion'
 import { gsap, ScrollTrigger } from '@/lib/gsap'
 import Watermark from '@/components/effects/Watermark'
 import { ArrowRight, Mail } from 'lucide-react'
 import ParticleCollision from '@/components/effects/ParticleCollision'
-import { pillBase } from '@/components/ui/pill'
+import { Pill } from '@/components/ui/Pill'
 import { useTranslations } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 
@@ -217,20 +216,14 @@ export default function ContactSection() {
             
             {/* CTA: the contact page, or a direct e-mail */}
             <div ref={ctaRef} className="flex flex-wrap gap-3">
-              <TransitionLink
-                href="/contact"
-                className={`${pillBase} border-[1.5px] border-transparent bg-riso-pink text-primary hover:bg-riso-ink hover:text-riso-paper group`}
-              >
+              <Pill as="link" href="/contact" className="group">
                 {t('preview.cta')}
                 <ArrowRight size={16} aria-hidden="true" className="transition-transform group-hover:translate-x-1" />
-              </TransitionLink>
-              <a
-                href={`mailto:${email}`}
-                className={`${pillBase} normal-case tracking-normal border-[1.5px] border-riso-ink text-riso-ink hover:bg-riso-ink hover:text-riso-paper`}
-              >
+              </Pill>
+              <Pill as="a" href={`mailto:${email}`} tone="outline" caps={false}>
                 <Mail size={16} aria-hidden="true" />
                 {email}
-              </a>
+              </Pill>
             </div>
           </div>
         </div>
