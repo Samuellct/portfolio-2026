@@ -7,9 +7,9 @@ import Breadcrumb from '@/components/navigation/Breadcrumb'
 import BreadcrumbJsonLd from '@/components/seo/BreadcrumbJsonLd'
 import { m, AnimatePresence, LazyMotion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import { gsap } from '@/lib/gsap'
-import { ArrowRight, Search } from 'lucide-react'
+import { ArrowRight, LayoutGrid, List, Search } from 'lucide-react'
 import Image from 'next/image'
-import { getLocalizedField, getCardPeriod, PROJECT_CATEGORIES, ProjectSummary, PROJECTS_FILTER_KEY } from '@/lib/projects/helpers'
+import { getLocalizedField, getCardPeriod, PROJECT_CATEGORIES, ProjectSummary, PROJECTS_FILTER_KEY, PROJECTS_VIEW_KEY } from '@/lib/projects/helpers'
 import { useTranslations, useLocale } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { PAGE_BG, RISO } from '@/lib/theme'
@@ -201,6 +201,50 @@ function ProjectCard({ project, index }: { project: ProjectSummary; index: numbe
 }
 
 // ============================================
+// Project row (list view, P12-D2): small thumbnail, period, title, category,
+// three technologies, status. Served visible, no entrance animation.
+// ============================================
+function ProjectRow({ project }: { project: ProjectSummary }) {
+  const t = useTranslations('projects')
+  const locale = useLocale()
+  const titleId = `row-title-${project.id}`
+  const status =
+    project.status === 'in-progress' || project.status === 'paused' ? (
+      <Badge status={project.status}>{t(project.status === 'in-progress' ? 'status.inProgress' : 'status.paused')}</Badge>
+    ) : null
+
+  return (
+    <li className="border-b border-white/20">
+      <TransitionLink
+        href={`/projects/${project.category}/${project.id}`}
+        aria-labelledby={titleId}
+        className="group grid grid-cols-[88px_1fr] gap-x-4 gap-y-1.5 py-3.5 md:grid-cols-[112px_7rem_1fr_auto_1rem] md:items-center md:gap-x-6"
+      >
+        <div className="relative row-span-2 aspect-[16/10] self-start overflow-hidden bg-white/[0.02] md:row-span-1 md:self-auto">
+          <Image src={project.image} alt="" fill sizes="112px" className="object-cover" />
+        </div>
+        <span className="font-mono text-xs md:text-sm text-muted whitespace-nowrap">{getCardPeriod(project.period, locale)}</span>
+        <div className="grid gap-1.5">
+          <h3 id={titleId} className="font-body font-bold text-xl leading-tight text-white group-hover:text-riso-pinkTitle transition-colors duration-300">
+            {getLocalizedField(project.title, locale)}
+          </h3>
+          <div className="flex flex-wrap items-center gap-x-4 gap-y-1.5 text-sm text-muted">
+            <span className="inline-flex items-center gap-1.5 text-meta tracking-caps-wide uppercase text-white">
+              <CategoryIcon category={project.category} />
+              {t(`categories.${project.category}`)}
+            </span>
+            <span>{project.technologies.slice(0, 3).join(', ')}</span>
+            {status && <span className="md:hidden">{status}</span>}
+          </div>
+        </div>
+        <span className="hidden md:block">{status}</span>
+        <ArrowRight size={16} aria-hidden="true" className="hidden md:block text-accent transition-transform duration-300 motion-safe:group-hover:translate-x-1" />
+      </TransitionLink>
+    </li>
+  )
+}
+
+// ============================================
 // Category pre-filter from the URL (?category=personal)
 // ============================================
 // Isolated in its own component: useSearchParams() requires a Suspense
@@ -226,6 +270,9 @@ export default function ProjectsView({ allProjects }: { allProjects: ProjectSumm
   const prefersReducedMotion = useReducedMotion()
   const [activeFilter, setActiveFilter] = useState<string>('all')
   const [searchQuery, setSearchQuery] = useState('')
+  // Tiles by default; the list view is remembered for the session (P12-D2),
+  // read after mount so the server HTML and the first client render agree
+  const [view, setView] = useState<'tiles' | 'list'>('tiles')
 
   // Remember the filter so a project page can link back to it (UX-13)
   useEffect(() => {
@@ -233,6 +280,19 @@ export default function ProjectsView({ allProjects }: { allProjects: ProjectSumm
       sessionStorage.setItem(PROJECTS_FILTER_KEY, activeFilter)
     } catch {}
   }, [activeFilter])
+
+  useEffect(() => {
+    try {
+      if (sessionStorage.getItem(PROJECTS_VIEW_KEY) === 'list') setView('list')
+    } catch {}
+  }, [])
+
+  const chooseView = (next: 'tiles' | 'list') => {
+    setView(next)
+    try {
+      sessionStorage.setItem(PROJECTS_VIEW_KEY, next)
+    } catch {}
+  }
   const pageRef = useRef<HTMLDivElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
   const searchRef = useRef<HTMLInputElement>(null)
@@ -330,7 +390,7 @@ export default function ProjectsView({ allProjects }: { allProjects: ProjectSumm
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="flex flex-wrap items-center gap-3 mb-16"
+            className="flex flex-wrap items-center gap-3 mb-4"
           >
             <div role="group" aria-label={t('filterGroupLabel')} className="flex flex-wrap items-center gap-3">
               <Button
@@ -371,32 +431,60 @@ export default function ProjectsView({ allProjects }: { allProjects: ProjectSumm
                 className="h-11 bg-snow/60 border-[1.5px] border-riso-blue text-white text-sm pl-9 pr-4 placeholder:text-muted outline-none transition-colors focus:border-riso-ink focus:ring-2 focus:ring-riso-blue focus:ring-offset-2 focus:ring-offset-riso-paper"
               />
             </div>
+
+            {/* Tiles or list (P12-D2): a square ink segment, apart from the filters */}
+            <div role="group" aria-label={t('viewGroupLabel')} className="inline-flex border border-white md:ml-auto">
+              {(['tiles', 'list'] as const).map((option) => (
+                <button
+                  key={option}
+                  type="button"
+                  aria-pressed={view === option}
+                  onClick={() => chooseView(option)}
+                  className={`inline-flex h-[42px] items-center gap-2 px-4 text-xs tracking-caps-wide uppercase transition-colors duration-300 ${
+                    view === option ? 'bg-white text-black' : 'text-white hover:bg-white/10'
+                  }`}
+                >
+                  {option === 'tiles' ? <LayoutGrid size={14} aria-hidden="true" /> : <List size={14} aria-hidden="true" />}
+                  {t(option === 'tiles' ? 'viewTiles' : 'viewList')}
+                </button>
+              ))}
+            </div>
           </m.div>
 
-          {/* Result count, announced to assistive tech on filter change */}
-          <p aria-live="polite" className="sr-only">
+          {/* Result count, visible and announced on filter change */}
+          <p aria-live="polite" className="mb-10 font-mono text-xs text-muted">
             {t('resultsCount', { count: filteredProjects.length })}
           </p>
           
           {/* Heading level between the page h1 and the card h3 (V6-BKL-38) */}
           <h2 className="sr-only">{t('listHeading')}</h2>
 
-          {/* Projects Grid */}
-          <m.div
-            layout
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12"
-          >
-            <AnimatePresence mode="popLayout">
-              {filteredProjects.map((project, index) => (
-                <ProjectCard
-                  key={project.id}
-                  project={project}
-                  index={index}
-                />
-              ))}
-            </AnimatePresence>
-          </m.div>
-          
+          {view === 'tiles' ? (
+            <m.div
+              layout
+              className="grid md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12"
+            >
+              <AnimatePresence mode="popLayout">
+                {filteredProjects.map((project, index) => (
+                  <ProjectCard
+                    key={project.id}
+                    project={project}
+                    index={index}
+                  />
+                ))}
+              </AnimatePresence>
+            </m.div>
+          ) : (
+            // Opened by the registered double rule of the bands: blue, then pink 3 px below
+            filteredProjects.length > 0 && (
+              <ul className="relative border-t-2 border-riso-blue pt-[5px] before:absolute before:inset-x-0 before:top-[3px] before:h-0.5 before:bg-riso-pink before:content-['']">
+                {filteredProjects.map((project) => (
+                  <ProjectRow key={project.id} project={project} />
+                ))}
+              </ul>
+            )
+          )}
+
           {/* Empty state: only a search can empty the list (every category has
               projects), so the message names the search and offers the way back (V6-LST-05) */}
           {filteredProjects.length === 0 && (

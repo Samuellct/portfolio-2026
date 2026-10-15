@@ -46,6 +46,9 @@ export function unitSpacing(text: string): string {
 // sessionStorage key: the listing's active filter, read back by a project page (UX-13)
 export const PROJECTS_FILTER_KEY = 'projects-filter'
 
+// sessionStorage key: the listing's view, tiles or list (P12-D2)
+export const PROJECTS_VIEW_KEY = 'projects-view'
+
 // Listing cards show only the years of a month-precise period (translated ones,
 // e.g. "July - October 2026" -> "2026"); the project page keeps the full period.
 export function getCardPeriod(period: BilingualText | string, locale: Locale): string {
