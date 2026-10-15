@@ -5,6 +5,19 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.2.2](https://github.com/Samuellct/portfolio-2026/compare/v5.2.1...v5.2.2) (2026-10-15)
+
+### Corrigé
+
+* **i18n:** give client components the typeset messages ([430497c](https://github.com/Samuellct/portfolio-2026/commit/430497c45e1ad6cb89a8fdd1e75d4e8b549b6e66))
+* **i18n:** keep numbers on the same line as their unit ([f240259](https://github.com/Samuellct/portfolio-2026/commit/f24025982dd5831134708416d6b04c93cc0bd475))
+* **i18n:** lowercase the month after the dash in French periods ([d8f9d79](https://github.com/Samuellct/portfolio-2026/commit/d8f9d79ee9b4ba1b01df6d16456c064b4ef27d1a))
+* **i18n:** name the L3 and M1 years in English periods ([e8ff384](https://github.com/Samuellct/portfolio-2026/commit/e8ff3840cc6145bd22e1aad0e5266a718c5491ba))
+* **i18n:** set French no-break spaces before : ; ? ! ([b22c4e8](https://github.com/Samuellct/portfolio-2026/commit/b22c4e85498be1a3dc3ee9201775ceab31aaf440))
+* **i18n:** spell English the British way and use sentence case ([e20bdf3](https://github.com/Samuellct/portfolio-2026/commit/e20bdf3b430b9a346bba0f50f85620742b5ea2bd))
+* **i18n:** use the ellipsis character instead of three dots ([f3114d5](https://github.com/Samuellct/portfolio-2026/commit/f3114d5ae19f2ad0ad8b1f24fc08c86d68011635))
+* **i18n:** write French decimals with a comma and localize thousands ([9b35e01](https://github.com/Samuellct/portfolio-2026/commit/9b35e0108d6488b2405c361e98cf666fd26e20ca))
+
 ## [5.2.1](https://github.com/Samuellct/portfolio-2026/compare/v5.2.0...v5.2.1) (2026-10-14)
 
 ### Corrigé
