@@ -97,7 +97,7 @@ export default function ContactPage() {
           <h1 className="font-display uppercase font-black text-page leading-display tracking-wide mb-6">
             {tContact('page.title')}
           </h1>
-          <p className="text-lg text-muted text-justify">
+          <p className="text-lg text-muted">
             {tContact('page.description')}
           </p>
           {/* UX-11: the direct address comes before the form */}

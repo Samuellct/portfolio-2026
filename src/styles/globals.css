@@ -77,10 +77,19 @@ body {
   overflow-x: hidden;
 }
 
-/* Text justify for paragraphs */
-.text-justify {
+/* Running text of more than three lines: justified and hyphenated in the page
+   language. Titles, cards, metadata, lists and short blocks stay left-aligned;
+   a paragraph holding a formula too, since KaTeX does not break (V6-ALIGN-01). */
+.prose-body {
   text-align: justify;
   text-justify: inter-word;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+  hyphenate-limit-chars: 6 3 3;
+}
+
+.prose-body:has(.katex) {
+  text-align: start;
 }
 
 /* ===================================

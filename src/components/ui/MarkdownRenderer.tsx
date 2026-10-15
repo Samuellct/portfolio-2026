@@ -44,7 +44,7 @@ const components: Components = {
     <h4 className="font-body font-semibold text-base text-white mt-6 mb-2 tracking-wide">{children}</h4>
   ),
   p: ({ children }) => (
-    <p className="text-muted leading-relaxed mb-4 text-justify">{children}</p>
+    <p className="text-muted leading-relaxed mb-4 prose-body">{children}</p>
   ),
   a: ({ href, children }) => (
     <a 

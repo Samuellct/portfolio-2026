@@ -188,11 +188,11 @@ export default function AboutSection({ statValues }: { statValues: HomeStats }) 
           <div>
             {/* txt */}
             <div ref={textBlockRef} className="space-y-6 mb-12">
-              <p className="text-lg md:text-xl text-muted leading-relaxed text-justify">
+              <p className="text-lg md:text-xl text-muted leading-relaxed prose-body">
                 {t('preview.intro')}
               </p>
               
-              <p className="text-muted leading-relaxed text-justify">
+              <p className="text-muted leading-relaxed prose-body">
                 {t('preview.whatIBuild')}
               </p>
             </div>

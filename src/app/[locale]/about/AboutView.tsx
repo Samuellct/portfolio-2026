@@ -576,7 +576,7 @@ export default function AboutView({
             
             {/* Intro text */}
             <div className="mb-12">
-              <p className="text-lg md:text-xl text-muted leading-relaxed">
+              <p className="text-lg md:text-xl text-muted leading-relaxed prose-body">
                 {tAbout('full.intro')}
               </p>
             </div>
@@ -631,7 +631,7 @@ export default function AboutView({
 
             {/* Intro */}
             <p
-              className="text-muted leading-relaxed max-w-3xl mb-12"
+              className="text-muted leading-relaxed prose-body max-w-3xl mb-12"
               style={{ opacity: expIntroOpacity }}
             >
               {tAbout('full.experience')}
@@ -899,7 +899,7 @@ export default function AboutView({
                 <h3 className="font-display uppercase font-black text-title tracking-wide mb-3">
                   {interests[0].label}
                 </h3>
-                <p className="text-muted leading-relaxed">
+                <p className="text-muted leading-relaxed prose-body">
                   {interests[0].description}
                 </p>
               </div>
@@ -941,7 +941,7 @@ export default function AboutView({
                 <h3 className="font-display uppercase font-black text-title tracking-wide mb-3">
                   {interests[2].label}
                 </h3>
-                <p className="text-muted leading-relaxed">
+                <p className="text-muted leading-relaxed prose-body">
                   {interests[2].description}
                 </p>
               </div>
