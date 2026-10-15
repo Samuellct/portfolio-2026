@@ -155,7 +155,7 @@ function ProjectCard({ project, index }: { project: ProjectSummary; index: numbe
         {/* Content */}
         <div className="space-y-2">
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-meta tracking-caps-wide uppercase text-muted [&>span]:whitespace-nowrap">
-            <span className="inline-flex items-center gap-1.5" style={{ color: RISO.ink }}>
+            <span className="inline-flex items-center gap-1.5 text-white">
               <CategoryIcon category={project.category} />
               {t(`categories.${project.category}`)}
             </span>
@@ -311,7 +311,8 @@ export default function ProjectsView({ allProjects }: { allProjects: ProjectSumm
           
           {/* Header */}
           <div ref={headerRef} className="mb-16">
-            <h1 className="font-display uppercase font-black text-page leading-display-tight tracking-wide mb-6">
+            {/* Pink over its blue misregister, like the About and Contact titles (P12-D1) */}
+            <h1 className="misregister font-display uppercase font-black text-page leading-display-tight tracking-wide mb-6 text-riso-pinkTitle">
               {t('pageTitle')}
             </h1>
             
