@@ -5,6 +5,12 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.6.1](https://github.com/Samuellct/portfolio-2026/compare/v5.6.0...v5.6.1) (2026-10-15)
+
+### Corrigé
+
+* **analytics:** log web vitals as structured fields ([8a39e50](https://github.com/Samuellct/portfolio-2026/commit/8a39e501259747ab4ea01d9a111df0d28fb34b88))
+
 ## [5.6.0](https://github.com/Samuellct/portfolio-2026/compare/v5.5.0...v5.6.0) (2026-10-15)
 
 ### Ajouté
