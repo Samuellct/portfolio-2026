@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react'
 import { usePathname } from '@/i18n/navigation'
 import { m, AnimatePresence } from 'framer-motion'
-import { Menu, X, Github, Linkedin, ExternalLink } from 'lucide-react'
+import { Menu, X, Github, Linkedin } from 'lucide-react'
 import TransitionLink from '@/components/navigation/TransitionLink'
 import LanguageSwitcher from '@/components/ui/LanguageSwitcher'
 import { useTranslations } from 'next-intl'
@@ -21,7 +21,6 @@ export default function NavBar() {
   ]
 
   const externalLinks = [
-    { href: 'https://samuel-lecomte.fr', label: tMenu('blog'), icon: ExternalLink, hoverColor: 'hover:text-accent' },
     { href: SOCIAL.github, label: tMenu('github'), icon: Github, hoverColor: 'hover:text-brand-github' },
     { href: SOCIAL.linkedin, label: tMenu('linkedin'), icon: Linkedin, hoverColor: 'hover:text-brand-linkedinAlt' },
   ]
