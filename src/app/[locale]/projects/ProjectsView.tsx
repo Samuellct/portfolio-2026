@@ -42,6 +42,9 @@ function ProjectCard({ project, index }: { project: ProjectSummary; index: numbe
   const [isHovered, setIsHovered] = useState(false)
   const [imageLoaded, setImageLoaded] = useState(false)
   const [imageFailed, setImageFailed] = useState(false)
+  // Under reduced motion the hover keeps its colour changes only: no parallax,
+  // zoom or sliding arrow (V6-LST-04; the parallax stays otherwise, V6-Q-20)
+  const prefersReducedMotion = useReducedMotion()
 
   const statusKey = project.status === 'in-progress' ? 'inProgress' : project.status === 'paused' ? 'paused' : null
 
@@ -53,7 +56,7 @@ function ProjectCard({ project, index }: { project: ProjectSummary; index: numbe
   const y = useSpring(useTransform(mouseY, [-1, 1], [-10, 10]), springConfig)
   
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return
+    if (!cardRef.current || prefersReducedMotion) return
     const rect = cardRef.current.getBoundingClientRect()
     const centerX = rect.left + rect.width / 2
     const centerY = rect.top + rect.height / 2
@@ -98,7 +101,7 @@ function ProjectCard({ project, index }: { project: ProjectSummary; index: numbe
                 imageLoaded ? 'opacity-100' : 'opacity-0'
               }`}
               animate={{
-                scale: isHovered ? 1.05 : 1,
+                scale: isHovered && !prefersReducedMotion ? 1.05 : 1,
               }}
               transition={{ duration: 0.6, ease: [0.25, 0.1, 0.25, 1] }}
             >
@@ -148,7 +151,7 @@ function ProjectCard({ project, index }: { project: ProjectSummary; index: numbe
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ 
               opacity: isHovered ? 1 : 0,
-              scale: isHovered ? 1 : 0.95
+              scale: isHovered || prefersReducedMotion ? 1 : 0.95
             }}
             transition={{ duration: 0.4 }}
           />
@@ -187,7 +190,7 @@ function ProjectCard({ project, index }: { project: ProjectSummary; index: numbe
           <div className="self-end flex min-h-8 items-center justify-between gap-4 pt-2">
             <span className="flex items-center gap-2 text-accent">
               <span className="text-xs tracking-caps uppercase">{t('viewProject')}</span>
-              <ArrowRight size={12} aria-hidden="true" className="transition-transform duration-300 group-hover:translate-x-1" />
+              <ArrowRight size={12} aria-hidden="true" className="transition-transform duration-300 motion-safe:group-hover:translate-x-1" />
             </span>
             {statusKey && (
               <Badge status={statusKey === 'inProgress' ? 'in-progress' : 'paused'}>{t(`status.${statusKey}`)}</Badge>
