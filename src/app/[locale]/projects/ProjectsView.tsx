@@ -16,6 +16,7 @@ import { PAGE_BG, RISO } from '@/lib/theme'
 import { Button } from '@/components/ui/Button'
 import { Tag } from '@/components/ui/Tag'
 import { Badge } from '@/components/ui/Badge'
+import { Pill } from '@/components/ui/Pill'
 import { CategoryIcon } from '@/components/ui/CategoryIcon'
 import Watermark from '@/components/effects/Watermark'
 
@@ -237,6 +238,7 @@ export default function ProjectsView({ allProjects }: { allProjects: ProjectSumm
   }, [activeFilter])
   const pageRef = useRef<HTMLDivElement>(null)
   const headerRef = useRef<HTMLDivElement>(null)
+  const searchRef = useRef<HTMLInputElement>(null)
 
   const filteredProjects = useMemo(() => {
     const query = normalizeForSearch(searchQuery.trim())
@@ -362,6 +364,7 @@ export default function ProjectsView({ allProjects }: { allProjects: ProjectSumm
             <div className="relative">
               <Search aria-hidden="true" size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted pointer-events-none" />
               <input
+                ref={searchRef}
                 type="search"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
@@ -394,14 +397,39 @@ export default function ProjectsView({ allProjects }: { allProjects: ProjectSumm
             </AnimatePresence>
           </m.div>
           
-          {/* Empty state */}
+          {/* Empty state: only a search can empty the list (every category has
+              projects), so the message names the search and offers the way back (V6-LST-05) */}
           {filteredProjects.length === 0 && (
             <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-center py-20 text-muted"
+              className="flex flex-col items-center gap-6 py-20 text-center"
             >
-              {t('emptyState')}
+              <p className="text-lg text-muted">
+                {t(activeFilter === 'all' ? 'emptySearch' : 'emptySearchInCategory')}
+              </p>
+              <div className="flex flex-wrap justify-center gap-3">
+                <Pill
+                  tone="outline"
+                  onClick={() => {
+                    setSearchQuery('')
+                    searchRef.current?.focus()
+                  }}
+                >
+                  {t('clearSearch')}
+                </Pill>
+                {activeFilter !== 'all' && (
+                  <Pill
+                    tone="outline"
+                    onClick={() => {
+                      setSearchQuery('')
+                      setActiveFilter('all')
+                    }}
+                  >
+                    {t('showAll')}
+                  </Pill>
+                )}
+              </div>
             </m.div>
           )}
         </div>

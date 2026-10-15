@@ -118,7 +118,10 @@
       "inProgress": "In progress",
       "paused": "Paused"
     },
-    "emptyState": "No projects found in this category.",
+    "emptySearch": "No project matches this search.",
+    "emptySearchInCategory": "No project in this category matches this search.",
+    "clearSearch": "Clear search",
+    "showAll": "Show all projects",
     "viewProject": "View project",
     "viewOnGitHub": "View on GitHub",
     "technologies": "Technologies",
