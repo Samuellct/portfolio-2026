@@ -220,6 +220,40 @@ body {
   text-shadow: 0.04em 0.035em 0 theme('colors.riso.blue');
 }
 
+/* ===================================
+   STARRY BANDS (V6-NAV-01, P10-D1)
+   The bar and footer are printed on the hero's night plate: its base colour
+   and a still SVG sky tile (lib/starBand), set per element in `--star-band`.
+   NAV-A's registered double rule, blue then pink 3 px further, seals the
+   band against the paper.
+=================================== */
+.star-band {
+  background-color: rgb(17 16 23);
+  background-image: var(--star-band);
+  background-repeat: repeat-x;
+}
+
+.rule-pair-below::after,
+.rule-pair-above::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: theme('colors.riso.blue');
+  pointer-events: none;
+}
+
+.rule-pair-below::after {
+  bottom: -1px;
+  box-shadow: 0 3px 0 0 theme('colors.riso.pink');
+}
+
+.rule-pair-above::before {
+  top: 0;
+  box-shadow: 0 3px 0 0 theme('colors.riso.pink');
+}
+
 /* Hero name entrance (ANIM-02: one block, no per-letter motion). A CSS
    animation runs from the first painted frame, before hydration, so the
    server-rendered name never shows, hides, then rises. */

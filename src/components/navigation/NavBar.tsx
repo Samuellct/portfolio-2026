@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect, useRef, type CSSProperties } from 'react'
 import { usePathname } from '@/i18n/navigation'
 import { m } from 'framer-motion'
 import { Menu } from 'lucide-react'
@@ -8,6 +8,7 @@ import TransitionLink from '@/components/navigation/TransitionLink'
 import FullscreenMenu from '@/components/navigation/FullscreenMenu'
 import LanguageSwitcher from '@/components/ui/LanguageSwitcher'
 import { useTranslations } from 'next-intl'
+import { BAR_SKY } from '@/lib/starBand'
 
 export default function NavBar() {
   const tNav = useTranslations('nav')
@@ -117,9 +118,11 @@ export default function NavBar() {
       <m.nav
         id="site-nav"
         aria-label={tNav('mainLabel')}
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: isBarHidden ? '-100%' : 0 }}
-        transition={{ y: { duration: 0.3, ease: 'easeOut' }, opacity: { duration: 0.6, delay: 0.2 } }}
+        // Served visible: no entry fade, so the links read without JavaScript.
+        initial={false}
+        animate={{ y: isBarHidden ? '-100%' : 0 }}
+        transition={{ duration: 0.3, ease: 'easeOut' }}
+        style={{ '--star-band': BAR_SKY } as CSSProperties}
         // Only keyboard focus pins the bar: a clicked link keeps focus after the
         // client-side navigation, which would otherwise lock the bar open.
         onFocus={(e) => setHasFocusWithin(e.target.matches(':focus-visible'))}
@@ -130,7 +133,7 @@ export default function NavBar() {
         // links and language pair are not doubled behind the dialog.
         inert={isMenuOpen}
         className={`scheme-night fixed top-0 inset-x-0 z-nav transition-colors duration-200 ${
-          overHero ? 'bg-transparent' : 'bg-primary'
+          overHero ? 'bg-transparent' : 'star-band rule-pair-below'
         } ${isMenuOpen ? 'invisible' : ''}`}
       >
         <div className="flex items-center justify-between px-6 md:px-12 py-4">
@@ -138,7 +141,7 @@ export default function NavBar() {
           <TransitionLink
             href="/"
             aria-label={tNav('logoLabel')}
-            className="tap-target font-display uppercase font-black text-title tracking-widest hover:text-accent transition-colors"
+            className="tap-target font-display uppercase font-black text-title tracking-widest text-riso-pinkTitle misregister hover:text-riso-paper transition-colors"
           >
             SL
           </TransitionLink>
@@ -158,7 +161,7 @@ export default function NavBar() {
                   }`}
                 >
                   {link.label}
-                  <span className={`absolute -bottom-1 left-0 h-px bg-accent-line transition-all duration-300 group-hover:w-full ${active ? 'w-full' : 'w-0'}`} />
+                  <span className={`absolute -bottom-1 left-0 h-0.5 bg-riso-pink shadow-plate transition-all duration-300 group-hover:w-full ${active ? 'w-full' : 'w-0'}`} />
                 </TransitionLink>
               )
             })}

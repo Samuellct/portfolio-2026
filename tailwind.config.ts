@@ -76,6 +76,8 @@ const config: Config = {
         'lift-sm': '0 6px 18px rgb(0 0 0 / 0.22)',
         lift: '0 8px 22px rgb(0 0 0 / 0.4)',
         'lift-lg': '0 10px 30px rgb(0 0 0 / 0.45)',
+        // A second plate printed 2 px off, flat (no blur): the registered blue copy.
+        plate: `2px 2px 0 ${RISO.blue}`,
       },
       // Stacking order, bottom to top.
       zIndex: {
