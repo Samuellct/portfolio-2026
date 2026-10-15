@@ -5,6 +5,26 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.5.0](https://github.com/Samuellct/portfolio-2026/compare/v5.4.0...v5.5.0) (2026-10-15)
+
+### Ajouté
+
+* **projects:** add a tiles and list view toggle ([a5177e0](https://github.com/Samuellct/portfolio-2026/commit/a5177e0b4d8f0a37b78625a9ee875d3bc60fdfe0))
+* **projects:** print the in-progress status as a registered pink label ([96c0aca](https://github.com/Samuellct/portfolio-2026/commit/96c0aca2cbfe524b9a02aedb5bfeaa90cd240c47))
+
+### Corrigé
+
+* **a11y:** add a list heading between the page title and the cards ([0ec0dc2](https://github.com/Samuellct/portfolio-2026/commit/0ec0dc2ef98fa4c7c931de8a54045d182702efc5))
+* **a11y:** drop the card parallax and zoom under reduced motion ([0ebb35d](https://github.com/Samuellct/portfolio-2026/commit/0ebb35d70b85bf2ff4d1f4ee1ff12df4544ce3c0))
+* **a11y:** name each card by its title ([d728868](https://github.com/Samuellct/portfolio-2026/commit/d728868bce3c46e71f54c9280bf0f8df467a2759))
+* **projects:** align card footers with a subgrid ([2f30daa](https://github.com/Samuellct/portfolio-2026/commit/2f30daa7869988aa3b99fe6381499188be4395c8))
+* **projects:** explain an empty result and offer a way back ([8c4fd92](https://github.com/Samuellct/portfolio-2026/commit/8c4fd921b02dccecf85e9781aea74a6f12a25976))
+* **projects:** frame the search field in blue and give every filter 44 px ([2f5830c](https://github.com/Samuellct/portfolio-2026/commit/2f5830c8f16ac83a539e3ce46a24443acadce47c))
+* **projects:** print the card titles in ink, pink on hover ([ed1561e](https://github.com/Samuellct/portfolio-2026/commit/ed1561e612c8276d653bbbf534fdbef79d9efda2))
+* **projects:** print the page title in pink over its blue misregister ([f5cd719](https://github.com/Samuellct/portfolio-2026/commit/f5cd719f1312ec000a9e53b131ca2defbc27ae5a))
+* **projects:** remove the dark veil from the thumbnails ([64d3efa](https://github.com/Samuellct/portfolio-2026/commit/64d3efa202b9b91616e79282028685205d2d7f80))
+* **projects:** serve the cards visible without JavaScript ([1d2bedc](https://github.com/Samuellct/portfolio-2026/commit/1d2bedc61702244d6c4f991746cd75691642b10d))
+
 ## [5.4.0](https://github.com/Samuellct/portfolio-2026/compare/v5.3.0...v5.4.0) (2026-10-15)
 
 ### Ajouté
