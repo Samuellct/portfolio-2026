@@ -1,6 +1,6 @@
 import type { Config } from 'tailwindcss'
 import typography from '@tailwindcss/typography'
-import { ACCENT, BRAND, RISO, STATUS, SURFACE } from './src/lib/theme'
+import { ACCENT, RISO, STATUS, SURFACE } from './src/lib/theme'
 import { withAlpha } from './src/lib/color'
 
 const config: Config = {
@@ -30,8 +30,6 @@ const config: Config = {
           line: 'rgb(var(--accent-line) / <alpha-value>)',
         },
         riso: RISO,
-        // Only the brand colours used as classes; the others are read in TS.
-        brand: { github: BRAND.github, linkedinAlt: BRAND.linkedinAlt },
         status: STATUS,
         // Secondary text (AUDIT-029, COL-02), solid per scheme. `muted` clears
         // WCAG AA (>= 4.5:1) on paper and night; `subtle` is for large or

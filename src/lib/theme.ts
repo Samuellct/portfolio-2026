@@ -69,10 +69,8 @@ export const STATUS = {
   error: '#b3261e',
 } as const
 
-/** Third-party brand colours (logos and their hover states). */
+/** Third-party brand colours of the logos in the About homelab graph. */
 export const BRAND = {
-  linkedinAlt: '#0e76a8',
-  github: '#fafbfc',
   docker: '#2496ed',
   nextcloud: '#0082c9',
   proxmox: '#e57000',
