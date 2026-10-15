@@ -13,7 +13,7 @@ type Case = {
 
 const CASES: Case[] = [
   { path: '/fr', floor: { desktop: 10, mobile: 13 }, fixedBy: 'phase 15' },
-  { path: '/fr/projects', floor: { desktop: 3, mobile: 3 }, fixedBy: 'phase 12' },
+  { path: '/fr/projects', floor: { desktop: 34, mobile: 34 }, fixedBy: 'done' },
   { path: '/fr/projects/personal/alpine-route', floor: { desktop: 25, mobile: 20 }, fixedBy: 'done' },
   { path: '/fr/contact', floor: { desktop: 6, mobile: 6 }, fixedBy: 'done' },
   { path: '/fr/about', floor: { desktop: 15, mobile: 10 }, fixedBy: 'phase 13' },
