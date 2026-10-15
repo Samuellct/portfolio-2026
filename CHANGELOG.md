@@ -5,6 +5,31 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.3.0](https://github.com/Samuellct/portfolio-2026/compare/v5.2.2...v5.3.0) (2026-10-15)
+
+### Ajouté
+
+* **footer:** close every page with navigation, e-mail and profiles ([169b0c1](https://github.com/Samuellct/portfolio-2026/commit/169b0c1ce19d8de705767299276360519dfc7c0a))
+* **nav:** print the bar and footer on starry night bands ([7bead6e](https://github.com/Samuellct/portfolio-2026/commit/7bead6e02561c431c01f3478d2f90350f2f8b7d1))
+* **nav:** print the fullscreen menu on a paper sheet (NAV-A) ([69cce78](https://github.com/Samuellct/portfolio-2026/commit/69cce782d16488d0bcea3946336e77215f01cc47))
+
+### Corrigé
+
+* **a11y:** give the focus back to the menu button when the menu closes ([04b349e](https://github.com/Samuellct/portfolio-2026/commit/04b349e8a2d16a7c80b03a4b8957e8583e671ad8))
+* **a11y:** move the close button into the menu dialog ([8024000](https://github.com/Samuellct/portfolio-2026/commit/8024000613dd0010fc3eb90f1b9ec095d3b85fe6))
+* **a11y:** name the language switch by its visible label ([f76197f](https://github.com/Samuellct/portfolio-2026/commit/f76197f0946f0489bb84c783fd8f04acab6fabb8))
+* **a11y:** name the SL logo after the site owner ([4822154](https://github.com/Samuellct/portfolio-2026/commit/48221549d99157a356812d70873e8c6a2078d35c))
+* **nav:** dim the pinpricks behind the band labels ([e8d2dba](https://github.com/Samuellct/portfolio-2026/commit/e8d2dbabbb30b6f6c57a86a16953d68717f2ae8d))
+* **nav:** drop the self-referencing blog link ([7daa182](https://github.com/Samuellct/portfolio-2026/commit/7daa182e33b3422ba54f19622f58916b106ef2e2))
+* **nav:** give the mobile bar its band as soon as the hero moves ([e8447d4](https://github.com/Samuellct/portfolio-2026/commit/e8447d457932fad31c75f71dc1bd69de81bb03a2))
+* **nav:** keep the bar's double rule inside the band ([daf99f7](https://github.com/Samuellct/portfolio-2026/commit/daf99f7ef3fcfb326aca9edd769459d97fee1ef0))
+* **nav:** print the folded menu pill and show it on mobile before hydration ([d656292](https://github.com/Samuellct/portfolio-2026/commit/d6562922f7e7dd6ce76736121de493e8d5f18aa7))
+
+### Modifié
+
+* **nav:** extract FullscreenMenu and useModalFocusTrap ([2634c24](https://github.com/Samuellct/portfolio-2026/commit/2634c245b9579d88c14431d2c7dc2ae97c6dc8f3))
+* **sky:** share the hero palette, density and base colour ([125c7b0](https://github.com/Samuellct/portfolio-2026/commit/125c7b0a2bc8244c82edac7a8d8034596985e334))
+
 ## [5.2.2](https://github.com/Samuellct/portfolio-2026/compare/v5.2.1...v5.2.2) (2026-10-15)
 
 ### Corrigé
