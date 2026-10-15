@@ -385,6 +385,9 @@ export default function ProjectsView({ allProjects }: { allProjects: ProjectSumm
             {t('resultsCount', { count: filteredProjects.length })}
           </p>
           
+          {/* Heading level between the page h1 and the card h3 (V6-BKL-38) */}
+          <h2 className="sr-only">{t('listHeading')}</h2>
+
           {/* Projects Grid */}
           <m.div
             layout

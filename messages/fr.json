@@ -122,6 +122,7 @@
     "emptySearchInCategory": "Aucun projet de cette catégorie ne correspond à cette recherche.",
     "clearSearch": "Effacer la recherche",
     "showAll": "Voir tous les projets",
+    "listHeading": "Liste des projets",
     "viewProject": "Voir le projet",
     "viewOnGitHub": "Voir sur GitHub",
     "technologies": "Technologies",

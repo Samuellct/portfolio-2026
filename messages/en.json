@@ -122,6 +122,7 @@
     "emptySearchInCategory": "No project in this category matches this search.",
     "clearSearch": "Clear search",
     "showAll": "Show all projects",
+    "listHeading": "Project list",
     "viewProject": "View project",
     "viewOnGitHub": "View on GitHub",
     "technologies": "Technologies",
