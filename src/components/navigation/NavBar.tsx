@@ -28,13 +28,19 @@ export default function NavBar() {
   // On the home page the bar melts into the hero's sky (no band of its own)
   // and takes its night band back once the hero has scrolled under it.
   const [overHero, setOverHero] = useState(pathname === '/')
+  // P10-D3 (V6-NAV-10): on mobile the bar is clear only at the very top; once
+  // the page moves, it takes its starry band so the hero labels never show
+  // through it. On desktop it stays clear over the whole hero.
+  const [clearBar, setClearBar] = useState(pathname === '/')
 
   const hamburgerRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
     const updateOverHero = () => {
       const hero = pathname === '/' ? document.getElementById('hero') : null
-      setOverHero(!!hero && hero.getBoundingClientRect().bottom > 80)
+      const over = !!hero && hero.getBoundingClientRect().bottom > 80
+      setOverHero(over)
+      setClearBar(over && (window.scrollY <= 0 || !window.matchMedia('(max-width: 767px)').matches))
     }
     updateOverHero()
     window.addEventListener('scroll', updateOverHero, { passive: true })
@@ -124,7 +130,7 @@ export default function NavBar() {
         // links and language pair are not doubled behind the dialog.
         inert={isMenuOpen}
         className={`scheme-night fixed top-0 inset-x-0 z-nav transition-colors duration-200 ${
-          overHero ? 'bg-transparent' : 'star-band rule-pair-below'
+          clearBar ? 'bg-transparent' : 'star-band rule-pair-below'
         } ${isMenuOpen ? 'invisible' : ''}`}
       >
         <div className="flex items-center justify-between px-6 md:px-12 py-4">
