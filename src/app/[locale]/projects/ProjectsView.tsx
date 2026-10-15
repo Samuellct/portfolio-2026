@@ -47,6 +47,7 @@ function ProjectCard({ project, index }: { project: ProjectSummary; index: numbe
   // zoom or sliding arrow (V6-LST-04; the parallax stays otherwise, V6-Q-20)
   const prefersReducedMotion = useReducedMotion()
 
+  const titleId = `card-title-${project.id}`
   const statusKey = project.status === 'in-progress' ? 'inProgress' : project.status === 'paused' ? 'paused' : null
 
   const mouseX = useMotionValue(0)
@@ -88,6 +89,8 @@ function ProjectCard({ project, index }: { project: ProjectSummary; index: numbe
     >
       <TransitionLink
         href={`/projects/${project.category}/${project.id}`}
+        // Named by its title alone, not by the whole card text (V6-LST-06)
+        aria-labelledby={titleId}
         className="row-span-6 grid grid-rows-subgrid gap-y-2"
       >
         {/* Image container - respecte le ratio original */}
@@ -109,7 +112,8 @@ function ProjectCard({ project, index }: { project: ProjectSummary; index: numbe
               {!imageFailed && (
                 <Image
                   src={project.image}
-                  alt={getLocalizedField(project.imageAlt, locale)}
+                  // Decorative here: the title that follows names the link (V6-LST-06)
+                  alt=""
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -170,7 +174,7 @@ function ProjectCard({ project, index }: { project: ProjectSummary; index: numbe
           </div>
 
           {/* Pink title at bold weight: the one focal point of the card (DEC-14m) */}
-          <h3 className="font-body font-bold text-xl md:text-2xl text-riso-pinkTitle group-hover:text-accent transition-colors duration-300">
+          <h3 id={titleId} className="font-body font-bold text-xl md:text-2xl text-riso-pinkTitle group-hover:text-accent transition-colors duration-300">
             {getLocalizedField(project.title, locale)}
           </h3>
 

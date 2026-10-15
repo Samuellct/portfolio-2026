@@ -28,14 +28,15 @@ export type ProjectMarkdown = Record<'problem' | 'approach' | 'whatIBuilt' | 'li
 // ============================================
 function RelatedProjectCard({ project, locale }: { project: ProjectData; locale: Locale }) {
   return (
-    <TransitionLink href={`/projects/${project.category}/${project.id}`} className="group block">
+    // Named by its title alone; the image is decorative next to it (V6-LST-06)
+    <TransitionLink href={`/projects/${project.category}/${project.id}`} aria-labelledby={`related-title-${project.id}`} className="group block">
       <Figure
         src={project.image}
-        alt={getLocalizedField(project.imageAlt, locale)}
+        alt=""
         sizes="(min-width: 1024px) 30vw, (min-width: 640px) 50vw, 100vw"
         frameClassName="mb-3 transition-opacity duration-300 group-hover:opacity-80"
       />
-      <h3 className="font-body font-semibold group-hover:text-accent transition-colors duration-300">
+      <h3 id={`related-title-${project.id}`} className="font-body font-semibold group-hover:text-accent transition-colors duration-300">
         {getLocalizedField(project.title, locale)}
       </h3>
     </TransitionLink>
