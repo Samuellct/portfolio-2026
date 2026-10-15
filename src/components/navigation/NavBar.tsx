@@ -106,8 +106,11 @@ export default function NavBar() {
   // unfolding on mousedown would hide it before the click. With the menu open,
   // the dialog carries its own close button at the same place (V6-NAV-03).
   // V6-COD-26: shown on mobile from the server HTML, by CSS; JS only folds it
-  // in and out on desktop (`data-shown`).
-  const showOnDesktop = isBarHidden && !isMenuOpen
+  // in and out on desktop (`data-shown`). The fold ignores the menu: under the
+  // open sheet the button is only inert and transparent, so it is visible again
+  // the instant the menu closes and takes the focus back (no visibility
+  // transition to wait for).
+  const showOnDesktop = isHidden && !overHero && !hasFocusWithin
 
   return (
     <>
@@ -179,10 +182,9 @@ export default function NavBar() {
         ref={hamburgerRef}
         type="button"
         data-shown={showOnDesktop}
-        className={`fixed top-4 right-6 md:right-12 z-menu-button p-3 min-w-tap min-h-tap flex items-center justify-center rounded-full transition-[background-color,color,box-shadow,opacity,visibility] duration-300 motion-reduce:transition-none ${
-          isMenuOpen
-            ? 'invisible opacity-0'
-            : 'md:invisible md:opacity-0 md:data-[shown=true]:visible md:data-[shown=true]:opacity-100'
+        inert={isMenuOpen}
+        className={`fixed top-4 right-6 md:right-12 z-menu-button p-3 min-w-tap min-h-tap flex items-center justify-center rounded-full transition-[background-color,color,box-shadow,opacity,visibility] duration-300 motion-reduce:transition-none md:invisible md:opacity-0 md:data-[shown=true]:visible md:data-[shown=true]:opacity-100 ${
+          isMenuOpen ? '!opacity-0' : ''
         } ${
           // P10-D2: printed pill, riso-pink with a blue plate 2 px off, no shadow.
           isBarHidden ? 'bg-riso-pink text-primary shadow-plate' : 'bg-transparent text-snow'
