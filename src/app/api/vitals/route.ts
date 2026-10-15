@@ -1,7 +1,8 @@
 import { VITAL_NAMES } from '@/lib/vitals'
 
-// Field Web Vitals endpoint (phase 13, P13-D1): validates one beacon and writes
-// it as a JSON line to the worker logs, read back with Workers Observability.
+// Field Web Vitals endpoint (phase 13, P13-D1): validates one beacon and logs it
+// as an object, which Workers Logs splits into queryable fields (a JSON string
+// would stay a plain message).
 // Nothing else is kept: no IP, no user agent, no identifier.
 const MAX_BYTES = 1024
 const RATINGS = ['good', 'needs-improvement', 'poor']
@@ -37,18 +38,16 @@ export async function POST(request: Request) {
     return new Response(null, { status: 400 })
   }
 
-  console.log(
-    JSON.stringify({
-      evt: 'web-vital',
-      name: data.name,
-      value: data.value,
-      rating: RATINGS.includes(data.rating as string) ? data.rating : undefined,
-      navigationType: short(data.navigationType, 20),
-      landing: data.landing,
-      path: data.path,
-      screen: SCREENS.includes(data.screen as string) ? data.screen : undefined,
-      v: short(data.v, 12),
-    }),
-  )
+  console.log({
+    evt: 'web-vital',
+    vital: data.name,
+    value: data.value,
+    rating: RATINGS.includes(data.rating as string) ? data.rating : undefined,
+    navigationType: short(data.navigationType, 20),
+    landing: data.landing,
+    path: data.path,
+    screen: SCREENS.includes(data.screen as string) ? data.screen : undefined,
+    v: short(data.v, 12),
+  })
   return new Response(null, { status: 204 })
 }
