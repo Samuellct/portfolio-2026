@@ -244,8 +244,9 @@ body {
   pointer-events: none;
 }
 
+/* Inside the band: a folded bar takes its rules away with it. */
 .rule-pair-below::after {
-  bottom: -1px;
+  bottom: 3px;
   box-shadow: 0 3px 0 0 theme('colors.riso.pink');
 }
 
