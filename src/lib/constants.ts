@@ -9,6 +9,8 @@ export const SOCIAL = {
 
 export const RESUME_PATH = '/Resume.pdf'
 
+export const EMAIL = 'contact@samuel-lecomte.fr'
+
 export const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xpwjbwkb'
 
 /** Open Graph `og:locale` value per site locale. */

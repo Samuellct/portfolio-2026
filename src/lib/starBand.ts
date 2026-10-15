@@ -91,6 +91,7 @@ export const BAR_SKY = url(starBandSvg({ width: 1600, height: 80, seed: 7, keep:
 
 /** Footer, one tile per layout; the rows match the footer's text (top rule kept clear). */
 export const FOOTER_SKY = {
-  desktop: url(starBandSvg({ width: 1600, height: 96, seed: 11, keep: [[0, 8], [24, 70]] })),
-  mobile: url(starBandSvg({ width: 800, height: 240, seed: 13, keep: [[0, 8], [30, 210]] })),
+  // Measured: desktop 84 px, text 32 to 52; mobile 180 px, text 32 to 148.
+  desktop: url(starBandSvg({ width: 1600, height: 84, seed: 11, keep: [[0, 8], [28, 56]] })),
+  mobile: url(starBandSvg({ width: 800, height: 180, seed: 13, keep: [[0, 8], [28, 152]] })),
 }
