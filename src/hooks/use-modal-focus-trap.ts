@@ -66,6 +66,7 @@ export function useModalFocusTrap(
           el !== document.body &&
           document.contains(el) &&
           !el.closest('[inert]') &&
+          getComputedStyle(el).visibility !== 'hidden' &&
           el.tabIndex > -1
         const target = canFocus(returnTarget)
           ? returnTarget

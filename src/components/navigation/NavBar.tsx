@@ -29,8 +29,6 @@ export default function NavBar() {
   // and takes its night band back once the hero has scrolled under it.
   const [overHero, setOverHero] = useState(pathname === '/')
 
-  const [isMobile, setIsMobile] = useState(false)
-
   const hamburgerRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
@@ -60,17 +58,8 @@ export default function NavBar() {
       lastY = y
     }
 
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768)
-    }
-
-    checkMobile()
     window.addEventListener('scroll', handleScroll, { passive: true })
-    window.addEventListener('resize', checkMobile)
-    return () => {
-      window.removeEventListener('scroll', handleScroll)
-      window.removeEventListener('resize', checkMobile)
-    }
+    return () => window.removeEventListener('scroll', handleScroll)
   }, [])
   
   // Close menu on route change
@@ -108,9 +97,11 @@ export default function NavBar() {
   // DEC-17g: the menu button lives outside the bar so it stays when the bar
   // folds away, turning into a pink pill. On desktop the expanded bar shows its
   // links, so the button only appears folded. Its focus is not the bar's:
-  // unfolding on mousedown would make it inert before the click. With the menu
-  // open, the dialog carries its own close button at the same place (V6-NAV-03).
-  const showMenuButton = (isBarHidden || isMobile) && !isMenuOpen
+  // unfolding on mousedown would hide it before the click. With the menu open,
+  // the dialog carries its own close button at the same place (V6-NAV-03).
+  // V6-COD-26: shown on mobile from the server HTML, by CSS; JS only folds it
+  // in and out on desktop (`data-shown`).
+  const showOnDesktop = isBarHidden && !isMenuOpen
 
   return (
     <>
@@ -178,21 +169,24 @@ export default function NavBar() {
       </m.nav>
 
       {/* Menu button: sits over its slot in the bar, a pink pill once the bar folds */}
-      <m.button
+      <button
         ref={hamburgerRef}
-        className={`fixed top-4 right-6 md:right-12 z-menu-button p-3 min-w-tap min-h-tap flex items-center justify-center rounded-full transition-[background-color,color,box-shadow] duration-300 motion-reduce:transition-none ${
-          isBarHidden ? 'bg-riso-pinkTitle text-primary shadow-lift-sm' : 'bg-transparent text-snow'
+        type="button"
+        data-shown={showOnDesktop}
+        className={`fixed top-4 right-6 md:right-12 z-menu-button p-3 min-w-tap min-h-tap flex items-center justify-center rounded-full transition-[background-color,color,box-shadow,opacity,visibility] duration-300 motion-reduce:transition-none ${
+          isMenuOpen
+            ? 'invisible opacity-0'
+            : 'md:invisible md:opacity-0 md:data-[shown=true]:visible md:data-[shown=true]:opacity-100'
+        } ${
+          // P10-D2: printed pill, riso-pink with a blue plate 2 px off, no shadow.
+          isBarHidden ? 'bg-riso-pink text-primary shadow-plate' : 'bg-transparent text-snow'
         }`}
         onClick={() => setIsMenuOpen(true)}
-        animate={{ opacity: showMenuButton ? 1 : 0 }}
-        transition={{ duration: 0.3 }}
-        style={{ pointerEvents: showMenuButton ? 'auto' : 'none' }}
-        inert={!showMenuButton}
         aria-label={tMenu('open')}
         aria-expanded={isMenuOpen}
       >
         <Menu aria-hidden="true" size={24} />
-      </m.button>
+      </button>
       
       <FullscreenMenu
         open={isMenuOpen}
