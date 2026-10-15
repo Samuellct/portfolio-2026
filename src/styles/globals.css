@@ -337,17 +337,6 @@ body {
 /* ===================================
    MARKDOWN
 =================================== */
-.prose a {
-  color: rgb(var(--accent));
-  text-decoration: none;
-  border-bottom: 1px solid transparent;
-  transition: border-color 0.2s ease;
-}
-
-.prose a:hover {
-  border-bottom-color: rgb(var(--accent-line));
-}
-
 .prose code:not(pre code) {
   background-color: rgb(var(--fg) / 0.05);
   padding: 0.2em 0.4em;
