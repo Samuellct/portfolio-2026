@@ -2,7 +2,7 @@
 
 import { useRef, type RefObject } from 'react'
 import { m, AnimatePresence } from 'framer-motion'
-import { Github, Linkedin, FileText } from 'lucide-react'
+import { Github, Linkedin, FileText, X } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import TransitionLink from '@/components/navigation/TransitionLink'
 import LanguageSwitcher from '@/components/ui/LanguageSwitcher'
@@ -68,6 +68,16 @@ export default function FullscreenMenu({ open, onClose, links, isActive, onNavCl
           transition={reduce ? { duration: 0.16, ease: 'easeOut' } : { duration: 0.32, ease: [0.2, 0.7, 0.2, 1] }}
           className="fixed inset-0 z-menu bg-riso-paper text-white overflow-hidden"
         >
+          {/* Inside the dialog, first in the focus order, over the slot of the
+              bar's menu button (V6-NAV-03). */}
+          <button
+            type="button"
+            onClick={onClose}
+            aria-label={tMenu('close')}
+            className="absolute top-4 right-6 md:right-12 z-10 p-3 min-w-tap min-h-tap flex items-center justify-center rounded-full text-white hover:text-riso-blue transition-colors"
+          >
+            <X aria-hidden="true" size={24} />
+          </button>
           <div
             aria-hidden="true"
             className="pointer-events-none absolute -right-16 -top-16 w-[26rem] h-[26rem] rounded-full mix-blend-multiply opacity-55"
