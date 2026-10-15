@@ -3,11 +3,11 @@
 import { useState, useEffect, useRef } from 'react'
 import { usePathname } from '@/i18n/navigation'
 import { m, AnimatePresence } from 'framer-motion'
-import { Menu, X, Github, Linkedin } from 'lucide-react'
+import { Menu, X } from 'lucide-react'
 import TransitionLink from '@/components/navigation/TransitionLink'
+import FullscreenMenu from '@/components/navigation/FullscreenMenu'
 import LanguageSwitcher from '@/components/ui/LanguageSwitcher'
 import { useTranslations } from 'next-intl'
-import { SOCIAL } from '@/lib/constants'
 
 export default function NavBar() {
   const tNav = useTranslations('nav')
@@ -20,10 +20,6 @@ export default function NavBar() {
     { href: '/contact', label: tNav('contact') },
   ]
 
-  const externalLinks = [
-    { href: SOCIAL.github, label: tMenu('github'), icon: Github, hoverColor: 'hover:text-brand-github' },
-    { href: SOCIAL.linkedin, label: tMenu('linkedin'), icon: Linkedin, hoverColor: 'hover:text-brand-linkedinAlt' },
-  ]
   const [isHidden, setIsHidden] = useState(false)
   const [hasFocusWithin, setHasFocusWithin] = useState(false)
   const [isMenuOpen, setIsMenuOpen] = useState(false)
@@ -34,7 +30,6 @@ export default function NavBar() {
 
   const [isMobile, setIsMobile] = useState(false)
 
-  const panelRef = useRef<HTMLDivElement>(null)
   const hamburgerRef = useRef<HTMLButtonElement>(null)
 
   useEffect(() => {
@@ -94,75 +89,6 @@ export default function NavBar() {
     }
   }, [isMenuOpen])
 
-  // Modal behaviour for the fullscreen menu (AUDIT-053): trap focus inside the
-  // panel, close on Escape, make the rest of the page inert, and return focus
-  // to the hamburger on close (falling back to the logo when the hamburger is
-  // hidden, e.g. desktop at the top of the page).
-  useEffect(() => {
-    if (!isMenuOpen) return
-    const panel = panelRef.current
-    if (!panel) return
-
-    const inertTargets = [
-      document.getElementById('main-content'),
-      document.querySelector('footer'),
-    ].filter((el): el is HTMLElement => el !== null)
-    inertTargets.forEach((el) => el.setAttribute('inert', ''))
-
-    const focusable = () =>
-      Array.from(
-        panel.querySelectorAll<HTMLElement>(
-          'a[href], button:not([disabled]), [tabindex]:not([tabindex="-1"])',
-        ),
-      ).filter((el) => el.getClientRects().length > 0)
-
-    const previousActive = document.activeElement as HTMLElement | null
-    const hamburger = hamburgerRef.current
-    focusable()[0]?.focus()
-
-    const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        e.preventDefault()
-        setIsMenuOpen(false)
-        return
-      }
-      if (e.key !== 'Tab') return
-      const items = focusable()
-      if (items.length === 0) return
-      const first = items[0]
-      const last = items[items.length - 1]
-      if (e.shiftKey && document.activeElement === first) {
-        e.preventDefault()
-        last.focus()
-      } else if (!e.shiftKey && document.activeElement === last) {
-        e.preventDefault()
-        first.focus()
-      }
-    }
-    document.addEventListener('keydown', onKeyDown)
-
-    return () => {
-      document.removeEventListener('keydown', onKeyDown)
-      inertTargets.forEach((el) => el.removeAttribute('inert'))
-      // Defer past React's re-render so the hamburger's `inert` state is settled
-      // before we decide where focus lands.
-      requestAnimationFrame(() => {
-        const canFocus = (el: HTMLElement | null): el is HTMLElement =>
-          !!el &&
-          el !== document.body &&
-          document.contains(el) &&
-          !el.closest('[inert]') &&
-          el.tabIndex > -1
-        const target = canFocus(hamburger)
-          ? hamburger
-          : canFocus(previousActive)
-            ? previousActive
-            : document.querySelector<HTMLElement>('#site-nav a')
-        target?.focus()
-      })
-    }
-  }, [isMenuOpen])
-  
   // Every link opens its own page; only Home, clicked on the home page, scrolls
   // back to the top instead of reloading it.
   const isActive = (href: string) => (href === '/' ? pathname === '/' : pathname.startsWith(href))
@@ -283,110 +209,14 @@ export default function NavBar() {
         </AnimatePresence>
       </m.button>
       
-      {/* Fullscreen Menu */}
-      <AnimatePresence>
-        {isMenuOpen && (
-          <m.div
-            ref={panelRef}
-            id="main-menu"
-            role="dialog"
-            aria-modal="true"
-            aria-label={tMenu('dialogLabel')}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.4 }}
-            className="scheme-night fixed inset-0 z-menu bg-primary"
-          >
-            {/* bkg */}
-            <div className="absolute inset-0 opacity-5">
-              <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-riso-pink rounded-full blur-[150px]" />
-              <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-riso-blue rounded-full blur-[150px]" />
-            </div>
-            
-            {/* RESP-03: below md the external column stacks under the sections
-                instead of disappearing; the panel scrolls if a short screen needs it. */}
-            <div className="relative h-full flex flex-col justify-center overflow-y-auto py-20 md:flex-row md:justify-start md:overflow-visible md:py-0">
-              {/* Left side - Navigation Links */}
-              <div className="md:flex-1 flex flex-col justify-center px-8 md:px-16 lg:px-24">
-                <m.p
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.1 }}
-                  className="text-xs tracking-menu-label uppercase text-muted mb-8"
-                >
-                  {tMenu('sections')}
-                </m.p>
-                
-                <nav className="space-y-2">
-                  {navLinks.map((link, index) => (
-                    <m.div
-                      key={link.href}
-                      initial={{ opacity: 0, x: -40 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.15 + index * 0.08 }}
-                    >
-                      <TransitionLink
-                        href={link.href}
-                        onClick={(e) => handleNavClick(e, link.href)}
-                        aria-current={isActive(link.href) ? 'page' : undefined}
-                        className={`block font-display uppercase font-black text-page leading-none tracking-wide hover:text-white transition-all duration-300 hover:translate-x-4 ${
-                          isActive(link.href) ? 'text-white' : 'text-faint'
-                        }`}
-                      >
-                        {link.label}
-                      </TransitionLink>
-                    </m.div>
-                  ))}
-                </nav>
-              </div>
-              
-              {/* Right side - External Links */}
-              <div className="flex flex-col justify-center mx-8 mt-10 pt-8 border-t border-white/5 md:mx-0 md:mt-0 md:pt-0 md:px-16 lg:px-24 md:border-t-0 md:border-l">
-                <m.p
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.2 }}
-                  className="text-xs tracking-menu-label uppercase text-muted mb-8"
-                >
-                  {tMenu('external')}
-                </m.p>
-                
-                <div className="space-y-6">
-                  {externalLinks.map((link, index) => (
-                    <m.a
-                      key={link.href}
-                      href={link.href}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      initial={{ opacity: 0, x: 20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.25 + index * 0.08 }}
-                      className={`tap-target flex items-center gap-4 text-muted transition-colors group ${link.hoverColor}`}
-                    >
-                      <link.icon aria-hidden="true" size={20} />
-                      <span className="text-lg">{link.label}</span>
-                    </m.a>
-                  ))}
-                </div>
-
-                {/* Language switcher */}
-                <m.div
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.25 + externalLinks.length * 0.08 }}
-                  className="mt-8 pt-6 border-t border-white/5"
-                >
-                  <LanguageSwitcher
-                    label={tMenu('switchLang')}
-                    className="flex items-center gap-3 text-muted hover:text-accent transition-colors text-lg"
-                  />
-                </m.div>
-              </div>
-            </div>
-          </m.div>
-        )}
-      </AnimatePresence>
+      <FullscreenMenu
+        open={isMenuOpen}
+        onClose={() => setIsMenuOpen(false)}
+        links={navLinks}
+        isActive={isActive}
+        onNavClick={handleNavClick}
+        returnFocusRef={hamburgerRef}
+      />
     </>
   )
 }
