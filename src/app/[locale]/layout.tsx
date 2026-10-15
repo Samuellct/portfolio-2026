@@ -8,6 +8,7 @@ import { routing } from '@/i18n/routing'
 import { BASE_URL, SOCIAL, OG_LOCALE, LANG_TAG } from '@/lib/constants'
 import { SURFACE } from '@/lib/theme'
 import { Providers } from '../providers'
+import WebVitals from '@/components/analytics/WebVitals'
 import '@/styles/globals.css'
 import { toLocale } from '@/i18n/locale'
 import { getShareImage } from '@/lib/shareImage'
@@ -183,6 +184,7 @@ export default async function LocaleLayout({
           <Providers>
             {children}
           </Providers>
+          <WebVitals />
         </NextIntlClientProvider>
       </body>
     </html>

@@ -2,6 +2,11 @@ import type { NextConfig } from 'next'
 import createNextIntlPlugin from 'next-intl/plugin'
 
 const nextConfig: NextConfig = {
+  // Build version sent with the field Web Vitals (Workers Builds sets the sha)
+  env: {
+    NEXT_PUBLIC_BUILD_SHA: (process.env.WORKERS_CI_COMMIT_SHA || 'local').slice(0, 7),
+  },
+
   // Image optimisation
   images: {
     formats: ['image/avif', 'image/webp'],
