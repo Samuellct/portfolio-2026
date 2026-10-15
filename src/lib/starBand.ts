@@ -60,7 +60,7 @@ function starBandSvg({ width, height, seed, keep }: BandOptions) {
     }
 
     if (kind === 0) {
-      const alpha = (0.35 + soft * 0.4) * (inKeep(y) ? 0.6 : 1)
+      const alpha = (0.35 + soft * 0.4) * (inKeep(y) ? 0.3 : 1)
       out += `<circle cx="${n(x)}" cy="${n(y)}" r="${(0.6 + soft * 0.8).toFixed(2)}" fill="${ink(col, alpha)}"/>`
       continue
     }
