@@ -2,12 +2,14 @@
 
 import { useRef, type RefObject } from 'react'
 import { m, AnimatePresence } from 'framer-motion'
-import { Github, Linkedin } from 'lucide-react'
+import { Github, Linkedin, FileText } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import TransitionLink from '@/components/navigation/TransitionLink'
 import LanguageSwitcher from '@/components/ui/LanguageSwitcher'
 import { useModalFocusTrap } from '@/hooks/use-modal-focus-trap'
-import { SOCIAL } from '@/lib/constants'
+import { useReducedMotion } from '@/hooks/use-reduced-motion'
+import { RESUME_PATH, SOCIAL } from '@/lib/constants'
+import { RISO } from '@/lib/theme'
 
 interface MenuLink {
   href: string
@@ -24,15 +26,32 @@ interface FullscreenMenuProps {
   returnFocusRef: RefObject<HTMLElement | null>
 }
 
+// Two printed halftone screens in multiply, where the blurred orbs used to be.
+const screen = (ink: string, cell: number) => ({
+  backgroundImage: `radial-gradient(circle, ${ink} 0 34%, transparent 36%)`,
+  backgroundSize: `${cell}px ${cell}px`,
+  maskImage: 'radial-gradient(circle, #000 0 30%, transparent 70%)',
+  WebkitMaskImage: 'radial-gradient(circle, #000 0 30%, transparent 70%)',
+})
+
+// NAV-A (V6-NAV-11): a paper sheet that drops from the bar. Links read at rest
+// in blue (3.99:1, large text), the current page in registered pink, hover in ink.
 export default function FullscreenMenu({ open, onClose, links, isActive, onNavClick, returnFocusRef }: FullscreenMenuProps) {
   const tMenu = useTranslations('menu')
+  const tFooter = useTranslations('footer')
+  const tCommon = useTranslations('common')
+  const reduce = useReducedMotion()
   const panelRef = useRef<HTMLDivElement>(null)
   useModalFocusTrap(open, panelRef, onClose, returnFocusRef)
 
   const externalLinks = [
-    { href: SOCIAL.github, label: tMenu('github'), icon: Github, hoverColor: 'hover:text-brand-github' },
-    { href: SOCIAL.linkedin, label: tMenu('linkedin'), icon: Linkedin, hoverColor: 'hover:text-brand-linkedinAlt' },
+    { href: SOCIAL.github, label: tMenu('github'), icon: Github },
+    { href: SOCIAL.linkedin, label: tMenu('linkedin'), icon: Linkedin },
+    { href: RESUME_PATH, label: tFooter('resume'), icon: FileText },
   ]
+
+  const hidden = reduce ? { opacity: 0 } : { clipPath: 'inset(0% 0% 100% 0%)' }
+  const shown = reduce ? { opacity: 1 } : { clipPath: 'inset(0% 0% 0% 0%)' }
 
   return (
     <AnimatePresence>
@@ -43,96 +62,83 @@ export default function FullscreenMenu({ open, onClose, links, isActive, onNavCl
           role="dialog"
           aria-modal="true"
           aria-label={tMenu('dialogLabel')}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.4 }}
-          className="scheme-night fixed inset-0 z-menu bg-primary"
+          initial={hidden}
+          animate={shown}
+          exit={hidden}
+          transition={reduce ? { duration: 0.16, ease: 'easeOut' } : { duration: 0.32, ease: [0.2, 0.7, 0.2, 1] }}
+          className="fixed inset-0 z-menu bg-riso-paper text-white overflow-hidden"
         >
-          {/* bkg */}
-          <div className="absolute inset-0 opacity-5">
-            <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-riso-pink rounded-full blur-[150px]" />
-            <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-riso-blue rounded-full blur-[150px]" />
-          </div>
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -right-16 -top-16 w-[26rem] h-[26rem] rounded-full mix-blend-multiply opacity-55"
+            style={screen(RISO.pink, 14)}
+          />
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute -left-20 -bottom-28 w-[26rem] h-[26rem] rounded-full mix-blend-multiply opacity-35"
+            style={screen(RISO.blue, 12)}
+          />
 
           {/* RESP-03: below md the external column stacks under the sections
               instead of disappearing; the panel scrolls if a short screen needs it. */}
           <div className="relative h-full flex flex-col justify-center overflow-y-auto py-20 md:flex-row md:justify-start md:overflow-visible md:py-0">
-            {/* Left side - Navigation Links */}
             <div className="md:flex-1 flex flex-col justify-center px-8 md:px-16 lg:px-24">
-              <m.p
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.1 }}
-                className="text-xs tracking-menu-label uppercase text-muted mb-8"
-              >
+              <p className="flex items-center gap-3.5 text-xs tracking-menu-label uppercase text-muted mb-8 before:content-[''] before:w-8 before:h-px before:bg-current">
                 {tMenu('sections')}
-              </m.p>
+              </p>
 
-              <nav className="space-y-2">
-                {links.map((link, index) => (
-                  <m.div
-                    key={link.href}
-                    initial={{ opacity: 0, x: -40 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.15 + index * 0.08 }}
-                  >
+              <nav aria-label={tMenu('sections')} className="space-y-2">
+                {links.map((link) => {
+                  const active = isActive(link.href)
+                  return (
                     <TransitionLink
+                      key={link.href}
                       href={link.href}
                       onClick={(e) => onNavClick(e, link.href)}
-                      aria-current={isActive(link.href) ? 'page' : undefined}
-                      className={`block font-display uppercase font-black text-page leading-none tracking-wide hover:text-white transition-all duration-300 hover:translate-x-4 ${
-                        isActive(link.href) ? 'text-white' : 'text-faint'
+                      aria-current={active ? 'page' : undefined}
+                      className={`block w-fit font-display uppercase font-black text-page leading-none tracking-wide transition-[color,transform] duration-200 motion-reduce:transition-none hover:translate-x-3 motion-reduce:hover:translate-x-0 ${
+                        active ? 'text-riso-pinkTitle misregister' : 'text-riso-blue hover:text-white'
                       }`}
                     >
                       {link.label}
+                      {active && (
+                        <span aria-hidden="true" className="ml-3 align-middle text-[0.3em] text-white">
+                          ●
+                        </span>
+                      )}
                     </TransitionLink>
-                  </m.div>
-                ))}
+                  )
+                })}
               </nav>
             </div>
 
-            {/* Right side - External Links */}
-            <div className="flex flex-col justify-center mx-8 mt-10 pt-8 border-t border-white/5 md:mx-0 md:mt-0 md:pt-0 md:px-16 lg:px-24 md:border-t-0 md:border-l">
-              <m.p
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.2 }}
-                className="text-xs tracking-menu-label uppercase text-muted mb-8"
-              >
+            <div className="flex flex-col justify-center mx-8 mt-10 pt-8 border-t border-accent-line/25 md:mx-0 md:mt-0 md:pt-0 md:px-16 lg:px-24 md:border-t-0 md:border-l">
+              <p className="flex items-center gap-3.5 text-xs tracking-menu-label uppercase text-muted mb-8 before:content-[''] before:w-8 before:h-px before:bg-current">
                 {tMenu('external')}
-              </m.p>
+              </p>
 
               <div className="space-y-6">
-                {externalLinks.map((link, index) => (
-                  <m.a
+                {externalLinks.map((link) => (
+                  <a
                     key={link.href}
                     href={link.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.25 + index * 0.08 }}
-                    className={`tap-target flex items-center gap-4 text-muted transition-colors group ${link.hoverColor}`}
+                    aria-label={`${link.label} (${tCommon('newTab')})`}
+                    className="tap-target flex items-center gap-4 text-white underline-offset-[6px] decoration-2 decoration-riso-pink hover:underline"
                   >
                     <link.icon aria-hidden="true" size={20} />
                     <span className="text-lg">{link.label}</span>
-                  </m.a>
+                  </a>
                 ))}
               </div>
 
-              {/* Language switcher */}
-              <m.div
-                initial={{ opacity: 0, x: 20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.25 + externalLinks.length * 0.08 }}
-                className="mt-8 pt-6 border-t border-white/5"
-              >
+              <div className="mt-8 pt-6 border-t border-accent-line/25">
                 <LanguageSwitcher
                   label={tMenu('switchLang')}
-                  className="flex items-center gap-3 text-muted hover:text-accent transition-colors text-lg"
+                  className="flex items-center gap-3 text-white hover:text-riso-blue transition-colors text-lg"
                 />
-              </m.div>
+              </div>
             </div>
           </div>
         </m.div>

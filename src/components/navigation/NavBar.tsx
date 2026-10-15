@@ -125,9 +125,12 @@ export default function NavBar() {
         onBlur={(e) => {
           if (!e.currentTarget.contains(e.relatedTarget as Node | null)) setHasFocusWithin(false)
         }}
+        // The menu sheet covers the bar: hidden and inert while it is open, so its
+        // links and language pair are not doubled behind the dialog.
+        inert={isMenuOpen}
         className={`scheme-night fixed top-0 inset-x-0 z-nav transition-colors duration-200 ${
-          overHero && !isMenuOpen ? 'bg-transparent' : 'bg-primary'
-        }`}
+          overHero ? 'bg-transparent' : 'bg-primary'
+        } ${isMenuOpen ? 'invisible' : ''}`}
       >
         <div className="flex items-center justify-between px-6 md:px-12 py-4">
           {/* Logo */}
@@ -173,7 +176,11 @@ export default function NavBar() {
       <m.button
         ref={hamburgerRef}
         className={`fixed top-4 right-6 md:right-12 z-menu-button p-3 min-w-tap min-h-tap flex items-center justify-center rounded-full transition-[background-color,color,box-shadow] duration-300 motion-reduce:transition-none ${
-          isBarHidden ? 'bg-riso-pinkTitle text-primary shadow-lift-sm' : 'bg-transparent text-snow'
+          isMenuOpen
+            ? 'bg-transparent text-riso-ink'
+            : isBarHidden
+              ? 'bg-riso-pinkTitle text-primary shadow-lift-sm'
+              : 'bg-transparent text-snow'
         }`}
         onClick={() => setIsMenuOpen(!isMenuOpen)}
         animate={{ opacity: showMenuButton ? 1 : 0 }}

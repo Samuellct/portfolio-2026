@@ -35,11 +35,9 @@ const config: Config = {
         status: STATUS,
         // Secondary text (AUDIT-029, COL-02), solid per scheme. `muted` clears
         // WCAG AA (>= 4.5:1) on paper and night; `subtle` is for large or
-        // non-interactive text only; `faint` is decorative / rest-state only
-        // (documented AUDIT-029 derogation for the fullscreen menu links).
+        // non-interactive text only.
         muted: 'var(--muted)',
         subtle: 'var(--subtle)',
-        faint: 'rgb(var(--fg) / 0.2)',
       },
       fontFamily: {
         display: ['var(--font-schibsted)', 'sans-serif'],
