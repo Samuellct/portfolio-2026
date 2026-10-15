@@ -31,6 +31,10 @@ function cleanIndentation(content: string): string {
   return content.trim()
 }
 
+// Body links: underlined at rest, since the ink link and the muted body text
+// differ by colour alone (1.23:1, WCAG 1.4.1, V6-CTA-12).
+const BODY_LINK = 'text-accent underline decoration-1 underline-offset-2 hover:decoration-2 transition-colors'
+
 const components: Components = {
   h1: ({ children }) => (
     <h1 className="font-display uppercase font-black text-heading text-white mt-10 mb-6 tracking-wide">{children}</h1>
@@ -49,11 +53,11 @@ const components: Components = {
   ),
   a: ({ href, children }) =>
     href?.startsWith('http') ? (
-      <ExternalLink href={href} inline className="text-accent hover:underline underline-offset-2 transition-colors">
+      <ExternalLink href={href} inline className={BODY_LINK}>
         {children}
       </ExternalLink>
     ) : (
-      <a href={href} className="text-accent hover:underline underline-offset-2 transition-colors">
+      <a href={href} className={BODY_LINK}>
         {children}
       </a>
     ),
