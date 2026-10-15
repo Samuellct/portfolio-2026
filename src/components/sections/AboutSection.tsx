@@ -1,13 +1,13 @@
 'use client'
 
 import { useRef, useEffect } from 'react'
-import TransitionLink from '@/components/navigation/TransitionLink'
 import { m } from 'framer-motion'
 import { gsap } from '@/lib/gsap'
 import Watermark from '@/components/effects/Watermark'
 import { ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
+import { Pill } from '@/components/ui/Pill'
 // Homepage statistics, derived from the visible projects by the page
 export interface HomeStats {
   internships: number
@@ -204,13 +204,10 @@ export default function AboutSection({ statValues }: { statValues: HomeStats }) 
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
             >
-              <TransitionLink
-                href="/about"
-                className="tap-target inline-flex items-center gap-3 text-accent hover:text-white transition-colors group"
-              >
-                <span className="text-sm tracking-caps uppercase">{t('preview.cta')}</span>
+              <Pill as="link" href="/about" className="group">
+                {t('preview.cta')}
                 <ArrowRight aria-hidden="true" size={16} className="transition-transform group-hover:translate-x-1" />
-              </TransitionLink>
+              </Pill>
             </m.div>
           </div>
           

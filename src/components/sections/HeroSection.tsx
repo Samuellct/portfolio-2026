@@ -3,7 +3,7 @@
 import { useRef, useEffect } from 'react'
 import TransitionLink from '@/components/navigation/TransitionLink'
 import { gsap } from '@/lib/gsap'
-import { ArrowRight, Download } from 'lucide-react'
+import { ArrowRight, FileText } from 'lucide-react'
 import { useLocale, useTranslations } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import HeroSky, { FRINGE_HEIGHT } from '@/components/effects/HeroSky'
@@ -97,6 +97,7 @@ function StarProject({ project, slot, locale, status }: StarProjectProps) {
 export default function HeroSection({ featuredProjects }: { featuredProjects: ProjectSummary[] }) {
   const t = useTranslations('hero')
   const tp = useTranslations('projects')
+  const tCommon = useTranslations('common')
   const locale = useLocale()
   const prefersReducedMotion = useReducedMotion()
   const sectionRef = useRef<HTMLElement>(null)
@@ -179,18 +180,9 @@ export default function HeroSection({ featuredProjects }: { featuredProjects: Pr
             {t('cta')}
             <ArrowRight size={16} aria-hidden="true" />
           </Pill>
-          <Pill
-            as="a"
-            href={RESUME_PATH}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={t('ctaSecondary')}
-            tone="outline"
-            scheme="night"
-            className="flex-1 lg:flex-none"
-          >
-            {t('cv')}
-            <Download size={16} aria-hidden="true" />
+          <Pill as="external" href={RESUME_PATH} tone="outline" scheme="night" className="flex-1 lg:flex-none">
+            {tCommon('viewCV')}
+            <FileText size={16} aria-hidden="true" />
           </Pill>
         </div>
 

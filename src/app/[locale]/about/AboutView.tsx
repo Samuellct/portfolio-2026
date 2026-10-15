@@ -5,7 +5,7 @@ import TransitionLink from '@/components/navigation/TransitionLink'
 import Breadcrumb from '@/components/navigation/Breadcrumb'
 import { m, AnimatePresence } from 'framer-motion'
 import { gsap, ScrollTrigger } from '@/lib/gsap'
-import { ArrowRight, Download, Github, Linkedin } from 'lucide-react'
+import { ArrowRight, FileText, Github, Linkedin } from 'lucide-react'
 import { TechStats, TechFamilyStats, isLightColor } from '@/lib/techStats'
 import { getLocalizedField, formatMeasure, type ProjectData } from '@/lib/projects/helpers'
 import MountainProfile from '@/components/about/MountainProfile'
@@ -75,6 +75,7 @@ export default function AboutView({
   const tNav = useTranslations('nav')
   const tMenu = useTranslations('menu')
   const tContact = useTranslations('contact')
+  const tCommon = useTranslations('common')
   const locale = useLocale()
   const prefersReducedMotion = useReducedMotion()
   // bumped when the viewport crosses the desktop breakpoint, to rebuild the triggers
@@ -589,15 +590,15 @@ export default function AboutView({
             
             {/* Buttons: visible from the start, outside the pin animation */}
             <div className="flex flex-wrap gap-4">
-              <Pill as="a" href={RESUME_PATH} target="_blank" rel="noopener noreferrer">
-                <Download size={16} aria-hidden="true" />
-                {tAbout('downloadCV')}
+              <Pill as="external" href={RESUME_PATH}>
+                <FileText size={16} aria-hidden="true" />
+                {tCommon('viewCV')}
               </Pill>
-              <Pill as="a" href={SOCIAL.github} target="_blank" rel="noopener noreferrer" tone="outline">
+              <Pill as="external" href={SOCIAL.github} tone="outline">
                 <Github size={16} aria-hidden="true" />
                 {tMenu('github')}
               </Pill>
-              <Pill as="a" href={SOCIAL.linkedin} target="_blank" rel="noopener noreferrer" tone="outline">
+              <Pill as="external" href={SOCIAL.linkedin} tone="outline">
                 <Linkedin size={16} aria-hidden="true" />
                 {tMenu('linkedin')}
               </Pill>
@@ -953,9 +954,9 @@ export default function AboutView({
         {/* ============================================ */}
         <div className="px-6 md:px-12 lg:px-16 pb-24">
           <div className="max-w-6xl mx-auto w-full flex flex-wrap items-center gap-4 pt-12 border-t border-riso-pink">
-            <Pill as="a" href={RESUME_PATH} target="_blank" rel="noopener noreferrer">
-              <Download size={16} aria-hidden="true" />
-              {tAbout('downloadCV')}
+            <Pill as="external" href={RESUME_PATH}>
+              <FileText size={16} aria-hidden="true" />
+              {tCommon('viewCV')}
             </Pill>
             <Pill as="link" href="/contact" tone="outline">
               {tContact('preview.cta')}

@@ -4,7 +4,7 @@ import { useEffect, useState, type ReactNode } from 'react'
 import TransitionLink from '@/components/navigation/TransitionLink'
 import Breadcrumb from '@/components/navigation/Breadcrumb'
 import { m } from 'framer-motion'
-import { ArrowLeft, ArrowRight, Download, ExternalLink } from 'lucide-react'
+import { ArrowLeft, ArrowRight, FileText, ExternalLink as ExternalLinkIcon } from 'lucide-react'
 import { FaGithub } from 'react-icons/fa'
 import { getLocalizedField, formatMeasure, Locale, ProjectData, PROJECTS_FILTER_KEY } from '@/lib/projects/helpers'
 import { Badge } from '@/components/ui/Badge'
@@ -100,7 +100,7 @@ export default function ProjectDetailView({
   const t = useTranslations('projects')
   const tNav = useTranslations('nav')
   const tContact = useTranslations('contact')
-  const tAbout = useTranslations('about')
+  const tCommon = useTranslations('common')
   const leadMedia = project.media?.[0]
   // Served visible without JavaScript; the fade-in plays on client navigations only
   const enter = useEntryAnimation()
@@ -194,10 +194,10 @@ export default function ProjectDetailView({
               </Badge>
             )}
             {outLinks.map((link) => (
-              <Pill key={link.url} as="a" href={link.url} target="_blank" rel="noopener noreferrer" tone="outline">
+              <Pill key={link.url} as="external" href={link.url} tone="outline">
                 {link.github && <FaGithub size={16} aria-hidden="true" />}
                 {link.label}
-                <ExternalLink size={14} aria-hidden="true" />
+                <ExternalLinkIcon size={14} aria-hidden="true" />
               </Pill>
             ))}
           </div>
@@ -378,9 +378,9 @@ export default function ProjectDetailView({
               {tContact('preview.cta')}
               <ArrowRight size={16} aria-hidden="true" />
             </Pill>
-            <Pill as="a" href={RESUME_PATH} target="_blank" rel="noopener noreferrer" tone="outline">
-              <Download size={16} aria-hidden="true" />
-              {tAbout('downloadCV')}
+            <Pill as="external" href={RESUME_PATH} tone="outline">
+              <FileText size={16} aria-hidden="true" />
+              {tCommon('viewCV')}
             </Pill>
           </div>
 

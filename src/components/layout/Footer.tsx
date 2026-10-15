@@ -5,6 +5,7 @@ import { useTranslations } from 'next-intl'
 import { EMAIL, RESUME_PATH, SOCIAL } from '@/lib/constants'
 import { FOOTER_SKY } from '@/lib/starBand'
 import type { CSSProperties } from 'react'
+import { ExternalLink } from '@/components/ui/ExternalLink'
 
 const linkClass = 'tap-target text-muted hover:text-white transition-colors'
 
@@ -15,7 +16,6 @@ export default function Footer() {
   const tNav = useTranslations('nav')
   const tMenu = useTranslations('menu')
   const tFooter = useTranslations('footer')
-  const tCommon = useTranslations('common')
   const currentYear = new Date().getFullYear()
 
   const pages = [
@@ -58,15 +58,9 @@ export default function Footer() {
           </li>
           {external.map((link) => (
             <li key={link.href}>
-              <a
-                href={link.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={`${link.label} (${tCommon('newTab')})`}
-                className={linkClass}
-              >
+              <ExternalLink href={link.href} className={linkClass}>
                 {link.label}
-              </a>
+              </ExternalLink>
             </li>
           ))}
         </ul>

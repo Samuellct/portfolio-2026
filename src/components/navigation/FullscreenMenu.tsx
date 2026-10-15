@@ -10,6 +10,7 @@ import { useModalFocusTrap } from '@/hooks/use-modal-focus-trap'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { RESUME_PATH, SOCIAL } from '@/lib/constants'
 import { RISO } from '@/lib/theme'
+import { ExternalLink } from '@/components/ui/ExternalLink'
 
 interface MenuLink {
   href: string
@@ -39,7 +40,6 @@ const screen = (ink: string, cell: number) => ({
 export default function FullscreenMenu({ open, onClose, links, isActive, onNavClick, returnFocusRef }: FullscreenMenuProps) {
   const tMenu = useTranslations('menu')
   const tFooter = useTranslations('footer')
-  const tCommon = useTranslations('common')
   const reduce = useReducedMotion()
   const panelRef = useRef<HTMLDivElement>(null)
   useModalFocusTrap(open, panelRef, onClose, returnFocusRef)
@@ -129,17 +129,14 @@ export default function FullscreenMenu({ open, onClose, links, isActive, onNavCl
 
               <div className="space-y-6">
                 {externalLinks.map((link) => (
-                  <a
+                  <ExternalLink
                     key={link.href}
                     href={link.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    aria-label={`${link.label} (${tCommon('newTab')})`}
                     className="tap-target flex items-center gap-4 text-white underline-offset-[6px] decoration-2 decoration-riso-pink hover:underline"
                   >
                     <link.icon aria-hidden="true" size={20} />
                     <span className="text-lg">{link.label}</span>
-                  </a>
+                  </ExternalLink>
                 ))}
               </div>
 

@@ -1,6 +1,7 @@
 import Image from 'next/image'
 import type { ReactNode } from 'react'
 import { cn } from '@/lib/cn'
+import { ExternalLink } from '@/components/ui/ExternalLink'
 
 /**
  * Framed image with optional caption and credit (AUDIT-047), rendered with
@@ -63,14 +64,9 @@ export function Figure({
         <p className={cn('text-xs text-muted', caption ? 'mt-1' : 'mt-2')}>
           {creditLabel ? `${creditLabel}: ` : ''}
           {credit.url ? (
-            <a
-              href={credit.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="hover:text-white underline"
-            >
+            <ExternalLink href={credit.url} inline className="hover:text-white underline">
               {credit.name}
-            </a>
+            </ExternalLink>
           ) : (
             credit.name
           )}

@@ -8,6 +8,7 @@ import { useTranslations } from 'next-intl'
 import { PAGE_BG } from '@/lib/theme'
 import { SOCIAL, FORMSPREE_ENDPOINT } from '@/lib/constants'
 import Watermark from '@/components/effects/Watermark'
+import { ExternalLink } from '@/components/ui/ExternalLink'
 
 // Background color (shares the About intro token: same value, one source)
 const CONTACT_BG_COLOR = PAGE_BG
@@ -278,25 +279,21 @@ export default function ContactPage() {
           </h2>
           
           <div className="flex flex-wrap gap-4">
-            <a
+            <ExternalLink
               href={SOCIAL.github}
-              target="_blank"
-              rel="noopener noreferrer"
               className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 border border-white/10 transition-all hover:border-brand-github/30 hover:text-brand-github"
             >
               <Github aria-hidden="true" size={16} />
               <span>{tContact('page.directContact.githubLabel')}</span>
-            </a>
-            
-            <a
+            </ExternalLink>
+
+            <ExternalLink
               href={SOCIAL.linkedin}
-              target="_blank"
-              rel="noopener noreferrer"
               className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 border border-white/10 transition-all hover:border-brand-linkedinAlt/30 hover:text-brand-linkedinAlt"
             >
               <Linkedin aria-hidden="true" size={16} />
               <span>{tContact('page.directContact.linkedinLabel')}</span>
-            </a>
+            </ExternalLink>
           </div>
         </m.section>
       </div>

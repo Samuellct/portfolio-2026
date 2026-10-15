@@ -1,11 +1,13 @@
 import type { ComponentPropsWithoutRef, ReactNode } from 'react'
 import TransitionLink from '@/components/navigation/TransitionLink'
+import { ExternalLink } from '@/components/ui/ExternalLink'
 import { cn } from '@/lib/cn'
 
 /**
  * The one call-to-action pill (V6-COD-14, P11-D1): one height, one weight, one
  * border per scheme. The pink pill turns to ink on paper and to white on the
  * night hero (owner's choice). Icons go in `children`, marked `aria-hidden`.
+ * `external` opens a new tab and announces it (ExternalLink).
  */
 type PillTone = 'primary' | 'outline'
 type PillScheme = 'paper' | 'night'
@@ -26,7 +28,7 @@ const LOOK: Record<PillScheme, Record<PillTone, string>> = {
 
 type Rendering =
   | ({ as?: 'button' } & Omit<ComponentPropsWithoutRef<'button'>, 'className'>)
-  | ({ as: 'a' | 'link'; href: string } & Omit<ComponentPropsWithoutRef<'a'>, 'className' | 'href'>)
+  | ({ as: 'a' | 'link' | 'external'; href: string } & Omit<ComponentPropsWithoutRef<'a'>, 'className' | 'href'>)
 
 export type PillProps = {
   children: ReactNode
@@ -57,6 +59,14 @@ export function Pill(props: PillProps) {
       <TransitionLink href={href} className={classes} {...anchor}>
         {children}
       </TransitionLink>
+    )
+  }
+  if (as === 'external') {
+    const { href, ...anchor } = rest as { href: string } & Omit<ComponentPropsWithoutRef<'a'>, 'href'>
+    return (
+      <ExternalLink href={href} className={classes} {...anchor}>
+        {children}
+      </ExternalLink>
     )
   }
   if (as === 'a') {

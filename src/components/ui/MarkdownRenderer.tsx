@@ -4,6 +4,7 @@ import remarkGfm from 'remark-gfm'
 import remarkMath from 'remark-math'
 import rehypeKatex from 'rehype-katex'
 import type { Components } from 'react-markdown'
+import { ExternalLink } from '@/components/ui/ExternalLink'
 
 interface MarkdownRendererProps {
   content: string
@@ -46,16 +47,16 @@ const components: Components = {
   p: ({ children }) => (
     <p className="text-muted leading-relaxed mb-4 prose-body">{children}</p>
   ),
-  a: ({ href, children }) => (
-    <a 
-      href={href}
-      target={href?.startsWith('http') ? '_blank' : undefined}
-      rel={href?.startsWith('http') ? 'noopener noreferrer' : undefined}
-      className="text-accent hover:underline underline-offset-2 transition-colors"
-    >
-      {children}
-    </a>
-  ),
+  a: ({ href, children }) =>
+    href?.startsWith('http') ? (
+      <ExternalLink href={href} inline className="text-accent hover:underline underline-offset-2 transition-colors">
+        {children}
+      </ExternalLink>
+    ) : (
+      <a href={href} className="text-accent hover:underline underline-offset-2 transition-colors">
+        {children}
+      </a>
+    ),
   ul: ({ children }) => (
     <ul className="list-disc list-outside ml-6 mb-4 space-y-2 text-muted">{children}</ul>
   ),

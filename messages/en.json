@@ -21,8 +21,6 @@
     "name": "Samuel Lecomte",
     "title": "Physics. Python. Data.",
     "cta": "All projects",
-    "ctaSecondary": "Download my CV",
-    "cv": "CV",
     "scrollHint": "Scroll"
   },
   "about": {
@@ -30,7 +28,7 @@
     "title": "From physicist to … developer",
     "preview": {
       "intro": "Two research internships in particle physics, within teams from the LHCb and ATLAS collaborations, taught me to build full analysis pipelines: data acquisition, cleaning, statistical modelling, reporting. Python and C++ are my main tools. ROOT, NumPy, Pandas, and scikit-learn are part of my daily workflow.",
-      "cta": "Full profile & CV",
+      "cta": "Full profile",
       "whatIBuild": "Most of my projects start from a need of my own. I run a Proxmox server at home, and the JellyUX Jellyfin plugins grew out of using it. TimePredict comes from my trail running, Accred from the film festivals I attend. This site is one of those projects and has its own page."
     },
     "full": {
@@ -102,7 +100,6 @@
         "description": "I write regular reviews of the (many) films I see, and I'm a festival regular: Cannes in 2025, the Clermont-Ferrand short film festival, the Deauville American film festival. I built Accred for these festivals."
       }
     },
-    "downloadCV": "Download CV",
     "sectionNav": "Page sections"
   },
   "projects": {
@@ -238,6 +235,7 @@
       "description": "The page you're looking for doesn't exist or has been moved.",
       "backHome": "Back to home"
     },
+    "viewCV": "View CV",
     "newTab": "opens in a new tab"
   }
 }
