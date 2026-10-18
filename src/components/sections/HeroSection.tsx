@@ -189,8 +189,8 @@ export default function HeroSection({ featuredProjects }: { featuredProjects: Pr
         </div>
 
         {/* Mobile and tablet: the four projects as paper labels (DEC-16g, comp M2) */}
-        {/* Rows share one height; the title fits the label's width (cqi). */}
-        <ul className="mt-8 grid w-full max-w-3xl auto-rows-fr grid-cols-2 gap-x-3 gap-y-3.5 md:grid-cols-4 lg:hidden">
+        {/* The two labels of a row share its height; the title fits the label's width (cqi). */}
+        <ul className="mt-8 grid w-full max-w-3xl grid-cols-2 gap-x-3 gap-y-3.5 md:grid-cols-4 lg:hidden">
           {featured.map((project, i) => {
             const status = statusOf(project)
             return (
