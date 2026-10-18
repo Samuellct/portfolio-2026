@@ -5,6 +5,17 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.7.0](https://github.com/Samuellct/portfolio-2026/compare/v5.6.2...v5.7.0) (2026-10-18)
+
+### Ajouté
+
+* **about:** show the work experience alongside the internships ([8836d79](https://github.com/Samuellct/portfolio-2026/commit/8836d79bc6a3bad320ac48ce2d05f477b8265770))
+
+### Corrigé
+
+* **about:** count the stack languages in project pawns ([2528737](https://github.com/Samuellct/portfolio-2026/commit/2528737ed3b7b2565ea0b1b13e649e1625847725))
+* **about:** name the Seconde and Premiere classes in the English teaching summary ([f16db70](https://github.com/Samuellct/portfolio-2026/commit/f16db707f7c5a4f13bcf81c893a93673132c5dad))
+
 ## [5.6.2](https://github.com/Samuellct/portfolio-2026/compare/v5.6.1...v5.6.2) (2026-10-18)
 
 ### Corrigé
