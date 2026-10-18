@@ -53,6 +53,8 @@ const config: Config = {
         heading: 'clamp(2rem, 4.5vw, 3.5rem)',
         page: 'clamp(2.5rem, 6.5vw, 5rem)',
         display: 'clamp(2.75rem, 9vw, 6rem)',
+        // Off the scale on purpose: the titles of the hero's paper labels only (P15-D3).
+        'label-title': '1.2rem',
         'ghost-15': '15vw',
         'ghost-20': '20vw',
         'ghost-35': '35vw',

@@ -82,7 +82,7 @@ function StarProject({ project, slot, locale, status }: StarProjectProps) {
             : 'left-[46px] -translate-y-1/2 rotate-[1.5deg]'
         }`}
       >
-        <span className="block font-display text-[1.2rem] font-black uppercase leading-tight text-riso-pinkTitle">{title}</span>
+        <span className="block font-display text-label-title font-black uppercase leading-tight text-riso-pinkTitle">{title}</span>
         {project.subtitle && (
           <span className="mt-1 block text-sm font-medium leading-snug">{getLocalizedField(project.subtitle, locale)}</span>
         )}
@@ -199,7 +199,7 @@ export default function HeroSection({ featuredProjects }: { featuredProjects: Pr
                   href={`/projects/${project.category}/${project.id}`}
                   className="flex h-full flex-col gap-1.5 bg-riso-paper p-3 text-riso-ink shadow-plate-3 [container-type:inline-size]"
                 >
-                  <span className="misregister font-display text-[min(1.2rem,13cqi)] font-black uppercase leading-none text-riso-pinkTitle">
+                  <span className="misregister font-display text-[min(theme(fontSize.label-title),13cqi)] font-black uppercase leading-none text-riso-pinkTitle">
                     {getLocalizedField(project.title, locale)}
                   </span>
                   {project.subtitle && (
