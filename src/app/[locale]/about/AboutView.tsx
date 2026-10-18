@@ -7,7 +7,7 @@ import { m, AnimatePresence } from 'framer-motion'
 import { gsap, ScrollTrigger } from '@/lib/gsap'
 import { ArrowRight, ChevronDown, FileText, Github, Linkedin } from 'lucide-react'
 import { TechStats, TechFamilyStats, LanguageStats, isLightColor } from '@/lib/techStats'
-import { getLocalizedField, formatMeasure, type ProjectData } from '@/lib/projects/helpers'
+import { getLocalizedField, formatMeasure, type BilingualText, type ProjectData } from '@/lib/projects/helpers'
 import type { ExperienceEntry } from '@/lib/experience'
 import MountainProfile from '@/components/about/MountainProfile'
 import NetworkGraph from '@/components/about/NetworkGraph'
@@ -58,6 +58,35 @@ function GhostTag({ tech }: { tech: TechStats }) {
 }
 
 // ============================================
+// INTEREST LINKS (the projects an interest led to)
+// ============================================
+type InterestProject = { id: string; category: string; title: BilingualText | string }
+
+function InterestLinks({ projects }: { projects?: InterestProject[] }) {
+  const locale = useLocale()
+  const tAbout = useTranslations('about')
+  if (!projects?.length) return null
+  return (
+    <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs tracking-caps uppercase">
+      <span className="text-muted">{tAbout('interests.related')}</span>
+      <ul className="contents">
+        {projects.map((project) => (
+          <li key={project.id}>
+            <TransitionLink
+              href={`/projects/${project.category}/${project.id}`}
+              className="tap-target inline-flex items-center gap-2 text-accent hover:text-white transition-colors group"
+            >
+              {getLocalizedField(project.title, locale)}
+              <ArrowRight aria-hidden="true" size={14} className="transition-transform group-hover:translate-x-1" />
+            </TransitionLink>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
+
+// ============================================
 // OTHER JOB (one line of the disclosure)
 // ============================================
 function OtherJob({ job }: { job: ExperienceEntry }) {
@@ -90,10 +119,12 @@ function OtherJob({ job }: { job: ExperienceEntry }) {
 export default function AboutView({
   internships,
   experiences,
+  interestProjects,
   techStats,
 }: {
   internships: AboutInternship[]
   experiences: ExperienceEntry[]
+  interestProjects: Record<string, InterestProject[]>
   techStats: { languages: LanguageStats[]; secondaryByFamily: TechFamilyStats[] }
 }) {
   const tAbout = useTranslations('about')
@@ -995,6 +1026,7 @@ export default function AboutView({
                 <p className="text-muted leading-relaxed prose-body">
                   {interests[0].description}
                 </p>
+                <InterestLinks projects={interestProjects[interests[0].id]} />
               </div>
               <div className="w-full md:w-1/2 aspect-[8/3]">
                 <MountainProfile progress={interest1Progress} className="w-full h-full" />
@@ -1016,6 +1048,7 @@ export default function AboutView({
                 <p className="text-muted leading-relaxed prose-body">
                   {interests[1].description}
                 </p>
+                <InterestLinks projects={interestProjects[interests[1].id]} />
               </div>
               <div className="w-full md:w-1/2 aspect-[8/3]">
                 <NetworkGraph progress={interest2Progress} className="w-full h-full" />
@@ -1037,6 +1070,7 @@ export default function AboutView({
                 <p className="text-muted leading-relaxed prose-body">
                   {interests[2].description}
                 </p>
+                <InterestLinks projects={interestProjects[interests[2].id]} />
               </div>
               <div className="w-full md:w-1/2 aspect-[8/3]">
                 <CinemaSpotlight progress={interest3Progress} className="w-full h-full" />
