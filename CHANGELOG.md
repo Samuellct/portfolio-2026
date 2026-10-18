@@ -5,6 +5,16 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.8.0](https://github.com/Samuellct/portfolio-2026/compare/v5.7.0...v5.8.0) (2026-10-18)
+
+### Ajouté
+
+* **about:** link each interest to the projects it led to ([3347baf](https://github.com/Samuellct/portfolio-2026/commit/3347bafa8fdfb045501bd6a05dc45570db4bb030))
+
+### Corrigé
+
+* **about:** point the intro to the work experience and drop the section paragraph ([5f6ec04](https://github.com/Samuellct/portfolio-2026/commit/5f6ec04f4846b463a115ad15b5b09b033a320a09))
+
 ## [5.7.0](https://github.com/Samuellct/portfolio-2026/compare/v5.6.2...v5.7.0) (2026-10-18)
 
 ### Ajouté
