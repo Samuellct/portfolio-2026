@@ -85,7 +85,6 @@ export interface ProjectData {
   imageCredit?: string
   imageCreditUrl?: string
   gitHubUrl?: string
-  featured?: boolean
   visible?: boolean // default: true
   dateCreated: string
   // Start of the period, YYYY-MM: the listing's sort key (CONS-03). Defaults to dateCreated's month.

@@ -175,7 +175,6 @@ Ces couches raster sont combinées avec des données vectorielles : contours gla
         },
       ],
       gitHubUrl: 'https://github.com/Samuellct/AlpineRoute',
-      featured: true,
       dateCreated: '2025-12-09',
       periodStart: '2025-12',
     },
@@ -342,7 +341,6 @@ Les métadonnées des films sont récupérées depuis l'API TMDb (The Movie Data
       gitHubUrl: 'https://github.com/Samuellct/TimePredict',
       links: [{ type: 'demo', url: 'https://timepredict.samuel-lecomte.fr/', label: { en: 'App (beta)', fr: 'Application (bêta)' } }],
       visible: true,
-      featured: true,
       dateCreated: '2025-11-27',
       periodStart: '2025-11',
     },
@@ -408,7 +406,6 @@ Un service de notifications par email interne à Jellyfin : une newsletter des n
       ],
       gitHubUrl: 'https://github.com/JellyUX',
       links: [{ type: 'docs', url: 'https://jellyux.github.io/Homepage/', label: { en: 'Homepage docs', fr: 'Documentation Homepage' } }],
-      featured: true,
       dateCreated: '2026-06-27',
       periodStart: '2026-07',
     },
@@ -938,7 +935,6 @@ J'ai consacré la majeure partie de mon temps à élaborer une stratégie de pr�
       ],
       imageCredit: 'H. Russell',
       imageCreditUrl: 'https://indico.cern.ch/event/607314/contributions/2542309/attachments/1447873/2231444/20170424_LLPs.pdf',
-      featured: true,
       dateCreated: '2025-09-17',
       periodStart: '2025-02',
     },
@@ -968,8 +964,13 @@ export const getAllProjects = (): ProjectData[] => {
   return allProjects
 }
 
+// The four projects of the hero, in slot order (P15-D5). The slots stay automatic:
+// a hidden or missing id is skipped.
+const FEATURED_PROJECT_IDS = ['alpine-route', 'time-predict', 'jellyux', 'internship-m2']
+
 export const getFeaturedProjects = (): ProjectData[] => {
-  return getAllProjects().filter((project) => project.featured)
+  const all = getAllProjects()
+  return FEATURED_PROJECT_IDS.flatMap((id) => all.filter((project) => project.id === id))
 }
 
 // The listing's chronological order (AUDIT-009), the single source for what
