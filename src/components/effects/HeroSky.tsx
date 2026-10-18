@@ -19,6 +19,7 @@ const PLANE_SPEED = [2, 5, 10] // px/s along the arc, far to near
 const BASE = SKY_BASE.map((c) => c / 255)
 export const FRINGE_HEIGHT = 56
 const FRINGE_STEP = 6
+const MOBILE_STAR_FLOOR = 70
 
 const vertexShader = `
 attribute vec4 aA; // x, y (css px), size (css px), kind (0 pinprick, 1 halo, 2 cross)
@@ -100,7 +101,8 @@ void main() {
 function buildStars(width: number, height: number) {
   const rand = seeded(7)
   const desktop = width >= 1024
-  const target = Math.max(28, Math.round(width * height * SKY_DENSITY))
+  // Density by area leaves a phone sky with about 30 stars: mobile gets its own floor.
+  const target = Math.max(desktop ? 28 : MOBILE_STAR_FLOOR, Math.round(width * height * SKY_DENSITY))
   const crossCap = Math.max(4, target / 45)
 
   const a: number[] = []
