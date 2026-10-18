@@ -20,6 +20,7 @@ import { PAGE_BG } from '@/lib/theme'
 import { cn } from '@/lib/cn'
 import { RESUME_PATH, SOCIAL } from '@/lib/constants'
 import { Pill } from '@/components/ui/Pill'
+import { AboutTitleWords } from '@/components/ui/AboutTitleWords'
 
 // ============================================
 // BACKGROUND TEXTS
@@ -323,9 +324,6 @@ export default function AboutView({
   ]
 
   // last word of the page title set in Fraunces italic (DEC-13c accent)
-  const titleWords = tAbout('title').split(' ')
-  const titleLast = titleWords.pop()
-  const titleLead = titleWords.join(' ')
 
   const sectionLabels = [
     tAbout('sectionLabel'),
@@ -721,9 +719,8 @@ export default function AboutView({
               <div className="section-label text-accent mb-4">
                 {tAbout('sectionLabel')}
               </div>
-              <h1 className="font-display uppercase font-black text-page leading-display-snug tracking-wide mb-12 text-riso-pinkTitle misregister">
-                {titleLead}{' '}
-                <span className="fraunces-display-italic normal-case">{titleLast}</span>
+              <h1 className="text-page leading-display-snug mb-12">
+                <AboutTitleWords text={tAbout('title')} />
               </h1>
             </div>
             

@@ -9,6 +9,7 @@ import { useTranslations } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { useEntryAnimation } from '@/hooks/use-entry-animation'
 import { Pill } from '@/components/ui/Pill'
+import { AboutTitleWords } from '@/components/ui/AboutTitleWords'
 // Homepage statistics, derived from the visible projects by the page
 export interface HomeStats {
   internships: number
@@ -162,25 +163,7 @@ export default function AboutSection({ statValues }: { statValues: HomeStats }) 
             // overflow mask that the word reveal needs.
             className="text-display leading-[0.98] overflow-hidden pb-[0.18em]"
           >
-            {t('title').split(' ').map((word: string, i: number) => {
-              const clean = word.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
-              const isAccent = ['physicien', 'developpeur', 'physicist', 'developer'].includes(clean)
-              const isEllipsis = word === '…'
-              return (
-                <span
-                  key={i}
-                  className={`title-word inline-block mr-[0.2em] ${
-                    isAccent
-                      ? 'fraunces-display-italic text-riso-pinkTitle misregister'
-                      : isEllipsis
-                        ? 'font-display font-light text-subtle'
-                        : 'font-display uppercase font-black tracking-wide'
-                  }`}
-                >
-                  {word}
-                </span>
-              )
-            })}
+            <AboutTitleWords text={t('title')} />
           </h2>
         </div>
         
