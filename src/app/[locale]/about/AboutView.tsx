@@ -919,8 +919,8 @@ export default function AboutView({
                 transform: `translateX(${50 - interest2Progress * 50}px)`,
               }}
             >
-              <div className="md:w-1/2 md:text-right">
-                <h3 className="font-display uppercase font-black text-title tracking-wide mb-3">
+              <div className="md:w-1/2">
+                <h3 className="font-display uppercase font-black text-title tracking-wide mb-3 md:text-right">
                   {interests[1].label}
                 </h3>
                 <p className="text-muted leading-relaxed">
