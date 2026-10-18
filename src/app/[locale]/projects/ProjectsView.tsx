@@ -53,11 +53,11 @@ function ProjectCard({ project, index }: { project: ProjectSummary; index: numbe
 
   const mouseX = useMotionValue(0)
   const mouseY = useMotionValue(0)
-  
+
   const springConfig = { stiffness: 150, damping: 25 }
   const x = useSpring(useTransform(mouseX, [-1, 1], [-10, 10]), springConfig)
   const y = useSpring(useTransform(mouseY, [-1, 1], [-10, 10]), springConfig)
-  
+
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
     if (!cardRef.current || prefersReducedMotion) return
     const rect = cardRef.current.getBoundingClientRect()
@@ -66,13 +66,13 @@ function ProjectCard({ project, index }: { project: ProjectSummary; index: numbe
     mouseX.set((e.clientX - centerX) / (rect.width / 2))
     mouseY.set((e.clientY - centerY) / (rect.height / 2))
   }
-  
+
   const handleMouseLeave = () => {
     mouseX.set(0)
     mouseY.set(0)
     setIsHovered(false)
   }
-  
+
   return (
     <m.div
       ref={cardRef}
@@ -395,9 +395,11 @@ export default function ProjectsView({ allProjects }: { allProjects: ProjectSumm
             initial={enter ? { opacity: 0, y: 20 } : false}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="flex flex-wrap items-center gap-3 mb-4"
+            // Below sm: the filters in a 2 x 2 grid, then the search and an icon-only view
+            // switch on one line, three rows instead of five (P15-D13)
+            className="flex flex-col gap-2 mb-4 sm:flex-row sm:flex-wrap sm:items-center sm:gap-3"
           >
-            <div role="group" aria-label={t('filterGroupLabel')} className="flex flex-wrap items-center gap-3">
+            <div role="group" aria-label={t('filterGroupLabel')} className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:items-center sm:gap-3">
               <Button
                 className="tap-target"
                 active={activeFilter === 'all'}
@@ -423,36 +425,38 @@ export default function ProjectsView({ allProjects }: { allProjects: ProjectSumm
               ))}
             </div>
 
-            <div className="relative">
-              <Search aria-hidden="true" size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted pointer-events-none" />
-              <input
-                ref={searchRef}
-                type="search"
-                value={searchQuery}
-                onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder={t('searchPlaceholder')}
-                aria-label={t('searchLabel')}
-                // Framed in blue like the Contact fields (P11-D6): 3.99:1 frame, ink and a blue ring on focus (V6-LST-02)
-                className="h-11 bg-snow/60 border-[1.5px] border-riso-blue text-white text-sm pl-9 pr-4 placeholder:text-muted outline-none transition-colors focus:border-riso-ink focus:ring-2 focus:ring-riso-blue focus:ring-offset-2 focus:ring-offset-riso-paper"
-              />
-            </div>
+            <div className="flex gap-2 sm:contents">
+              <div className="relative min-w-0 flex-1 sm:flex-none">
+                <Search aria-hidden="true" size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-muted pointer-events-none" />
+                <input
+                  ref={searchRef}
+                  type="search"
+                  value={searchQuery}
+                  onChange={(e) => setSearchQuery(e.target.value)}
+                  placeholder={t('searchPlaceholder')}
+                  aria-label={t('searchLabel')}
+                  // Framed in blue like the Contact fields (P11-D6): 3.99:1 frame, ink and a blue ring on focus (V6-LST-02)
+                  className="h-11 w-full sm:w-auto bg-snow/60 border-[1.5px] border-riso-blue text-white text-sm pl-9 pr-4 placeholder:text-muted outline-none transition-colors focus:border-riso-ink focus:ring-2 focus:ring-riso-blue focus:ring-offset-2 focus:ring-offset-riso-paper"
+                />
+              </div>
 
-            {/* Tiles or list (P12-D2): a square ink segment, apart from the filters */}
-            <div role="group" aria-label={t('viewGroupLabel')} className="inline-flex border border-white md:ml-auto">
-              {(['tiles', 'list'] as const).map((option) => (
-                <button
-                  key={option}
-                  type="button"
-                  aria-pressed={view === option}
-                  onClick={() => chooseView(option)}
-                  className={`inline-flex h-[42px] items-center gap-2 px-4 text-xs tracking-caps-wide uppercase transition-colors duration-300 ${
-                    view === option ? 'bg-white text-black' : 'text-white hover:bg-white/10'
-                  }`}
-                >
-                  {option === 'tiles' ? <LayoutGrid size={14} aria-hidden="true" /> : <List size={14} aria-hidden="true" />}
-                  {t(option === 'tiles' ? 'viewTiles' : 'viewList')}
-                </button>
-              ))}
+              {/* Tiles or list (P12-D2): a square ink segment, apart from the filters */}
+              <div role="group" aria-label={t('viewGroupLabel')} className="inline-flex shrink-0 border border-white md:ml-auto">
+                {(['tiles', 'list'] as const).map((option) => (
+                  <button
+                    key={option}
+                    type="button"
+                    aria-pressed={view === option}
+                    onClick={() => chooseView(option)}
+                    className={`inline-flex h-[42px] w-[42px] items-center justify-center gap-2 text-xs sm:w-auto sm:px-4 tracking-caps-wide uppercase transition-colors duration-300 ${
+                      view === option ? 'bg-white text-black' : 'text-white hover:bg-white/10'
+                    }`}
+                  >
+                    {option === 'tiles' ? <LayoutGrid size={14} aria-hidden="true" /> : <List size={14} aria-hidden="true" />}
+                    <span className="sr-only sm:not-sr-only">{t(option === 'tiles' ? 'viewTiles' : 'viewList')}</span>
+                  </button>
+                ))}
+              </div>
             </div>
           </m.div>
 
