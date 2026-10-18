@@ -5,6 +5,31 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.9.0](https://github.com/Samuellct/portfolio-2026/compare/v5.8.1...v5.9.0) (2026-10-18)
+
+### Ajouté
+
+* **home:** give the mobile sky a floor of 70 stars ([d35a6ae](https://github.com/Samuellct/portfolio-2026/commit/d35a6aecf7d3871a0762dc72dbef77ed7bce8011))
+
+### Corrigé
+
+* **about:** set the About title like the home section ([700a05f](https://github.com/Samuellct/portfolio-2026/commit/700a05f060d10fd01ff684913a8c5a63913a34f2))
+* **home:** fit the mobile hero to one small viewport with the fringe in view ([b7670f1](https://github.com/Samuellct/portfolio-2026/commit/b7670f1f0ce7211686b9202cef8ce0421c7a4121))
+* **home:** fit the mobile project labels to their width and cut summaries between words ([46c577a](https://github.com/Samuellct/portfolio-2026/commit/46c577a222f8448081765783109f9d561c8e6047))
+* **home:** halve the mobile padding of the About and Contact sections to 64 px ([0dddca6](https://github.com/Samuellct/portfolio-2026/commit/0dddca6e5a846e83e48eaa42b618dcac3765e2c2))
+* **home:** keep revealed sections visible on the way back up and without JavaScript ([77ac5b4](https://github.com/Samuellct/portfolio-2026/commit/77ac5b472c3ab1b7010bdc35a2dbb4761b9a9a36))
+* **home:** print a blue plate under the hero labels instead of a resting shadow ([5f38576](https://github.com/Samuellct/portfolio-2026/commit/5f38576899b6ed8158e1193c3277b2e0f65fd17d))
+* **home:** print the About figures as a ledger below lg ([3758164](https://github.com/Samuellct/portfolio-2026/commit/375816492030b6107b1391c6bd3f41ef5255638b))
+* **home:** size each row of mobile labels by its own content ([4d1b531](https://github.com/Samuellct/portfolio-2026/commit/4d1b5313fbf574ce3b839a4394a322ad88d04a48))
+* **home:** stack the home Contact pills full width below sm ([1666b2e](https://github.com/Samuellct/portfolio-2026/commit/1666b2e7e09926aad032b188c3cf9bec9fce68ff))
+* **projects:** fit the listing controls in three rows below sm ([f4c1665](https://github.com/Samuellct/portfolio-2026/commit/f4c1665471a9953fe7eae2aafee80907a3df5651))
+* **project:** slide the closing block in without fading it from zero ([1e1c840](https://github.com/Samuellct/portfolio-2026/commit/1e1c84018efc9887d702aac13466fd5e900f8045))
+
+### Modifié
+
+* **home:** name the hero label title size as the text-label-title token ([5aa34c0](https://github.com/Samuellct/portfolio-2026/commit/5aa34c0a6640999212ff1ba1cdada0c25105717c))
+* **projects:** pick the hero projects from an ordered id list ([d6520a5](https://github.com/Samuellct/portfolio-2026/commit/d6520a56febef9c5d08c62722744bd3525408aa2))
+
 ## [5.8.1](https://github.com/Samuellct/portfolio-2026/compare/v5.8.0...v5.8.1) (2026-10-18)
 
 ### Corrigé
