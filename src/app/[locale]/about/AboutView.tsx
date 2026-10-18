@@ -5,9 +5,10 @@ import TransitionLink from '@/components/navigation/TransitionLink'
 import Breadcrumb from '@/components/navigation/Breadcrumb'
 import { m, AnimatePresence } from 'framer-motion'
 import { gsap, ScrollTrigger } from '@/lib/gsap'
-import { ArrowRight, FileText, Github, Linkedin } from 'lucide-react'
+import { ArrowRight, ChevronDown, FileText, Github, Linkedin } from 'lucide-react'
 import { TechStats, TechFamilyStats, LanguageStats, isLightColor } from '@/lib/techStats'
 import { getLocalizedField, formatMeasure, type ProjectData } from '@/lib/projects/helpers'
+import type { ExperienceEntry } from '@/lib/experience'
 import MountainProfile from '@/components/about/MountainProfile'
 import NetworkGraph from '@/components/about/NetworkGraph'
 import CinemaSpotlight from '@/components/about/CinemaSpotlight'
@@ -57,13 +58,42 @@ function GhostTag({ tech }: { tech: TechStats }) {
 }
 
 // ============================================
+// OTHER JOB (one line of the disclosure)
+// ============================================
+function OtherJob({ job }: { job: ExperienceEntry }) {
+  const locale = useLocale()
+  const tAbout = useTranslations('about')
+  const where = job.place ? `${job.organisation} (${job.place})` : job.organisation
+  return (
+    <li data-experience={job.id} className="py-4 border-b border-riso-blue/35">
+      <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-0.5">
+        <span className="font-bold">{getLocalizedField(job.role, locale)}, {where}</span>
+        <span className="font-mono text-xs text-muted">{getLocalizedField(job.period, locale)}</span>
+      </div>
+      <p className="mt-1 text-sm text-muted leading-relaxed">{getLocalizedField(job.summary, locale)}</p>
+      {job.project && (
+        <TransitionLink
+          href={`/projects/${job.project.category}/${job.project.id}`}
+          className="tap-target mt-1 inline-flex items-center gap-2 text-xs tracking-caps uppercase text-accent hover:text-white transition-colors group"
+        >
+          {tAbout('experience.others.viewProject', { name: job.project.name })}
+          <ArrowRight aria-hidden="true" size={14} className="transition-transform group-hover:translate-x-1" />
+        </TransitionLink>
+      )}
+    </li>
+  )
+}
+
+// ============================================
 // MAIN COMPONENT
 // ============================================
 export default function AboutView({
   internships,
+  experiences,
   techStats,
 }: {
   internships: AboutInternship[]
+  experiences: ExperienceEntry[]
   techStats: { languages: LanguageStats[]; secondaryByFamily: TechFamilyStats[] }
 }) {
   const tAbout = useTranslations('about')
@@ -428,8 +458,12 @@ export default function AboutView({
   // EXPERIENCE SECTION CALCULATIONS
   // ============================================
   const expIntroOpacity = Math.max(0, Math.min(1, (experienceProgress - 0.1) / 0.2))
-  const expItemProgress = internships.map((_, i) =>
-    Math.max(0, Math.min(1, (experienceProgress - 0.3 - i * 0.25) / 0.25))
+  // The job cards, then the internship cards, appear one after the other
+  const jobs = experiences.filter((e) => e.level === 1)
+  const otherJobs = experiences.filter((e) => e.level === 2 && !e.student)
+  const studentJobs = experiences.filter((e) => e.level === 2 && e.student)
+  const expItemProgress = [...jobs, ...internships].map((_, i) =>
+    Math.max(0, Math.min(1, (experienceProgress - 0.3 - i * 0.15) / 0.25))
   )
 
   // ============================================
@@ -633,60 +667,120 @@ export default function AboutView({
               {tAbout('full.experience')}
             </p>
 
-            {/* Internships */}
-            <div className="grid md:grid-cols-2 gap-6">
-              {internships.map((project, index) => (
+            {/* Jobs: low cards, a sentence instead of figures (P14-D15) */}
+            <div className="grid md:grid-cols-2 gap-6 mb-6">
+              {jobs.map((job, index) => (
                 <article
-                  key={project.id}
-                  className="flex flex-col p-6 border border-accent-line"
+                  key={job.id}
+                  data-experience={job.id}
+                  className="flex flex-col px-6 py-[18px] border border-riso-blue/50"
                   style={{
                     opacity: expItemProgress[index],
                     transform: `translateY(${30 - expItemProgress[index] * 30}px)`,
                   }}
                 >
                   <p className="text-meta tracking-wider uppercase text-muted mb-3">
-                    {[
-                      getLocalizedField(project.period, locale),
-                      project.research?.collaboration,
-                      getLocalizedField(project.research?.lab, locale),
-                    ].filter(Boolean).join(' · ')}
+                    {[getLocalizedField(job.period, locale), job.organisation, job.place].filter(Boolean).join(' · ')}
                   </p>
-                  <h3 id={`experience-${project.id}`} className="font-display uppercase font-black text-title tracking-wide mb-2">
-                    {getLocalizedField(project.title, locale)}
+                  <h3 className="font-display uppercase font-black text-lg md:text-xl leading-tight tracking-wide mb-2">
+                    {getLocalizedField(job.role, locale)}
                   </h3>
-                  <p className="text-sm text-muted leading-relaxed mb-6">
-                    {getLocalizedField(project.subtitle, locale)}
+                  <p className="text-sm text-muted leading-relaxed prose-body">
+                    {getLocalizedField(job.summary, locale)}
                   </p>
-
-                  {project.results && project.results.length > 0 && (
-                    <dl className="grid grid-cols-3 gap-4 mb-6">
-                      {project.results.map((result) => (
-                        <div key={getLocalizedField(result.label, 'en')}>
-                          <dt className="sr-only">{getLocalizedField(result.label, locale)}</dt>
-                          {/* body font: the display face is all caps and would print MeV as MEV */}
-                          <dd className="text-xl md:text-2xl font-semibold tabular-nums whitespace-nowrap">
-                            {formatMeasure(result.value, locale)}
-                            {result.unit && <span className="ml-1 text-base font-medium">{result.unit}</span>}
-                          </dd>
-                          <dd className="text-xs text-muted leading-snug mt-1" aria-hidden="true">
-                            {getLocalizedField(result.label, locale)}
-                          </dd>
-                        </div>
-                      ))}
-                    </dl>
-                  )}
-
-                  <TransitionLink
-                    href={`/projects/${project.category}/${project.id}`}
-                    aria-describedby={`experience-${project.id}`}
-                    className="tap-target mt-auto inline-flex items-center gap-2 text-sm tracking-caps uppercase text-accent hover:text-white transition-colors group"
-                  >
-                    {tAbout('experience.viewProject')}
-                    <ArrowRight aria-hidden="true" size={16} className="transition-transform group-hover:translate-x-1" />
-                  </TransitionLink>
                 </article>
               ))}
             </div>
+
+            {/* Internships: the frame printed a second time in pink, off register (P14-D15) */}
+            <div className="grid md:grid-cols-2 gap-6">
+              {internships.map((project, i) => {
+                const index = jobs.length + i
+                return (
+                  <div
+                    key={project.id}
+                    data-experience={project.id}
+                    className="relative mr-1.5 mb-1.5"
+                    style={{
+                      opacity: expItemProgress[index],
+                      transform: `translateY(${30 - expItemProgress[index] * 30}px)`,
+                    }}
+                  >
+                    <div aria-hidden="true" className="absolute inset-0 translate-x-1.5 translate-y-1.5 border-[1.5px] border-riso-pink" />
+                    <article className="relative h-full flex flex-col p-6 border-[1.5px] border-accent-line bg-surface">
+                      <p className="text-meta tracking-wider uppercase text-muted mb-3">
+                        {[
+                          getLocalizedField(project.period, locale),
+                          project.research?.collaboration,
+                          getLocalizedField(project.research?.lab, locale),
+                        ].filter(Boolean).join(' · ')}
+                      </p>
+                      <h3 id={`experience-${project.id}`} className="font-display uppercase font-black text-title tracking-wide mb-2">
+                        {getLocalizedField(project.title, locale)}
+                      </h3>
+                      <p className="text-sm text-muted leading-relaxed mb-6">
+                        {getLocalizedField(project.subtitle, locale)}
+                      </p>
+
+                      {project.results && project.results.length > 0 && (
+                        <dl className="grid grid-cols-3 gap-4 mb-6">
+                          {project.results.map((result) => (
+                            <div key={getLocalizedField(result.label, 'en')}>
+                              <dt className="sr-only">{getLocalizedField(result.label, locale)}</dt>
+                              {/* Digits in Fraunces italic; signs and units in the body font (MeV, not MEV) */}
+                              <dd className="font-fraunces italic text-[2.25rem] leading-none tabular-nums whitespace-nowrap">
+                                {formatMeasure(result.value, locale).split(/([^0-9.,\s]+)/).map((part, k) =>
+                                  k % 2 ? <span key={k} className="font-body not-italic text-base font-semibold mx-px">{part}</span> : part
+                                )}
+                                {result.unit && <span className="ml-0.5 font-body not-italic text-base font-semibold">{result.unit}</span>}
+                              </dd>
+                              <dd className="text-xs text-muted leading-snug mt-2" aria-hidden="true">
+                                {getLocalizedField(result.label, locale)}
+                              </dd>
+                            </div>
+                          ))}
+                        </dl>
+                      )}
+
+                      <TransitionLink
+                        href={`/projects/${project.category}/${project.id}`}
+                        aria-describedby={`experience-${project.id}`}
+                        className="tap-target mt-auto inline-flex items-center gap-2 text-sm tracking-caps uppercase text-accent hover:text-white transition-colors group"
+                      >
+                        {tAbout('experience.viewProject')}
+                        <ArrowRight aria-hidden="true" size={16} className="transition-transform group-hover:translate-x-1" />
+                      </TransitionLink>
+                    </article>
+                  </div>
+                )
+              })}
+            </div>
+
+            {/* Other work experience: native disclosure, open without JS, outside the
+                animation (V6-ABT-05, V6-ABT-06) */}
+            <details
+              className="group mt-10 border-t border-accent-line"
+              onClick={(event) => {
+                // the section must be played before it grows, or its pin would shift
+                if ((event.target as HTMLElement).closest('summary')) releasePins([0, 1], true)
+              }}
+              onToggle={() => ScrollTrigger.refresh()}
+            >
+              <summary className="flex items-center gap-4 min-h-14 py-3 border-b border-accent-line cursor-pointer list-none [&::-webkit-details-marker]:hidden hover:bg-white/[0.04] transition-colors">
+                <h3 className="text-sm font-bold tracking-caps uppercase">{tAbout('experience.others.title')}</h3>
+                <span className="ml-auto whitespace-nowrap font-mono text-xs text-muted">
+                  {tAbout('experience.others.count', { count: otherJobs.length + studentJobs.length })}
+                </span>
+                <ChevronDown aria-hidden="true" size={18} className="shrink-0 transition-transform duration-300 group-open:rotate-180" />
+              </summary>
+              <ul>
+                {otherJobs.map((job) => <OtherJob key={job.id} job={job} />)}
+              </ul>
+              <h4 className="mt-7 text-xs tracking-caps-wide uppercase text-muted">{tAbout('experience.others.student')}</h4>
+              <ul>
+                {studentJobs.map((job) => <OtherJob key={job.id} job={job} />)}
+              </ul>
+            </details>
           </div>
         </section>
 

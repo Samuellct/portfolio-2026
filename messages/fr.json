@@ -46,8 +46,14 @@
     },
     "experience": {
       "sectionLabel": "02 · Expérience",
-      "title": "Stages de recherche",
-      "viewProject": "Voir la fiche"
+      "title": "Expériences professionnelles",
+      "viewProject": "Voir la fiche",
+      "others": {
+        "title": "Autres expériences",
+        "count": "{count, plural, one {# expérience} other {# expériences}}",
+        "student": "Jobs étudiants",
+        "viewProject": "Voir {name}"
+      }
     },
     "stack": {
       "sectionLabel": "03 · Stack technique",

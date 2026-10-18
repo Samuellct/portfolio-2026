@@ -46,8 +46,14 @@
     },
     "experience": {
       "sectionLabel": "02 · Experience",
-      "title": "Research internships",
-      "viewProject": "View project"
+      "title": "Work experience",
+      "viewProject": "View project",
+      "others": {
+        "title": "Other work experience",
+        "count": "{count, plural, one {# role} other {# roles}}",
+        "student": "Student jobs",
+        "viewProject": "View {name}"
+      }
     },
     "stack": {
       "sectionLabel": "03 · Technical stack",
