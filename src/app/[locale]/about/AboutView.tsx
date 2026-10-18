@@ -101,6 +101,7 @@ export default function AboutView({
       period: tAbout('education.datascience.period'),
       degree: tAbout('education.datascience.degree'),
       school: tAbout('education.datascience.school'),
+      note: tAbout('education.datascience.note'),
       color: RISO.ink,
     },
     {
@@ -847,6 +848,10 @@ export default function AboutView({
                         )}
                         
                         <p className="text-xs text-muted">{item.school}</p>
+
+                        {'note' in item && item.note && (
+                          <p className="text-xs text-muted mt-1">{item.note}</p>
+                        )}
                       </div>
                     </div>
                     
