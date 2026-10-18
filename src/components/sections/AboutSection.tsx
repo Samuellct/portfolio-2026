@@ -200,20 +200,21 @@ export default function AboutSection({ statValues }: { statValues: HomeStats }) 
           {/* Right column */}
           <div>
             {/* Stats: a staircase in the flow (AUDIT-040, DEC-16e). The offsets keep the
-                floating-tag feel on desktop; the context line is always shown. */}
-            <ul ref={statsRef} className="flex flex-col gap-10 md:gap-12">
+                floating-tag feel on desktop; the context line is always shown. Below lg
+                they print as a ledger, number left, label and context right (V6-MOB-04). */}
+            <ul ref={statsRef} className="flex flex-col border-t border-riso-blue/35 lg:gap-12 lg:border-0">
               {stats.map((stat, index) => (
                 <li
                   key={stat.label}
-                  className={`float-stat max-w-sm ${['lg:ml-[4%]', 'lg:ml-[28%]', 'lg:ml-[12%]'][index]}`}
+                  className={`float-stat grid grid-cols-[64px_1fr] items-baseline gap-x-3 border-b border-riso-blue/35 py-3 lg:block lg:max-w-sm lg:border-0 lg:py-0 ${['lg:ml-[4%]', 'lg:ml-[28%]', 'lg:ml-[12%]'][index]}`}
                 >
-                  <div className="fraunces-display-italic text-heading font-light leading-none mb-1.5 text-white">
+                  <div className="fraunces-display-italic row-span-2 text-[2.75rem] lg:text-heading font-light leading-none lg:mb-1.5 text-white">
                     {stat.value}
                   </div>
                   <div className="text-meta text-muted uppercase tracking-caps font-medium">
                     {stat.label}
                   </div>
-                  <div className="text-sm text-muted italic mt-1.5">
+                  <div className="text-sm text-muted italic lg:mt-1.5">
                     {stat.context}
                   </div>
                 </li>
