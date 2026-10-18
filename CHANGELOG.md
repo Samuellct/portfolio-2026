@@ -5,6 +5,20 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.6.2](https://github.com/Samuellct/portfolio-2026/compare/v5.6.1...v5.6.2) (2026-10-18)
+
+### Corrigé
+
+* **about:** fill every toolkit tag with its brand colour ([f85abfb](https://github.com/Samuellct/portfolio-2026/commit/f85abfbca51e02c0e8a64b470158c957b6d65ad8))
+* **about:** give the interests section its pink heading ([5fad650](https://github.com/Samuellct/portfolio-2026/commit/5fad650db84b6f2d41bf6832c1e8fbe0ab388e87))
+* **about:** justify the home lab paragraph like its neighbours ([6a3584f](https://github.com/Samuellct/portfolio-2026/commit/6a3584f38c99efcd9e5067093518d951514d4c63))
+* **about:** name the university diploma DU Data Scientist ([269d3ea](https://github.com/Samuellct/portfolio-2026/commit/269d3ea742a91d3a37ba1e3ed7baf4893f0e17eb))
+* **about:** set the home lab paragraph flush left ([7230e09](https://github.com/Samuellct/portfolio-2026/commit/7230e099960ab2439ee4a0b68cf7052b5ffc812c))
+
+### Modifié
+
+* **about:** style the toolkit tags and period chips with classes ([c09ec6e](https://github.com/Samuellct/portfolio-2026/commit/c09ec6eb1bea67c9539facce31b004246b005e30))
+
 ## [5.6.1](https://github.com/Samuellct/portfolio-2026/compare/v5.6.0...v5.6.1) (2026-10-15)
 
 ### Corrigé
