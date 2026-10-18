@@ -115,7 +115,7 @@ function OtherJob({ job }: { job: ExperienceEntry }) {
         <span className="font-bold">{getLocalizedField(job.role, locale)}, {where}</span>
         <span className="font-mono text-xs text-muted">{getLocalizedField(job.period, locale)}</span>
       </div>
-      <p className="mt-1 text-sm text-muted leading-relaxed">{getLocalizedField(job.summary, locale)}</p>
+      <p className="mt-1 text-sm text-muted leading-relaxed max-w-prose">{getLocalizedField(job.summary, locale)}</p>
       {job.project && (
         <TransitionLink
           href={`/projects/${job.project.category}/${job.project.id}`}
@@ -663,7 +663,7 @@ export default function AboutView({
               <h2 className="text-xs tracking-caps-wide uppercase text-accent mb-4">
                 {tAbout('full.goalsTitle')}
               </h2>
-              <p className="text-muted leading-relaxed">
+              <p className="text-muted leading-relaxed max-w-prose">
                 {tAbout('full.goals')}
               </p>
             </div>
