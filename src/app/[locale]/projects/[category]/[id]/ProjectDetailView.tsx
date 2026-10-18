@@ -366,8 +366,9 @@ export default function ProjectDetailView({
         {/* PREVIOUS / NEXT + RELATED PROJECTS (AUDIT-019) */}
         {/* ============================================ */}
         <m.div
-          initial={enter ? { opacity: 0, y: 20 } : false}
-          whileInView={{ opacity: 1, y: 0 }}
+          // Slides in without fading: the closing actions never sit at opacity 0 (V6-DES-07).
+          initial={enter ? { y: 20 } : false}
+          whileInView={{ y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
           className="mt-20 pt-12 border-t border-white/10"
