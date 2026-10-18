@@ -909,7 +909,7 @@ export default function AboutView({
                 <h3 className="font-display uppercase font-black text-title tracking-wide mb-3 md:text-right">
                   {interests[1].label}
                 </h3>
-                <p className="text-muted leading-relaxed">
+                <p className="text-muted leading-relaxed prose-body">
                   {interests[1].description}
                 </p>
               </div>
