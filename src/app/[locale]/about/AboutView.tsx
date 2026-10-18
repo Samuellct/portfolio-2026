@@ -457,7 +457,6 @@ export default function AboutView({
   // ============================================
   // EXPERIENCE SECTION CALCULATIONS
   // ============================================
-  const expIntroOpacity = Math.max(0, Math.min(1, (experienceProgress - 0.1) / 0.2))
   // The job cards, then the internship cards, appear one after the other
   const jobs = experiences.filter((e) => e.level === 1)
   const otherJobs = experiences.filter((e) => e.level === 2 && !e.student)
@@ -650,7 +649,7 @@ export default function AboutView({
         >
           <div className="max-w-5xl mx-auto w-full">
             {/* Title */}
-            <div className="mb-8">
+            <div className="mb-12">
               <div className="section-label text-accent mb-4">
                 {tAbout('experience.sectionLabel')}
               </div>
@@ -658,14 +657,6 @@ export default function AboutView({
                 {tAbout('experience.title')}
               </h2>
             </div>
-
-            {/* Intro */}
-            <p
-              className="text-muted leading-relaxed prose-body max-w-3xl mb-12"
-              style={{ opacity: expIntroOpacity }}
-            >
-              {tAbout('full.experience')}
-            </p>
 
             {/* Jobs: low cards, a sentence instead of figures (P14-D15) */}
             <div className="grid md:grid-cols-2 gap-6 mb-6">

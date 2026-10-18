@@ -32,8 +32,7 @@
       "whatIBuild": "La plupart de mes projets partent d'un besoin personnel. J'administre un serveur Proxmox chez moi, et les plugins Jellyfin de JellyUX sont nés de son utilisation. TimePredict vient de ma pratique du trail, Accred des festivals de cinéma où je vais. Ce site est l'un de ces projets, avec sa propre page."
     },
     "full": {
-      "intro": "Je suis titulaire d'un Master de physique fondamentale de l'Université Clermont Auvergne et d'un DU Data Scientist. Mes deux stages de recherche, au LPC Clermont dans des équipes des collaborations LHCb puis ATLAS, m'ont appris à monter une analyse complète en C++ et Python, de la sélection des données à l'estimation des incertitudes. Depuis, j'applique cette méthode à des projets logiciels que je mène seul.",
-      "experience": "Pendant mon Master, j'ai travaillé au LPC Clermont, au sein d'équipes des collaborations LHCb et ATLAS, sur des jeux de données de plusieurs téraoctets. J'y présentais l'avancement de mon travail en réunion d'équipe, en français et en anglais.",
+      "intro": "Je suis titulaire d'un Master de physique fondamentale de l'Université Clermont Auvergne et d'un DU Data Scientist. Mes deux stages de recherche, au LPC Clermont dans des équipes des collaborations LHCb puis ATLAS, m'ont appris à monter une analyse complète en C++ et Python, de la sélection des données à l'estimation des incertitudes. Depuis, j'applique cette méthode dans mes expériences professionnelles et dans des projets de développement que je mène seul ou en collaboration.",
       "goals": "Je cherche un poste à l'interface entre recherche et ingénierie, où l'analyse de données et le développement logiciel servent le même problème.",
       "goalsTitle": "Objectifs professionnels"
     },

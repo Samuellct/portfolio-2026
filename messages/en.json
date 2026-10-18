@@ -32,8 +32,7 @@
       "whatIBuild": "Most of my projects start from a need of my own. I run a Proxmox server at home, and the JellyUX Jellyfin plugins grew out of using it. TimePredict comes from my trail running, Accred from the film festivals I attend. This site is one of those projects and has its own page."
     },
     "full": {
-      "intro": "I hold a Master's in fundamental physics from Université Clermont Auvergne and a Data Scientist university diploma (DU). My two research internships, at LPC Clermont in teams from the LHCb and then ATLAS collaborations, taught me to build a full analysis in C++ and Python, from data selection to uncertainty estimates. Since then I have applied the same method to software projects I run on my own.",
-      "experience": "During my Master's, I worked at LPC Clermont, in teams from the LHCb and ATLAS collaborations, on datasets running into terabytes. I presented my progress at team meetings, in French and in English.",
+      "intro": "I hold a Master's in fundamental physics from Université Clermont Auvergne and a Data Scientist university diploma (DU). My two research internships, at LPC Clermont in teams from the LHCb and then ATLAS collaborations, taught me to build a full analysis in C++ and Python, from data selection to uncertainty estimates. Since then I have applied the same method in my professional roles and in development projects I run on my own or with others.",
       "goals": "I'm looking for a role between research and engineering, where data analysis and software development work on the same problem.",
       "goalsTitle": "Professional goals"
     },
