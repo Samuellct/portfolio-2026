@@ -112,7 +112,8 @@ export function getTechColor(tech: string): string {
 // Family labels are translated (`about.stack.families.<id>`).
 const FAMILY_META: Record<TechFamily, { color: string }> = {
   languages: { color: '#3178c6' },
-  frameworks: { color: '#61dafb' },
+  // riso pink: the React cyan broke the Two Inks Rule (P14-D20)
+  frameworks: { color: '#ff48b0' },
   dataAnalysis: { color: '#f89939' },
   tools: { color: '#f05032' },
   other: { color: DEFAULT_TECH_COLOR },
