@@ -304,7 +304,7 @@ export default function AboutView({
    *  brought into view (a focused link must never be invisible, UX-14). */
   const revealFocusedSection = (event: React.FocusEvent<HTMLDivElement>) => {
     const index = sectionRefs.findIndex((ref) => ref.current?.contains(event.target))
-    // the rail focuses the section itself: its animation must still play
+    // focusing the section itself (rail jump) is handled by its caller
     if (index < 0 || releasedRef.current[index] || sectionRefs[index].current === event.target) return
     releasePins(SECTION_IDS.map((_, i) => i).filter((i) => i <= index), true)
     const target = event.target as HTMLElement
@@ -314,9 +314,10 @@ export default function AboutView({
     else window.scrollTo({ top, behavior: 'instant' })
   }
 
-  /** Rail jump: sections above the target count as played, then scroll to it. */
+  /** Rail jump: the target and the sections above it count as played, so the
+   *  visitor lands on content, not on a section waiting for its scroll (P14-D16). */
   const jumpToSection = (index: number) => {
-    releasePins(SECTION_IDS.map((_, i) => i).filter((i) => i < index), false)
+    releasePins(SECTION_IDS.map((_, i) => i).filter((i) => i <= index), false)
     const el = sectionRefs[index].current
     if (!el) return
     const box = el.parentElement?.classList.contains('pin-spacer') ? el.parentElement : el
