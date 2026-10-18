@@ -5,6 +5,18 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.8.1](https://github.com/Samuellct/portfolio-2026/compare/v5.8.0...v5.8.1) (2026-10-18)
+
+### Corrigé
+
+* **about:** cap the line length of the goals and other roles text ([b32566a](https://github.com/Samuellct/portfolio-2026/commit/b32566a67d68e69071362ed69a92ecd0bdd1898d))
+* **about:** keep the work experience title on one line on desktop ([5b29103](https://github.com/Samuellct/portfolio-2026/commit/5b29103d718ef5f7d155a774dc32b8bed5faa3c5))
+* **about:** list a language's projects on touch and move through pawns with the arrows ([9471269](https://github.com/Samuellct/portfolio-2026/commit/94712695db8d9ead49b989c9d3213fab35deb871))
+* **about:** name a pawn's project at once on hover and link the single-project languages ([6ae058f](https://github.com/Samuellct/portfolio-2026/commit/6ae058f4f354b304bfeb5211fe236044ef80f843))
+* **about:** print the frameworks family swatch in riso pink instead of cyan ([f7732a1](https://github.com/Samuellct/portfolio-2026/commit/f7732a1a32ff6f3185f9b6c78a80307532b5200f))
+* **about:** put the section rail after the content in the keyboard order ([80e0b09](https://github.com/Samuellct/portfolio-2026/commit/80e0b09bb5c2010087b738e858420247a7e7645e))
+* **about:** show the rail's target section at once instead of waiting for scroll ([ee77f8d](https://github.com/Samuellct/portfolio-2026/commit/ee77f8debb68639d9f1d65daaa89c2c23769c6fb))
+
 ## [5.8.0](https://github.com/Samuellct/portfolio-2026/compare/v5.7.0...v5.8.0) (2026-10-18)
 
 ### Ajouté
