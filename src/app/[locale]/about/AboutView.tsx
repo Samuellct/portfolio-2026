@@ -701,7 +701,7 @@ export default function AboutView({
               <div className="section-label text-accent mb-4">
                 {tAbout('experience.sectionLabel')}
               </div>
-              <h2 className="font-display uppercase font-black text-heading leading-display-snug tracking-wide text-riso-pinkTitle misregister">
+              <h2 className="font-display uppercase font-black text-heading leading-display-snug tracking-wide text-riso-pinkTitle misregister lg:whitespace-nowrap lg:text-[clamp(2rem,4.5vw,3.3rem)]">
                 {tAbout('experience.title')}
               </h2>
             </div>
