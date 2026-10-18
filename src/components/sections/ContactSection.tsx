@@ -121,7 +121,7 @@ export default function ContactSection() {
     <section
       ref={sectionRef}
       id="contact"
-      className="section py-32 md:py-40 relative overflow-hidden flex items-center"
+      className="section py-16 md:py-40 relative overflow-hidden flex items-center"
     >
       {/* Paper follows paper (DEC-16j): a thin blue rule parts Contact from About. */}
       <div aria-hidden="true" className="absolute top-0 inset-x-0 max-w-7xl mx-auto px-6 md:px-12 lg:px-16">

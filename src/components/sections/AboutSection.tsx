@@ -132,7 +132,7 @@ export default function AboutSection({ statValues }: { statValues: HomeStats }) 
     <section
       ref={sectionRef}
       id="about"
-      className="section py-32 md:py-40 relative overflow-hidden"
+      className="section py-16 md:py-40 relative overflow-hidden"
     >
       <Watermark
         word="ABOUT"
