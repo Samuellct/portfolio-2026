@@ -6,7 +6,7 @@ import Breadcrumb from '@/components/navigation/Breadcrumb'
 import { m, AnimatePresence } from 'framer-motion'
 import { gsap, ScrollTrigger } from '@/lib/gsap'
 import { ArrowRight, FileText, Github, Linkedin } from 'lucide-react'
-import { TechStats, TechFamilyStats, isLightColor } from '@/lib/techStats'
+import { TechStats, TechFamilyStats, LanguageStats, isLightColor } from '@/lib/techStats'
 import { getLocalizedField, formatMeasure, type ProjectData } from '@/lib/projects/helpers'
 import MountainProfile from '@/components/about/MountainProfile'
 import NetworkGraph from '@/components/about/NetworkGraph'
@@ -64,7 +64,7 @@ export default function AboutView({
   techStats,
 }: {
   internships: AboutInternship[]
-  techStats: { topTechs: TechStats[]; secondaryByFamily: TechFamilyStats[] }
+  techStats: { languages: LanguageStats[]; secondaryByFamily: TechFamilyStats[] }
 }) {
   const tAbout = useTranslations('about')
   const tNav = useTranslations('nav')
@@ -266,7 +266,10 @@ export default function AboutView({
     el.focus({ preventScroll: true })
   }
 
-  const { topTechs, secondaryByFamily } = techStats
+  const { languages, secondaryByFamily } = techStats
+  // One row per language used by several projects; the single-project ones share a line (V6-STAT-02)
+  const languageRows = languages.filter((l) => l.count > 1)
+  const languageTies = languages.filter((l) => l.count === 1)
 
   // Page set-up before paint (the page transition already scrolled to the top)
   useLayoutEffect(() => {
@@ -435,6 +438,9 @@ export default function AboutView({
   const stackDescriptionOpacity = Math.max(0, Math.min(1, stackProgress / 0.2))
   const barContainerOpacity = Math.max(0, Math.min(1, (stackProgress - 0.2) / 0.1))
   const barProgress = Math.max(0, Math.min(1, (stackProgress - 0.3) / 0.4))
+  // Pawns print one after the other, across the rows, as the section progresses
+  const pawnTotal = languageRows.reduce((sum, l) => sum + l.count, 0)
+  const tiesOpacity = Math.max(0, Math.min(1, (barProgress - 0.9) / 0.1))
   const toolkitOpacity = Math.max(0, Math.min(1, (stackProgress - 0.7) / 0.2))
   const toolkitY = Math.max(0, 30 - (stackProgress - 0.7) * 150)
   
@@ -711,37 +717,50 @@ export default function AboutView({
               </p>
             </div>
             
-            {/* Progress Bar */}
-            <div 
-              className="grid md:grid-cols-2 gap-x-12 gap-y-6 mb-20"
-              style={{ opacity: barContainerOpacity }}
-            >
-              {topTechs.map((tech, index) => {
-                const barStartDelay = index * 0.1
-                const individualBarProgress = Math.max(0, Math.min(1, (barProgress - barStartDelay) / 0.6))
-                const barFill = individualBarProgress * tech.percentage
-                
-                return (
-                  <div key={tech.name} className="mb-4">
-                    <div className="flex justify-between items-center mb-2">
-                      <span className="text-sm font-medium tracking-wide text-white">
-                        {tech.name}
+            {/* Project pawns: one square per project that uses the language (V6-STAT-04, design A) */}
+            <div className="mb-20" style={{ opacity: barContainerOpacity }}>
+              <ul>
+                {languageRows.map((lang, rowIndex) => {
+                  const firstPawn = languageRows.slice(0, rowIndex).reduce((sum, l) => sum + l.count, 0)
+                  return (
+                    <li
+                      key={lang.name}
+                      data-language={lang.name}
+                      className="grid grid-cols-[1fr_auto] md:grid-cols-[9rem_3.5rem_1fr] items-center gap-x-4 gap-y-3 py-4 border-b border-riso-blue/35"
+                    >
+                      <span className="font-black uppercase tracking-wider text-white">
+                        {lang.name}
+                        <span className="sr-only">, {tAbout('stack.projectCount', { count: lang.count })}</span>
                       </span>
-                      <span className="text-xs text-muted tabular-nums">
-                        {tAbout('stack.projectCount', { count: tech.count })}
+                      <span aria-hidden="true" className="font-fraunces italic text-[2rem] leading-none text-right text-riso-ink tabular-nums">
+                        {lang.count}
                       </span>
-                    </div>
-                    <div className="relative h-[3px] bg-white/10 overflow-hidden">
-                      <div
-                        className="absolute inset-y-0 left-0 bg-riso-pink"
-                        style={{ width: `${barFill}%` }}
-                      />
-                    </div>
-                  </div>
-                )
-              })}
+                      <span className="col-span-2 md:col-span-1 flex flex-wrap gap-2">
+                        {lang.projects.map((project, i) => {
+                          const title = getLocalizedField(project.title, locale)
+                          return (
+                            <TransitionLink
+                              key={project.id}
+                              href={`/projects/${project.category}/${project.id}`}
+                              aria-label={title}
+                              title={title}
+                              className="block w-6 h-6 bg-riso-pink shadow-plate transition-[box-shadow,transform] duration-200 hover:shadow-none hover:translate-x-px hover:translate-y-px focus-visible:shadow-none"
+                              style={{ opacity: Math.max(0, Math.min(1, barProgress * pawnTotal - (firstPawn + i))) }}
+                            />
+                          )
+                        })}
+                      </span>
+                    </li>
+                  )
+                })}
+              </ul>
+              {languageTies.length > 0 && (
+                <p className="mt-4 text-sm text-muted" style={{ opacity: tiesOpacity }}>
+                  {tAbout('stack.ties', { names: languageTies.map((l) => l.name).join(', ') })}
+                </p>
+              )}
             </div>
-            
+
             {/* Extended Toolkit */}
             <div
               style={{ 

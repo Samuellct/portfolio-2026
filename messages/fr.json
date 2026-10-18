@@ -52,8 +52,9 @@
     "stack": {
       "sectionLabel": "03 · Stack technique",
       "title": "Compétences clés",
-      "description": "Langages de programmation classés par utilisation dans mes projets.",
+      "description": "Langages, par nombre de projets publiés qui les utilisent.",
       "projectCount": "{count, plural, one {# projet} other {# projets}}",
+      "ties": "1 projet chacun : {names}.",
       "extendedToolkit": "Outils complémentaires",
       "families": {
         "languages": "Langages",
