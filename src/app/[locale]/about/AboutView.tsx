@@ -74,6 +74,128 @@ function ProjectTip({ title }: { title: string }) {
 }
 
 // ============================================
+// LANGUAGE ROW (one pawn per project)
+// ============================================
+const NO_HOVER_QUERY = '(hover: none)'
+
+// One tab stop per row, arrows move between pawns (P14-D24). Without hover the
+// name and count open the list of projects instead of a tip (P14-D22).
+function LanguageRow({ lang, firstPawn, printed }: { lang: LanguageStats; firstPawn: number; printed: number }) {
+  const locale = useLocale()
+  const tAbout = useTranslations('about')
+  const [active, setActive] = useState(0)
+  const [noHover, setNoHover] = useState(false)
+  const [open, setOpen] = useState(false)
+  const pawnRefs = useRef<(HTMLAnchorElement | null)[]>([])
+  const listId = `stack-${lang.name.replace(/[^a-z0-9]/gi, '').toLowerCase()}-projects`
+
+  useEffect(() => {
+    const mql = window.matchMedia(NO_HOVER_QUERY)
+    const update = () => setNoHover(mql.matches)
+    update()
+    mql.addEventListener('change', update)
+    return () => mql.removeEventListener('change', update)
+  }, [])
+
+  const onKeyDown = (event: React.KeyboardEvent) => {
+    const last = lang.projects.length - 1
+    const next = {
+      ArrowRight: Math.min(last, active + 1),
+      ArrowDown: Math.min(last, active + 1),
+      ArrowLeft: Math.max(0, active - 1),
+      ArrowUp: Math.max(0, active - 1),
+      Home: 0,
+      End: last,
+    }[event.key]
+    if (next === undefined) return
+    event.preventDefault()
+    setActive(next)
+    pawnRefs.current[next]?.focus()
+  }
+
+  const name = (
+    <span className="font-black uppercase tracking-wider text-white">
+      {lang.name}
+      <span className="sr-only">, {tAbout('stack.projectCount', { count: lang.count })}</span>
+    </span>
+  )
+  const count = (
+    <span aria-hidden="true" className="font-fraunces italic text-[2rem] leading-none text-right text-riso-ink tabular-nums">
+      {lang.count}
+    </span>
+  )
+
+  return (
+    <li
+      data-language={lang.name}
+      className="grid grid-cols-[1fr_auto] md:grid-cols-[9rem_3.5rem_1fr] items-center gap-x-4 gap-y-3 py-4 border-b border-riso-blue/35"
+    >
+      {noHover ? (
+        <button
+          type="button"
+          aria-expanded={open}
+          aria-controls={listId}
+          onClick={() => setOpen((o) => !o)}
+          className="col-span-2 flex items-center gap-4 min-h-11 text-left"
+        >
+          {name}
+          <span className="ml-auto flex items-center gap-3">
+            {count}
+            <ChevronDown aria-hidden="true" size={18} className={cn('shrink-0 transition-transform duration-300', open && 'rotate-180')} />
+          </span>
+        </button>
+      ) : (
+        <>
+          {name}
+          {count}
+        </>
+      )}
+      {/* focus is read on the container: a link's own onFocus is its intent prefetch */}
+      <span
+        className="col-span-2 md:col-span-1 flex flex-wrap gap-2"
+        onKeyDown={onKeyDown}
+        onFocus={(event) => {
+          const i = pawnRefs.current.indexOf(event.target as HTMLAnchorElement)
+          if (i >= 0) setActive(i)
+        }}
+      >
+        {lang.projects.map((project, i) => {
+          const title = getLocalizedField(project.title, locale)
+          return (
+            <TransitionLink
+              key={project.id}
+              ref={(el: HTMLAnchorElement | null) => { pawnRefs.current[i] = el }}
+              href={`/projects/${project.category}/${project.id}`}
+              aria-label={title}
+              tabIndex={i === active ? 0 : -1}
+              className="group/tip relative block w-6 h-6 bg-riso-pink shadow-plate transition-[box-shadow,transform] duration-200 hover:shadow-none hover:translate-x-px hover:translate-y-px focus-visible:shadow-none"
+              style={{ opacity: Math.max(0, Math.min(1, printed - (firstPawn + i))) }}
+            >
+              <ProjectTip title={title} />
+            </TransitionLink>
+          )
+        })}
+      </span>
+      {noHover && (
+        <ul id={listId} hidden={!open} className="col-span-full">
+          {lang.projects.map((project) => (
+            <li key={project.id} className="border-t border-riso-blue/20">
+              <TransitionLink
+                href={`/projects/${project.category}/${project.id}`}
+                className="flex items-center justify-between gap-4 min-h-11 text-sm text-accent hover:text-white"
+              >
+                {getLocalizedField(project.title, locale)}
+                <ArrowRight aria-hidden="true" size={14} className="shrink-0" />
+              </TransitionLink>
+            </li>
+          ))}
+        </ul>
+      )}
+    </li>
+  )
+}
+
+// ============================================
 // INTEREST LINKS (the projects an interest led to)
 // ============================================
 type InterestProject = { id: string; category: string; title: BilingualText | string }
@@ -807,40 +929,14 @@ export default function AboutView({
             {/* Project pawns: one square per project that uses the language (V6-STAT-04, design A) */}
             <div className="mb-20" style={{ opacity: barContainerOpacity }}>
               <ul>
-                {languageRows.map((lang, rowIndex) => {
-                  const firstPawn = languageRows.slice(0, rowIndex).reduce((sum, l) => sum + l.count, 0)
-                  return (
-                    <li
-                      key={lang.name}
-                      data-language={lang.name}
-                      className="grid grid-cols-[1fr_auto] md:grid-cols-[9rem_3.5rem_1fr] items-center gap-x-4 gap-y-3 py-4 border-b border-riso-blue/35"
-                    >
-                      <span className="font-black uppercase tracking-wider text-white">
-                        {lang.name}
-                        <span className="sr-only">, {tAbout('stack.projectCount', { count: lang.count })}</span>
-                      </span>
-                      <span aria-hidden="true" className="font-fraunces italic text-[2rem] leading-none text-right text-riso-ink tabular-nums">
-                        {lang.count}
-                      </span>
-                      <span className="col-span-2 md:col-span-1 flex flex-wrap gap-2">
-                        {lang.projects.map((project, i) => {
-                          const title = getLocalizedField(project.title, locale)
-                          return (
-                            <TransitionLink
-                              key={project.id}
-                              href={`/projects/${project.category}/${project.id}`}
-                              aria-label={title}
-                              className="group/tip relative block w-6 h-6 bg-riso-pink shadow-plate transition-[box-shadow,transform] duration-200 hover:shadow-none hover:translate-x-px hover:translate-y-px focus-visible:shadow-none"
-                              style={{ opacity: Math.max(0, Math.min(1, barProgress * pawnTotal - (firstPawn + i))) }}
-                            >
-                              <ProjectTip title={title} />
-                            </TransitionLink>
-                          )
-                        })}
-                      </span>
-                    </li>
-                  )
-                })}
+                {languageRows.map((lang, rowIndex) => (
+                  <LanguageRow
+                    key={lang.name}
+                    lang={lang}
+                    firstPawn={languageRows.slice(0, rowIndex).reduce((sum, l) => sum + l.count, 0)}
+                    printed={barProgress * pawnTotal}
+                  />
+                ))}
               </ul>
               {languageTies.length > 0 && (
                 <p className="mt-4 text-sm text-muted" style={{ opacity: tiesOpacity }}>
