@@ -548,52 +548,6 @@ export default function AboutView({
       <ScrollIndicator hideAfterPx={100} />
 
       {/* ============================================ */}
-      {/* SECTION RAIL (desktop) */}
-      {/* ============================================ */}
-      <nav
-        aria-label={tAbout('sectionNav')}
-        className="hidden lg:block fixed right-8 top-1/2 -translate-y-1/2 z-rail"
-      >
-        <div className="relative h-[50vh]">
-          <span aria-hidden="true" className="absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-riso-blue" />
-          <span
-            aria-hidden="true"
-            className="absolute left-1/2 w-[5px] h-10 -translate-x-1/2 -translate-y-1/2 rounded-full bg-riso-pink"
-            style={{ top: `${railProgress * 100}%` }}
-          />
-          <ol className="absolute inset-0">
-            {sectionLabels.map((label, i) => (
-              <li
-                key={SECTION_IDS[i]}
-                className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2"
-                style={{ top: `${(i / (SECTION_IDS.length - 1)) * 100}%` }}
-              >
-                <a
-                  href={`#${SECTION_IDS[i]}`}
-                  aria-current={activeSection === i ? 'true' : undefined}
-                  onClick={(event) => {
-                    event.preventDefault()
-                    jumpToSection(i)
-                  }}
-                  className="group relative flex items-center justify-center w-6 h-6"
-                >
-                  <span
-                    aria-hidden="true"
-                    className={`w-3 h-3 rounded-full border-2 border-riso-blue transition-colors ${
-                      activeSection === i ? 'bg-riso-pink border-riso-pink' : 'bg-surface group-hover:bg-riso-blue'
-                    }`}
-                  />
-                  <span className="absolute right-full mr-3 px-2 py-1 whitespace-nowrap text-meta tracking-caps uppercase bg-surface opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
-                    {label}
-                  </span>
-                </a>
-              </li>
-            ))}
-          </ol>
-        </div>
-      </nav>
-
-      {/* ============================================ */}
       {/* PARALLAX BACKGROUND TEXT */}
       {/* pointer-events: none so it never blocks clicks */}
       {/* the ref is on the container, not on the span that changes */}
@@ -1130,6 +1084,53 @@ export default function AboutView({
           </div>
         </div>
       </div>
+
+      {/* ============================================ */}
+      {/* SECTION RAIL (desktop), after the content in the DOM so the keyboard */}
+      {/* reaches the page first; it is fixed, so nothing moves on screen (P14-D24) */}
+      {/* ============================================ */}
+      <nav
+        aria-label={tAbout('sectionNav')}
+        className="hidden lg:block fixed right-8 top-1/2 -translate-y-1/2 z-rail"
+      >
+        <div className="relative h-[50vh]">
+          <span aria-hidden="true" className="absolute inset-y-0 left-1/2 w-px -translate-x-1/2 bg-riso-blue" />
+          <span
+            aria-hidden="true"
+            className="absolute left-1/2 w-[5px] h-10 -translate-x-1/2 -translate-y-1/2 rounded-full bg-riso-pink"
+            style={{ top: `${railProgress * 100}%` }}
+          />
+          <ol className="absolute inset-0">
+            {sectionLabels.map((label, i) => (
+              <li
+                key={SECTION_IDS[i]}
+                className="absolute left-1/2 -translate-x-1/2 -translate-y-1/2"
+                style={{ top: `${(i / (SECTION_IDS.length - 1)) * 100}%` }}
+              >
+                <a
+                  href={`#${SECTION_IDS[i]}`}
+                  aria-current={activeSection === i ? 'true' : undefined}
+                  onClick={(event) => {
+                    event.preventDefault()
+                    jumpToSection(i)
+                  }}
+                  className="group relative flex items-center justify-center w-6 h-6"
+                >
+                  <span
+                    aria-hidden="true"
+                    className={`w-3 h-3 rounded-full border-2 border-riso-blue transition-colors ${
+                      activeSection === i ? 'bg-riso-pink border-riso-pink' : 'bg-surface group-hover:bg-riso-blue'
+                    }`}
+                  />
+                  <span className="absolute right-full mr-3 px-2 py-1 whitespace-nowrap text-meta tracking-caps uppercase bg-surface opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100">
+                    {label}
+                  </span>
+                </a>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </nav>
     </>
   )
 }
