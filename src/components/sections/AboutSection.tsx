@@ -7,6 +7,7 @@ import Watermark from '@/components/effects/Watermark'
 import { ArrowRight } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
+import { useEntryAnimation } from '@/hooks/use-entry-animation'
 import { Pill } from '@/components/ui/Pill'
 // Homepage statistics, derived from the visible projects by the page
 export interface HomeStats {
@@ -18,6 +19,8 @@ export interface HomeStats {
 export default function AboutSection({ statValues }: { statValues: HomeStats }) {
   const t = useTranslations('about')
   const prefersReducedMotion = useReducedMotion()
+  // Served visible on the first page (no JS, no blink); animated after a client navigation.
+  const enter = useEntryAnimation()
 
   const stats = [
     {
@@ -70,7 +73,7 @@ export default function AboutSection({ statValues }: { statValues: HomeStats }) 
             scrollTrigger: {
               trigger: titleRef.current,
               start: 'top 85%',
-              toggleActions: 'play none none reverse',
+              once: true,
             },
           }
         )
@@ -93,7 +96,7 @@ export default function AboutSection({ statValues }: { statValues: HomeStats }) 
             scrollTrigger: {
               trigger: textBlockRef.current,
               start: 'top 80%',
-              toggleActions: 'play none none reverse',
+              once: true,
             },
           }
         )
@@ -113,7 +116,7 @@ export default function AboutSection({ statValues }: { statValues: HomeStats }) 
             scrollTrigger: {
               trigger: statsRef.current,
               start: 'top 80%',
-              toggleActions: 'play none none reverse',
+              once: true,
             },
           }
         )
@@ -143,7 +146,7 @@ export default function AboutSection({ statValues }: { statValues: HomeStats }) 
         {/* header */}
         <div className="mb-16">
           <m.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={enter ? { opacity: 0, y: 20 } : false}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
@@ -199,7 +202,7 @@ export default function AboutSection({ statValues }: { statValues: HomeStats }) 
             
             {/* CTA (page perso) */}
             <m.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={enter ? { opacity: 0, y: 20 } : false}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}

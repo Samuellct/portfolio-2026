@@ -9,11 +9,14 @@ import ParticleCollision from '@/components/effects/ParticleCollision'
 import { Pill } from '@/components/ui/Pill'
 import { useTranslations } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
+import { useEntryAnimation } from '@/hooks/use-entry-animation'
 
 
 export default function ContactSection() {
   const t = useTranslations('contact')
   const prefersReducedMotion = useReducedMotion()
+  // Served visible on the first page (no JS, no blink); animated after a client navigation.
+  const enter = useEntryAnimation()
   const sectionRef = useRef<HTMLElement>(null)
   const titleRef = useRef<HTMLHeadingElement>(null)
   const collisionRef = useRef<HTMLDivElement>(null)
@@ -66,7 +69,7 @@ export default function ContactSection() {
             scrollTrigger: {
               trigger: titleRef.current,
               start: 'top 85%',
-              toggleActions: 'play none none reverse',
+              once: true,
             },
           }
         )
@@ -86,7 +89,7 @@ export default function ContactSection() {
             scrollTrigger: {
               trigger: ctaRef.current,
               start: 'top 90%',
-              toggleActions: 'play none none reverse',
+              once: true,
             },
           }
         )
@@ -184,7 +187,7 @@ export default function ContactSection() {
           <div>
             {/* Section label */}
             <m.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={enter ? { opacity: 0, y: 20 } : false}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
@@ -205,7 +208,7 @@ export default function ContactSection() {
             
             {/* Text */}
             <m.p
-              initial={{ opacity: 0, y: 30 }}
+              initial={enter ? { opacity: 0, y: 30 } : false}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3, duration: 0.6 }}
