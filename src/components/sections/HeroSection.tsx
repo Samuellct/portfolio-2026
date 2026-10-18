@@ -8,6 +8,7 @@ import { useLocale, useTranslations } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import HeroSky, { FRINGE_HEIGHT } from '@/components/effects/HeroSky'
 import { Pill } from '@/components/ui/Pill'
+import { WordClamp } from '@/components/ui/WordClamp'
 import { ACCENT } from '@/lib/theme'
 import { getCardPeriod, getLocalizedField, Locale, ProjectSummary } from '@/lib/projects/helpers'
 import { RESUME_PATH } from '@/lib/constants'
@@ -188,24 +189,26 @@ export default function HeroSection({ featuredProjects }: { featuredProjects: Pr
         </div>
 
         {/* Mobile and tablet: the four projects as paper labels (DEC-16g, comp M2) */}
-        <ul className="mt-8 grid w-full max-w-3xl grid-cols-2 gap-x-3 gap-y-3.5 md:grid-cols-4 lg:hidden">
+        {/* Rows share one height; the title fits the label's width (cqi). */}
+        <ul className="mt-8 grid w-full max-w-3xl auto-rows-fr grid-cols-2 gap-x-3 gap-y-3.5 md:grid-cols-4 lg:hidden">
           {featured.map((project, i) => {
             const status = statusOf(project)
             return (
               <li key={project.id} style={{ transform: `rotate(${TAG_TILT[i % TAG_TILT.length]})` }}>
                 <TransitionLink
                   href={`/projects/${project.category}/${project.id}`}
-                  className="flex h-full min-h-[132px] flex-col gap-1.5 bg-riso-paper p-3 text-riso-ink shadow-lift"
+                  className="flex h-full flex-col gap-1.5 bg-riso-paper p-3 text-riso-ink shadow-lift [container-type:inline-size]"
                 >
-                  <span className="misregister font-display text-[1.2rem] font-black uppercase leading-none text-riso-pinkTitle">
+                  <span className="misregister font-display text-[min(1.2rem,13cqi)] font-black uppercase leading-none text-riso-pinkTitle">
                     {getLocalizedField(project.title, locale)}
                   </span>
                   {project.subtitle && (
-                    <span className="line-clamp-3 text-sm leading-snug">{getLocalizedField(project.subtitle, locale)}</span>
+                    <WordClamp text={getLocalizedField(project.subtitle, locale)} className="text-sm leading-snug" />
                   )}
-                  <span className="mt-auto flex flex-wrap justify-between gap-x-2 font-mono text-meta">
-                    <span className="whitespace-nowrap">{status}</span>
-                    <span className="ml-auto whitespace-nowrap">{getCardPeriod(project.period, locale)}</span>
+                  <span className="mt-auto flex items-center justify-between gap-x-1.5 whitespace-nowrap pt-1 font-mono text-meta">
+                    {status && <span className="rounded-full border border-riso-blue px-1.5">{status}</span>}
+                    {/* Start year only: a two-year range does not fit beside the status (P15-D9). */}
+                    <span className="ml-auto">{getCardPeriod(project.period, locale).split(' - ')[0]}</span>
                   </span>
                 </TransitionLink>
               </li>
