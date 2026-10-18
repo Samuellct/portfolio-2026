@@ -38,7 +38,7 @@ export const experiences: ExperienceEntry[] = [
     period: { fr: 'Septembre - novembre 2025', en: 'September - November 2025' },
     summary: {
       fr: 'Cours de physique-chimie en classes de seconde et de première : préparation des cours, accompagnement des élèves et évaluation des acquis.',
-      en: 'Physics and chemistry lessons for year 11 and year 12 classes (seconde and première): lesson planning, pupil support and assessment of progress.',
+      en: 'Physics and chemistry lessons for Seconde and Première classes: lesson planning, student support and assessment of progress.',
     },
   },
   {
