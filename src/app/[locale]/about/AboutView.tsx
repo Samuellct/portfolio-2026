@@ -58,6 +58,22 @@ function GhostTag({ tech }: { tech: TechStats }) {
 }
 
 // ============================================
+// PROJECT TIP (name of the project behind a pawn)
+// ============================================
+// Shown at once on hover and focus: the native title tooltip waits about a
+// second (P14-D17). Devices without hover get no tip until their fallback is chosen.
+function ProjectTip({ title }: { title: string }) {
+  return (
+    <span
+      aria-hidden="true"
+      className="pointer-events-none absolute left-0 bottom-full z-10 mb-2 hidden whitespace-nowrap bg-riso-ink px-2 py-1 text-xs font-normal normal-case not-italic tracking-normal text-snow no-underline opacity-0 transition-opacity duration-100 group-hover/tip:opacity-100 group-focus-visible/tip:opacity-100 [@media(hover:hover)]:block"
+    >
+      {title}
+    </span>
+  )
+}
+
+// ============================================
 // INTEREST LINKS (the projects an interest led to)
 // ============================================
 type InterestProject = { id: string; category: string; title: BilingualText | string }
@@ -860,10 +876,11 @@ export default function AboutView({
                               key={project.id}
                               href={`/projects/${project.category}/${project.id}`}
                               aria-label={title}
-                              title={title}
-                              className="block w-6 h-6 bg-riso-pink shadow-plate transition-[box-shadow,transform] duration-200 hover:shadow-none hover:translate-x-px hover:translate-y-px focus-visible:shadow-none"
+                              className="group/tip relative block w-6 h-6 bg-riso-pink shadow-plate transition-[box-shadow,transform] duration-200 hover:shadow-none hover:translate-x-px hover:translate-y-px focus-visible:shadow-none"
                               style={{ opacity: Math.max(0, Math.min(1, barProgress * pawnTotal - (firstPawn + i))) }}
-                            />
+                            >
+                              <ProjectTip title={title} />
+                            </TransitionLink>
                           )
                         })}
                       </span>
@@ -873,7 +890,24 @@ export default function AboutView({
               </ul>
               {languageTies.length > 0 && (
                 <p className="mt-4 text-sm text-muted" style={{ opacity: tiesOpacity }}>
-                  {tAbout('stack.ties', { names: languageTies.map((l) => l.name).join(', ') })}
+                  {tAbout('stack.ties')}{' '}
+                  {languageTies.map((lang, i) => {
+                    const project = lang.projects[0]
+                    const title = getLocalizedField(project.title, locale)
+                    return (
+                      <span key={lang.name}>
+                        <TransitionLink
+                          href={`/projects/${project.category}/${project.id}`}
+                          aria-label={`${lang.name}, ${title}`}
+                          className="group/tip relative text-accent underline decoration-1 underline-offset-2 hover:text-white"
+                        >
+                          {lang.name}
+                          <ProjectTip title={title} />
+                        </TransitionLink>
+                        {i < languageTies.length - 1 ? ', ' : '.'}
+                      </span>
+                    )
+                  })}
                 </p>
               )}
             </div>

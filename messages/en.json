@@ -59,7 +59,7 @@
       "title": "Core skills",
       "description": "Languages, by the number of published projects that use them.",
       "projectCount": "{count, plural, one {# project} other {# projects}}",
-      "ties": "1 project each: {names}.",
+      "ties": "1 project each:",
       "extendedToolkit": "Extended toolkit",
       "families": {
         "languages": "Languages",

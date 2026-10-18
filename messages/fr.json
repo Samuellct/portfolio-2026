@@ -59,7 +59,7 @@
       "title": "Compétences clés",
       "description": "Langages, par nombre de projets publiés qui les utilisent.",
       "projectCount": "{count, plural, one {# projet} other {# projets}}",
-      "ties": "1 projet chacun : {names}.",
+      "ties": "1 projet chacun :",
       "extendedToolkit": "Outils complémentaires",
       "families": {
         "languages": "Langages",
