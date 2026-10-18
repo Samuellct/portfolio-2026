@@ -1,6 +1,6 @@
 'use client'
 
-import { useRef, useEffect } from 'react'
+import { useRef, useEffect, type CSSProperties } from 'react'
 import TransitionLink from '@/components/navigation/TransitionLink'
 import { gsap } from '@/lib/gsap'
 import { ArrowRight, FileText } from 'lucide-react'
@@ -132,13 +132,14 @@ export default function HeroSection({ featuredProjects }: { featuredProjects: Pr
   }, [prefersReducedMotion])
 
   return (
-    // The hero runs one fringe height past the fold, so the paper fringe only
-    // starts as the visitor scrolls; content and star slots stay on the first screen.
+    // Desktop: the hero runs one fringe height past the fold, so the paper fringe only
+    // starts as the visitor scrolls. Mobile: one small viewport, fringe included, with
+    // the content set at the bottom, so the fringe shows on the first screen (P15-D7).
     <section
       ref={sectionRef}
       id="hero"
-      className="scheme-night section flex items-center justify-center relative overflow-hidden"
-      style={{ minHeight: `calc(100vh + ${FRINGE_HEIGHT}px)`, paddingBottom: FRINGE_HEIGHT }}
+      className="scheme-night section flex items-end justify-center relative overflow-hidden min-h-[100svh] lg:items-center lg:min-h-[calc(100vh+var(--fringe))]"
+      style={{ '--fringe': `${FRINGE_HEIGHT}px`, paddingBottom: FRINGE_HEIGHT } as CSSProperties}
     >
       {/* Ink dropout inside the name: small specks of the plate show through. */}
       <svg aria-hidden="true" className="absolute w-0 h-0">
@@ -160,7 +161,7 @@ export default function HeroSection({ featuredProjects }: { featuredProjects: Pr
 
       <div
         ref={contentRef}
-        className="relative z-10 flex w-full flex-col items-center px-4 pt-28 pb-12 lg:px-0 lg:py-0 lg:w-auto"
+        className="relative z-10 flex w-full flex-col items-center px-4 pt-24 pb-6 lg:px-0 lg:py-0 lg:w-auto"
       >
         <h1
           className="hero-rise misregister text-center font-display font-black uppercase text-riso-pink leading-[0.86] tracking-[-0.02em] text-[clamp(2.6rem,14vw,5rem)] lg:text-[clamp(4rem,8.6vw,13rem)]"
