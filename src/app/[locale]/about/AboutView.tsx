@@ -885,9 +885,9 @@ export default function AboutView({
               <div className="section-label text-accent mb-4">
                 {tAbout('interests.sectionLabel')}
               </div>
-              <p className="text-muted">
-                {tAbout('interests.subtitle')}
-              </p>
+              <h2 className="font-display uppercase font-black text-heading leading-display-snug tracking-wide text-riso-pinkTitle misregister">
+                {tAbout('interests.title')}
+              </h2>
             </div>
             
             {/* Interest 1 - Trail Running (Left) */}
