@@ -70,12 +70,10 @@ const config: Config = {
       },
       boxShadow: {
         'glow-accent': `0 0 25px ${withAlpha(ACCENT.pink, 0.2)}`,
-        // Paper lifted off the page: hero tags and hero hover card (V6-DES-04 volet hero).
-        lift: '0 8px 22px rgb(0 0 0 / 0.4)',
-        'lift-lg': '0 10px 30px rgb(0 0 0 / 0.45)',
         // A second plate printed 2 px off, flat (no blur): the registered blue copy.
         plate: `2px 2px 0 ${RISO.blue}`,
-        // The same plate 3 px off, for the project status label (P12-D4).
+        // The same plate 3 px off: the project status label (P12-D4) and the hero's paper
+        // labels, printed instead of a resting shadow (P15-D2).
         'plate-3': `3px 3px 0 ${RISO.blue}`,
       },
       // Stacking order, bottom to top.

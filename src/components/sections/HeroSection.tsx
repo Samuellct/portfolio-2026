@@ -76,7 +76,7 @@ function StarProject({ project, slot, locale, status }: StarProjectProps) {
       </span>
 
       <span
-        className={`pointer-events-none absolute top-1/2 w-[min(300px,21vw)] bg-riso-paper px-4 pt-3 pb-3.5 text-left text-riso-ink shadow-lift-lg opacity-0 transition-[opacity,transform] duration-200 ease-out group-hover:opacity-100 group-focus-visible:opacity-100 motion-reduce:transition-none ${
+        className={`pointer-events-none absolute top-1/2 w-[min(300px,21vw)] bg-riso-paper px-4 pt-3 pb-3.5 text-left text-riso-ink shadow-plate-3 opacity-0 transition-[opacity,transform] duration-200 ease-out group-hover:opacity-100 group-focus-visible:opacity-100 motion-reduce:transition-none ${
           toLeft
             ? 'right-[46px] -translate-y-1/2 -rotate-[1.5deg]'
             : 'left-[46px] -translate-y-1/2 rotate-[1.5deg]'
@@ -197,7 +197,7 @@ export default function HeroSection({ featuredProjects }: { featuredProjects: Pr
               <li key={project.id} style={{ transform: `rotate(${TAG_TILT[i % TAG_TILT.length]})` }}>
                 <TransitionLink
                   href={`/projects/${project.category}/${project.id}`}
-                  className="flex h-full flex-col gap-1.5 bg-riso-paper p-3 text-riso-ink shadow-lift [container-type:inline-size]"
+                  className="flex h-full flex-col gap-1.5 bg-riso-paper p-3 text-riso-ink shadow-plate-3 [container-type:inline-size]"
                 >
                   <span className="misregister font-display text-[min(1.2rem,13cqi)] font-black uppercase leading-none text-riso-pinkTitle">
                     {getLocalizedField(project.title, locale)}
