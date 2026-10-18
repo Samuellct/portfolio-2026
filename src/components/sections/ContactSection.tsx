@@ -217,13 +217,13 @@ export default function ContactSection() {
               {t('preview.text')}
             </m.p>
             
-            {/* CTA: the contact page, or a direct e-mail */}
-            <div ref={ctaRef} className="flex flex-wrap gap-3">
-              <Pill as="link" href="/contact" className="group">
+            {/* CTA: the contact page, or a direct e-mail, stacked full width below sm (V6-CTA-10) */}
+            <div ref={ctaRef} className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+              <Pill as="link" href="/contact" className="group w-full sm:w-auto">
                 {t('preview.cta')}
                 <ArrowRight size={16} aria-hidden="true" className="transition-transform group-hover:translate-x-1" />
               </Pill>
-              <Pill as="a" href={`mailto:${email}`} tone="outline" caps={false}>
+              <Pill as="a" href={`mailto:${email}`} tone="outline" caps={false} className="w-full sm:w-auto">
                 <Mail size={16} aria-hidden="true" />
                 {email}
               </Pill>
