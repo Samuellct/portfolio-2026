@@ -47,6 +47,7 @@ function GhostTag({ tech }: { tech: TechStats }) {
   
   return (
     <span
+      data-tech={tech.name}
       className="inline-block px-4 py-2 text-sm tracking-wide border cursor-default transition-all duration-300"
       style={{
         backgroundColor: isHovered ? tech.color : 'transparent',

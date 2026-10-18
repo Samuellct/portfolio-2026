@@ -6,7 +6,9 @@
 // `family` is the curation switch of the About page inventory: a technology
 // used by at least one project is shown under its family, `other` is a visible
 // catch-all, and `null` hides it on purpose (single-use or overly specific
-// libraries). Brand colours are only used by the About page skill bars.
+// libraries). Brand colours are only used by the About page skill bars and tags.
+// Sources: Simple Icons 15.22.0 unless noted; a brand that only exists in
+// white or black gets a variant readable on the paper background.
 
 export type TechFamily = 'languages' | 'frameworks' | 'dataAnalysis' | 'tools' | 'other'
 
@@ -25,29 +27,29 @@ const TECHNOLOGIES = {
   TypeScript: { color: '#007accde', family: 'languages' },
   JavaScript: { color: '#f7df1e', family: 'languages' },
   Bash: { color: '#4eaa25', family: 'languages' },
-  'C#': { color: D, family: 'languages' },
-  Kotlin: { color: D, family: 'languages' },
-  '.NET': { color: D, family: 'frameworks' },
+  'C#': { color: '#927be5', family: 'languages' }, // dotnet/brand csharp-72.svg, light stop
+  Kotlin: { color: '#7f52ff', family: 'languages' },
+  '.NET': { color: '#512bd4', family: 'frameworks' },
   Arduino: { color: '#00979d', family: 'languages' },
 
   // Web frameworks & libraries
   React: { color: '#61dafb', family: null },
-  'Next.js': { color: '#ffffff', family: 'frameworks' },
+  'Next.js': { color: '#111017', family: 'frameworks' }, // brand black, printed in the hero night
   Astro: { color: D, family: null },
   'Tailwind CSS': { color: '#38b2ac', family: null },
   'Framer Motion': { color: '#bb4b96', family: null },
   WebGL: { color: D, family: null },
   GSAP: { color: '#0ae348', family: null },
   Vite: { color: '#646cff', family: 'frameworks' },
-  FastAPI: { color: D, family: 'frameworks' },
+  FastAPI: { color: '#009688', family: 'frameworks' },
   'Jetpack Compose': { color: D, family: null },
 
   // Scientific computing & high-energy physics
-  ROOT: { color: '#6bc0dc', family: 'dataAnalysis' },
+  ROOT: { color: '#1ed3e4', family: 'dataAnalysis' },
   NumPy: { color: '#013243', family: 'dataAnalysis' },
   Pandas: { color: '#150458', family: 'dataAnalysis' },
-  Matplotlib: { color: '#e5e5e6', family: 'dataAnalysis' },
-  SciPy: { color: D, family: 'dataAnalysis' },
+  Matplotlib: { color: '#11557c', family: 'dataAnalysis' }, // matplotlib doc/_static/logo2.svg
+  SciPy: { color: '#8caae6', family: 'dataAnalysis' },
   SymPy: { color: D, family: null },
   'scikit-learn': { color: '#f7931e', family: 'dataAnalysis' },
   TensorFlow: { color: D, family: 'dataAnalysis' },
@@ -64,9 +66,9 @@ const TECHNOLOGIES = {
 
   // Geospatial & data visualisation
   NetworkX: { color: D, family: null },
-  Rasterio: { color: D, family: 'dataAnalysis' },
+  Rasterio: { color: '#5cae58', family: 'dataAnalysis' }, // no brand of its own: GDAL, which it wraps
   GDAL: { color: D, family: null },
-  GeoPandas: { color: D, family: 'dataAnalysis' },
+  GeoPandas: { color: '#139c5a', family: 'dataAnalysis' },
   'scikit-image': { color: D, family: null },
   OSMnx: { color: D, family: null },
   'MapLibre GL JS': { color: D, family: null },
@@ -85,17 +87,17 @@ const TECHNOLOGIES = {
   LabVIEW: { color: '#ffdb00', family: null },
   Proxmox: { color: '#e57000', family: 'tools' },
   TrueNAS: { color: '#0095d5', family: null },
-  'GitHub Actions': { color: D, family: 'tools' },
+  'GitHub Actions': { color: '#2088ff', family: 'tools' },
   'semantic-release': { color: D, family: null },
   uv: { color: D, family: null },
   PySide6: { color: D, family: null },
-  SQLite: { color: D, family: 'tools' },
+  SQLite: { color: '#003b57', family: 'tools' },
   Room: { color: D, family: null },
   'ML Kit': { color: D, family: null },
   Nextcloud: { color: D, family: null },
   Jellyfin: { color: D, family: null },
-  'Nginx Proxy Manager': { color: D, family: 'tools' },
-  'Cloudflare Workers': { color: D, family: 'tools' },
+  'Nginx Proxy Manager': { color: '#f15833', family: 'tools' },
+  'Cloudflare Workers': { color: '#f38020', family: 'tools' },
   PostgreSQL: { color: D, family: 'tools' },
 } as const satisfies Record<string, TechEntry>
 
