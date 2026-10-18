@@ -87,9 +87,3 @@ export const ILLUSTRATION = {
   homelabNode: RISO.paper,
   overprint: RISO.pink,
 } as const
-
-/** Fixed text colours chosen against a computed background. */
-export const CONTRAST_TEXT = {
-  onLight: '#000000',
-  onDark: '#ffffff',
-} as const

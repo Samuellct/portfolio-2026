@@ -1,6 +1,6 @@
 'use client'
 
-import { useCallback, useEffect, useRef, useLayoutEffect, useMemo, useState } from 'react'
+import { useCallback, useEffect, useRef, useLayoutEffect, useMemo, useState, type CSSProperties } from 'react'
 import TransitionLink from '@/components/navigation/TransitionLink'
 import Breadcrumb from '@/components/navigation/Breadcrumb'
 import { m, AnimatePresence } from 'framer-motion'
@@ -15,7 +15,8 @@ import ScrollIndicator from '@/components/about/ScrollIndicator'
 import { useLocale, useTranslations } from 'next-intl'
 import { useReducedMotion } from '@/hooks/use-reduced-motion'
 import { useSmoothScroll } from '@/context/SmoothScrollContext'
-import { CONTRAST_TEXT, PAGE_BG, RISO } from '@/lib/theme'
+import { PAGE_BG } from '@/lib/theme'
+import { cn } from '@/lib/cn'
 import { RESUME_PATH, SOCIAL } from '@/lib/constants'
 import { Pill } from '@/components/ui/Pill'
 
@@ -38,24 +39,17 @@ export type AboutInternship = Pick<ProjectData, 'id' | 'category' | 'title' | 's
 // ============================================
 // GHOST TAG COMPONENT
 // ============================================
+// The brand colour is the only inline value, as a CSS variable read on hover
 function GhostTag({ tech }: { tech: TechStats }) {
-  const [isHovered, setIsHovered] = useState(false)
-  
-  const textColor = isHovered 
-    ? (isLightColor(tech.color) ? CONTRAST_TEXT.onLight : CONTRAST_TEXT.onDark)
-    : 'var(--muted)'
-  
   return (
     <span
       data-tech={tech.name}
-      className="inline-block px-4 py-2 text-sm tracking-wide border cursor-default transition-all duration-300"
-      style={{
-        backgroundColor: isHovered ? tech.color : 'transparent',
-        borderColor: isHovered ? tech.color : 'rgb(var(--fg) / 0.15)',
-        color: textColor,
-      }}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
+      className={cn(
+        'inline-block px-4 py-2 text-sm tracking-wide border border-white/15 text-muted cursor-default transition-colors duration-300',
+        'hover:bg-[var(--tech)] hover:border-[var(--tech)]',
+        isLightColor(tech.color) ? 'hover:text-riso-night' : 'hover:text-snow'
+      )}
+      style={{ '--tech': tech.color } as CSSProperties}
     >
       {tech.name}
     </span>
@@ -95,7 +89,6 @@ export default function AboutView({
       degree: tAbout('education.master2.degree'),
       track: tAbout('education.master2.track'),
       school: tAbout('education.master2.school'),
-      color: RISO.ink,
     },
     {
       id: 'datascience',
@@ -103,14 +96,12 @@ export default function AboutView({
       degree: tAbout('education.datascience.degree'),
       school: tAbout('education.datascience.school'),
       note: tAbout('education.datascience.note'),
-      color: RISO.ink,
     },
     {
       id: 'bachelor',
       period: tAbout('education.bachelor.period'),
       degree: tAbout('education.bachelor.degree'),
       school: tAbout('education.bachelor.school'),
-      color: RISO.ink,
     },
   ]
 
@@ -833,10 +824,7 @@ export default function AboutView({
                       <div 
                         className="relative p-4 border border-accent-line"
                       >
-                        <span 
-                          className="inline-block px-2 py-0.5 text-meta tracking-wider uppercase mb-2"
-                          style={{ backgroundColor: `${item.color}15`, color: item.color }}
-                        >
+                        <span className="inline-block px-2 py-0.5 text-meta tracking-wider uppercase mb-2 bg-riso-ink/[0.08] text-riso-ink">
                           {item.period}
                         </span>
                         
@@ -858,11 +846,8 @@ export default function AboutView({
                     
                     {/* Center point */}
                     <div 
-                      className="hidden md:block absolute left-1/2 -translate-x-1/2 w-3 h-3 rounded-full border-2 bg-surface z-10"
-                      style={{ 
-                        borderColor: item.color,
-                        opacity: itemProgress
-                      }}
+                      className="hidden md:block absolute left-1/2 -translate-x-1/2 w-3 h-3 rounded-full border-2 border-riso-ink bg-surface z-10"
+                      style={{ opacity: itemProgress }}
                     />
                   </div>
                 )
