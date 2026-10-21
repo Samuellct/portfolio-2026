@@ -19,6 +19,8 @@ import { RESUME_PATH } from '@/lib/constants'
 import { Pill } from '@/components/ui/Pill'
 
 const PROJECT_DETAIL_BG_COLOR = PAGE_BG
+// Beyond this many characters a title takes the heading size (V6-DES-06)
+const LONG_TITLE = 30
 
 // Narrative blocks already rendered from Markdown on the server (page.tsx)
 export type ProjectMarkdown = Record<'problem' | 'approach' | 'whatIBuilt' | 'limits' | 'description', ReactNode>
@@ -126,6 +128,7 @@ export default function ProjectDetailView({
       ).filter(([, content]) => content)
     : []
 
+  const title = getLocalizedField(project.title, locale)
   const location = getLocalizedField(project.location, locale)
   const lab = project.research ? getLocalizedField(project.research.lab, locale) : undefined
   // Facts of the context frame. "Personal project" repeats the category, and a
@@ -175,8 +178,14 @@ export default function ProjectDetailView({
             ]}
           />
 
-          <h1 className="misregister font-display font-black text-page leading-display-snug text-riso-pinkTitle break-words [hyphens:manual]">
-            {getLocalizedField(project.title, locale)}
+          {/* Long titles drop to the heading size so they don't push the results below the fold (V6-DES-06) */}
+          <h1
+            className={cn(
+              'misregister font-display font-black leading-display-snug text-riso-pinkTitle break-words [hyphens:manual]',
+              title.length > LONG_TITLE ? 'text-heading' : 'text-page'
+            )}
+          >
+            {title}
           </h1>
 
           {project.subtitle && (
