@@ -1,6 +1,6 @@
 # Portfolio website
 
-![Next.js](https://img.shields.io/badge/Next.js-15-black?logo=next.js) ![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?logo=typescript&logoColor=white) ![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-3.4-%2338B2AC?logo=tailwindcss&logoColor=white) ![React](https://img.shields.io/badge/react-19-61DAFB?logo=react) ![Cloudflare Workers](https://img.shields.io/badge/Cloudflare-Workers-F38020?logo=cloudflareworkers&logoColor=white)
+![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js) ![TypeScript](https://img.shields.io/badge/TypeScript-5.9-3178C6?logo=typescript&logoColor=white) ![Tailwind CSS](https://img.shields.io/badge/TailwindCSS-3.4-%2338B2AC?logo=tailwindcss&logoColor=white) ![React](https://img.shields.io/badge/react-19-61DAFB?logo=react) ![Cloudflare Workers](https://img.shields.io/badge/Cloudflare-Workers-F38020?logo=cloudflareworkers&logoColor=white)
 
 ---
 
