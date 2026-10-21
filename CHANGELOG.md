@@ -5,6 +5,20 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## V6 roadmap: versions 5.0.1 to 5.9.1 (2026-10-13 to 2026-10-21)
+
+The sixth roadmap came out of the audit of 2026-10-13. Its versions follow below this note; later versions sit above it.
+
+- **Reliability**: prerendered pages are served from the static assets cache, and the Worker no longer hits its CPU limit: 241 `exceededCpu` (error 1102) over the 7 days before, 0 over the 7 days to 2026-10-21. Hashed static files are cached as immutable.
+- **First paint and indexing**: content is visible before hydration (mobile first contentful paint 4.4 to 4.6 s before, 2.8 to 2.9 s after); hidden projects answer 404; each project page carries a `CreativeWork` node; each locale has its own share image.
+- **Weight**: Markdown and KaTeX render on the server, project data stays out of client bundles, fonts are trimmed; the project page ships 178 kB of gzipped JavaScript instead of 231.
+- **French typography**: non-breaking spaces before punctuation, numbers and units per locale, justified text with hyphenation.
+- **Interface**: a paper fullscreen menu, starry bands for the bar and the footer, a single pill for every action, the contact page and the 404 on paper, a tiles and list view for the projects, the About page rewritten (work experience, toolkit colours), and the mobile home and listing controls.
+- **Content**: every project page checked against its repository or report.
+- **Tooling**: a Playwright end-to-end suite at 1440 and 390 px, including pages without JavaScript; `knip` for dead code; a first-party Web Vitals beacon; Next.js 16.4.2.
+
+Deferred to the next roadmap: the About page motion rework and its rendering without JavaScript, the line length of long text, and three exploratory design leads.
+
 ## [5.9.1](https://github.com/Samuellct/portfolio-2026/compare/v5.9.0...v5.9.1) (2026-10-21)
 
 ### Corrigé

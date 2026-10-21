@@ -24,7 +24,7 @@ My personal portfolio: my path through physics and the projects I build, in Fren
 
 **Motion**
 - Hero night sky drawn in raw WebGL, in a single draw call
-- GSAP scroll-triggered sections, Framer Motion page transitions, Lenis smooth scrolling
+- GSAP scroll-driven sections, Framer Motion for the menu, the listing and the entry animations, Lenis smooth scrolling
 - `prefers-reduced-motion` respected everywhere
 
 ## Installation
@@ -55,6 +55,8 @@ What the suite covers (`e2e/`):
 - `no-js.spec.ts`: with JavaScript disabled, each page keeps at least the number of visible text blocks measured on 2026-10-14. A second test per page expects every block to be visible. It is marked as an expected failure until the page is fixed, then the marker comes off and the floor goes up.
 - `about-ratchet.spec.ts`: on desktop, content revealed on the About page never fades back when scrolling up.
 - `reduced-motion.spec.ts`: turning on reduced motion while About or the projects listing is open removes the pins and the parallax and shows every animated part in its final state.
+- `about-experience.spec.ts`: the other work experiences on About open from the keyboard, keep the focus and hide nothing already revealed.
+- `about-stack.spec.ts`: every toolkit tag shown on About has its brand colour, none the grey fallback.
 
 ## Project structure
 
@@ -88,6 +90,10 @@ Manual deployment:
 ```bash
 npm run deploy
 ```
+
+## Version history
+
+Versions follow the Conventional Commits through `semantic-release`; `CHANGELOG.md` lists them. The latest roadmap, V6 (versions 5.0.1 to 5.9.1, October 2026), made the Worker reliable under load (no more CPU limit errors), showed content before hydration, cut the project page JavaScript by about a quarter (231 to 178 kB gzipped), set French typography, redrew the navigation, actions, contact page and project listing, reviewed every project page, and added the end-to-end suite. A summary sits above version 5.9.1 in `CHANGELOG.md`.
 
 ## License
 
