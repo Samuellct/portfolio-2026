@@ -1,13 +1,5 @@
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-import { FlatCompat } from "@eslint/eslintrc";
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
-
-const compat = new FlatCompat({
-  baseDirectory: __dirname,
-});
+import nextVitals from "eslint-config-next/core-web-vitals";
+import nextTs from "eslint-config-next/typescript";
 
 const eslintConfig = [
   {
@@ -25,11 +17,16 @@ const eslintConfig = [
       "Redaction_projets/**",
     ],
   },
-  ...compat.extends("next/core-web-vitals", "next/typescript"),
+  ...nextVitals,
+  ...nextTs,
   {
     rules: {
       "@typescript-eslint/no-unused-vars": "warn",
       "@typescript-eslint/no-explicit-any": "warn",
+      // React Compiler rules arrived with Next 16 (react-hooks 7): the 8 existing
+      // cases (About ratchet, effects that sync state) are reworked in V7.
+      "react-hooks/immutability": "warn",
+      "react-hooks/set-state-in-effect": "warn",
     },
   },
 ];
