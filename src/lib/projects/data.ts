@@ -27,17 +27,21 @@ const projectsData: Record<string, Record<string, ProjectData>> = {
 
 TrueNAS runs Nextcloud for file sharing (like Google Drive) and Jellyfin for streaming films. The Jellyfin plugins I maintain for it are described on the [JellyUX](/en/projects/personal/jellyux) page.
 
-Nginx Proxy Manager handles the reverse proxy: it connects Nextcloud and Jellyfin to subdomains of my personal domain, so I can reach them from anywhere.`,
+Nginx Proxy Manager handles the reverse proxy: it connects Nextcloud and Jellyfin to subdomains of my personal domain, so I can reach them from anywhere. Jellyfin now has about ten user accounts, around five of them used regularly.
+
+I am also rebuilding the home network, in two steps. The first, under way, is the garage: an open wooden frame, modelled in 3D before it is built, will hold the router and a new 2.5 Gbit/s switch with colour-coded cables, and the rooms will be split between 2.5 and 1 Gbit/s according to how they are used. The second will add mesh Wi-Fi, based on a signal survey taken in every room.`,
           fr: `J'ai installé Proxmox VE comme OS principal, puis TrueNAS dans une machine virtuelle Proxmox. J'y ai connecté un disque dur de 500 Go, puis un second de 2 To dans un pool séparé, surtout pour me familiariser avec l'interface TrueNAS / ZFS. Plus tard, je prévois d'installer entre 15 et 20 To de stockage en RAID-Z1 (une organisation ZFS qui survit à la perte d'un disque).
 
 Sur TrueNAS tournent Nextcloud, pour le partage de fichiers (comme Google Drive), et Jellyfin, pour le streaming de films. Les plugins Jellyfin que je maintiens pour ce serveur sont présentés sur la fiche [JellyUX](/fr/projects/personal/jellyux).
 
-Nginx Proxy Manager gère le reverse proxy : il relie Nextcloud et Jellyfin à des sous-domaines de mon domaine personnel, pour que je puisse y accéder depuis n'importe où.`,
+Nginx Proxy Manager gère le reverse proxy : il relie Nextcloud et Jellyfin à des sous-domaines de mon domaine personnel, pour que je puisse y accéder depuis n'importe où. Jellyfin compte maintenant une dizaine de comptes utilisateur, dont environ cinq utilisés régulièrement.
+
+Je refais aussi le réseau de la maison, en deux étapes. La première, en cours, concerne le garage : un bâti en bois ouvert, modélisé en 3D avant sa construction, accueillera la box et un nouveau switch 2,5 Gbit/s, avec des cordons repérés par couleur, en répartissant les pièces entre 2,5 et 1 Gbit/s selon leurs usages. La seconde ajoutera un Wi-Fi maillé, à partir d'un relevé du signal fait dans chaque pièce.`,
         },
       },
       limits: {
-        en: `Jellyfin now has about ten user accounts, around five of them used regularly. Running Proxmox as a base layer might be too heavy for my old PC once several users rely on the planned services: video streaming (Jellyfin), dedicated photo storage (Immich) and bulk storage (NAS access, Nextcloud). I'm currently considering switching to a bare-metal TrueNAS install and building a dedicated machine for virtualisation later on. I also planned to add an Arc A380 GPU, which would allow Jellyfin to transcode video files on the fly without crushing the CPU. With component prices rising sharply, these upgrades are on hold, so this test phase will last longer than planned.`,
-        fr: `Jellyfin compte maintenant une dizaine de comptes utilisateur, dont environ cinq utilisés régulièrement. L'exécution de Proxmox en tant que couche de base risque d'être trop lourde pour mon ancien PC une fois que plusieurs utilisateurs s'appuieront sur les services prévus : streaming vidéo (Jellyfin), stockage dédié des photos (Immich) et stockage de masse (accès NAS, Nextcloud). J'envisage actuellement de passer à une installation TrueNAS *bare-metal* et de construire plus tard une machine dédiée à la virtualisation. J'avais aussi prévu d'ajouter un GPU Arc A380, qui permettrait à Jellyfin de transcoder des fichiers vidéo à la volée sans saturer le CPU. Avec la flambée des prix des composants, ces améliorations sont en attente, et cette phase de test va durer plus longtemps que prévu.`,
+        en: `Running Proxmox as a base layer might be too heavy for my old PC once several users rely on the planned services: video streaming (Jellyfin), dedicated photo storage (Immich) and bulk storage (NAS access, Nextcloud). I'm currently considering switching to a bare-metal TrueNAS install and building a dedicated machine for virtualisation later on. I also planned to add an Arc A380 GPU, which would allow Jellyfin to transcode video files on the fly without crushing the CPU. With component prices rising sharply, these upgrades are on hold, so this test phase will last longer than planned.`,
+        fr: `L'exécution de Proxmox en tant que couche de base risque d'être trop lourde pour mon ancien PC une fois que plusieurs utilisateurs s'appuieront sur les services prévus : streaming vidéo (Jellyfin), stockage dédié des photos (Immich) et stockage de masse (accès NAS, Nextcloud). J'envisage actuellement de passer à une installation TrueNAS *bare-metal* et de construire plus tard une machine dédiée à la virtualisation. J'avais aussi prévu d'ajouter un GPU Arc A380, qui permettrait à Jellyfin de transcoder des fichiers vidéo à la volée sans saturer le CPU. Avec la flambée des prix des composants, ces améliorations sont en attente, et cette phase de test va durer plus longtemps que prévu.`,
       },
       technologies: ['Proxmox', 'TrueNAS', 'Nextcloud', 'Jellyfin', 'Nginx Proxy Manager'],
       keywords: ['virtualization', 'storage', 'cloud', 'server', 'truenas', 'NAS'],
@@ -52,10 +56,12 @@ Nginx Proxy Manager gère le reverse proxy : il relie Nextcloud et Jellyfin à d
       },
       media: [
         {
-          src: '/images/Dashboard_Truenas.webp',
-          alt: { en: 'TrueNAS dashboard showing virtual machines and server interface', fr: 'Tableau de bord TrueNAS affichant les machines virtuelles et l\'interface serveur' },
-          caption: { en: 'The TrueNAS dashboard of the server: system, CPU, memory and storage.', fr: 'Le tableau de bord TrueNAS du serveur : système, processeur, mémoire et stockage.' },
-          frame: 'interface',
+          src: '/images/home_server_rack.webp',
+          alt: { en: '3D model of the open wooden network frame for the garage, with the patch panel, the switch and the room cables', fr: 'Modèle 3D du bâti réseau en bois ouvert du garage, avec le panneau de brassage, le switch et les câbles des pièces' },
+          caption: { en: 'The garage frame modelled in 3D before it is built: patch panel, switch and the cables coming from the rooms.', fr: 'Le bâti du garage modélisé en 3D avant sa construction : panneau de brassage, switch et arrivée des câbles des pièces.' },
+          frame: 'figure',
+          width: 2019,
+          height: 1346,
         },
       ],
       dateCreated: '2025-07-15',
@@ -80,10 +86,10 @@ Nginx Proxy Manager gère le reverse proxy : il relie Nextcloud et Jellyfin à d
         approach: {
           en: `The first version used WordPress, but I quickly found the platform too limiting and heavy for what I needed. Between late 2024 and early 2025, I rebuilt everything with Eleventy (V2), which let me work directly with HTML and CSS in a structure I understood well. A few months later, I moved to React with Vite (V3) to learn component-based architecture and client-side rendering (CSR), even though I could already see the limits of pure CSR.
 
-By October 2025, I decided to migrate to Next.js 15. The main motivation was to solve the performance gaps I noticed in V3, specifically through server-side rendering and built-in optimisations like image lazy loading. The transition to the App Router architecture required a lot of work and testing to figure out how to move from Vite to this new framework.`,
+By October 2025, I decided to migrate to Next.js 15. The main motivation was to solve the performance gaps I noticed in V3, specifically through server-side rendering and built-in optimisations like image lazy loading.`,
           fr: `La première version utilisait WordPress, mais j'ai rapidement trouvé cette plateforme trop restrictive et trop lourde pour mes besoins. Entre fin 2024 et début 2025, j'ai tout reconstruit avec Eleventy (V2), qui m'a permis de travailler directement avec HTML et CSS dans une structure que je comprenais bien. Quelques mois plus tard, je suis passé à React avec Vite (V3) pour apprendre l'architecture basée sur les composants et le rendu côté client (CSR), même si je voyais déjà les limites du CSR pur.
 
-À partir d'octobre 2025, j'ai décidé de migrer vers Next.js 15. Ma principale motivation était de résoudre les problèmes de performances que j'avais remarqués dans la V3, notamment grâce au rendu côté serveur et à des optimisations intégrées telles que le chargement différé des images. La transition vers l'architecture App Router a nécessité beaucoup de travail et de tests pour comprendre comment passer de Vite à ce nouveau framework.`,
+À partir d'octobre 2025, j'ai décidé de migrer vers Next.js 15. Ma principale motivation était de résoudre les problèmes de performances que j'avais remarqués dans la V3, notamment grâce au rendu côté serveur et à des optimisations intégrées telles que le chargement différé des images.`,
         },
         whatIBuilt: {
           en: `The design borrows from risograph printing: two inks, fluorescent pink and federal blue, over a night plate in the hero and cream paper elsewhere. The hero sky is drawn in WebGL, in a single draw call and without a library; it replaces the Three.js particle effects of the previous version.
@@ -205,7 +211,7 @@ Pour maintenir la réactivité de l'interface lors des calculs longs (la génér
 
 HEP-GUI était une preuve de concept limitée à ce workflow précis, et je ne prévois pas de le développer davantage.`,
       },
-      technologies: ['Python', 'PySide6', 'Docker', 'MadGraph5', 'Pythia8', 'Rivet'],
+      technologies: ['Python', 'PySide6', 'PyQtGraph', 'Docker', 'MadGraph5', 'Pythia8', 'Rivet'],
       keywords: ['particle physics', 'monte carlo', 'madgraph', 'hep', 'gui', 'simulation', 'docker'],
       category: 'personal',
       status: 'completed',
@@ -259,7 +265,7 @@ Les métadonnées des films sont récupérées depuis l'API TMDb (The Movie Data
         en: `I used Accred at the Cannes 2026 festival, in a private deployment. It's not yet ready for a full public release.`,
         fr: `J'ai utilisé Accred au Festival de Cannes 2026, en déploiement privé. L'application n'est pas encore prête pour une mise en ligne publique.`,
       },
-      technologies: ['Next.js', 'TypeScript', 'SQLite', 'PostgreSQL', 'Docker'],
+      technologies: ['Next.js', 'TypeScript', 'SQLite', 'Drizzle', 'NextAuth', 'Docker'],
       keywords: ['pwa', 'film festival', 'mobile', 'self-hosted', 'nextjs', 'scheduler'],
       category: 'personal',
       status: 'paused',
@@ -363,7 +369,7 @@ Les métadonnées des films sont récupérées depuis l'API TMDb (The Movie Data
         whatIBuilt: {
           en: `### Homepage
 
-The flagship plugin: it replaces Jellyfin's default home page with a fully configurable widget engine, 27 widgets across native, admin-curated, personalised and TMDb-connected categories (TMDb: The Movie Database, a public film database), with drag-and-drop layout from the admin dashboard. It stays out of the way on TV clients, where the native home screen still makes more sense. It has its own documentation site: see it on [GitHub](https://github.com/JellyUX/Homepage) or read the [docs](https://jellyux.github.io/Homepage/).
+The flagship plugin: it replaces Jellyfin's default home page with a fully configurable widget engine, 29 widgets across native, admin-curated, personalised and TMDb-connected categories (TMDb: The Movie Database, a public film database), with drag-and-drop layout from the admin dashboard. It stays out of the way on TV clients, where the native home screen still makes more sense. It has its own documentation site: see it on [GitHub](https://github.com/JellyUX/Homepage) or read the [docs](https://jellyux.github.io/Homepage/).
 
 ### Keep or Remove
 
@@ -374,7 +380,7 @@ A small, deliberately temporary plugin for when server storage runs low: users v
 An internal email notification service for Jellyfin: a new-media newsletter on a schedule the admin picks (weekly, monthly, every N days or daily), with cover art and links back to each title; a personal weekly recap for each user, with what they watched that week and their running total for the year; and one-off announcements written from the dashboard, in plain text or HTML. Each user picks which categories they receive and sets their own contact address, every email carries a one-click unsubscribe link, and the plugin only reads library and playback data. Mail goes out through Resend. On [GitHub](https://github.com/JellyUX/Easy_Notif).`,
           fr: `### Homepage
 
-Le plugin phare : il remplace la page d'accueil par défaut de Jellyfin par un moteur de widgets entièrement configurable, 27 widgets répartis entre catégories natives, gérées par l'admin, personnalisées et connectées à TMDb (The Movie Database, une base publique de films), avec une disposition en glisser-déposer depuis le tableau de bord admin. Il reste discret sur les clients TV, où l'accueil natif garde plus de sens. Il a son propre site de documentation : disponible sur [GitHub](https://github.com/JellyUX/Homepage) ou dans la [documentation](https://jellyux.github.io/Homepage/).
+Le plugin phare : il remplace la page d'accueil par défaut de Jellyfin par un moteur de widgets entièrement configurable, 29 widgets répartis entre catégories natives, gérées par l'admin, personnalisées et connectées à TMDb (The Movie Database, une base publique de films), avec une disposition en glisser-déposer depuis le tableau de bord admin. Il reste discret sur les clients TV, où l'accueil natif garde plus de sens. Il a son propre site de documentation : disponible sur [GitHub](https://github.com/JellyUX/Homepage) ou dans la [documentation](https://jellyux.github.io/Homepage/).
 
 ### Keep or Remove
 
@@ -421,16 +427,16 @@ Un service de notifications par email interne à Jellyfin : une newsletter des n
         fr: 'Tournées de livraison guidées par OCR',
       },
       detailedDescription: {
-        en: `I built Delivr for a temp job delivering breakfasts at a holiday camp: every morning a paper sheet lists which cottages get a delivery, and copying those cottage numbers by hand before each round was the tedious part. The app scans the sheet, runs offline OCR (optical character recognition) to pull the cottage numbers out of the right column, sorts them into a logical route, and lets me check the list before starting.
+        en: `I built Delivr for a temp job delivering breakfasts at a holiday camp: every morning a paper sheet lists which cottages get a delivery, and copying those cottage numbers by hand before each round was the tedious part. The app scans the sheet, runs offline OCR (optical character recognition) to pull the cottage numbers out of the right column, sorts them in ascending or descending order, as I choose, and lets me check the list before starting.
 
 Once a round starts, the screen shows one thing: the current cottage number, in large type, with its position in the round underneath. Delivered or skipped, one tap moves to the next one, and everything saves continuously so closing the app by accident never loses the round in progress.
 
-It runs entirely offline: no server, no cloud, no account. Under the hood it's Kotlin and Jetpack Compose, Room for storage, and Google's ML Kit for document detection and text recognition, with a small CI pipeline that runs tests and lint and builds a signed release APK on every version bump.`,
-        fr: `J'ai développé Delivr pour un job d'intérim de livraison de petits-déjeuners en centre de vacances : chaque matin, une feuille papier liste les cottages à livrer, et recopier ces numéros à la main avant chaque tournée était la partie fastidieuse. L'application scanne la feuille, extrait les numéros de cottages par OCR (reconnaissance optique de caractères) hors ligne dans la bonne colonne, les trie dans un ordre logique de tournée, et permet de vérifier la liste avant de démarrer.
+It runs entirely offline: no server, no cloud, no account. It is written in Kotlin with Jetpack Compose, Room for storage, and Google's ML Kit for document detection and text recognition, with a small CI pipeline that runs tests and lint and builds a signed release APK on every version bump.`,
+        fr: `J'ai développé Delivr pour un job d'intérim de livraison de petits-déjeuners en centre de vacances : chaque matin, une feuille papier liste les cottages à livrer, et recopier ces numéros à la main avant chaque tournée était la partie fastidieuse. L'application scanne la feuille, extrait les numéros de cottages par OCR (reconnaissance optique de caractères) hors ligne dans la bonne colonne, les trie par ordre croissant ou décroissant, au choix, et permet de vérifier la liste avant de démarrer.
 
 Une fois la tournée lancée, l'écran n'affiche qu'une chose : le numéro du cottage en cours, en grand, avec sa position dans la tournée en dessous. Livré ou passé, un tap suffit pour passer au suivant, et tout se sauvegarde en continu pour qu'une fermeture accidentelle de l'application ne fasse jamais perdre la tournée en cours.
 
-L'application fonctionne entièrement hors ligne : aucun serveur, aucun cloud, aucun compte. Sous le capot, c'est du Kotlin et Jetpack Compose, Room pour le stockage, et le ML Kit de Google pour la détection de document et la reconnaissance de texte, avec une petite chaîne CI qui exécute les tests et le lint et construit une APK de release signée à chaque montée de version.`,
+L'application fonctionne entièrement hors ligne : aucun serveur, aucun cloud, aucun compte. L'application est écrite en Kotlin avec Jetpack Compose, Room pour le stockage, et le ML Kit de Google pour la détection de document et la reconnaissance de texte, avec une petite chaîne CI qui exécute les tests et le lint et construit une APK de release signée à chaque montée de version.`,
       },
       technologies: ['Kotlin', 'Jetpack Compose', 'Room', 'ML Kit', 'GitHub Actions'],
       keywords: ['android', 'kotlin', 'ocr', 'jetpack compose', 'offline-first'],
@@ -739,13 +745,13 @@ Côté alimentation, les premières versions faisaient osciller le courant : il 
           fr: `Nous avons commencé par passer en revue les théories historiques sur la composition et la dynamique des anneaux. Cassini pensait qu'ils étaient constitués de roches en collision, Laplace défendait l'hypothèse de structures solides, mais Maxwell a tranché en 1859 en prouvant mathématiquement que seuls des systèmes de particules indépendantes pouvaient rester stables. Ses travaux ont également révélé que ces systèmes sont intrinsèquement sensibles aux conditions initiales, ce qui est un indice de la théorie du chaos avant que Poincaré ne formalise le concept. Nous avons également découvert la limite de Roche, qui explique comment les forces de marée peuvent disloquer une lune pour créer des anneaux.`,
         },
         whatIBuilt: {
-          en: `Our computational work focused on modelling the rings as an N-body problem using Python. We implemented Newton's equations, treating the rings as collections of particles interacting with Saturn and its moons. We ran simulations tracking 20 particles over 10-year periods, visualising their trajectories in 2D and 3D. The results showed clear chaotic behaviour with high sensitivity to initial conditions, just like Poincaré predicted for the three-body problem.`,
-          fr: `Le travail numérique s'est concentré sur la modélisation des anneaux en tant que problème à N corps à l'aide de Python. Nous avons mis en œuvre les équations de Newton, en traitant les anneaux comme des collections de particules interagissant avec Saturne et ses lunes. Nous avons effectué des simulations suivant 20 particules sur des périodes de 10 ans, en visualisant leurs trajectoires en 2D et 3D. Les résultats ont montré un comportement chaotique clair avec une grande sensibilité aux conditions initiales, comme Poincaré l'avait prédit pour le problème à trois corps.`,
+          en: `Our computational work focused on modelling the rings as an N-body problem using Python. We implemented Newton's equations, treating the rings as collections of particles interacting with Saturn and its moons. We ran simulations tracking 20 particles over 10-year periods, visualising their trajectories in 2D and 3D. The results showed clear chaotic behaviour with high sensitivity to initial conditions.`,
+          fr: `Le travail numérique s'est concentré sur la modélisation des anneaux en tant que problème à N corps à l'aide de Python. Nous avons mis en œuvre les équations de Newton, en traitant les anneaux comme des collections de particules interagissant avec Saturne et ses lunes. Nous avons effectué des simulations suivant 20 particules sur des périodes de 10 ans, en visualisant leurs trajectoires en 2D et 3D. Les résultats ont montré un comportement chaotique clair avec une grande sensibilité aux conditions initiales.`,
         },
       },
       limits: {
-        en: `We tried calculating Lyapunov exponents to quantify the chaos, but we found this task relatively difficult to implement properly.`,
-        fr: `Nous avons essayé de calculer les exposants de Lyapunov pour quantifier le chaos, mais nous avons trouvé cette tâche relativement difficile à mettre en œuvre correctement.`,
+        en: `We did not manage to complete the Lyapunov exponent calculation (the code stayed non-functional), and the elements we chose made a bifurcation diagram impossible. The Lyapunov horizon, of the order of a few years, is therefore only an estimate taken from published results on the three-body problem.`,
+        fr: `Nous n'avons pas réussi à mener à terme le calcul des exposants de Lyapunov (le code est resté non fonctionnel), et les éléments choisis ne permettaient pas de tracer un diagramme de bifurcation. L'horizon de Lyapunov, de l'ordre de quelques années, n'est donc qu'une estimation tirée de résultats publiés sur le problème à trois corps.`,
       },
       technologies: ['Python', 'NumPy', 'Matplotlib'],
       keywords: ['chaos theory', 'N-body problem', 'simulation', 'Lyapunov'],
