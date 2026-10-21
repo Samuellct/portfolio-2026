@@ -819,26 +819,26 @@ Au quatrième jour, nous avons simplifié l'interface pour ne conserver que les 
           fr: `Au cours de ma première année de master, j'ai passé deux mois au Laboratoire de physique de Clermont au sein de l'équipe LHCb, où j'ai travaillé sur un mode de désintégration rare du méson B. J'ai étudié le processus B⁺ → K₁⁺γ, qui pourrait être un signe de physique au-delà du Modèle standard à travers la polarisation du photon émis.`,
         },
         approach: {
-          en: `This internship was my first experience working with large-scale experimental data from LHC Run 1. I worked primarily with ROOT (CERN's data analysis framework) and C++ to filter through the collected events. Starting from samples containing several hundred thousand candidates, the challenge was to reduce this to a manageable dataset while preserving potential signal events.
+          en: `This internship was my first experience working with large-scale experimental data from LHC Run 1. I worked primarily with ROOT (CERN's data analysis framework) and C++ to filter through the collected events. The Run 1 samples are inclusive: they combine an energetic photon with three tracks and a π⁰, with no assumption on intermediate resonances, so they are huge. I had to bring them down to a workable size without losing the signal.
 
-Most of my time went into building a preselection strategy using simulated data. I studied particle identification variables to distinguish signal from background. For charged particles, the RICH detectors (Cherenkov detectors that identify charged particles) of LHCb produce probability outputs like ProbNNk, which indicates how likely a track is to be a kaon rather than a pion or proton. For photons, I used gammaCL to assess the quality of electromagnetic showers in the calorimeters and reject background noise. I also reconstructed the helicity angle, which relates to the photon's polarisation and would eventually help probe for new physics.`,
-          fr: `Ce stage a été ma première expérience de travail avec des données expérimentales à grande échelle issues du Run 1 du LHC. J'ai principalement utilisé ROOT (l'environnement d'analyse de données du CERN) et C++ pour filtrer les événements collectés. À partir d'échantillons contenant plusieurs centaines de milliers de candidats, le défi était de réduire l'ensemble à un jeu de données exploitable tout en préservant les événements de signal potentiels.
+Most of my time went into building a preselection strategy using simulated data. I studied particle identification variables to distinguish signal from background. For charged particles, the RICH detectors (Cherenkov detectors that identify charged particles) of LHCb produce probability outputs like ProbNNk, which indicates how likely a track is to be a kaon rather than a pion or proton. For photons, I used gammaCL to assess the quality of electromagnetic showers in the calorimeters and reject background noise.`,
+          fr: `Ce stage a été ma première expérience de travail avec des données expérimentales à grande échelle issues du Run 1 du LHC. J'ai principalement utilisé ROOT (l'environnement d'analyse de données du CERN) et C++ pour filtrer les événements collectés. Les échantillons du Run 1 sont inclusifs : ils associent un photon énergétique à trois traces et un π⁰, sans hypothèse sur les résonances intermédiaires, d'où leur très grande taille. Il fallait les ramener à un volume exploitable sans perdre le signal.
 
-J'ai consacré la majeure partie de mon temps à élaborer une stratégie de présélection à partir de données simulées. J'ai étudié les variables d'identification des particules afin de distinguer le signal du bruit de fond. Pour les particules chargées, les détecteurs RICH (détecteurs Tcherenkov qui identifient les particules chargées) du LHCb produisent des sorties probabilistes telles que ProbNNk, qui indiquent la probabilité qu'une trace soit un kaon plutôt qu'un pion ou un proton. Pour les photons, j'ai utilisé gammaCL afin d'évaluer la qualité des gerbes électromagnétiques dans les calorimètres et de rejeter le bruit de fond. J'ai également reconstruit l'angle d'hélicité, qui est lié à la polarisation du photon et qui pourrait à terme aider à explorer la nouvelle physique.`,
+J'ai consacré la majeure partie de mon temps à élaborer une stratégie de présélection à partir de données simulées. J'ai étudié les variables d'identification des particules afin de distinguer le signal du bruit de fond. Pour les particules chargées, les détecteurs RICH (détecteurs Tcherenkov qui identifient les particules chargées) du LHCb produisent des sorties probabilistes telles que ProbNNk, qui indiquent la probabilité qu'une trace soit un kaon plutôt qu'un pion ou un proton. Pour les photons, j'ai utilisé gammaCL afin d'évaluer la qualité des gerbes électromagnétiques dans les calorimètres et de rejeter le bruit de fond.`,
         },
         whatIBuilt: {
-          en: `Applied to real Run 1 data, this preselection reduced the dataset by a factor of 30, with 57% efficiency on simulated signal. The $\\omega$ meson peak at 783 MeV stands out clearly in the data, which confirms the reconstruction works.`,
-          fr: `Appliquée aux données réelles du Run 1, cette présélection a réduit l'ensemble de données d'un facteur 30, avec une efficacité de 57 % sur le signal simulé. Le pic du méson $\\omega$ à 783 MeV ressort nettement dans les données, ce qui montre que la reconstruction fonctionne.`,
+          en: `On the real Run 1 data, the invariant mass cuts alone reduced the samples by a factor of about 30. With vetoes on two specific backgrounds and the rest of the preselection, the overall reduction is around 300, for a signal efficiency of 57% on simulation. That still leaves about 100,000 candidates for Run 1. Tighter cuts on the $\\omega$ and $K_{1}^{+}$ masses bring them down to about 2,600: a clear $\\omega$ peak shows up in the data, the $K_{1}^{+}$ does not.`,
+          fr: `Sur les données réelles du Run 1, les coupures en masse invariante ont réduit à elles seules les échantillons d'un facteur 30 environ. Avec des vetos sur deux bruits de fond spécifiques et le reste de la présélection, la réduction totale atteint environ 300, pour une efficacité de 57 % sur le signal simulé. Il reste encore environ 100 000 candidats pour le Run 1. Des coupures plus strictes sur les masses du $\\omega$ et du $K_{1}^{+}$ les ramènent à environ 2 600 : un pic net du $\\omega$ apparaît dans les données, pas celui du $K_{1}^{+}$.`,
         },
       },
       limits: {
-        en: `The $K_{1}^{+}$ signal was not observed, which is not surprising given the rarity of this decay and the limited Run 1 statistics.`,
-        fr: `Le signal $K_{1}^{+}$ n'a pas été observé, ce qui n'est pas surprenant compte tenu de la rareté de cette désintégration et des statistiques limitées du Run 1.`,
+        en: `The $K_{1}^{+}$ signal was not observed, which is not surprising given the rarity of this decay and the limited Run 1 statistics. The fit of the B⁺ mass uses an ad hoc background shape, and its probability is poor; a proper study of partially reconstructed backgrounds would be needed.`,
+        fr: `Le signal $K_{1}^{+}$ n'a pas été observé, ce qui n'est pas surprenant compte tenu de la rareté de cette désintégration et des statistiques limitées du Run 1. L'ajustement de la masse du B⁺ repose sur une forme de bruit de fond choisie à la main, et sa probabilité est mauvaise ; il faudrait étudier les bruits de fond partiellement reconstruits.`,
       },
       results: [
-        { label: { en: 'Data reduction', fr: 'Réduction des données' }, value: '30×', note: { en: 'on real Run 1 data', fr: 'sur les données réelles du Run 1' } },
+        { label: { en: 'Data reduction', fr: 'Réduction des données' }, value: '300×', note: { en: 'about, full preselection on Run 1 data', fr: 'environ, présélection complète sur les données du Run 1' } },
         { label: { en: 'Signal efficiency', fr: 'Efficacité du signal' }, value: '57', unit: '%', note: { en: 'on simulated signal', fr: 'sur le signal simulé' } },
-        { label: { en: 'ω meson peak', fr: 'Pic du méson ω' }, value: '783', unit: 'MeV', note: { en: 'reconstructed in the data', fr: 'reconstruit dans les données' } },
+        { label: { en: 'Candidates left', fr: 'Candidats restants' }, value: '2 600', note: { en: 'about, after the ω and K₁⁺ mass cuts', fr: 'environ, après les coupures sur les masses du ω et du K₁⁺' } },
       ],
       research: {
         lab: { en: 'Clermont Physics Laboratory (LPC)', fr: 'Laboratoire de Physique de Clermont (LPC)' },
@@ -852,13 +852,13 @@ J'ai consacré la majeure partie de mon temps à élaborer une stratégie de pr�
       location: { en: 'Clermont Physics Laboratory (LPC)', fr: 'Laboratoire de Physique de Clermont (LPC)' },
       image: '/images/m1Internship.webp',
       imageAlt: {
-        en: 'Attempt to Fit the B Meson mass',
+        en: 'Attempt to fit the B meson mass',
         fr: 'Tentative d\'ajustement de la masse du méson B',
       },
       media: [
         {
           src: '/images/m1Internship.webp',
-          alt: { en: 'Attempt to Fit the B Meson mass', fr: 'Tentative d\'ajustement de la masse du méson B' },
+          alt: { en: 'Attempt to fit the B meson mass', fr: 'Tentative d\'ajustement de la masse du méson B' },
           caption: { en: 'Fit of the B meson mass (χ²/ndf = 47/24): the K₁⁺ signal was not observed.', fr: 'Ajustement de la masse du méson B (χ²/ndf = 47/24) : le signal K₁⁺ n\'a pas été observé.' },
           frame: 'figure',
           width: 752,
