@@ -6,7 +6,7 @@
 
 ## Overview
 
-My personal portfolio: my path through physics and the projects I build, in French and English. Built with Next.js 15 (App Router) and deployed on Cloudflare Workers.
+My personal portfolio: my path through physics and the projects I build, in French and English. Built with Next.js 16 (App Router) and deployed on Cloudflare Workers.
 
 > **Live website:** https://www.samuel-lecomte.fr/
 
