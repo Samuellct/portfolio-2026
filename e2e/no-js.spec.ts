@@ -14,7 +14,8 @@ type Case = {
 const CASES: Case[] = [
   { path: '/fr', floor: { desktop: 11, mobile: 14 }, fixedBy: 'done' },
   { path: '/fr/projects', floor: { desktop: 34, mobile: 34 }, fixedBy: 'done' },
-  { path: '/fr/projects/personal/alpine-route', floor: { desktop: 25, mobile: 20 }, fixedBy: 'done' },
+  // desktop 25 -> 21: the on-page summary left the context frame in phase 16 (P16-D3)
+  { path: '/fr/projects/personal/alpine-route', floor: { desktop: 21, mobile: 20 }, fixedBy: 'done' },
   { path: '/fr/contact', floor: { desktop: 6, mobile: 6 }, fixedBy: 'done' },
   { path: '/fr/about', floor: { desktop: 15, mobile: 10 }, fixedBy: 'V7' },
 ]
