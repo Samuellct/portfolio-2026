@@ -94,8 +94,8 @@ const TECHNOLOGIES = {
   PySide6: { color: D, family: null },
   PyQtGraph: { color: D, family: null },
   SQLite: { color: '#003b57', family: 'tools' },
-  Drizzle: { color: D, family: 'tools' },
-  NextAuth: { color: D, family: 'tools' },
+  Drizzle: { color: '#C5F74F', family: 'tools' }, // Simple Icons, source orm.drizzle.team
+  NextAuth: { color: '#9C21D9', family: 'tools' }, // violet of the Auth.js logo (nextauthjs/next-auth docs/public/img/logo-sm.png), absent from Simple Icons
   Room: { color: D, family: null },
   'ML Kit': { color: D, family: null },
   Nextcloud: { color: D, family: null },
