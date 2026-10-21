@@ -26,12 +26,15 @@ function outsideVerbatim(text: string, fix: (prose: string) => string): string {
 
 // French typography (V6-I18-01): a narrow no-break space before ; ? ! and a
 // no-break space before :, replacing the plain space the text was typed with.
-// "!" opening a Markdown image ("![") is not punctuation.
+// "!" opening a Markdown image ("![") is not punctuation. Thousands groups
+// ("2 600", "100 000") are joined by a narrow no-break space, as in the
+// results bar, so a number never breaks across lines.
 export function frenchSpacing(text: string): string {
   return outsideVerbatim(text, (prose) =>
     prose
       .replace(/[ \u00A0\u202F]+(?=[;?]|!(?!\[))/g, '\u202F')
       .replace(/[ \u00A0\u202F]+(?=:)/g, '\u00A0')
+      .replace(/(?<![\d.,])\d{1,3}(?:[ \u00A0\u202F]\d{3})+(?!\d)/g, (n) => n.replace(/[ \u00A0]/g, '\u202F'))
   )
 }
 
