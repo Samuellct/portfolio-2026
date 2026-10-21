@@ -5,6 +5,26 @@ Toutes les modifications notables apportées à ce projet sont documentées dans
 Le format est basé sur [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 et ce projet respecte les règles du [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [5.9.1](https://github.com/Samuellct/portfolio-2026/compare/v5.9.0...v5.9.1) (2026-10-21)
+
+### Corrigé
+
+* **about:** give the Drizzle and NextAuth tags their brand colours ([a71a648](https://github.com/Samuellct/portfolio-2026/commit/a71a648179e429f6e564a0fee09324a1df91c3e2)), closes [#C5F74F](https://github.com/Samuellct/portfolio-2026/issues/C5F74F)
+* **i18n:** keep French thousands groups on one line in project prose ([a78aac3](https://github.com/Samuellct/portfolio-2026/commit/a78aac3ec36be772fa011340d005c1dec7b58c79))
+* **project:** drop the on-page summary from the context frame ([e00c480](https://github.com/Samuellct/portfolio-2026/commit/e00c480917d33af178845050e9bccb3016a7d262))
+* **projects:** correct seven fiches against their repositories and reports ([005a68e](https://github.com/Samuellct/portfolio-2026/commit/005a68e9ef9deacca990299abba5c5a429a78764))
+* **projects:** correct the M2 internship results and show its own figure ([d9bb1e4](https://github.com/Samuellct/portfolio-2026/commit/d9bb1e492bb6eb7abed71fa1eed588db5f296eec))
+* **projects:** cut the LabVIEW fiche to its sourced work ([7780a5d](https://github.com/Samuellct/portfolio-2026/commit/7780a5d1d14e7f930d040fdf4446bfceefb3bfbc))
+* **project:** set titles over 30 characters at the heading size ([b002bc8](https://github.com/Samuellct/portfolio-2026/commit/b002bc855ba8830808c1c89c33a895db9563ff64))
+* **projects:** rewrite the TimePredict fiche on its current measurements ([5c2955c](https://github.com/Samuellct/portfolio-2026/commit/5c2955c5756b165a71c29295adb29106ce833b56))
+* **projects:** scale the quantum fiche to what the simulation did ([a440cc3](https://github.com/Samuellct/portfolio-2026/commit/a440cc3ff18f6f7318492dd7b92c26c405f899f6))
+* **projects:** source the M1 internship figures from the report ([6d56888](https://github.com/Samuellct/portfolio-2026/commit/6d568888fc66d4663a2a7c01e70a621ded884763))
+* **projects:** state the halved signal and the pair work on the L3 analysis ([f5abb93](https://github.com/Samuellct/portfolio-2026/commit/f5abb93c9ba193da40f7387290f6b26ececf4b8a))
+
+### Modifié
+
+* **deps:** upgrade Next.js to 16.4.2 ([13862fe](https://github.com/Samuellct/portfolio-2026/commit/13862fe55745559463af143fcae5747046062220))
+
 ## [5.9.0](https://github.com/Samuellct/portfolio-2026/compare/v5.8.1...v5.9.0) (2026-10-18)
 
 ### Ajouté
