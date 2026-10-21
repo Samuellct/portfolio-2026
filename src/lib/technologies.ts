@@ -51,6 +51,7 @@ const TECHNOLOGIES = {
   Matplotlib: { color: '#11557c', family: 'dataAnalysis' }, // matplotlib doc/_static/logo2.svg
   SciPy: { color: '#8caae6', family: 'dataAnalysis' },
   SymPy: { color: D, family: null },
+  cryptography: { color: D, family: null },
   'scikit-learn': { color: '#f7931e', family: 'dataAnalysis' },
   TensorFlow: { color: D, family: 'dataAnalysis' },
   PyTorch: { color: '#ee4c2c', family: null },

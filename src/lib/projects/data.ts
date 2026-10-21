@@ -547,8 +547,8 @@ En suivant la méthode CLs (méthode statistique standard pour fixer des limites
     'quantum-algorithms': {
       id: 'quantum-algorithms',
       title: {
-        en: 'Quantum Algorithm Demos using Cirq',
-        fr: 'Démonstrations d\'algorithmes quantiques avec Cirq',
+        en: 'Quantum Algorithm Demo using Cirq',
+        fr: 'Démonstration d\'un algorithme quantique avec Cirq',
       },
       description: {
         en: "Python simulation of Shor's algorithm using the Cirq library, limited to factoring small numbers, to show how it threatens RSA encryption.",
@@ -560,8 +560,8 @@ En suivant la méthode CLs (méthode statistique standard pour fixer des limites
       },
       sections: {
         context: {
-          en: `This project was carried out as part of my Quantum Mechanics course during my first year of Master's. Working alongside two classmates, we studied the principles of quantum computing and their implications for modern cryptography. Our goal was to understand how qubits, quantum gates, and quantum circuits work, and then apply this knowledge to a real-world problem: breaking RSA encryption (a widely used public-key encryption scheme) using Shor's algorithm.`,
-          fr: `Ce projet a été réalisé dans le cadre du cours de mécanique quantique pendant ma première année de master. En collaboration avec deux camarades, nous avons étudié les principes de l'informatique quantique et leurs implications pour la cryptographie moderne. Notre objectif était de comprendre le fonctionnement des qubits, des portes quantiques et des circuits quantiques, puis d'appliquer ces connaissances à un problème concret : casser le chiffrement RSA (un chiffrement à clé publique très répandu) à l'aide de l'algorithme de Shor.`,
+          en: `This project was carried out as part of my Quantum Mechanics course during my first year of Master's. Working alongside two classmates, we studied the principles of quantum computing and their implications for modern cryptography. Our goal was to understand how qubits, quantum gates, and quantum circuits work, and then apply this knowledge to the attack on RSA encryption (a widely used public-key encryption scheme): factoring a number with a simulation of Shor's algorithm. No quantum computer today is powerful enough to do it on real RSA keys.`,
+          fr: `Ce projet a été réalisé dans le cadre du cours de mécanique quantique pendant ma première année de master. En collaboration avec deux camarades, nous avons étudié les principes de l'informatique quantique et leurs implications pour la cryptographie moderne. Notre objectif était de comprendre le fonctionnement des qubits, des portes quantiques et des circuits quantiques, puis d'appliquer ces connaissances à l'attaque du chiffrement RSA (un chiffrement à clé publique très répandu) : factoriser un nombre avec une simulation de l'algorithme de Shor. Aucun ordinateur quantique actuel n'est assez puissant pour le faire sur de vraies clés RSA.`,
         },
         approach: {
           en: `We started with the theory. We studied superposition, entanglement, and the Bloch sphere representation, then moved on to quantum gates like Hadamard, Pauli-X, and CNOT (controlled-NOT), as well as the Quantum Fourier Transform. Once we felt comfortable with the basics, we implemented RSA encryption in Python using both a simple version with SymPy and a standard implementation with the cryptography library. We wanted to see firsthand how asymmetric encryption works before attempting to crack it.`,
@@ -580,7 +580,7 @@ Nous avons aussi compris pourquoi les chercheurs développent de nouvelles méth
         en: `The algorithm worked well for small numbers, but we quickly hit memory limitations for numbers larger than five digits. This makes sense because simulating n qubits requires storing $2^{n}$ complex numbers in memory, so the requirements explode exponentially.`,
         fr: `L'algorithme a bien fonctionné pour les petits nombres, mais nous avons rapidement atteint les limites de mémoire pour les nombres supérieurs à cinq chiffres. C'est logique, car la simulation de n qubits nécessite de stocker $2^{n}$ nombres complexes en mémoire, ce qui fait exploser les besoins de manière exponentielle.`,
       },
-      technologies: ['Python', 'Qiskit', 'Cirq', 'SymPy'],
+      technologies: ['Python', 'Cirq', 'SymPy', 'cryptography'],
       keywords: ['quantum computing', 'Shor algorithm', 'RSA', 'cryptography'],
       category: 'academic',
       status: 'completed',
