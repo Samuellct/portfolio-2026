@@ -146,7 +146,6 @@
     "searchPlaceholder": "Search…",
     "breadcrumbLabel": "Breadcrumb",
     "facts": {"period": "Period", "location": "Location"},
-    "onThisPage": "On this page",
     "resultBaseline": "vs {value}, {label}",
     "sections": {
       "context": "Context",

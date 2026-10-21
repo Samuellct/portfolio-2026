@@ -234,21 +234,6 @@ export default function ProjectDetailView({
             {contextText && (
               <p className="hidden lg:block mt-6 pt-5 border-t border-white/15 text-sm text-muted">{contextText}</p>
             )}
-            {/* In-page anchors for fiches with several narrative sections (desktop, where the frame stays in view) */}
-            {narrative.length >= 2 && (
-              <nav aria-label={t('onThisPage')} className="hidden lg:block mt-6 pt-5 border-t border-white/15">
-                <p className="mb-3 text-sm font-semibold">{t('onThisPage')}</p>
-                <ul className="space-y-1 text-sm">
-                  {[...(project.results?.length ? ['results' as const] : []), ...narrative.map(([key]) => key)].map((key) => (
-                    <li key={key}>
-                      <a href={`#section-${key}`} className="text-muted hover:text-white underline-offset-4 hover:underline transition-colors">
-                        {t(`sections.${key}`)}
-                      </a>
-                    </li>
-                  ))}
-                </ul>
-              </nav>
-            )}
           </aside>
 
           {/* Narrative column: results, lead media, sections */}
